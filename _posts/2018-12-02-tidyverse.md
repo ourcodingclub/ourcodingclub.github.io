@@ -950,8 +950,6 @@ __Use another projection for the map - the default is Mercator, but that's not t
 
 ## Extra resources
 
-** ADD LINKS TO BES QE SIG STUFF **
-
 You can find more info on `pander` <a href="https://cran.r-project.org/web/packages/pander/pander.pdf" target="_blank"> here</a>.
 
 To learn more about the power of pipes check out:
