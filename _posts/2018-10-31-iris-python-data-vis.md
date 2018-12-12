@@ -85,7 +85,7 @@ Let's take a simple example to demonstrate the cube concept.
 
 Suppose we have a `(3, 2, 4)` NumPy array:
 
-<center> <img src="{{ site.baseurl }}/img/multi_array.png" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/iris_multi_array.png" alt="Img" style="width: 800px;"/> </center>
 
 Where dimensions 0, 1, and 2 have lengths 3, 2 and 4 respectively.
 
@@ -111,7 +111,7 @@ The Iris cube to represent this data may consist of:
 
 Pictorially the cube has taken on more information than a simple array:
 
-<center> <img src="{{ site.baseurl }}/img/multi_array_to_cube.png" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/iris_multi_array_to_cube.png" alt="Img" style="width: 800px;"/> </center>
 
 
 ### Working with a cube
