@@ -13,21 +13,21 @@ tags: mix Python Advanced Modelling
 
 ### Tutorial aims:
 
-#### <a href="introduction"> 1. Introduction and getting started</a>
+#### <a href="#introduction"> 1. Introduction and getting started</a>
 
-#### <a href="eda"> 2. Exploring text datasets</a>
+#### <a href="#eda"> 2. Exploring text datasets</a>
 
-#### <a href="who_what"> 3. Extracting substrings with regular expressions</a>
+#### <a href="#who_what"> 3. Extracting substrings with regular expressions</a>
 
-#### <a href="text_corr"> 4. Finding keyword correlations in text data</a>
+#### <a href="#text_corr"> 4. Finding keyword correlations in text data</a>
 
-#### <a href="top_mod"> 5. Introduction to topic modelling</a>
+#### <a href="#top_mod"> 5. Introduction to topic modelling</a>
 
-#### <a href="clean"> 6. Cleaning text data</a>
+#### <a href="#clean"> 6. Cleaning text data</a>
 
-#### <a href="apply"> 7. Applying topic modelling</a>
+#### <a href="#apply"> 7. Applying topic modelling</a>
 
-#### <a href="bonus"> 8. Bonus exercises</a>
+#### <a href="#bonus"> 8. Bonus exercises</a>
 
 <a name="introduction"></a>
 # Introduction
@@ -48,7 +48,7 @@ The first thing we will do is to get you set up with the data.
 
 ### The data\* you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-topic-modelling-python" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-\* The original dataset was taken from https://data.world/crowdflower/sentiment-of-climate-change but we have modified it slightly, so for this tutorial you should use the version on our Github.
+\* The original dataset was taken from <a href="https://data.world/crowdflower/sentiment-of-climate-change">the data.world website</a> but we have modified it slightly, so for this tutorial you should use the version on our Github.
 
 Import these packages next. You aren't going to be able to complete this tutorial without them. You are also going to need the `nltk` package, which we will talk a little more about later in the tutorial.
 ```python
@@ -105,6 +105,8 @@ Have a quick look at your dataframe, it should look like this:
   </tbody>
 </table>
 </center>
+
+Note that some of the web links have been replaced by [link], but some have not. This was in the dataset when we downloaded it initially and it will be in yours. This doesn't matter for this tutorial, but it always good to question what has been done to your dataset before you start working with it.
 
 <a name="eda"></a>
 # EDA - Time to start exploring our dataset
