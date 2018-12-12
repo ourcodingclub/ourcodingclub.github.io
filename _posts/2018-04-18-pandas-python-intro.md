@@ -46,7 +46,7 @@ _If you have used R's dataframes before, or the `numpy` package in Python, you m
 
 Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the <a href="https://ourcodingclub.github.io/2018/01/26/python-intro.html" target="_blank">Introduction to Python tutorial</a> we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the <a href="https://stackoverflow.com" target="_blank">StackOverflow</a> question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
 
-<center><img src="{{ site.baseurl }}/img/python-pandas-growth.png" alt="Img" style="width: 1000px"></center>
+<center><img src="{{ site.baseurl }}/img/python-pandas-growth.png" alt="Img" style="width: 700px"></center>
 
 These graphs of course should be taken with a pinch of salt, as there is no agreed way of absolutely determing programming langauge and library popularity, but they are interesting to think about nonetheless. 
 
@@ -630,7 +630,7 @@ plt.show()  # or plt.savefig("name.png")
 
 Run the script and have a look at the figure. It should look something like this:
 
-<center><img src="{{ site.baseurl }}/img/python-scatter.png" alt="Img" style="width: 1000px"></center>
+<center><img src="{{ site.baseurl }}/img/python-scatter.png" alt="Img" style="width: 600px"></center>
 
 **IPython users**: the figure should render automatically after calling `plt.scatter(x, y)`.
 
@@ -703,7 +703,7 @@ plt.savefig("figure.png")
 Hopefully, you will have a figure that should look similar to this:
 
 
-<center><img src="{{ site.baseurl }}/img/python-linear-reg.png" alt="Img" style="width: 1000px"></center>
+<center><img src="{{ site.baseurl }}/img/python-linear-reg.png" alt="Img" style="width: 600px"></center>
 
 I will leave it as an exercise for the reader to determine if they think this is a good fit or statistically significant...
 
@@ -754,7 +754,7 @@ plt.savefig("python-linear-reg-custom.png")
 
 It will produce a figure that looks like this:
 
-<center><img src="{{ site.baseurl }}/img/python-linear-reg-custom.png" alt="Img" style="width: 1000px"></center>
+<center><img src="{{ site.baseurl }}/img/python-linear-reg-custom.png" alt="Img" style="width: 600px"></center>
 
 
 <a name="inspiration"></a>
@@ -799,7 +799,7 @@ plt.scatter(dataframe['Longitude'],dataframe['Latitude'],
 plt.savefig("munros.png")
 ```
 
-<center><img src="{{ site.baseurl }}/img/python-munros.png" alt="Img" style="width: 1000px"></center>
+<center><img src="{{ site.baseurl }}/img/python-munros.png" alt="Img" style="width: 600px"></center>
 
 Finally, there is one more bonus Matplotlib example plot I would like to share, create by PhD student James Warner at Exeter University. It shows precipitable water in the atmopshere over the year 2017, projected over the globe. He has even created an animation of it which can be viewed <a href="https://twitter.com/MetmanJames/status/978659301337202693" target="_blank">on his Twitter account</a>. This was all done using Python and some other Python libraries, including Matplotlib, Numpy, Cartopy, and a few others. It would take a long time to explain all of it, but hopefully it is some inspiration of the cool things you can do in Python with data visualisation. 
 
@@ -808,7 +808,7 @@ The Python code for this is actually not too complicated and he has shared it <a
 If you are feeling ambitious, try reproducing the images!
 
 
-<center><img src="{{ site.baseurl }}/img/python-global-water.png" alt="Img" style="width: 800px"></center>
+<center><img src="{{ site.baseurl }}/img/python-global-water.png" alt="Img" style="width: 600px"></center>
 
 ## Summary
 
@@ -830,7 +830,7 @@ In this tutorial we have covered the various ways in which we can use Pandas, Ma
 
 __Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 <h3><a href="https://www.surveymonkey.co.uk/r/R6PJGKJ" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
 <br>
