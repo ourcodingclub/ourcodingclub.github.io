@@ -241,7 +241,7 @@ irisTest.labels |     setosa | versicolor |  virginica |  Row Total |
                 |      0.300 |      0.350 |      0.350 |            | 
 ----------------|------------|------------|------------|------------|
 ```
-To evaluate our models performance we can check if there are any discrepancies between our `iris.knn` model predictions and the actual `irisTest.labels`. To do this you can first check the total number of predicted classes per category in the last row under column total. 
+To evaluate our algorithm's performance we can check if there are any discrepancies between our `iris.knn` model predictions and the actual `irisTest.labels`. To do this you can first check the total number of predicted classes per category in the last row under column total. 
 
 These can then be compared against the actual classes on the right under row total. Our knn model predicted 12 setosa, 14 versicolor and 14 virginica. However when comparing this to our actual data there were 12 setosa, 12 versicolor and 16 virginca species in our test dataset. 
 
@@ -256,7 +256,7 @@ In this tutorial we have now covered the following:
 - the very basics of machine learning in `R`
 - implementing a k-nearest neighbour classification algorithm
 - building our own training and test datasets
-- testing and evaluating our knn algorithm using a cross-tabulation
+- testing and evaluating our knn algorithm using cross-tabulation
 
 However there is still a whole world to explore. For those interested in learning more have a look at this [freely available book](https://daviddalpiaz.github.io/r4sl/index.html) on machine learning in R.
 
