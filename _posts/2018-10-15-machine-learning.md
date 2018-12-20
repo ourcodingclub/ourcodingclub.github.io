@@ -212,7 +212,7 @@ Let's have a look at how our model did by inspecting the `class.comparison` tabl
 class.comparison
 ```
 
-Finally, we can also evaluate the model using a cross-tabulation table.
+Finally, we can also evaluate the model using a cross-tabulation or so called contingency table. These are very useful when we wish to understand what correlations exist between different categorical variables. In this case we will be able to tell what classes our model predicted and how those predicted classes compare to the actual iris classes. 
 
 ```r
 CrossTable(x = irisTest.labels, y = iris.knn, prop.chisq = FALSE)
@@ -241,22 +241,24 @@ irisTest.labels |     setosa | versicolor |  virginica |  Row Total |
                 |      0.300 |      0.350 |      0.350 |            | 
 ----------------|------------|------------|------------|------------|
 ```
+To evaluate our models performance we can check if there are any discrepancies between our `iris.knn` model predictions and the actual `irisTest.labels`. To do this you can first check the total number of predicted classes per category in the last row under column total. 
 
-We can see that our algorithm was able to almost predict all species classes correctly, except for two cases where virginica was falsely classified by our algorithm as versicolor. However all in all this is already a good result! 
+These can then be compared against the actual classes on the right under row total. Our knn model predicted 12 setosa, 14 versicolor and 14 virginica. However when comparing this to our actual data there were 12 setosa, 12 versicolor and 16 virginca species in our test dataset. 
+
+Overall we can see that our algorithm was able to almost predict all species classes correctly, except for a case where two samples where falsely classified as versicolor when in fact they belonged to virginica. To improve the model you could now experiment with using different `k` values to see if this impacts your model results in any way. 
+
+Finally now that your model is trained you could go ahead and try to implement your algorithm on the entire iris dataset to see how effective it is! 
 
 ### Summary and Next steps
 
-We have now covered:
+In this tutorial we have now covered the following:
 
 - the very basics of machine learning in `R`
-- implementing k-nearest neighbour classification
+- implementing a k-nearest neighbour classification algorithm
 - building our own training and test datasets
-- testing and evaluating our knn algorithm
+- testing and evaluating our knn algorithm using a cross-tabulation
 
 However there is still a whole world to explore. For those interested in learning more have a look at this [freely available book](https://daviddalpiaz.github.io/r4sl/index.html) on machine learning in R.
-
-You can now also go ahead and try to implement your own knn model using your own data or an established dataset such as the one used in this tutorial. 
-
 
 <hr>
 <hr>
