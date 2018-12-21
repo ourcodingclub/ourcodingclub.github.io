@@ -369,6 +369,8 @@ save_plot(filename = "model_fe.png",
           height = 11, width = 9)  # Save the graph if you wish
 ```
 
+Note how when we visualize our random effects, three different plots come up (use the arrow buttons in the "plots" window to scroll through the plots. The first two show the interaction effects. Here, we are only interested in the plot that shows us the random effects of site, i.e. the figure we see below:
+
 <center> <img src="{{ site.baseurl }}/img/model_re.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_fe.png" alt="Img" style="width: 500px;"/></center>
 
 __The left plot with the random effect coefficients shows the *deviation* for each category in the __
@@ -394,6 +396,8 @@ save_plot(filename = "model_temp_re.png",
 save_plot(filename = "model_temp_fe.png",
           height = 11, width = 9)
 ```
+
+Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year. 
 
 <center> <img src="{{ site.baseurl }}/img/model_temp_re.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_temp_fe.png" alt="Img" style="width: 500px;"/></center>
 
