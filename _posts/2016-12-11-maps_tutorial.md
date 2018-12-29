@@ -16,9 +16,9 @@ tags: datavis
 
 # Tutorial Aims:
 
-#### 1. Learn to download map tiles using ggmap
+#### 1. 
 
-#### 2. Make a simple map using ggmap
+#### 2. 
 
 #### 3. Import, manipulate and plot shapefiles
 
@@ -38,7 +38,7 @@ tags: datavis
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
 
-Next, open up a new R Script where you will be adding the code for your mapsa. Set the folder you just downloaded as your working directory by running the code below (subbing in the location of the folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`):
+Next, open up a new R Script where you will be adding the code for your mapsa. Set the folder you just downloaded as your working directory by running the code below, replacing `PATH_TO_FOLDER` with the location of the downloaded folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`:
 
 ```r
 setwd("PATH_TO_FOLDER")
@@ -67,24 +67,9 @@ setwd("PATH_TO_FOLDER")
 Load the following packages, remember if you haven't installed the packages first, you will have to use `install.packages("PACKAGE_NAME")` first:
 
 ```r
-library(readr)  # For reading in files
-library(dplyr)  # For formatting and cleaning data
-library(rgdal)  # For manipulating map data
-library(raster)  # For clipping shapefile polygons
-library(ggplot2)  # For drawing plots
-library(maps)  # For making maps
-library(mapdata)  # For supplying map data
-library(gpclib)  # For clipping polygons
-library(maptools) # For reading map data
-library(rtools)  # Not bundled with R as standard anymore
-library(devtools)  # For installing packages from altenative sources, e.g. Github
-	devtools::install_github("dkahle/ggmap")
-	devtools::install_github("oswaldosantos/ggsn")
-library(ggmap)  # For plotting map data, downloading map tiles from online sources
-library(ggsn)  # For adding scalebars and north arrows.
+<PACKAGES>
 ```
 
-At the time of writing, `ggmap` and `ggsn` need to be compiled from source (i.e. their repositories on Github) to maintain some functionality, hence `devtools::install_github("")`, but this will hopefully change in the future when the updated versions of the packages are uploaded to CRAN.
 
 Also, you should the following line after loading all your packages to allow `maptools` to use the `gpclib` package:
 
@@ -103,11 +88,11 @@ apt-get -y install libcurl4-gnutls-dev
 
 ## Getting your head around map data
 
-The easiest way to think about map data is to first imagine a graph displaying whatever data you want, but where the x and y axes denote longitude and latitude instead of a variable:
+The easiest way to think about map data is to first imagine a graph displaying whatever data you want, but where the x and y axes denote spatial coordinates such as longitude and latitude instead of a variable:
 
 <center><img src="{{ site.baseurl }}/img/Trout_Europe_Plot.jpeg" alt="Img" style="width: 700px;"/></center>
 
-Then it's a simple case of adding a background map to your image to place the data points in the real world. In this case, the map was pulled from Google maps using the `ggmap` package.
+Then it's a simple case of adding a background map to your image to place the data points in the real world. In this case, the map was pulled from data provided by the `maps` package:
 
 <center><img src="{{ site.baseurl }}/img/Trout_Europe_Map.jpeg" alt="Img" style="width: 700px;"/></center>
 
@@ -235,147 +220,6 @@ ggplot() +
 
 <center><img src="{{ site.baseurl }}/img/map_saf_penguins.png" alt="Img" style="width: 800px;"/></center>
 
-<a name="create_ggmap"></a>
-
-## Creating a map using `ggplot2` + `ggmap`
-
-The `ggmap` package also offers decent options for plotting maps. `ggmap` pulls map tiles as image files from various online sources, including Google maps and Open Street Maps.
-
-First make a bounding box (`bbox`), to tell `ggmap` what region of the world to download map tiles for. The bounding box must be in the form of a vector, with decimal latitude and longitude values in this order `c(lowerleftlongitude, lowerleftlatitude, upperrightlongitude, upperrightlatitude)`. We can set the bounding box to the size of our data using the following:
-
-```r
-bbox <- c(min(pc_trim_us$decimallongitude) - 2,
-          min(pc_trim_us$decimallatitude) - 2,
-          max(pc_trim_us$decimallongitude) + 2,
-          max(pc_trim_us$decimallatitude) + 2
-          )
-```
-
-the `+2` `-2` values are added to make the edges of the map slightly larger than the limits of the data, purely for aesthetic reasons.
-
-Now to download the map data from `ggmap`, using `bbox` in the `location` argument:
-
-```r
-map_penguin <- get_map(location = bbox, source = "stamen", maptype = "toner-lite")
-```
-
-We can check that the map is correct by plotting the `map_penguin` object:
-
-```r
-ggmap(map_penguin)
-```
-
-Note that sometimes `ggmap()` will fail, especially if you're internet connection is patchy. Try running it a few more times before looking for other fixes.
-
-To add the data, use `ggplot2` syntax but define the base plot as a `ggmap()` instead of a `ggplot()`:
-
-
-```r
-ggmap(map_penguin) +
-	geom_point(data = pc_trim_us,
-	aes(x = decimallongitude,
-		y = decimallatitude,
-		colour = scientificname),
-		alpha = 0.6,                     # `alpha=` sets the transparency of `geom_point()`, from 0 (transparent) to 1 (opaque)
-		size = 2) +                      # `size=` sets the diameter of `geom_point()`
-	xlab(expression("Decimal Longitude ("*degree*")")) +  # Wrapping the label in `expression()` and using *degree* lets us add a degree symbol
-	ylab(expression("Decimal Latitude ("*degree*")"))
-```
-
-Now you should have a map that looks something like this:
-
-<center><img src="{{ site.baseurl }}/img/penguin_toner.png" alt="Img" style="width: 700px;"/></center>
-
-`ggmap` can access a whole load of different map types. Have a go at re-plotting the map above with some alternative map types by replacing the `source =` and `maptype =` arguments in `get_map()`. But be warned, not every maptype is available for the entire world:
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-031e">`source =`</th>
-    <th class="tg-031e"><b>google</b></th>
-    <th class="tg-yw4l"><b>stamen</b></th>
-    <th class="tg-yw4l"><b>osm</b></th>
-  </tr>
-  <tr>
-    <td class="tg-031e" rowspan="11">`maptype =` </td>
-    <td class="tg-031e">satellite</td>
-    <td class="tg-yw4l">terrain</td>
-    <td class="tg-yw4l">&lt;empty&gt;</td>
-  </tr>
-  <tr>
-    <td class="tg-031e">terrain</td>
-    <td class="tg-yw4l">terrain-background</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-031e">roadmap</td>
-    <td class="tg-yw4l">terrain-labels</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">hybrid</td>
-    <td class="tg-yw4l">terrain-lines</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">terrain</td>
-    <td class="tg-yw4l">toner</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">terrain-background</td>
-    <td class="tg-yw4l">toner-background</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l"><br></td>
-    <td class="tg-yw4l">toner-hybrid</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l"><br></td>
-    <td class="tg-yw4l">toner-labels</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l"><br></td>
-    <td class="tg-yw4l">toner-lines</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l"><br></td>
-    <td class="tg-yw4l">toner-lite</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l"><br></td>
-    <td class="tg-yw4l">watercolor</td>
-    <td class="tg-yw4l"></td>
-  </tr>
-</table>
-
-`ggmap` can also be used to get detailed maps of local areas using the `zoom` argument. As a completely trivial exmaple, let's plot the distribution of <a href="http://data.edinburghopendata.info/dataset/play-areas" target="_blank">Council owned outdoor play areas in Edinburgh</a>:
-
-Import the data:
-
-```r
-play_areas <- read.csv("play_areas.csv")
-```
-
-Plot the map:
-
-```r
-edi_map <- get_map(location = "Edinburgh", zoom = 12, source = "google", maptype = "hybrid")
-
-ggmap(edi_map) +
-	geom_point(data = play_areas, aes(x = long, y = lat), size = 4, colour = "#06BA00")
-```
-
 <a name="shp"></a>
 
 ## Using shapefiles
@@ -390,7 +234,7 @@ __Mandatory files:__
 
 `.dbf` = An attribute file holding information on each object
 
-__Additional files:__
+__Common additional files:__
 
 `.prj` = A file containing information on the Coordinate Reference system
 
@@ -413,7 +257,7 @@ ggplot(brown_trout, mapping = aes(x = decimallongitude, y = decimallatitude)) + 
 ```
 We can roughly see the outline of Scandinavia and maybe the Northern Mediterranean if you squint.
 
-Again, to plot a preliminary map, first make a bounding box for the extent of the map, then download the map tiles using `ggmap`. We can set the map colour to greyscale with `color = "bw"`, so our shapefiles stand out. We can also set the map zoom with `zoom = 3`, with 3 being continent scale and 21 being individual buildings. This time we will make the bounding box manually:
+To plot a preliminary map, crop the world map provided by the `maps` package using 
 
 ```r
 bbox <- c(-40, 30, 40, 85)
