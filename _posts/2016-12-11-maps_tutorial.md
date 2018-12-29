@@ -16,7 +16,7 @@ tags: datavis
 
 # Tutorial Aims:
 
-#### 1. Plot simple maps with polygons in ggplot2 
+#### 1. Plot simple maps in ggplot2 
 
 #### 2. Manipulate spatial polygons 
 
@@ -36,7 +36,7 @@ tags: datavis
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
 
-Next, open up a new R Script where you will be adding the code for your maps. Set the folder you just downloaded as your working directory by running the code below, replacing `PATH_TO_FOLDER` with the location of the downloaded folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`:
+Next, open up a new R Script where you will add the code for your maps. Set the folder you just downloaded as your working directory by running the code below, replacing `PATH_TO_FOLDER` with the location of the downloaded folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`:
 
 ```r
 setwd("PATH_TO_FOLDER")
@@ -50,7 +50,7 @@ setwd("PATH_TO_FOLDER")
   - Most conventional GIS software use a Graphical User Interface (GUI) which makes them easier to fumble through when you don't know what you're doing, but point and click interfaces become very laborious when performing analyses for the _n_ th time or when you really know your way around the software. R uses a Command Line Interface, using text commands, so while there may be more of a learning curve to begin with, it's very efficient once you know what to do.
 
 ##### __Reproducible analyses with new data:__
-  - Imagine you have a data project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
+  - Imagine you have a project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
 
 ##### __It's free:__
   - While ArcMap and SuperGIS cost money to use, R packages are free and probably always will be.
@@ -73,7 +73,7 @@ library(ggsn)  # north2() scalebar()
 library(rworldmap)  # getMap()
 ```
 
-In previous versions of this workshop, we used the <a href="https://github.com/dkahle/ggmap" target="_blank">`ggmap` package</a> for grabbing background map tiles from Google Maps and other sources, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I'd recommend having a look if you have specific need for Google Maps basemaps. 
+In previous versions of this workshop, we used the <a href="https://github.com/dkahle/ggmap" target="_blank">`ggmap` package</a> for grabbing background map tiles from Google Maps and other sources, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I'd still recommend having a look if you have specific need for Google Maps basemaps. For now however, we will focus on other R packages. 
 
 <a name="map_data"></a>
 
@@ -95,7 +95,7 @@ That was a simple example, maps can incorporate more complex elements like polyg
 
 ## Creating a map using `ggplot2` and `rworldmap`
 
-In this part of the tutorial we are going to create a map showing occurrence records of two species of bird. Rueppell's Vulture (_Gyps rueppellii_) feeds on large mammalian carrion and the African Penguin (_Spheniscus demersus_) feeds on small marine fish. It's likely that their distributions have distinct spatial patterns, we shall see! We will use species occurence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility (GBIF)</a>, which can be found in <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">the repository</a> for this tutorial, which you should download if you haven't done so already.
+In this part of the workshop we are going to create a map showing occurrence records of two species of bird. Rueppell's Vulture (_Gyps rueppellii_) feeds on large mammalian carrion and the African Penguin (_Spheniscus demersus_) feeds on small marine fish. It's likely that their distributions have distinct spatial patterns, we shall see! We will use species occurence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility (GBIF)</a>, which can be found in <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">the repository</a> for this tutorial, which you should download if you haven't done so already.
 
 First, import the data we need, `Gyps_rueppellii_GBIF.csv` and `Spheniscus_dermersus_GBIF.csv`:
 
@@ -160,6 +160,8 @@ ggplot(pc_trim_us, aes(x = decimallongitude, y = decimallatitude,
     geom_point()
 ```
 
+<center><img src="{{ site.baseurl }}/img/bird_crop_ggplot.png" alt="Img" style="width: 700px;"/></center>
+
 Now we can add some simple country outline data from the `rworldmap` package, which has data of country boundaries at various resolutions.
 
 First we need to pull the map data:
@@ -180,7 +182,7 @@ world <- getMap(resolution = "low")
 
 `world@proj4string` contains the Coordinate Reference System (CRS) for the polygons. A CRS specifies how the coordinates of the 2D map displayed on the computer screen are related to the real globe, which is roughly spherical. There are lot's of different CRSs, used for maps of different scales, or of different parts of the globe (e.g. the poles vs. the equator) and it is important to keep them consistent amongst all the elements of your map. You can use `proj4string()` to check the CRS. For more information on CRSs have a look at "Coord_Ref_Systems.pdf" in <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">the repository you downloaded earlier</a>:
 
-Now we have to check that the shapefile has the right Co-ordinate Reference System (CRS) to be read by `ggplot2`. 
+Now we have to check that the shapefile has the right Coordinate Reference System (CRS) to be read by `ggplot2`. 
 
 You can plot `world` by simply adding it to your ggplot2 call using `geom_polygon()`  and designating the `ggplot()` as a map using `coord_quickmap()`:
 
@@ -271,6 +273,9 @@ ggplot(brown_trout, mapping = aes(x = decimallongitude, y = decimallatitude)) +
     geom_point(alpha = 0.5)
 ```
 
+<center><img src="{{ site.baseurl }}/img/trout_prelim.png" alt="Img" style="width: 700px;"/></center>
+
+
 We can roughly see the outline of Scandinavia and maybe the Northern Mediterranean if you squint.
 
 To plot a preliminary map, crop the world map provided by the `rworldmap` package using:
@@ -349,13 +354,13 @@ plot(shpdata_feow_clip)
 
 <center><img src="{{ site.baseurl }}/img/ecoregions_clipped_map.png" alt="img" style="width: 700px;"/></center>
 
-then we need to restructure the object into a data frame ready for plotting. the dataframe needs to contain the id for each polygon, in this case the name of the ecoregion it is from. explore the contents of `shpdata_feow_clip`, using `str`. Remember that `@` accesses slots within the `shpdata_feow` spatial object:
+Then we need to restructure the object into a data frame ready for plotting. the dataframe needs to contain the id for each polygon, in this case the name of the ecoregion it is from. explore the contents of `shpdata_feow_clip`, using `str`. Remember that `@` accesses slots within the `shpdata_FEOW` spatial object:
 
 ```r
 str(shpdata_FEOW_clip@data)
 ```
 
-`ECOREGION` contains all the data for the different types of ecoregions, they have names like "Aegean Drainages" and "Central Prairie". Now we can use `ECOREGION` as an identifier in the `fortify()` command to transform the spatial object to a dataframe, where each polygon will be given an `id` of which `ECOREGION` it is from:
+`ECOREGION` contains all the data for the different types of ecoregions, they have names like "Aegean Drainages" and "Central Prairie". Now we can use `ECOREGION` as an identifier in the `fortify()` command to transform the spatial object to a dataframe, where each polygon will be given an `id` of which `ECOREGION` it is from. Transforming to a dataframe is necessary to keep the metadata for each polygon, which is necessary to colour the points in the ggplot.
 
 ```r
 shpdata_FEOW_clip_f <- fortify(shpdata_FEOW_clip, region = "ECOREGION")  # this could take a while
@@ -391,9 +396,7 @@ map_FEOW_annot <- map_FEOW +
 	annotate("text", x = 27.5, y = 61, size = 10, label = "Restock Area")
 ```
 
-You can also check which trout records fall within which ecoregion polygons using the `rgdal` package, to further explore which ecoregions would be suitable for a trout re-introduction program:
-
-First, create a SpatialPoints object from the Brown Trout records:
+To further explore which ecoregions would be suitable for a trout re-introduction program, you can also check which trout records fall within which ecoregion polygons using the `rgdal` package. First, create a SpatialPoints object from the Brown Trout records:
 
 ```r
 brown_trout_sp <- SpatialPoints(
@@ -403,7 +406,7 @@ brown_trout_sp <- SpatialPoints(
 
 `coords =`  uses the coordinates from the brown trout dataset formatted as a dataframe. the CRS (`proj4string`) is set to be the CRS of the ecoregions spatial object. 
 
-`over()` from the `sp` package (loaded by default by many other R spatial analysis packages) creates a dataframe with the same number of rows as `brown_trout_sp`, where each row contains the data of the polygon in which the data point is found. 
+`over()` from the `sp` package (loaded by default by many other R spatial analysis packages) then creates a dataframe with the same number of rows as `brown_trout_sp`, where each row contains the data of the polygon in which the data point is found. 
 
 ```r
 point_match <- over(
