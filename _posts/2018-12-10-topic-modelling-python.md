@@ -35,7 +35,7 @@ In this tutorial we are going to be performing topic modelling on twitter data t
 
 ---
 
-**Prerequisits**
+**Prerequisites**
 - In order to do this tutorial, you should be comfortable with basic Python, the `pandas` and `numpy` packages and should be comfortable with making and interpreting plots.
 - You will need to have the following packages installed : `numpy`, `pandas`, `seaborn`, `matplotlib`, `sklearn`, `nltk`
 
