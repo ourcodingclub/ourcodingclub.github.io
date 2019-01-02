@@ -34,7 +34,7 @@ tags: datavis
 
 #### <a href="#shp">5. Using shapefiles</a>
 
-All the resources for this tutorial, including some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
+### All the resources for this tutorial, including some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-6-Maps" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
 
 Next, open up a new R Script where you will add the code for your maps. Set the folder you just downloaded as your working directory by running the code below, replacing `PATH_TO_FOLDER` with the location of the downloaded folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`:
 
@@ -85,7 +85,7 @@ The easiest way to think about map data is to first imagine a graph displaying w
 
 Then it's a simple case of adding a background map to your image to place the data points in the real world. In this case, the map was pulled from data provided by the `maps` package:
 
-<center><img src="{{ site.baseurl }}/img/trout_europe_map.jpeg" alt="Img" style="width: 700px;"/></center>
+<center><img src="{{ site.baseurl }}/img/Trout_Europe_Map.jpeg" alt="Img" style="width: 700px;"/></center>
 
 That was a simple example, maps can incorporate more complex elements like polygons and lines, each with their own values:
 
