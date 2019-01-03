@@ -492,11 +492,15 @@ The files will be saved in your working directory - to find out where that is, r
 
 ## Tutorial outcomes:
 
-- You can write a function
-- You can write a `for()` loop
-- You understand that loops and functions can be nested to make complex workflows
-- You can use `lapply()`/`sapply()` with and without anonymous functions to run loops
-- You can use conditional `ifelse()` statements to make more complex functions
+You can write a function
+
+You can write a `for()` loop
+
+You understand that loops and functions can be nested to make complex workflows
+
+You can use `lapply()`/`sapply()` with and without anonymous functions to run loops
+
+You can use conditional `ifelse()` statements to make more complex functions
 
 
 ## Further reading
