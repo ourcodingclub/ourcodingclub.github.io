@@ -305,16 +305,16 @@ lapply(trees_bicuar_list, function(x){stick.adj.lorey(height = x$height, method 
 ```r
 diam.summ <- function(dbh, mean = TRUE, median = TRUE, ba = TRUE){
 		mean_dbh <- ifelse(mean == TRUE, 
-			paste("mean DBH:", mean(dbh)), 
+			mean(dbh), 
 			NA)
 		median_dbh <- ifelse(median == TRUE, 
-			paste("median DBH:", median(dbh)), 
+			median(dbh), 
 			NA)
 		mean_ba <- ifelse(ba == TRUE, 
-			paste("mean basal area:", mean(basal.area(dbh))), 
+			mean(basal.area(dbh)), 
 			NA)
 		
-		return(list(mean_dbh, median_dbh, mean_ba))
+		return(as.data.frame(na.omit(t(data.frame(mean_dbh, median_dbh, mean_ba)))))
 }
 
 diam.summ(dbh = bicuar_trees$diam, mean = TRUE, median = FALSE)
