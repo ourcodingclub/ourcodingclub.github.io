@@ -3,7 +3,7 @@ layout: post
 title: Intro to functional programming 
 subtitle: Saving yourself lots of copying and pasting
 date: 2017-02-08 08:00:00
-author: John and Gergana
+author: Gergana and John
 meta: "Tutorials"
 tags: datavis, data_manip
 ---
@@ -117,13 +117,23 @@ basal.area <- function(dbh){
 }
 ```
 
+Additionally, you can add a indeterminate number of extra arguments using the `...` operator. Imagine that we want to extend our `basal.area()` function so that it can compute the combined basal area of multiple vectors of diameter measurements, e.g. from multiple sites: 
+
+```r
+basal.area <- function(...){
+    (pi*c(...)^2)/40000
+}
+
+basal.area(trees_bicuar$diam, trees_mlunguya$diam)
+```
+
 Just like a normal function, the output of `basal.area()` can be assigned to a new object, for example, as a new column in `trees_bicuar`:
 
 ```r
 trees_bicuar$ba <- basal.area(dbh = trees_bicuar$diam)
 ```
 
-Writing functions for simple operations like this one is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.
+Writing functions for simple operations like the example above is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.
 
 <a name="loop"></a>
 
@@ -290,6 +300,27 @@ trees_bicuar_list <- split(trees_bicuar, trees_bicuar$plotcode)
 lapply(trees_bicuar_list, function(x){stick.adj.lorey(height = x$height, method = x$height_method, ba = x$ba)})
 ```
 
+`ifelse()` statements can also be used in conjunction with logical TRUE/FALSE function arguments to determine whether certain actions are taken. For example, we can write a function that calculates summary statistics on the trunk diameter measurements for a given fieldsite, and we can use TRUE/FALSE arguments to let the user decide whether certain statistics are calculated:
+
+```r
+diam.summ <- function(dbh, mean = TRUE, median = TRUE, ba = TRUE){
+		mean_dbh <- ifelse(mean == TRUE, 
+			paste("mean DBH:", mean(dbh)), 
+			NA)
+		median_dbh <- ifelse(median == TRUE, 
+			paste("median DBH:", median(dbh)), 
+			NA)
+		mean_ba <- ifelse(ba == TRUE, 
+			paste("mean basal area:", mean(basal.area(dbh))), 
+			NA)
+		
+		return(list(mean_dbh, median_dbh, mean_ba))
+}
+
+diam.summ(dbh = bicuar_trees$diam, mean = TRUE, median = FALSE)
+```
+
+Also note that in this function definition the extra arguments have default values, e.g. `mean = TRUE`. This means that even if the user doesn't specify what the value of `mean` should be, e.g. `diam.summ(dbh = trees_bicuar$diam, median = TRUE, mean_ba = FALSE)`, R will default to the value of `mean = TRUE`, thus calculating the mean trunk diameter. 
 
 <a name="bonus"></a>
 
