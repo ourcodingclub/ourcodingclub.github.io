@@ -31,7 +31,7 @@ tags: datavis, data_manip
 
 All the resources for this tutorial, including some useful extra reading can be downloaded from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
 
-Next, open up a new R Script, preferably in RStudio, where you will write the code for this tutorial. Set the folder you just downloaded as your working directory by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-func-prog-master`):
+Next, open up a new R Script, preferably in RStudio, where you will write the code for this tutorial. Set the folder you just downloaded as your working directory by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
 ```r
 setwd("PATH_TO_FOLDER")
@@ -52,7 +52,7 @@ R is a functional programming language at its heart. When you run a command on s
 
 ## 2. Building a simple function 
 
-If you haven't already done so, open a new Rstudio session and create a new R Script. Also download the resources needed for this tutorial from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it. In your R script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-func-prog-master`):
+If you haven't already done so, open a new Rstudio session and create a new R Script. Also download the resources needed for this tutorial from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it. In your R script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
 ```r
 setwd("PATH_TO_FOLDER")
