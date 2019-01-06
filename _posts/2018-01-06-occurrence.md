@@ -275,16 +275,9 @@ __Now that we have our colours, we can make a map. A map is really like any othe
    theme_map() +
    geom_point(alpha = 0.5, size = 2, colour = "aquamarine3"))  # alpha controls the transparency, 1 is fully transparent
    
- # Putting brackets around the whole ggplot code means that you will
- # create and display the beluga.map object
-
- 
- # If don't have brackets, you have to run this line of code to see your map
- # beluga.map
- # To view the map in a new window, run the following
- # dev.new()
- # beluga.map 
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `beluga.map` after you've created the "beluga.map" object. 
 
 __`ggplot2` works with aesthetics. That is the `aes` argument which "maps" your variables to the `x` and `y` axises.__
 
