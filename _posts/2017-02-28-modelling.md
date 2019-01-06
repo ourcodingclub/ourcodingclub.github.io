@@ -102,6 +102,8 @@ apples$spacing2 <- as.factor(apples$spacing)
   labs(x = "Spacing (m)", y = "Yield (kg)"))
 ```
 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `apples.p` after you've created the "apples.p" object. 
+
 <center><img src="{{ site.baseurl }}/img/apples2.png" alt="Img" style="width: 700px;"/></center>
 
 From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the error bars almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. Let's run a model to explicitly test this.
