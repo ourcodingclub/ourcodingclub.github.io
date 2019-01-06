@@ -300,7 +300,7 @@ Then create the plot:
 	theme_classic())
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `barchart` after you've created the "barchart" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
 <center> <img src="{{ site.baseurl }}/img/stacked_bar_qual.png" alt="Img" style="width: 800px;"/> </center>
 
