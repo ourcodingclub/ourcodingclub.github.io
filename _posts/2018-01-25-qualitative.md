@@ -255,7 +255,7 @@ names(legend_pal) <- c("All the time", "Often", "midhigh", "midlow", "Rarely", "
 Now we are ready to make our graph, the exciting part!
 
 ```r
-ggplot() + 
+(plot <- ggplot() + 
 	geom_bar(data = sust_think_summ_hi, aes(x = gender, y=perc, fill = response), stat="identity") +
 	geom_bar(data = sust_think_summ_lo, aes(x = gender, y=-perc, fill = response), stat="identity") + 
 	geom_hline(yintercept = 0, color =c("black")) + 
@@ -265,7 +265,7 @@ ggplot() +
 	coord_flip() + 
 	labs(x = "Gender", y = "Percentage of respondents (%)") + 
 	ggtitle(sust_lookup$survey_question[sust_lookup$column_title == "sustainability_daily_think"]) +
-	theme_classic() 
+	theme_classic())
 ```
 
 There are two `geom_bar()` arguments - one for the positive responses and one for the negative responses. `geom_hline()` makes the 0 line. `scale_fill_manual()` applies the colour scheme. Notice that `breaks =` is a vector of colour values that will be included in the legend, and `labels =` gives them custom names, in this case, turning "midhigh" to "Sometimes" and excluding `midlow` entirely. `coord_flip()` rotates the whole plot 90 degrees, meaning the bars are now horizontal. `labs()` and `ggtitle()` define the custom x and y axis labels and the title. `ggtitle()` accesses the lookup table to display the name of the question from the name of the column in our original data frame. `theme_classic()` just makes the whole plot look nicer, removing the default grey background.
@@ -293,12 +293,14 @@ names(male_female_pal) <- c("Male", "Female")
 Then create the plot:
 
 ```r
-ggplot(sust_data, aes(x =energy_action_n, fill = gender)) + 
+(barchart <- ggplot(sust_data, aes(x =energy_action_n, fill = gender)) + 
 	geom_bar() + 
 	scale_fill_manual(values = male_female_pal) + 
 	scale_x_continuous(breaks = seq(1:8)) +
-	theme_classic()
+	theme_classic())
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `barchart` after you've created the "barchart" object. 
 
 <center> <img src="{{ site.baseurl }}/img/stacked_bar_qual.png" alt="Img" style="width: 800px;"/> </center>
 
@@ -318,9 +320,9 @@ sust_bubble <- sust_data %>%
 Then to create the bubble plot, simply adjust the size of points according to their frequency of occurrence (`n`):
 
 ```r
-ggplot(sust_bubble, aes(x = age, y = sustainability_daily_think)) +
+(bubbleplot <- ggplot(sust_bubble, aes(x = age, y = sustainability_daily_think)) +
 	geom_point(aes(size = n)) + 
-	theme_classic()
+	theme_classic())
 ```
 
 <center> <img src="{{ site.baseurl }}/img/bubble_chart_qual.png" alt="Img" style="width: 800px;"/> </center>
@@ -365,11 +367,11 @@ sust_comm_tidy <- sust_comm_gather %>%
 Now it is easy to plot the occurrences of each word, and colour by gender (`fill = gender`), using `ggplot()`:
 
 ```r
-ggplot(sust_comm_tidy, aes(x = comment_word, y = n, fill = gender)) + 
+(occurrence <- ggplot(sust_comm_tidy, aes(x = comment_word, y = n, fill = gender)) + 
 	geom_bar(stat = "identity") + 
 	coord_flip() + 
 	scale_fill_manual(values = male_female_pal) + 
-	theme_classic()
+	theme_classic())
 ```
 
 <center> <img src="{{ site.baseurl }}/img/comment_gender_qual.png" alt="Img" style="width: 800px;"/> </center>
@@ -395,11 +397,11 @@ tidy_energy_often_comment_summ <- tidy_energy_often_comment %>%
 	filter(!is.na(energy_action_comment_word)) %>%
 	mutate(energy_action_comment_word = reorder(energy_action_comment_word, n ))
 
-ggplot(tidy_energy_often_comment_summ, aes(x = energy_action_comment_word, y = n)) +
+(most_common_plot <- ggplot(tidy_energy_often_comment_summ, aes(x = energy_action_comment_word, y = n)) +
 	geom_col() +
 	xlab(NULL) +  # this means we don't want an axis title
 	coord_flip() + 
-	theme_classic()
+	theme_classic())
 ```
 
 <center> <img src="{{ site.baseurl }}/img/word_bar_qual.png" alt="Img" style="width: 800px;"/> </center>
