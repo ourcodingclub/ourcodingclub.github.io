@@ -208,12 +208,12 @@ toolik_plants <- toolik_plants %>%
 To explore the data further, we can make a histogram of species richness.
 
 ```r
-# To both make and plot the histogram, we surround the whole
-# code chunk with ()
 (hist <- ggplot(toolik_plants, aes(x = Richness)) +
     geom_histogram() +
     theme_classic())
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the "hist" object. 
 
 <center> <img src="{{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 400px;"/> </center>
 
