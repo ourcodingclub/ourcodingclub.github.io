@@ -245,7 +245,7 @@ plot <- ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
         panel.grid.major = element_blank()))
 ```
 
-Also, remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `plot` after you've created the "plot" object. 
+Also, remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `plot` after you've created the "plot" object. 
 
 #### __Code chunks__
 
