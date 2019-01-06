@@ -221,12 +221,12 @@ __How do you know what's 80 characters though? RStudio can place a handy line in
 Here is a before and after of a `ggplot2` figure code:
 
 ```r
-ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
+plot <- ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
   geom_line(data=cwa.sub, aes(x=Season,y=Total.Concentration),size=2,alpha=0.2)+
   geom_ribbon(data=preds2, aes(x=Season, ymin=ploBT, ymax=phiBT), fill="#3cd0ea", alpha=0.3)+
   geom_line(data=preds2,aes(x=Season,y=Total.ConcentrationBT),colour="#3cd0ea",size=3)+theme_bw()+ylab("Minimum Sea Ice Concentration")+xlab("Season")+annotate("text",x=2012,y=0.4,label=paste0("p = ",round(pval.cwa.sub,4)),size=6)+theme(legend.title=element_text(size=20,face="plain",hjust=1),legend.text=element_text(size=18,angle=45),legend.position="bottom",legend.key =element_blank(),axis.title.x=element_text(size=20,margin=margin(20,0,0,0)),axis.title.y=element_text(size=20,margin=margin(0,20,0,0)),axis.text=element_text(size=16),panel.grid.minor=element_blank(),panel.grid.major=element_blank())
 
-ggplot() +
+(plot <- ggplot() +
   geom_hline(yintercept = 0, linetype = "dotted", colour = "darkgrey") +
   geom_line(data = cwa.sub, aes(x = Season, y = Total.Concentration), size = 2, alpha = 0.2) +
   geom_ribbon(data = preds2, aes(x = Season, ymin = ploBT, ymax = phiBT), fill = "#3cd0ea", alpha = 0.3) +
@@ -242,8 +242,10 @@ ggplot() +
         axis.title.y = element_text(size = 20, margin = margin(0,20,0,0)),
         axis.text = element_text(size=16),
         panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank())
+        panel.grid.major = element_blank()))
 ```
+
+Also, remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `plot` after you've created the "plot" object. 
 
 #### __Code chunks__
 
