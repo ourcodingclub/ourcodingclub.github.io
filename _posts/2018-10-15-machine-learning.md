@@ -103,17 +103,19 @@ We can also visualise our data to understand whether there are any apparent tren
 ggthemr("light")  # Optional
 
 # Scatter plot visualising petal width and length grouped by species
-ggplot(iris.data, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+(scatter <- ggplot(iris.data, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
   geom_point(size = 3, alpha = 0.6) +
   theme_classic() +
-  theme(legend.position = c(0.2, 0.8))
+  theme(legend.position = c(0.2, 0.8)))
 
 # Boxplot visualising variation in petal width between species
-ggplot(iris.data, aes(x = Species, y = Petal.Width, fill = Species)) +
+(boxplot <- ggplot(iris.data, aes(x = Species, y = Petal.Width, fill = Species)) +
   geom_boxplot() +
   theme_classic() +
-  theme(legend.position = c(0.2, 0.8))
+  theme(legend.position = c(0.2, 0.8)))
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `scatter` or `boxplot` after you've created the "scatter" or "boxplot" object! 
 
 <center> <img src="{{ site.baseurl }}/img/iris_plot1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/iris_plot2.png" alt="Img" style="width: 500px;"/></center>
 
