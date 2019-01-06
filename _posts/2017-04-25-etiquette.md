@@ -156,7 +156,7 @@ LPI_biome_summ <- LPI2 %>%  # use of pipe operator
 		theme(legend.position = "none"))  # Removal of legend for simplicity
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
 <center><img src="https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;"/></center>
 Figure 1. Abundance of species populations for each biome.
