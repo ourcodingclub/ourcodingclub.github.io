@@ -277,7 +277,7 @@ __Now that we have our colours, we can make a map. A map is really like any othe
    
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `beluga.map` after you've created the "beluga.map" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `beluga.map` after you've created the "beluga.map" object. 
 
 __`ggplot2` works with aesthetics. That is the `aes` argument which "maps" your variables to the `x` and `y` axises.__
 
