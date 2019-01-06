@@ -81,6 +81,8 @@ vultureITCR <- filter(vulture, Country.list == c("Croatia", "Italy"))
           legend.position = c(0.9, 0.9)))               # Setting the position for the legend - 0 is left/bottom, 1 is top/right
 ```
 
+Remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `vulture_scatter` after you've created the "vulture_scatter" object. 
+
 <img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 600px;"/>
 <p>Figure 1. Population trends of Griffon vulture in Croatia and Italy from 1970 to 2014. 
 Data points represent raw data with a linear model fit and 95% confidence intervals.</p>
