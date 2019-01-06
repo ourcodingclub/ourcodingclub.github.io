@@ -144,7 +144,7 @@ Now we can make a preliminary plot to make sure the data looks right. Remember, 
     geom_point())
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
 <center><img src="{{ site.baseurl }}/img/bird_prelim_ggplot.jpeg" alt="Img" style="width: 700px;"/></center>
 
