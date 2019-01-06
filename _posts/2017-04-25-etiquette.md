@@ -148,13 +148,15 @@ LPI_biome_summ <- LPI2 %>%  # use of pipe operator
   group_by(biome) %>%  # Group by biome
   summarise(populations = n())  # Create columns, number of populations
 
-# Visualising the number of populations in each biome ---- 
-barplot <- ggplot(LPI_biome_summ, aes(biome, color = biome, y = populations)) + geom_bar(stat = "identity") +  # use of ggplot2 package
-  		theme.LPI() +  # use of personal theme function
+# Visualising the number of populations in each biome with ggplot2 package ---- 
+(barplot <- ggplot(LPI_biome_summ, aes(biome, color = biome, y = populations)) + geom_bar(stat = "identity") +  
+  		theme.LPI() +                     # Use of personal theme function
   		ylab("Number of populations") +
   		xlab("Biome") +
-		theme(legend.position = "none")  # removal of legend for simplicity
+		theme(legend.position = "none"))  # Removal of legend for simplicity
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
 <center><img src="https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;"/></center>
 Figure 1. Abundance of species populations for each biome.
@@ -179,6 +181,7 @@ ggplot(LPI_biome_summ, aes(biome, color = biome, y = populations)) + geom_bar(st
 dev.off()
 ```
 
+Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">this data visualization tutorial</a> for an example of how to do so. 
 
 <a name="syntax"></a>
 
@@ -359,7 +362,7 @@ LPI_long <- LPI_long %>%
 
 ```r
 # Just an example of what the code could look like, no need to run the code at this stage.
-vulture_scatter <- ggplot(vultureITCR, aes (x = year, y = abundance, colour = Country.list)) +
+(vulture_scatter <- ggplot(vultureITCR, aes (x = year, y = abundance, colour = Country.list)) +
     geom_point(size = 2) +                                                
     geom_smooth(method = lm, aes(fill = Country.list)) +                    
     theme_my_own() +
@@ -367,7 +370,7 @@ vulture_scatter <- ggplot(vultureITCR, aes (x = year, y = abundance, colour = Co
     scale_colour_manual(values = c("#EE7600", "#00868B"),               
                         labels = c("Croatia", "Italy")) +                 
     ylab("Griffon vulture abundance\n") +                             
-    xlab("\nYear")
+    xlab("\nYear"))
 ```
 
 #### 2.5 Indentation
@@ -382,7 +385,7 @@ ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
   geom_ribbon(data=preds2, aes(x=Season, ymin=ploBT, ymax=phiBT), fill="#3cd0ea", alpha=0.3)+
   geom_line(data=preds2,aes(x=Season,y=Total.ConcentrationBT),colour="#3cd0ea",size=3)+theme_bw()+ylab("Minimum Sea Ice Concentration")+xlab("Season")+annotate("text",x=2012,y=0.4,label=paste0("p = ",round(pval.cwa.sub,4)),size=6)+theme(legend.title=element_text(size=20,face="plain",hjust=1),legend.text=element_text(size=18,angle=45),legend.position="bottom",legend.key =element_blank(),axis.title.x=element_text(size=20,margin=margin(20,0,0,0)),axis.title.y=element_text(size=20,margin=margin(0,20,0,0)),axis.text=element_text(size=16),panel.grid.minor=element_blank(),panel.grid.major=element_blank())
 
-ggplot() +
+(plot <- ggplot() +
   geom_hline(yintercept = 0, linetype = "dotted", colour = "darkgrey") +
   geom_line(data = cwa.sub, aes(x = Season, y = Total.Concentration), size = 2, alpha = 0.2) +
   geom_ribbon(data = preds2, aes(x = Season, ymin = ploBT, ymax = phiBT), fill = "#3cd0ea", alpha = 0.3) +
@@ -398,7 +401,8 @@ ggplot() +
         axis.title.y = element_text(size = 20, margin = margin(0,20,0,0)),
         axis.text = element_text(size=16),
         panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank())
+        panel.grid.major = element_blank()))
+	
 # The second version is much easier to read and there is no need to keep scrolling left and right.
 ```
 
