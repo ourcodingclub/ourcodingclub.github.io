@@ -115,7 +115,7 @@ ggthemr("light")  # Optional
   theme(legend.position = c(0.2, 0.8)))
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object. You would then have to call the object such that it will be displayed by just typing `scatter` or `boxplot` after you've created the "scatter" or "boxplot" object! 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
 <center> <img src="{{ site.baseurl }}/img/iris_plot1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/iris_plot2.png" alt="Img" style="width: 500px;"/></center>
 
