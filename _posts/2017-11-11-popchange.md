@@ -146,6 +146,8 @@ You can use the default `viridis` palette by just specifying `scale_colour_virid
     labs(fill = "Slope\n", title = "Anseriformes"))  # \n adds a blank line below the legend title
 ```
 
+Note that putting your entire ggplot code in brackets () creates the figure and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `EU_pop` after you've created the "EU_pop" object. 
+
 __We can save our map using `ggsave()` from the `ggplot2` package. The default `width` and `height` are measured in inches. If you want to swap to pixels or centimeters, you can add `units = "px"` or `units = "cm"` inside the `ggsave()` brackets, e.g. `ggsave(object, filename = "mymap.png", width = 1000, height = 1000, units = "px"`.__
 
 ```r
