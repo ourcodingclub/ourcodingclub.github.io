@@ -128,7 +128,7 @@ Version control allows you to keep track of your work and helps you to easily ex
 
 ### How does GitHub work?
 
-__You make a repository (a folder that is under version control) and you have two copies of it - a local copy (on your computer) and a remote copy (online on GitHub). Repositories can be public or private - if you would like to have free private repositories, you can apply <a href="https://education.github.com/discount_requests/new">here</a> using your institutional email address.__
+__You make a repository (a folder that is under version control) and you have two copies of it - a local copy (on your computer) and a remote copy (online on GitHub). Repositories can be public or private. <a href="https://blog.github.com/2019-01-07-new-year-new-github/" target="_blank">Github now provides free private repositories as standard with up to three collaborators</a>. 
 
 ## The GitHub workflow can be summaried by commit-pull-push.
 
