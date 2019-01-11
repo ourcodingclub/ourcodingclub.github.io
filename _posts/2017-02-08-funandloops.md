@@ -9,7 +9,7 @@ tags: datavis, data_manip
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderloop.png" alt="Img">
+		<img src="{{ site.baseurl }}/img/tutheader_functions.png" alt="Img">
 	</center>
 </div>
 
@@ -29,7 +29,7 @@ tags: datavis, data_manip
 
 <a name="function"></a>
 
-All the resources for this tutorial, including some useful extra reading can be downloaded from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
+### All the resources for this tutorial, including some useful extra reading can be downloaded from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
 
 Next, open up a new R Script, preferably in RStudio, where you will write the code for this tutorial. Set the folder you just downloaded as your working directory by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
@@ -41,18 +41,18 @@ setwd("PATH_TO_FOLDER")
 
 We've learned <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">how to import our data in RStudio</a>, <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">format and manipulate them</a>, <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html" target="_blank">write scripts and Markdown reports</a>, and <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">how to make beautiful and informative graphs using `ggplot2`</a>, meaning that you have all the basic tools to perform data simple data analysis using R. 
 
-You may find as you write your project however, that you want to repeat the same code multiple times, changing some small element of it. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually.  
+You may find as you work away on your project however, that you want to repeat the same action multiple times. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually.  
 
-In this workship, we introduce the concept of functions and loops in R as a method to minimise the need to copy and paste code chunks, helping to make your code more readable and minimise the chance of making mistakes by manually retyping code. This workshop also expands on how to use functions effectively in your code and gives a more formal introduction to __functional programming__ as a coding style. 
+In this workshop, we introduce the concept of functions and loops in `R` as a method to minimise the need to copy and paste code chunks, helping to make your code more efficient and readable and minimise the chance of making mistakes by manually retyping code. This tutorial also expands on how to use functions effectively in your code and gives a more formal introduction to __functional programming__ as a coding style. 
 
-R is a functional programming language at its heart. When you run a command on some data, e.g. `sum(1, 2)`, sum is a function. Basically everything you do in R involves at least one function. Just as the base R language and other R packages contain functions, you can also write your own functions to perform various tasks using the same tools as package developers, and it's not as hard as it sounds. 
+__`R` is a functional programming language at its heart. When you run a command on some data, e.g. `sum(1, 2)`, sum is a function. Basically everything you do in `R` involves at least one function. Just as the base `R` language and other `R` packages contain functions, you can also write your own functions to perform various tasks using the same tools as package developers, and it's not as hard as it sounds.__
 
 
 <a name="function"></a>
 
 ## 2. Building a simple function 
 
-If you haven't already done so, open a new Rstudio session and create a new R Script. Also download the resources needed for this tutorial from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it. In your R script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
+Open a new `RStudio` session and create a new `R` script. If you haven't already done so, download the resources needed for this tutorial from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it. In your `R` script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
 ```r
 setwd("PATH_TO_FOLDER")
@@ -83,7 +83,7 @@ example.fn <- function(x, y){
 }
 ```
 
-The `function()` command is used to tell R that we are creating a function, and we are assigning the function to an object called `example.fn`. `x` and `y` are "arguments" for the function, i.e. things that the user provides when running the function, then in the curly brackets are the actions performed by the function, using the parameters defined by the user earlier in the function call, and any other objects in the working environment in this case adding `x` and `y` together.
+__The `function()` command is used to tell `R` that we are creating a function, and we are assigning the function to an object called `example.fn`. `x` and `y` are "arguments" for the function, i.e. things that the user provides when running the function, then in the curly brackets are the actions performed by the function, using the parameters defined by the user earlier in the function call, and any other objects in the working environment in this case adding `x` and `y` together.__
 
 Run the code above to create the function, then test the function:
 
@@ -93,7 +93,7 @@ example.fn(x = 1, y = 2)
 
 You should get an output of `3`, because the function `example.fn()` was provided with the values of `x = 1` and `y = 2`, which were then passed to the function, which performed the operation `x + y`. Note that the convention is to name a function using `.` rather than `_` which is normally used to define data objects. This isn't a rule, but it's best to stick to the conventions used by other programmers to keep things consistent.
 
-`example.fn()` is a very simplistic function, let's get more complicated by defining a function that calculates the basal area of each stem in m^2 from the diameter, which is in cm. The basal area is the cross-sectional area of the tree trunk if it was cut parallel to the ground.
+`example.fn()` is a very simple function, but your functions can be as simple or complex as you need them to be. For example, we can also define a function that calculates the basal area of each stem in m^2 from the diameter, which is in cm. The basal area is the cross-sectional area of the tree trunk if it was cut parallel to the ground.
 
 ```r
 basal.area <- function(x){
@@ -101,7 +101,7 @@ basal.area <- function(x){
 }
 ```
 
-This function has one input, `x`. `x` can be a numeric vector, or a numeric column in a dataframe, basically anything that doesn't cause an error in the body of the function. The body of the function multiplies x^2 by pi, then divides by 40,000, giving the basal area as an output. 
+This function has one input, `x`. `x` can be a numeric vector, or a numeric column in a dataframe, basically anything that doesn't cause an error in the body of the function. The body of the function multiplies `x^2` by `pi`, then divides by `40,000`, giving the basal area as an output. 
 
 Test the function by supplying the diameter column from the Bicuar tree stem data (`trees_bicuar$diam`) to see what the output is:
 
@@ -133,7 +133,7 @@ Just like a normal function, the output of `basal.area()` can be assigned to a n
 trees_bicuar$ba <- basal.area(dbh = trees_bicuar$diam)
 ```
 
-Writing functions for simple operations like the example above is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.
+__Writing functions for simple operations like the example above is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.__
 
 <a name="loop"></a>
 
@@ -153,20 +153,20 @@ for(i in list){
 }
 ```
 
-Imagine you have multiple fieldsites, each with four 1 Ha plots with the tree stem measurements described earlier. The data for each fieldsite is contained in a different dataframe, e.g. `trees_bicuar` and `trees_mlunguya`. If we wanted to calculate the basal area for all stems at both sites, we could run:
+Imagine you have multiple field sites, each with four 1 Ha plots with the tree stem measurements described earlier. The data for each fieldsite is contained in a different dataframe, e.g. `trees_bicuar` and `trees_mlunguya`. If we wanted to calculate the basal area for all stems at both sites, we could run:
 
 ```r
 trees_bicuar$ba <- basal.area(trees_bicuar$diam)
 trees_mlunguya$ba <- basal.area(trees_mlunguya$diam)
 ```
 
-The above seems fine for now, but what if we had 100 fieldsites instead of just two? In that case, I'd recommend a using a `for()` loop. First, we have to create a list of dataframes to perform the loop on. There are many ways of doing this, but the simplest way is:
+The above seems fine for now, but what if we had 100 field sites instead of just two? In that case, you can use a `for()` loop. First, we have to create a list of dataframes to perform the loop on. There are many ways of doing this, but the simplest way is:
 
 ```r
 trees <- list("trees_bicuar" = trees_bicuar, "trees_mlunguya" = trees_mlunguya)
 ```
 
-This makes a list called `trees`, where each element in the list is a dataframe. List items within a list can be accessed using double square brackets, e.g. `trees[[1]]` selects the first list item, the dataframe for `trees_bicuar`. We can take advantage of this method of list indexing using square brackets when we construct our `for()` loop:
+_This makes a list called `trees`, where each element in the list is a dataframe. List items within a list can be accessed using double square brackets, e.g. `trees[[1]]` selects the first list item, the dataframe for `trees_bicuar`. We can take advantage of this method of list indexing using square brackets when we construct our `for()` loop:_
 
 ```r
 for( i in 1:length(trees) ){
@@ -174,7 +174,7 @@ for( i in 1:length(trees) ){
 }
 ```
 
-The first line sets up the loop, similar to how the `function()` definition worked earlier. `1:length(trees)` creates a sequence of integers from 1 to the length of the list (`trees`), so in this case the sequence will be `1, 2` as there are two list items. `i` will take each value of `1:length(trees)` in turn, then run the actions in the curly brackets once. For example, the first time the loop runs, `i` will have a value of `1`, and the second time `i` will have a value of `2`. Once the loop has run for the second time, the loop will end, as there are no further values in `1:length(trees)`. 
+__The first line sets up the loop, similar to how the `function()` definition worked earlier. `1:length(trees)` creates a sequence of integers from 1 to the length of the list (`trees`), so in this case the sequence will be `1, 2` as there are two list items. `i` will take each value of `1:length(trees)` in turn, then run the actions in the curly brackets once. For example, the first time the loop runs, `i` will have a value of `1`, and the second time `i` will have a value of `2`. Once the loop has run for the second time, the loop will end, as there are no further values in `1:length(trees)`.__
 
 The body of the loop creates a new column in each dataframe in the list, then runs the function `basal.area()` using the `diam` column from the same dataframe as the input. So, the first time the loop runs, it will create a new column called `ba` in the first list item in `trees`, `trees[[1]]`.
 
@@ -234,7 +234,7 @@ Note that this `for()` loop now contains a custom function (`ba.mean.year()`), w
 
 ## 4. Functions with `lapply()` family 
 
-`for()` loops are very useful for quickly iterating over a list, but because R prefers to store everything as a new object with each loop iteration, loops can become quite slow if they are complex, or running many processes and many iterations. As an alternative `lapply()` and the `apply` family of functions more broadly can be used as an alternative to loops. `lapply()` runs operations on lists of items, similar to the `for()` loops above. To replicate the previous `for()` loop, where we calculated the mean basal area per year in `trees_mlunguya`, you can run:
+__`for()` loops are very useful for quickly iterating over a list, but because R prefers to store everything as a new object with each loop iteration, loops can become quite slow if they are complex, or running many processes and many iterations. As an alternative `lapply()` and the `apply` family of functions more broadly can be used as an alternative to loops. `lapply()` runs operations on lists of items, similar to the `for()` loops above. To replicate the previous `for()` loop, where we calculated the mean basal area per year in `trees_mlunguya`, you can run:__
 
 ```r
 lapply(trees_mlunguya_list, function(x){ba.mean.year(dbh = x$diam, year = x$year)})
@@ -258,7 +258,7 @@ Then run `lapply()`:
 lapply(bicuar_height_list, mean, na.rm = TRUE)
 ```
 
-Notice how I didn't have to use curly brackets or an anonymous function, instead, I just passed `mean` as the second argument of `lapply()`. I also supplied an argument to `mean()` simply by specifying it afterwards (`na.rm = TRUE`).
+Notice how we didn't have to use curly brackets or an anonymous function, instead, we just passed `mean` as the second argument of `lapply()`. I also supplied an argument to `mean()` simply by specifying it afterwards (`na.rm = TRUE`).
 
 I could use `sapply()` to get a more readable output from this loop. `sapply()` simplifies the output of `lapply()` to a vector, with elements in the vector named according to the name of the items in the original list:
 
