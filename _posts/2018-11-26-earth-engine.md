@@ -374,6 +374,8 @@ The `ggthemr` theme we chose earlier gives the graph more of an infographic feel
                                            linetype = "blank")))
 ```
 
+Note that putting your entire ggplot code in brackets () creates the plot and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `forest_barplot` after you've created the "forest_barplot" object. 
+
 We can use the `ggsave` function to save our graph. The file will be saved to wherever your working directory is, which you can check by running `getwd()` in the console.
 
 ```r
