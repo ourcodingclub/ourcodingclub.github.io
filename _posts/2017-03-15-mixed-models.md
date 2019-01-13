@@ -105,10 +105,14 @@ Let's plot the data with ggplot2.
 
 ```r
 library(ggplot2)  # load the package
-ggplot(dragons, aes(x = bodyLength, y = testScore)) +
+
+(prelim_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore)) +
   geom_point() +
-  geom_smooth(method = "lm") 
+  geom_smooth(method = "lm"))
+  
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
 <center><img src="{{ site.baseurl }}/img/mm-2.png" alt="Img" style="width: 800px;"/></center>
 
@@ -148,10 +152,10 @@ boxplot(testScore ~ mountainRange, data = dragons)  # certainly looks like somet
 We could also plot it and colour points by mountain range:
 
 ```r
-ggplot(dragons, aes(x = bodyLength, y = testScore, colour = mountainRange)) +
+(colour_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = mountainRange)) +
   geom_point(size = 2) +
   theme_classic() +
-  theme(legend.position = "none")
+  theme(legend.position = "none"))
 ```
 
 <center><img src="{{ site.baseurl }}/img/mm-6.png" alt="Img" style="width: 800px;"/></center>
@@ -168,11 +172,11 @@ We could run many separate analyses and fit a regression for each of the mountai
 Lets have a quick look at the data split by mountain range.  We use the `facet_wrap` to do that:
 
 ```r
-ggplot(aes(bodyLength, testScore), data = dragons) + 
+(split_plot <- ggplot(aes(bodyLength, testScore), data = dragons) + 
   geom_point() + 
   facet_wrap(~ mountainRange) + 
   xlab("length") + 
-  ylab("test score")
+  ylab("test score"))
 ```
 <center><img src="{{ site.baseurl }}/img/mm-7.png" alt="Img" style="width: 800px;"/></center>
 
@@ -364,12 +368,12 @@ For the record, you could also use the below syntax, but I'd advise you to set o
 Let's plot this again - visualising what's going on is always helpful. You should be able to see eight mountain ranges with three sites (different colour points) within them, with a line fitted through each site.
 
 ```r
-ggplot(dragons, aes(x = bodyLength, y = testScore, colour = site)) +
+(mm_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = site)) +
   facet_wrap(~mountainRange, nrow=3) +
   geom_point() +
   theme_classic() +
   geom_line(data = cbind(dragons, pred = predict(mixed.lmer2)), aes(y = pred)) +
-  theme(legend.position = "none")
+  theme(legend.position = "none"))
 ```
 <center><img src="{{ site.baseurl }}/img/mm-10.png" alt="Img" style="width: 800px;"/></center>
 
