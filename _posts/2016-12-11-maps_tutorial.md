@@ -139,10 +139,12 @@ unique(pc_trim$scientificname)
 Now we can make a preliminary plot to make sure the data looks right. Remember, a map is just a graph with longitude and latitude as the x and y axes:
 
 ```r
-ggplot(pc_trim, aes(x = decimallongitude, y = decimallatitude, 
+(prelim_plot <- ggplot(pc_trim, aes(x = decimallongitude, y = decimallatitude, 
     colour = scientificname)) +
-    geom_point()
+    geom_point())
 ```
+
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
 <center><img src="{{ site.baseurl }}/img/bird_prelim_ggplot.jpeg" alt="Img" style="width: 700px;"/></center>
 
@@ -155,9 +157,9 @@ pc_trim_us <- pc_trim %>% filter(decimallongitude > -50)
 Plot it again:
 
 ```r
-ggplot(pc_trim_us, aes(x = decimallongitude, y = decimallatitude, 
+(zoomed <- ggplot(pc_trim_us, aes(x = decimallongitude, y = decimallatitude, 
     colour = scientificname)) +
-    geom_point()
+    geom_point())
 ```
 
 <center><img src="{{ site.baseurl }}/img/bird_crop_ggplot.png" alt="Img" style="width: 700px;"/></center>
@@ -187,7 +189,7 @@ Now we have to check that the shapefile has the right Coordinate Reference Syste
 You can plot `world` by simply adding it to your ggplot2 call using `geom_polygon()`  and designating the `ggplot()` as a map using `coord_quickmap()`:
 
 ```r
-ggplot() +
+(with_world <- ggplot() +
 	geom_polygon(data = world, 
 		aes(x = long, y = lat, group = group),
 		fill = NA, colour = "black") + 
@@ -198,7 +200,7 @@ ggplot() +
 	theme_classic() +  # Remove ugly grey background
 	xlab("Longitude") +
 	ylab("Latitude") + 
-	guides(colour=guide_legend(title="Species"))
+	guides(colour=guide_legend(title="Species")))
 ```
 
 <center><img src="{{ site.baseurl }}/img/map_world_penguins.png" alt="Img" style="width: 700px;"/></center>
@@ -218,7 +220,7 @@ world_saf <- world[world@data$ADMIN %in% saf_countries, ]
 Then define the x and y axis limits in `ggplot()` using `xlim()` and `ylim()` with a bit of trial and error:
 
 ```r
-ggplot() +
+(southern_africa <- ggplot() +
 	geom_polygon(data = world_saf, 
 		aes(x = long, y = lat, group = group),
 		fill = NA, colour = "black") + 
@@ -231,7 +233,7 @@ ggplot() +
 	theme_classic() +  # Remove ugly grey background
 	xlab("Longitude") +
 	ylab("Latitude") + 
-	guides(colour=guide_legend(title="Species"))
+	guides(colour=guide_legend(title="Species")))
 ```
 
 <center><img src="{{ site.baseurl }}/img/map_saf_penguins.png" alt="Img" style="width: 800px;"/></center>
@@ -269,8 +271,8 @@ brown_trout <- read.csv("Brown_Trout_GBIF_clip.csv")
 Check that the data is displaying correctly using `ggplot()` like in the previous example:
 
 ```r
-ggplot(brown_trout, mapping = aes(x = decimallongitude, y = decimallatitude)) + 
-    geom_point(alpha = 0.5)
+(trout_check <- ggplot(brown_trout, mapping = aes(x = decimallongitude, y = decimallatitude)) + 
+    geom_point(alpha = 0.5))
 ```
 
 <center><img src="{{ site.baseurl }}/img/trout_prelim.png" alt="Img" style="width: 700px;"/></center>
@@ -301,7 +303,7 @@ The fourth line converts the SpatialPolygonsDataFrame to a normal flat dataframe
 Then we can plot the map tiles with the data using `geom_polygon()`:
 
 ```r
-ggplot() + 
+(trout_map <- ggplot() + 
 	geom_polygon(data = world_clip_f, 
 		aes(x = long, y = lat, group = group),
 		fill = NA, colour = "black") + 
@@ -311,7 +313,7 @@ ggplot() +
 	theme_bw() +
 	xlab("Longitude") +
 	ylab("Latitude") + 
-	coord_quickmap()
+	coord_quickmap())
 ```
 
 <center><img src="{{ site.baseurl }}/img/trout_map_country.png" alt="Img" style="width: 700px;"/></center>
@@ -369,7 +371,7 @@ shpdata_FEOW_clip_f <- fortify(shpdata_FEOW_clip, region = "ECOREGION")  # this 
 Now, plot the map, point data and shapefile together. The ecoregion polygons can be plotted using `geom_polygon()`, just like when you plotted the country outlines, specifying that the map (i.e. the polygons) and the data (i.e. the colours filling the shapes) both come from the dataframe, `color = black` makes the shape outlines black:
 
 ```r
-map_FEOW <- ggplot() +
+(map_FEOW <- ggplot() +
 	geom_polygon(data = shpdata_FEOW_clip_f,
 		aes(x = long, y = lat, group = group, fill = id),
 		color = "black", size = 0.5) +
@@ -381,7 +383,7 @@ map_FEOW <- ggplot() +
 	theme(legend.title=element_blank()) + 
 	xlab("Longitude") +
 	ylab("Latitude") + 
-	coord_quickmap()
+	coord_quickmap())
 
 map_FEOW
 ```
