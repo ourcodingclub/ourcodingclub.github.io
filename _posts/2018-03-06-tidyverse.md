@@ -495,6 +495,8 @@ We will see our custom theme `theme_LPD()` in action as well!
 # thus we don't need the same legend twice
 ```
 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `forest.hist` after you've created the "forest.hist" object. 
+
 Next up we can explore for how long populations have been monitored in the two biomes using a density histogram.
 
 ```r
