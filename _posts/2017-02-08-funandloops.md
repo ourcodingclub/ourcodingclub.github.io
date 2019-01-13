@@ -402,6 +402,7 @@ Now we can make the same plot, but this time instead of all the code, we can jus
     xlab("\nYear"))
 ```
 
+Remember that putting your entire ggplot code in brackets `()` creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `vulture_scatter` after you've created the `vulture_scatter` object. 
 
 Let's make more plots, again using our customised theme.
 
