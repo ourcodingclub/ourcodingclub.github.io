@@ -8,7 +8,7 @@ meta: "Tutorials"
 tags: mix python pandas
 ---
 <div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheader-pandas-time-series.png" alt="Img"></center>
+  <center><img src="{{ site.baseurl }}/img/tutheader_pandas-time-series.png" alt="Img"></center>
 </div>
 
 In this tutorial we will do some basic exploratory visualisation and analysis of time series data. We will learn how to create a `pandas.DataFrame` object from an input data file, plot its contents in various ways, work with resampling and rolling calculations, and identify correlations and periodicity.
@@ -220,7 +220,7 @@ We can see by eye that there is an approximately 10 year cycle in R and F10.7. A
 pd.plotting.autocorrelation_plot(df["R"].resample("1y").median())
 ```
 
-<center><img src="{{ site.baseurl }}/img/pandas-time-series_autorcorr.png" alt="img" style="width: 600px;"/></center>
+<center><img src="{{ site.baseurl }}/img/pandas-time-series_autocorr.png" alt="img" style="width: 600px;"/></center>
 
 This produces an autocorrelation plot: the correlation of a time series with itself at a range of lag times. We have applied it to the downsampled yearly time series which makes the calculation a lot quicker. Since the cadence of the time series is one year, the "Lag" axis is measured in years. The first peak (after a lag of 0) is around 11 years, meaning that the series correlates well with itself at a lag time of 11 years. This is the well-known solar activity cycle.
 
@@ -237,7 +237,7 @@ df["Dst_count"] = Dst_count
 df.plot(y=["R", "Dst_count"], figsize=(15,4));
 ```
 
-<center><img src="{{ site.baseurl }}/img/pandas-time-series_raw-stormcount.png" alt="img" style="width: 900px;"/></center>
+<center><img src="{{ site.baseurl }}/img/pandas-time-series_stormcount.png" alt="img" style="width: 900px;"/></center>
 
 It looks like there is a correlation between high sunspot numbers (the peaks of the solar cycle) and the occurrence rate of large storms. However, there is a lot more variation in this storm rate - lots of sunspots doesn't guarantee lots of storms, and storms can still occur when there are few sunspots.
 
@@ -292,7 +292,7 @@ for ax in axes:
     ax.grid()
 ```
 
-<center><img src="{{ site.baseurl }}/img/pandas-time-series_raw-stackplot.png" alt="img" style="width: 900px;"/></center>
+<center><img src="{{ site.baseurl }}/img/pandas-time-series_stackplot.png" alt="img" style="width: 900px;"/></center>
 
 This helps us to see how the cycles differ from each other: for example, the most recent cycle is consistently lower than the mean, both in the solar conditions and the rate of geomagnetic storms. By constructing the mean of the cycles, we are actually reinforcing the similar pattern over each cycle and reducing the effect of the random noise. This is the basis of a technique called <a href="https://doi.org/10.1016/j.jastp.2006.01.007" target="_blank">superposed epoch analysis</a>, which is useful for identifying periodicities and similarities between noisy time series.
 
