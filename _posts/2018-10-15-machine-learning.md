@@ -265,7 +265,7 @@ However there is still a whole world to explore. For those interested in learnin
 <hr>
 <hr>
 
-<h3><a href="SURVEY_MONKEY_LINK" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3><a href="https://www.surveymonkey.co.uk/r/77YWPQL" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
