@@ -365,7 +365,7 @@ vultureITCR <- filter(vulture, Country.list == c("Croatia", "Italy"))
           legend.position = c(0.9, 0.9)))               # Setting the position for the legend - 0 is left/bottom, 1 is top/right
 ```
 
-<center><img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 600px;"/></center>
+<center><img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 800px;"/></center>
 
 Here we are using the `theme_bw()` theme but we are making lots of modifications to it. When we need to make lots of graphs, e.g. all the graphs for a given research project, we would ideally like to format them in a consistent way - same font size, same layout of the graph panel. That means that we will be repeating many lines of code, but instead of doing that, we can take all the changes we want to make to the `ggplot2` theme and combine them into a function of our own! As a reminder, to start writing a function, you first assign it to an object. Since we are making a personalised theme for `ggplot2`, here I've called my function `theme.my.own`. To tell R that you are writing a function, you use `function()` and then the commands that you want your function to include go between the `{}`.
 
