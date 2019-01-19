@@ -90,15 +90,21 @@ The <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living
 
 Since we will be calculating population change, to get more reliable estimates, we can conduct the analysis only using populations which have at least 5 records. Populations with only a few records might show a strong directional population change that is actually just noise in the data collection. We can also scale population size so that the abundance of each species in each year is somewhere between 0 and 1. This helps when we are analysing many different populations whose numbers are very variable - e.g. some populations have 10-20 individuals, others have thousands.
 
+__Pipes, designated by the pipe operator `%>%`, are a way to streamline your analysis. Imagine your data going in one end of a pipe, then you transform it, do some analysis on it, and then whatever comes out the other end of the pipe gets saved in the object to which you are assigning the pipe.__ You can find a more detailed explanation of data manipulation using `dplyr` in our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">data formatting and manipulation tutorial</a>.
+
 ```r
 # Remove rows with no population information (population = NULL)
 LPI_long <- filter(LPI_long, population != "NULL")
 
 # Select only populations which have at least 5 data points
-LPI_long <- LPI_long %>% group_by(id) %>% filter(length(unique(year)) > 4)
+LPI_long <- LPI_long %>% 
+	group_by(id) %>% 
+	filter(length(unique(year)) > 4)
 
 # Scale population size to be from 0 to 1 for each population and store the info in a new column scalepop
-LPI_long <- LPI_long %>% group_by(id) %>% mutate(scalepop = (population - min(population))/(max(population)-min(population)))
+LPI_long <- LPI_long %>% 
+	group_by(id) %>% 
+	mutate(scalepop = (population - min(population))/(max(population)-min(population)))
 ```
 
 <a name="calc"></a>
@@ -111,8 +117,6 @@ anseriformes <- filter(LPI_long, order == "Anseriformes")
 ```
 
 __We will use the `dplyr` and `broom` packages, which together create an efficient workflow in calculating population change. We will use linear models, from which we will extract the slope values. Positive slopes indicate a population increase, negative slopes signify a population decline and a slope of zero indicates no net change.__
-
-__Pipes, designated by the pipe operator `%>%`, are a way to streamline your analysis. Imagine your data going in one end of a pipe, then you transform it, do some analysis on it, and then whatever comes out the other end of the pipe gets saved in the object to which you are assigning the pipe.__ You can find a more detailed explanation of data manipulation using `dplyr` in our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">data formatting and manipulation tutorial</a>.
 
 ```r
 pop_change <- anseriformes %>%
