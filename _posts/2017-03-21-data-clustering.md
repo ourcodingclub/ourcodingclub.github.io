@@ -454,7 +454,11 @@ Which creates this map:
 ## Challenge number 1
 We mapped our sites using the `maps` package associated with R's basic `plot` function and its arguments.
 
-<b>Try recreating the above map using the `ggmap` package, which offers more choices of map types and in general can make very pretty maps.</b> See below for an idea of the map you could create and if you are stuck, look at `ggmap_challenge.R` in the [repo for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering). If you are not familiar with `ggmap`, please refer to <a href="https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html" target="_blank">our tutorial on spatial visualisation.</a>
+<b>Try recreating the above map using the `ggmap` package, which offers more choices of map types and in general can make very pretty maps.</b> 
+
+In previous versions of this workshop, we used the ggmap package <a href="https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html" target="_blank">in our tutorial on spatial visualisation</a>, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too! 
+
+See below for an idea of the map you could create and if you are stuck, look at `ggmap_challenge.R` in the [repo for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering). 
 
 <center><img src="{{ site.baseurl }}/img/cluster_map_ggplot.png" alt="Img" style="width: 700px;"/> </center>
 
