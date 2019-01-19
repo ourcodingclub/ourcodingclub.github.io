@@ -86,6 +86,8 @@ LPI_long$year <- as.numeric(as.character(LPI_long$year))
 LPI_long$population <- as.numeric(as.character(LPI_long$population))
 ```
 
+If you've worked with `dplyr` before, you might know that `parse_number` is meant to have converted the Year terms into numerals (from the characters that they originally were). However, sometimes R messes around and the `parse_number` function doesn't work perfectly to convert the values to their appropriate structure - and so you would have to use `as.numeric` to convert it to numeric terms! 
+
 The <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index Database</a> contains records from hundreds of populations from 1950 to recent time, but the populations weren't surveyed every year, thus there are rows which say `NULL`. We can remove those rows so that the `population` column contains only numeric values.
 
 Since we will be calculating population change, to get more reliable estimates, we can conduct the analysis only using populations which have at least 5 records. Populations with only a few records might show a strong directional population change that is actually just noise in the data collection. We can also scale population size so that the abundance of each species in each year is somewhere between 0 and 1. This helps when we are analysing many different populations whose numbers are very variable - e.g. some populations have 10-20 individuals, others have thousands.
