@@ -190,7 +190,7 @@ library(ape)
 PCOA <- pcoa(dist)
 
 # plot the eigenvalues and interpret
-barplot(PCOA$values$Relative_eig[1:10]
+barplot(PCOA$values$Relative_eig[1:10])
 # Can you also calculate the cumulative explained variance of the first 3 axes?
 
 # Some distance measures may result in negative eigenvalues. In that case, add a correction:
