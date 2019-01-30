@@ -453,4 +453,4 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
 		</h3>
 	</li>
-</ul>
+</ul> 
