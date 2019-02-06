@@ -303,11 +303,11 @@ load("buffland_1deg.rda")
 # E.g. if we would like to keep the terrestrial records that perhaps refer to
 # people spotting belugas from the coast
 
-# Test coordinates using CleanCoordinates() from the CoordinateCleaner package
-beluga.coord.test <- CleanCoordinates(beluga, lon = "decimalLongitude", lat = "decimalLatitude",
-                                      species = "name", outliers =  TRUE, outliers.method = "distance",
-                                      outliers.td = 5000, seas = TRUE, seas.ref = buffland,
-                                      zeros = TRUE)
+# Test coordinates using clean_coordinates() from the CoordinateCleaner package
+beluga.coord.test <- clean_coordinates(beluga, lon = "decimalLongitude", lat = "decimalLatitude",
+                                       species = "name", tests = c("outliers", "seas", "zeros"), 
+                                       outliers_method = "distance", outliers_td = 5000, 
+                                       seas_ref = buffland)
 # species = "" refers to the name of the column which has the species name
 # By default, outliers are occurrences further than 1000km from any other occurrence
 # We can change that using outliers.td() with a value of our choice
@@ -326,15 +326,15 @@ View(beluga.coord.test)
 
 # Extract just occurrence classified as TRUE in the summary
 # using value = "clean"
-beluga.clean <- CleanCoordinates(beluga, lon = "decimalLongitude", lat = "decimalLatitude",
-                                 species = "name", outliers =  TRUE, outliers.method = "distance",
-                                 outliers.td = 5000, seas = TRUE, seas.ref = buffland,
-                                 zeros = TRUE, value = "clean")
+beluga.clean <- clean_coordinates(beluga, lon = "decimalLongitude", lat = "decimalLatitude",
+                                       species = "name", tests = c("outliers", "seas", "zeros"), 
+                                       outliers_method = "distance", outliers_td = 5000, 
+                                       seas_ref = buffland, value = "clean")
 # Check out the result
 View(beluga.clean)
 ```
 
-__Now we can update our map by swapping the `beluga` object with the `beluga.clean` object to see what difference cleaning the coordinate data made. When cleaning coordinate data for your own analyses, you can include further tests, e.g. if you are doing a UK-scale analysis, you can check whether the points are actually in the UK. As usual with research, the decision about what to include or exclude is yours and the `CleanCoordinates` function offers one way to inform your decision.__
+__Now we can update our map by swapping the `beluga` object with the `beluga.clean` object to see what difference cleaning the coordinate data made. When cleaning coordinate data for your own analyses, you can include further tests, e.g. if you are doing a UK-scale analysis, you can check whether the points are actually in the UK. As usual with research, the decision about what to include or exclude is yours and the `clean_coordinates` function offers one way to inform your decision.__
 
 ```r
 # Make a map of the clean GBIF occurrences
