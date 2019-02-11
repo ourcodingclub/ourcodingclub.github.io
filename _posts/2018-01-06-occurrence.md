@@ -25,7 +25,7 @@ tags: data_manip data_vis
 
 #### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-occurrence" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
-<b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. Then we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea, and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.</b>
+<b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up dataframes and calculate new variables. Then, we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands, if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
 <center><img src="{{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;"/></center>
 
@@ -36,7 +36,7 @@ tags: data_manip data_vis
 We will be working with occurrence data for the beluga whale from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> and population data for the same species from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, both of which are publicly available datasets.
 
 
-#### Set your the working directory.
+#### Set your working directory.
 
 
 It helps to keep all your data, scripts, image outputs etc. in a single folder. This minimises the chance of losing any part of your analysis and makes it easier to move the analysis on your computer without breaking filepaths. Note that filepaths are defined differently on Mac/Linux and Windows machines. On a Mac/Linux machine, user files are found in the 'home' directory (`~`), whereas on a Windows machine, files can be placed in multiple 'drives' (e.g. `D:`). Also note that on a Windows machine, if you copy and paste a filepath from Windows Explorer into RStudio, it will appear with backslashes (`\ `), but R requires all filepaths to be written using forward-slashes (`/`) so you will have to change those manually.
@@ -57,7 +57,7 @@ setwd("~/Work/coding_club/CC-occurrence-master")
 
 As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to RStudio tutorial</a>. A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
 
-The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# Load data`. Then underneath that comment you would write the code for importing your data in `R`. RStudio has a great feature allowing you to turn your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# Load data ----`. To view your outline, click on the button shown below. You can then click on an outline item and jump straight to it; no more scrolling!
+The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# Load data`. Then, underneath that comment, you would write the code for importing your data in `R`. RStudio has a great feature allowing you to turn your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# Load data ----`. To view your outline, click on the button shown below. You can then click on an outline item and jump straight to it - no more scrolling!
 
 
 <center> <img src="{{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;"/> </center>
@@ -68,7 +68,7 @@ __NOTE: If you don't see the outline icon, you most likely do not have the newes
 #### Write an informative header
 
 
-<b>Whatever your coding adventure, it will be way smoother if you record what you are doing and why you are doing it so that  your collaborators and future you can come back to the script and not be puzzled by the thousands of line of code. It's good practice to start a script with information on who you are, what the code is for and when you are writing it. We have some comments throughout the code in the tutorial. Feel free to add more comments to your script using a hashtag `#` before a line of text.</b>
+<b>Whatever your coding adventure, it will be way smoother if you record what you are doing and why you are doing it, so that  your collaborators and future you can come back to the script and not be puzzled by the thousands of line of code. It's good practice to start a script with information on who you are, what the code is for and when you are writing it. We have some comments throughout the code in the tutorial. Feel free to add more comments to your script using a hashtag `#` before a line of text.</b>
 
 ```r
 # Marine mammal distribution and population change
@@ -102,7 +102,7 @@ library(gridExtra)
 #### Make your own `ggplot2` theme
 
 
-If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our graphs we won't need to use `legend.position`, but it's fine to keep it in the theme in case any future graphs we apply it to do have the need for legends.
+If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another, and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our graphs we won't need to use `legend.position`, but it's fine to keep it in the theme in case any future graphs we apply it to do have the need for legends.
 
 ```r
 # Personalised ggplot2 theme
@@ -133,7 +133,7 @@ theme_marine <- function(){
 #### Load species occurrence and population trend data
 
 
-__The data are in a `.RData` format, as those are quicker to use, since `.Rdata` files are more compressed. Of course, a drawback is that `.RData` files can only be used within R, whereas `.csv` files are more transferable.__
+__The data are in an `.RData` format, as those are quicker to use, since `.Rdata` files are more compressed. Of course, a drawback is that `.RData` files can only be used within R, whereas `.csv` files are more transferable.__
 
 ```r
 # Load data ----
@@ -142,7 +142,7 @@ __The data are in a `.RData` format, as those are quicker to use, since `.Rdata`
 # beluga <- occ_search(scientificName = "Delphinapterus leucas", limit = 20000,
 #                      hasCoordinate = TRUE, return = "data")
 
-# Downloading takes a while so unless you have time to wait, you can use the file we donwloaded in advance
+# Downloading takes a while so unless you have time to wait, you can use the file we downloaded in advance
 
 load("beluga.RData")
 
@@ -180,7 +180,7 @@ __The population change data are in a wide format: each row contains a populatio
 
 We will take our original dataset `marine`, filter to include just the beluga populations and create a new column called `year`, fill it with column names from columns numbers 26 to 70 (`26:70`) and then use the data from these columns to make another column called `abundance`.
 
-We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different. Imagine tiny fish whose abundance is in the millions and large carnivores whose abundance is much smaller. By scaling the data, we are also normalising it so that later on we can use linear models with a normal distribution to quantify overall experienced population change.
+We should also scale the population data, because, since the data come from many species, the units and magnitude of the data are very different. Imagine tiny fish whose abundance is in the millions and large carnivores whose abundance is much smaller. By scaling the data, we are also normalising it so that later on we can use linear models with a normal distribution to quantify overall experienced population change.
 
 ```r
 # Take a look at the population change data
@@ -196,7 +196,7 @@ beluga.pop <- marine %>% filter(species == "Delphinapterus leucas") %>%  # Selec
   ungroup()  # Remove the grouping
 ```
 
-Because column names are coded in as characters, when we turned the column names (`1970`, `1971`, `1972`, etc.) into rows, R automatically put an `X` in front of the numbers to force them to remain characters. We don't want that so to turn `year` into a numeric variable, you can use the `parse_number` function from the `readr` package.
+Because column names are coded in as characters, when we turned the column names (`1970`, `1971`, `1972`, etc.) into rows, R automatically put an `X` in front of the numbers to force them to remain characters. We don't want that, so to turn `year` into a numeric variable, you can use the `parse_number` function from the `readr` package.
 
 ```r
 # Explore data frame
@@ -239,7 +239,7 @@ beluga.slopes <- beluga.slopes %>%
 
 ### 2. Clean species occurrence data
 
-We have over a thousand GBIF occurrence records of belugas. Using the `CleanCoordinates` function from the `CoordinateCleaner` package, developed by Alexander Zizka, we can perform different tests of validity to flag potentially wrong coordinates (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). For example, we are currently working with a marine species, the beluga whale so we don't expect to see those on land. Nevertheless, people sometimes see whales from land, i.e. when they are whalewatching from the coastline and when they take a GPS reading. That occurrence would technically be on land, since it's for the land-based observer, not the whale swimming by. Additionally, some of the records might be from zoos, which can explain species appearing to occur outside of their usual ranges.
+We have over a thousand GBIF occurrence records of belugas. Using the `CleanCoordinates` function from the `CoordinateCleaner` package, developed by Alexander Zizka, we can perform different tests of validity to flag potentially wrong coordinates (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). For example, we are currently working with a marine species, the beluga whale, so we don't expect to see those on land. Nevertheless, people sometimes see whales from land, i.e. when they are whalewatching from the coastline and when they take a GPS reading. That occurrence would technically be on land, since it's for the land-based observer, not the whale swimming by. Additionally, some of the records might be from zoos, which can explain species appearing to occur outside of their usual ranges.
 
 Before we perform the coordinate tests, we can make a quick map to get an idea of the spatial spread of the beluga GBIF records. With `ggplot2` and the `ggthemes` packages (the theme_map() function comes from `ggthemes`), you can make quick and easy maps. To choose colours for your map, you can use the `Rcolourpicker` addin, which offers a really easy way to get the colour codes for whatever colours you want right within `RStudio`.
 
@@ -247,7 +247,7 @@ Before we perform the coordinate tests, we can make a quick map to get an idea o
 #### Picking colours using the `Rcolourpicker` addin
 
 
-Setting custom colours for your graphs can set them apart from all the rest (we all know what the default `ggplot2` colours look like!), make them prettier, and most importantly, give your work a consistent and logical colour scheme. Finding the codes, e.g. `colour="#8B5A00"`, for your chosen colours, however, can be a bit tedious. Though one can always use Paint / Photoshop / google colour codes, there is a way to do this within RStudio thanks to the addin `colourpicker`. RStudio addins are installed the same way as packages and you can access them by clicking on `Addins` in your RStudio menu. To install `colourpicker`, run the following code:
+Setting custom colours for your graphs can set them apart from all the rest (we all know what the default `ggplot2` colours look like!), make them prettier and most importantly, give your work a consistent and logical colour scheme. Finding the codes, e.g. `colour="#8B5A00"`, for your chosen colours, however, can be a bit tedious. Though one can always use Paint / Photoshop / google colour codes, there is a way to do this within RStudio thanks to the addin `colourpicker`. RStudio addins are installed the same way as packages and you can access them by clicking on `Addins` in your RStudio menu. To install `colourpicker`, run the following code:
 
 ```r
 install.packages("colourpicker")
@@ -261,7 +261,7 @@ When you click on `All R colours` you will see lots of different colours you can
 
 <center><img src="{{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;"/></center>
 
-__Now that we have our colours, we can make a map. A map is really like any other graph. In our `ggplot()` code, we have to specify a data frame and then say what should be plotted on the x axis and on the y axis: in our case, the longitude and latitude of each occurrence record.__
+__Now that we have our colours, we can make a map. A map is really like any other graph. In our `ggplot()` code, we have to specify a dataframe and then say what should be plotted on the x axis and on the y axis: in our case, the longitude and latitude of each occurrence record.__
 
 ```r
 # Data visualisation ----
@@ -277,7 +277,7 @@ __Now that we have our colours, we can make a map. A map is really like any othe
    
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `beluga.map` after you've created the "beluga.map" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `beluga.map` after you've created the "beluga.map" object. 
 
 __`ggplot2` works with aesthetics. That is the `aes` argument which "maps" your variables to the `x` and `y` axises.__
 
@@ -287,11 +287,10 @@ __When you want to specify particular colours, shapes or sizes, those are includ
 
 __Later on, if you are interested in learning how to use the `ggplot2` package to make many different types of graphs, you can check out <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">our tutorial introducing `ggplot2`</a> and <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">our tutorial on further customisation and data visualisation</a>.__
 
-#### Explain colour and fill arguments inside and outside the aes call
 <center> <img src="{{ site.baseurl }}/img/beluga_map.png" alt="Img" style="width: 800px;"/> </center>
 <center>Figure 1. Map of all GBIF occurrences for the beluga whale.</center>
 
-__Do you spot any beluga whales where there shouldn't be any? We can check that the `CleanCoordinates` function flags as potentially wrong records. The function performs a series of tests, e.g. are there any zeros among the longitude and latitude values, and then returns a summary data frame of whether each occurrence record failed or passed each test (i.e. `FALSE` vs `TRUE`).__
+__Do you spot any beluga whales where there shouldn't be any? We can check what the `CleanCoordinates` function flags as potentially wrong records. The function performs a series of tests, e.g. are there any zeros among the longitude and latitude values, and then returns a summary dataframe of whether each occurrence record failed or passed each test (i.e. `FALSE` vs `TRUE`).__
 
 ```r
 # ** Clean coordinate data ----
@@ -370,11 +369,11 @@ beluga.base <- beluga.clean[-c(1412, 1413, 1414, 1415, 1521),] # selects all col
 # Alternatively, you can filter those points out in a pipe
 beluga.pipe <- beluga.clean %>% filter(decimalLongitude != -46 | decimalLatitude != 65)
 
-# The results are the same, which you can confirm using anti_jion() from dplyr
+# The results are the same, which you can confirm using anti_join() from dplyr
 anti_join(beluga.base, beluga.pipe)  # There are no differences
 ```
 
-__We could keep going with the occurrence clean up and you could use the identifier for each record (the `key` column in the data frame that has a unique value for each record) to go back to the original GBIF data and filter out that record, using e.g. `new.beluga <- filter(beluga.clean, key != "whatever the key number is")`. You can also look up the many columns of data from the original GBIF data frame to get more information on that specific record, e.g. is it from a wild population, how was it collected and by whom. Then you might decide you want to exclude more records.__
+__We could keep going with the occurrence clean up and you could use the identifier for each record (the `key` column in the data frame that has a unique value for each record) to go back to the original GBIF data and filter out that record, using e.g. `new.beluga <- filter(beluga.clean, key != "whatever the key number is")`. You can also look up the many columns of data from the original GBIF dataframe to get more information on that specific record, e.g. is it from a wild population, how was it collected and by whom. Then you might decide you want to exclude more records.__
 
 __For now, we will move onto more data visualisation. We will customise our map of beluga occurrence, visualise when the records were collected and how some of the beluga populations have changed through time.__
 
@@ -386,7 +385,7 @@ __For now, we will move onto more data visualisation. We will customise our map 
     geom_point(alpha = 0.3, size = 2, colour = "aquamarine3") +
     geom_point(data = beluga.slopes, aes(x = Decimal.Longitude, y = Decimal.Latitude),  # Add the points from the population change data
                size = 4, colour = "tan1"))
-# You have to specify where the data come from when plotting from more than one data frame using data = ""
+# You have to specify where the data come from when plotting from more than one dataframe using data = ""
 ```
 
 __The `ggplot2` package offers many different ways you can customise your graphs. We will use some of those here and we will also use an additional package, `ggrepel`, which adds nice labels for the points we specified, e.g. from our map, we know where belugas occur (the GBIF records) and some of the places where they have been monitored (the population change points) and we can label the monitoring sites. First, we have to make sure the names are consistent and we don't want them to be too long so we can rename them using the `recode()` function from `dplyr`.__
@@ -418,7 +417,7 @@ print(beluga.slopes$Location.of.population)
 # for the other marine LPI populations feature as object attributes, but not to worry, those don't get analysed
 ```
 
-__We can use the `annotation_custom` function from `ggplot2` to add images to our graphs, for example, a beluga icon. Sometimes you have to make the same graphs, but for different places or species groups so adding icons can help quickly orient the viewer.__
+__We can use the `annotation_custom` function from `ggplot2` to add images to our graphs, for example, a beluga icon. Sometimes you have to make the same graphs, but for different places or species groups, so adding icons can help quickly orient the viewer.__
 
 ```r
 # Load packages for adding images
@@ -433,7 +432,7 @@ icon <- rasterGrob(icon, interpolate=TRUE)
 # Doesn't matter for our icon
 ```
 
-__Now comes what looks like a gigantic chunk of code! We have explained each step in the comments so you can  read through the code before you run it. This doesn't mean that every time you make a map your code has to be this long. From the maps above, you can see that 4-5 lines of code make a pretty decent map. Here we have included a lot of customising options, including how to plot points from different data frames on the same map, how to add labels, icons and change the title so that when it comes to making your own maps, you can pick and choose whichever ones are relevant for your map.__
+__Now comes what looks like a gigantic chunk of code! We have explained each step in the comments so you can  read through the code before you run it. This doesn't mean that every time you make a map, your code has to be this long. From the maps above, you can see that 4-5 lines of code make a pretty decent map. Here, we have included a lot of customising options, including how to plot points from different data frames on the same map, how to add labels, icons and change the title so that when it comes to making your own maps, you can pick and choose whichever ones are relevant for your map.__
 
 ```r
 # Update map
@@ -448,12 +447,12 @@ __Now comes what looks like a gigantic chunk of code! We have explained each ste
                      min.segment.length = 0, inherit.aes = FALSE) +
 		# Adding labels, here is what is happening step by step for the labels
 
-		# We are specifying the data frame for the labels - one site has three monitored populations
+		# We are specifying the dataframe for the labels - one site has three monitored populations
 		# but we only want to label it once so we are subsetting using data = beluga.slopes[1:3,]
 		# to get only the first three rows and all columns
 
 		#	We are specifying the size of the labels and nudging the points so that they
-		# don't hide data points, along the x axis we are nudging by one, and along the
+		# don't hide data points, along the x axis we are nudging by one and along the
 		# y axis, we have an ifelse statement.
 
 		# Ifelse statements are great! All this means is that if the population id is 13273,
@@ -470,7 +469,7 @@ __Now comes what looks like a gigantic chunk of code! We have explained each ste
     theme(plot.title = element_text(size = 20)))  # Setting the size for the title
 ```
 
-__We can use `ggsave() to save the map. By default, the width and height are measured in inches.`__
+__We can use `ggsave()` to save the map. By default, the width and height are measured in inches.`__
 
 ```r
 # Save the plot, it will get saved in your working directory
@@ -520,7 +519,7 @@ print(beluga.slopes$year[beluga.slopes$id == "13273"])
     theme_marine())
 ```
 
-__Now we can modify the code a bit to make a graph for the Cook Inlet stock population.__
+__Now, we can modify the code a bit to make a graph for the Cook Inlet stock population.__
 
 ```r
 beluga2 <- filter(beluga.pop, id == "2191")
@@ -535,7 +534,7 @@ beluga2 <- filter(beluga.pop, id == "2191")
 __The last site, St. Lawrence estuary, has been monitored by three different studies in different time periods.__
 
 ```r
-Create an object containing the three populations in the St. Lawrence estuary
+# Create an object containing the three populations in the St. Lawrence estuary
 # using the "|" operator
 beluga3 <- filter(beluga.pop, id == "1950" | id == "4557" | id == "4558")
 
@@ -563,7 +562,7 @@ row2 <- grid.arrange(hudson.bay, cook.inlet, st.lawrence.est, ncol = 3, widths =
 # Makes a panel of all the population plots and sets the ratio
 # We are giving the first graph more space because that's the one with the y axis label
 beluga.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(0.9, 1.1))
-# Stiching it all together
+# Stitching it all together
 ```
 
 <center> <img src="{{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;"/> </center>
