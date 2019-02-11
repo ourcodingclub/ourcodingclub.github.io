@@ -363,9 +363,9 @@ View(greenland)
 
 # Find out which rows match that criteria using which()
 which(beluga.clean$decimalLongitude == -46 & beluga.clean$decimalLatitude == 65)
-# rows numbers 1412 1413 1414 1415 1521
+# rows numbers 1421 1422 1423 1424 1530
 
-beluga.base <- beluga.clean[-c(1412, 1413, 1414, 1415, 1521),] # selects all columns and removes those rows
+beluga.base <- beluga.clean[-c(1421, 1422, 1423, 1424, 1530),] # selects all columns and removes those rows
 
 # Alternatively, you can filter those points out in a pipe
 beluga.pipe <- beluga.clean %>% filter(decimalLongitude != -46 | decimalLatitude != 65)
@@ -400,7 +400,7 @@ print(beluga.slopes$Location.of.population)
 
 # Make site names consistent
 # Make sure the original names are the same as shown on your computer - sometimes R will read 
-# in the variables differently i.e. Quebec may be "Qu<ed><a9>bec"
+# in the variables differently i.e. Quebec may be "Qu<ed><a9>bec" or "Qu\xed\xa9bec"
 beluga.slopes$Location.of.population <- recode(beluga.slopes$Location.of.population,
                                                "Cook Inlet stock, Alaska" = "Cook Inlet stock")
 beluga.slopes$Location.of.population <- recode(beluga.slopes$Location.of.population,
