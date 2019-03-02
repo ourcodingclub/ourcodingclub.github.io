@@ -32,3 +32,12 @@
 .post-area a:hover {
   color: #0D0017;
 }
+
+.navbar-nav > li.active a,
+.navbar-default .navbar-nav>li:hover a,
+.navbar-default .navbar-nav>li:focus a {
+  font-weight: 600 !important;
+  border-radius: 5px;
+  color: #111 !important;
+  background-color: #C2BEC6 !important;
+}
