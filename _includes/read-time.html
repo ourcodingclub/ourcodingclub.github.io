@@ -1,0 +1,18 @@
+<span class="read-time">
+  {{ include.bracket_start }}
+
+  {% if include.approx == 'true' %}
+  ~
+  {% endif %}
+
+  {% assign words = include.content | number_of_words %}
+
+  {% if words < 360 %}
+    1 {{ include.unit }}
+  {% else %}
+    {{ words | divided_by:180 }} {{ include.unit }}s
+  {% endif %}
+
+  {{ include.caption }}
+  {{ include.bracket_end }}
+</span>
