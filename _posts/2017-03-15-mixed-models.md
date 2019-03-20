@@ -14,7 +14,7 @@ tags: modelling
 	</center>
 </div>
 
-This is a workshop is aimed at people new to mixed modeling and as such, it doesn't cover all the nuances of mixed models, but hopefully serves as a starting point when it comes to both the concepts and the code syntax in `R`. There are no equations used to keep it beginner friendly.
+This workshop is aimed at people new to mixed modeling and as such, it doesn't cover all the nuances of mixed models, but hopefully serves as a starting point when it comes to both the concepts and the code syntax in `R`. There are no equations used to keep it beginner friendly.
 
 **Acknowledgements:** First of all, thanks where thanks are due. This tutorial has been built on the tutorial written by <a href="https://twitter.com/ldbailey255" target="_blank">Liam Bailey</a>, who has been kind enough to let me use chunks of his script, as well as some of the data. Having this backbone of code made my life much, much easier, so thanks Liam, you are a star! The seemingly excessive waffling is mine.
 
