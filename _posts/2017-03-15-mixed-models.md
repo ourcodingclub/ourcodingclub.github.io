@@ -14,11 +14,11 @@ tags: modelling
 	</center>
 </div>
 
-This is a workshop is aimed at people new to mixed modeling and as such it doesn't cover all the nuances of mixed models, but hopefully serves as a starting point when it comes to both the concepts and the code syntax in `R`. There are no equations used to keep it beginner friendly.
+This is a workshop is aimed at people new to mixed modeling and as such, it doesn't cover all the nuances of mixed models, but hopefully serves as a starting point when it comes to both the concepts and the code syntax in `R`. There are no equations used to keep it beginner friendly.
 
 **Acknowledgements:** First of all, thanks where thanks are due. This tutorial has been built on the tutorial written by <a href="https://twitter.com/ldbailey255" target="_blank">Liam Bailey</a>, who has been kind enough to let me use chunks of his script, as well as some of the data. Having this backbone of code made my life much, much easier, so thanks Liam, you are a star! The seemingly excessive waffling is mine.
 
-If you are familiar with linear models, aware of their shortcomings and happy with their fitting, then you should be able to very quickly get through the first five of the sections below. I am however including them for the sake of completeness and in an attempt to cater to a broader audience. 
+If you are familiar with linear models, aware of their shortcomings and happy with their fitting, then you should be able to very quickly get through the first five sections below. I am however including them for the sake of completeness and in an attempt to cater to a broader audience. 
 
 Similarly, I include quite a bit of explanatory text: you might choose to just skim it for now and go through the "coding bits" of the tutorial. But it will be here to help you along when you start using mixed models with your own data and you need a bit more context.
 
@@ -58,7 +58,7 @@ Ecological and biological data are often complex and messy. We can have differen
 
 This is why **mixed models** were developed, to deal with such messy data and to allow us to use all our data, even when we have low sample sizes, structured data and many covariates to fit. Oh, and on top of all that, mixed models allow us to save degrees of freedom compared to running standard linear models! Sounds good, doesn't it?
 
-We will cover only linear mixed models here, but if you are trying to "extend" your linear model, fear not: there are generalised linear mixed effects models out there too.
+We will cover only linear mixed models here, but if you are trying to "extend" your linear model, fear not: there are generalised linear mixed effects models out there, too.
 
 <a name="two"></a>
 ### Explore the data
@@ -112,7 +112,7 @@ library(ggplot2)  # load the package
   
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
 <center><img src="{{ site.baseurl }}/img/mm-2.png" alt="Img" style="width: 800px;"/></center>
 
@@ -389,7 +389,7 @@ Once you get your model, you have to **present** it in a nicer form.
 <a name="tables"></a>
 #### Tables
 
-For `lme4` if you are looking for a table, I'd recommend that you have a look at the `stargazer` package.
+For `lme4`, if you are looking for a table, I'd recommend that you have a look at the `stargazer` package.
 
 ```r
 library(stargazer)
@@ -416,7 +416,7 @@ If you are looking for **a way to create plots of your results** check out `dotw
 <a name="processing"></a>
 #### Further processing
 
-If you'd like to be able **to do more with your model results**, for instance process them further, collate model results from multiple models or plot them have a look at the `broom` package. This [tutorial](http://varianceexplained.org/r/broom-intro/){:target="_blank"} is a great start.
+If you'd like to be able **to do more with your model results**, for instance process them further, collate model results from multiple models or plot, them have a look at the `broom` package. This [tutorial](http://varianceexplained.org/r/broom-intro/){:target="_blank"} is a great start.
 
 <a name="extra"></a>
 #### EXTRA: P-values and model selection
@@ -476,7 +476,7 @@ Even though you **use ML to compare models**, you should **report parameter esti
 <a name="randomstr"></a>
 #### Random effects structure
 
-Now you might wonder about selecting your random effects. In general, I'd advise you to think about your **experimental design, your system and data collected as well as your questions**.
+Now you might wonder about selecting your random effects. In general, I'd advise you to think about your **experimental design, your system and data collected, as well as your questions**.
 
 If your random effects are there to deal with **pseudoreplication**, then it doesn't really matter whether they are "significant" or not: they **are part of your design** and have to be included. Imagine we tested our dragons multiple times - we then *have to* fit dragon identity as a random effect.
 
