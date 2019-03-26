@@ -2,7 +2,7 @@
 layout: post
 title: Writing R packages in Rstudio
 subtitle: Tutorial adapted from stirlingcodingclub.github.io
-date: 2017-03-20 00:00:00
+date: 2019-03-20 00:00:00
 author: Brad Duthie
 meta: "Tutorials"
 tags: R
