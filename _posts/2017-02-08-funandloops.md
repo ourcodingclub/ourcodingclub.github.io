@@ -326,7 +326,7 @@ Also note that in this function definition the extra arguments have default valu
 
 ## 6. BONUS: Write a loop to plot multiple graphs
 
-This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the Living Planet Index for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
+This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the <a href="http://www.livingplanetindex.org/" target="_blank" rel="noopener">Living Planet Index</a> for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
 
 First, import the data:
 
