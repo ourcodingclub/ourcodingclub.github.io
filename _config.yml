@@ -30,6 +30,8 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
 
 # Google analytics
 google_analytics: UA-92956541-1
