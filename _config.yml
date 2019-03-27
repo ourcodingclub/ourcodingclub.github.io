@@ -27,6 +27,7 @@ logo: "/assets/logo.png"
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 
 # Google analytics
 google_analytics: UA-92956541-1
