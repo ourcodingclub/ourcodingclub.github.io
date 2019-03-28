@@ -16,6 +16,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  color: #313131;
 }
 h1,
 h2,
@@ -36,7 +37,6 @@ h3 {
 p {
   font-size: 15px;
   line-height: 28px;
-  color: #4b608f
 }
 ul {
   padding: 0;
