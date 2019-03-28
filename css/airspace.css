@@ -833,10 +833,17 @@ footer .footer-manu ul li a:hover {
 
 /* Themes for different contexts */
 .bs-callout-blue {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px;
   background-color: #a6daef;
   border-color: #417a91;
 }
+
 .bs-callout-yellow {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px;
   background-color: #efeeae;
   border-color: #dec82e;
 }
