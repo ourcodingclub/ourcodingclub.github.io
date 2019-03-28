@@ -36,6 +36,7 @@ h3 {
 p {
   font-size: 15px;
   line-height: 28px;
+  color: #2b2c2d
 }
 ul {
   padding: 0;
@@ -806,4 +807,36 @@ footer .footer-manu ul li a {
 }
 footer .footer-manu ul li a:hover {
   color: #000;
+}
+
+
+/*---------------------------------------------
+					coloured boxes
+-----------------------------------------------*/
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-blue {
+  background-color: #a6daef;
+  border-color: #417a91;
+}
+.bs-callout-yellow {
+  background-color: #efeeae;
+  border-color: #dec82e;
 }
