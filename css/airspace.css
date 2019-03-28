@@ -16,7 +16,6 @@
 body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: #313131;
 }
 h1,
 h2,
@@ -846,6 +845,6 @@ footer .footer-manu ul li a:hover {
   padding: 15px 15px 15px 15px;
   border-left: 5px;
   border-radius: 10px;
-  background-color: #efeeae;
+  background-color: #f8e49f;
   border-color: #dec82e;
 }
