@@ -36,7 +36,7 @@ h3 {
 p {
   font-size: 15px;
   line-height: 28px;
-  color: #2b2c2d
+  color: #4b608f
 }
 ul {
   padding: 0;
@@ -834,16 +834,18 @@ footer .footer-manu ul li a:hover {
 /* Themes for different contexts */
 .bs-callout-blue {
   margin: 20px 0;
-  padding: 15px 30px 15px 15px;
+  padding: 15px 15px 15px 15px;
   border-left: 5px;
-  background-color: #a6daef;
+  border-radius: 10px;
+  background-color: #c1ebef;
   border-color: #417a91;
 }
 
 .bs-callout-yellow {
   margin: 20px 0;
-  padding: 15px 30px 15px 15px;
+  padding: 15px 15px 15px 15px;
   border-left: 5px;
+  border-radius: 10px;
   background-color: #efeeae;
   border-color: #dec82e;
 }
