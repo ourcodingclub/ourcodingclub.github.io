@@ -32,6 +32,7 @@ kramdown:
   syntax_highlighter: rouge
   input: GFM
   auto_ids: true
+  parse_block_html: true
 
 # Google analytics
 google_analytics: UA-92956541-1
