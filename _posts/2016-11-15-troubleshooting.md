@@ -112,7 +112,7 @@ We have also compiled a <a href="https://ourcodingclub.github.io/links/" target=
 
 <b>Of course, `R` won't always tell you if you are doing something wrong: sometimes your code is correct, but you are doing the wrong type of analysis for your data. Nevertheless, making sure you avoid easy-to-make mistakes is a great place to start - even the fanciest, super-advanced tests can be brought down by a single missing comma.</b>
 
-<div class="bs-callout-blue" markdown="1">
+<div class="bs-callout-yellow" markdown="1">
 
 #### A warning on warnings!
 
