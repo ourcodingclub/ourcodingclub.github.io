@@ -112,6 +112,17 @@ We have also compiled a <a href="https://ourcodingclub.github.io/links/" target=
 
 <b>Of course, `R` won't always tell you if you are doing something wrong: sometimes your code is correct, but you are doing the wrong type of analysis for your data. Nevertheless, making sure you avoid easy-to-make mistakes is a great place to start - even the fanciest, super-advanced tests can be brought down by a single missing comma.</b>
 
+<div class="bs-callout-blue" markdown="1">
+
+#### A warning on warnings!
+
+Errors are not the only scary red text that will appear in the console. Often, you will run code and get a message saying something like "There were 13 warnings, use `warnings()`to see them". It could also be a specific warning telling you that R is ignoring `NA`s (missing) data in a plot, or that a function generated unexpected results such as `NaN` (not a number). 
+
+Warnings are not necessarily the end of the world, but you should see them as major red flags, and make sure you know what is going on before you pursue your analysis. Like error messages, a simple online search of the warning text will often put you on the right track. 
+
+</div>
+
+
 <a name="practice"></a>
 
 ### 4. Practice! 
