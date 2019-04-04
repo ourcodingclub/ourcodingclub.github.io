@@ -70,7 +70,7 @@ Here we have compiled a list of mistakes we often make. Do you think we have for
 <center><img src="{{ site.baseurl }}/img/bomb.png" alt="Img" style="width: 800px;"/></center>
 
 
-<b> - Aaaah! I zoomed my plot, and now it's full screen and I can't get back! </b> If you click on the little magnifying glass in the Plots window, it opens a new window where you can resize your plot and view it bigger. Convenient! Less convenient is when you accidentally drag the window to the top of your screen and it goes full screen, blocking everything else. This is not an issue anymore with new versions of R Studio, but if it ever happens, you can escape using the _backspace_ key on our keyboard - and hopefully you don't lose data in the process.
+<b> - Aaaah! I enlarged my plot, and now it's full screen and I can't get back! </b> If you click on the little magnifying glass in the Plots window, it opens your plot in a new window that you can resize. Convenient! Less convenient is when you accidentally drag the window to the top of your screen and it goes full screen, blocking everything else. This is not an issue anymore with newer versions of R Studio, but if it ever happens, you can escape using the _backspace_ key on your keyboard - and hopefully you don't lose data in the process.
 
 <b> - I am stuck in a loop of pluses!</b> If the numbers of opening and closing brackets don't match up, `R` thinks there is more code coming. That is why, in the console, it is prompting you to add more code: every time you press enter, a new + appears. Press <i>Escape</i> on your keyboard to get back to the normal `>` prompt in the console and check your code to find your error.
 
@@ -85,7 +85,7 @@ Here we have compiled a list of mistakes we often make. Do you think we have for
 
 <div class="bs-callout-blue" markdown="1">
 
-Cheat sheet! Here are some of the most common error messages you'll meet when you get started, and what they actually mean.
+#### Cheat sheet! Here are some of the most common error messages you'll meet when you get started, and what they actually mean.
 
 __Error in `function-name(...)`: could not find function "function-name"__ : This probably means that you are trying to use a function from a package you have not loaded. Type `??function-name` (or look it up online) to find out which package it comes from, and make sure the package is loaded using `library(package-name)`. Which leads us to...
 
@@ -105,7 +105,7 @@ __Cannot open file 'your-file-path': No such file or directory__: R cannot find 
 
 <b>For "how to ..." type queries, a search will often result in tutorials, and even Youtube videos as well.</b> For instance, " ggplot how to change axis titles" or "dplyr filtering on two conditions" will quickly get you what you need.
 
-__ R Help__ Of course, R has built-in documentation for all functions and packages. We already mentioned that you can type `help()` or `?function-name` (try `??function-name`for a broader search). The <a href="https://www.rdocumentation.org/"target="_blank"> RDocumentation website</a> contains much of the same in a slightly nicer format, with examples and more links. 
+<b>R Help</b> Of course, R has built-in documentation for all functions and packages. We already mentioned that you can type `help()` or `?function-name` (try `??function-name`for a broader search). The <a href="https://www.rdocumentation.org/" target="_blank"> RDocumentation website</a> contains much of the same in a slightly nicer format, with examples and more links. 
 
 We have also compiled a <a href="https://ourcodingclub.github.io/links/" target="_blank"><b>"Useful links" list of helpful websites and tutorials</b></a> where you can find additional help. 
 
@@ -116,7 +116,7 @@ We have also compiled a <a href="https://ourcodingclub.github.io/links/" target=
 
 ### 4. Practice! 
 
-Practice truly is the best way to learn how to avoid errors in `R` - to get you started, we have written a purposefully wrong script - you can download the file from this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank">Github repository</a>. There you will find the data `edidiv.csv`, as well as the wrong and right script. Can you fix all the mistakes?
+Practice truly is the best way to learn how to avoid errors in `R` - to get you started, we have written a purposefully wrong script - you can download the file from this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank">Github repository</a>. There you will find the data `edidiv.csv`, as well as the wrong (`CC_2_RBasics_Wrong_Script.R`) and right script. Can you fix all the mistakes?
 
 
 ### Tutorial outcomes:
