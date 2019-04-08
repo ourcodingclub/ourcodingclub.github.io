@@ -848,3 +848,12 @@ footer .footer-manu ul li a:hover {
   background-color: #f8e49f;
   border-color: #dec82e;
 }
+
+.bs-callout-grey {
+  margin: 20px 0;
+  padding: 15px 15px 15px 15px;
+  border-left: 5px;
+  border-radius: 10px;
+  background-color: #ededed;
+  border-color: #ededed;
+}
