@@ -583,7 +583,7 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
 ```
 So there you are! Did your plots look something like this? 
 
-<center> <img src="{{ site.baseurl }}/img/dragon-spice.jepg" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/dragon-spice.jpeg" alt="Img" style="width: 800px;"/> </center>
 ##### It looks like jalapeños are proper dragon fuel, but turmeric not so much!
 
 </summary>   
