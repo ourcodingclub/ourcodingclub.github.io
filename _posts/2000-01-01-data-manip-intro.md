@@ -9,7 +9,9 @@ meta:
 tags: 
 ---
 <div class="block"> 
-          <center><img src="{{ site.baseurl }}/img/tutheader_DL_data_manip_1.jpg" alt="Img"></center>
+          <center>
+          <img src="{{ site.baseurl }}/img/tutheader_DL_data_manip_1.png" alt="Img">
+          </center>
         </div>
         
 ### Tutorial aims:
@@ -59,12 +61,12 @@ In this tutorial, we will start by showing some ways to manipulate data using ba
 
 Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `elongation.csv` dataset that you have downloaded from the repository. 
 
-##### Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script). 
+#### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__ 
 
 This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
 
 <center> <img src="{{ site.baseurl }}/img/crowberry.jpg" alt="Img" style="width: 800px;"/> </center>
-##### A crowberry shrub, _Empetrum hermaphroditum_. Isn't it pretty?
+<center>  A crowberry shrub, <i> Empetrum hermaphroditum </i>. Isn't it pretty? </center>
 
 We have seen in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can access variables in R by using the dollar sign `$`. This is already one way of subsetting, as it essentially reduces your data frame (2 dimensions) to a vector (1 dimension). You can also access parts of a data frame using square brackets `[ , ]`. The first number you put will get the row number, and the second the column. Leave one blank to keep all rows or all columns.
 
@@ -161,7 +163,9 @@ As you can see, the more demanding you are with your conditions, the more clutte
 Did you notice that last bit of code: `c(300:400)` ? We saw in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can use `c()` to _concatenate_ elements in a vector. Using a colon between the two numbers means _counting up from 300 to 400_. 
 
 Other useful vector sequence builders are:
+
 __`seq()`__ to create a sequence, incrementing by any specified amount. E.g. try `seq(300, 400, 10)`
+
 __`rep()`__ to create repetitions of elements. E.g. `rep(c(1,2), 3)` will give `1 2 1 2 1 2`. 
 
 You can mix and match! What would `rep(seq(0, 30, 10), 4)`give?
@@ -293,8 +297,8 @@ boxplot(Length ~ Year, data = elongation_long,
 	main = "Annual growth of Empetrum hermaphroditum")
 ```
 
-<center> <img src="{{ site.baseurl }}/img/emni-annual.jpg" alt="Img" style="width: 600px;"/> </center>
-##### Annual growth of <i>Empetrum hermaphroditum</i>.
+<center> <img src="{{ site.baseurl }}/img/emni-annual.jpeg" alt="Img" style="width: 600px;"/> </center>
+<center> Annual growth of <i>Empetrum hermaphroditum</i>. </center>
 
 From looking at the boxplot, there is a fairly big overlap between the annual growth in each year. (Don't worry, we'll learn to make much prettier and interesting graphs in our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">data visualisation</a> tutorials.) 
 
@@ -307,7 +311,7 @@ From looking at the boxplot, there is a fairly big overlap between the annual gr
 The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object. Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. 
 
 <a name="rename"></a>
-#### `rename()` variables
+#### 1. `rename()` variables
 
 This lets you change the name(s) of a column or columns. The first argument is the data frame, the second (and third, etc.) takes the form __New name = Old name__. 
 
@@ -320,7 +324,7 @@ names(elongation_long) <- c("zone", "indiv", "year", "length")
 ```
 
 <a name="filter"></a>
-#### `filter()` rows and `select()`columns
+#### 2. `filter()` rows and `select()`columns
 
 These are some of the most routine functions that let you reduce your data frame to just the rows and columns you need. The `filter()` function works great for subsetting rows with logical operations. The `select()` function lets you specify which columns to keep. __Note: the `select()` function often clashes with functions of the same name in other packages, and for that reason it is recommended to always use the notation `dplyr::select()` when calling it.__
 
@@ -333,7 +337,6 @@ elong_subset <- filter(elongation_long, zone %in% c(2, 3), year %in% c("X2009", 
 
 # For comparison, the base R equivalent would be (not assigned to an object here):
 elongation_long[elongation_long$zone %in% c(2,3) & elongation_long$year %in% c("X2009", "X2010", "X2011"), ]
-
 ```
 See how `dplyr`is already starting to shine by avoiding repetition and calling directly the column names?
 
@@ -346,9 +349,10 @@ You may have noticed how we sometimes call values in quotes `""`, and sometimes 
 
 - _Whether the value you are calling is of character or numeric value_: above, `zone` is of class integer (a number), so we don't need quotes around the values it takes, but `year` is a character, so needs them.
 
-- _Whether you are calling an object or referring to a value that R does not yet know about_: compare
-`new.object <- elongation_long` and
-`new.object <- "elongation_long"`
+- _Whether you are calling an object or referring to a value that R does not yet know about_: compare <br>
+`new.object <- elongation_long` and <br>
+`new.object <- "elongation_long"` <br>
+
 The first creates a duplicate of our object, because R recognises the name as an object in our environment. In the second case, you're creating an object consisting of one character value. 
 
 It takes time and practice to get used to these conventions, but just keep an eye out for <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> error messages </a> and you'll get there.
@@ -376,7 +380,7 @@ elong_no.zone <- dplyr::select(elongation_long, Year = year, Shrub.ID = indiv, G
 ```
 
 <a name="mutate"></a>
-#### `mutate()`your dataset by creating new columns
+#### 3. `mutate()`your dataset by creating new columns
 
 Something we have not yet touched on is how to create a new column. This is useful when you want to perform an operation on multiple columns, or perhaps reclassify a factor. The `mutate()` function does just that, and also lets you choose the name of the column. Here let's use our old wide-format object `elongation` and create a column representing total growth for the period 2007-2012:
 
@@ -390,7 +394,7 @@ Now, let's see how we could accomplish the same thing on our long-format data `e
 
 
 <a name="group"></a>
-#### `group_by()` certain factors to perform operations on chunks of data
+#### 4. `group_by()` certain factors to perform operations on chunks of data
 
 The most important thing to understand about this function is that you don't see any visible change to your data frame. It creates an internal grouping structure, which means that every subsequent function you run on it will use these groups, and not the whole dataset, as an input. It's very useful when you want to compute summary statistics for different sites, treatments, species, etc.
 
@@ -404,7 +408,7 @@ Compare `elong_grouped` and `elongation_long` : they should look exactly the sam
 
 
 <a name="summarise"></a>
-#### `summarise()` data with a range of summary statistics
+#### 5. `summarise()` data with a range of summary statistics
 
 This function will always agregate your original data frame, i.e. the output data frame will be shorter. Here, let's contrast adding growth increments over the study period on the original dataset vs our new grouped dataset.
 
@@ -421,14 +425,13 @@ The first summary corresponds to the sum of __all__ growth increments in the dat
 summary3 <- summarise(elong_grouped, total.growth = sum(length),
                                      mean.growth = mean(length),
                                      sd.growth = sd(length))
-
 ```
 
 Less amazing is that we lose all the other columns not specified at the grouping stage or in a summary operation. For instance, we lost the column year because there are 5 years for each individual, and we're summarising to get one single growth value per individual. Always create a new object for summarised data, so that your full dataset doesn't go away! You can always merge back information at a later stage, like we will see now.
 
 
 <a name="join"></a>
-#### `..._join()` datasets based on shared attributes
+#### 6. `..._join()` datasets based on shared attributes
 
 Sometimes you have multiple data files concerning a same project: one for measurements taken at various sites, others with climate data at these sites, and perhaps some metadata about your experiment. Depending on your analytical needs, it may be very useful to have all the information in one table. This is where merging, or joining, datasets comes in handy.
 
@@ -448,7 +451,6 @@ head(treatments)
 experiment <- left_join(elongation_long, treatments, by = c("indiv" = "Indiv", "zone" = "Zone"))
 
 # We see that the new object has the same length as our first data frame, which is what we want.
-
 ```
 
 If the columns to match have the exact same name, you can omit them as they are usually automatically detected. However, it is good practice to specify the merging condition, as it ensures more control over the function. The equivalent base R function is `merge()` and actually works very well, too:
@@ -456,18 +458,16 @@ If the columns to match have the exact same name, you can omit them as they are 
 ```r
 experiment2 <- merge(elongation_long, treatments, by.x = c("zone", "indiv"), by.y = c("Zone", "Indiv"))  
 # same result!
-
 ```
 
 Now that we have gone to the trouble of adding treatments into our data, let's check if they affect growth by drawing another box plot.
 
 ```r
 boxplot(length ~ Treatment, data = experiment)
-
 ```
 
-<center> <img src="{{ site.baseurl }}/img/emni-annual.jpg" alt="Img" style="width: 600px;"/> </center>
-##### Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data).
+<center> <img src="{{ site.baseurl }}/img/emni-treatments.jpeg" alt="Img" style="width: 600px;"/> </center>
+</center> Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data). </center>
 
 Are these differences statistically significant? We'll find out how to test this in our <a href="https://ourcodingclub.github.io/2017/02/28/modelling.html" target="_blank">modelling tutorial!</a> 
 
@@ -484,9 +484,7 @@ Your challenge is to make the data tidy (long format) and to create a boxplot __
 __However__, you find out that your field assistant was a bit careless during data collection, and let slip many mistakes which you will need to correct. 
 
 1. The fourth treatment wasn't paprika at all, it was turmeric.
-
 2. There was a calibration error with the measuring device for the tabasco trial, but only for the Hungarian Horntail species. All measurements are 30 cm higher than they should be.
-
 3. The lengths are given in centimeters, but really it would make sense to convert them to meters.
 
 Now let's see what you can do!
@@ -506,7 +504,7 @@ Now let's see what you can do!
 </summary>   
  </details>
 
-
+<br>
 
 <details>
    <summary markdown= "span"> Click this line to see the solution </summary>
@@ -585,7 +583,7 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
 ```
 So there you are! Did your plots look something like this? 
 
-<center> <img src="{{ site.baseurl }}/img/dragon-spice.jpg" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/dragon-spice.jepg" alt="Img" style="width: 800px;"/> </center>
 ##### It looks like jalapeños are proper dragon fuel, but turmeric not so much!
 
 </summary>   
