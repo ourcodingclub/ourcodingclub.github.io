@@ -45,10 +45,11 @@ tags:
 
 Data come in all sorts of different shapes and formats, and what is useful or practical for one application is not necessarily so for another. R has specific requirements about the setup and the types of data that can be passed to functions, so one of the best skills in your coding toolbox is being able to play with your data like putty and give it any shape you need!
 
-This tutorial is an introduction to data manipulation and only requires an understanding of how to import and create objects in R. That said, there's still a lot of content in here for a beginner, so do not hesitate to complete only the base R section in one session, and the `dplyr` section in another. __Haven't used R before, or need a refresher? No worries! Check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R and RStudio tutorial</a>, and then come back here to master tidy data management!__ 
+This tutorial is an introduction to data manipulation and only requires an understanding of how to import and create objects in R. That said, there's still a lot of content in here for a beginner, so do not hesitate to complete only the base R section in one session, and the `dplyr` section in another. (Remember! The beauty of a script is that you can pick up where you left off, anytime.) __Haven't used R before, or need a refresher? No worries! Check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R and RStudio tutorial</a>, and then come back here to master tidy data management!__ 
 
 
 In this tutorial, we will start by showing some ways to manipulate data using base R syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the <a href="https://www.tidyverse.org/" target="_blank"> Tidyverse </a>, which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
+
 
 #### __Note : all the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-3-DataManip" target="_blank">this repository</a>. Clone and download the repo as a zip file, then unzip it.__
 
@@ -61,12 +62,13 @@ In this tutorial, we will start by showing some ways to manipulate data using ba
 
 Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `elongation.csv` dataset that you have downloaded from the repository. 
 
+
 #### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__ 
 
 This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
 
 <center> <img src="{{ site.baseurl }}/img/crowberry.jpg" alt="Img" style="width: 800px;"/> </center>
-<center>  A crowberry shrub, <i> Empetrum hermaphroditum </i>. Isn't it pretty? </center>
+<center>  A crowberry shrub, <i> Empetrum hermaphroditum</i>. Isn't it pretty? </center>
 
 We have seen in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can access variables in R by using the dollar sign `$`. This is already one way of subsetting, as it essentially reduces your data frame (2 dimensions) to a vector (1 dimension). You can also access parts of a data frame using square brackets `[ , ]`. The first number you put will get the row number, and the second the column. Leave one blank to keep all rows or all columns.
 
@@ -103,7 +105,6 @@ Subsetting with brackets using row and column numbers can be quite tedious if yo
 ``` r
 # Let's access the values for Individual number 603
 elongation[elongation$Indiv == 603, ]
-
 ```
 There's a lot to unpack here! We're saying: "Take this dataframe (`elongation`), subset it (`[ , ]`) so as to keep the rows (writing the expression on the left-hand of the comma) for which the value in the column Indiv (`$Indiv`) is exactly (`==`) 603". __Note__: The logical expression works here because the Indiv column contains numeric values: to access data that is of character or factor type, you would use quotation marks: `elongation$Indiv == "six-hundred-and-three"`.
 
@@ -173,15 +174,15 @@ You can mix and match! What would `rep(seq(0, 30, 10), 4)`give?
 
 </div>
 
-And finally, let's say you need to modify some values or factor levels, or want to create a new column? Now that you know how to access parts of a dataframe, you can do all of that. You only need an extra tool: the assign arrow `<- ` to overwrite data.
+And finally, let's say you need to modify some values or factor levels, or want to create a new column? Now that you know how to access parts of a dataframe, you can do all of that. You only need an extra tool: the assign arrow `<-` to overwrite data.
 
 <div class="bs-callout-yellow" markdown="1">
 
 #### Creating and overwriting objects
 
-Remember how we've been using the arrow `<-`to create new objects? This is a special convention in R that allows you to pick whichever name you want and assign it to an object (vector, list, data frame...). 
+Remember how we've been using the arrow `<-` to create new objects? This is a special convention in R that allows you to pick whichever name you want and assign it to an object (vector, list, data frame...). 
 
-Something to keep in mind is that __if you use a name again in a same session, it will overwrite the former object__. With experience you can start making changes to an object and overwrite as you go, to "update" the object rather than creating many intermediaries ("object1", "object2", ...). However, when you're starting out, it's a good idea to create these intermediary objects, or at least to create a "working copy" that you can reassign to the main data object once you're satisfied with the changes. 
+Something to keep in mind is that __if you use a name again in a same session, it will overwrite the former object__. With experience, you can start making changes to an object and overwrite as you go, to "update" the object rather than creating many intermediaries ("object1", "object2", ...). However, when you're starting out, it's a good idea to create these intermediary objects, or at least to create a "working copy" that you can reassign to the main data object once you're satisfied with the changes. 
 
 As you will now see, we can also make use of the arrow `<-` to overwrite specific values or range of values we need to change. 
 
@@ -308,7 +309,12 @@ From looking at the boxplot, there is a fairly big overlap between the annual gr
 ### Explore the most common and useful functions of `dplyr`
 
 
-The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object. Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. 
+The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object. Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. First, install and load the package.
+
+```r 
+install.packages("dplyr")  # install the package
+library(dplyr)              # load the package
+```
 
 <a name="rename"></a>
 #### 1. `rename()` variables
@@ -380,7 +386,7 @@ elong_no.zone <- dplyr::select(elongation_long, Year = year, Shrub.ID = indiv, G
 ```
 
 <a name="mutate"></a>
-#### 3. `mutate()`your dataset by creating new columns
+#### 3. `mutate()` your dataset by creating new columns
 
 Something we have not yet touched on is how to create a new column. This is useful when you want to perform an operation on multiple columns, or perhaps reclassify a factor. The `mutate()` function does just that, and also lets you choose the name of the column. Here let's use our old wide-format object `elongation` and create a column representing total growth for the period 2007-2012:
 
@@ -467,7 +473,7 @@ boxplot(length ~ Treatment, data = experiment)
 ```
 
 <center> <img src="{{ site.baseurl }}/img/emni-treatments.jpeg" alt="Img" style="width: 600px;"/> </center>
-</center> Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data). </center>
+<center> Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data). </center>
 
 Are these differences statistically significant? We'll find out how to test this in our <a href="https://ourcodingclub.github.io/2017/02/28/modelling.html" target="_blank">modelling tutorial!</a> 
 
@@ -495,9 +501,9 @@ Now let's see what you can do!
     
 1. Struggling to rename the paprika column? Think about the handy `rename()` function!
 
-2. There are many ways to correct a selection of values, but they will all involve accessing these specific data by combining conditional statements about the treatment/column (tabasco) and the species (horntail). You could store the correct values in a vector (arithmetic operations on a vector are applied to each element, so that `c(1, 2, 3) + 1` returns `2, 3, 4`), and overwrite the old values by using appropriate subsetting.
+2. There are many ways to correct a selection of values, but they will all involve accessing these specific data by combining conditional statements about the treatment/column (tabasco) and the species (horntail). You could store the correct values in a vector, and overwrite the old values by using appropriate subsetting. (Tip: arithmetic operations on a vector are applied to each element individually, so that `c(1, 2, 3) + 1` returns `2, 3, 4`.)
 
-3. The `mutate()` function lets you create a new column that can be based on existing columns. It may be wise to have all the plume lengths in one column (long, or tidy format), before using this to avoid repetition.
+3. The `mutate()` function lets you create a new column that can be based on existing columns. Ideal for things like converting units... It may be wise to have all the plume lengths in one column (long, or tidy format), before using this.
 
 4. Struggling to reshape the dataset? Remember that you are trying to `gather()` the _plume_ observations (value) by treatment, in this case _spice_ (key). 
 
@@ -583,11 +589,14 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
 ```
 So there you are! Did your plots look something like this? 
 
-<center> <img src="{{ site.baseurl }}/img/dragon-spice.jpeg" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/dragons-spice.jpeg" alt="Img" style="width: 800px;"/> </center>
 ##### It looks like jalapeños are proper dragon fuel, but turmeric not so much!
 
 </summary>   
  </details>
+ 
+ <br>
+ <br>
 
 
 ### Tutorial Outcomes:
