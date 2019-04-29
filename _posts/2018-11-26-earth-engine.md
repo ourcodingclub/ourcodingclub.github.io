@@ -15,7 +15,7 @@ tags: modelling data_manip data_vis
 
 ### Tutorial Aims:
 
-#### <a href="#intro"> 1. Learn what is the Google Earth Engine </a>
+#### <a href="#intro"> 1. Learn what the Google Earth Engine is </a>
 #### <a href="#analyses"> 2. Find out what types of analyses you can do using the GEE </a>
 #### <a href="#layout"> 3. Get familiar with the GEE layout </a>
 #### <a href="#javascript"> 4. Learn the basic principles of JavaScript </a>
@@ -32,11 +32,11 @@ __Say what you'll be using the GEE for - for research, education, etc. It might 
 
 <a name="intro"></a>
 
-## 1. Learn what is the Google Earth Engine
+## 1. Learn what the Google Earth Engine is
 
-The Google Earth Engine, as its developers have described it, is "_the most advanced cloud-based geospatial processing platform in the world!_" What this means is that through the Google Earth Engine, you can access and efficiently analyse numerous open-source spatial databases (like Landsat and MODIS remote sensing imagery, the Global Forest Change dataset, roads, protected areas, etc.). When doing these analyses, you are using the Google servers, so you can do analyses that would take weeks, if not months, on your computer or even a fancy computer.
+The Google Earth Engine, as its developers have described it, is "_the most advanced cloud-based geospatial processing platform in the world!_" What this means is that, through the Google Earth Engine, you can access and efficiently analyse numerous open-source spatial databases (like Landsat and MODIS remote sensing imagery, the Global Forest Change dataset, roads, protected areas, etc.). When doing these analyses, you are using the Google servers, so you can do analyses that would take weeks, if not months, on your computer or even a fancy computer.
 
-__From the Google Earth Engine, you can export `.csv` files of any values you've calculated, `geoTIFF` files (georeferenced images) to your Google Drive account.__
+__From the Google Earth Engine, you can export `.csv` files of any values you've calculated and `geoTIFF` files (georeferenced images) to your Google Drive account.__
 
 <a name="analyses"></a>
 
@@ -64,7 +64,7 @@ _Take a moment to familiarise yourself with the layout of the Earth Engine edito
 
 __The Google Earth Engine uses the programming language <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript.</a>__
 
-Similarly to other programming languages, there is support online, you can google `JavaScript` and Earth Engine tutorials, it will all seem unfamiliar at first, but thanks to the online programming community, you very rarely start completely from scratch - i.e., don't feel bad about yourself because you can't just think of the correct `JavaScript` code from the top of your head straight away.
+Similarly to other programming languages, there is support online - you can google `JavaScript` and Earth Engine tutorials. It will all seem unfamiliar at first, but thanks to the online programming community, you very rarely start completely from scratch - i.e., don't feel bad about yourself because you can't just think of the correct `JavaScript` code from the top of your head straight away.
 
 We'll introduce you to more about `JavaScript` syntax and functions as we go along with the tutorial, but for now, here a few notes: 
 
@@ -78,7 +78,7 @@ var new_variable = ...
 
 You'll see variants of this code at multiple places throughout the script we will create later. Essentially, when you import datasets, create new layers, calculate new values, all those need to be stored as varibles so that you can map them, export them, etc.
 
-To add comments in your script, use `//`, for example at the start of your blank new script (if you created any polygons or points while you were exploring, you can make a new script now to start "clean". Like when coding in other programming languages, it's great to leave comments to make sure your script outlines who you are, what the aim of the script is and why you are following the specific workflow. Here are a few example comments, you can write up something similar in your script:
+To add comments in your script, use `//`. For example, at the start of your blank new script (if you created any polygons or points while you were exploring, you can make a new script now to start "clean"). Like when coding in other programming languages, it's great to leave comments to make sure your script outlines who you are, what the aim of the script is and why you are following the specific workflow. Here are a few example comments - you can write up something similar in your script:
 
 ```javascript
 // Calculating forest cover change in protected areas around the world
@@ -86,13 +86,13 @@ To add comments in your script, use `//`, for example at the start of your blank
 // 26th Nov 2018
 ```
 
-__In JavaScript you have to run your entire script at once - that is, you can't for example select two lines of your script and run just those, you have to run the whole thing. You "run" a script by pressing the `Run` button. This means that throughout your tutorial, as you add more lines to your script, you have to keep pressing `Run` to see the results of the new code you've added.
+__In JavaScript, you have to run your entire script at once - that is, you can't, for example, select two lines of your script and run just those, you have to run the whole thing. You "run" a script by pressing the `Run` button. This means that throughout your tutorial, as you add more lines to your script, you have to keep pressing `Run` to see the results of the new code you've added.__
 
 <a name="import"></a>
 
 ## 5. Import and explore data - protected areas and forest cover change as a case study
 
-Like with any analysis, it's not so much about the data as it is about your research question - so as you start exploring the GEE, remember to keep your research questions (or science communication goals, since the GEE is pretty great for that, too) in mind!
+Like with any analysis, it's not so much about the data as it is about your research question, so as you start exploring the GEE, remember to keep your research questions (or science communication goals, since the GEE is pretty great for that, too) in mind!
 
 ### Research question
 __How has forest cover changed in different national parks around the world?__
@@ -111,11 +111,11 @@ Your imported dataset appears at the top of the script - it's currently called `
 
 <center> <img src="{{ site.baseurl }}/img/new_script.png" alt="Img" style="width: 800px;"/> </center>
 
-__Remember to save your script, and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
+__Remember to save your script and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
 
 ### Visualise protected areas around the world
 
-Next up, we'll use the `Map` function to map the dataset and we will add a layer - you can then turn that layer on and off from the layer tab in the top right corner of the map window. You can also change the opacity.
+Next up, we'll use the `Map` function to map the dataset and we will add a layer. You can then turn that layer on and off from the layer tab in the top right corner of the map window. You can also change the opacity.
 
 ```javascript
 // If you want to visualise the PAs around the world, you can use:
@@ -146,11 +146,11 @@ Map.addLayer(gfc);
 
 <center> <img src="{{ site.baseurl }}/img/map_hansen.png" alt="Img" style="width: 800px;"/> </center>
 
-Currently we just have a black and red map - black for the places where there are no forests, and red from the places that do have forest cover. This is not terribly informative and over the course of the tutorial we will work on making this map better!
+Currently, we just have a black and red map - black for the places where there are no forests, and red from the places that do have forest cover. This is not terribly informative and over the course of the tutorial we will work on making this map better!
 
-__Go to the `Inspector` tab again, click on a point somewhere on the red parts map and check out the `features` of the forest cover change layer. If it says `loss: 0`, `gain: 0`, that means that in this specific pixel, no forest loss or gain has occurred.__
+__Go to the `Inspector` tab again, click on a point somewhere on the red parts map and check out the `features` of the forest cover change layer. If it says `loss: 0`, `gain: 0`, that means that, in this specific pixel, no forest loss or gain has occurred.__
 
-You can also turn layers on and off, and you can "comment out" certain parts of the code, if you don't want that action to be performed every single time you rerun the script. For example, mapping the protected area dataset takes quite a while - so if you didn't want to do that multiple times, you can add `//` in front of that line of code, and you can always remove the `//` when you do wish to map those data again. Like this:
+You can also turn layers on and off, and you can "comment out" certain parts of the code if you don't want that action to be performed every single time you rerun the script. For example, mapping the protected area dataset takes quite a while, so if you didn't want to do that multiple times, you can add `//` in front of that line of code. You can always remove the `//` when you do wish to map those data again. Like this:
 
 ```javascript
 // If you want to visualise the PAs around the world, you can use:
@@ -178,7 +178,7 @@ var scale = gfc.projection().nominalScale();
 
 __The next step is to create variables for the tree cover in 2000 (when the database starts), for the loss up until 2016 and the gain in forest cover, again up until 2016. In raster data, images usually have different "bands" (e.g., red, green, UV), and we can select which bands we want to work with. In this case, the different bands of the `gfc` object represent the forest cover, forest loss and forest gain, so we will make a variable for each.__
 
-__To do this, we will use the `select()` function. Note that unlike other programming languages like `R`, in `JavaScript` you put the object you want to apply the function to first, and then the actual functin comes second.__
+__To do this, we will use the `select()` function. Note that unlike other programming languages like `R`, in `JavaScript` you put the object you want to apply the function to first, and then the actual function comes second.__
 
 ```javascript
 // Create a variable for the original tree cover in 2000
@@ -199,7 +199,7 @@ var gain = gfc.select(['gain']);
 
 Now that we have our three variables, we can create a layer for each of them and we can plot them using colours of our choice. We will use the same `Map.addLayer` function as before, but in addition to adding the object name, we will specify the colours and what we want to call the specific layers.
 
-_Note that we are also introducing a new function `updateMask()` - what this does is mark the areas there was no forest cover in the year 2000 - they become transparent, so instead of just blackness, we can see the seas, rivers, continent outlines, etc._
+_Note that we are also introducing a new function `updateMask()`. What this does is mask the areas there was no forest cover in the year 2000 - they become transparent, so instead of just blackness, we can see the seas, rivers, continent outlines, etc._
 
 ```javascript
 // Add the tree cover layer in light grey
@@ -215,11 +215,11 @@ Map.addLayer(gain.updateMask(gain),
             {palette: ['#CE9E5D']}, 'Gain');
 ```
 
-Remember to click on `Run` so that you see your newly plotted maps. The forest layers might be easier to see if you either turn off the first two layers you plotted (the protected areas and the generic GFC layer). Or you can keep the protected area layer on, but reduce the opacity by dragging the bar below that layer.
+Remember to click on `Run` so that you see your newly plotted maps. The forest layers might be easier to see if you either turn off the first two layers you plotted (the protected areas and the generic GFC layer), or you can keep the protected area layer on, but reduce the opacity by dragging the bar below that layer.
 
 <center> <img src="{{ site.baseurl }}/img/hansen_trio.png" alt="Img" style="width: 800px;"/> </center>
 
-You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellwow. You can find examples of those online, for example <a href="https://htmlcolorcodes.com" target="_blank">this website</a>.
+You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellow. You can find examples of those online, for example <a href="https://htmlcolorcodes.com" target="_blank">this website</a>.
 
 <center> <img src="{{ site.baseurl }}/img/colours_hex.png" alt="Img" style="width: 500px;"/> </center>
 
@@ -253,7 +253,7 @@ var areaGain = gain.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
 
 Often we are interested in extracting values from geospatial data for specific places around the world. Here, our question was about changes in forest cover in national parks, so to answer that, we need to calculate how much forest cover change has occurred in just our chosen national parks, not the whole world.
 
-The first step is to create a filtered variable that contains our areas of interest - here we will filter our original `parks` variable that includes all the protected areas in the world, down to just four protected areas. We will use `ee.Filter.or()` to add multiple filtering conditions.
+The first step is to create a filtered variable that contains our areas of interest. Here, we will filter our original `parks` variable that includes all the protected areas in the world, down to just four protected areas. We will use `ee.Filter.or()` to add multiple filtering conditions.
 
 ```javascript
 // Create a variable that has the polygons for just a few
@@ -265,7 +265,7 @@ var parks = parks.filter(ee.Filter.or(
     ee.Filter.eq("NAME", "Redwood")));
 ```
 
-Now we are ready to calculate the areas of forest loss and gain, exciting times! We will use what in GEE lingo is called a "reducer", a summarising function. We will apply that to our `parks` variable, and we will use the scale we defined earlier (30m, the resolution of the dataset). The results will be stored in two new variables, `statsLoss` and `statsGain`.
+Now we are ready to calculate the areas of forest loss and gain, exciting times! We will use what in GEE lingo is called a "reducer" - a summarising function. We will apply that to our `parks` variable and we will use the scale we defined earlier (30m, the resolution of the dataset). The results will be stored in two new variables, `statsLoss` and `statsGain`.
 
 ```javascript
 // Sum the values of loss pixels.
@@ -288,7 +288,7 @@ var statsGain = areaGain.reduceRegions({
 ## 8. Export results - summary tables
 At this stage, we have calculated the areas of forest loss and gain in our chosen protected areas, but we haven't actually seen or visualised those numbers.
 
-We can export `.csv` files of our results, in this case they will go to your Google Drive account. Add the code below to your script and press `Run` again - you will see that the `Task` tab lights up, go check it out - you will have two tasks, and you have to press the `Run` button next to them (otherwise the tasks are ready for you, but you haven't actually initiated their completion), then you'll start seeing a timer - that reflects how much time has passed since you started the task, depending on your task it can take seconds to hours. Should be seconds in our case!
+We can export `.csv` files of our results, in this case they will go to your Google Drive account. Add the code below to your script and press `Run` again. You will see that the `Task` tab lights up, go check it out. You will have two tasks and you have to press the `Run` button next to them (otherwise the tasks are ready for you, but you haven't actually initiated their completion), then you'll start seeing a timer - that reflects how much time has passed since you started the task. Depending on your task it can take seconds to hours. Should be seconds in our case!
 
 __We use the curly brackets to specify which object we want to export and what we want to call the file, e.g. `NP_forest_loss`.__
 
@@ -304,15 +304,15 @@ Export.table.toDrive({
 
 <center> <img src="{{ site.baseurl }}/img/drive.png" alt="Img" style="width: 800px;"/> </center>
 
-_Go check out your files in your Google Drive - scroll all the way right to see the `sum` column - that shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
+_Go check out your files in your Google Drive. Scroll all the way right to see the `sum` column, which shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
 
 <a name="R"></a>
 
 ## 9. Further visualisation in R - the best of both worlds!
 
-_We are keen to incorporate different platforms and languages in our analyses, playing to the strengths of each. `R` and `R` packages like `ggplot2` offer more flexibility to how you visualise your findings, so we will now switch over to `R` to make a barplot of forest loss and gain in the four protected areas we studied._
+_We are keen to incorporate different platforms and languages in our analyses, playing to the strengths of each. `R` and `R` packages like `ggplot2` offer more flexibility in how you visualise your findings, so we will now switch over to `R` to make a barplot of forest loss and gain in the four protected areas we studied._
 
-Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow - you can find tutorials on how to create graphs in the Earth Engine on <a href="https://developers.google.com/earth-engine/charts" target="_blank">the Developers website</a>.
+Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow. You can find tutorials on how to create graphs in the Earth Engine on <a href="https://developers.google.com/earth-engine/charts" target="_blank">the Developers website</a>.
 
 _Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro to `R`</a> tutorial here.
 
@@ -323,7 +323,7 @@ library(ggthemr)  # to set a custom theme
 library(forcats)  # to reorder categorical variables
 ```
 
-We can set a theme (changes the colours and background) for our plot using the `ggthemr` package - you can explore the different colour options <a href="https://github.com/cttobin/ggthemr" target="_blank">here</a>.
+We can set a theme (changes the colours and background) for our plot using the `ggthemr` package. You can explore the different colour options <a href="https://github.com/cttobin/ggthemr" target="_blank">here</a>.
 
 ```r
 # Set theme for the plot
@@ -335,7 +335,7 @@ ggthemr('dust', type = "outer", layout = "minimal")
 
 ```
 
-Next up, set your working directory to wherever you saved the data we exported to Google Drive, and read in the files.
+Next up, set your working directory to wherever you saved the data we exported to Google Drive and read in the files.
 
 ```r
 # Read in the data ----
@@ -343,7 +343,7 @@ NP_forest_gain <- read.csv("NP_forest_gain.csv")
 NP_forest_loss <- read.csv("NP_forest_loss.csv")
 ```
 
-We will combine the two objects (the one for forest loss and the one for forest gain) so that we can visualise them in the same plot. We can create an "identifier" column so that we know which values refer to gain, and which ones to loss in forest cover.
+We will combine the two objects (the one for forest loss and the one for forest gain) so that we can visualise them in the same plot. We can create an "identifier" column so that we know which values refer to gain and which ones to loss in forest cover.
 
 ```r
 # Create identifier column for gain vs loss
@@ -356,7 +356,7 @@ forest_change <- rbind(NP_forest_gain, NP_forest_loss)
 
 We can make a barplot to visualise the amount of forest cover lost and gained between 2000 and 2016 at our four study sites. Because a larger national park can loose more forest simply because it's larger (i.e., there is more of it to loose), we can visualise the forest change as % of the total park area. We do this in the code below by specifying `y = sum/GIS_AREA` (or you can make a new column in your data frame that has those percentages calculated in it if you wish).
 
-The `ggthemr` theme we chose earlier gives the graph more of an infographic feel, if you need more standard formatting, you can add `+ theme_bw` or `+ theme_classic()` to your barplot code.
+The `ggthemr` theme we chose earlier gives the graph more of an infographic feel. If you need more standard formatting, you can add `+ theme_bw` or `+ theme_classic()` to your barplot code.
 
 ```r
 (forest_barplot <- ggplot(forest_change, aes(x = NAME, y = sum/GIS_AREA, 
@@ -374,7 +374,7 @@ The `ggthemr` theme we chose earlier gives the graph more of an infographic feel
                                            linetype = "blank")))
 ```
 
-Note that putting your entire ggplot code in brackets () creates the plot and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `forest_barplot` after you've created the "forest_barplot" object. 
+Note that putting your entire ggplot code in brackets () creates the plot and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `forest_barplot` after you've created the "forest_barplot" object. 
 
 We can use the `ggsave` function to save our graph. The file will be saved to wherever your working directory is, which you can check by running `getwd()` in the console.
 
