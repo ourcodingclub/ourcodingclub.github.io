@@ -266,54 +266,6 @@ font header .navbar-default .navbar-nav li a:hover {
   color: #fff;
   padding: 10px 20px;
 }
-/*--
-Pretty section with background photo (to be defined in relevant pages with variable bgphoto being image URL)
---*/
-#pretty {
-  background-position: 50% 94px;
-  width: 100%;
-  display: block;
-  position: relative;
-  overflow: visible;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: #fff;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 100px 0;
-}
-
-.pretty .bg1 {
-background: var(bgphoto1);
-}
-
-.pretty .bg2 {
-background: var(bgphoto2);
-}
-
-#pretty h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 30px;
-}
-#pretty p {
-  color: #8d8f92;
-  margin-bottom: 20px;
-}
-#pretty .btn-view-works {
-  background: #655E7A;
-  color: #fff;
-  padding: 10px 20px;
-}
-/*--
 
 	content Start
 --*/
@@ -906,10 +858,3 @@ footer .footer-manu ul li a:hover {
   border-color: #ededed;
 }
 	
-/*---------------------------------------------
-					image urls for backgrounds
------------------------------------------------*/	
-:root {
-  --bgphoto1: url(https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg) ;
-  --bgphoto2: url(https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/crowberry.jpg) ;
-}
