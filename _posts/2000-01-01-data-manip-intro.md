@@ -28,7 +28,7 @@ tags:
 
 #### <a href="#base"> Subset, extract and modify data with R base operators 
 
-#### <a href="#tidy"> What is tidy data, and how do we achieve it? </a>
+#### <a href="#tidy"> What is tidy data, and how do we achieve it?
 
 #### <a href="#dplyr"> Explore the most common and useful functions of `dplyr` </a>
 
@@ -39,7 +39,7 @@ tags:
 ##### <a href="#summarise"> - `summarise()`
 ##### <a href="#join"> - `join()`
 
-#### <a href="#challenge"> Challenge yourself! </a>
+#### <a href="#challenge"> Challenge yourself!
 
 
 
