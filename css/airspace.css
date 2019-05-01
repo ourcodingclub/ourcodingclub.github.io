@@ -291,8 +291,12 @@ Pretty section with background photo (to be defined in relevant pages with varia
   padding: 100px 0;
 }
 
-#pretty .bg1 {
-background: url("https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg";)
+.pretty .bg1 {
+background: var(bgphoto1);
+}
+
+.pretty .bg2 {
+background: var(bgphoto2);
 }
 
 #pretty h2 {
@@ -902,4 +906,10 @@ footer .footer-manu ul li a:hover {
   border-color: #ededed;
 }
 	
-	
+/*---------------------------------------------
+					image urls for backgrounds
+-----------------------------------------------*/	
+:root {
+  --bgphoto1: url(https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg) ;
+  --bgphoto2: url(https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/crowberry.jpg) ;
+}
