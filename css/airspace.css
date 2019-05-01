@@ -292,7 +292,7 @@ Pretty section with background photo (to be defined in relevant pages with varia
 }
 
 #pretty .bg1 {
-background: url("https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg";)
+background: url(https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg);
 }
 
 #pretty h2 {
