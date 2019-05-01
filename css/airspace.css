@@ -270,7 +270,6 @@ font header .navbar-default .navbar-nav li a:hover {
 Pretty section with background photo (to be defined in relevant pages with variable bgphoto being image URL)
 --*/
 #pretty {
-  background: url(var(--bgphoto));
   background-position: 50% 94px;
   width: 100%;
   display: block;
@@ -291,6 +290,11 @@ Pretty section with background photo (to be defined in relevant pages with varia
   backface-visibility: hidden;
   padding: 100px 0;
 }
+
+#pretty .bg1 {
+background: url("https://github.com/ourcodingclub/ourcodingclub.github.io/blob/master/img/DL-challenge-pine.jpg";)
+}
+
 #pretty h2 {
   font-size: 28px;
   font-weight: 600;
@@ -897,3 +901,5 @@ footer .footer-manu ul li a:hover {
   background-color: #ededed;
   border-color: #ededed;
 }
+	
+	
