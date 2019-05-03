@@ -52,7 +52,7 @@ We are working with a subset of a larger dataset\* of <a href="https://data.edin
 
 
 ###### \*(Copyright City of Edinburgh Council, contains Ordnance Survey data © Crown copyright and database right 2019)
-<br><br>
+<br>
 
 #### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__
 
