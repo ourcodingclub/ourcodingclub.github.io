@@ -10,7 +10,7 @@ tags:
 ---
 <div class="block"> 
           <center>
-          <img src="{{ site.baseurl }}/img/tutheader_DL_data_manip_1.png" alt="Img">
+          <img src="{{ site.baseurl }}/img/tutheader_DL_data_manip_2.png" alt="Img">
           </center>
         </div>
 
@@ -52,13 +52,13 @@ We are working with a subset of a larger dataset\* of <a href="https://data.edin
 
 
 ###### \*(Copyright City of Edinburgh Council, contains Ordnance Survey data © Crown copyright and database right 2019)
-
+<br><br>
 
 #### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__
 
 
 <a name="pipes"></a>
-#### An introduction to pipes
+### An introduction to pipes
 
 The pipe operator `%>%` is a funny little thing that serves as a channel for the output of a command to be passed to another function seamlessly, i.e., without creating intermediary objects. It really makes your code flow, and avoids repetition. Let's first import the data, and then we'll see what pipes are all about.
 
@@ -92,7 +92,7 @@ trees.summary <- tally(trees.grouped)
 
 This works well, but notice how we had to create an extra data frame, `trees.grouped`, before achieving our desired output of `trees.summary`. For a larger, complex analysis, this would rapidly clutter your environment with lots of objects you don't really need!
 
-This is where the pipe comes in to save the day. It takes the data frame created on its left side, and _passes it_ to the function on its right side. This saves you the need for creating intermediary objects, and also avoids repeating the object name in every function: the tidyverse functions "know" that the object that is passed through the pipe is the "data =" argument of that function. 
+This is where the pipe comes in to save the day. It takes the data frame created on its left side, and _passes it_ to the function on its right side. This saves you the need for creating intermediary objects, and also avoids repeating the object name in every function: the tidyverse functions "know" that the object that is passed through the pipe is the `data =` argument of that function. 
 
 ```r 
 
@@ -107,7 +107,7 @@ trees.summary <- trees %>%                   # the data frame object that will b
 See how we go from `trees` to `trees.summary` while running one single chunk of code?
 
 
-__Important notes:__ Pipes only work on data frame objects, and functions outside the tidyverse often require that you specify the data source with a period dot `.`. But as we will see later, you can still do very advanced things while keeping these limitations in mind!
+__Important notes:__ Pipes only work on data frame objects, and functions outside the tidyverse often require that you specify the data source with a full stop dot `.`. But as we will see later, you can still do advanced things while keeping these limitations in mind!
 
 
 <div class="bs-callout-yellow" markdown="1">
@@ -117,7 +117,7 @@ __We're not lazy, but we love shortcuts!__ In RStudio, you can use `Ctrl + Shift
 </div>
 
 
-Let's use some more of our favourite dplyr functions in pipe chains. Can you guess what this does?
+Let's use some more of our favourite `dplyr` functions in pipe chains. Can you guess what this does?
 
 ```r
 trees.subset <- trees %>%
@@ -126,13 +126,13 @@ trees.subset <- trees %>%
                 tally()
 ```
 
-Here we are first subsetting the data frame to only three species, and counting the number of trees for each species, but also breaking them down by age group. 
+Here we are first subsetting the data frame to only three species, and counting the number of trees for each species, but also breaking them down by age group. The intuitive names of `dplyr`'s actions make the code very readable for your colleagues, too. 
  
 Neat, uh? Now let's play around with other functions that `dplyr` has to offer.
 
 
 <a name="dplyr"></a>
-#### More functions of `dplyr`
+### More functions of `dplyr`
 
 
 <a name="filter"></a>
@@ -146,9 +146,9 @@ So let's say we plotted the map of the trees (with the Easting and Northing colu
 out.boundaries <- filter_all(trees, any_vars(. < 328025), any_vars(. > 671200))
 ```
 
-The `any_vars()` part means that the value could be in any column. __ Here we are using `.` as a “placeholder” for the data frame: this is sometimes necessary as explained earlier.__
+The `any_vars()` part means that the value could be in any column. __Here we are using `.` as a “placeholder” for the data frame: this is often necessary with non-native `tidyverse` functions, as explained earlier.__
 
-To be honest, this is not the most readable code, and a more controlled approach would be the good old filter function. However, this could be handy if, say, you are looking for a specific genetic sequence that could be in any of hundreds of columns in your data frame. 
+To be honest, in this case, this is not the most readable code, and a more controlled approach would be the good old filter function. However, this could be handy if, say, you are looking for a specific genetic sequence that could be in any of hundreds of columns in your data frame. 
 
 ```r 
 out.boundaries <- filter(trees, Easting < 328025 | Northing > 671200)
@@ -172,7 +172,7 @@ Now let's move on to a truly exciting function that not so many people know abou
 <a name="case"></a>
 #### 2. `case_when()` - a favourite for re-classifying values or factors
 
-It seems poor form to introduce this function without introducing first the simpler function upon which it builds, `ifelse()`. You give `ifelse()` a conditional statement which it will evaluate, and the values it should return if this statement is true or false. Let's do a very simple example to begin with:
+But first, it seems poor form to introduce this function without also introducing the simpler function upon which it builds, `ifelse()`. You give `ifelse()` a conditional statement which it will evaluate, and the values it should return when this statement is true or false. Let's do a very simple example to begin with:
 
 ```r 
 vector <- c(4, 13, 15, 6)      # create a vector to evaluate
@@ -196,9 +196,9 @@ case_when(vector2 == "What am I?" ~ "I am the walrus",
 But enough singing, and let's see how we can use those functions in real life to reclassify our variables.
 
 <a name="factors"></a>
-#### Changing factor levels or create categorical variables 
+### Changing factor levels or create categorical variables 
 
-The use of `mutate()` together with `case_when()` is a great way to change the names of factor levels, or create a new variable based on existing ones. We see from the `LatinName` columns that there are many tree species belonging to some genera, like birches (Betula), or willows (Salix), for example. We may want to create a Genus column using `mutate()` that will hold that information.
+The use of `mutate()` together with `case_when()` is a great way to change the names of factor levels, or create a new variable based on existing ones. We see from the `LatinName` columns that there are many tree species belonging to some genera, like birches (Betula), or willows (Salix), for example. We may want to create a `Genus` column using `mutate()` that will hold that information.
 
 We will do this using a character string search with the `grepl` function, which looks for patterns in the data, and specify what to return for each genus. Before we do that, we may want the full list of species occuring in the data!
 
@@ -210,7 +210,7 @@ unique(trees$LatinName)  # Shows all the species names
 # Create a new column with the tree genera
 
 trees.genus <- trees %>%
-               mutate(Genus = case_when(
+               mutate(Genus = case_when(               # creates the genus column and specifies conditions
                   grepl("Acer", LatinName) ~ "Acer",
                   grepl("Fraxinus", LatinName) ~ "Fraxinus",
                   grepl("Sorbus", LatinName) ~ "Sorbus",
@@ -231,9 +231,9 @@ trees.genus <- trees %>%
                )
 ```
 
-We have searched through the `LatinName`column for each genus name, and specified a value to put in the new Genus column for each case. It's a lot of typing, but still quicker than specifying the genus individually for related trees (e.g. _Acer pseudoplatanus_, _Acer platanoides_, _Acer_ spp.). 
+We have searched through the `LatinName`column for each genus name, and specified a value to put in the new `Genus` column for each case. It's a lot of typing, but still quicker than specifying the genus individually for related trees (e.g. _Acer pseudoplatanus_, _Acer platanoides_, _Acer_ spp.). 
 
-__BONUS FUNCTION!__ In our specific case, we could have achieved the same result much quicker. The genus is always the first word of the `LatinName` column, and always separated from the next word by a space. We could use the `separate()` function from the `tidyr` package to split the column into many new columns filled with the words, and keep only the first one.
+__BONUS FUNCTION!__ In our specific case, we could have achieved the same result much quicker. The genus is always the first word of the `LatinName` column, and always separated from the next word by a space. We could use the `separate()` function from the `tidyr` package to split the column into several new columns filled with the words making up the species names, and keep only the first one.
 
 ```r
 library(tidyr)
@@ -241,24 +241,24 @@ trees.genus.2 <- trees %>%
                   tidyr::separate(LatinName, c("Genus", "Species"), sep = " ", remove = FALSE) %>%  
                   dplyr::select(-Species)
                   
-# we're creating two new columns (genus name and species name), "sep"" refers to the separator, here space between the words, and remove = FALSE means that we want to keep the original column LatinName in the data frame
+# we're creating two new columns in a vector (genus name and species name), "sep" refers to the separator, here space between the words, and remove = FALSE means that we want to keep the original column LatinName in the data frame
 ```
 
-Mind blowing! Of course, sometimes you can't help the typing, so here is another example of how we can reclassify a factor. The `Height` factor has 5 levels representing brackets of tree heights, but let's say three categories would be enough for our purposes. We create a new height category variable `Height.cat`:
+Mind blowing! Of course, sometimes you have to be typing more, so here is another example of how we can reclassify a factor. The `Height` factor has 5 levels representing brackets of tree heights, but let's say three categories would be enough for our purposes. We create a new height category variable `Height.cat`:
 
 ```r
-trees.genus <- trees.genus %>%   # overwriting our data frame with one extra column
-               mutate(Height.cat = 
+trees.genus <- trees.genus %>%   # overwriting our data frame 
+               mutate(Height.cat =   # creating our new column
                          case_when(Height %in% c("Up to 5 meters", "5 to 10 meters") ~ "Short",
                                    Height %in% c("10 to 15 meters", "15 to 20 meters") ~ "Medium",
-                                   Height %in% c("20 to 25 meters") ~ "Tall")
+                                   Height == "20 to 25 meters" ~ "Tall")
                       )
 ```
 
 
 <div class="bs-callout-blue" markdown="1">
 
-__More about changing factors levels__
+__Reordering factors levels__
 
 We've seen how we can change the names of a factor's levels, but what if you want to change the order in which they display? R will always show them in alphabetical order, which is not very handy if you want them to appear in a more logical order. 
 
@@ -296,9 +296,9 @@ And let's build up a plot-producing factory chain!
 
 
 <a name="piping-graphs"></a>
-#### Advanced piping 
+### Advanced piping 
 
-Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native (to dplyr) functions, for instance to run series of models or produce plots. It can be tricky but not always impossible, and often a more efficient alternative to a loop. (But you can learn to write loops __HERE__.)
+Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but not always impossible, and sometimes easier to write than a loop. (But you can learn to write loops <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">here</a>.)
 
 First, we'll subset our dataset to just a few tree genera to keep things light. Pick your favourite five, or use those we have defined here! Then we'll map them to see how they are distributed. 
 
@@ -323,9 +323,9 @@ trees.five <- trees.genus %>%
 <center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treemap.jpeg" alt="Img" style="width: 800px;"/> </center>
 
 
-Don't worry too much about all the arguments in the `ggplot` code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the `aes()` call: we're telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We'll explain everything else in a __data visualisation__ tutorial. 
+Don't worry too much about all the arguments in the `ggplot` code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the `aes()` call: we're telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We'll explain everything else in our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">data visualisation</a> tutorial. 
 
-Now, let's say we want to save a separate map for each genus (so 5 maps in total). You could filter the data frame five times for each individual genus, and copy and paste the plotting code five times too, but imagine we kept all 17 genera! This is where pipes and `dplyr` come to the rescue again. (If you're savvy with `ggplot2`, you'll know that facetting is often a better option, but sometimes you do want to save things as separate files.)
+Now, let's say we want to save a separate map for each genus (so 5 maps in total). You could filter the data frame five times for each individual genus, and copy and paste the plotting code five times too, but imagine we kept all 17 genera! This is where pipes and `dplyr` come to the rescue again. (If you're savvy with `ggplot2`, you'll know that facetting is often a better option, but sometimes you do want to save things as separate files.) The `do()` function allows us to use pretty much any R function within a pipe chain, provided that we supply the data as `data = .` where the function requires it.
 
 ```r
 # Plotting a map for each genus
@@ -354,17 +354,17 @@ tree.plots %>%                # the saving call within the do function
    do(., 
       ggsave(filename = paste(getwd(), "/", "map-", .$Genus, ".png", sep = ""), device = "png", height = 12, width = 16, units = "cm"))
 ```
+<br> <br> 
+<center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treemaps.png" alt="Img" style="width: 900px;"/> </center><br>
+<center> You should get five different plots looking something like this. </center>
 
-<center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treemaps.png" alt="Img" style="width: 900px;"/> </center>
-<center> You should get five plots looking like this. </center>
-
-Phew! This could even be chained in one long call without creating the `tree.plots` object, but explore this object: the plots are saved as _lists_ within the `plots` column that we created. The `do()` function allows to use a lot of external functions within `dplyr` pipe chains. However, it is sometimes tricky to use and is becoming deprecated. <a href="https://www.brodrigues.co/blog/2017-03-29-make-ggplot2-purrr/" target="_blank">This page</a> shows an alternative solution using the `purr` package to save the files.
+Phew! This could even be chained in one long call without creating the `tree.plots` object, but take a moment to explore this object: the plots are saved as _lists_ within the `plots` column that we created. The `do()` function allows to use a lot of external functions within `dplyr` pipe chains. However, it is sometimes tricky to use and is becoming deprecated. <a href="https://www.brodrigues.co/blog/2017-03-29-make-ggplot2-purrr/" target="_blank">This page</a> shows an alternative solution using the `purr` package to save the files.
 
 
 
 <div class="bs-callout-yellow" markdown="1">
 
-__Sticking things with `paste()`__
+__Sticking things together with `paste()`__
 
 Did you notice how we used the `paste()` function to define the `filename=` argument of the last piece of code? (We did the same to define the titles that appear on the graphs.) It's a useful function that lets you combine text strings as well as outputs from functions or object names in the environment. Let's take apart that last piece of code here:
 
@@ -373,10 +373,15 @@ paste(getwd(), "/", "map-", .$Genus, ".png", sep = "")
 ```
 
 - `getwd()`: You are familiar with this call: try it in the console now! It writes the path to your working directory, i.e. the root folder where we want to save the plots.
+
 - "/": we want to add a slash after the directory folder and before writing the name of the plot
+
 - "map-": a custom text bit that will be shared by all the plots. We're drawing maps after all!
+
 - `.$Genus`: accesses the Genus name of the tree.plots object, so each plot will bear a different name according to the tree genus.
+
 - ".png": the file extension; we could also have chosen a pdf, jpg, etc.
+
 - `sep = "": we want all the previous bits to be pasted together with nothing separating them
 
 So, in the end, the whole string could read something like: "C:/Coding_Club/map-Acer.png".
@@ -387,15 +392,13 @@ We hope you've learned new hacks that will simplify your code and make it more e
 
 
 <a name="challenge"></a>
-#### Challenge yourself!
+### Challenge yourself!
 
 The Craigmillar Castle team would like a summary of the different species found within its grounds, but broken down in four quadrants (NE, NW, SE, SW). You can start from the `trees.genus` object created earlier.
 
 1. Can you calculate the species richness (e.g. the number of different species) in each quadrant? 
-
-2. They would also like to know how abundant the genus Acer is (as a % of the total number of trees) in each quadrant.
-
-3. Finally, they would like, _for each quadrant separately_, a bar plot showing counts of Acer trees in the different age classes, ordered so they read from Young (lumping together juvenile and semi-mature trees), Middle Aged, and Mature.
+2. They would also like to know how abundant the genus _Acer_ is (as a % of the total number of trees) in each quadrant.
+3. Finally, they would like, _for each quadrant separately_, a bar plot showing counts of _Acer_ trees in the different age classes, ordered so they read from Young (lumping together juvenile and semi-mature trees), Middle Aged, and Mature.
 
 
 
@@ -403,12 +406,12 @@ The Craigmillar Castle team would like a summary of the different species found 
    <summary markdown= "span"> Click this line to see the solution! </summary>
     <summary markdown= "block">
     
-First of all, we need to create the four corners. This only requires simple maths and the use of mutate to create a new factor. 
+First of all, we need to create the four quadrants. This only requires simple maths and the use of mutate to create a new factor. 
 
 ```r
 ## Calculate the quadrants
 
-# Find the center coordinates that will divide the data (adding half of the longitude and latitude range to the smallest value)
+# Find the center coordinates that will divide the data (adding half of the range in longitude and latitude to the smallest value)
 
 lon <- (max(trees.genus$Easting) - min(trees.genus$Easting))/2 + min(trees.genus$Easting)
 lat <- (max(trees.genus$Northing) - min(trees.genus$Northing))/2 + min(trees.genus$Northing)
@@ -512,7 +515,7 @@ acer.plots$plots
 
 Well done for getting so far!
     
-    </summary>   
+</summary>   
  </details>
 
 <br>
