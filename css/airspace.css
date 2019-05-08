@@ -882,18 +882,7 @@ footer .footer-manu ul li a:hover {
   text-align: center;
   color: #fff;
 }
-#DL-action:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #1d192c;
-  opacity: 0.8;
-}
+
 #DL-action h2 {
   padding-bottom: 20px;
   line-height: 33px;
@@ -907,8 +896,9 @@ footer .footer-manu ul li a:hover {
 #DL-action .btn-call-to-action {
   padding: 15px 35px;
   border: none;
-  background-color: #e5c09f;
+  border-radius: 10px;
+  background-color: #f9ad4f;
   font-size: 15px;
-  color: #333333;
+  color: #45575f;
   margin-top: 30px;
 }
