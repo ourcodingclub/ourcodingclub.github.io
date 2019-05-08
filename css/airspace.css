@@ -864,7 +864,7 @@ footer .footer-manu ul li a:hover {
 --*/
 #DL-header {
   background: url("../img/DL_course_banner.jpg") no-repeat;
-  background-size: cover;
+  background-size: 100%;
   padding-top: 150px;
   padding-bottom: 107px;
   position: relative;
