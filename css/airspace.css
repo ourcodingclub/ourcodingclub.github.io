@@ -914,10 +914,15 @@ footer .footer-manu ul li a:hover {
 #emphasis p {
   font-size: 15px; 
   color: #ffffff;
-  padding: 15px 30px;
+  padding: 40px 40px 20px 40px;
 }
 #emphasis ul {
-  padding: 15px;
+  padding: 20px 40px 20px 40px;
   color: #ffffff;
   list-style: circle;
+}
+#emphasis ul li {
+  padding: 20px 40px 20px 40px;
+  color: #ffffff;
+  line-height: 28px;
 }
