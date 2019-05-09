@@ -902,3 +902,19 @@ footer .footer-manu ul li a:hover {
   color: #45575f;
   margin-top: 30px;
 }
+
+/*--	
+	Data Lab emphasis box (to use with a bg image)
+--*/
+#emphasis {
+background-size: cover;
+padding: 30px; 
+}
+#emphasis .block p {
+font-size: 15px; 
+color: #ffffff;
+}
+#emphasis .block ul {
+padding: 10px;
+list-style: circle;
+}
