@@ -910,9 +910,6 @@ footer .footer-manu ul li a:hover {
   background: url("../img/DL_home_list.jpg");
   background-size: cover;
   width: 100%;
-  display: block;
-  position: relative;
-  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center center;
  }
@@ -925,8 +922,9 @@ footer .footer-manu ul li a:hover {
   padding: 20px 40px 20px 40px;
   color: #ffffff;
   list-style: circle;
+  line-height: 1.5;
 }
 #emphasis ul li {
   color: #ffffff;
-  line-height: 1.2;
+  line-height: 1.5;
 }
