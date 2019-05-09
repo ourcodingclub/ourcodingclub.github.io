@@ -908,10 +908,10 @@ footer .footer-manu ul li a:hover {
 --*/
 #emphasis {
   background-size: cover;
-  background-repeat: no-repeat;
   width: 100%;
-  padding: 30px; 
-}
+  background-repeat: no-repeat;
+  background-position: center center;
+ }
 #emphasis p {
   font-size: 15px; 
   color: #ffffff;
@@ -921,9 +921,9 @@ footer .footer-manu ul li a:hover {
   padding: 20px 40px 20px 40px;
   color: #ffffff;
   list-style: circle;
+  line-height: 1.5;
 }
 #emphasis ul li {
-  padding: 20px 40px 20px 40px;
   color: #ffffff;
-  line-height: 18px;
+  line-height: 1.5;
 }
