@@ -907,11 +907,15 @@ footer .footer-manu ul li a:hover {
 	Data Lab emphasis box (to use with a bg image)
 --*/
 #emphasis {
+  background: url("../img/DL_home_list.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   width: 100%;
-  padding: 30px; 
-}
+  display: block;
+  position: relative;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+ }
 #emphasis p {
   font-size: 15px; 
   color: #ffffff;
@@ -923,7 +927,6 @@ footer .footer-manu ul li a:hover {
   list-style: circle;
 }
 #emphasis ul li {
-  padding: 20px 40px 20px 40px;
   color: #ffffff;
   line-height: 1.2;
 }
