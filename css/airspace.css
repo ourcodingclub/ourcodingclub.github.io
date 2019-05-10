@@ -545,6 +545,7 @@ font header .navbar-default .navbar-nav li a:hover {
   outline: none;
   border: 0px;
   padding: 30px 0px;
+  margin-bottom: 100%;
 }
 #portfolio-work .block .profile img {
  vertical-align: middle;
