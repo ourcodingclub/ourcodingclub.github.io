@@ -536,6 +536,10 @@ font header .navbar-default .navbar-nav li a:hover {
 #portfolio-work .block .mix {
   display: none;
 }
+
+#portfolio-work .block .thumbnail {
+  vertical-align: middle;
+}
 /*--
 	wrapper-work Start
 --*/
