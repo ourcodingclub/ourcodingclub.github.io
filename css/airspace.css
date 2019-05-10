@@ -926,7 +926,7 @@ footer .footer-manu ul li a:hover {
   box-sizing: border-box;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  padding: 70px 0;
+  padding: 40px 0;
 }
 #emphasis p {
   font-size: 15px; 
