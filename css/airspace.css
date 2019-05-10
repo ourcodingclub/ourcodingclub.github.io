@@ -907,8 +907,9 @@ footer .footer-manu ul li a:hover {
 	Data Lab emphasis box (to use with a bg image)
 --*/
 #emphasis {
-  background-size: cover;
+  padding: 20px 80px;
   width: 100%;
+  max-height: 450px;
   background-repeat: no-repeat;
   background-position: center center;
  }
