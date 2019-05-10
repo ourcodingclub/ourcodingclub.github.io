@@ -538,8 +538,8 @@ font header .navbar-default .navbar-nav li a:hover {
 }
 
 #portfolio-work .block .profile {
-  background-color: #ffffff;
   vertical-align: middle;
+  float:left; 
   text-decoration: none;
   border-style: none;
   outline: none;
@@ -548,6 +548,7 @@ font header .navbar-default .navbar-nav li a:hover {
 }
 #portfolio-work .block .profile img {
  vertical-align: middle;
+ float:left; 
  padding: 30px;
   position: absolute;
   top: 50%;
