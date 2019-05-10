@@ -537,8 +537,10 @@ font header .navbar-default .navbar-nav li a:hover {
   display: none;
 }
 
-#portfolio-work .block .thumbnail {
+#portfolio-work .block .profile {
+  background-color: #ffffff;
   vertical-align: middle;
+  text-decoration: none;
   border-style: none;
   outline: none;
   border: 0px;
