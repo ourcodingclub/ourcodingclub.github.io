@@ -536,6 +536,10 @@ font header .navbar-default .navbar-nav li a:hover {
 #portfolio-work .block .mix {
   display: none;
 }
+
+#portfolio-work .block .thumbnail {
+  vertical-align: middle;
+}
 /*--
 	wrapper-work Start
 --*/
@@ -926,20 +930,20 @@ footer .footer-manu ul li a:hover {
   box-sizing: border-box;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  padding: 70px 0;
+  padding: 40px 0;
 }
 #emphasis p {
   font-size: 15px; 
   color: #ffffff;
-  padding: 40px 40px 20px 40px;
+  padding: 15px 40px 15px 0px;
 }
 #emphasis ul {
-  padding: 20px 40px 20px 40px;
+  padding: 10px 40px 20px 10px;
   color: #ffffff;
   list-style: circle;
-  line-height: 1.5;
+  line-height: 1.8;
 }
 #emphasis ul li {
   color: #ffffff;
-  line-height: 1.5;
+  line-height: 1.8;
 }
