@@ -537,7 +537,7 @@ font header .navbar-default .navbar-nav li a:hover {
   display: none;
 }
 
-#portfolio-work .block .profile {
+#profile {
   background-color: #ffffff;
   vertical-align: middle;
   text-decoration: none;
@@ -546,7 +546,7 @@ font header .navbar-default .navbar-nav li a:hover {
   border: 0px;
   padding: 30px 0px;
 }
-#portfolio-work .block .profile img {
+#profile img {
  vertical-align: middle;
  padding: 30px;
 }
