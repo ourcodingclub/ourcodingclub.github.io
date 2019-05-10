@@ -546,6 +546,10 @@ font header .navbar-default .navbar-nav li a:hover {
   border: 0px;
   padding: 30px 0px;
 }
+#portfolio-work .block .profile img {
+ vertical-align: middle;
+ padding: 30px;
+}
 /*--
 	wrapper-work Start
 --*/
