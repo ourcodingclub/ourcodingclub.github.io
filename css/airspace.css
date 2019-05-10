@@ -540,6 +540,7 @@ font header .navbar-default .navbar-nav li a:hover {
 #portfolio-work .block .thumbnail {
   vertical-align: middle;
   border-style: none;
+  outline: none;
   border: 0px;
   padding: 30px 0px;
 }
