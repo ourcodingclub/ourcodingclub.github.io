@@ -42,7 +42,7 @@ We've learned <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.htm
 `ggplot2` is a great package to guide you through those steps. The `gg` in `ggplot2` stands for grammar of graphics. Writing the code for your graph is like constructing a sentence made up of different parts that logically follow from one another. In a more visual way, it means adding layers that take care of different elements of the plot. Your plotting workflow will therefore be something like creating an empty plot, adding a layer with your data points, then your measure of uncertainty, the axis labels, and so on.
 
 <center><img src="{{ site.baseurl }}/img/DL_datavis1_layers.png" alt="Img" style="width: 900px;"/> </center>
-<center> Just like onions (and ogres!), graphs in ggplot2 have layers. </center>
+<center> <b>Just like onions (and ogres!), graphs in ggplot2 have layers. </b> </center>
 
 
 <a name="whichplot"></a>
@@ -52,7 +52,7 @@ A very key part of making any data visualisation is making sure that it is appro
 
 You can start with our simple guide for common graph types, and visit <a href="https://www.r-graph-gallery.com/" target="_blank">the R Graph Gallery</a>, a fantastic resource for `ggplot2` code and inspiration!
 
-<center><img src="{{ site.baseurl }}/img/DL_datavis1_whichplot.png" alt="Img" style="width: 950px;"/> </center>
+<center><img src="{{ site.baseurl }}/img/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;"/> </center>
 <center> <b> Feeling inspired? Let's make these graphs! </b> </center>
 
 
@@ -173,7 +173,7 @@ The default ggplot settings (right) are not ideal: there is lots of unnecessary 
 
 <center><img src="{{ site.baseurl }}/img/gg_hist2.png" alt="Img" style="width: 769px;"/></center>
 
-<center> Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?</enter>
+<center> <b>Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?</b></center>
 
 __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.__
 
@@ -258,7 +258,7 @@ __Hopefully by now we've convinced you of the perks of ggplot2, but again like w
 
 <center><img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 769px;"/></center>
 
-<center> Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals.</center>
+<center><b> Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals.</b></center>
 
 <div class="bs-callout-yellow" markdown="1">
 If your axis labels need to contain special characters or superscript, you can get `ggplot2` to plot that, too. It might require some googling regarding your specific case, but for example, this code `ylabs(expression(paste("Grain yield","  ","(ton.", ha^-1,")", sep="")))` will create a y axis with a label reading Grain yield (ton. ha<sup>-1</sup>).
@@ -292,7 +292,7 @@ Box plots are very informative as they show the median and spread of your data, 
 
 <center><img src="{{ site.baseurl }}/img/gg_boxplot2.png" alt="Img" style="width: 769px;"/></center>
 
-<center>Griffon vulture abundance in Croatia and Italy.</center>
+<center><b>Griffon vulture abundance in Croatia and Italy.</b></center>
 <br>
 
 <a name="barplot"></a>
@@ -321,7 +321,7 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
 
 <center><img src="{{ site.baseurl }}/img/gg_bar2.png" alt="Img" style="width: 769px;"/></center>
 
-<center>Species richness in five European countries (based on LPI data).<center>
+<center><b>Species richness in five European countries (based on LPI data).</b><center>
 
 
 You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">create your own theme</a> - you can now reuse this theme in all your ggplots!
@@ -376,7 +376,7 @@ Some useful arguments to include in `facet_wrap()`are `nrow = ` or `ncol = `, sp
 
 <center><img src="{{ site.baseurl }}/img/DL_datavis1_facets.png" alt="Img" style="width: 780px;"/></center>
 
-<center>Population change of Griffon vulture across the world, from the LPI dataset.<center>
+<center><b>Population change of Griffon vulture across the world, from the LPI dataset.</b><center>
 
 _Note: some of these population trends do weird things, possibly because there are many sub-populations being monitored within a country (e.g. Italy), so in practice we probably would not fit a single regression line per country._ 
 
@@ -415,7 +415,7 @@ ggsave(panel, file = "vulture_panel2.png", width = 5, height = 12)
 
 <center><img src="{{ site.baseurl }}/img/vulture_panel2.png" alt="Img" style="width: 500px;"/></center>
 
-<center>Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy.</center>
+<center><b>Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy.</b></center>
 
 
 And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">follow-up ggplot tutorial</a>. 
