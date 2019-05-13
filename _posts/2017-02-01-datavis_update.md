@@ -180,7 +180,7 @@ __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) preve
 <div class="bs-callout-blue" markdown="1">
 #### Understanding `ggplot2`'s jargon
 
-Perhaps the trickiest bit when starting out with `ggplot2` is understanding what type of elements are responsible for the contents (data) vs the container (looks) in your code. Let's de-mystify some of the common groups you will encounter.
+Perhaps the trickiest bit when starting out with `ggplot2` is understanding what type of elements are responsible for the contents (data) versus the container (general look) of your plot. Let's de-mystify some of the common words you will encounter.
 
 __geom__: a geometric object which defines the type of graph you are making. It reads your data in the __aesthetics__ mapping to know which variables to use, and creates the graph accordingly. Some common types are `geom_point()`, `geom_boxplot()`, `geom_histogram()`, `geom_col()`, etc. 
 
@@ -261,7 +261,11 @@ __Hopefully by now we've convinced you of the perks of ggplot2, but again like w
 <center><b> Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals.</b></center>
 
 <div class="bs-callout-yellow" markdown="1">
+#### Good to know
+
 If your axis labels need to contain special characters or superscript, you can get `ggplot2` to plot that, too. It might require some googling regarding your specific case, but for example, this code `ylabs(expression(paste("Grain yield","  ","(ton.", ha^-1,")", sep="")))` will create a y axis with a label reading Grain yield (ton. ha<sup>-1</sup>).
+
+To create additional space between an axis title and the axis itself, use `\n` when writing your title, and it will act as a line break.
 
 </div>
 
@@ -405,7 +409,7 @@ grid.arrange(vulture_hist, vulture_scatter, vulture_boxplot, ncol = 1)
       
       ncol = 1)) # ncol determines how many columns you have
 ```
-If you want to change the width or height of any of your pictures, you can add either ` width = c(1, 1, 1)` or ` height = c(2, 1, 1)` for example, to the end of your grid arrange command. In these examples, this would create three plots of equal width, and the first plot would be twice as tall as the other two, respectively. This is helpful when you have different sized figures or if you want to highlight the most important figure in your panel. 
+If you want to change the width or height of any of your pictures, you can add either ` widths = c(1, 1, 1)` or ` heights = c(2, 1, 1)` for example, to the end of your grid arrange command. In these examples, this would create three plots of equal width, and the first plot would be twice as tall as the other two, respectively. This is helpful when you have different sized figures or if you want to highlight the most important figure in your panel. 
 
 To get around the too stretched/too squished panel problems, we will save the file and give it exact dimensions using `ggsave` from the `ggplot2` package. The default `width` and `height` are measured in inches. If you want to swap to pixels or centimeters, you can add `units = "px"` or `units = "cm"` inside the `ggsave()` brackets, e.g. `ggsave(object, filename = "mymap.png", width = 1000, height = 1000, units = "px"`. The file will be saved to wherever your working directory is, which you can check by running `getwd()` in the console.
 
@@ -428,6 +432,77 @@ To practice making graphs, go back to the original LPI dataset that you imported
 1 - Choose TWO species from the LPI data and __display their population trends over time__, using a scatterplot and a linear model fit?
 
 2 - Using the same two species, filter the data to include only records from FIVE countries of your choice, and __make a boxplot__ to compare how the abundance of those two species varies between the five countries?
+
+<details>
+   <summary markdown= "span"> Click this line to see the solution </summary>
+    <summary markdown= "block">
+
+```r
+# I chose two Arctic animals
+arctic <- filter(LPI2, Common.Name %in% c("Reindeer / Caribou", "Beluga whale"))
+
+# GRAPH 1 - POPULATION CHANGE OVER TIME
+
+(arctic.scatter<- ggplot(arctic, aes(x = year, y = abundance)) +
+   geom_point(aes(colour = Country.list), size = 1.5, alpha = 0.6) +                # alpha controls transparency
+   facet_wrap(~ Common.Name, scales = "free_y") +                                   # facetting by species
+   stat_smooth(method = "lm", aes(fill = Country.list, colour = Country.list)) +    # colour coding by country
+   scale_colour_manual(values = c("#8B3A3A", "#4A708B", "#FFA500", "#8B8989"), name = "Country") +
+   scale_fill_manual(values = c("#8B3A3A", "#4A708B", "#FFA500", "#8B8989"), name = "Country") +
+   labs(x = "Year", y = "Abundance \n") +
+   theme_bw() +
+   theme(panel.grid = element_blank(),
+         strip.background = element_blank(),
+         strip.text = element_text(size = 12),
+         axis.text = element_text(size = 12),
+         axis.title = element_text(size = 12),
+         legend.text = element_text(size = 12),
+         legend.title = element_text(size = 12))
+)
+
+# GRAPH 2 - BOXPLOTS OF ABUNDANCE ACROSS FIVE COUNTRIES
+
+# Only have four countries so no subsetting; let's plot directly:
+(arctic.box <- ggplot(arctic, aes(x = Country.list, y = abundance)) +
+   geom_boxplot() +
+   labs(x = "Country", y = "Abundance \n") +
+   theme_bw() +
+   facet_wrap(~Common.Name, scales = "free_y") +
+   theme(panel.grid = element_blank(),
+         strip.background = element_blank(),
+         strip.text = element_text(size = 12),
+         axis.text = element_text(size = 12),
+         axis.title = element_text(size = 12),
+         legend.text = element_text(size = 12),
+         legend.title = element_text(size = 12))
+)
+
+# Not great becausE of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)
+(arctic.box <- ggplot(filter(arctic, abundance < 8000), aes(x = Country.list, y = abundance)) +
+      geom_boxplot() +
+      labs(x = "Country", y = "Abundance \n") +
+      theme_bw() +
+      facet_wrap(~Common.Name, scales = "free_y") +
+      theme(panel.grid = element_blank(),
+            strip.background = element_blank(),
+            strip.text = element_text(size = 12),
+            axis.text = element_text(size = 12),
+            axis.text.x = element_text(angle = 45, hjust = 1),
+            axis.title = element_text(size = 12))
+)
+
+#Align together in a panel - here I use the egg package that lines up plots together regardless of whether they have a legend or not
+
+library(egg)
+
+ggarrange(arctic.scatter + labs(title = "Population change over time"), 
+          arctic.box + labs(title = "Population size across countries"))
+```
+<center><img src="{{ site.baseurl }}/img/DL_datavis1_arcticpops.png" alt="Img" style="width: 700px;"/></center>
+<center><br> Population trends and abundance of two Arctic species across their range according to the LPI dataset. </br></center>
+
+</summary>   
+ </details>
 
 <hr>
 <hr>
