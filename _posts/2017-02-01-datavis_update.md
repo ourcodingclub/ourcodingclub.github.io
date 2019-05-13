@@ -434,7 +434,7 @@ To practice making graphs, go back to the original LPI dataset that you imported
 2 - Using the same two species, filter the data to include only records from FIVE countries of your choice, and __make a boxplot__ to compare how the abundance of those two species varies between the five countries?
 
 <details>
-   <summary markdown= "span"> Click this line to see the solution </summary>
+   <summary markdown= "span"> Click this line to view an example </summary>
     <summary markdown= "block">
 
 ```r
@@ -499,7 +499,7 @@ ggarrange(arctic.scatter + labs(title = "Population change over time"),
           arctic.box + labs(title = "Population size across countries"))
 ```
 <center><img src="{{ site.baseurl }}/img/DL_datavis1_arcticpops.png" alt="Img" style="width: 700px;"/></center>
-<center><br> Population trends and abundance of two Arctic species across their range according to the LPI dataset. </br></center>
+<center><b> Population trends and abundance of two Arctic species across their range according to the LPI dataset. </b></center>
 
 </summary>   
  </details>
