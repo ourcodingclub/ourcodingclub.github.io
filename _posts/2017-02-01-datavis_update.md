@@ -321,7 +321,7 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
 
 <center><img src="{{ site.baseurl }}/img/gg_bar2.png" alt="Img" style="width: 769px;"/></center>
 
-<center><b>Species richness in five European countries (based on LPI data).</b><center>
+<center><b>Species richness in five European countries (based on LPI data).</b></center>
 
 
 You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">create your own theme</a> - you can now reuse this theme in all your ggplots!
