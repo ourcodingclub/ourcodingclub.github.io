@@ -376,7 +376,7 @@ Some useful arguments to include in `facet_wrap()`are `nrow = ` or `ncol = `, sp
 
 <center><img src="{{ site.baseurl }}/img/DL_datavis1_facets.png" alt="Img" style="width: 780px;"/></center>
 
-<center><b>Population change of Griffon vulture across the world, from the LPI dataset.</b><center>
+<center><b>Population change of Griffon vulture across the world, from the LPI dataset.</b></center>
 
 _Note: some of these population trends do weird things, possibly because there are many sub-populations being monitored within a country (e.g. Italy), so in practice we probably would not fit a single regression line per country._ 
 
