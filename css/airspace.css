@@ -961,13 +961,13 @@ footer .footer-manu ul li a:hover {
   padding: 40px 0;
 }
 #emphasis p {
-  font-size: 28px; 
+  font-size: 15px; 
   color: #ffffff;
   padding: 15px 120px 15px 0px;
 }
 #emphasis h2 {
-  font-size: 15px; 
-  color: #ffffff;
+  font-size: 28px; 
+  color: #f3f2f2;
   padding: 15px 120px 15px 0px;
 }
 #emphasis ul {
