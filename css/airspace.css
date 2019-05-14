@@ -554,6 +554,8 @@ font header .navbar-default .navbar-nav li a:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  height: 260px;
+  width: 260px;
 }
 
 /*
