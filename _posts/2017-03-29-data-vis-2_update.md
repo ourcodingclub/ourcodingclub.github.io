@@ -2,7 +2,7 @@
 layout: post
 title: Data visualisation 2
 subtitle: Customising your figures
-date: 2017-03-29 00:00:00
+date: 2015-03-29 00:00:00
 author: Haydn, Beverly & Sandra
 meta: 
 tags: 
@@ -249,7 +249,7 @@ Also, notice how the name of our legend is now currently "land": the title of th
           legend.box.background = element_rect(color = "grey", size = 0.3)))
 ```
 
-Another thing that we might sometimes want to change is the actual label of the group (i.e. the factor levels). In the following example, our dataframe has "Hogsmeade" and "Narnia" specified,which is lucky as they would reflect correctly in the legend built by `ggplot`. However, if it they had simply been listed as "group1" and "group2" in the original data file, we would want to have more informative labels. We can do that by manipulating `labels = c("xxx", "xxx")`. In the example below, we change the labels from the default (taking from the dataframe) of "Hogsmeade" and "Narnia" to "HOGSMEADE" and "NARNIA" just for demonstration purposes. __Important! Make sure you list the new label names in the same order as your factors are listed in the dataset, otherwise you risk assigning the wrong group to the values!__ Use `levels(dataframe$factorname)`to see the factors in order (usually alphabetical).
+Another thing that we might sometimes want to change is the actual label of the group (i.e. the factor levels). In the following example, our dataframe has "Hogsmeade" and "Narnia" specified, which is lucky as they would reflect correctly in the legend built by `ggplot`. However, if it they had simply been listed as "group1" and "group2" in the original data file, we would want to have more informative labels. We can do that by manipulating `labels = c("xxx", "xxx")`. In the example below, we change the labels from the default (taking from the dataframe) of "Hogsmeade" and "Narnia" to "HOGSMEADE" and "NARNIA" just for demonstration purposes. __Important: Make sure you list the new label names in the same order as your factors are listed in the dataset, otherwise you risk assigning the wrong group to the values!__ Use `levels(dataframe$factorname)`to see the factors in order (usually alphabetical).
 
 ```r
 (hist <- ggplot(species_counts, aes(x = plot, y = Species_number, fill = land)) +
@@ -275,21 +275,22 @@ Another thing that we might sometimes want to change is the actual label of the 
 
 Let's cover some more of the `theme()` elements we've used in the examples above:
 
-`legend.title` allows you to change the font size of the legend, or its formatting (e.g. bold). 
+- `legend.title` allows you to change the font size of the legend, or its formatting (e.g. bold). 
 
-The `legend.position` can be defined with accepted positions such as `"bottom"`, but you can also do `legend.position = c(0.1, 0.8)`, which would bring the legend to the top left hand corner (corresponding to the x and y values on the graph). This is a neat trick in some cases, where you have lots of blank space within your plot itself and want to fine-tune the legend position.
+- The `legend.position` can be defined with accepted positions such as `"bottom"`, but you can also do `legend.position = c(0.1, 0.8)`, which would bring the legend to the top left hand corner (corresponding to the x and y values on the graph). This is a neat trick in some cases, where you have lots of blank space within your plot itself and want to fine-tune the legend position.
 
-Finally, we've used `legend.box.background = element_rect()` to create a light grey rectangle that surrounds the legend. If you don't want this, you can just remove that line of code. 
+- Finally, we've used `legend.box.background = element_rect()` to create a light grey rectangle that surrounds the legend. If you don't want this, you can just remove that line of code. 
 
 To save a plot, we use the function `ggsave()` where you can specify the dimensions and resolution of your plot. You could also change the file ending with `.png` to `.pdf` to save your image as a PDF document. Note that this file will be saved into your working directory. (If you've forgotten where that is, you can find it by running the code `getwd()`.) 
 
 __Note:__ If you want your file to be saved in a specific folder that is _within_ your working directory (for example, into an "images" folder), you can change the code from `ggsave("magical-land-sp-richness.png")` to `ggsave("images/magical-land-sp-richness.png")`. (Make sure you've created the folder first or you'll run into an error!)
 
+
 ```r
 ggsave("magical-sp-rich-hist.png", width = 7, height = 5, dpi = 300)
-
 ```
-<center> <img src="{{ site.baseurl }}/img/histbeaut-final.png" alt="Img" style="width: 1000px;"/> </center>
+
+<center> <img src="{{ site.baseurl }}/img/histbeaut-final.png" alt="Img" style="width: 750px;"/> </center>
 
 <center> <b>Congratulations, you've made a beautiful graph!</b> </center> 
 
@@ -324,7 +325,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 (hist <- ggplot(more_magic, aes(x = land, y = counts, fill = land)) +
       geom_histogram(stat = "identity", position = "dodge") + 
       scale_y_continuous(limits = c(0, 65)) +
-      scale_fill_manual(values = magic.palette,
+      scale_fill_manual(values = magic.palette,                        # using our palette here
                         name = "Land of Magic") +                
       labs(title = "Species richness in magical lands", 
            x = "", y = "Number of species \n") + 
@@ -345,7 +346,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 (hist <- ggplot(filter(more_magic, land %in% c("Hogsmeade", "Oz", "The Shire")), aes(x = land, y = counts, fill = land)) +
       geom_histogram(stat = "identity", position = "dodge") + 
       scale_y_continuous(limits = c(0, 65)) +
-      scale_fill_manual(values = magic.palette,
+      scale_fill_manual(values = magic.palette,                       # using our palette ensure that colours with no corresponding factors are dropped
                         name = "Land of Magic") +                
       labs(title = "Species richness in magical lands", 
            x = "", y = "Number of species \n") + 
@@ -362,7 +363,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 
 ```
 
-<center> <img src="{{ site.baseurl }}/img/DL_datavis2_magiclands.png" alt="Img" style="width: 800px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/DL_datavis2_magiclands.png" alt="Img" style="width: 850px;"/> </center>
 
 <center> <b> Notice the consistent colour coding when dropping factors! </b> </center> 
 
@@ -379,54 +380,7 @@ You can learn <a href="https://ggplot2.tidyverse.org/reference/scale_gradient.ht
 <a name="boxplot"></a>
 ## 4. Customise boxplots in `ggplot2`
 
-We could also plot the data using boxplots. Boxplots sometimes look better than bar plots, as they make more efficient use of space than bars* and can reflect errors in nice ways. 
-
-<div class="bs-callout-yellow" markdown="1">
-#### *Box, bar, dot...?
-
-Bar plots are very commonly used to show differences or ranking among groups. A problem with them, especially if used without a measure of uncertainty (e.g. error bars), is that what they display is a range of values __starting from 0__. If the variable you are plotting can reasonably have values of zero, then that's fine, but often it's improbable. For instance, we wouldn't imagine that our lands of magic could be completely devoid of any life form and therefore have a species richness of zero. Same holds true if you're comparing body weight, plant height, and a great majority of ecological variables! 
-
-An easy alternative is a __dot plot__, which you could have done by summarising the `species_counts` data to get a mean and standard deviation of species counts for each land. You'd then use `geom_point(aes(x = land, y = mean))` rather than `geom_histogram()`, and add your uncertainty with `geom_errorbar(aes(x = land, ymin = mean - sd, ymax = mean + sd)`. This results in a plot like this:
-
-<center> <img src="{{ site.baseurl }}/img/DL_datavis2_dotplot.png" alt="Img" style="width: 400px;"/> </center>
-
-<details>
-   <summary markdown= "span"> (Click this line if you want to see the full code) </summary>
-    <summary markdown= "block">
-
-```r
-# Create the summarised data
-summary <- species_counts %>%  group_by(land) %>% summarise(mean = mean(Species_number),
-                                                            sd = sd(Species_number))
-
-# Make a dot plot
-(dot <- ggplot(summary, aes(x = land, y = mean, colour = land)) +
-      geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.2) +
-      geom_point(size = 3) + 
-      scale_y_continuous(limits = c(0, 50)) +
-      scale_colour_manual(values = c("#CD5C5C", "#6CA6CD"), 
-                        labels = c("HOGSMEADE", "NARNIA"), 
-                        name = "Land of Magic") +                   
-      labs(title = "Average species richness", 
-           x = "", y = "Number of species \n") + 
-      theme_bw() +
-      theme(panel.grid = element_blank(), 
-            axis.text = element_text(size = 12), 
-            axis.title = element_text(size = 12), 
-            plot.title = element_text(size = 14, hjust = 0.5, face = "bold"), 
-            plot.margin = unit(c(0.5,0.5,0.5,0.5), units = , "cm"), 
-            legend.title = element_text(face = "bold"),
-            legend.position = "bottom", 
-            legend.box.background = element_rect(color = "grey", size = 0.3)))
-``` 
-
-</summary>   
- </details>
- 
-Boxplots, just like dot plots, give a more accurate idea of the range of values in your data: but remember that the bar represents the median, not the mean! Let's learn all about them now.
- 
-</div>
-
+We could also plot the data using boxplots. Boxplots sometimes look better than bar plots, as they make more efficient use of space than bars and can reflect uncertainty in nice ways. 
 
 To make the boxplots, we will slightly reshape the dataset to take account of year as well. For more information on data manipulation using `dplyr` and pipes `%>%`, you can check out our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">data manipulation tutorial</a>.
 
@@ -476,11 +430,59 @@ ggsave("magical-sp-rich-boxplot1.png", width = 7, height = 5, dpi = 300)
 ```
 
 <center> <img src="{{ site.baseurl }}/img/boxbeaut1.png" alt="Img" style="width: 750px;"/> </center>
+<br>
+
+<div class="bs-callout-yellow" markdown="1">
+#### Box, bar, dot...?
+
+Bar plots are very commonly used to show differences or ranking among groups. A problem with them, especially if used without a measure of uncertainty (e.g. error bars), is that what they display is a range of values __starting from 0__. If the variable you are plotting can reasonably have values of zero, then that's fine, but often it's improbable. For instance, we wouldn't imagine that our lands of magic could be completely devoid of any life form and therefore have a species richness of zero. Same holds true if you're comparing body weight, plant height, and a great majority of ecological variables! 
+
+An easy alternative is a __dot plot__, which you could have done by summarising the `species_counts` data to get a mean and standard deviation of species counts for each land. You'd then use `geom_point(aes(x = land, y = mean))` rather than `geom_histogram()`, and add your uncertainty with `geom_errorbar(aes(x = land, ymin = mean - sd, ymax = mean + sd)`. This results in a plot like this:
+
+<center> <img src="{{ site.baseurl }}/img/DL_datavis2_dotplot.png" alt="Img" style="width: 400px;"/> </center>
+
+
+<details>
+   <summary markdown= "span"> (Click this line if you want to see the full code) </summary>
+    <summary markdown= "block">
+
+```r
+# Create the summarised data
+summary <- species_counts %>%  group_by(land) %>% summarise(mean = mean(Species_number),
+                                                            sd = sd(Species_number))
+
+# Make a dot plot
+(dot <- ggplot(summary, aes(x = land, y = mean, colour = land)) +
+      geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.2) +
+      geom_point(size = 3) + 
+      scale_y_continuous(limits = c(0, 50)) +
+      scale_colour_manual(values = c("#CD5C5C", "#6CA6CD"), 
+                        labels = c("HOGSMEADE", "NARNIA"), 
+                        name = "Land of Magic") +                   
+      labs(title = "Average species richness", 
+           x = "", y = "Number of species \n") + 
+      theme_bw() +
+      theme(panel.grid = element_blank(), 
+            axis.text = element_text(size = 12), 
+            axis.title = element_text(size = 12), 
+            plot.title = element_text(size = 14, hjust = 0.5, face = "bold"), 
+            plot.margin = unit(c(0.5,0.5,0.5,0.5), units = , "cm"), 
+            legend.title = element_text(face = "bold"),
+            legend.position = "bottom", 
+            legend.box.background = element_rect(color = "grey", size = 0.3)))
+``` 
+
+</summary>   
+ </details>
+ 
+Boxplots, just like dot plots, give a more accurate idea of the range of values in your data: but remember that the thicker line in the box represents the median, not the mean!
+ 
+</div>
 
 
 ### Reordering factors
 
-Remember how we learnt to recode and reorder factors in our <a href="https://ourcodingclub.github.io/2015/10/11/data-manip-advanced.html#factors" target="_blank">advanced data manipulation tutorial</a>? We often want to do this in order to plot values in a specific order.
+Remember how we learnt to recode and reorder factors in our <a href="https://ourcodingclub.github.io/2015/10/11/data-manip-advanced.html#factors" target="_blank">advanced data manipulation tutorial</a>? We often want to do this so that we can __plot values in a specific order__.
 
 If we wanted to have Narnia come before Hogsmeade, we would first have to reorder the data in the dataframe. From this point, after reordering the data, `ggplot` will always plot Narnia before Hogsmeade. Also, note how we've changed the order of things in `scale_fill_manual` - above we had it as "Hogsmeade", then "Narnia", and now we have "Narnia" come before "Hogsmeade" to also reorder the legend. 
 
@@ -545,7 +547,7 @@ yearly_counts$plot <- factor(yearly_counts$plot,
 
 <center> <img src="{{ site.baseurl }}/img/boxbeaut3.png" alt="Img" style="width: 750px;"/> </center>
 
-<center> <b>Great, we've now learnt how to beautify boxplots! </b></center>
+
 
 
 <a name="regression"></a>
@@ -583,7 +585,8 @@ We can see pretty clear trends over time, and so we can try to plot a simple str
 
 <center> <img src="{{ site.baseurl }}/img/mixmod2.png" alt="Img" style="width: 750px;"/> </center>
 
-However, perhaps this isn't what we really want, because you can see the relationship isn't linear. An alternative would be to use a different smoothing equation. Here, we've used a quadratic fit - something slightly more complicated to produce than the standard fits provided by R. Thankfully, `ggplot2` lets us customise to pretty much any type of fit we want, as we can add in an equation to tell it what to plot. There are also several different base fits available. You can check out some <a href="http://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/" target="_blank">here</a>.
+However, perhaps this isn't what we really want, because you can see the relationship isn't linear. An alternative would be to use a different smoothing equation. Let's try a quadratic fit - something slightly more complicated to produce than the standard fits provided by R. Thankfully, `ggplot2` lets us customise to pretty much any type of fit we want, as we can add in an equation to tell it what to plot. There are also several different base fits available. You can check out some <a href="http://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/" target="_blank">here</a>.
+
 
 ```r
 (improved_mm_scat <- ggplot(heights, aes(year, Height, colour = land)) +
@@ -591,7 +594,7 @@ However, perhaps this isn't what we really want, because you can see the relatio
   theme_bw() +
   stat_smooth(method = "lm", formula = y ~ x + I(x^2)))
 ```
-
+<br>
 <center> <img src="{{ site.baseurl }}/img/mixmod3.png" alt="Img" style="width: 750px;"/> </center>
 
 
@@ -603,7 +606,6 @@ Some of you might have picked up on the fact that our data are nested (species w
 </div>
 
 For now, take some time to explore the different `ggplot2` fits! For instance, `method = "loess"` gives a smoothed curve.
-
 
 <a name="theme"></a>
 
@@ -700,7 +702,7 @@ You will need to append the endemism values to the `more_magic` data frame:
 more_magic <- more_magic %>% mutate(endemic = c(0.54, 0.32, 0.66, 0.80, 0.14, 0.24, 0.39))
 ```
 
-And you're all set to go! For an additional challenge, try ordering the bars so that they range from highest to lowest percentage of endemism. ( _Hint_: you might want to check the help on the `reorder()` function - it can even be used on the fly in the `ggplot` code!) <br>
+And you're all set to go! For an additional challenge, try ordering the bars so that they range from lowest to highest percentage of endemism. ( _Hint_: you might want to check the help on the `reorder()` function - it can even be used on the fly in the `ggplot` code!) <br>
 
 
 <details>
@@ -715,7 +717,8 @@ And you're all set to go! For an additional challenge, try ordering the bars so 
    geom_histogram(stat = "identity") +
    scale_fill_gradient(low = "#87CEEB", high = "#4A708B",                     # creating gradient from pale to dark blue
                        name = "Endemism % \n") +                              # setting legend title
-   labs(x = "Magical Land", y = "Species richness \n", title = "Species richness and endemism in magical worlds") +                         # setting axes and main titles
+   labs(x = "Magical Land", y = "Species richness \n", 
+   title = "Species richness and endemism in magical worlds") +               # setting axes and main titles
    theme_coding() +
    theme(legend.position = "right",                     # changing the legend position
          legend.title = element_text(size = 12),        # adding the legend title back
