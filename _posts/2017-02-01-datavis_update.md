@@ -132,7 +132,7 @@ We will do a quick comparison between base R graphics and `ggplot2` - of course 
 base_hist <- hist(vulture$abundance)
 ```
 
-To do the same with ggplot, we need to specify the type of graph using `geom_histogram()`. Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object in the command line, e.g. by typing `vulture_hist` after creatign the object. 
+To do the same with ggplot, we need to specify the type of graph using `geom_histogram()`. Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object in the command line, e.g. by typing `vulture_hist` after creating the object. 
 
 ```r
 # With ggplot2: creating graph with no brackets
