@@ -39,10 +39,9 @@ Following from our first tutorial on <a href="https://ourcodingclub.github.io/20
 
 We will use made-up data consisting of the abundance and height of different plant species occurring in two magic lands: Hogsmeade and Narnia. 
 
-#### The imaginary data for this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">this repository.</a> 
-Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (replacing with your actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
+#### The imaginary data for this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">this repository.</a> Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (replacing with your actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">the repository</a>  to your own GitHub account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on GitHub, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">tutorial.</a>
+Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">the repository</a>  to your own GitHub account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on GitHub, download Git, sync RStudio and Github and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">Git tutorial.</a>
 
 Make a new script file through clicking `File/ New File/ R Script`, give it a title and some information, and we are all set to explore how plant communities have changed in our magical lands: Hogsmeade and Narnia!
 
@@ -99,11 +98,16 @@ __Note that putting your entire ggplot code in brackets () creates the graph and
 <center> <img src="{{ site.baseurl }}/img/histwrong1.png" alt="Img" style="width: 750px;"/> </center>
 <center> <b>Uh, oh... That's a weird histogram! </b></center>
 
-This is the common way of making a histogram, when you have one observation per row. But you can immediately see th_at it doesn't look right, because we are working on summarised data. You therefore need to tell R that you _already know_ how many species are in each plot. You do that by specifying the `stat` argument:
+This is the common way of making a histogram, when you have one observation per row and the histogram tallies them for you. But you can immediately see that it doesn't look right, because we are working with summarised data. You therefore need to tell R that you _already know_ how many species are in each plot. You do that by specifying the `stat` argument:
 
 ```r
 (hist <- ggplot(species_counts, aes(x = plot, y = Species_number)) +
     geom_histogram(stat = "identity"))
+    
+# Note: an equivalent alternative is to use geom_col (for column), which takes a y value and displays it
+(col <- ggplot(species_counts, aes(x = plot, y = Species_number)) +
+   geom_col()
+   )
 ```
 
 <center> <img src="{{ site.baseurl }}/img/histwrong2.png" alt="Img" style="width: 750px;"/> </center>
@@ -138,7 +142,7 @@ Note how our figure __only shows plot numbers 2, 4, and 6.__ If you want the axi
     scale_y_continuous(limits = c(0, 50)))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbase2.png" alt="Img" style="width: 1000px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/histbase2.png" alt="Img" style="width: 750px;"/> </center>
 
 <a name="labs"></a>
 
@@ -157,7 +161,7 @@ Now it's time for us to add more information to our graphs, for example, the plo
          x = "\n Plot number", y = "Number of species \n"))     # \n adds space before x and after y axis text
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut1a.png" alt="Img" style="width: 750px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/histbeaut1a.png" alt="Img" style="width: 850px;"/> </center>
 
 
 <div class="bs-callout-yellow" markdown="1">
@@ -184,7 +188,7 @@ __Note:__ if we wanted to specify different options for the x and y axis, we cou
           plot.title = element_text(size = 14, hjust = 0.5, face = "bold")))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut1b.png" alt="Img" style="width: 1000px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/histbeaut1b.png" alt="Img" style="width: 750px;"/> </center>
 
 
 <a name="panel"></a>
@@ -346,7 +350,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 (hist <- ggplot(filter(more_magic, land %in% c("Hogsmeade", "Oz", "The Shire")), aes(x = land, y = counts, fill = land)) +
       geom_histogram(stat = "identity", position = "dodge") + 
       scale_y_continuous(limits = c(0, 65)) +
-      scale_fill_manual(values = magic.palette,                       # using our palette ensure that colours with no corresponding factors are dropped
+      scale_fill_manual(values = magic.palette,                       # using our palette ensures that colours with no corresponding factors are dropped
                         name = "Land of Magic") +                
       labs(title = "Species richness in magical lands", 
            x = "", y = "Number of species \n") + 
@@ -365,13 +369,13 @@ names(magic.palette) <- levels(more_magic$land)                                 
 
 <center> <img src="{{ site.baseurl }}/img/DL_datavis2_magiclands.png" alt="Img" style="width: 850px;"/> </center>
 
-<center> <b> Notice the consistent colour coding when dropping factors! </b> </center> 
+<center> <b> Notice the consistent colour coding when dropping factors! </b> </center> <br>
 
 <div class="bs-callout-blue" markdown="1">
 
 #### Shades and gradients
 
-So far we've used `scale_colour_manual()` and `scale_fill_manual()` to define custom colours for factor levels. But what if your variable is continuous rather than categorical, so that you can't possibly assign a colour to every value? You might then want the colour scheme to go from light to dark according to the values, and `scale_colour_gradient()` (and its friend `scale_fill_gradient()`) are there for you (and might be useful for the challenge, cough cough). 
+So far we've used `scale_colour_manual()` and `scale_fill_manual()` to define custom colours for factor levels. But what if your variable is continuous rather than categorical, so that you can't possibly assign a colour to every value? You might then want the colour scheme to go from light to dark according to the values, and `scale_colour_gradient()` (and its friend `scale_fill_gradient()`) are there for you (and might be useful for the challenge too, _cough cough_). 
 
 You can learn <a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" target="_blank">more about these functions here</a>; basically, you just have to set your `low = ` and `high = ` colour values and the function will do the rest for you. We love it!
 
@@ -440,10 +444,10 @@ Bar plots are very commonly used to show differences or ranking among groups. A 
 An easy alternative is a __dot plot__, which you could have done by summarising the `species_counts` data to get a mean and standard deviation of species counts for each land. You'd then use `geom_point(aes(x = land, y = mean))` rather than `geom_histogram()`, and add your uncertainty with `geom_errorbar(aes(x = land, ymin = mean - sd, ymax = mean + sd)`. This results in a plot like this:
 
 <center> <img src="{{ site.baseurl }}/img/DL_datavis2_dotplot.png" alt="Img" style="width: 400px;"/> </center>
-
+<br>
 
 <details>
-   <summary markdown= "span"> (Click this line if you want to see the full code) </summary>
+   <summary markdown= "span"> <b>(Click this line if you want to see the full code) </b></summary>
     <summary markdown= "block">
 
 ```r
