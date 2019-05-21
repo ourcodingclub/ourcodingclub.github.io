@@ -437,7 +437,7 @@ LPD_biome_sum <- LPD_long2 %>%
             dominant_sampling_method = names(which.max(table(sampling.method))),
             # Model unit type
             dominant_units = names(which.max(table(units)))) %>%
-  # Remove any groupings you've greated in the pipe
+  # Remove any groupings you've created in the pipe
   ungroup()
 
 # Take a look at some of the records
