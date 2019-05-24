@@ -199,7 +199,7 @@ __Managing long scripts:__ Lines of code pile up quickly! There is an outline fe
 
 </div>
 
-<center> <img src="{{ site.baseurl }}/img/ouline.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/outline.png" alt="Img" style="width: 600px;"/> </center>
 
 Now that we have our Australian bird population studies, we can learn more about the data by visualising the variation in study duration. Earlier on, we filtered to only include studies with more than five years of data, but it's still useful to know how many studies have six years of data, and how many have much more.
 
