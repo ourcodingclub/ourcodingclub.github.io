@@ -1018,7 +1018,7 @@ diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heigh
 ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/map_panel.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/diet_panel.png" alt="Img" style="width: 600px;"/></center>
 
 
 ## Challenges
