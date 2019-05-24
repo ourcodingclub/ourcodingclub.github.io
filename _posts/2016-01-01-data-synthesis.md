@@ -403,7 +403,7 @@ Check out your folder, you should see three graphs in there! You can use pipes t
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
-But what is `purrr`? __It is a way to "map" or "apply" functions to data. Note that there are functions from other packages also called `map()`, which is why we are specifying we want the `map()` function from the `purrr` package. Here we will first format the data `taxa.slopes` and then we will map it to the mean fuction:__
+But what is `purrr`? __It is a way to "map" or "apply" functions to data. Note that there are functions from other packages also called `map()`, which is why we are specifying we want the `map()` function from the `purrr` package. Here we will first format the data `aus_models_wide` and then we will map it to the mean fuction:__
 
 We have to change the format of the data, in our case we will split the data using `spread()` from the `tidyr` package.
 
@@ -454,7 +454,7 @@ dir.create(path2)
 ```
 
 __We've learned about `map()`, but there are other `purrr` functions,too, and we still need to actually save our graphs.
-`walk2()` takes two arguments and returns nothing. In our case we just want to print the graphs, so we don't need anything returned. The first argument is our file path, the second is our data and ggsave is our function.__
+`walk2()` takes two arguments and returns nothing. In our case we just want to print the graphs, so we don't need anything returned. The first argument is our file path, the second is our data and `ggsave` is our function.__
 
 ```r
 # *** walk2() function in purrr from the tidyverse ***
@@ -465,19 +465,34 @@ walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 
 ## 3. Synthesise information from different databases
 
+__Answering research questions often requires combining data from different sources. For example, we've explored how bird abundance has changed over time across the monitored populations in Australia, but we don't know whether certain groups of species might be more likely to increase or decrease. To find out, we can integrate the population trend data with information on species traits, in this case species' diet preferences.__
+
+The various joining functions from the `dplyr` package are really useful for combining data. We will use `left_join` in this tutorial, but you can find out about all the other options by running ??join() and reading the help file. To join two datasets in a meaningful way, you usually need to have one common column in both data frames and then you join "by" that column.
+
 ```r
-# Linking with other databases - traits! ----
+# Data synthesis - traits! ----
+
+# Tidying up the trait data
+# similar to how we did it for the population data
 colnames(bird_traits)
 bird_traits <- bird_traits %>% rename(species.name = Scientific)
+# rename is a useful way to change column names
+# it goes new name =  old name
 colnames(bird_traits)
 
+# Select just the species and their diet
 bird_diet <- bird_traits %>% dplyr::select(species.name, `Diet.5Cat`) %>% 
   distinct() %>% rename(diet = `Diet.5Cat`)
 
+# Combine the two datasets
+# The second data frame will be added to the first one
+# based on the species column
 bird_models_traits <- left_join(aus_models, bird_diet, by = "species.name") %>%
   drop_na()
 head(bird_models_traits)
 ```
+
+<center> <img src="{{ site.baseurl }}/img/joined.png" alt="Img" style="width: 600px;"/> </center>
 
 ```r
 (trends_diet <- ggplot(bird_models_traits, aes(x = diet, y = estimate,
