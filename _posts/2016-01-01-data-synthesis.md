@@ -732,7 +732,7 @@ ggsave(timeline_aus, filename = "timeline.png",
 
 <center> <img src="{{ site.baseurl }}/img/timeline2.png" alt="Img" style="width: 600px;"/></center>
 
-__For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.
+__For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.__
 
 ```r
 # Combining the datasets
@@ -743,7 +743,7 @@ bird_models_mass <- left_join(aus_models, mass, by = "species.name") %>%
 head(bird_models_mass)
 ```
 
-Now we're ready to unwrap the data present (or if you've scrolled down, I guess it's already unwrapped...).
+Now we're ready to unwrap the data present (or if you've scrolled down, I guess it's already unwrapped...). Whenever we are working with many data points, it can also be useful to "put a face (or a species) to the points". For example, we can label some of the species at the extreme ends of the body mass spectrum.
 
 ```r
 (trends_mass <- ggplot(bird_models_mass, aes(x = log(mass), y = abs(estimate))) +
