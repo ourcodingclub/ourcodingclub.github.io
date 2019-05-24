@@ -8,6 +8,8 @@ meta: "Tutorials"
 tags: data_manip data_vis intermediate
 ---
 
+<center> <img src="{{ site.baseurl }}/img/tutheader_synthesis.png" alt="Img"> </center>
+
 ### Tutorial Aims:
 
 #### <a href="#tidyverse"> 1. Format and manipulate large datasets </a>
