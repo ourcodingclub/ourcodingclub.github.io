@@ -13,21 +13,33 @@ tags: data_manip data_vis intermediate
 ### Tutorial Aims:
 
 #### <a href="#tidyverse"> 1. Format and manipulate large datasets </a>
-#### <a href="#purrr"> 2. Automate repetitive tasks using functions </a>
+#### <a href="#purrr"> 2. Automate repetitive tasks using pipes and functions </a>
 #### <a href="#synthesis"> 3. Synthesise information from different databases </a>
 #### <a href="#panels"> 4. Create beautiful and informative figure panels </a>
 
 <p></p>
 
-## This tutorial was developed for the ...
+<div class="bs-callout-blue" markdown="1">
 
-Some summary text...
+__The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tdyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
+
+</div>
+
+## This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the <a href="https://sites.google.com/site/robresearchsite/" target="_blank">SalGo Population Ecology Team</a>.
 
 ### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-oxford" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 <a name="tidyverse"></a>
 
-## 1. Format and manipulate large datasets
+<b>Across the tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
+
+We will be working with bird population data (abundance over time) from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, bird trait data from the <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1" target="_blank">Elton Database</a>, and emu occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, all of which are publicly available datasets.
+
+__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is theit average duration.__
+
+__Make sure you have set the working directory to where you saved your files.__
+
+Here are the packages we need. Note that not all `tidyverse` packages load automatically with `library(tidyverse)` -  only the core ones do, so you need to load `broom` separately. If you don't have some of the packages installed, you can install them using `ìnstall.packages("package-name")`. One of the packages is only available on `GitHub`, so you can use `install_github()` to install it. In general, if you ever have troubles installing packages from CRAN (that's where packages come from by default when using `install.packages()`), you can try googling the package name and "github" and installing it from its `GitHub` repo, sometimes that works! 
 
 
 ```r
@@ -44,6 +56,8 @@ library(CoordinateCleaner)
 library(treemapify)
 library(gridExtra)
 ```
+
+If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our graphs we won't need to use `legend.position`, but it's fine to keep it in the theme in case any future graphs we apply it to do have the need for legends.
 
 ```r
 # Setting a custom ggplot2 function ---
@@ -68,10 +82,20 @@ theme_clean <- function(){
 }
 ```
 
+#### Load population trend data
+
+Now we're ready to load in the data!
+
 ```r
 bird_pops <- read.csv("bird_pops.csv")
 bird_traits <- read.csv("elton_birds.csv")
 ```
+
+We can check out what the data look like now, either by clicking on the objects name on the right in the list in your working environment, or by running `View(bird_pops)` in the console.
+
+<center> <img src="{{ site.baseurl }}/img/ox_wide.png" alt="Img" style="width: 600px;"/> </center>
+
+__The data are in a wide format (each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year) and the column names are capitalised. Whenever working with data from different sources, chances are each dataset will follow a different column naming system, which can get confusing later on, so in general it is best to pick whatever naming system works for you and apply that to all datasets before you start working with them.__
 
 ```r
 # Rename variable names for consistency
@@ -80,6 +104,10 @@ names(bird_pops) <- tolower(names(bird_pops))
 names(bird_pops)
 ```
 
+To make these data "tidy" (one column per variable and not the current wide format), we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years.
+
+This takes our original dataset `bird_pops` and creates a new column called `year`, fills it with column names from columns `26:70` and then uses the data from these columns to make another column called `pop`.
+
 ```r
 bird_pops_long <- gather(data = bird_pops, key = "year", value = "pop", select = 27:71)
 
@@ -87,22 +115,24 @@ bird_pops_long <- gather(data = bird_pops, key = "year", value = "pop", select =
 head(bird_pops_long)
 ```
 
+Because column names are coded in as characters, when we turned the column names (`1970`, `1971`, `1972`, etc.) into rows, R automatically put an `X` in front of the numbers to force them to remain characters. We don't want that, so to turn `year` into a numeric variable, use the `parse_number()` function from the `readr` package. 
+
 ```r
 # Get rid of the X in front of years
 # *** parse_number() from the readr package in the tidyverse ***
 bird_pops_long$year <- parse_number(bird_pops_long$year)
+```
 
+<center> <img src="{{ site.baseurl }}/img/ox_long.png" alt="Img" style="width: 600px;"/> </center>
+
+Check out the data frame again to make sure the years really look like years. As you're looking through, you might notice something else. We have many columns in the data frame, but there isn't a column with the species' name. We can make one super quickly, since there are already columns for the genus and the species.
+
+```r
 # Create new column with genus and species together
 bird_pops_long$species.name <- paste(bird_pops_long$genus, bird_pops_long$species, sep = " ")
 ```
 
-```r
-# Which countries have the most data
-country_sum <- bird_pops %>% group_by(country.list) %>% tally() %>%
-  arrange(desc(n))
-
-country_sum[1:15,] # the top 15
-```
+We can tidy up the data a bit more and create a few new columns with useful information. Whenever we are working with datasets that combine multiple studies, it's useful to know when they each, what their duration was, etc. Here we've combined all of that into one "pipe" (lines of code that use the piping operator `%>%`). The pipes always take whatever has come out of the previous pipe (or the first object you've given the pipe), and at the end of all the piping, out comes a tidy data frame with useful information.
 
 ```r
 # *** piping from from dplyr
@@ -132,6 +162,24 @@ bird_pops_long <- bird_pops_long %>%
 head(bird_pops_long)
 ```
 
+Now we can calculate some finer-scale summary statistics. Though we have the most ecological data we've ever had, there are still many remaining data gaps, and a lot of what we know about biodiversity is based on information coming from a small set of countries. Let's check out which!
+
+
+```r
+# Which countries have the most data
+# Using "group_by()" to calculate a "tally"
+# for the number of records per country
+country_sum <- bird_pops %>% group_by(country.list) %>% 
+  tally() %>%
+  arrange(desc(n))
+
+country_sum[1:15,] # the top 15
+```
+
+As we probably all expected, a lot of the data come from Western European and North American countries. Sometimes as we navigate our research questions, we go back and forth between combining (adding in more data) and extracting (filtering to include only what we're interested in), so to mimic that, this tutorial will similarly take you on a combinign and extracting journey, this time through Australia.
+
+To get just the Australian data, we can use the `filter()` function. To be on the safe side, we can also combine it with `str_detect()`. The difference is that filter on its own will extract any rows with "Australia", but it will miss rows that have e.g. "Australia / New Zealand" - occasions when the population study included multiple countries. In this case though, both ways of filtering return the same number of rows, but always good to check.
+
 ```r
 aus_pops <- bird_pops_long %>%
   filter(country.list == "Australia")
@@ -140,28 +188,48 @@ aus_pops <- bird_pops_long %>%
   filter(str_detect(country.list, pattern = "Australia"))
 ```
 
+Now that we have our Australian bird population studies, we can learn more about the data by visualising the variation in study duration. Earlier on, we filtered to only include studies with more than five years of data, but it's still useful to know how many studies have six years of data, and how many have much more.
+
+__An important note about graphs made using `ggplot2`: you'll notice that throughout this tutorial, the `ggplot2` code is always surrounded by brackets. That way, we both make the graph, assign it to an object, e.g. `duration_hist` and we "call" the graph, so we can see it in the plot tab. If you don't have the brackets around the code chunk, you'll make the graph, but you won't actually see it. Alternatively, you can "call" the graph to the plot tab by running just the line `duration_hist`. It's also best to assign your graphs to objects, especially if you want to save them later, otherwise they just disappear and you'll have to run the code again to see or save the graph.__
+
 ```r
 # Check the distribution of duration across the time-series
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration)))
+# A quick and not particularly pretty graph
+(duration_hist <- ggplot(aus_pops, aes(x = duration)) +
+    geom_histogram())
 ```
+
+<center> <img src="{{ site.baseurl }}/img/hist1a.png" alt="Img" style="width: 500px;"/> </center>
+
+This graph just uses all the `ggplot2` default settings. It's fine if you just want to see the distribution and move on, but if you plan to save the graph and share it with other people, we can make it way better. The figure beautification journey!
 
 ```r
 (duration_hist <- ggplot() +
     geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
                    breaks = seq(5, 40, by = 1), fill = "turquoise4"))
 
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), fill = "turquoise4") +
+(duration_hist <- ggplot(aus_pops, aes(x = duration)) +
+    geom_histogram(alpha = 0.6, 
+                   breaks = seq(5, 40, by = 1), 
+		   fill = "turquoise4") +
+    # setting new colours, changing the opacity and defining custom bins
     scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))))
+    # the final line of code removes the empty blank space below the bars
 ```
+
+<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1c.png" alt="Img" style="width: 500px;"/></center>
+
+Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The two lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
 ```r
 # Adding an outline around the whole histogram
 h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1))
 d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))  
-  
+```
+
+__When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
+
+```r
 (duration_hist <- ggplot() +
     geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
                    breaks = seq(5, 40, by = 1), fill = "turquoise4") +
@@ -170,7 +238,12 @@ d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))
               stat = "identity", colour = "deepskyblue4"))
 
 summary(d1) # it's fine, you can ignore the warning message
+# it's because there's no "zero" step
 ```
+
+<center> <img src="{{ site.baseurl }}/img/hist1d.png" alt="Img" style="width: 500px;"/> </center>
+
+We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
 
 ```r
 (duration_hist <- ggplot() +
@@ -190,11 +263,21 @@ summary(d1) # it's fine, you can ignore the warning message
               stat = "identity", colour = "deepskyblue4") +
     geom_vline(xintercept = mean(aus_pops$duration), linetype = "dotted",
                colour = "deepskyblue4", size = 1) +
+    # Adding in a text allocation - the coordinates are based on the x and y axes
     annotate("text", x = 15, y = 500, label = "The mean duration\n was 23 years.") +
+    # "\n" creates a line break
     geom_curve(aes(x = 15, y = 550, xend = mean(aus_pops$duration) - 1, yend = 550),
                arrow = arrow(length = unit(0.07, "inch")), size = 0.7,
                color = "grey20", curvature = -0.3))
+    # Similarly to the annotation, the curved line follows the plot's coordinates
+    # Have a go at changing the curve parameters to see what happens
+```
 
+<center> <img src="{{ site.baseurl }}/img/hist1f.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1e.png" alt="Img" style="width: 500px;"/></center>
+
+We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
+
+```r
 (duration_hist <- ggplot() +
   geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
                  breaks = seq(5, 40, by = 1), fill = "turquoise4") +
@@ -211,10 +294,18 @@ summary(d1) # it's fine, you can ignore the warning message
   theme_clean())
 ```
 
+<center> <img src="{{ site.baseurl }}/img/hist1.png" alt="Img" style="width: 500px;"/> </center>
+
+There's our histogram! We can save it using `ggsave`. The units for the height and width are in inches. Unless you specify a different file path, the graph will go in your working directory. If you've forgotten where that is, you can easily find out by running `getwd()` in the console.
+
 ```r
 ggsave(duration_hist, filename = "hist1.png",
        height = 5, width = 6)
 ```
+
+<a name="purrr"></a>
+
+## 2. Automate repetitive tasks using pipes and functions
 
 ```r
 # Calculate population change for each forest population
