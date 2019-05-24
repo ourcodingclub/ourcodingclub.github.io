@@ -16,7 +16,8 @@ tags: data_manip data_vis intermediate
 #### <a href="#tidyverse"> 1. Format and manipulate large datasets </a>
 #### <a href="#purrr"> 2. Automate repetitive tasks using pipes and functions </a>
 #### <a href="#synthesis"> 3. Synthesise information from different databases </a>
-#### <a href="#panels"> 4. Create beautiful and informative figure panels </a>
+#### <a href="#download"> 4. Download occurrence data through `R` </a>
+#### <a href="#panels"> 5. Create beautiful and informative figure panels </a>
 
 <p></p>
 
@@ -618,6 +619,9 @@ For our map, we'll use a colour scheme from the `wesanderson` R package and we'l
           legend.title = element_blank(),
           legend.text = element_text(size = 12),
           legend.justification = "top"))
+	 
+# You don't need to worry about the warning messages
+# that's just cause we've overwritten the default projection
 
 ggsave(map, filename = "map1.png",
        height = 5, width = 8)
@@ -658,10 +662,12 @@ ggsave(diet_area, filename = "diet_area.png",
 
 <center> <img src="{{ site.baseurl }}/img/diet_area.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/diet_area2.png" alt="Img" style="width: 500px;"/></center>
 
-We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time!
+__We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time! We can make a timeline of the individual studies to see what time periods are best represented.__
 
 ```r
 # Timeline
+# Making the id variable a factor
+# otherwise R thinks its a number
 bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
 
 (timeline_aus <- ggplot() +
@@ -674,6 +680,10 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
     theme_bw() +
     coord_flip())
 ```
+
+Well this looks wrong! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
+
+<center> <img src="{{ site.baseurl }}/img/timeline1.png" alt="Img" style="width: 600px;"/></center>
 
 ```r
 # Create a sorting variable
@@ -688,6 +698,8 @@ bird_models_traits$sort <- factor(bird_models_traits$sort, levels = c("VertFishS
 bird_models_traits$sort <- paste0(bird_models_traits$sort, bird_models_traits$minyear)
 bird_models_traits$sort <- as.numeric(as.character(bird_models_traits$sort))
 ```
+
+This sorting variable will help us arrange the studies first by species' diet, then by when each study started.
 
 ```r
 (timeline_aus <- ggplot() +
@@ -718,14 +730,20 @@ ggsave(timeline_aus, filename = "timeline.png",
        height = 5, width = 8)
 ```
 
+<center> <img src="{{ site.baseurl }}/img/timeline2.png" alt="Img" style="width: 600px;"/></center>
+
+__For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.
+
 ```r
-# Population trends versus size
+# Combining the datasets
 mass <- bird_traits %>% dplyr::select(species.name, BodyMass.Value) %>%
   rename(mass = BodyMass.Value)
 bird_models_mass <- left_join(aus_models, mass, by = "species.name") %>%
   drop_na(mass)
 head(bird_models_mass)
 ```
+
+Now we're ready to unwrap the data present (or if you've scrolled down, I guess it's already unwrapped...).
 
 ```r
 (trends_mass <- ggplot(bird_models_mass, aes(x = log(mass), y = abs(estimate))) +
@@ -757,20 +775,28 @@ ggsave(trends_mass, filename = "trends_mass.png",
        height = 5, width = 6)
 ```
 
-__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> which we will download in `R` using the `rgbif` package.__
+<center> <img src="{{ site.baseurl }}/img/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
+
+<a name="download"></a>
+
+## 4. Download occurrence data through `R`
+
+__In this part of the tutorial, we will focus on one particular species, the emu (*Dromaius novaehollandiae*), where it has been recorded around the world, and where its populations are being monitored. We will use occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> which we will download in `R` using the `rgbif` package.__
 
 ```r
-# Data synthesis x 3 - adding in occurrence data
-# Let's see how many emu populations are included
+# Even more data synthesis - adding in occurrence data
+# and comparing it across where emus are monitored
+
+# Let's see how many emu populations are included in the Living Planet Database
 emu <- bird_pops %>% filter(common.name == "Emu") # just one!
 ```
 
-But where do emus occur and where in the range is this one monitored population?
+But where do emus occur and where in the range is this one monitored population? We can find out by donwloading occurrence records for the emu from GBIF using the `rgbif` package.
 
 ```r
 # Download species occurrence records from the Global Biodiversity Information Facility
 # *** rgbif package and the occ_search() function ***
-# You can increase the limit to get more records - 10000 takes a couple of minutes
+# You can increase or decrease the limit to get more records - 10000 takes a couple of minutes
 emu_locations <- occ_search(scientificName = "Dromaius novaehollandiae", limit = 10000,
                              hasCoordinate = TRUE, return = "data") %>%
   # Simplify occurrence data frame
@@ -778,6 +804,8 @@ emu_locations <- occ_search(scientificName = "Dromaius novaehollandiae", limit =
                 decimalLatitude, year,
                 individualCount, country)
 ```
+
+Whenever working with any data, but especially occurrence data, we should check that they make sense and are valid and appropriate coordinates for the specific species. The `CoordinateCleaner` package is an awesome resource for working with occurrence data - you can check out the methods paper for it <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13152" target="_blank">here</a>.
 
 ```r
 # We can check the validity of the coordinates using the CoordinateCleaner package
@@ -787,16 +815,24 @@ emu_locations_test <- clean_coordinates(emu_locations, lon = "decimalLongitude",
 # No records were flagged
 ```
 
+Even though the tests didn't flag up any records, we should still check if these data are fit for our purposes. In our case, we want to focus on emu occurrences in the wild, which happens only in Australia.
+
 ```r
 # We do want to focus on just Australia though, as that's the native range
 summary(as.factor(emu_locations$country))
 # Thus e.g. no German emus
 emu_locations <- emu_locations %>% filter(country == "Australia")
+```
 
+We also want to plot the location of the emu population that's part of the database we are working with.
+
+```r
 # Getting the data for the one monitored emu population
 emu_long <- bird_pops_long %>% filter(common.name == "Emu") %>%
   drop_na(pop)
 ```
+
+Now we are ready to combine them in one map and we can use the `ggrepel` package to make a nice label (rounded edges and all!) for the location of the monitored population.
 
 ```r
 (emu_map <- ggplot() +
@@ -827,6 +863,10 @@ ggsave(emu_map, filename = "emu_map.png",
        height = 5, width = 8)
 ```
 
+<center> <img src="{{ site.baseurl }}/img/timeline2.png" alt="Img" style="width: 600px;"/></center>
+
+Finally, we can also make a line graph that shows the raw abundance estimates over time for the emu population in South Australia - that'd look nice next to the map! Like we've all the previous figures, you can compare between the quick figure and the more customised one.
+
 ```r
 (emu_trend <- ggplot(emu_long, aes(x = year, y = pop)) +
     geom_line() +
@@ -851,6 +891,14 @@ ggsave(emu_trend, filename = "emu_trend.png",
        height = 5, width = 8)
 ```
 
+<center> <img src="{{ site.baseurl }}/img/emu_trend2.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/emu_trend.png" alt="Img" style="width: 500px;"/></center>
+
+<a name="panels"></a>
+
+## 5. Create beautiful and informative figure panels
+
+__We've made lots of figures now, and in line with the general theme of synthesis, we can make a few panels that combine the different figures. We'll use the `gridExtra` package for the panels, and one useful feature is that we can customise the ratios between the areas the different plots take - the default is 1:1, but we might not always want that.__
+
 ```r
 # Panels ----
 # Create panel of all graphs
@@ -859,9 +907,12 @@ ggsave(emu_trend, filename = "emu_trend.png",
 emu_panel <- grid.arrange(emu_map, emu_trend, ncol = 2)
 
 # suppressWarnings() suppresses warnings in the ggplot call here
+# (the warning messages about the map projection)
 emu_panel <- suppressWarnings(grid.arrange(emu_map, emu_trend, 
                                            ncol = 2, widths = c(1.2, 0.8)))
 ```
+
+Sometimes figures are fine as we had originally made them when they are presented on their own, but they need a bit of customisation when we include them in a panel. For example, we don't need the line graph to be so tall, so we can artificially "squish" it a bit by adding in a couple of blank lines as a plot title. Or you can add a real title if you wish.
 
 ```r
 (emu_trend <- ggplot(emu_long, aes(x = year, y = pop)) +
@@ -885,18 +936,22 @@ emu_panel <- suppressWarnings(grid.arrange(emu_map, emu_trend,
 ggsave(emu_panel, filename = "emu_panel.png", height = 6, width = 14)
 ```
 
-```r
-# More complex panels
+<center> <img src="{{ site.baseurl }}/img/emu_panel.png" alt="Img" style="width: 600px;"/></center>
 
-# Map on top, three panels below
+As a final panel, we can have a go at combining more figures and varying the layout a bit. Check out how the panel dimensions change as you run through the various options of the code chunks.
+
+```r
+# Map on top, two panels below
 diet_panel <- suppressWarnings(grid.arrange(timeline_aus,
                                             trends_diet, ncol = 2))
 diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2))
-```
+# The equal split might not be the best style for this panel
 
-```r
+# change the ratio
 diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heights = c(1.3, 0.7)))
 ```
+
+Looks okay, but there are still a few spacing issues we can solve. An easy, slightly cheating-style, way to sort out the spacing is by adding blank lines above and below graphs (in the graph title and x axis label).
 
 ```r
 (timeline_aus <- ggplot() +
@@ -922,14 +977,6 @@ diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heigh
           axis.text = element_text(size = 16), 
           axis.title = element_text(size = 20)))
 
-diet_panel <- suppressWarnings(grid.arrange(timeline_aus,
-                                            trends_diet, ncol = 2))
-diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heights = c(1.3, 0.7)))
-
-ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
-```
-
-```r
 (trends_diet <- ggplot() +
     geom_jitter(data = bird_models_traits, aes(x = diet, y = estimate,
                                                colour = diet),
@@ -968,10 +1015,19 @@ diet_panel <- suppressWarnings(grid.arrange(timeline_aus,
                                             trends_diet, ncol = 2))
 diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heights = c(1.3, 0.7)))
 
-ggsave(diet_panel_map, filename = "diet_panel2.png", height = 9, width = 10)
+ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
 ```
 
+<center> <img src="{{ site.baseurl }}/img/map_panel.png" alt="Img" style="width: 600px;"/></center>
+
+
 ## Challenges
+
+Will add the details later.
+
+I will list different options that people can explore - I won't have actual answers prepared, as the idea is that people can go in whatever direction they want, thus there is no one right answer.
+
+Some of the options will be to download IUCN data with the rredlist package and also to use the gghighlight package to highlight certain areas of graphs (or points, lines, etc.).
 
 ## Extra resources
 
