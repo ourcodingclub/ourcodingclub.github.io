@@ -494,6 +494,8 @@ head(bird_models_traits)
 
 <center> <img src="{{ site.baseurl }}/img/joined.png" alt="Img" style="width: 600px;"/> </center>
 
+__Now we can explore how bird population trends vary across different feeding strategies. The graphs below are all different ways to answer the same question. Have a ponder about which graph you like the most.__
+
 ```r
 (trends_diet <- ggplot(bird_models_traits, aes(x = diet, y = estimate,
                                                colour = diet)) +
@@ -519,17 +521,25 @@ head(bird_models_traits)
     geom_hline(yintercept = 0, linetype = "dotted", colour = "grey30"))
 ```
 
+<center> <img src="{{ site.baseurl }}/img/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
+
+To make the graph more informative, we can add a line for the overall mean population trend, and then we can easily compare how the diet-specific trends compare to the overall mean trend. We can also plot the mean trend per diet category and we can sort the graph so that it goes from declines to increases.
+
 ```r
+# Calculating mean trends per diet categories
 diet_means <- bird_models_traits %>% group_by(diet) %>%
   summarise(mean_trend = mean(estimate)) %>%
   arrange(mean_trend)
 
+# Sorting the whole data frame by the mean trends
 bird_models_traits <- bird_models_traits %>%
   group_by(diet) %>%
   mutate(mean_trend = mean(estimate)) %>%
   ungroup() %>%
   mutate(diet = fct_reorder(diet, -mean_trend))
 ```
+
+Finally, we can also use `geom_segment` to connect the points for the mean trends to the line for the overall mean, so we can judge how far off each category is from the mean.
 
 ```r
 (trends_diet <- ggplot() +
@@ -558,45 +568,37 @@ bird_models_traits <- bird_models_traits %>%
   guides(colour = FALSE, fill = FALSE))
 ```
 
+<center> <img src="{{ site.baseurl }}/img/trends_diet.png" alt="Img" style="width: 500px;"/></center>
+
+Like before, we can save the graph using `ggsave`.
 ```r
 ggsave(trends_diet, filename = "trends_diet.png",
        height = 5, width = 8)
 ```
 
+__When working with lots of data, another common type of data visualisation is a map so that we can see where all the different studies come from.__
+
 ```r
-# Map
+# Get the shape of Australia
 australia <- map_data("world", region = "Australia")
 
-# the populations which don't have trait data
-bird_models_no_traits <- anti_join(aus_models, bird_diet, by = "species.name") %>%
-  drop_na()
+# Make an object for the populations which don't have trait data
+# so that we can plot them too
+# notice the use of anti_join that only returns rows
+# in the first data frame that don't have matching rows
+# in the second data frame
+bird_models_no_traits <- anti_join(aus_models, bird_diet, by = "species.name")
 ```
+
+For our map, we'll use a colour scheme from the `wesanderson` R package and we'll also jitter the points a bit so that there is less overlap. We'll also rename the diet categories just for the legend. We'll use the Mercator projection, which is not the best for global maps, but works fine for just Australia. The `coord_proj` function is very useful (it's from the `ggalt` package as it allows us to use a wide variety of projections. You can find the full list <a href="https://proj4.org/operations/projections/index.html" target="_blank">here, once you've found the one you want, you just need to copy the projection string for it and replace `+proj=merc` with the one you want.
+
 
 ```r
 (map <- ggplot() +
     geom_map(map = australia, data = australia,
              aes(long, lat, map_id = region), 
              color = "gray80", fill = "gray80", size = 0.3) +
-    coord_proj(paste0("+proj=merc"), ylim = c(-9, -45)) +
-    theme_map() +
-    geom_point(data = bird_models_no_traits, 
-               aes(x = decimal.longitude, y = decimal.latitude)) +
-    geom_point(data = bird_models_traits, 
-               aes(x = decimal.longitude, y = decimal.latitude, colour = diet)) +
-    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
-    scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-    # guides(colour = FALSE) +
-    theme(legend.position = "bottom",
-          legend.title = element_text(size = 16),
-          legend.text = element_text(size = 10),
-          legend.justification = "top"))
-```
-
-```r
-(map <- ggplot() +
-    geom_map(map = australia, data = australia,
-             aes(long, lat, map_id = region), 
-             color = "gray80", fill = "gray80", size = 0.3) +
+    # you can change the projection here
     coord_proj(paste0("+proj=merc"), ylim = c(-9, -45)) +
     theme_map() +
     geom_point(data = bird_models_no_traits, 
@@ -621,10 +623,16 @@ ggsave(map, filename = "map1.png",
        height = 5, width = 8)
 ```
 
+<center> <img src="{{ site.baseurl }}/img/map1.png" alt="Img" style="width: 600px;"/></center>
+
+Knowing the sample size for each diet category is another useful bit of information, especially to support the spirit of open and transparent science. We can use `group_by()` and `tally()` to get the sample size numbers.
+
 ```r
 diet_sum <- bird_models_traits %>% group_by(diet) %>%
   tally()
 ```
+
+Now that we know the numbers, we can visualise them. A barplot would be a classic way to do that, the second option present here - the area graph - is another option. Both can work well depending on the specific occasion, but the area graph does a good job at quickly communicating which categories are overrepresented and which - underrepresented.
 
 ```r
 (diet_bar <- ggplot(diet_sum, aes(x = diet, y = n,
@@ -634,9 +642,7 @@ diet_sum <- bird_models_traits %>% group_by(diet) %>%
     scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1")) +
     guides(fill = FALSE))
-```
 
-```r
 (diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
                                  subgroup = diet)) +
     geom_treemap() +
@@ -649,6 +655,10 @@ diet_sum <- bird_models_traits %>% group_by(diet) %>%
 ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
 ```
+
+<center> <img src="{{ site.baseurl }}/img/diet_area.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/diet_area2.png" alt="Img" style="width: 500px;"/></center>
+
+We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time!
 
 ```r
 # Timeline
