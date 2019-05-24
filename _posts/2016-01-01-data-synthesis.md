@@ -10,6 +10,7 @@ tags: data_manip data_vis intermediate
 
 <center> <img src="{{ site.baseurl }}/img/tutheader_synthesis.png" alt="Img"> </center>
 
+<p></p>
 ### Tutorial Aims:
 
 #### <a href="#tidyverse"> 1. Format and manipulate large datasets </a>
@@ -25,11 +26,13 @@ __The goal of this tutorial is to advance skills in working efficiently with dat
 
 </div>
 
-## This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the <a href="https://sites.google.com/site/robresearchsite/" target="_blank">SalGo Population Ecology Team</a>.
+#### This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the <a href="https://sites.google.com/site/robresearchsite/" target="_blank">SalGo Population Ecology Team</a>.
 
 ### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-oxford" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 <a name="tidyverse"></a>
+
+## 1. Format and manipulate large datasets
 
 <b>Across the tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
@@ -98,6 +101,7 @@ We can check out what the data look like now, either by clicking on the objects 
 __The data are in a wide format (each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year) and the column names are capitalised. Whenever working with data from different sources, chances are each dataset will follow a different column naming system, which can get confusing later on, so in general it is best to pick whatever naming system works for you and apply that to all datasets before you start working with them.__
 
 ```r
+# Data formatting ----
 # Rename variable names for consistency
 names(bird_pops)
 names(bird_pops) <- tolower(names(bird_pops))
@@ -181,12 +185,21 @@ As we probably all expected, a lot of the data come from Western European and No
 To get just the Australian data, we can use the `filter()` function. To be on the safe side, we can also combine it with `str_detect()`. The difference is that filter on its own will extract any rows with "Australia", but it will miss rows that have e.g. "Australia / New Zealand" - occasions when the population study included multiple countries. In this case though, both ways of filtering return the same number of rows, but always good to check.
 
 ```r
+# Data extraction ----
 aus_pops <- bird_pops_long %>%
   filter(country.list == "Australia")
 
 aus_pops <- bird_pops_long %>%
   filter(str_detect(country.list, pattern = "Australia"))
 ```
+
+<div class="bs-callout-blue" markdown="1">
+
+__Managing long scripts:__ Lines of code pile up quickly! There is an outline feature in `RStudio` that makes long scripts more organised and easier to navigate. You can make a subsection by writing out a comment and adding four or more characters after the text, e.g. `# Section 1 ----`. If you've included all of the comments from the tutorial in your own script, you should already have some sections.
+
+</div>
+
+<center> <img src="{{ site.baseurl }}/img/ouline.png" alt="Img" style="width: 600px;"/> </center>
 
 Now that we have our Australian bird population studies, we can learn more about the data by visualising the variation in study duration. Earlier on, we filtered to only include studies with more than five years of data, but it's still useful to know how many studies have six years of data, and how many have much more.
 
@@ -202,6 +215,10 @@ __An important note about graphs made using `ggplot2`: you'll notice that throug
 <center> <img src="{{ site.baseurl }}/img/hist1a.png" alt="Img" style="width: 500px;"/> </center>
 
 This graph just uses all the `ggplot2` default settings. It's fine if you just want to see the distribution and move on, but if you plan to save the graph and share it with other people, we can make it way better. The figure beautification journey!
+
+<b> When using `ggplot2`, you usually start your code with `ggplot(your_data, aes(x = independent_variable, y = dependent_variable))`, then you add the type of plot you want to make using `+ geom_boxplot()`, `+ geom_histogram()`, etc. `aes` stands for aesthetics, hinting to the fact that using `ggplot2` you can make aesthetically pleasing graphs - there are many `ggplot2` functions to help you clearly communicate your results, and we will now go through some of them.</b>
+
+<b>When we want to change the colour, shape or fill of a variable based on another variable, e.g. colour-code by species, we include `colour = species` inside the `aes()` function. When we want to set a specific colour, shape or fill, e.g. `colour = "black"`, we put that outside of the `aes()` function.</b>
 
 ```r
 (duration_hist <- ggplot() +
@@ -307,6 +324,18 @@ ggsave(duration_hist, filename = "hist1.png",
 
 ## 2. Automate repetitive tasks using pipes and functions
 
+We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
+
+__One specific thing to note is that when you add the `lm()` function in a pipe, you have to add `data = .`, which means use the outcome of the previous step in the pipe for the model.__
+
+<div class="bs-callout-blue" markdown="1">
+
+__A piping tip:__ A useful way to familiriase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to e.g., the `do()` function, then up to the `tidy()` function and so on. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `do(mod = lm(scalepop ~ year, data = .))` and *not* the whole `do(mod = lm(scalepop ~ year, data = .)) %>%`.
+
+__Running pipes gradually also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
+
+</div>
+
 ```r
 # Calculate population change for each forest population
 # 4331 models in one go!
@@ -332,17 +361,21 @@ aus_models <- aus_pops %>%
   ungroup()
 
 head(aus_models)
+# Check out the model data frame
 ```
 
-```r
-# PART 2: Using pipes to make figures with large datasets ----
+<center> <img src="{{ site.baseurl }}/img/model_df.png" alt="Img" style="width: 600px;"/> </center>
 
-# Make histograms of slope estimates for each biome -----
+__Next up, we will focus on automating iterative actions, for example when we want to create the same type of graph for different subsets of our data. In our case, we will make histograms of the population change experienced by birds across three different systems - marine, freshwater and terrestrial. When making multiple graphs at once, we have to specify the folder where they will be saved first.__
+
+```r
+# Make histograms of slope estimates for each system -----
 # Set up new folder for figures
 # Set path to relevant path on your computer/in your repository
-path1 <- "biome_histograms/"
+path1 <- "system_histograms/"
 # Create new folder
-dir.create(path1)
+dir.create(path1) # skip this if you want to use an existing folder
+# but remember to replace the path in "path1" if you're changing the folder
 
 # First we will do this using dplyr and a pipe
 aus_models %>%
@@ -362,6 +395,17 @@ aus_models %>%
             filename = gsub("", "", paste0(path1, unique(as.character(.$system)),
                                            ".pdf")), device = "pdf"))
 ```
+A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not NULL` - you can ignore this, it's because the `do()` function expects a data frame as an output, but in our case we are making graphs, not data frames.
+
+Check out your folder, you should see three graphs in there! You can use pipes to make way more than just three graphs at once, it just so happens that our grouping variable has only three levels, but if it had thirty levels, there would be thirty graphs in the folder.
+
+<center> <img src="{{ site.baseurl }}/img/folder.png" alt="Img" style="width: 600px;"/> </center>
+
+Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
+
+But what is `purrr`? __It is a way to "map" or "apply" functions to data. Note that there are functions from other packages also called `map()`, which is why we are specifying we want the `map()` function from the `purrr` package. Here we will first format the data `taxa.slopes` and then we will map it to the mean fuction:__
+
+We have to change the format of the data, in our case we will split the data using `spread()` from the `tidyr` package.
 
 ```r
 # Selecting the relevant data and splitting it into a list
@@ -370,6 +414,7 @@ aus_models_wide <- aus_models %>%
   spread(system, estimate) %>%
   dplyr::select(-id)
 
+# We can apply the `mean` function using `purrr::map()`:
 system.mean <- purrr::map(aus_models_wide, ~mean(., na.rm = TRUE))
 # Note that we have to specify "."
 # so that the function knows to use our taxa.slopes object
@@ -377,8 +422,10 @@ system.mean <- purrr::map(aus_models_wide, ~mean(., na.rm = TRUE))
 system.mean
 ```
 
+Now we can write our own function to make histograms and use the `purrr` package to apply it to each taxa.
+
 ```r
-### Intro to the purrr package ----
+### Functional programming ----
 
 # First let's write a function to make the plots
 # *** Functional Programming ***
@@ -397,15 +444,26 @@ plot.hist <- function(x) {
 }
 ```
 
+__Now we can use purr to "map" our figure making function. The first input is your data that you want to iterate over and the second input is the function.__
+
 ```r
 system.plots <- purrr::map(aus_models_wide, ~plot.hist(.))
 # We need to make a new folder to put these figures in
-path2 <- "biome_histograms_purrr/"
+path2 <- "system_histograms_purrr/"
 dir.create(path2)
+```
 
+__We've learned about `map()`, but there are other `purrr` functions,too, and we still need to actually save our graphs.
+`walk2()` takes two arguments and returns nothing. In our case we just want to print the graphs, so we don't need anything returned. The first argument is our file path, the second is our data and ggsave is our function.__
+
+```r
 # *** walk2() function in purrr from the tidyverse ***
 walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 ```
+
+<a name="tidyverse"></a>
+
+## 3. Synthesise information from different databases
 
 ```r
 # Linking with other databases - traits! ----
@@ -673,6 +731,8 @@ head(bird_models_mass)
 ggsave(trends_mass, filename = "trends_mass.png",
        height = 5, width = 6)
 ```
+
+__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> which we will download in `R` using the `rgbif` package.__
 
 ```r
 # Data synthesis x 3 - adding in occurrence data
