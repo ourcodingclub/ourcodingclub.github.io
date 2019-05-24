@@ -863,7 +863,7 @@ ggsave(emu_map, filename = "emu_map.png",
        height = 5, width = 8)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/timeline2.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/emu_map.png" alt="Img" style="width: 600px;"/></center>
 
 Finally, we can also make a line graph that shows the raw abundance estimates over time for the emu population in South Australia - that'd look nice next to the map! Like we've all the previous figures, you can compare between the quick figure and the more customised one.
 
