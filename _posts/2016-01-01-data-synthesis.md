@@ -1023,11 +1023,11 @@ ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
 
 ## Challenges
 
-Will add the details later.
+Take what you have learned about pipes and make a map of the five most well-sampled bird populations in the LPD database (the ones with the most replicate populations) and colour code the points by the population trend (derived from the models we did) and the size by the duration of the time series. Use another projection for the map - the default is Mercator, but that’s not the best way to represent the world. Hint - you can still use `ggplot2` - look up the `ggalt` package.
 
-I will list different options that people can explore - I won't have actual answers prepared, as the idea is that people can go in whatever direction they want, thus there is no one right answer.
+Pick a country and species of your choice. Download the GBIF records for that species from your selected country (or you can do the world if you don’t mind waiting a few more minutes for the GBIF data to download). Plot where the species occurs. Then, add the locations of the Living Planet Database populations of the same species - do we have long-term records from the whole range of the species? Where are the gaps? From what time period are the species occurrence records? Can you colour code the points by whether they are in the first half of the period or the second? You can have a go at highlighting certain records using the `gghighlight` package (you can find out more about it on its <a href="https://github.com/yutannihilation/gghighlight" target="_blank">GitHub repo</a>).
 
-Some of the options will be to download IUCN data with the rredlist package and also to use the gghighlight package to highlight certain areas of graphs (or points, lines, etc.).
+Can you think of any data you can combine with some of the data from the tutorial in a meaningful way? If looking at the graphs from the tutorial has spurred further questions in your head, have a go at integrating the data from the tutorial with a new dataset and create a panel combining at least two figures.
 
 ## Extra resources
 
