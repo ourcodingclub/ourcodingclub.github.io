@@ -639,8 +639,7 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     geom_treemap_subgroup_border(colour = "white", size = 1) +
     geom_treemap_text(colour = "white", place = "center", reflow = T) +
     scale_colour_manual(values = wes_palette("Cavalcanti1")) +
-    scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-    guides(fill = FALSE))
+    scale_fill_manual(values = wes_palette("Cavalcanti1")))
 
 ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
