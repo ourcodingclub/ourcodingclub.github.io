@@ -241,8 +241,9 @@ Now imagine you want to have a darker blue outline around the whole histogram - 
 
 ```r
 # Adding an outline around the whole histogram
-h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1))
+h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1), plot = FALSE)
 d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))  
+d1 <- rbind(c(5,0), d1)
 ```
 
 __When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
