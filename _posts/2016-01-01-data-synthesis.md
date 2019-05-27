@@ -506,20 +506,6 @@ __Now we can explore how bird population trends vary across different feeding st
                                                       colour = diet)) +
     geom_jitter(size = 3, alpha = 0.3, width = 0.2))
 
-(trends_diet <- ggplot() +
-    geom_jitter(data = bird_models_traits, aes(x = diet, y = estimate,
-                                               colour = diet),
-                size = 3, alpha = 0.3, width = 0.2) +
-    geom_segment(data = diet_means,aes(x = diet, xend = diet,
-                                       y = mean(bird_models_traits$estimate), 
-                                       yend = mean_trend),
-                 size = 0.8) +
-    geom_point(data = diet_means, aes(x = diet, y = mean_trend,
-                                      fill = diet), size = 5,
-               colour = "grey30", shape = 21) +
-    geom_hline(yintercept = mean(bird_models_traits$estimate), 
-               size = 0.8, colour = "grey30") +
-    geom_hline(yintercept = 0, linetype = "dotted", colour = "grey30"))
 ```
 
 <center> <img src="{{ site.baseurl }}/img/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
