@@ -597,7 +597,6 @@ For our map, we'll use a colour scheme from the `wesanderson` R package and we'l
                aes(x = decimal.longitude, y = decimal.latitude, fill = diet),
                alpha = 0.8, size = 4, colour = "grey30", shape = 21,
                position = position_jitter(height = 0.5, width = 0.5)) +
-    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1"),
                       labels = c("Carnivore", "Fruigivore", "Omnivore", "Insectivore", "Herbivore")) +
    # guides(colour = FALSE) + # if you wanted to hide the legend
