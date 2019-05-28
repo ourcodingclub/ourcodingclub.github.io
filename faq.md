@@ -11,7 +11,7 @@ permalink: /faq/
    
 details {
     border: 1px solid #aaa;
-  	background: b1d0da;
+  	background: #b1d0da;
     border-radius: 4px;
     padding: .5em .5em 0;
 }
@@ -28,13 +28,13 @@ details[open] {
 }
 
 details[open] summary {
-  	background: b1d0da;
+  	background: #b1d0da;
     border-bottom: 1px solid #aaa;
     margin-bottom: .5em;
 }
 
 intro {
-   padding: 25px 100px;
+   padding: 100px 25px;
 }
    </style>
 </head>
@@ -84,12 +84,15 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
  <details>
    <summary markdown= "span"> Loading data and packages </summary>
 __Saving and loading your script again__
+
 You should always be typing your code into a script file in order to produce a reproducible record of your analysis; if you only type in the console, R will not save your work! You should save your script often to avoid any problems. To save, click the icon at the top of your R Script to save as an .Rdata file. Here you will have to choose a file name. Try to avoid spaces and capital letters, as R can get confused by these! Save the file to your working directory so it will be easy to locate whenever you need it next. To load your script again, go to _File > Open File_ and choose your script. It should open on a new script tab in RStudio.
 
 __Saving CSV files__
+
 A CSV, or a comma-separated values file, contains values as a series of rows organised so that each column is separated by a comma. If your data is entered in Excel, you can save it as a CSV file by clicking on _Save As_ and then choosing CSV as your file extension. CSV files are often easier to work with in R.
 
 __Loading packages__
+
 R contains thousands of different packages which allow you to do many different things, ranging from mapping to machine learning to web scraping. The best way to find out about what packages may be helpful to you is to do a google search and/or search the <a href="https://cran.r-project.org/web/packages/" target="_blank"> CRAN website </a>. Once you have found your package, you must first install it on your machine and then call it in your script:
 
 ```r
@@ -111,15 +114,17 @@ library(dplyr)
 
 
 __Writing clean code__
+
 R code should be easy to  read, share and verify. Aim to keep your object naming conventions consistent across your script and make sure to comment your code using a hashtag. For extensive guidelines, please consult Google's R style guide <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">here</a>.
 
 __Helpful tutorials__
 
-    <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank"> Introduction to R </a>
-    <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> Troubleshooting R </a>
-    <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank"> Coding Etiquette </a>
+   <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank"> Introduction to R </a>
+   <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> Troubleshooting R </a>
+   <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank"> Coding Etiquette </a>
 
 __Useful commands for RStudio__
+
 In order to clean your global environment (all the objects, functions etc. you have created), you can execute the following command in your console: `rm(list=ls())`. To clear your console, you can execute this command `cat("\014")`. 
 
  </details> 
