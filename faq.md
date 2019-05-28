@@ -71,10 +71,8 @@ permalink: /faq/
 </section>
 
 
-<section id="intro" markdown="1">
-    
     <!-- Basic skills -->
-
+<section id="intro" markdown="1">
 ## Basic skills (first way: like tutorials)
 
 <details>
