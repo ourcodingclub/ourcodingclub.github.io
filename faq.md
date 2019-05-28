@@ -62,7 +62,7 @@ intro .block h2 {
 
 {::options parse_block_html="true" /}
 
-<div style="padding: 0px 100px;">
+<div style="padding: 20px 100px;">
 
 <!-- Basic skills -->
 
@@ -143,8 +143,8 @@ In order to clean your global environment (all the objects, functions etc. you h
 
 
 <!-- Data manipulation  -->
-<section id="intro" markdown="1">
-## Data manipulation
+
+## Data manipulation (do we even need sections?)
 
   <details>
    <summary markdown= "span"> Another question </summary>
@@ -167,11 +167,10 @@ In order to clean your global environment (all the objects, functions etc. you h
  </details>
  <br>
  
-</section>
 
 
 <!-- Data viz  -->
-<section id="intro" markdown="1">
+
 ## Data visualisation
 
   <details>
@@ -195,7 +194,7 @@ In order to clean your global environment (all the objects, functions etc. you h
  </details>
  <br>
  
-</section>
+
 
 
 <!-- Modelling  -->
