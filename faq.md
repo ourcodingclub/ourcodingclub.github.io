@@ -36,6 +36,8 @@ details[open] summary {
 intro {
    padding: 100px;
 }
+   </style>
+</head>
 
 
 <!-- Slider -->
