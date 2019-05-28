@@ -1,0 +1,167 @@
+--- 
+layout: page 
+title: FAQ 
+permalink: /faq/ 
+---
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- CSS Style -->
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+        .accordion:after {
+            content: '\02795';
+            /* Unicode character for "plus" sign (+) */
+            font-size: 13px;
+            color: #777;
+            float: right;
+            margin-left: 5px;
+        }
+        .active:after {
+            content: "\2796";
+            /* Unicode character for "minus" sign (-) */
+        }
+        code {
+            color: black;
+        }
+        .code-container {
+            background-color: #f2f3f4;
+            border: solid;
+            border-radius: 0.25em;
+            border-width: 0.5px;
+            border-color: lightgray;
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0pt;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 75%;
+            max-height: 75%;
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
+        .highlight-red {
+            padding: 2px 4px;
+            font-size: 90%;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            border-radius: 4px;
+        }
+        .indent {
+            display: inline-block;
+            text-indent: 2em;
+        }
+        .comment {
+            color: gray;
+        }
+        .credit-footer {
+            text-align: center;
+            color: gray;
+        }
+        @media only screen and (max-width: 600px) {
+            .code-container {
+                margin-bottom: 2em;
+            }
+    </style>
+</head>
+
+
+<!-- Slider -->
+
+<section id="global-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h1>Questions & Answers</h1>
+                    <b><p><big> Here we have collated answers to some of the questions we encounter most often during our workshops. We will continue expanding this page, so feel free to suggest additions to the content!</big></p></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<div class="container">
+   
+    <!-- Basic skills -->
+    <div class="row">
+        <h2>Basic skills</h2>
+        <p>Click on the buttons to open the collapsible content.</p>
+        
+<details>
+   <summary markdown= "span"> 
+        <button class="accordion">Setting up your workspace</button></summary>
+        <div class="panel">
+           <summary markdown= "block"> 
+            <p>First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.<br/></p>
+
+```r
+# Identify your current directory
+getwd()
+
+# Set your working directory
+setwd("insert folder path")
+```
+            <p>Alternatively you can set it from the menu: <em>Session > Set Working Directory > Choose Directory.</em> For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`</p>
+            </summary>
+         </div>
+ </details>
+</div>
+</div>
+
+    <div class="credit-footer">
+       <p> Do you have feedback or a question for us? <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRxJnDZXRmVao8r8MrpjEKkOl62EC1pYAkKcjepXO3ZR8GNQ/viewform?usp=sf_link" target="_blank">Please fill out our survey!</a></li>
+       <p> <img src="{{ site.baseurl }}/img/spa.jpg">
+        <p>This page was developed by Izzy Rich and Sam Kellerhals and was supported through the Student Partnership Agreement at the University of Edinburgh.</p>
+    </div>
+    <!-- Accordion Script -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</div>
