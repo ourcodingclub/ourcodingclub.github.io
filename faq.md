@@ -34,7 +34,13 @@ details[open] summary {
 }
 
 intro {
-   padding: 0px 80px;
+   padding: 0px 80px !important; 
+}
+
+intro .block h2 {
+  padding-top: 5px;
+  line-height: 27px;
+  margin: 0;
 }
    </style>
 </head>
@@ -120,7 +126,9 @@ R code should be easy to  read, share and verify. Aim to keep your object naming
 __Helpful tutorials__
 
    <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank"> Introduction to R </a>
+   
    <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> Troubleshooting R </a>
+   
    <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank"> Coding Etiquette </a>
 
 __Useful commands for RStudio__
