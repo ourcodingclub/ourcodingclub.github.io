@@ -34,7 +34,7 @@ details[open] summary {
 }
 
 intro {
-   padding: 100px 25px;
+   padding: 10px 80px;
 }
    </style>
 </head>
@@ -56,7 +56,7 @@ intro {
 
 {::options parse_block_html="true" /}
 
-<div style="padding:100px;">
+<div style="padding: 20px 100px;">
 
 <!-- Basic skills -->
 
