@@ -5,7 +5,6 @@ date: 2015-03-26 00:00:00
 author: Izzy Rich & Sam Kellerhals 
 permalink: /faq/
 ---
-{::options parse_block_html="true" /}
 
 <head>
    <style>
@@ -71,6 +70,7 @@ permalink: /faq/
     </div>
 </section>
 
+{::options parse_block_html="true" /}
 
 <!-- Basic skills -->
 <section id="intro" markdown="1">
@@ -97,12 +97,13 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
 </section>
 
 
-<!-- Basic skills -->
+<!-- Basic skills 2nd try -->
 <section id="intro" markdown="1">
 ## Hybrid way (tutorials + CSS)
 
 <details>
-   <summary markdown= "span"> <button class="collapsible"> Setting up your workspace </button></summary>
+ <button class="collapsible"><summary markdown= "span">Setting up your workspace </summary></button>
+    
     <summary markdown= "block"> 
 
 First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.
