@@ -8,6 +8,31 @@ permalink: /faq/
 
 <head>
    <style>
+   
+details {
+    border: 1px solid #aaa;
+  	background: #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+details[open] {
+    padding: .5em;
+  	background: #fff;
+}
+
+details[open] summary {
+  	background: #aaa;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+}
+
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -102,7 +127,7 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
 ## Hybrid way (tutorials + CSS)
 
 <details>
- <button class="collapsible"><summary markdown= "span">Setting up your workspace </summary></button>
+ <summary markdown= "span">Setting up your workspace </summary>
     
     <summary markdown= "block"> 
 
@@ -118,7 +143,7 @@ setwd("insert folder path")
 
 Alternatively you can set it from the menu: _Session > Set Working Directory > Choose Directory_. For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`
 
-</summary>   
+   </summary>   
  </details>
 </section>
 
