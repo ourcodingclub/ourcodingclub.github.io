@@ -980,6 +980,10 @@ footer .footer-manu ul li a:hover {
   color: #ffffff;
   line-height: 1.8;
 }
+# emphasis a {
+  text-decoration: none !important;
+  color: #f6ed95;
+}
 # emphasis a:active {
   text-decoration: none !important;
   color: #f6ed95;

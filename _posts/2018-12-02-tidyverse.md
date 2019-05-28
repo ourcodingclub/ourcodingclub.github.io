@@ -17,7 +17,7 @@ tags: data_manip data_vis github
 #### <a href="#mapping"> 4. Download and map data from large datasets </a>
 
 <p></p>
-<center> <img src="{{ site.baseurl }}/img/bes_qe.png" alt="Img" style="width: 700px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/bes_qe.png" alt="Img"> </center>
 
 ## This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. <a href="https://bes-qsig.github.io" target="_blank">Check out the QE SIG website for more info!</a>
 You can follow the BES QE SIG on <a href="https://twitter.com/BES_QE_SIG" target="_blank">Twitter</a>, too.	
@@ -437,7 +437,7 @@ LPD_biome_sum <- LPD_long2 %>%
             dominant_sampling_method = names(which.max(table(sampling.method))),
             # Model unit type
             dominant_units = names(which.max(table(units)))) %>%
-  # Remove any groupings you've greated in the pipe
+  # Remove any groupings you've created in the pipe
   ungroup()
 
 # Take a look at some of the records
