@@ -11,7 +11,7 @@ permalink: /faq/
    
 details {
     border: 1px solid #aaa;
-  	background: #aaa;
+  	background: #75c0d8;
     border-radius: 4px;
     padding: .5em .5em 0;
 }
@@ -28,7 +28,7 @@ details[open] {
 }
 
 details[open] summary {
-  	background: #aaa;
+  	background: #75c0d8;
     border-bottom: 1px solid #aaa;
     margin-bottom: .5em;
 }
@@ -103,7 +103,6 @@ details[open] summary {
 
 <details>
    <summary markdown= "span"> Setting up your workspace </summary>
-    <summary markdown= "block"> 
 
 First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.
 
@@ -117,12 +116,12 @@ setwd("insert folder path")
 
 Alternatively you can set it from the menu: _Session > Set Working Directory > Choose Directory_. For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`
 
-</summary>   
  </details> <br>
 </section>
 
 
 <!-- Basic skills 2nd try -->
+<div style="padding:300px;">
 <section id="intro" markdown="1">
 ## Hybrid way (tutorials + CSS)
 
@@ -146,7 +145,7 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
    </summary>   
  </details>
 </section>
-
+</div>
 
 <!-- Data manip -->
 <div class="row">
