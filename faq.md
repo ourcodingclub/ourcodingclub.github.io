@@ -34,11 +34,11 @@ details[open] summary {
 }
 
 intro {
-   padding: 0px 80px !important; 
+   padding: 0px 80px; 
 }
 
 intro .block h2 {
-  padding-top: 5px;
+  padding-top: 15px;
   line-height: 27px;
   margin: 0;
 }
@@ -66,7 +66,6 @@ intro .block h2 {
 
 <!-- Basic skills -->
 
-<section id="intro" markdown="1">
 ## Basic skills
 
 <details>
@@ -139,12 +138,10 @@ In order to clean your global environment (all the objects, functions etc. you h
  <br>
  
 
-</section>
-
 
 <!-- Data manipulation  -->
 
-## Data manipulation (do we even need sections?)
+## Data manipulation
 
   <details>
    <summary markdown= "span"> Another question </summary>
@@ -196,9 +193,8 @@ In order to clean your global environment (all the objects, functions etc. you h
  
 
 
-
 <!-- Modelling  -->
-<section id="intro" markdown="1">
+
 ## Modelling basics
 
   <details>
@@ -222,7 +218,7 @@ In order to clean your global environment (all the objects, functions etc. you h
  </details>
  <br>
  
-</section>
+
 
 </div>
 
