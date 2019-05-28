@@ -33,52 +33,9 @@ details[open] summary {
     margin-bottom: .5em;
 }
 
-.collapsible {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
+intro {
+   padding: 100px;
 }
-
-.active, .collapsible:hover {
-  background-color: #ccc;
-}
-
-.collapsible:after {
-  content: '\02795';
-  font-size: 13px;
-  color: white;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2796"; 
-}
-
-   </style>
-</head>
-
-<script>
-        var acc = document.getElementsByClassName("collapsible");
-        var i;
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        }
-</script>
 
 
 <!-- Slider -->
@@ -128,7 +85,6 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
 <details>
  <summary markdown= "span">Setting up your workspace </summary>
     
-    <summary markdown= "block"> 
 
 First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.
 
@@ -142,32 +98,8 @@ setwd("insert folder path")
 
 Alternatively you can set it from the menu: _Session > Set Working Directory > Choose Directory_. For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`
 
-   </summary>   
+ 
  </details>
 </section>
 </div>
 
-<!-- Data manip -->
-<div class="row">
-## Data manipulation (second way; javascript)
-
- <button class="collapsible"> Structure your dataset </button>
-   <div class="panel">
-      <summary markdown= "block"> 
-      
-      <p>Lorem ipsum...</p>
-  
-  ```r
-  # some code
-  code(code)
-  ```
- And some text
-   
-      </summary> 
-   <div>
-</div>
-
-## Another section
-
-</div>
- 
