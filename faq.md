@@ -56,9 +56,12 @@ intro {
 
 {::options parse_block_html="true" /}
 
+<div style="padding:100px;">
+
 <!-- Basic skills -->
+
 <section id="intro" markdown="1">
-## Basic skills (first way: like tutorials)
+## Basic skills
 
 <details>
    <summary markdown= "span"> Setting up your workspace </summary>
@@ -76,16 +79,33 @@ setwd("insert folder path")
 Alternatively you can set it from the menu: _Session > Set Working Directory > Choose Directory_. For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`
 
  </details> <br>
+ 
+ <details>
+   <summary markdown= "span"> Another question </summary>
+
+First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.
+
+```r
+# Identify your current directory
+getwd()
+
+# Set your working directory
+setwd("insert folder path")
+```
+
+Alternatively you can set it from the menu: _Session > Set Working Directory > Choose Directory_. For `setwd()`, inside the brackets you should input your file path as follows `setwd("C:/Documents/Directory")`
+
+ </details> <br>
+ 
 </section>
 
 
-<!-- Basic skills 2nd try -->
-<div style="padding:300px;">
+<!-- Second section  -->
 <section id="intro" markdown="1">
-## Hybrid way (tutorials + CSS)
+## A new section
 
 <details>
- <summary markdown= "span">Setting up your workspace </summary>
+ <summary markdown= "span">Another question </summary>
     
 
 First of all, what is a working directory? This is the folder that R will look into to find data and save any plots or scripts. To find out where your working directory currently is and to change it see the code below.
@@ -103,5 +123,7 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
  
  </details>
 </section>
+
+
 </div>
 
