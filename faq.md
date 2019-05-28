@@ -71,10 +71,9 @@ permalink: /faq/
 </section>
 
 
-<div class="container">
+<section id="intro" markdown="1">
     
     <!-- Basic skills -->
-    <div class="row">
 
 ## Basic skills (first way: like tutorials)
 
@@ -96,7 +95,7 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
 
 </summary>   
  </details> <br>
-</div>
+</section>
 
 <!-- Data manip -->
 <div class="row">
