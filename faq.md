@@ -40,20 +40,19 @@ permalink: /faq/
 </head>
 
 <script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-} 
+        var acc = document.getElementsByClassName("collapsible");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
 </script>
 
 
@@ -70,6 +69,12 @@ for (i = 0; i < coll.length; i++) {
         </div>
     </div>
 </section>
+
+
+<div class="container">
+    
+    <!-- Basic skills -->
+    <div class="row">
 
 ## Basic skills (first way: like tutorials)
 
@@ -91,23 +96,29 @@ Alternatively you can set it from the menu: _Session > Set Working Directory > C
 
 </summary>   
  </details> <br>
+</div>
 
-
+<!-- Data manip -->
+<div class="row">
 ## Data manipulation (second way; javascript)
 
  <button class="collapsible"> Structure your dataset </button>
-
-<summary markdown= "block"> 
-  <p>Lorem ipsum...</p>
+   <div class="panel">
+      <summary markdown= "block"> 
+      
+      <p>Lorem ipsum...</p>
   
   ```r
   # some code
   code(code)
   ```
  And some text
-</summary> 
- 
+   
+      </summary> 
+   <div>
+</div>
+
 ## Another section
 
-
+</div>
  
