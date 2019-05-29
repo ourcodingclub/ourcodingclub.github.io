@@ -124,11 +124,11 @@ R code should be easy to  read, share and verify. Aim to keep your object naming
 
 __Helpful tutorials__
 
-   <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank"> Introduction to R </a>
+   - <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank"> Introduction to R </a>
    
-   <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> Troubleshooting R </a>
+   - <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> Troubleshooting R </a>
    
-   <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank"> Coding Etiquette </a>
+   - <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank"> Coding Etiquette </a>
 
 __Useful commands for RStudio__
 
@@ -144,23 +144,123 @@ In order to clean your global environment (all the objects, functions etc. you h
 ## Data manipulation
 
   <details>
-   <summary markdown= "span"> Another question </summary>
+   <summary markdown= "span"> Structuring datasets </summary>
+
+When working with data, it is very important to keep it in the correct format to allow for easy and effective analysis, data visualisation and ultimately, to find an answer to your research question! To become more effective at preparing and cleaning your data, it is important to familiarise yourself with the principles of "tidy data", which provide a standard way to organise data values within a dataset that allows for easy manipulation. The three main principles are listed below.
+
+   1. Each variable forms a column.
+   
+   2. Each observation forms a row.
+   
+   3. Each type of observational unit forms a table.
+
+Please see Hadley Wickham's <a href="http://vita.had.co.nz/papers/tidy-data.pdf" target="_blank">academic paper</a> or a <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" target="_blank">condensed article</a> on tidy data and how to implement it. Below you will find some example code on how to convert messy data to tidy data, using functions from the `tidyr` and `dplyr` packages.
+
+```r
+# Loading required packages
+library(tidyr)
+library(dplyr)
+
+# Loading dataframe
+iris <- as.data.frame(iris)
+```
+<center> <img src="https://ourcodingclub.github.io/img/iris1.png" alt="Img" style="width: 400px;"/> </center>
+
+```r
+# Converting iris df to wide dataframe (messy data)
+iris.wide <- iris %>%
+select(Species, Petal.Width) %>% # Selecting only two columns
+filter(Species == "setosa") %>% # Filtering column for one species
+```
+<center> <img src="https://ourcodingclub.github.io/img/iris2.png" alt="Img" style="width: 400px;"/> </center>
+
+```r
+ mutate(sample = row_number()) %>% # Adding row number identifier
+spread(sample, Petal.Width) # Spreading data to wide format 
+```
+<center> <img src="https://ourcodingclub.github.io/img/iris3.png" alt="Img" style="width: 400px;"/> </center>
+
+```r
+ # Converting messy iris dataframe to tidy (long) dataframe
+iris.long <- iris.wide %>%
+gather(Species, Petal.Width) %>% # Gather wide data to long format
+rename(Setosa.Sample = Species) # Rename to correct column name 
+```
+
+<center> <img src="https://ourcodingclub.github.io/img/iris4.png" alt="Img" style="width: 400px;"/> </center>
 
 
  </details> 
  <br>
  
   <details>
-   <summary markdown= "span"> Another question </summary>
+   <summary markdown= "span"> Selecting and filtering </summary>
 
+There are a variety of ways to select columns and rows. This can be done by specifying the column/row name or index. However, unlike other programming languages, R starts counting at 1 instead of at 0, as is the case in Python. Other methods include the use of functions from the `dplyr` package.
+
+```r
+# Selecting single columns by name or by index (base R)
+dataframe$columnName or dataframe[,1]
+
+# Selecting rows in a column (base R)
+dataframe$columnName[1:2,]
+
+# Selecting multiple rows and columns (base R)
+dataframe[1:2,4:6]
+
+# Selecting columns using the select function (dplyr)
+dplyr::select(dataframe, columnName1, columnName2)
+```
+You may also want to filter the dataset you are working with according to certain conditions. As an example, let's take the built-in `iris` dataset, which describes the petal width and length of different iris species ( _Iris Setosa_, _Iris Versicolour_, _Iris Virginica_). If you are interested to see how flower attributes vary in only one of the groups (species), you can easily do so by using the `filter` function from the `dplyr` package. This function will return a dataset that meets the conditions that you define. See the code below for examples.
+
+```r
+ # Loading packages
+library(dplyr)
+
+# Loading data and defining as an object
+iris <- as.data.frame(iris)
+
+# Filtering for a single condition
+filter(iris, Species == "virginica")
+
+# Filter for multiple conditions
+filter(iris, Species %in% c("virginica","setosa"), Sepal.Length > 5)
+
+# Other useful filter conditions
+
+    == (equal to)
+    < (less than)
+    <= (less than or equal to)
+    > (greater than)
+    >= (greater than or equal to)
+    & (and)
+    | (or)
+    ! (inverse, e.g. != stands for not equal to)
+
+``` 
+When dealing with larger datasets, you can use pipes (`%>%`) to apply multiple operations to your dataset, without needing to create multiple objects. This is demonstrated in the code below.
+
+```r
+newDataset <- iris %>%
+select("Sepal.Length", "Species") %>%
+filter(Species == "setosa") %>%
+group_by(Species) %>%
+summarise(meanSepalLength = mean(Sepal.Length)
+``` 
 
  </details> 
  <br>
 
 
 <details>
- <summary markdown= "span">Another question </summary>
-    
+ <summary markdown= "span">Other tips and resources </summary>
+   
+__Helpful tutorials__
+
+- <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank"> Data manipulation </a>
+   
+- <a href="https://ourcodingclub.github.io/2017/03/20/seecc.html" target="_blank"> Working with big data </a>
+
  </details>
  <br>
  
