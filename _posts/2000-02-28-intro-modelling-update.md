@@ -88,6 +88,8 @@ Some might say this model is very complex, and they would be right - there are a
 
 It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting <a href="https://statisticsbyjim.com/regression/overfitting-regression-models/" target="_blank">here</a>. 
 
+Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
+
 </div>
 
 
@@ -164,6 +166,7 @@ _You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. Th
 
 __So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye! 
 
+
 #### More practice: another model
 
 Now that we've written a model and understood its output, let's analyse another dataset and learn to read it's output, too. We'll introduce something just a bit different.
@@ -183,13 +186,13 @@ summary(sheep.m1)                                # study the output
 
 ```
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Img" style="width: 800px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Img" style="width: 900px;"/></center>
 
 
 Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
 
 Here, the intercept is the value of _Y_ when _X_ is 0. In many models this is not of interest and sometimes doesn't make a ton of sense, but in our case you could potentially argue that it's the weight of a newborn lamb. 
-Then, the output gives us an estimate, which is the _slope_ of the relationship. In this case, every day you wait to wean a lamb will result in an average increase of 0.08 kg in its weight. You probably remember how to write linear equations from school, so that you could write it thus: __ lamb weight = 2.60 + 0.08*age __.
+Then, the output gives us an estimate, which is the _slope_ of the relationship. In this case, every day you wait to wean a lamb will result in an average increase of 0.08 kg in its weight. You probably remember how to write linear equations from school, so that you could write it thus: __lamb weight = 2.60 + 0.08(age)__.
 
 So far, so good. Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
 
@@ -200,7 +203,7 @@ summary(sheep.m2)
 
 Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Img" style="width: 800px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Img" style="width: 900px;"/></center>
 
 Let's write the equations. For a female, which happens to be the reference group in the model, it's fairly simple:
 
@@ -208,7 +211,7 @@ __Female weight = 3.66 + 0.06(age)__ : The weight at 100 days would be 3.66 + 0.
 
 For a male, it's a little more complicated as you need to add the differences in intercept and slopes:
 
-__Male weight = 3.66 + _[-2.52]_ + 0.06(age) + _[0.03(age)]_ __ : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
+__Male weight = 3.66 + <i>[-2.52]</i> + 0.06(age) + <i>[0.03(age)]</i> __ : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
 
 It always makes a lot more sense when you can visualise the relationship, too:
 
@@ -272,17 +275,17 @@ The assumptions of a linear model are met (we can imagine that the data points a
 
 We can examine the model fit further by looking at a few plots:
 ```r
-plot(apples.m)
+plot(apples.m)  # you will have to press Enter in the command line to view the plots
 ```
 
 This will produce a set of four plots: 
 
-- Residuals versus fitted values
-- a Q-Q plot of standardized residuals
-- a scale-location plot (square roots of standardized residuals versus fitted values) 
-- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
+####- Residuals versus fitted values
+####- a Q-Q plot of standardized residuals
+####- a scale-location plot (square roots of standardized residuals versus fitted values) 
+####- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
 
-In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this <a href"https://data.library.virginia.edu/diagnostic-plots/" target="_blank">helpful page</a> to get you started.
+In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this <a href="https://data.library.virginia.edu/diagnostic-plots/" target="_blank">helpful page</a> to get you started.
 
 
 
@@ -290,6 +293,7 @@ In general, looking at these plots can help you identify any outliers that have 
 ### 4. Practicing generalised linear models
 
 The model we used above was a __general__ linear model since it met all the assumptions for one (normal distribution, homoscedasticity, etc.) Quite often in ecology and environmental science that is not the case and then we use different data distributions. Here we will talk about a Poisson and a binomial distribution. To use them, we need to run __generalised__ linear models.
+
 
 
 #### A model with a Poisson distribution
@@ -330,6 +334,7 @@ From the summary of our model we can see that European Shag abundance varies sig
 __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.__ Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.
 
 
+
 #### A model with a binomial distribution
 
 We will now work this the `Weevil_damage.csv` data that you can import from your project's directory. We can examine if damage to Scot's pine by weevils (a binary, TRUE/FALSE variable) varies based on the block in which the trees are located. You can imagine that different blocks represent different Scot's pine populations, and perhaps some of them will be particularly vulnerable to weevils? Because of the binary nature of the response variable (true or false), a binomial model is appropriate here.
@@ -356,10 +361,6 @@ __We have now covered the basics of modelling. Next, you can go through <a href 
 
 <a href = "http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html" target="_blank"> Regression modelling in R, by Harvard University. </a>
 
-<hr>
-<hr>
-
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
 <a name="challenge"></a>
 ### 5. Challenge yourself!
@@ -373,7 +374,9 @@ ToothGrowth <- datasets::ToothGrowth
 ```
 
 1- Are higher doses of vitamin C beneficial for tooth growth?
+
 2- Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
+
 3- What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
 
 <details>
@@ -395,7 +398,9 @@ summary(tooth.m)
 The model is highly significant, and together, dose and method explain around 77% of the variation in tooth growth. Not bad! And to answer our questions:
 
 1. Higher doses of vitamin C promote tooth growth, but
+
 2. the effect of dose on growth depends on the administration method.
+
 3. A guinea pig given 1 mg a day as ascorbic acid would have a predicted tooth growth of:
 
 __13.23__ (growth for dose 0.5, orange juice) 
@@ -419,6 +424,13 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
 </summary>   
  </details> <br>
  
+
+<hr>
+<hr>
+
+__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+
+
 
 
 
