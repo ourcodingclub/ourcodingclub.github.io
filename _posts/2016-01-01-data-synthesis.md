@@ -333,7 +333,7 @@ __One specific thing to note is that when you add the `lm()` function in a pipe,
 
 __A piping tip:__ A useful way to familiriase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to e.g., the `do()` function, then up to the `tidy()` function and so on. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `do(mod = lm(scalepop ~ year, data = .))` and *not* the whole `do(mod = lm(scalepop ~ year, data = .)) %>%`.
 
-__Running pipes gradually also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
+__Running pipes sequentially line by line also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
 
 </div>
 
