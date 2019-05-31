@@ -164,7 +164,7 @@ library(dplyr)
 # Loading dataframe
 iris <- as.data.frame(iris)
 ```
-<center> <img src="https://ourcodingclub.github.io/img/iris1.png" alt="Img" style="width: 400px;"/> </center>
+<center> <img src="https://ourcodingclub.github.io/img/iris1.png" alt="Img" style="width: 500px;"/> </center>
 
 ```r
 # Converting iris df to wide dataframe (messy data)
@@ -172,13 +172,13 @@ iris.wide <- iris %>%
 select(Species, Petal.Width) %>% # Selecting only two columns
 filter(Species == "setosa") %>% # Filtering column for one species
 ```
-<center> <img src="https://ourcodingclub.github.io/img/iris2.png" alt="Img" style="width: 400px;"/> </center>
+<center> <img src="https://ourcodingclub.github.io/img/iris2.png" alt="Img" style="width: 200px;"/> </center>
 
 ```r
  mutate(sample = row_number()) %>% # Adding row number identifier
 spread(sample, Petal.Width) # Spreading data to wide format 
 ```
-<center> <img src="https://ourcodingclub.github.io/img/iris3.png" alt="Img" style="width: 400px;"/> </center>
+<center> <img src="https://ourcodingclub.github.io/img/iris3.png" alt="Img" style="width: 500px;"/> </center>
 
 ```r
  # Converting messy iris dataframe to tidy (long) dataframe
@@ -187,7 +187,7 @@ gather(Species, Petal.Width) %>% # Gather wide data to long format
 rename(Setosa.Sample = Species) # Rename to correct column name 
 ```
 
-<center> <img src="https://ourcodingclub.github.io/img/iris4.png" alt="Img" style="width: 400px;"/> </center>
+<center> <img src="https://ourcodingclub.github.io/img/iris4.png" alt="Img" style="width: 200px;"/> </center>
 
 
  </details> 
