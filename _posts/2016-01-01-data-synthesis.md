@@ -23,7 +23,7 @@ tags: data_manip data_vis intermediate
 
 <div class="bs-callout-blue" markdown="1">
 
-__The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tdyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
+__The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tidyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
 
 </div>
 
@@ -39,7 +39,7 @@ __The goal of this tutorial is to advance skills in working efficiently with dat
 
 We will be working with bird population data (abundance over time) from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, bird trait data from the <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1" target="_blank">Elton Database</a>, and emu occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, all of which are publicly available datasets.
 
-__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is theit average duration.__
+__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is their average duration.__
 
 __Make sure you have set the working directory to where you saved your files.__
 
@@ -181,7 +181,7 @@ country_sum <- bird_pops %>% group_by(country.list) %>%
 country_sum[1:15,] # the top 15
 ```
 
-As we probably all expected, a lot of the data come from Western European and North American countries. Sometimes as we navigate our research questions, we go back and forth between combining (adding in more data) and extracting (filtering to include only what we're interested in), so to mimic that, this tutorial will similarly take you on a combinign and extracting journey, this time through Australia.
+As we probably all expected, a lot of the data come from Western European and North American countries. Sometimes as we navigate our research questions, we go back and forth between combining (adding in more data) and extracting (filtering to include only what we're interested in), so to mimic that, this tutorial will similarly take you on a combining and extracting journey, this time through Australia.
 
 To get just the Australian data, we can use the `filter()` function. To be on the safe side, we can also combine it with `str_detect()`. The difference is that filter on its own will extract any rows with "Australia", but it will miss rows that have e.g. "Australia / New Zealand" - occasions when the population study included multiple countries. In this case though, both ways of filtering return the same number of rows, but always good to check.
 
@@ -237,12 +237,13 @@ This graph just uses all the `ggplot2` default settings. It's fine if you just w
 
 <center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1c.png" alt="Img" style="width: 500px;"/></center>
 
-Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The two lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
+Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
 ```r
 # Adding an outline around the whole histogram
-h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1))
+h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1), plot = FALSE)
 d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))  
+d1 <- rbind(c(5,0), d1)
 ```
 
 __When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
@@ -468,7 +469,7 @@ walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 
 __Answering research questions often requires combining data from different sources. For example, we've explored how bird abundance has changed over time across the monitored populations in Australia, but we don't know whether certain groups of species might be more likely to increase or decrease. To find out, we can integrate the population trend data with information on species traits, in this case species' diet preferences.__
 
-The various joining functions from the `dplyr` package are really useful for combining data. We will use `left_join` in this tutorial, but you can find out about all the other options by running ??join() and reading the help file. To join two datasets in a meaningful way, you usually need to have one common column in both data frames and then you join "by" that column.
+The various joining functions from the `dplyr` package are really useful for combining data. We will use `left_join` in this tutorial, but you can find out about all the other options by running ?join() and reading the help file. To join two datasets in a meaningful way, you usually need to have one common column in both data frames and then you join "by" that column.
 
 ```r
 # Data synthesis - traits! ----
@@ -506,20 +507,6 @@ __Now we can explore how bird population trends vary across different feeding st
                                                       colour = diet)) +
     geom_jitter(size = 3, alpha = 0.3, width = 0.2))
 
-(trends_diet <- ggplot() +
-    geom_jitter(data = bird_models_traits, aes(x = diet, y = estimate,
-                                               colour = diet),
-                size = 3, alpha = 0.3, width = 0.2) +
-    geom_segment(data = diet_means,aes(x = diet, xend = diet,
-                                       y = mean(bird_models_traits$estimate), 
-                                       yend = mean_trend),
-                 size = 0.8) +
-    geom_point(data = diet_means, aes(x = diet, y = mean_trend,
-                                      fill = diet), size = 5,
-               colour = "grey30", shape = 21) +
-    geom_hline(yintercept = mean(bird_models_traits$estimate), 
-               size = 0.8, colour = "grey30") +
-    geom_hline(yintercept = 0, linetype = "dotted", colour = "grey30"))
 ```
 
 <center> <img src="{{ site.baseurl }}/img/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
@@ -611,7 +598,6 @@ For our map, we'll use a colour scheme from the `wesanderson` R package and we'l
                aes(x = decimal.longitude, y = decimal.latitude, fill = diet),
                alpha = 0.8, size = 4, colour = "grey30", shape = 21,
                position = position_jitter(height = 0.5, width = 0.5)) +
-    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1"),
                       labels = c("Carnivore", "Fruigivore", "Omnivore", "Insectivore", "Herbivore")) +
    # guides(colour = FALSE) + # if you wanted to hide the legend
@@ -653,8 +639,7 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     geom_treemap_subgroup_border(colour = "white", size = 1) +
     geom_treemap_text(colour = "white", place = "center", reflow = T) +
     scale_colour_manual(values = wes_palette("Cavalcanti1")) +
-    scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-    guides(fill = FALSE))
+    scale_fill_manual(values = wes_palette("Cavalcanti1")))
 
 ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
