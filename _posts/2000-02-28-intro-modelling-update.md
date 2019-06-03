@@ -45,13 +45,14 @@ __Go to <a href = "https://github.com/ourcodingclub/CC-8-Modelling" target="_bla
 
 Here is a brief summary of the data distributions you might encounter most often.
 
-#### __Gaussian__ - Continuous data (normal distribution and homoscedasticity assumed)
-#### __Poisson__ - Count abundance data (integer values, zero-inflated data, left-skewed data)
-#### __Binomial__ - Binary variables (TRUE/FALSE, 0/1, presence/absence data)
+##### __Gaussian__ - Continuous data (normal distribution and homoscedasticity assumed)
+##### __Poisson__ - Count abundance data (integer values, zero-inflated data, left-skewed data)
+##### __Binomial__ - Binary variables (TRUE/FALSE, 0/1, presence/absence data)
 
-Choosing the right distribution for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
+Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
 
-IMAGE OF SOME DATA DISTRIBUTIONS; LINKS TO OTHER SITES
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Img" style="width: 700px;"/></center>
+
 
 
 
@@ -162,9 +163,10 @@ Turns out that yield does significantly differ between the three spacing categor
 
 But let's take a look at a few other things from the summary output. Notice how because `spacing2` is a factor, you get results for `spacing210` and `spacing214`. If you are looking for the `spacing26` category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. __A very important thing to understand is that the estimates for the other categories are presented <i> relative to </i> the reference level. So, for the 10-m spacing category, the estimated value from the model is not `35.9`, but `35.9 + 120.6 = 156.5`.__ A look at our boxplot will make this easy to verify. 
 
-_You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. These values refer to how much of the variation in the `yield` variable is explained by our predictor `spacing2`. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. `R-squared` values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The `Adjusted R-squared` value takes into account how many terms your model has and how many data points are available in the response variable. 
+You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. These values refer to how much of the variation in the `yield` variable is explained by our predictor `spacing2`. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. `R-squared` values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The `Adjusted R-squared` value takes into account how many terms your model has and how many data points are available in the response variable. 
 
 __So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye! 
+
 
 
 #### More practice: another model
@@ -194,7 +196,7 @@ Can you spot the difference between this model and the apple model? In the apple
 Here, the intercept is the value of _Y_ when _X_ is 0. In many models this is not of interest and sometimes doesn't make a ton of sense, but in our case you could potentially argue that it's the weight of a newborn lamb. 
 Then, the output gives us an estimate, which is the _slope_ of the relationship. In this case, every day you wait to wean a lamb will result in an average increase of 0.08 kg in its weight. You probably remember how to write linear equations from school, so that you could write it thus: __lamb weight = 2.60 + 0.08(age)__.
 
-So far, so good. Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
+So far, so good? Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
 
 ```r
 sheep.m2 <- lm(weanwt ~ weanage*sex, data = sheep)
@@ -209,9 +211,9 @@ Let's write the equations. For a female, which happens to be the reference group
 
 __Female weight = 3.66 + 0.06(age)__ : The weight at 100 days would be 3.66 + 0.06(100) = 9.66 kg.
 
-For a male, it's a little more complicated as you need to add the differences in intercept and slopes:
+For a male, it's a little more complicated as you need to add the differences in intercept and slopes due to the sex level being male:
 
-__Male weight = 3.66 + <i>[-2.52]</i> + 0.06(age) + <i>[0.03(age)]</i> __ : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
+<b>Male weight = 3.66 + <i>[-2.52]</i> + 0.06(age) + <i>[0.03(age)]</i> </b> : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
 
 It always makes a lot more sense when you can visualise the relationship, too:
 
@@ -226,7 +228,7 @@ It always makes a lot more sense when you can visualise the relationship, too:
 ```
 
 <center><img src="{{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Img" style="width: 700px;"/></center>
-<center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between males and females. The plot shows all of this pretty clearly.</center>
+<center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly.</center>
 
 
 <div class="bs-callout-yellow" markdown="1">
@@ -280,10 +282,10 @@ plot(apples.m)  # you will have to press Enter in the command line to view the p
 
 This will produce a set of four plots: 
 
-####- Residuals versus fitted values
-####- a Q-Q plot of standardized residuals
-####- a scale-location plot (square roots of standardized residuals versus fitted values) 
-####- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
+#### - Residuals versus fitted values
+#### - a Q-Q plot of standardized residuals
+#### - a scale-location plot (square roots of standardized residuals versus fitted values) 
+#### - a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
 
 In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this <a href="https://data.library.virginia.edu/diagnostic-plots/" target="_blank">helpful page</a> to get you started.
 
@@ -378,6 +380,7 @@ ToothGrowth <- datasets::ToothGrowth
 2- Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
 
 3- What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
+
 
 <details>
    <summary markdown= "span"> Click this line to view a solution </summary>
