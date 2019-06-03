@@ -65,7 +65,6 @@ If you've ever tried to perfect your `ggplot2` graphs, you might have noticed th
 
 ```r
 # Setting a custom ggplot2 function ---
-# *** Functional Programming ***
 # This function makes a pretty ggplot theme
 # This function takes no arguments!
 theme_clean <- function(){
@@ -137,7 +136,7 @@ Check out the data frame again to make sure the years really look like years. As
 bird_pops_long$species.name <- paste(bird_pops_long$genus, bird_pops_long$species, sep = " ")
 ```
 
-We can tidy up the data a bit more and create a few new columns with useful information. Whenever we are working with datasets that combine multiple studies, it's useful to know when they each, what their duration was, etc. Here we've combined all of that into one "pipe" (lines of code that use the piping operator `%>%`). The pipes always take whatever has come out of the previous pipe (or the first object you've given the pipe), and at the end of all the piping, out comes a tidy data frame with useful information.
+We can tidy up the data a bit more and create a few new columns with useful information. Whenever we are working with datasets that combine multiple studies, it's useful to know when they each started, what their duration was, etc. Here we've combined all of that into one "pipe" (lines of code that use the piping operator `%>%`). The pipes always take whatever has come out of the previous pipe (or the first object you've given the pipe), and at the end of all the piping, out comes a tidy data frame with useful information.
 
 ```r
 # *** piping from from dplyr
@@ -190,7 +189,9 @@ To get just the Australian data, we can use the `filter()` function. To be on th
 aus_pops <- bird_pops_long %>%
   filter(country.list == "Australia")
 
-aus_pops <- bird_pops_long %>%
+# Giving the object a new name so that you can compare
+# and see that in this case they are the same
+aus_pops2 <- bird_pops_long %>%
   filter(str_detect(country.list, pattern = "Australia"))
 ```
 
@@ -326,7 +327,7 @@ ggsave(duration_hist, filename = "hist1.png",
 
 ## 2. Automate repetitive tasks using pipes and functions
 
-We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
+We are now ready to model how each population has changed over time. There are 4331 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
 __One specific thing to note is that when you add the `lm()` function in a pipe, you have to add `data = .`, which means use the outcome of the previous step in the pipe for the model.__
 
@@ -427,10 +428,9 @@ system.mean
 Now we can write our own function to make histograms and use the `purrr` package to apply it to each taxa.
 
 ```r
-### Functional programming ----
+### Using functions ----
 
 # First let's write a function to make the plots
-# *** Functional Programming ***
 # This function takes one argument x, the data vector that we want to make a histogram
 
 # note that when you run code for a function, you have to place the cursor
@@ -633,6 +633,18 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     scale_fill_manual(values = wes_palette("Cavalcanti1")) +
     guides(fill = FALSE))
 
+(diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
+                                 subgroup = diet)) +
+    geom_treemap() +
+    geom_treemap_subgroup_border(colour = "white", size = 1) +
+    geom_treemap_text(colour = "white", place = "center", reflow = T) +
+    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
+    scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+    guides(fill = FALSE))  # this removes the colour legend
+    # later on we will combine multiple plots so there is no need for the legend
+    # to be in twice
+    
+# To display the legend, just remove the guides() line
 (diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
                                  subgroup = diet)) +
     geom_treemap() +
@@ -1021,7 +1033,7 @@ To learn more about the power of pipes check out:
 
 To learn more about `purrr` check out the <a href="http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html" target="_blank"> R for Data Science book</a>.
 
-For more information on functional programming see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
+For more information on using functions, see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
 
 To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides <a href="https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides" target="_blank">here</a>.
 
