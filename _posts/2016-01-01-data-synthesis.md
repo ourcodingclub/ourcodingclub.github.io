@@ -236,7 +236,7 @@ This graph just uses all the `ggplot2` default settings. It's fine if you just w
     # the final line of code removes the empty blank space below the bars
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist5.png" alt="Img" style="width: 500px;"/></center>
 
 Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
