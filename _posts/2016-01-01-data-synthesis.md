@@ -236,7 +236,7 @@ This graph just uses all the `ggplot2` default settings. It's fine if you just w
     # the final line of code removes the empty blank space below the bars
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1c.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist3.png" alt="Img" style="width: 500px;"/></center>
 
 Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
@@ -258,10 +258,11 @@ __When we want to plot data from different data frames in the same graph, we hav
               stat = "identity", colour = "deepskyblue4"))
 
 summary(d1) # it's fine, you can ignore the warning message
-# it's because there's no "zero" step
+# it's because some values don't have bars
+# thus there are missing "steps" along the geom_step path
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1d.png" alt="Img" style="width: 500px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;"/> </center>
 
 We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
 
@@ -293,7 +294,7 @@ We can also add a line for the mean duration across studies and add an annotatio
     # Have a go at changing the curve parameters to see what happens
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1f.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1e.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/hist3.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist2.png" alt="Img" style="width: 500px;"/></center>
 
 We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
 
@@ -678,9 +679,9 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
     coord_flip())
 ```
 
-Well this looks wrong! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
+Well this looks untidy! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
 
-<center> <img src="{{ site.baseurl }}/img/timeline1.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/timeline3.png" alt="Img" style="width: 600px;"/></center>
 
 ```r
 # Create a sorting variable
