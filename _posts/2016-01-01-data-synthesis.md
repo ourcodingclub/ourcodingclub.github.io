@@ -23,7 +23,7 @@ tags: data_manip data_vis intermediate
 
 <div class="bs-callout-blue" markdown="1">
 
-__The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tdyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
+__The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tidyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
 
 </div>
 
@@ -39,7 +39,7 @@ __The goal of this tutorial is to advance skills in working efficiently with dat
 
 We will be working with bird population data (abundance over time) from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, bird trait data from the <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1" target="_blank">Elton Database</a>, and emu occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, all of which are publicly available datasets.
 
-__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is theit average duration.__
+__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is their average duration.__
 
 __Make sure you have set the working directory to where you saved your files.__
 
@@ -65,7 +65,6 @@ If you've ever tried to perfect your `ggplot2` graphs, you might have noticed th
 
 ```r
 # Setting a custom ggplot2 function ---
-# *** Functional Programming ***
 # This function makes a pretty ggplot theme
 # This function takes no arguments!
 theme_clean <- function(){
@@ -137,7 +136,7 @@ Check out the data frame again to make sure the years really look like years. As
 bird_pops_long$species.name <- paste(bird_pops_long$genus, bird_pops_long$species, sep = " ")
 ```
 
-We can tidy up the data a bit more and create a few new columns with useful information. Whenever we are working with datasets that combine multiple studies, it's useful to know when they each, what their duration was, etc. Here we've combined all of that into one "pipe" (lines of code that use the piping operator `%>%`). The pipes always take whatever has come out of the previous pipe (or the first object you've given the pipe), and at the end of all the piping, out comes a tidy data frame with useful information.
+We can tidy up the data a bit more and create a few new columns with useful information. Whenever we are working with datasets that combine multiple studies, it's useful to know when they each started, what their duration was, etc. Here we've combined all of that into one "pipe" (lines of code that use the piping operator `%>%`). The pipes always take whatever has come out of the previous pipe (or the first object you've given the pipe), and at the end of all the piping, out comes a tidy data frame with useful information.
 
 ```r
 # *** piping from from dplyr
@@ -181,7 +180,7 @@ country_sum <- bird_pops %>% group_by(country.list) %>%
 country_sum[1:15,] # the top 15
 ```
 
-As we probably all expected, a lot of the data come from Western European and North American countries. Sometimes as we navigate our research questions, we go back and forth between combining (adding in more data) and extracting (filtering to include only what we're interested in), so to mimic that, this tutorial will similarly take you on a combinign and extracting journey, this time through Australia.
+As we probably all expected, a lot of the data come from Western European and North American countries. Sometimes as we navigate our research questions, we go back and forth between combining (adding in more data) and extracting (filtering to include only what we're interested in), so to mimic that, this tutorial will similarly take you on a combining and extracting journey, this time through Australia.
 
 To get just the Australian data, we can use the `filter()` function. To be on the safe side, we can also combine it with `str_detect()`. The difference is that filter on its own will extract any rows with "Australia", but it will miss rows that have e.g. "Australia / New Zealand" - occasions when the population study included multiple countries. In this case though, both ways of filtering return the same number of rows, but always good to check.
 
@@ -190,7 +189,9 @@ To get just the Australian data, we can use the `filter()` function. To be on th
 aus_pops <- bird_pops_long %>%
   filter(country.list == "Australia")
 
-aus_pops <- bird_pops_long %>%
+# Giving the object a new name so that you can compare
+# and see that in this case they are the same
+aus_pops2 <- bird_pops_long %>%
   filter(str_detect(country.list, pattern = "Australia"))
 ```
 
@@ -235,14 +236,15 @@ This graph just uses all the `ggplot2` default settings. It's fine if you just w
     # the final line of code removes the empty blank space below the bars
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1c.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist5.png" alt="Img" style="width: 500px;"/></center>
 
-Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The two lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
+Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
 ```r
 # Adding an outline around the whole histogram
-h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1))
+h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1), plot = FALSE)
 d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))  
+d1 <- rbind(c(5,0), d1)
 ```
 
 __When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
@@ -256,10 +258,11 @@ __When we want to plot data from different data frames in the same graph, we hav
               stat = "identity", colour = "deepskyblue4"))
 
 summary(d1) # it's fine, you can ignore the warning message
-# it's because there's no "zero" step
+# it's because some values don't have bars
+# thus there are missing "steps" along the geom_step path
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1d.png" alt="Img" style="width: 500px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;"/> </center>
 
 We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
 
@@ -291,7 +294,7 @@ We can also add a line for the mean duration across studies and add an annotatio
     # Have a go at changing the curve parameters to see what happens
 ```
 
-<center> <img src="{{ site.baseurl }}/img/hist1f.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist1e.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/hist3.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist2.png" alt="Img" style="width: 500px;"/></center>
 
 We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
 
@@ -325,7 +328,7 @@ ggsave(duration_hist, filename = "hist1.png",
 
 ## 2. Automate repetitive tasks using pipes and functions
 
-We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
+We are now ready to model how each population has changed over time. There are 4331 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
 __One specific thing to note is that when you add the `lm()` function in a pipe, you have to add `data = .`, which means use the outcome of the previous step in the pipe for the model.__
 
@@ -426,10 +429,9 @@ system.mean
 Now we can write our own function to make histograms and use the `purrr` package to apply it to each taxa.
 
 ```r
-### Functional programming ----
+### Using functions ----
 
 # First let's write a function to make the plots
-# *** Functional Programming ***
 # This function takes one argument x, the data vector that we want to make a histogram
 
 # note that when you run code for a function, you have to place the cursor
@@ -468,7 +470,7 @@ walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 
 __Answering research questions often requires combining data from different sources. For example, we've explored how bird abundance has changed over time across the monitored populations in Australia, but we don't know whether certain groups of species might be more likely to increase or decrease. To find out, we can integrate the population trend data with information on species traits, in this case species' diet preferences.__
 
-The various joining functions from the `dplyr` package are really useful for combining data. We will use `left_join` in this tutorial, but you can find out about all the other options by running ??join() and reading the help file. To join two datasets in a meaningful way, you usually need to have one common column in both data frames and then you join "by" that column.
+The various joining functions from the `dplyr` package are really useful for combining data. We will use `left_join` in this tutorial, but you can find out about all the other options by running ?join() and reading the help file. To join two datasets in a meaningful way, you usually need to have one common column in both data frames and then you join "by" that column.
 
 ```r
 # Data synthesis - traits! ----
@@ -506,20 +508,6 @@ __Now we can explore how bird population trends vary across different feeding st
                                                       colour = diet)) +
     geom_jitter(size = 3, alpha = 0.3, width = 0.2))
 
-(trends_diet <- ggplot() +
-    geom_jitter(data = bird_models_traits, aes(x = diet, y = estimate,
-                                               colour = diet),
-                size = 3, alpha = 0.3, width = 0.2) +
-    geom_segment(data = diet_means,aes(x = diet, xend = diet,
-                                       y = mean(bird_models_traits$estimate), 
-                                       yend = mean_trend),
-                 size = 0.8) +
-    geom_point(data = diet_means, aes(x = diet, y = mean_trend,
-                                      fill = diet), size = 5,
-               colour = "grey30", shape = 21) +
-    geom_hline(yintercept = mean(bird_models_traits$estimate), 
-               size = 0.8, colour = "grey30") +
-    geom_hline(yintercept = 0, linetype = "dotted", colour = "grey30"))
 ```
 
 <center> <img src="{{ site.baseurl }}/img/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
@@ -611,7 +599,6 @@ For our map, we'll use a colour scheme from the `wesanderson` R package and we'l
                aes(x = decimal.longitude, y = decimal.latitude, fill = diet),
                alpha = 0.8, size = 4, colour = "grey30", shape = 21,
                position = position_jitter(height = 0.5, width = 0.5)) +
-    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1"),
                       labels = c("Carnivore", "Fruigivore", "Omnivore", "Insectivore", "Herbivore")) +
    # guides(colour = FALSE) + # if you wanted to hide the legend
@@ -654,7 +641,18 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     geom_treemap_text(colour = "white", place = "center", reflow = T) +
     scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-    guides(fill = FALSE))
+    guides(fill = FALSE))  # this removes the colour legend
+    # later on we will combine multiple plots so there is no need for the legend
+    # to be in twice
+    
+# To display the legend, just remove the guides() line
+(diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
+                                 subgroup = diet)) +
+    geom_treemap() +
+    geom_treemap_subgroup_border(colour = "white", size = 1) +
+    geom_treemap_text(colour = "white", place = "center", reflow = T) +
+    scale_colour_manual(values = wes_palette("Cavalcanti1")) +
+    scale_fill_manual(values = wes_palette("Cavalcanti1")))
 
 ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
@@ -681,9 +679,9 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
     coord_flip())
 ```
 
-Well this looks wrong! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
+Well this looks untidy! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
 
-<center> <img src="{{ site.baseurl }}/img/timeline1.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/timeline3.png" alt="Img" style="width: 600px;"/></center>
 
 ```r
 # Create a sorting variable
@@ -1036,7 +1034,7 @@ To learn more about the power of pipes check out:
 
 To learn more about `purrr` check out the <a href="http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html" target="_blank"> R for Data Science book</a>.
 
-For more information on functional programming see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
+For more information on using functions, see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
 
 To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides <a href="https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides" target="_blank">here</a>.
 
