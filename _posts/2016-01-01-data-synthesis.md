@@ -518,7 +518,7 @@ To make the graph more informative, we can add a line for the overall mean popul
 # Calculating mean trends per diet categories
 diet_means <- bird_models_traits %>% group_by(diet) %>%
   summarise(mean_trend = mean(estimate)) %>%
-  arrange(mean_trend)
+  arrange(diet, -mean_trend)
 
 # Sorting the whole data frame by the mean trends
 bird_models_traits <- bird_models_traits %>%
