@@ -4,9 +4,8 @@ title: Challenge level 3
 permalink: /DL/challenge3
 ---
 
-<meta name="robots" content="noindex">
+<head>
 <style>
-
 feature h2 {
   font-size: 28px;
   font-weight: 600;
@@ -16,9 +15,8 @@ feature p {
   color: #e6eaef;
   margin-bottom: 20px;
 }   
-   
 </style>
-
+</head>
 
     <!-- Intro to challenge:later to replace solid bg by challenge header banner  -->
 <section id="portfolio-work" style= "background-color: #4b747e; color: white">
@@ -41,11 +39,11 @@ feature p {
   <div class="row">
     <div class="col-md-6">
       <h2>Challenge outline and objectives</h2>
-      <p>The Isle of May, located on the east coast of Scotland, is a nature reserve home to large colonies of seabirds. A long-term monitoring programme is in place, and every year, scientists and volunteers record information about the abundance, breeding success, and diet of seabirds such as puffins, fulmars, kittiwakes, shags, guillemots, and razorbills. There is concern that with changing climate, the abundance of sandeels (and the plankton upon which they depend), a favourite food resource for birds, will decrease or shift temporally so that the availability will be reduced at the critical time of breeding and chick rearing. 
+      <p>The Isle of May, located on the east coast of Scotland, is a nature reserve home to large colonies of seabirds. A long-term monitoring programme is in place, and every year, scientists and volunteers record information about the abundance, breeding success, and diet of seabirds such as puffins, fulmars, kittiwakes, shags, guillemots, and razorbills. There is concern that with changing climate, the abundance of sandeels (and the plankton upon which they depend), a favourite food resource for birds, will decrease or shift temporally so that the availability will be reduced at the critical time of breeding and chick rearing. </p>
       
-Your mission will be to analyse the breeding success and return rates compiled and summarised by the <a href = "http://ceh.ac.uk/" target="_blank">Center for Ecology and Hydrology</a> to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the survival and breeding of the birds.
+<p>Your mission will be to analyse the breeding success and return rates compiled and summarised by the <a href = "http://ceh.ac.uk/" target="_blank">Center for Ecology and Hydrology</a> to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the survival and breeding of the birds.</p>
 
-This challenge builds on data manipulation, data visualisation and modelling skills. See below (internal link) for a list of tutorials you may want to refer to. 
+<p>This challenge builds on data manipulation, data visualisation and modelling skills. See below (internal link) for a list of tutorials you may want to refer to. </p>
 
     </div>
   </div>
@@ -65,19 +63,20 @@ This challenge builds on data manipulation, data visualisation and modelling ski
          
           <p> You will use the following datasets: <br> </p>
           
-          <b>CEH's Isle of May Long-Term Study data </b><br>
-          
+          <b><h3>CEH's Isle of May Long-Term Study data</h3></b>
+          <br>
           <li><b>Breeding success of sea birds</b>, compiled as the number of chicks fledged per nest. Original data link <a href="(https://catalogue.ceh.ac.uk/documents/02c98a4f-8e20-4c48-8167-1cd5044c4afe)" target="_blank">here</a>.</li> <br>
           
            <li><b>Return rates of sea birds</b>, compiled as the proportion of birds seen in one year that returned the next : this is not exactly survival data, but can be used as a proxy. Original data link <a href="https://catalogue.ceh.ac.uk/documents/53251b3c-6c79-4aeb-a0de-fc63b9350cc1" target="_blank">here</a>. </li><br>
           
-          <b>Climate data from the Met Office</b>, for the East of Scotland, extracted and compiled by us. It contains: <ul>
+          <b><h3>Climate data from the Met Office</h3></b>, for the East of Scotland, extracted and compiled by us. It contains: 
+          <br>
 <li>	minimum, mean and maximum monthly temperatures (°C)</li>
 <li>	monthly sunshine (hours)</li>
 <li>	monthly rainfall (mm)</li>
-</ul>
 
-The dataset also contains seasonal averages of these variables. Winter: Dec-Feb, Spring: Mar-May, Summer: June-Aug, Autumn: Sept-Nov. (For winter, year refers to Jan/Feb). Original data link <a href="https://www.metoffice.gov.uk/climate/uk/summaries/datasets" target="_blank">here</a>.
+
+<p>The dataset also contains seasonal averages of these variables. Winter: Dec-Feb, Spring: Mar-May, Summer: June-Aug, Autumn: Sept-Nov. (For winter, year refers to Jan/Feb). Original data link <a href="https://www.metoffice.gov.uk/climate/uk/summaries/datasets" target="_blank">here</a>.</p>
 
           <br>
         
@@ -93,20 +92,20 @@ The dataset also contains seasonal averages of these variables. Winter: Dec-Feb,
          <center><h2>Specific tasks </h2></center>
       <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
       
-   <p> <b>1. Temporal trends in breeding success</b><br>
+   <p> <b>1. Temporal trends in breeding success</b><br></p>
       
-You will import the breeding success data, and plot the time series and a line of best fit for each species. Specifically, you should: </p>
-<ul>
-<li>	Reshape the data, for analysis, with a “species” column </li>
+<p>You will import the breeding success data, and plot the time series and a line of best fit for each species. Specifically, you should: </p>
+<br>
+<li>	Reshape the data for analysis, with a “species” column </li>
 
-<li>	Created a facetted plot with the time series and a line of best fit. Be prepared to answer the question: <i>From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</i> </li>
+<li>	Created a facetted plot showing the time series and a line of best fit for each species. Be prepared to answer the question: <i>From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</i> </li>
 
 <li>	Extract slopes, confidence intervals and goodness of fit information after running linear regressions for each species. (Look at the Help (INTERNAL LINK) – Hints section if you cannot find a way to automate this – you should not copy and paste your code six times!). Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. Be prepared to answer the questions: 
 <ul>
-<li><i>	Which species has/have experienced a significant increase (tick all that apply)? </i></li>
-<li><i>	Which species has experienced the strongest decrease?</i></li>
-<li><i>	For which species did you get the best goodness of fit?</i></li></ul>
-         </li></ul>
+<li> - <i>	Which species has/have experienced a significant increase (tick all that apply)? </i></li>
+<li> - <i>	Which species has experienced the strongest decrease?</i></li>
+<li> - <i>	For which species did you get the best goodness of fit?</i></li></ul>
+         </li>
         
 </div>
 
