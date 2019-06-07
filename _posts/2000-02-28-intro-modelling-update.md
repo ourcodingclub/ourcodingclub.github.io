@@ -282,10 +282,10 @@ plot(apples.m)  # you will have to press Enter in the command line to view the p
 
 This will produce a set of four plots: 
 
-#### - Residuals versus fitted values
-#### - a Q-Q plot of standardized residuals
-#### - a scale-location plot (square roots of standardized residuals versus fitted values) 
-#### - a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
+##### - Residuals versus fitted values
+##### - a Q-Q plot of standardized residuals
+##### - a scale-location plot (square roots of standardized residuals versus fitted values) 
+##### - a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
 
 In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this <a href="https://data.library.virginia.edu/diagnostic-plots/" target="_blank">helpful page</a> to get you started.
 
@@ -381,6 +381,7 @@ ToothGrowth <- datasets::ToothGrowth
 
 3- What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
 
+<br>
 
 <details>
    <summary markdown= "span"> Click this line to view a solution </summary>
