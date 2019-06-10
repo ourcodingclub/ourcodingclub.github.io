@@ -46,11 +46,17 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+li{
+   padding:10px;
+}
+
 a,
 a:active,
 a:focus,
 a:active {
   text-decoration: none !important;
+  color: #f3d27a;
 }
 .section-title {
   margin-bottom: 70px;
