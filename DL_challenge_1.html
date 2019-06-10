@@ -42,21 +42,20 @@ permalink: /DL/challenge1
           <p> You will use the following datasets: <br> </p>
           
           <b><h3>The Scottish Squirrel Database</h3></b>
-          <br>
-          A dataset of grey and red squirrel observations compiled by the <a href="http://scottishwildlifetrust.org.uk/" target="_blank">Scottish Wildlife Trust</a> and hosted on the <a href="https://registry.nbnatlas.org/public/show/dr949" target="_blank">NBN Atlas</a>. The most relevant variables in the dataset for this challenge are:
+
+          <p>A dataset of grey and red squirrel observations compiled by the <a href="http://scottishwildlifetrust.org.uk/" target="_blank">Scottish Wildlife Trust</a> and hosted on the <a href="https://registry.nbnatlas.org/public/show/dr949" target="_blank">NBN Atlas</a>. The most relevant variables in the dataset for this challenge are:</p>
           <li><b>Year:</b> the year of the sighting</li>
           <li><b>Count:</b> the number of squirrels sighted on the occasion (if blank, assume it is 1)</li>
           <li><b>OSGR:</b> the Ordance Survey (LINK) grid reference for 10 x 10 km squares; will be useful to link the forest cover data</li>
 
           
           <b><h3>Forest cover</h3></b>
-          <br>
+
       <p>This dataset contains the forest cover (in % and total area) in each OS grid cell. This dataset was created by us*, using: </p>
 
 <li>	<b>The National Forest Inventory for Scotland 2017</b>, from the <a href="http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/" target="_blank">Forestry Commission</a></li>
 
 <li>	<b>OS grid cells at a 10 x 10 km resolution</b>, from <a href="https://github.com/charlesroper/OSGB_Grids" target="_blank">this Git repository</a></li>
-<li>	monthly rainfall (mm)</li><br>
 
 <p>*<i>Fancy an extra challenge? Why don't you try re-creating this dataset yourself?</i> (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)</p>
         
@@ -78,30 +77,30 @@ permalink: /DL/challenge1
       
 <p>Clean the squirrel dataset for the last decade, so it’s ready to analyse. Specifically, you should: </p>
 
-<li>	Keep only observations for the years 2008 to 2017 (using the <i>Start.date.year column</i> and renaming it to <i>year</i>)</li><br>
+<li>	Keep only observations for the years 2008 to 2017 (using the <i>Start.date.year column</i> and renaming it to <i>year</i>)</li>
 
-<li>Remove the observations that are not at the species level (i.e. we don’t know whether they are grey or red squirrels)</li><br>
+<li>Remove the observations that are not at the species level (i.e. we don’t know whether they are grey or red squirrels)</li>
 
-<li>Create a <i>species</i> column that will have <i>Red</i> and <i>Grey</i> as factor levels </li><br>
-   
-<li>We will assume that the observations that have <b>NA</b> as <i>count</i> are observations of one squirrel; replace them by the value 1. </li><br>
+<li>Create a <i>species</i> column that will have <i>Red</i> and <i>Grey</i> as factor levels </li>
 
-<li>Be prepared to answer the question: <i>To the nearest thousand, how large is your <b>cleaned</b> dataset? </i> </li><br>
+<li>We will assume that the observations that have <b>NA</b> as <i>count</i> are observations of one squirrel; replace them by the value 1. </li>
+
+<li>Be prepared to answer the question: <i>To the nearest thousand, how large is your <b>cleaned</b> dataset? </i> </li>
    
    <p> <b>2. Temporal trends </b><br></p>
       
 <p>Determine if there is a temporal trend in the number of observations for red and grey squirrels (2008-2017). Specifically, you should:</p>
 
-<li> Summarise the number of observations per species and per year </li> <br>     
+<li> Summarise the number of observations per species and per year </li>      
 
-<li>Plot the data and run one linear model to test this</li> <br>
+<li>Plot the data and run one linear model to test this</li>
 
 <li>Be prepared to answer the questions: 
 <ul>
 <li> - <i>	Which species showed the strongest change over time? </i></li>
 <li> - <i>	What were your predictor variable(s) and their data type in the model? </i></li>
-<li> - <i>	o	What is the adjusted R-squared of the regression? </i></li></ul>
-         </li><br> 
+<li> - <i>	What is the adjusted R-squared of the regression? </i></li></ul>
+         </li>
          
 <li> Think about the following: what could be the reasons for this trend? </li> <br>
 
@@ -109,9 +108,9 @@ permalink: /DL/challenge1
       
 <p>Determine whether total squirrel counts (for the study period 2008-2017) in OS grid cells (10km) are linked to forest cover in the cell. Specifically, you should: </p>
 
-<li> Summarise the squirrel count data at the species and grid cell level. Remove observations greater than 500 after aggregating, as they mess up with the plots later (but feel free to experiment with the full dataset too!).</li> <br>    
+<li> Summarise the squirrel count data at the species and grid cell level. Remove observations greater than 500 after aggregating, as they mess up with the plots later (but feel free to experiment with the full dataset too!).</li>    
 
-<li>Merge the squirrel and forest datasets </li> <br>
+<li>Merge the squirrel and forest datasets </li> 
 
 <li>Visualise the scatterplot of abundance as a function of forest cover for each species. Run one linear model to test the relationship. </li>
 
@@ -119,7 +118,7 @@ permalink: /DL/challenge1
 <ul>
 <li> - <i>	Is the relationship significant? </i></li>
 <li> - <i>	Does the model explain the variation in the data well?</i></li></ul>
-         </li><br> 
+         </li>
          
  <p> <b>4. Re-classify forest cover </b><br></p>         
          
@@ -135,9 +134,9 @@ permalink: /DL/challenge1
 <li>o	]50+</li>
 
 </ul>
-         </li><br> 
+         </li>
          
-<li>	Create your visualisation and be ready to answer the question: <i>In what cover classes are red squirrels more abundant than grey?</i> </li><br>
+<li>	Create your visualisation and be ready to answer the question: <i>In what cover classes are red squirrels more abundant than grey?</i> </li>
         
 </div>
 </section>
@@ -147,7 +146,7 @@ permalink: /DL/challenge1
  
    <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5 col-md-offset-7">
       <h2>How to get started </h2>
       <p> Download the challenge repository (LINK), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). </p>
@@ -168,9 +167,9 @@ There is no script or code provided for this challenge: how you go about solving
          <center><h2>Help & hints </h2></center>
    <p>Here is a list of tutorials that might help you complete this challenge: </p>
 
-<li> tutorial 1 </li><br>
-<li> tutorial 2 </li><br>
-<li> tutorial 3 </li><br>
+<li> tutorial 1 </li>
+<li> tutorial 2 </li>
+<li> tutorial 3 </li>
 
 <p> If you are stuck or don't know how to go about a specific task, the hint belows may help you back on the right track: </p>
 
@@ -188,9 +187,9 @@ There is no script or code provided for this challenge: how you go about solving
          <center><h2>Acknowledgements </h2></center>
    <p>We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: </p>
 
-<li> - <b>Scottish Wildlife Trust (2018).</b> The Scottish Squirrel Database. Occurrence dataset https://doi.org/10.15468/fqg0h3 under license CC-BY-4.0</li><br>
+<li><b>Scottish Wildlife Trust (2018).</b> The Scottish Squirrel Database. Occurrence dataset https://doi.org/10.15468/fqg0h3 under license CC-BY-4.0</li><br>
 
-<li> - <b>Forestry Commission (2018). </b>National Forest Inventory Woodland Scotland 2017. Available on <a href="http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/" target="_blank">Forestry Commission Open Data portal</a> under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]</li><br>
+<li><b>Forestry Commission (2018). </b>National Forest Inventory Woodland Scotland 2017. Available on <a href="http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/" target="_blank">Forestry Commission Open Data portal</a> under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]</li><br>
 
 <li><b>Charles Roper (2015).</b>OSGB Grids in shapefile format. Available on <a href="https://github.com/charlesroper/OSGB_Grids" target="_blank">GitHub</a> under a CC-0 (public domain) license.</li>
 

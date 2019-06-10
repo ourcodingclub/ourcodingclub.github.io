@@ -42,13 +42,13 @@ p {
   line-height: 28px;
 }
 ul {
-  padding: 0;
+  padding: 5px 25px 0px 5px;
   margin: 0;
   list-style: none;
 }
 
 li{
-   padding:10px;
+   padding:5px;
 }
 
 a,
