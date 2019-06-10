@@ -8,10 +8,10 @@ permalink: /DL/challenge1
     <!-- Intro to challenge -->
 <section id="portfolio-work" style= "background-image: url({{ site.baseurl }}/img/DL-ccbanner-gold.png); color: white">
 
-        <div class="block">
+        <div class="container">
          <center><h2>Intro to R challenge: Where are the red squirrels? </h2></center>
             <p></p>
-          <p> This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the <i>STATS FROM SCRATCH</i> course stream. Scroll for more information on your tasks and how to complete the challenge. </p>
+         <center> <p> This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the <i>STATS FROM SCRATCH</i> course stream. Scroll for more information on your tasks and how to complete the challenge. </p></center>
         
 </div>
 
@@ -24,7 +24,9 @@ permalink: /DL/challenge1
   <div class="row">
     <div class="col-md-6">
       <h2>Challenge outline and objectives</h2>
-      <p> Background of grey squirrel introduction and impacts on red squirrels: population declines through competition and squirrel pox.... Conservation efforts to control grey populations and help reds recover; at the moment concentrated in some areas (Cairngorms, ....)
+      <p> Red squirrels, once widespread throughout the UK, have declined sharply in the last century following the introduction of grey squirrels from North America. Most of the remaining populations are now restricted to parts of Scotland, and still threatened by the expansion of grey squirrels, which are more competitive and carry the deadly squirrel pox. </p> 
+     
+     <p> Red squirrels are a protected species and, with conservation efforts from <a href="https://scottishsquirrels.org.uk/" target="_blank">dedicated organisations</a>, are able to maintain strongholds in various parts of Scotland. These organisations also collect information on red and grey squirrel sightings, and we will use these data in the challenge to learn more about red squirrel population trends and habitat preferences.</p>
     </div>
   </div>
 </div>
@@ -32,26 +34,27 @@ permalink: /DL/challenge1
 
 
 <!-- Data section -->
-<section id="portfolio-work" style= "background-color: #71667c; color: white">
+<section id="portfolio-work" style= "background-color: #395540; color: white">
 
         <div class="container">
          <center><h2>Data overview </h2></center>
          
           <p> You will use the following datasets: <br> </p>
           
-          <b><h3>Scottish Squirrel Database</h3></b>
+          <b><h4>The Scottish Squirrel Database</h4></b>
           <br>
-          A compilation of grey and red squirrel observations compiled by the Scottish Wildlife Trust (LINK) and hosted on the <a href="https://registry.nbnatlas.org/public/show/dr949" target="_blank">NBN Atlas</a>. The most relevant variables in the dataset for this challenge are:
-          <li><b>Year:</b>the year of the sighting</li>
-          <li><b>Count:</b>the number of squirrels sighted on the occasion (if blank, assume it is 1)</li>
-          <li><b>OSGR:</b>the Ordance Survey (LINK) grid reference for 10 x 10 km squares; will be useful to link the forest cover data</li>
+          A dataset of grey and red squirrel observations compiled by the <a href="http://scottishwildlifetrust.org.uk/" target="_blank">Scottish Wildlife Trust</a> and hosted on the <a href="https://registry.nbnatlas.org/public/show/dr949" target="_blank">NBN Atlas</a>. The most relevant variables in the dataset for this challenge are:
+          <li><b>Year:</b> the year of the sighting</li>
+          <li><b>Count:</b> the number of squirrels sighted on the occasion (if blank, assume it is 1)</li>
+          <li><b>OSGR:</b> the Ordance Survey (LINK) grid reference for 10 x 10 km squares; will be useful to link the forest cover data</li>
 
           
-          <b><h3>Forest cover</h3></b>
+          <b><h4>Forest cover</h4></b>
           <br>
       <p>This dataset contains the forest cover (in % and total area) in each OS grid cell. This dataset was created by us*, using: </p>
 
-<li>	<b>The National Forest Inventory for Scotland 2017</b>, from the Forestry Commission (LINK TO DATA)</li>
+<li>	<b>The National Forest Inventory for Scotland 2017</b>, from the <a href="http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/" target="_blank">Forestry Commission</a></li>
+
 <li>	<b>OS grid cells at a 10 x 10 km resolution</b>, from <a href="https://github.com/charlesroper/OSGB_Grids" target="_blank">this Git repository</a></li>
 <li>	monthly rainfall (mm)</li><br>
 
@@ -63,7 +66,7 @@ permalink: /DL/challenge1
 
 
    <!-- Tasks section -->
-<section id="portfolio-work" style= "background-color: #ccdbed; color: black">
+<section id="portfolio-work" style= "background-color: #d1b375; color: black">
 
         <div class="container">
            
@@ -156,5 +159,39 @@ There is no script or code provided for this challenge: how you go about solving
     </div>
   </div>
 </div>
+</section>
+   
+<!-- Help section -->
+<section id="portfolio-work" style= "background-color: #515d69; color: white">
+
+        <div class="container">
+         <center><h2>Help & hints </h2></center>
+   <p>Here is a list of tutorials that might help you complete this challenge: </p>
+
+<li> tutorial 1 </li><br>
+<li> tutorial 2 </li><br>
+<li> tutorial 3 </li><br>
+
+<p> If you are stuck or don't know how to go about a specific task, the hint belows may help you back on the right track: </p>
+
+<li>Hint 1</li>
+<li>Hint 2...</li>
+         
+         </div>
+</section>
+
+   
+<!-- Acknowledgements section -->
+<section id="portfolio-work" style= "background-color: #a0530e; color: white">
+
+        <div class="container">
+         <center><h2>Acknowledgements </h2></center>
+   <p>We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: </p>
+
+<li> - <b>Scottish Wildlife Trust (2018).</b> The Scottish Squirrel Database. Occurrence dataset https://doi.org/10.15468/fqg0h3 under license CC-BY-4.0</li><br>
+<li> - <b>Forestry Commission (2018). </b>National Forest Inventory Woodland Scotland 2017. Available on <a href="http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/" target="_blank">Forestry Commission Open Data portal</a> under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]</li><br>
+
+
+         </div>
 </section>
    
