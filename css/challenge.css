@@ -295,6 +295,16 @@ font header .navbar-default .navbar-nav li a:hover {
   color: #f3d27a;
 }
 
+#feature ul {
+  padding: 10px 220px 20px 10px;
+  color: #ffffff;
+  list-style: circle;
+  line-height: 1.8;
+}
+#feature ul li {
+  color: #ffffff;
+  line-height: 1.8;
+}
 	content Start
 --*/
 #testimonial {
