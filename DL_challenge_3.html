@@ -94,16 +94,18 @@ permalink: /DL/challenge3
 <section id="portfolio-work" style= "background-color: #ccdbed; color: black">
 
         <div class="container">
-         <center><h2>Specific tasks </h2></center>
+           
+   <center><h2>Specific tasks </h2></center>
+      
       <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
       
    <p> <b>1. Temporal trends in breeding success</b><br></p>
       
 <p>You will import the breeding success data, and plot the time series and a line of best fit for each species. Specifically, you should: </p>
 <br>
-<li>	Reshape the data for analysis, with a “species” column </li>
+<li>	Reshape the data for analysis, with a “species” column </li><br>
 
-<li>	Created a facetted plot showing the time series and a line of best fit for each species. Be prepared to answer the question: <i>From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</i> </li>
+<li>	Created a facetted plot showing the time series and a line of best fit for each species. Be prepared to answer the question: <i>From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</i> </li><br>
 
 <li>	Extract slopes, confidence intervals and goodness of fit information after running linear regressions for each species. (Look at the Help (INTERNAL LINK) – Hints section if you cannot find a way to automate this – you should not copy and paste your code six times!). Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. Be prepared to answer the questions: 
 <ul>
@@ -111,22 +113,106 @@ permalink: /DL/challenge3
 <li> - <i>	Which species has experienced the strongest decrease?</i></li>
 <li> - <i>	For which species did you get the best goodness of fit?</i></li></ul>
          </li>
+   
+   <p> <b>2. Does climate affect breeding success? </b><br></p>
+      
+<p>There is growing evidence that climate change affects the dynamics of seabird populations, for instance by disrupting the timing and availability of food resources such as sandeels (and the plankton upon which eels depend). You will test whether temperature and other climatic variables at the time of nesting and chick rearing affect the breeding success.</p>
+
+<p>First, you may assume that species might show similar responses and therefore want to predict seabird breeding success as a function of climate only, with year and species perhaps introducing some non-independence in the data. Specifically, you should:
+ </p>
+<br>
+<li> Design a random-intercept mixed-model approach to answer the question, testing in turn the 3 following climate variables and comparing the results to a null model: spring max temperature (when birds arrive and lay eggs), June max temperature (when chicks hatch and are reared), and June rainfall.  </li> <br>     
+
+<li>	Be prepared to answer the questions: 
+<ul>
+<li> - <i>	o	What are your random effects? </i></li>
+<li> - <i>	Which model(s) have an effect size different from zero (i.e. estimate +/- S.E. doesn’t overlap 0)? </i></li></ul>
+         </li><br> 
+         
+<li> Optional: extract and plot the predicted values from a model of your choice using the ggeffects package, and overlay the raw data on the graph. </li> <br>
+
+   <p> <b>3. What if species actually differ in their climate response? </b><br></p>
+      
+<p>Create a data visualisation that shows the data points and regression lines for each species separately. (Remember that we are working with summarised data rather than the raw data, which limits our modelling options and justifies the use of linear regression.) Specifically, you should: </p>
+
+<li> Visualise the species-specific fledging responses to SPRING and JUNE max temperature and rainfall.  </li> <br>    
+<li> Extract the slopes and confidence intervals of these linear relationships, and display them together in a single graph. (To compare effect sizes, variables must be standardised: see the HINTS section if you’re struggling.) </li> <br>
+
+<li>	Be prepared to answer the questions: 
+<ul>
+<li> - <i>	For which species do sunshine hours in June have a significant positive effect? </i></li>
+<li> - <i>	Which variable most negatively affect puffin breeding success in Spring? </i></li></ul>
+         </li><br> 
         
 </div>
 </section>
 
-<!-- another section  -->
+<!-- Get started -->
 <section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL-challenge-puffinrazor.jpg);">
  
    <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h2>Another section here</h2>
-      <p>text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+      <h2>How to get started </h2>
+      <p> Download the challenge repository (LINK), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
+There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). </p>
+
+<h2> Finished? Take the test! </h2>
+<p> Once you have a fully working script and have completed the specific tasks, take the test (LINK). </p>
+
     </div>
   </div>
 </div>
 </section>
 
+    <!-- Help section -->
+<section id="portfolio-work" style= "background-color: #515d69; color: white">
 
+        <div class="container">
+         <center><h2>Help & hints </h2></center>
+   <p>Here is a list of tutorials that might help you: </p>
+
+<li> - tutorial 1 </li><br>
+<li> - tutorial 2 </li><br>
+<li> - tutorial 3 </li><br>
+
+<p> If you are stuck or don't know how to go about a specific task, the hint belows may help you back on the right track: </p>
+
+{::options parse_block_html="true" /}
+
+<details>
+   <summary markdown= "span"> Collapsible line 1 </summary>
+
+a test a test a test
+
+```r
+# Identify your current directory
+getwd()
+
+# Set your working directory
+setwd("insert folder path")
+```
+
+text text with some references to `packages()` 
+
+ </details> 
+ <br>
+         
+         </div>
+</section>
+   
+   
+    <!-- Acknowledgements section -->
+<section id="portfolio-work" style= "background-color: #b88426; color: white">
+
+        <div class="container">
+         <center><h2>Acknowledgements </h2></center>
+   <p>We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: </p>
+
+<li> - <b>Isle of May long-term study data: </b>CC/governement license etc. </li><br>
+<li> - <b>Met office data: </b>CC/governement license etc. </li><br>
+
+
+         </div>
+</section>
    
