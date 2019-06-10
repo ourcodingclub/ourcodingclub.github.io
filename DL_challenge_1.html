@@ -1,0 +1,160 @@
+---
+layout: page
+title: Challenge level 1
+permalink: /DL/challenge1
+---
+
+
+    <!-- Intro to challenge -->
+<section id="portfolio-work" style= "background-image: url({{ site.baseurl }}/img/DL-ccbanner-gold.png); color: white">
+
+        <div class="block">
+         <center><h2>Intro to R challenge: Where are the red squirrels? </h2></center>
+            <p></p>
+          <p> This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the <i>STATS FROM SCRATCH</i> course stream. Scroll for more information on your tasks and how to complete the challenge. </p>
+        
+</div>
+
+</section>
+
+<!-- Challenge context and objectives -->
+<section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL_challenge_squirrel2.jpg);">
+ 
+   <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Challenge outline and objectives</h2>
+      <p> Background of grey squirrel introduction and impacts on red squirrels: population declines through competition and squirrel pox.... Conservation efforts to control grey populations and help reds recover; at the moment concentrated in some areas (Cairngorms, ....)
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- Data section -->
+<section id="portfolio-work" style= "background-color: #71667c; color: white">
+
+        <div class="container">
+         <center><h2>Data overview </h2></center>
+         
+          <p> You will use the following datasets: <br> </p>
+          
+          <b><h3>Scottish Squirrel Database</h3></b>
+          <br>
+          A compilation of grey and red squirrel observations compiled by the Scottish Wildlife Trust (LINK) and hosted on the <a href="https://registry.nbnatlas.org/public/show/dr949" target="_blank">NBN Atlas</a>. The most relevant variables in the dataset for this challenge are:
+          <li><b>Year:</b>the year of the sighting</li>
+          <li><b>Count:</b>the number of squirrels sighted on the occasion (if blank, assume it is 1)</li>
+          <li><b>OSGR:</b>the Ordance Survey (LINK) grid reference for 10 x 10 km squares; will be useful to link the forest cover data</li>
+
+          
+          <b><h3>Forest cover</h3></b>
+          <br>
+      <p>This dataset contains the forest cover (in % and total area) in each OS grid cell. This dataset was created by us*, using: </p>
+
+<li>	<b>The National Forest Inventory for Scotland 2017</b>, from the Forestry Commission (LINK TO DATA)</li>
+<li>	<b>OS grid cells at a 10 x 10 km resolution</b>, from <a href="https://github.com/charlesroper/OSGB_Grids" target="_blank">this Git repository</a></li>
+<li>	monthly rainfall (mm)</li><br>
+
+<p>*<i>Fancy an extra challenge? Why don't you try re-creating this dataset yourself?</i> (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)</p>
+        
+</div>
+
+</section>
+
+
+   <!-- Tasks section -->
+<section id="portfolio-work" style= "background-color: #ccdbed; color: black">
+
+        <div class="container">
+           
+   <center><h2>Specific tasks </h2></center>
+      
+      <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
+      
+   <p> <b>1. Data manipulation </b><br></p>
+      
+<p>Clean the squirrel dataset for the last decade, so it’s ready to analyse. Specifically, you should: </p>
+
+<li>	Keep only observations for the years 2008 to 2017 (using the <i>Start.date.year column</i> and renaming it to <i>year</i>)</li><br>
+
+<li>Remove the observations that are not at the species level (i.e. we don’t know whether they are grey or red squirrels)</li><br>
+
+<li>Create a <i>species</i> column that will have <i>Red</i> and <i>Grey</i> as factor levels </li><br>
+   
+<li>We will assume that the observations that have <b>NA</b> as <i>count</i> are observations of one squirrel; replace them by the value 1. </li><br>
+
+<li>Be prepared to answer the question: <i>To the nearest thousand, how large is your <b>cleaned</b> dataset? </i> </li><br>
+   
+   <p> <b>2. Temporal trends </b><br></p>
+      
+<p>Determine if there is a temporal trend in the number of observations for red and grey squirrels (2008-2017). Specifically, you should:</p>
+
+<li> Summarise the number of observations per species and per year </li> <br>     
+
+<li>Plot the data and run one linear model to test this</li> <br>
+
+<li>Be prepared to answer the questions: 
+<ul>
+<li> - <i>	Which species showed the strongest change over time? </i></li>
+<li> - <i>	What were your predictor variable(s) and their data type in the model? </i></li>
+<li> - <i>	o	What is the adjusted R-squared of the regression? </i></li></ul>
+         </li><br> 
+         
+<li> Think about the following: what could be the reasons for this trend? </li> <br>
+
+   <p> <b>3. Do red and grey squirrels prefer different habitats? </b><br></p>
+      
+<p>Determine whether total squirrel counts (for the study period 2008-2017) in OS grid cells (10km) are linked to forest cover in the cell. Specifically, you should: </p>
+
+<li> Summarise the squirrel count data at the species and grid cell level. Remove observations greater than 500 after aggregating, as they mess up with the plots later (but feel free to experiment with the full dataset too!).</li> <br>    
+
+<li>Merge the squirrel and forest datasets </li> <br>
+
+<li>Visualise the scatterplot of abundance as a function of forest cover for each species. Run one linear model to test the relationship. </li>
+
+<li>	Be prepared to answer the questions: 
+<ul>
+<li> - <i>	Is the relationship significant? </i></li>
+<li> - <i>	Does the model explain the variation in the data well?</i></li></ul>
+         </li><br> 
+         
+ <p> <b>4. Re-classify forest cover </b><br></p>         
+         
+<p>Building on the previous point, try turning the forest cover data into a categorical variable, and use the visual representation of your choice to display the median abundance and uncertainty around this measure. Specifically, you should:</p> 
+
+<li>	Transform the cover data into a <i>cover.class</i> variable with the following bins:
+<ul>
+<li>o [0-10] % </li>
+<li>o	]10-20]</li>
+<li>o	]20-30]</li>
+<li>o	]30-40]</li>
+<li>o	]40-50]</li>
+<li>o	]50+</li>
+
+</ul>
+         </li><br> 
+         
+<li>	Create your visualisation and be ready to answer the question: <i>In what cover classes are red squirrels more abundant than grey?</i> </li><br>
+        
+</div>
+</section>
+
+<!-- Get started  -->
+<section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL-challenge-squirrel.jpg);">
+ 
+   <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>How to get started </h2>
+      <p> Download the challenge repository (LINK), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
+There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). </p>
+
+<h2> Finished? Take the test! </h2>
+<p> Once you have a fully working script and have completed the specific tasks, take the test (LINK). </p>
+      
+      
+    </div>
+  </div>
+</div>
+</section>
+   
