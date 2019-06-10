@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    {% include headchallenge.html %}
+
+  </head>
+  <body>
+
+
+    {% include header.html %}
+
+
+    {{ content }}
+
+
+
+
+
+
+
+
+
+    {% include footer.html %}
+    
+{% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
+    </body>
+</html>
+
