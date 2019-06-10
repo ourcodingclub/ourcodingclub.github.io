@@ -261,6 +261,14 @@ font header .navbar-default .navbar-nav li a:hover {
   margin-bottom: 30px;
   color:#f6f2ee;
 }
+
+#feature h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color:#f6f2ee;
+}
+
 #feature p {
   color:#f6f2ee;
   margin-bottom: 20px;
@@ -269,6 +277,15 @@ font header .navbar-default .navbar-nav li a:hover {
   background: #655E7A;
   color: #fff;
   padding: 10px 20px;
+}
+
+#feature a {
+  text-decoration: none !important;
+  color: #f3d27a;
+}
+#feature a:active {
+  text-decoration: none !important;
+  color: #f3d27a;
 }
 
 	content Start
@@ -984,11 +1001,11 @@ footer .footer-manu ul li a:hover {
   color: #ffffff;
   line-height: 1.8;
 }
-# emphasis a {
+#emphasis a {
   text-decoration: none !important;
   color: #f6ed95;
 }
-# emphasis a:active {
+#emphasis a:active {
   text-decoration: none !important;
   color: #f6ed95;
 }
