@@ -1,0 +1,209 @@
+---
+layout: page
+title: Challenge level 2
+permalink: /DL/challenge2
+---
+
+
+    <!-- Intro to challenge -->
+<section id="portfolio-work" style= "background-image: url({{ site.baseurl }}/img/DL-ccbanner-teal.png); color: white">
+
+        <div class="container">
+         <center><h2>Data visualisation challenge: Native woodlands </h2></center>
+            <p></p>
+          <p> This challenge will require the use of data manipulation, plotting and mapping skills, and is the culmination of the <i>WIZ OF DATA VIS</i> course stream. Scroll for more information on your tasks and how to complete the challenge. </p>
+        
+</div>
+
+</section>
+
+<!-- Challenge context and objectives -->
+<section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL-challenge-pine.jpg);">
+ 
+   <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Challenge outline and objectives</h2>
+      <p>While Scotland is best known for its endless rolling heather hills, it used to be covered in wide swathes of forest. Less than 20% of Scotland is now afforested, and only 4% of the territory consists of native woodlands (<a href="https://www.woodlandtrust.org.uk/about-us/where-we-work/scotland/" target="_blank">Woodland Trust</a>, <a href="https://www.nature.scot/professional-advice/land-and-sea-management/managing-land/forests-and-woodlands/woodland-expansion-across-scotland" target="_blank">Scottish Natural Heritage</a>). </p>
+      
+      <p>The Scottish government has included woodland expansion goals in its Climate Change plan, and several governmental and non governmental organisations are working towards the creation of new woodlands that will support native species and provide a wider range of ecosystem services than just timber. </p>
+      
+      <p>You have been asked to provide a report on the extent and structure of some high-priority conservation habitats in national nature reserves (NNR) of Scotland. For selected woodland types, you are required to prepare maps of their distribution in the Cairngorms, the Glen Affric, and the Trossachs nature reserve areas. You have also been tasked to calculate their respective extent within the reserve boundaries, and some basic biodiversity indices.<p>
+
+    </div>
+  </div>
+</div>
+</section>
+
+  <!-- Data section -->
+<section id="portfolio-work" style= "background-color: #607d8b; color: white">
+
+        <div class="container">
+         <center><h2>Data overview </h2></center>
+         
+          <p> You will use the following datasets, available from the Challenge repository (LINK) on GitHub <br> </p>
+          
+          <b><h3>Native Woodland Survey of Scotland</h3></b>
+          
+          <li><b>FCPRODUCT S NWSS</b>, a shapefile of all woodland patches in Scotland. The most important variables in the dataset are: <ul>
+             <li>- <b>DOM_HABITA</b>: the main habitat type for the polygon. We will only keep some priority habitats, listed in the specific tasks (INTERNAL LINK)</li>
+             <li>- <b>HECTARES</b>: the area of a given patch</li>
+          </ul>
+          
+          <br>Original data link <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_0" target="_blank">here</a> and more information about the survey <a href="https://forestry.gov.scot/forests-environment/biodiversity/native-woodlands/native-woodland-survey-of-scotland-nwss" target="_blank">here</a>.</li>
+          
+           <li><b>NWSS Species Structure</b>, a spreadsheet containing tree species information from the woodlands. The most important variables in the dataset are: <ul>
+              
+              <li><b>SCPTDATA_I</b>: a unique identifier code that will allow to match the observations to the spatial data in <b>FCPRODUCT S NWSS</b></li>
+              
+              <li><b>SPECIES</b>: the name of the species recorded</li>
+              
+              <li><b>ESTIMT_HA</b>: the estimated area, in hectares, covered by a given species at this location</li>
+           </ul>
+           
+           <br>Original data link <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6" target="_blank">here</a>. </li><br>
+          
+          <b><h3>National Nature Reserves</h3></b>
+          
+      <p>A shapefile containing the outlines of Scotland's <a href="https://www.nnr.scot/" target="_blank">NNRs</a>. The most important variables in the dataset are: </p><ul>
+
+<li>	<b>NAME</b>: The name of the reserve </li>
+<li>	<b>SITE_HA</b>: The area of the site in hectares</li> </ul>
+      
+      <br>Original data link <a href="https://gateway.snh.gov.uk/natural-spaces/dataset.jsp?dsid=NNR" target="_blank">here</a>.
+        
+</div>
+
+</section>
+
+
+   <!-- Tasks section -->
+<section id="portfolio-work" style= "background-color: #cd9f9f; color: #2b3138">
+
+        <div class="container">
+           
+   <center><h2>Specific tasks </h2></center>
+      
+      <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
+      
+   <h3> <b>1. Clean the data </b></h3>
+      
+<p>You will need to clean and filter the data to the sites and woodland types of interests. Specifically, you should: </p>
+
+<li>	list of tasks </li>
+
+<li>list of tasks </li>
+
+<li>	list of questions
+<ul>
+<li> - <i>	Q1 </i></li>
+<li> - <i>	Q2</i></li>
+<li> - <i>	Q3</i></li></ul>
+         </li>
+
+   <h3> <b>2. Map the areas of interest </b></h3>
+      
+<p>Display the extent of the priority woodland types within the three NNRs. Specifically, you should: </p>
+
+<li>	list of tasks </li>
+
+<li>list of tasks </li>
+
+<li>	list of questions
+<ul>
+<li> - <i>	Q1 </i></li>
+<li> - <i>	Q2</i></li>
+<li> - <i>	Q3</i></li></ul>
+         </li>
+     
+   <h3> <b>3. Calculate the proportion of land (in %) covered by each habitat in the three areas. </b></h3>
+      
+<p> (Tip: the total NNR area is found in the cell SITE_HA, and the habitat polygon size is contained in the cell HECTARES. Note that there are more than one polygon per habitat type!). You will need to clean and filter the data to the sites and woodland types of interests. Specifically, you should: </p>
+
+<li>	list of tasks </li>
+
+<li>list of tasks </li>
+
+<li>	list of questions
+<ul>
+<li> - <i>	Q1 </i></li>
+<li> - <i>	Q2</i></li>
+<li> - <i>	Q3</i></li></ul>
+         </li>
+
+<h3> <b>4. Calculate the species richness and evenness of the three areas. </b></h3>
+      
+<p> formulas for species richness here </p>
+
+<li>	list of tasks </li>
+
+<li>list of tasks </li>
+
+<li>	list of questions
+<ul>
+<li> - <i>	Q1 </i></li>
+<li> - <i>	Q2</i></li>
+<li> - <i>	Q3</i></li></ul>
+         </li>
+    
+        
+</div>
+</section>
+
+<!-- Get started  -->
+<section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL-challenge-larch.jpg);">
+ 
+   <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>How to get started </h2>
+      <p> Download the challenge repository (LINK), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
+There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). </p>
+
+<h2> Finished? Take the test! </h2>
+<p> Once you have a fully working script and have completed the specific tasks, take the test (LINK). </p>
+
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- Help section -->
+<section id="portfolio-work" style= "background-color: #6f6473; color: white">
+
+        <div class="container">
+         <center><h2>Help & hints </h2></center>
+   <p>Here is a list of tutorials that might help you complete this challenge: </p>
+
+<li> tutorial 1 </li>
+<li> tutorial 2 </li>
+<li> tutorial 3 </li>
+
+<p> If you are stuck or don't know how to go about a specific task, the hints below may help you back on the right track: </p>
+
+<li>Hint 1</li>
+<li>Hint 2...</li>
+         
+         </div>
+</section>
+
+   
+<!-- Acknowledgements section -->
+<section id="portfolio-work" style= "background-color: #23533b; color: white">
+
+        <div class="container">
+         <center><h2>Acknowledgements </h2></center>
+   <p>We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: </p>
+
+<li><b>Scottish Natural Heritage (2018).</b> National Nature Reserves. Shapefile <a href="https://gateway.snh.gov.uk/natural-spaces/dataset.jsp?dsid=NNR" target="_blank">available here</a> under Open Government Licence (Crown copyright).</li><br>
+
+<li><b>Forestry Commission (2018). </b>Native Woodland Survey of Scotland (NWSS). Available on <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7" target="_blank">Forestry Commission Open Data portal</a> under Open Governement licence (Crown copyright)</li><br>
+
+<li><b>Forestry Commission (2018). </b>Native Woodland Survey of Scotland (NWSS) - Species structure. Available on <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6" target="_blank">Forestry Commission Open Data portal</a> under Open Governement licence (Crown copyright)</li><br>
+
+
+
+         </div>
+</section>
+   
