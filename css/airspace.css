@@ -971,7 +971,7 @@ footer .footer-manu ul li a:hover {
 #emphasis h2 {
   font-size: 28px; 
   color: #f3f2f2;
-  padding: 15px 220px 15px 0px;
+  padding: 15px 20px 15px 0px;
 }
 #emphasis ul {
   padding: 10px 220px 20px 10px;
@@ -983,11 +983,11 @@ footer .footer-manu ul li a:hover {
   color: #ffffff;
   line-height: 1.8;
 }
-# emphasis a {
+#emphasis a {
   text-decoration: none !important;
-  color: #f6ed95;
+  color: #efda92;
 }
-# emphasis a:active {
+#emphasis a:active {
   text-decoration: none !important;
-  color: #f6ed95;
+  color: #efda92;
 }
