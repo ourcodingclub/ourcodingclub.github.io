@@ -980,6 +980,7 @@ footer .footer-manu ul li a:hover {
   line-height: 1.8;
 }
 #emphasis ul li {
+  font-size: 20px; 
   color: #ffffff;
   line-height: 1.8;
 }
