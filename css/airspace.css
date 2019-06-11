@@ -34,7 +34,7 @@ h3 {
   font-weight: 300;
 }
 h4 {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 p {
   font-size: 15px;
@@ -980,6 +980,7 @@ footer .footer-manu ul li a:hover {
   line-height: 1.8;
 }
 #emphasis ul li {
+  font-size: 20px; 
   color: #ffffff;
   line-height: 1.8;
 }
