@@ -300,10 +300,12 @@ font header .navbar-default .navbar-nav li a:hover {
   color: #ffffff;
   list-style: circle;
   line-height: 1.8;
+  font-size: 18px;
 }
 #feature ul li {
   color: #ffffff;
   line-height: 1.8;
+  font-size: 18px;
 }
 	content Start
 --*/
