@@ -113,6 +113,7 @@ font header .navbar-default .navbar-nav li a:hover {
 
 #backhome .btn {
   padding: 15px 35px;
+  margin: 20px;
   border: none;
   background-color: #d2c1da;
   font-size: 15px;
