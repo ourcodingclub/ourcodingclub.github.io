@@ -56,6 +56,18 @@ import matplotlib.pyplot as plt
 
 This tutorial will use a heliophysics dataset as an example which contains a range of different measurements. The version of the dataset we will use is available as a raw text file and contains hourly measurements from the beginning of 1963 onwards. This type of file (often `.dat`, `.txt`, or `.csv`) is the least sophisticated and is not the right solution for larger datasets but is okay here (the file is around 150MB) - large/new datasets will often use formats like HDF or NetCDF. `pandas` contains a range of IO tools for different formats - <a href="https://pandas.pydata.org/pandas-docs/stable/io.html" target="_blank">look here</a> when you want to read or write a dataset.
 
+
+<div class="bs-callout-yellow" markdown="1">
+## Please bear with us while we update this tutorial!
+
+In August 2019, NASA changed their data access protocol, so the ftp links and code below won't work. To access the data and proceed with the tutorial, we propose the following workaround:
+
+1. Use the <a href="https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat" target="_blank">http address instead</a>  
+2. Right-click to Save As `omni2_all_years.dat`
+3. Continue the tutorial!
+</div> 
+
+[IGNORE THIS BIT!] 
 Download the dataset from <a href="ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat" target="_blank">ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat</a> and take a quick look at the accompanying description: <a href="ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2.text" target="_blank">ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2.text</a> Look for `OMNI2_YYYY.DAT FORMAT DESCRIPTION` to see the list of columns contained in the dataset. This is pretty complicated! but we will only use a few of the columns:
 ##### - columns 1, 2, 3 giving the year, day of year (DOY), and hour of day of each measurement
 ##### - column 40: the sunspot number (R) - the number of spots on the surface of the Sun, indicating how active it is
@@ -64,9 +76,9 @@ Download the dataset from <a href="ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_re
 
 We will investigate this data to see if there is a connection between conditions on the Sun (R and Dst), and magnetic conditions at Earth (Dst).
 
-NB: if you in a Jupyter notebook you can download the file with:
+NB: if you in a Jupyter notebook you can download the file with (this code won't work now due to change in NASA ftp access):
 ```
-!wget ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat
+!wget ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat 
 ```
 
 Take a quick look at the first line of the data file:
