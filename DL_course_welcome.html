@@ -21,6 +21,25 @@ permalink: /course_home/
     </div>
 </section>
 
+    <!-- Accessibility button -->
+<section id="access">
+    <div class="container">
+        <div class="row">
+           <switch-btn> Remove background images </switch-btn>
+              <script type="text/javascript">
+                var bgcol = ["#36454f"];
+                var fontcol = ["#fafafa"];
+                document.querySelector("switch-btn").addEventListener("click",
+                function() {
+                document.querySelector("feature").style.background = bgcol,
+                document.querySelector("feature").style.color = fontcol,
+                           }
+                                                                     )
+              </script>
+       </div>
+    </div>
+</section>
+
  <!-- Course description start -->
  <section id="portfolio-work">
         <div class="container">
@@ -68,11 +87,11 @@ permalink: /course_home/
       
       <div class="col-md-6 col-sm-12">
         <div class="block"><!-- the 3 clickable streams here  -->
-          <a href="{{ site.baseurl }}/course/stats-scratch.html"><img src="{{ site.baseurl }}/img/DL_stream1.png" alt="Img" align="right" style="width: 450px; padding: 10px;" /></a>
+          <a href="{{ site.baseurl }}/course/stats-scratch.html"><img src="{{ site.baseurl }}/img/DL_stream1.png" alt="Stream 1: Stats from Scratch" align="right" style="width: 450px; padding: 10px;" /></a>
           <br><br>
-          <a href="{{ site.baseurl }}/course/wiz-viz.html"><img src="{{ site.baseurl }}/img/DL_stream2.png" alt="Img" align="right" style="width: 450px; padding: 10px;" /></a>
+          <a href="{{ site.baseurl }}/course/wiz-viz.html"><img src="{{ site.baseurl }}/img/DL_stream2.png" alt="Stream 2: Wiz of Data Viz" align="right" style="width: 450px; padding: 10px;" /></a>
           <br><br>
-          <a href="{{ site.baseurl }}/course/mastering-modelling.html"><img src="{{ site.baseurl }}/img/DL_stream3.png" alt="Img" align="right" style="width: 450px; padding: 10px;" /></a>
+          <a href="{{ site.baseurl }}/course/mastering-modelling.html"><img src="{{ site.baseurl }}/img/DL_stream3.png" alt="Stream 3: Mastering Modelling" align="right" style="width: 450px; padding: 10px;" /></a>
           <br><br>
         </div>
       </div><!-- .col-md-6 close -->
