@@ -270,7 +270,7 @@ font header .navbar-default .navbar-nav li a:hover {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #fff;
+  background-color: #3b3240;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -337,7 +337,11 @@ font header .navbar-default .navbar-nav li a:hover {
   color: #fcfcfc;
   margin-top: 10px;
 }
-	content Start
+
+#feature nobg {
+background-image:none;!important
+}
+
 --*/
 #testimonial {
   padding: 100px 0;
