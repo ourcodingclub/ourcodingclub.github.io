@@ -283,74 +283,54 @@ font header .navbar-default .navbar-nav li a:hover {
   backface-visibility: hidden;
   padding: 100px 0;
 }
-#feature {
-  background-position: 50% 94px;
-  width: 100%;
-  display: block;
-  position: relative;
-  overflow: visible;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: #3b3240;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 100px 0;
-}
-#feature h2 {
+
+.feature h2 {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 30px;
   color:#f6f2ee;
 }
 
-#feature h3 {
+.feature h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 30px;
   color:#f6f2ee;
 }
 
-#feature p {
+.feature p {
   color:#f6f2ee;
   margin-bottom: 20px;
 }
-#feature .btn-view-works {
+.feature .btn-view-works {
   background: #655E7A;
   color: #fff;
   padding: 10px 20px;
 }
 
-#feature a {
+.feature a {
   text-decoration: none !important;
   color: #f3d27a;
 }
-#feature a:active {
+.feature a:active {
   text-decoration: none !important;
   color: #f3d27a;
 }
 
-#feature ul {
+.feature ul {
   padding: 10px 220px 20px 10px;
   color: #ffffff;
   list-style: circle;
   line-height: 1.8;
   font-size: 18px;
 }
-#feature ul li {
+.feature ul li {
   color: #ffffff;
   line-height: 1.8;
   font-size: 18px;
 }
 
-#feature btn-switch {
+.feature btn-switch {
   padding: 15px 35px;
   border: none;
   border-radius: 10px;
@@ -360,7 +340,7 @@ font header .navbar-default .navbar-nav li a:hover {
   margin-top: 10px;
 }
 
-#feature nobg {
+.feature nobg {
 background-image:none;!important
 }
 
