@@ -327,6 +327,16 @@ font header .navbar-default .navbar-nav li a:hover {
   line-height: 1.8;
   font-size: 18px;
 }
+
+#feature .btn-switch {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #3d3444;
+  font-size: 15px;
+  color: #fcfcfc;
+  margin-top: 10px;
+}
 	content Start
 --*/
 #testimonial {
@@ -1049,21 +1059,3 @@ footer .footer-manu ul li a:hover {
   color: #f6ed95;
 }
 
-
-/*-- DL accessibility features --*/
-
-#access {
-  display: block;
-  background-color: #fff;
-  padding: 5px 0;
-}
-
-#access .btn-switch {
-  padding: 15px 35px;
-  border: none;
-  border-radius: 10px;
-  background-color: #3d3444;
-  font-size: 15px;
-  color: #fcfcfc;
-  margin-top: 10px;
-}

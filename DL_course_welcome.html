@@ -3,14 +3,11 @@ layout: challenge
 title: Data Science course
 permalink: /course_home/
 ---
-              <script type="text/javascript">
-                var bgcol = ["#36454f"];
-                var fontcol = ["#fafafa"];
-                document.getElementById("btn-switch").addEventListener("click",
-                function() {
-                document.getElementById("feature").style.background = bgcol
-                           };
-                                                                     )
+              <script>
+                function hidebg() {
+                document.getElementById("feature").style.background = "#36454f";
+                document.getElementById("feature").style.color = "#fafafa";
+                           }
               </script>
               
     <!-- Slider Start -->
@@ -28,17 +25,6 @@ permalink: /course_home/
             </div>
         </div>
     </div>
-</section>
-
-    <!-- Accessibility button -->
-<section id="access">
-   <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-               <div class="btn-switch"> Remove background images </div>
-          </div>
-        </div>
-    </div> 
 </section>
 
  <!-- Course description start -->
@@ -105,6 +91,8 @@ permalink: /course_home/
    <div class ="container">
       <div class="row">
     <div class="col-md-8 col-sm-12">
+
+<btn-switch onclick="hidebg()"> Hide background image </btn-switch>
 
 <h2>How it works</h2>
 
