@@ -340,10 +340,16 @@ font header .navbar-default .navbar-nav li a:hover {
   opacity: 0.8;
 }
 
-.feature nobg {
+#skills.feature nobg {
   background-image:none;!important
   background-color: #3b3240;
 }
+
+/*--
+	Bg images for all the feature containers
+	Here the url for the images should be defined and given a unique #id before the .feature
+--*/
+
 
 #skills.feature {
  background-image: url("../img/DL_home_list.jpg");
