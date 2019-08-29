@@ -271,7 +271,6 @@ font header .navbar-default .navbar-nav li a:hover {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #3b3240;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -342,11 +341,13 @@ font header .navbar-default .navbar-nav li a:hover {
 }
 
 .feature nobg {
-background-image:none;!important
+  background-image:none;!important
+  background-color: #3b3240;
+
 }
 
 #skills {
-background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);
+ background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);
 }
 
 --*/
