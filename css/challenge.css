@@ -345,6 +345,10 @@ font header .navbar-default .navbar-nav li a:hover {
 background-image:none;!important
 }
 
+.feature #skills {
+background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);
+}
+
 --*/
 #testimonial {
   padding: 100px 0;
