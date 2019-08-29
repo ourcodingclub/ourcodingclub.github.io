@@ -346,7 +346,7 @@ font header .navbar-default .navbar-nav li a:hover {
 
 }
 
-#skills {
+.feature #skills {
  background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);
 }
 
