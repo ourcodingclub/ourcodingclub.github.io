@@ -38,8 +38,11 @@ permalink: /course_home/
 
 <script type="text/javascript">
 function togglebg() {
-  var element = document.getElementById("skills");
-  element.classList.toggle("nobg");
+  if (document.getElementById('skills').style=='nobg') {
+  document.getElementById('skills').class='feature';
+} else {
+  document.getElementById('skills').style='nobg';
+}
 } 
 </script>
 
