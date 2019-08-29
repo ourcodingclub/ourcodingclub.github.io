@@ -35,7 +35,21 @@ permalink: /course_home/
 <section class="feature" id="skills" style= "background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);">
    <div class ="container">
 
-<btn-switch onClick="document.getElementById('skills').style='nobg';" style="float: right;"> Hide background image </btn-switch>   
+
+<script type="text/javascript">
+function togglebg()
+{
+    if (document.getElementById("skills").style=='nobg')
+    document.getElementById("skills").style="background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);";
+else (){
+document.getElementById("skills").style=='nobg';
+}
+}
+</script>
+
+<btn-switch onClick="togglebg()" style="float: right;"> Hide background image </btn-switch> 
+
+
 
     <div class="col-md-8 col-sm-12">
         
