@@ -36,17 +36,7 @@ permalink: /course_home/
    <div class ="container">
 
 
-<script type="text/javascript">
-function togglebg() {
-  if (document.getElementById('skills').style=='nobg') {
-  document.getElementById('skills').style='feature';
-} else {
-  document.getElementById('skills').style='nobg';
-}
-} 
-</script>
-
-<btn-switch onClick="togglebg()" style="float: right;"> Hide background image </btn-switch> 
+<btn-switch onClick="document.getElementById('skills').toggleClass='nobg';" style="float: right;"> Hide background image </btn-switch> 
 
 
 
