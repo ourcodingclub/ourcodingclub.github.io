@@ -263,7 +263,6 @@ font header .navbar-default .navbar-nav li a:hover {
 --*/
 
 .feature {
-  background-color: #3b3240;
   background-position: 50% 94px;
   width: 100%;
   display: block;
@@ -343,11 +342,11 @@ font header .navbar-default .navbar-nav li a:hover {
 
 .feature nobg {
   background-image:none;!important
-
+  background-color: #3b3240;
 }
 
-#skills {
- background-image: url({{ site.baseurl }}/img/DL_home_list.jpg); !important
+#skills.feature {
+ background-image: url({{ site.baseurl }}/img/DL_home_list.jpg);
 }
 
 --*/
