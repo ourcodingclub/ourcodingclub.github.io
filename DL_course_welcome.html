@@ -37,7 +37,7 @@ permalink: /course_home/
 
 
 
-<btn-switch style="float: right;"> Hide background image </btn-switch> 
+<btn-switch onclick="togglebg()" style="float: right;"> Hide background image </btn-switch> 
 
 
     <div class="col-md-8 col-sm-12">
@@ -155,8 +155,6 @@ var j;
 
 for (i = 0; i < btn.length; i++) { //start of loop 1
    for (j = 0; i < id.length; i++) { //start of loop 2
-
-btn[i].addEventListener("click", togglebg);
 
 function togglebg(){
    // toggle the bg depending on current state
