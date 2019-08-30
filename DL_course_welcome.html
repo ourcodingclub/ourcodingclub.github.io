@@ -3,6 +3,18 @@ layout: challenge
 title: Data Science course
 permalink: /course_home/
 ---
+<script type="text/JavaScript">
+document.getElementsByTagName("btn-switch").addEventListener("click",
+function togglebg(){
+   if (document.getElementById('skills').class=="feature"){
+    document.getElementById('skills').style="nobg";
+} 
+else if (document.getElementById('skills').class=="nobg"){
+    document.getElementById('skills').style="feature";
+}
+}
+)
+</script>
 
     <!-- Slider Start -->
 <section id="DL-header">
@@ -38,18 +50,6 @@ permalink: /course_home/
 
 
 <btn-switch style="float: right;"> Hide background image </btn-switch> 
-<script type="text/JavaScript">
-document.querySelector("btn-switch").addEventListener("click",
-function togglebg(){
-   if (document.getElementById('skills').class=="feature"){
-    document.getElementById('skills').style="nobg";
-} 
-else if (document.getElementById('skills').class=="nobg"){
-    document.getElementById('skills').style="feature";
-}
-}
-)
-</script>
 
 
     <div class="col-md-8 col-sm-12">
