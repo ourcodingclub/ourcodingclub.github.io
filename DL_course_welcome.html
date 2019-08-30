@@ -36,7 +36,6 @@ permalink: /course_home/
    <div class ="container">
 
 
-
 <btn-switch onclick="togglebg()" style="float: right;"> Hide background image </btn-switch> 
 
 
@@ -148,26 +147,22 @@ permalink: /course_home/
 <!-- Script for toggling bg images  -->
 
 <script type="text/JavaScript">
-var btn=document.getElementsByTagName("btn-switch");   // get all buttons
 var id=["skills", "yew"];
 var i;
-var j;
 
 function togglebg(){
-   for (i = 0; i < btn.length; i++) { //start of loop 1
-   for (j = 0; i < id.length; i++) { //start of loop 2
+   for (i = 0; i < id.length; i++) { //start of loop 2
    
    // toggle the bg depending on current state
-    if (document.getElementById(id[j]).class=='feature') {
+    if (document.getElementById(id[i]).class=='feature') {
       // bg is visible. hide it
-      document.getElementById(id[j]).class='nobg';
+      document.getElementById(id[i]).class='nobg';
     }
     else {
       // bg is invisible. show it
-      document.getElementById(id[j]).class ='feature';
+      document.getElementById(id[i]).class ='feature';
     }
 }//end of loop 2
-}//end of loop 1 
 } 
 )
    </script>
