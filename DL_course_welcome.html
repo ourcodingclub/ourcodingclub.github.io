@@ -37,8 +37,9 @@ permalink: /course_home/
 
 
 
-<btn-switch onclick="togglebg()" style="float: right;"> Hide background image </btn-switch> 
+<btn-switch style="float: right;"> Hide background image </btn-switch> 
 <script type="text/JavaScript">
+document.querySelector("btn-switch").addEventListener("click",
 function togglebg(){
    if (document.getElementById('skills').class=="feature"){
     document.getElementById('skills').style="nobg";
@@ -47,6 +48,7 @@ else if (document.getElementById('skills').class=="nobg"){
     document.getElementById('skills').style="feature";
 }
 }
+)
 </script>
 
 
