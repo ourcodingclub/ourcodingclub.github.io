@@ -39,19 +39,6 @@ permalink: /course_home/
 
 <btn-switch style="float: right;"> Hide background image </btn-switch> 
 
-   <script type="text/JavaScript">
-var btn=document.getElementsByTagName("btn-switch");
-btn[1].addEventListener("click", togglebg);
-function togglebg(){
-   if (document.getElementById('skills').class=="feature"){
-    document.getElementById('skills').style="nobg";
-} 
-else if (document.getElementById('skills').class=="nobg"){
-    document.getElementById('skills').style="feature";
-}
-}
-)
-   </script>
 
     <div class="col-md-8 col-sm-12">
         
@@ -157,3 +144,32 @@ else if (document.getElementById('skills').class=="nobg"){
     </div>
   </div>
 </section>
+
+<!-- Script for toggling bg images  -->
+
+<script type="text/JavaScript">
+var btn=document.getElementsByTagName("btn-switch");   // get all buttons
+var id=["skills", "yew"];
+var i;
+var j;
+
+for (i = 0; i < btn.length; i++) { //start of loop 1
+   for (j = 0; i < id.length; i++) { //start of loop 2
+
+btn[i].addEventListener("click", togglebg);
+
+function togglebg(){
+   // toggle the bg depending on current state
+    if (document.getElementById(id[j]).class== 'feature') {
+      // bg is visible. hide it
+      document.getElementById(id[j]).style= 'nobg';
+    }
+    else {
+      // bg is hidden. show it
+      document.getElementById(id[j]).style = 'feature';
+    }
+}
+} //end of loop 2
+} //end of loop 1
+)
+   </script>
