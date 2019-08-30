@@ -158,12 +158,12 @@ for (i = 0; i < btn.length; i++) { //start of loop 1
 
 function togglebg(){
    // toggle the bg depending on current state
-    if (document.getElementById(id[j]).class=='feature') {
-      // bg is visible. hide it
-      document.getElementById(id[j]).style='nobg';
+    if (document.getElementById(id[j]).style=='nobg') {
+      // bg is invisible. show it
+      document.getElementById(id[j]).style='feature';
     }
     else {
-      // bg is hidden. show it
+      // bg is visible. hide it
       document.getElementById(id[j]).style ='feature';
     }
 }
