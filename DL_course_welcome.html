@@ -153,21 +153,21 @@ var id=["skills", "yew"];
 var i;
 var j;
 
-for (i = 0; i < btn.length; i++) { //start of loop 1
-   for (j = 0; i < id.length; i++) { //start of loop 2
-
 function togglebg(){
+   for (i = 0; i < btn.length; i++) { //start of loop 1
+   for (j = 0; i < id.length; i++) { //start of loop 2
+   
    // toggle the bg depending on current state
-    if (document.getElementById(id[j]).style=='nobg') {
-      // bg is invisible. show it
-      document.getElementById(id[j]).style='feature';
+    if (document.getElementById(id[j]).class=='feature') {
+      // bg is visible. hide it
+      document.getElementById(id[j]).class='nobg';
     }
     else {
-      // bg is visible. hide it
-      document.getElementById(id[j]).style ='feature';
+      // bg is invisible. show it
+      document.getElementById(id[j]).class ='feature';
     }
-}
-} //end of loop 2
-} //end of loop 1
+}//end of loop 2
+}//end of loop 1 
+} 
 )
    </script>
