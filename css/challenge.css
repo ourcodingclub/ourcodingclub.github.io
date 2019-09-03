@@ -355,6 +355,10 @@ font header .navbar-default .navbar-nav li a:hover {
  background-image: url("../img/DL_home_list.jpg");
 }
 
+#workflow.feature {
+ background-image: url("../img/DL_yew.jpg");
+}
+
 #stream1tuts.feature {
  background-image: url("../img/DL_hills.jpg");
 }
@@ -379,7 +383,7 @@ font header .navbar-default .navbar-nav li a:hover {
 #challenge3go.feature {
  background-image: url("../img/DL_gannets.jpg");
 }
-
+ 
 
 
 --*/

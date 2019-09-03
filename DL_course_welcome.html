@@ -88,11 +88,11 @@ permalink: /course_home/
 </section>
 
  <!-- Course workflow  -->
-<section class="feature" id="yew" style= "background-image: url({{ site.baseurl }}/img/DL_yew.jpg);"> 
+<section class="feature" id="workflow"> 
    <div class ="container">
    <div class="row">
       
-<btn-switch onClick="document.getElementById('yew').style='nobg';" style="float: right;"> Hide background image </btn-switch>   
+<btn-switch onClick="document.getElementById('workflow').style='nobg';" style="float: right;"> Hide background image </btn-switch>   
 
     <div class="col-md-8 col-sm-12">
 
@@ -144,25 +144,3 @@ permalink: /course_home/
   </div>
 </section>
 
-<!-- Script for toggling bg images  -->
-
-<script type="text/JavaScript">
-var id=["skills", "yew"];
-var i;
-
-function togglebg(){
-   for (i = 0; i < id.length; i++) { //start of loop 2
-   
-   // toggle the bg depending on current state
-    if (document.getElementById(id[i]).class=='feature') {
-      // bg is visible. hide it
-      document.getElementById(id[i]).class='nobg';
-    }
-    else {
-      // bg is invisible. show it
-      document.getElementById(id[i]).class ='feature';
-    }
-}//end of loop 2
-} 
-)
-   </script>
