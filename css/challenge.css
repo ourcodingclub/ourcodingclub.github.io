@@ -355,9 +355,32 @@ font header .navbar-default .navbar-nav li a:hover {
  background-image: url("../img/DL_home_list.jpg");
 }
 
-#hills.feature {
+#stream1tuts.feature {
  background-image: url("../img/DL_hills.jpg");
 }
+
+#stream2tuts.feature {
+ background-image: url("../img/DL_path.jpg");
+}
+
+#stream3tuts.feature {
+ background-image: url("../img/DL_river.jpg");
+}
+
+
+#challenge1go.feature {
+ background-image: url("../img/DL_squirrel.jpg");
+}
+
+#challenge2go.feature {
+ background-image: url("../img/DL_woods.jpg");
+}
+
+#challenge3go.feature {
+ background-image: url("../img/DL_gannets.jpg");
+}
+
+
 
 --*/
 #testimonial {
