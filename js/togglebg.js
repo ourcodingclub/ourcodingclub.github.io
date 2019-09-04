@@ -1,13 +1,13 @@
 // toggle button to turn background images on and off
 
-function togglebg(){
-  if (document.getElementById('skills').classList.contains('nobg') {
-document.getElementById('skills').classList.remove('nobg');
+function togglebg(id){
+  if (document.getElementById(id).classList.contains('nobg') {
+document.getElementById(id).classList.remove('nobg');
 } else {
-document.getElementById('skills').classList.add('nobg');   
+document.getElementById(id).classList.add('nobg');   
 }
 }
 
-function toggle2() {
-$('#skills').toggleClass('nobg')
+function toggle2(id) {
+$(id).toggleClass('nobg')
 }
