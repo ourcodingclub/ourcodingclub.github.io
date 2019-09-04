@@ -32,7 +32,7 @@ permalink: /course_home/
          </div>
 </section>
 
-<section id="skills" style="feature">
+<section id="skills" class="feature">
    <div class ="container">
 
 
@@ -42,10 +42,10 @@ permalink: /course_home/
 
 function toggle()
 {
-if (document.getElementById('skills').style=='feature') {
+if (document.getElementById('skills').style.backgroundImage!='none') {
 document.getElementById('skills').style='nobg';
 } else {
-document.getElementById('skills').style='feature';
+document.getElementById('skills').class='feature';
 }
 }
 
