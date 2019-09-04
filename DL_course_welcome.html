@@ -42,11 +42,10 @@ permalink: /course_home/
 
 function toggle()
 {
-if (document.getElementById('skills').backgroundImage!='none') {
-document.getElementById('skills').style='nobg';
+if (document.getElementById('skills').classList.contains('nobg') {
+document.getElementById('skills').classList.remove('nobg');
 } else {
-document.getElementById('skills').style='feature';
-}
+document.getElementById('skills').classList.add('nobg');   
 }
 
 </script>
