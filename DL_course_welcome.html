@@ -32,20 +32,20 @@ permalink: /course_home/
          </div>
 </section>
 
-<section id="skills" class="feature" style="feature">
-   <div class ="container">
+<section id="skills" style="skills">
+   <div class ="feature">
 
 
-<btn-switch onclick="toggle(document.getElementById('skills'))" style="float: right;"> Hide background image </btn-switch> 
+<btn-switch onclick="toggle()" style="float: right;"> Hide background image </btn-switch> 
 
 <script>
 
-function toggle(obj)
+function toggle()
 {
-if (obj.style== 'nobg') {
-obj.style = 'feature';
+if (document.getElementById('skills').style=='skills') {
+document.getElementById('skills').style='nobg';
 } else {
-obj.style = 'nobg';
+document.getElementById('skills').style='skills';
 }
 }
 

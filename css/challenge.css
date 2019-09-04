@@ -350,6 +350,10 @@ font header .navbar-default .navbar-nav li a:hover {
 	Here the url for the images should be defined and given a unique #id before the .feature
 --*/
 
+#skills {
+ background-image: url("../img/DL_home_list.jpg");
+}
+
 
 #skills.feature {
  background-image: url("../img/DL_home_list.jpg");
