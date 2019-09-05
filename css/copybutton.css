@@ -2,7 +2,7 @@
 *CSS for copy to clipboard button
    */
    
-.copy a{
+a.copy {
   float: right !important;
   padding: 5px 5px !important;
   border: none !important;

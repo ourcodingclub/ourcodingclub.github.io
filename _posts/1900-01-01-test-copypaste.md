@@ -36,12 +36,16 @@ setwd("C:/User/CC-1-RBasics-master")
 
 You'll notice the `taxonGroup` variable shows as a character variable, but it should be a factor (categorical variable), so we'll force it to be one. When you want to access just one column of a data frame, you append the variable name to the object name with a dollar `$`sign. This syntax lets you see, modify, and/or reassign this variable.
 
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a>
+<section id= "code02" markdown="1">
 ```r
 head(edidiv$taxonGroup)     # Displays the first few rows of this column only
 class(edidiv$taxonGroup)    # Tells you what type of variable we're dealing with: it's character now but we want it to be a factor
 
 edidiv$taxonGroup <- as.factor(edidiv$taxonGroup)     # What are we doing here?!
 ```
+</section> 
+
 In that last line of code, the `as.factor()` function turns whatever values you put inside into a factor (here, we specified we wanted to transform the character values in the `taxonGroup` column from the `edidiv` object). However, if you were to run just the bit of code on the _right side_ of the arrow, it would work that one time, but would not modify the data stored _in_ the object. By _assigning_ with the arrow the output of the function to the variable, the original `edidiv$taxonGroup` in fact gets _overwritten_ : the transformation is stored in the object. Try again to run `class(edidiv$taxonGroup)` - what do you notice?
 
 ```r
