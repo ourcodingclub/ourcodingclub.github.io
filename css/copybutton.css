@@ -3,13 +3,13 @@
    */
    
 a.copy {
-  float: right !important;
-  padding: 5px 5px !important;
-  border: none !important;
-  background-color: #694078 !important;
+  float: right;
+  padding: 5px 5px;
+  border: none;
+  background-color: #694078;
   border-radius: 10px;
-  font-size: 12px !important;
-  color: #f0e6f3 !important;
-  text-align: center !important; 
-  text-decoration: none !important;
+  font-size: 12px;
+  color: #f0e6f3;
+  text-align: center; 
+  text-decoration: none;
 }

@@ -17,7 +17,7 @@ author: Sandra
 <b> What is R? </b> 
 R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the "S" programming language. (Next time you need a fun fact, you can say "Did you know that S came before R?") R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there's hardly anything you <i>can't</i> do in R. 
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a>
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1">
 
 ```r
@@ -49,13 +49,16 @@ edidiv$taxonGroup <- as.factor(edidiv$taxonGroup)     # What are we doing here?!
 
 In that last line of code, the `as.factor()` function turns whatever values you put inside into a factor (here, we specified we wanted to transform the character values in the `taxonGroup` column from the `edidiv` object). However, if you were to run just the bit of code on the _right side_ of the arrow, it would work that one time, but would not modify the data stored _in_ the object. By _assigning_ with the arrow the output of the function to the variable, the original `edidiv$taxonGroup` in fact gets _overwritten_ : the transformation is stored in the object. Try again to run `class(edidiv$taxonGroup)` - what do you notice?
 
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1">
+
 ```r
 # More exploration
 dim(edidiv)                 # Displays number of rows and columns
 summary(edidiv)             # Gives you a summary of the data
 summary(edidiv$taxonGroup)  # Gives you a summary of that particular variable (column) in your dataset
 ```
-
+</section>
 <hr>
 <hr>
 
