@@ -341,7 +341,7 @@ font header .navbar-default .navbar-nav li a:hover {
   opacity: 0.8;
 }
 
-.feature nobg {
+.nobg {
   background-image: none !important;
 }
 
