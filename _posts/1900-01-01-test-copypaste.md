@@ -38,6 +38,7 @@ You'll notice the `taxonGroup` variable shows as a character variable, but it sh
 
 <a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a>
 <section id= "code02" markdown="1">
+
 ```r
 head(edidiv$taxonGroup)     # Displays the first few rows of this column only
 class(edidiv$taxonGroup)    # Tells you what type of variable we're dealing with: it's character now but we want it to be a factor
