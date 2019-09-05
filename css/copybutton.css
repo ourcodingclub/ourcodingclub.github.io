@@ -3,12 +3,12 @@
    */
    
 .copy a{
-  float: right !important;
-  padding: 5px 5px !important;
-  border: none !important;
-  background-color: #694078 !important;
-  font-size: 15px !important;
-  color: #f0e6f3 !important;
-  text-align: center !important; 
-  text-decoration: none !important;
+  float: right;
+  padding: 5px 5px;
+  border: none;
+  background-color: #694078;
+  font-size: 15px;
+  color: #f0e6f3;
+  text-align: center; 
+  text-decoration: none;
 }
