@@ -2,7 +2,7 @@
 layout: post
 title: Copying and pasting code chunks
 subtitle: Let's make a template that works!
-date: 2019-09-05
+date: 1900-01-01
 author: Sandra
 ---
 <div class="block">
@@ -17,8 +17,9 @@ author: Sandra
 <b> What is R? </b> 
 R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the "S" programming language. (Next time you need a fun fact, you can say "Did you know that S came before R?") R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there's hardly anything you <i>can't</i> do in R. 
 
-<section id= "code01">
 <a id="Acode01" href="#" name="copy_pre">Copy Contents</a>
+<section id= "code01" markdown="1">
+
 ```r
 install.packages("dplyr")
 library(dplyr)
