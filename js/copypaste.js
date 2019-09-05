@@ -1,7 +1,7 @@
 // Copy and paste function
 
 $(document).ready(function(){
-   $("button[name=copy_pre]").click(function() {
+   $("a[name=copy_pre]").click(function() {
       var id = $(this).attr('id').slice(1); //always have letter A as prefix to link ID
       var el = document.getElementById(id);
       var range = document.createRange();
