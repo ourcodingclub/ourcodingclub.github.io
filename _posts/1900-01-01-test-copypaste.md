@@ -36,7 +36,7 @@ setwd("C:/User/CC-1-RBasics-master")
 
 You'll notice the `taxonGroup` variable shows as a character variable, but it should be a factor (categorical variable), so we'll force it to be one. When you want to access just one column of a data frame, you append the variable name to the object name with a dollar `$`sign. This syntax lets you see, modify, and/or reassign this variable.
 
-<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a>
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code02" markdown="1">
 
 ```r
