@@ -1,0 +1,11 @@
+/*
+*CSS for copy to clipboard button
+   */
+   
+.copy {
+  padding: 5px 5px;
+  border: none;
+  background-color: #694078;
+  font-size: 15px;
+  color: #f0e6f3;
+}
