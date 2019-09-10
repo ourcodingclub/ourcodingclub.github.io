@@ -5,6 +5,7 @@ subtitle: Subset, modify and shape your data
 date: 2015-10-11 21:11:27
 updated: 2019-04-04
 author: Sandra
+updater: Sandra
 meta: 
 tags: 
 ---
@@ -72,6 +73,8 @@ This dataset represents annual increments in stem growth, measured on crowberry 
 
 We have seen in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can access variables in R by using the dollar sign `$`. This is already one way of subsetting, as it essentially reduces your data frame (2 dimensions) to a vector (1 dimension). You can also access parts of a data frame using square brackets `[ , ]`. The first number you put will get the row number, and the second the column. Leave one blank to keep all rows or all columns.
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1">
 
 ``` r
 # Set your working directory to where the folder is saved on your computer
@@ -99,13 +102,19 @@ elongation[6, ]$Indiv   # returns the value in the column Indiv for the sixth ob
 # (much easier calling columns by their names than figuring out where they are!) 
 
 ```
-
+</section>
+ 
 Subsetting with brackets using row and column numbers can be quite tedious if you have a large dataset and you don't know where the observations you're looking for are situated! And it's never recommended anyway, because if you hard-code a number in your script and you add some rows later on, you might not be selecting the same observations anymore! That's why we can use __logical operations__ to access specific parts of the data that match our specification.
+
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code02" markdown="1"> 
 
 ``` r
 # Let's access the values for Individual number 603
 elongation[elongation$Indiv == 603, ]
 ```
+</section>
+
 There's a lot to unpack here! We're saying: "Take this dataframe (`elongation`), subset it (`[ , ]`) so as to keep the rows (writing the expression on the left-hand of the comma) for which the value in the column Indiv (`$Indiv`) is exactly (`==`) 603". __Note__: The logical expression works here because the Indiv column contains numeric values: to access data that is of character or factor type, you would use quotation marks: `elongation$Indiv == "six-hundred-and-three"`.
 
 
@@ -137,6 +146,9 @@ Here are some of the most commonly used operators to manipulate data. When you u
 
 Let's see them in action!
 
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1"> 
+
 ``` r
 
 # Subsetting with one condition
@@ -153,8 +165,8 @@ elongation[!elongation$Zone > 5, ]   # the ! means exclude
 elongation[elongation$Zone == 2 | elongation$Zone == 7, ]    # returns only data for zones 2 and 7
 elongation[elongation$Zone == 2 & elongation$Indiv %in% c(300:400), ]    # returns data for shrubs in zone 2 whose ID numbers are between 300 and 400
 
-
 ```
+</section>
 
 As you can see, the more demanding you are with your conditions, the more cluttered the code becomes. We will soon learn some functions that perform these actions in a cleaner, more minimalist way, but sometimes you won't be able to escape using base R (especially when dealing with non-data-frame objects), so it's good to understand these notations.
 
@@ -188,6 +200,8 @@ As you will now see, we can also make use of the arrow `<-` to overwrite specifi
 
 </div>
 
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code04" markdown="1"> 
 
 ```r
 ## CHANGING VARIABLE NAMES AND VALUES IN A DATA FRAME
@@ -212,11 +226,16 @@ elong2[1,4] <- 5.7
 elong2[elong2$ID == 373, ]$X2008 <- 5.7   # completely equivalent to option 1
 
 ```
+</section>
+
 __Can you spot pros and cons of options 1 and 2 above?__
 - Option 1 is compact, but requires you to know exactly where the value to be corrected is. If you reimport your dataset at a later time with new values, it may not be in the same place.
 - Option 2 is longer and more difficult to read (it uses brackets to extracts the row corresponding to individual #373, and then the dollar sign to access just the column called X2008), but provides fine control, and the code will run even if the observation moves in your dataset. 
 
 Using the same techniques, you can specify variable classes, which will be highly useful when we get to designing <a href= "https://ourcodingclub.github.io/2017/02/28/modelling.html" target="_blank">statistical models</a> and need grouping variables like factors.
+
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code05" markdown="1"> 
 
 ```r
 ## CREATING A FACTOR
@@ -230,7 +249,12 @@ elong2$zone <- as.factor(elong2$zone)        # converting and overwriting origin
 str(elong2)                                  # now zone is a factor with 6 levels
 
 ```
+</section>
+
 And what if you're not happy with the factor levels? You can see the names of the factors with the `levels()` function... and yes, overwrite them, too.
+
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code06" markdown="1"> 
 
 ```r
 ## CHANGING A FACTOR'S LEVELS
@@ -242,6 +266,7 @@ levels(elong2$zone) <- c("A", "B", "C", "D", "E", "F")   # you can overwrite the
 # You must make sure that you have a vector the same length as the number of factors, and pay attention to the order in which they appear!
 
 ```
+</section>
 
 That was a lot, but now you'll be able to adapt these little chunks of code to manipulate your own data. The next sections will hopefully make things even easier, as they'll teach you more intuitive functions to accomplish the same things.
 
@@ -267,7 +292,8 @@ The `gather()` function from the `tidyr` package will let us convert this wide-f
 
 _Note_: This function is slightly unusual as you are making up your own column names in the second (key) and third (value) arguments, rather than passing them pre-defined objects or values like most R functions. Here, year is our key and length is our value. 
 
-
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code07" markdown="1"> 
 ``` r
 install.packages("tidyr")  # install the package
 library(tidyr)             # load the package
@@ -282,21 +308,31 @@ elongation_long <- gather(elongation, Year, Length,                           # 
 elongation_wide <- spread(elongation_long, Year, Length) 
 
 ```
+</section>
+
 Notice how we used the column names to tell `gather()` which columns to reshape. This is handy if you only have a few, and if the columns change order eventually, the function will still work. However, if you have a dataset with columns for 100 genes, you might be better off specifying the column numbers:
+
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code08" markdown="1"> 
 
 ```r 
 elongation_long2 <- gather(elongation, Year, Length, c(3:8))
 ```
+</section>
+
 
 However, these functions have limitations and will not work on every data structure. To quote <a href="https://www.jstatsoft.org/article/view/v059i10" target="_blank">Hadley Wickham</a>, <b>"every messy dataset is messy in its own way"</b>. This is why giving a bit of thought to your dataset structure *before* doing your digital entry can spare you a lot of frustration later!
 
 Once you have the data in the right format, it's much easier to analyse them and visualise the results. For example, if we want to find out if there is inter-annual variation in the growth of <i>Empetrum hermaphroditum</i>, we can quickly make a boxplot:
 
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code09" markdown="1"> 
 ```r
 boxplot(Length ~ Year, data = elongation_long, 
         xlab = "Year", ylab = "Elongation (cm)", 
 	main = "Annual growth of Empetrum hermaphroditum")
 ```
+</section>
 
 <center> <img src="{{ site.baseurl }}/img/emni-annual.jpeg" alt="Img" style="width: 600px;"/> </center>
 <center> Annual growth of <i>Empetrum hermaphroditum</i>. </center>
@@ -311,15 +347,22 @@ From looking at the boxplot, there is a fairly big overlap between the annual gr
 
 The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object. Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. First, install and load the package.
 
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code10" markdown="1"> 
+
 ```r 
 install.packages("dplyr")  # install the package
 library(dplyr)              # load the package
 ```
+</section>
 
 <a name="rename"></a>
 #### 1. `rename()` variables
 
 This lets you change the name(s) of a column or columns. The first argument is the data frame, the second (and third, etc.) takes the form __New name = Old name__. 
+
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code11" markdown="1"> 
 
 ```r
 elongation_long <- rename(elongation_long, zone = Zone, indiv = Indiv, year = Year, length = Length)     # changes the names of the columns (getting rid of capital letters) and overwriting our data frame
@@ -328,11 +371,15 @@ elongation_long <- rename(elongation_long, zone = Zone, indiv = Indiv, year = Ye
 names(elongation_long) <- c("zone", "indiv", "year", "length")
 
 ```
+</section>
 
 <a name="filter"></a>
 #### 2. `filter()` rows and `select()`columns
 
 These are some of the most routine functions that let you reduce your data frame to just the rows and columns you need. The `filter()` function works great for subsetting rows with logical operations. The `select()` function lets you specify which columns to keep. __Note: the `select()` function often clashes with functions of the same name in other packages, and for that reason it is recommended to always use the notation `dplyr::select()` when calling it.__
+
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1"> 
 
 ```r
 # FILTER OBSERVATIONS
@@ -344,6 +391,8 @@ elong_subset <- filter(elongation_long, zone %in% c(2, 3), year %in% c("X2009", 
 # For comparison, the base R equivalent would be (not assigned to an object here):
 elongation_long[elongation_long$zone %in% c(2,3) & elongation_long$year %in% c("X2009", "X2010", "X2011"), ]
 ```
+</section>
+
 See how `dplyr`is already starting to shine by avoiding repetition and calling directly the column names?
 
 
@@ -367,6 +416,9 @@ It takes time and practice to get used to these conventions, but just keep an ey
 
 Now that we know how to subset rows, let's do the same with columns!
 
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code13" markdown="1"> 
+
 ```r
 # SELECT COLUMNS
 
@@ -384,11 +436,15 @@ elong_no.zone <- dplyr::select(elongation_long, Year = year, Shrub.ID = indiv, G
 # Neat, uh?
 
 ```
+</section>
 
 <a name="mutate"></a>
 #### 3. `mutate()` your dataset by creating new columns
 
 Something we have not yet touched on is how to create a new column. This is useful when you want to perform an operation on multiple columns, or perhaps reclassify a factor. The `mutate()` function does just that, and also lets you choose the name of the column. Here let's use our old wide-format object `elongation` and create a column representing total growth for the period 2007-2012:
+
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code14" markdown="1"> 
 
 ```r
 # CREATE A NEW COLUMN 
@@ -396,6 +452,8 @@ Something we have not yet touched on is how to create a new column. This is usef
 elong_total <- mutate(elongation, total.growth = X2007 + X2008 + X2009 + X2010 + X2011 + X2012)
 
 ```
+</section>
+
 Now, let's see how we could accomplish the same thing on our long-format data `elongation_long` by using two functions that pair extremely well together: `group_by()` and `summarise()`.
 
 
@@ -404,13 +462,18 @@ Now, let's see how we could accomplish the same thing on our long-format data `e
 
 The most important thing to understand about this function is that you don't see any visible change to your data frame. It creates an internal grouping structure, which means that every subsequent function you run on it will use these groups, and not the whole dataset, as an input. It's very useful when you want to compute summary statistics for different sites, treatments, species, etc.
 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1">
+
 ```r
 # GROUP DATA
 
 elong_grouped <- group_by(elongation_long, indiv)   # grouping our dataset by individual
 
 ```
-Compare `elong_grouped` and `elongation_long` : they should look exactly the same. But now, let's use `summarise()` to calculate total growth of each individual over the years.
+</section>
+ 
+ Compare `elong_grouped` and `elongation_long` : they should look exactly the same. But now, let's use `summarise()` to calculate total growth of each individual over the years.
 
 
 <a name="summarise"></a>
@@ -418,20 +481,28 @@ Compare `elong_grouped` and `elongation_long` : they should look exactly the sam
 
 This function will always agregate your original data frame, i.e. the output data frame will be shorter. Here, let's contrast adding growth increments over the study period on the original dataset vs our new grouped dataset.
 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1"> 
+
 ```r
 # SUMMARISING OUR DATA
 
 summary1 <- summarise(elong_long, total.growth = sum(length))
 summary2 <- summarise(elong_grouped, total.growth = sum(length))
 ```
+</section>
 
 The first summary corresponds to the sum of __all__ growth increments in the dataset (all individuals and years). The second one gives us a breakdown of total growth __per individual__, our grouping variable. Amazing! We can compute all sorts of summary statistics, too, like the mean or standard deviation of growth across years:
+
+<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code17" markdown="1"> 
 
 ```r
 summary3 <- summarise(elong_grouped, total.growth = sum(length),
                                      mean.growth = mean(length),
                                      sd.growth = sd(length))
 ```
+</section>
 
 Less amazing is that we lose all the other columns not specified at the grouping stage or in a summary operation. For instance, we lost the column year because there are 5 years for each individual, and we're summarising to get one single growth value per individual. Always create a new object for summarised data, so that your full dataset doesn't go away! You can always merge back information at a later stage, like we will see now.
 
@@ -445,6 +516,8 @@ Let's say that the growth data we have been working with actually comes from an 
 
 There are <a href= "https://dplyr.tidyverse.org/reference/join.html" target="_blank"> many types of joins </a> you can perform, which will make sense to you if you are familiar with the SQL language. They differ in how they handle data that is not shared by both tables, so always ask yourself which observations you need to keep and look up the help if necessary (in doubt, `full_join()` will keep everything). In the following example, we want to keep all the information in `elong_long` and have the treatment code repeated for the five occurrences of every individual, so we will use `left_join()`. 
 
+<a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code18" markdown="1"> 
 
 ```r
 # Load the treatments associated with each individual
@@ -458,19 +531,26 @@ experiment <- left_join(elongation_long, treatments, by = c("indiv" = "Indiv", "
 
 # We see that the new object has the same length as our first data frame, which is what we want.
 ```
+</section>
 
 If the columns to match have the exact same name, you can omit them as they are usually automatically detected. However, it is good practice to specify the merging condition, as it ensures more control over the function. The equivalent base R function is `merge()` and actually works very well, too:
 
+<a id="Acode19" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code19" markdown="1"> 
 ```r
 experiment2 <- merge(elongation_long, treatments, by.x = c("zone", "indiv"), by.y = c("Zone", "Indiv"))  
 # same result!
 ```
+</section>
 
 Now that we have gone to the trouble of adding treatments into our data, let's check if they affect growth by drawing another box plot.
 
+<a id="Acode20" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code20" markdown="1"> 
 ```r
 boxplot(length ~ Treatment, data = experiment)
 ```
+</section>
 
 <center> <img src="{{ site.baseurl }}/img/emni-treatments.jpeg" alt="Img" style="width: 600px;"/> </center>
 <center> Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data). </center>
