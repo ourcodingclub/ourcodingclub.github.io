@@ -2,9 +2,10 @@
 layout: post
 title: Advanced data manipulation
 subtitle: Use pipes to streamline your code
-date: 2015-10-11 21:11:27
+date: 2017-01-06
 updated: 2019-04-04
 author: Sandra
+updater: Sandra
 meta: 
 tags: 
 ---
@@ -62,6 +63,8 @@ We are working with a subset of a larger dataset\* of <a href="https://data.edin
 
 The pipe operator `%>%` is a funny little thing that serves as a channel for the output of a command to be passed to another function seamlessly, i.e., without creating intermediary objects. It really makes your code flow, and avoids repetition. Let's first import the data, and then we'll see what pipes are all about.
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 ```r
 # LIBRARIES
 library(dplyr)     # for data manipulation
@@ -76,9 +79,12 @@ trees <- read.csv(file = "trees.csv", header = TRUE)
 head(trees)  # make sure the data imported OK, familiarise yourself with the variables
 
 ```
+</section>
 
 Let's say we want to know how many trees of each species are found in the dataset. If you remember our first data manipulation tutorial, this is a task made for the functions `group_by()` and `summarise()`. So we could do this:
 
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code02" markdown="1"> 
 ```r
 # Count the number of trees for each species
 
@@ -89,11 +95,14 @@ trees.summary <- summarise(trees.grouped, count = length(CommonName))   # here w
 # Alternatively, dplyr has a tally function that does the counts for you!
 trees.summary <- tally(trees.grouped)
 ```
+</section>
 
 This works well, but notice how we had to create an extra data frame, `trees.grouped`, before achieving our desired output of `trees.summary`. For a larger, complex analysis, this would rapidly clutter your environment with lots of objects you don't really need!
 
 This is where the pipe comes in to save the day. It takes the data frame created on its left side, and _passes it_ to the function on its right side. This saves you the need for creating intermediary objects, and also avoids repeating the object name in every function: the tidyverse functions "know" that the object that is passed through the pipe is the `data =` argument of that function. 
 
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1">
 ```r 
 
 # Count the number of trees for each species, with a pipe!
@@ -103,6 +112,7 @@ trees.summary <- trees %>%                   # the data frame object that will b
                  tally()                     # and we don't need anything at all here, it has been passed through the pipe!
 
 ```
+</section>
 
 See how we go from `trees` to `trees.summary` while running one single chunk of code?
 
@@ -119,12 +129,15 @@ __We're not lazy, but we love shortcuts!__ In RStudio, you can use `Ctrl + Shift
 
 Let's use some more of our favourite `dplyr` functions in pipe chains. Can you guess what this does?
 
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code04" markdown="1"> 
 ```r
 trees.subset <- trees %>%
                 filter(CommonName %in% c("Common Ash", "Rowan", "Scots Pine")) %>% 
                 group_by(CommonName, AgeGroup) %>% 
                 tally()
 ```
+</section>
 
 Here we are first subsetting the data frame to only three species, and counting the number of trees for each species, but also breaking them down by age group. The intuitive names of `dplyr`'s actions make the code very readable for your colleagues, too. 
  
@@ -142,26 +155,34 @@ Say we had plotted our data and noticed there was a potential outlier or mistake
 
 So let's say we plotted the map of the trees (with the Easting and Northing columns), and we know that nothing should be further west than 328025, or further north than 671200. 
 
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code05" markdown="1"> 
 ```r 
 out.boundaries <- filter_all(trees, any_vars(. < 328025), any_vars(. > 671200))
 ```
+</section>
 
 The `any_vars()` part means that the value could be in any column. __Here we are using `.` as a “placeholder” for the data frame: this is often necessary with non-native `tidyverse` functions, as explained earlier.__
 
 To be honest, in this case, this is not the most readable code, and a more controlled approach would be the good old filter function. However, this could be handy if, say, you are looking for a specific genetic sequence that could be in any of hundreds of columns in your data frame. 
 
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code06" markdown="1"> 
 ```r 
 out.boundaries <- filter(trees, Easting < 328025 | Northing > 671200)
 
 # This should return the same result as above, and gives your reader a bit more context about what you're doing
 ```
-
+</section>
 
 Another extension of the core `dplyr` functions is `summarise_all()`: you may have guessed, it will run a summary function of your choice over ALL the columns. Not meaningful here, but could be if all values were numeric, for instance. 
 
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code07" markdown="1"> 
 ```r 
 summ.all <- summarise_all(trees, mean)
 ```
+</section>
 
 As only two of the columns had numeric values over which a mean could be calculated, the other columns have missing values.
 
@@ -174,6 +195,8 @@ Now let's move on to a truly exciting function that not so many people know abou
 
 But first, it seems poor form to introduce this function without also introducing the simpler function upon which it builds, `ifelse()`. You give `ifelse()` a conditional statement which it will evaluate, and the values it should return when this statement is true or false. Let's do a very simple example to begin with:
 
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code08" markdown="1"> 
 ```r 
 vector <- c(4, 13, 15, 6)      # create a vector to evaluate
 
@@ -181,9 +204,12 @@ ifelse(vector < 10, "A", "B")  # give the conditions: if inferior to 10, return 
 
 # Congrats, you're a dancing queen! (Or king!)
 ``` 
+</section>
 
 The super useful `case_when()` is a generalisation of `ifelse()` that lets you assign more than two outcomes. All logical operators are available, and you assign the new value with a tilde `~`. For instance:
 
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code09" markdown="1">
 ```r
 vector2 <- c("What am I?", "A", "B", "C", "D")
 
@@ -192,6 +218,7 @@ case_when(vector2 == "What am I?" ~ "I am the walrus",
           vector2 == "C" ~ "ga",
           vector2 == "D" ~ "joob")
 ```
+</section>
 
 But enough singing, and let's see how we can use those functions in real life to reclassify our variables.
 
@@ -202,7 +229,8 @@ The use of `mutate()` together with `case_when()` is a great way to change the n
 
 We will do this using a character string search with the `grepl` function, which looks for patterns in the data, and specify what to return for each genus. Before we do that, we may want the full list of species occuring in the data!
 
-
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code10" markdown="1"> 
 ```r
 
 unique(trees$LatinName)  # Shows all the species names
@@ -230,11 +258,14 @@ trees.genus <- trees %>%
                   grepl("Alnus", LatinName) ~ "Alnus")
                )
 ```
+</section>
 
 We have searched through the `LatinName`column for each genus name, and specified a value to put in the new `Genus` column for each case. It's a lot of typing, but still quicker than specifying the genus individually for related trees (e.g. _Acer pseudoplatanus_, _Acer platanoides_, _Acer_ spp.). 
 
 __BONUS FUNCTION!__ In our specific case, we could have achieved the same result much quicker. The genus is always the first word of the `LatinName` column, and always separated from the next word by a space. We could use the `separate()` function from the `tidyr` package to split the column into several new columns filled with the words making up the species names, and keep only the first one.
 
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code11" markdown="1"> 
 ```r
 library(tidyr)
 trees.genus.2 <- trees %>% 
@@ -243,9 +274,12 @@ trees.genus.2 <- trees %>%
                   
 # we're creating two new columns in a vector (genus name and species name), "sep" refers to the separator, here space between the words, and remove = FALSE means that we want to keep the original column LatinName in the data frame
 ```
+</section>
 
 Mind blowing! Of course, sometimes you have to be typing more, so here is another example of how we can reclassify a factor. The `Height` factor has 5 levels representing brackets of tree heights, but let's say three categories would be enough for our purposes. We create a new height category variable `Height.cat`:
 
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1"> 
 ```r
 trees.genus <- trees.genus %>%   # overwriting our data frame 
                mutate(Height.cat =   # creating our new column
@@ -254,7 +288,7 @@ trees.genus <- trees.genus %>%   # overwriting our data frame
                                    Height == "20 to 25 meters" ~ "Tall")
                       )
 ```
-
+</section>
 
 <div class="bs-callout-blue" markdown="1">
 
@@ -266,6 +300,8 @@ For instance, if we plot the number of trees in each of our new height categorie
 
 To fix this, you can specify the order explicitly, and even add labels if you want to change the names of the factor levels. Here, we put them in all capitals to illustrate.
 
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code13" markdown="1"> 
 ```r
 ## Reordering a factor's levels
 
@@ -278,6 +314,7 @@ trees.genus$Height.cat <- factor(trees.genus$Height.cat,
 
 levels(trees.genus$Height.cat)  # a new order and new names for the levels
 ```
+</section>
 
 Hence, plotting tree counts in each category before and after reordering the factors would look like this.
 
@@ -287,10 +324,13 @@ Hence, plotting tree counts in each category before and after reordering the fac
 
 Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have __two whole tutorials__ dedicated to making pretty and informative plots with it. Install and load the package if you need to:
 
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code14" markdown="1"> 
 ```r
 install.packages("ggplot2")
 library(ggplot2)
 ```
+</section>
 
 And let's build up a plot-producing factory chain!
 
@@ -302,6 +342,8 @@ Earlier in the tutorial, we used pipes to gradually transform our dataframes by 
 
 First, we'll subset our dataset to just a few tree genera to keep things light. Pick your favourite five, or use those we have defined here! Then we'll map them to see how they are distributed. 
 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1"> 
 ```r
 
 # Subset data frame to fewer genera
@@ -319,6 +361,7 @@ trees.five <- trees.genus %>%
                   legend.text = element_text(size = 12))
 )
 ```
+</section>
 
 <center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treemap.jpeg" alt="Img" style="width: 800px;"/> </center>
 
@@ -327,6 +370,8 @@ Don't worry too much about all the arguments in the `ggplot` code, they are ther
 
 Now, let's say we want to save a separate map for each genus (so 5 maps in total). You could filter the data frame five times for each individual genus, and copy and paste the plotting code five times too, but imagine we kept all 17 genera! This is where pipes and `dplyr` come to the rescue again. (If you're savvy with `ggplot2`, you'll know that facetting is often a better option, but sometimes you do want to save things as separate files.) The `do()` function allows us to use pretty much any R function within a pipe chain, provided that we supply the data as `data = .` where the function requires it.
 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1"> 
 ```r
 # Plotting a map for each genus
 
@@ -354,6 +399,8 @@ tree.plots %>%                # the saving call within the do function
    do(., 
       ggsave(filename = paste(getwd(), "/", "map-", .$Genus, ".png", sep = ""), device = "png", height = 12, width = 16, units = "cm"))
 ```
+</section>
+
 <br> <br> 
 <center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treemaps.png" alt="Img" style="width: 900px;"/> </center><br>
 <center> You should get five different plots looking something like this. </center>

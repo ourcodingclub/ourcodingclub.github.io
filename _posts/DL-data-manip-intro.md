@@ -2,7 +2,7 @@
 layout: post
 title: Basic data manipulation
 subtitle: Subset, modify and shape your data
-date: 2015-10-11 21:11:27
+date: 2017-01-06
 updated: 2019-04-04
 author: Sandra
 updater: Sandra
