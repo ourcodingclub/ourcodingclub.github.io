@@ -13,7 +13,7 @@ layout: page
             <div class="post-info-wrapper">
               <p class="italic">Created by <span class="bold">{{ page.author }}</span> on <span class="bold">{{ page.date | date: "%B %-d, %Y" }}</span> 
               {% if page.updated != page.date %}
-    {% / Last updated by <span class="bold">{{ page.updater }}</span> on <span class="bold">{{ page.updated | date: "%B %-d, %Y" }}</span> %}
+    {% include update-meta.html %}
     {% endif %}  
                </p>
               
