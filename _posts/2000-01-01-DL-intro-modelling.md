@@ -2,8 +2,10 @@
 layout: post
 title: From distributions to linear models
 subtitle: Getting comfortable with the basics of statistics modelling
-date: 2015-02-28 08:00:00
+date: 2017-02-28 08:00:00
 author: Gergana
+updated: 2019-12-09
+updater: Sandra
 meta: 
 tags: 
 ---
@@ -51,7 +53,7 @@ Here is a brief summary of the data distributions you might encounter most often
 
 Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Img" style="width: 700px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Choosing a model" style="width: 700px;"/></center>
 
 
 
@@ -62,23 +64,33 @@ Choosing the right statistical test for your analysis is an important step about
 
 Another important aspect of modelling to consider is how many terms, i.e. explanatory variables, you want your model to include. It's a good idea to draft out your model structure _before_ you even open your R session. __Let your hypotheses guide you!__ Think about what it is you want to examine and what the potential confounding variables are, i.e. what else might influence your response variable, aside from the explanatory variable you are most interested in? Here is an example model structure from before:
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area)
 ```
+</section>
 
 Here we are chiefly interested in the effect of treatment: does skylark abundance vary between the different farm treatments? This is the research question we might have set out to answer, but we still need to acknowledge that these treatments are probably not the only thing out there influencing bird abundance. Based on our ecological understanding, we can select other variables we may want to control for. For example, skylark abundance will most likely be higher on larger farms, so we need to account for that. 
 
 But wait - surely bird abundance on farms also depends on where the species occur to begin with, and the location of the farms within the country might also have an effect. Thus, let's add `latitude + longitude` to the model. 
 
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code02" markdown="1"> 
+
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude)
 ```
+</section>
 
 Last, imagine your experimental design didn't go as planned: you meant to visit all farms three times to collect data, but some farms you managed to visit only twice. Ignoring this would weaken your final results - is abundance different / the same because the treatment has no / an effect, or because there were differences in study effort? To test that, you can include a `visits` term examining the effect of number of visits on abundance. 
 
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1"> 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude + visits)
 ```
+</section>
 
 Some might say this model is very complex, and they would be right - there are a lot of terms in it! A simple model is usually prefered to a complex model, but __if you have strong reasons for including a term in your model, then it should be there__ (whether it ends up having an effect or not). Once you have carefully selected the variables whose effects you need to quantify or account for, you can move onto running your models.
 
@@ -101,6 +113,8 @@ Another thing to think about is __collinarity__ among your explanatory variables
 
 We will now explore a few different types of models. Create a new script and add in your details. We will start by working with a sample dataset about apple yield in relation to different factors. The dataset is part of the `agridat` package.
 
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code04" markdown="1"> 
 ```r
 install.packages("agridat")
 library(agridat)
@@ -110,7 +124,12 @@ apples <- agridat::archbold.apple
 head(apples)
 summary(apples)
 ```
+</section>
+
 Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">data visualisation tutorial</a>), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
+
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code05" markdown="1"> 
 
 ```r
 theme.clean <- function(){
@@ -129,9 +148,12 @@ theme.clean <- function(){
         legend.position = "right")
 }
 ```
+</section>
 
 __We can now make a boxplot to examine our data.__ We can check out the effect of spacing on apple yield. We can hypothesise that the closer apple trees are to other apple trees, the more they compete for resources, thus reducing their yield. Ideally, we would have sampled yield from many orchards where the trees were planted at different distances from one another - from the summary of the dataset you can see that there are only three `spacing` categories - 6, 10 and 14 m. It would be a bit of a stretch to count three numbers as a continuous variable, so let's make them a factor instead. This turns the previously numeric `spacing` variable into a 3-level categorical variable, with 6, 10 and 14 being the levels.
 
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code06" markdown="1"> 
 ```r
 apples$spacing2 <- as.factor(apples$spacing)
 
@@ -143,6 +165,7 @@ library(ggplot2)
     theme(axis.text.x = element_text(size = 12, angle = 0)) +
   labs(x = "Spacing (m)", y = "Yield (kg)"))
 ```
+</section>
 
 _Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._ 
 
@@ -150,14 +173,17 @@ _Note that putting your entire ggplot code in brackets () creates the graph and 
 
 From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the range in the data across the categories almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. __Let's run a model to explicitly test this.__
 
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code07" markdown="1"> 
 ```r
 apples.m <- lm(yield ~ spacing2, data = apples)
 summary(apples.m)
 ```
+</section>
 
 __Check out the summary output of our model:__
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs1.png" alt="Img" style="width: 800px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs1.png" alt="Model outputs" style="width: 800px;"/></center>
 
 Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth. 
 
@@ -175,6 +201,8 @@ Now that we've written a model and understood its output, let's analyse another 
 
 We will use the `ilri.sheep` dataset, also from the agridat package, to answer the question: _Is the weight of lambs at weaning a function of their age at weaning?_, with the hypothesis that lambs that are weaned later are also heavier. 
 
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code08" markdown="1">
 ```r
 sheep <- agridat::ilri.sheep   # load the data
 
@@ -187,8 +215,9 @@ sheep.m1 <- lm(weanwt ~ weanage, data = sheep)   # run the model
 summary(sheep.m1)                                # study the output
 
 ```
-
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Img" style="width: 900px;"/></center>
+ </section>
+ 
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Model outputs" style="width: 900px;"/></center>
 
 
 Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
@@ -198,14 +227,17 @@ Then, the output gives us an estimate, which is the _slope_ of the relationship.
 
 So far, so good? Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
 
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code09" markdown="1"> 
 ```r
 sheep.m2 <- lm(weanwt ~ weanage*sex, data = sheep)
 summary(sheep.m2)
 ```
+</section>
 
 Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Img" style="width: 900px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Model outputs" style="width: 900px;"/></center>
 
 Let's write the equations. For a female, which happens to be the reference group in the model, it's fairly simple:
 
@@ -217,6 +249,8 @@ For a male, it's a little more complicated as you need to add the differences in
 
 It always makes a lot more sense when you can visualise the relationship, too:
 
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code10" markdown="1"> 
 ```r
 (sheep.p <- ggplot(sheep, aes(x = weanage, y = weanwt)) +
       geom_point(aes(colour = sex)) +                                # scatter plot, coloured by sex
@@ -226,8 +260,9 @@ It always makes a lot more sense when you can visualise the relationship, too:
       scale_fill_manual(values = c("#FFC125", "#36648B")) +
       theme.clean() )
 ```
+</section>
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Img" style="width: 700px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Regression plot" style="width: 700px;"/></center>
 <center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly.</center>
 
 
@@ -242,9 +277,12 @@ Now enters the ANOVA, which stands for Analysis of Variance. We usually talk abo
 
 So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and here is a <a href="https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/" target="_blank">nice article</a> explaining the nitty gritty stuff). You can run the `anova` function on our linear model object `apples.m` and see how you get the same p-value:
 
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code11" markdown="1"> 
 ```r
 anova(apples.m)
 ```
+</section>
 
 </div>
 
@@ -259,7 +297,8 @@ In addition to checking whether this model makes sense from an ecological perspe
 
 3- are the observations independent?
 
-
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1"> 
 ```r
 
 # Checking that the residuals are normally distributed
@@ -272,13 +311,18 @@ bartlett.test(apples$yield, apples$spacing2)
 bartlett.test(yield ~ spacing2, data = apples)  # Note that these two ways of writing the code give the same results
 # The null hypothesis of homoscedasticity is accepted
 ```
+</section>
 
 The assumptions of a linear model are met (we can imagine that the data points are independent - since we didn't collect the data, we can't really know). If your residuals are not normally distributed and/or the data are heteroscedastic (i.e. the variances are not equal), you can consider transforming your data using a logarithmic transformation or a square root transformation.
 
 We can examine the model fit further by looking at a few plots:
+
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code13" markdown="1"> 
 ```r
 plot(apples.m)  # you will have to press Enter in the command line to view the plots
 ```
+</section>
 
 This will produce a set of four plots: 
 
@@ -302,6 +346,8 @@ The model we used above was a __general__ linear model since it met all the assu
 
 Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the <a href = "http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index.</a>
 
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code14" markdown="1"> 
 ```r
 shag <- read.csv("shagLPI.csv", header = TRUE)
 
@@ -310,18 +356,24 @@ shag$year <- as.numeric(shag$year)  # transform year from character into numeric
 # Making a histogram to assess data distribution
 (shag.hist <- ggplot(shag, aes(pop)) + geom_histogram() + theme.clean())
 ```
+</section>
 
-<center><img src="{{ site.baseurl }}/img/poisson2.png" alt="Img" style="width: 700px;"/></center>
+<center><img src="{{ site.baseurl }}/img/poisson2.png" alt="histogram" style="width: 700px;"/></center>
 
 Our `pop` variable represents __count__ abundance data, i.e. integer values (whole European Shags!) so a Poisson distribution is appropriate here. Often count abundance data are zero-inflated and skewed towards the right. Here our data are not like that, but if they were, a Poisson distribution would still have been appropriate.
 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1"> 
 ```r
 shag.m <- glm(pop ~ year, family = poisson, data = shag)
 summary(shag.m)
 ```
+</section>
 
 From the summary of our model we can see that European Shag abundance varies significantly based on the predictor `year`. Let's visualise how European Shag abundance has changed through the years:
 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1"> 
 ```r
 (shag.p <- ggplot(shag, aes(x = year, y = pop)) +
     geom_point(colour = "#483D8B") +
@@ -330,6 +382,7 @@ From the summary of our model we can see that European Shag abundance varies sig
     theme.clean() +
     labs(x = " ", y = "European Shag abundance"))
 ```
+</section>
 
 <center><img src="{{ site.baseurl }}/img/shag.png" alt="Img" style="width: 700px;"/></center>
 
@@ -341,6 +394,8 @@ __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 a
 
 We will now work this the `Weevil_damage.csv` data that you can import from your project's directory. We can examine if damage to Scot's pine by weevils (a binary, TRUE/FALSE variable) varies based on the block in which the trees are located. You can imagine that different blocks represent different Scot's pine populations, and perhaps some of them will be particularly vulnerable to weevils? Because of the binary nature of the response variable (true or false), a binomial model is appropriate here.
 
+<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code17" markdown="1"> 
 ```r
 
 Weevil_damage <- read.csv("Weevil_damage.csv")
@@ -352,6 +407,7 @@ Weevil_damage$block <- as.factor(Weevil_damage$block)
 weevil.m <- glm(damage_T_F ~ block, family = binomial, data = Weevil_damage)
 summary(weevil.m)
 ```
+</section>
 
 __Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.__ The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in _Y_ for a change in 1 unit of X, because binomial models are a type of __logistic regression__ which relies on log odd ratios - but we won't get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it's not a linear relationship! And finally, you won't get a R squared value to assess the __goodness of fit__ of your model, but you can get at that by looking at the difference between the `Null deviance` (variability explained by a null model, e.g. `glm(damage_T_F ~ 1)`) and the `Residual deviance`, e.g. the amount of variability that remains after you've explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship. 
 
@@ -421,7 +477,7 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    theme.clean()
 ```
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_guineapigs.png" alt="Img" style="width: 600px;"/></center>
+<center><img src="{{ site.baseurl }}/img/DL_intro_lm_guineapigs.png" alt="boxplots" style="width: 600px;"/></center>
 
 
 
