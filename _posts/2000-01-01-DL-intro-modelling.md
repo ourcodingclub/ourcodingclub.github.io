@@ -63,7 +63,6 @@ Choosing the right statistical test for your analysis is an important step about
 ### 2. Choosing your model structure
 
 Another important aspect of modelling to consider is how many terms, i.e. explanatory variables, you want your model to include. It's a good idea to draft out your model structure _before_ you even open your R session. __Let your hypotheses guide you!__ Think about what it is you want to examine and what the potential confounding variables are, i.e. what else might influence your response variable, aside from the explanatory variable you are most interested in? Here is an example model structure from before:
-
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1"> 
 ```r
