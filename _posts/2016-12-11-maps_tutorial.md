@@ -348,10 +348,10 @@ The shapefile contains ecoregions for the entire world, but we only want to plot
 shpdata_FEOW_clip <- raster::intersect(shpdata_FEOW, clipper_europe)
 ```
 
-Plot `shpdata_feow_clip` to see that `intersect()` has cropped out polygons that were outside our bounding box, and has helpfully joined up the perimeters of any polygons that straddle the edge of the bounding box:
+Plot `shpdata_FEOW_clip` to see that `intersect()` has cropped out polygons that were outside our bounding box, and has helpfully joined up the perimeters of any polygons that straddle the edge of the bounding box:
 
 ```r
-plot(shpdata_feow_clip)
+plot(shpdata_FEOW_clip)
 ```
 
 <center><img src="{{ site.baseurl }}/img/ecoregions_clipped_map.png" alt="img" style="width: 700px;"/></center>
@@ -384,8 +384,6 @@ Now, plot the map, point data and shapefile together. The ecoregion polygons can
 	xlab("Longitude") +
 	ylab("Latitude") + 
 	coord_quickmap())
-
-map_FEOW
 ```
 
 <center><img src="{{ site.baseurl }}/img/map_feow.png" alt="Img" style="width: 700px;"/></center>
@@ -393,9 +391,9 @@ map_FEOW
 The super useful thing about plotting maps with `ggplot()` is that you can add other elements to the plot using normal `ggplot2` syntax. Imagine that we want to indicate a potential area for a trout re-introduction program. Finland and Estonia have hardly any trout, but would probably have the right conditions according to the ecoregions:
 
 ```r
-map_FEOW_annot <- map_FEOW +
+(map_FEOW_annot <- map_FEOW +
 	annotate("rect", xmin = 20 , xmax = 35, ymin = 55, ymax = 65, fill="red", alpha=0.5) +
-	annotate("text", x = 27.5, y = 61, size = 10, label = "Restock Area")
+	annotate("text", x = 27.5, y = 61, size = 10, label = "Restock\nArea"))
 ```
 
 To further explore which ecoregions would be suitable for a trout re-introduction program, you can also check which trout records fall within which ecoregion polygons using the `rgdal` package. First, create a SpatialPoints object from the Brown Trout records:
@@ -429,19 +427,19 @@ The `Northern Baltic Drainages`, `Norwegian Sea Drainages` and `Eastern Iberia` 
 
 Finally, to make our map look more professional, we can add a scale bar and a north arrow. To add these you can use the `ggsn` package.
 
-Adding a scalebar. `dd2km` confirms whether the coordinates of the map are in decimal degrees, `dist` defines the distance for each gradation of the scalebar, `height` defines the height of the scalebar according to y axis measurements, so `0.01` is 0.01 decimal degrees latitude:
+Adding a scalebar. `transform = TRUE` confirms that the coordinates of the map are in decimal degrees, if this was set to `FALSE` `scalebar()` would assume the coordinates were in metres. `dist` defines the distance for each gradation of the scalebar, `height` defines the height of the scalebar according to y axis measurements, so `0.01` is 0.01 decimal degrees latitude. `location` sets the location of the scalebar, in this case to the `bottomright`. `anchor` sets the location of the bottom right corner of the scalebar box, in map units of decimal degrees. If `location = topleft`, `anchor` would instead define the location of the top left corner of the scalebar box. 
 
 ```r
 map_FEOW_scale <- map_FEOW_annot +
-	scalebar(location="topleft", data = shpData_FEOW_clipped_fort,
-					 dd2km = TRUE, dist = 500, model='WGS84',
-					 height = 0.01)
+  scalebar(data = shpdata_FEOW_clip_f,
+    transform = TRUE, dist = 500, dist_unit = "km", model='WGS84',
+    height = 0.01, location = "bottomright", anchor = c(x = 25, y = 32))
 ```
 
 Adding a north arrow. Currently the default `north` command from the `ggsn` package doesn't work properly, so we can't just do `map_FEOW + north()`. Instead `north2()` has to be used as an alternative. You can change the symbol by changing `symbol` to any integer from 1 to 8. You might get an error saying: "Error: Don't know how to add o to a plot" and your arrow might be placed in a strange location - you can change the values for `x` and `y` till your arrow moves to where you want it to be.
 
 ```r
-north2(map_FEOW_scale, x = 0.2, y = 0.2, scale = 0.1, symbol = 1)
+north2(map_FEOW_scale, x = 0.3, y = 0.85, scale = 0.1, symbol = 1)
 ```
 
 <center><img src="{{ site.baseurl }}/img/map_FEOW_annot.png" alt="Img" style="width: 700px;"/></center>
