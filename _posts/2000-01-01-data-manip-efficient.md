@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Advanced data manipulation
+title: Efficient data manipulation
 subtitle: Use pipes to streamline your code
 date: 2017-01-06
 updated: 2019-04-04
 author: Sandra
 updater: Sandra
-meta: 
-tags: 
+meta: "Tutorials"
+tags: data_manip 
 ---
 <div class="block"> 
           <center>
@@ -47,7 +47,7 @@ tags:
 
 Welcome to our second tutorial on data manipulation! In our (anything but) __basic tutorial__, we learned to subset and modify data to suit most of our coding needs, and to use a tidy data format. Today we dig deeper into the wonderful world of `dplyr` with one of our favourite feature, the pipe operator `%>%`. We also explore some extra `dplyr` functions and give some tips to recode and reclassify values.
 
-#### __All the files you need to complete this tutorial can be downloaded from <a href="REPO LINK" target="_blank">this repository</a>. Clone and download the repo as a zip file, then unzip it.__
+#### __All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-data-manip-2" target="_blank">this repository</a>. Clone and download the repo as a zip file, then unzip it.__
 
 We are working with a subset of a larger dataset\* of <a href="https://data.edinburghcouncilmaps.info/datasets/4dfc8f18a40346009b9fc32cbee34039_39" target="_blank">trees within the City of Edinburgh</a>. We subsetted this large dataset (over 50 thousand trees!) to the <a href= "https://data.edinburghcouncilmaps.info/datasets/33969ec66f9b46cf9617c40c023bb89e_35" target="_blank">Special Landscape Area</a> around Craigmillar Castle. Our __Spatial analysis tutorials__ could teach you how to do this yourself, but for now the file is all ready for you to use and is named `trees.csv`.
 
@@ -72,6 +72,7 @@ library(ggplot2)   # for making graphs; make sure you have it installed, or inst
 
 # Set your working directory
 setwd("your-file-path")   # replace with the tutorial folder path on your computer
+# If you're working in an R project, skip this step
 
 # LOAD DATA
 trees <- read.csv(file = "trees.csv", header = TRUE)
@@ -322,7 +323,7 @@ Hence, plotting tree counts in each category before and after reordering the fac
 
 </div>
 
-Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have __two whole tutorials__ dedicated to making pretty and informative plots with it. Install and load the package if you need to:
+Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have <a href="https://ourcodingclub.github.io/tutorials/" target="blank">two whole tutorials</a> dedicated to making pretty and informative plots with it. Install and load the package if you need to:
 
 <a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code14" markdown="1"> 
@@ -338,7 +339,7 @@ And let's build up a plot-producing factory chain!
 <a name="piping-graphs"></a>
 ### Advanced piping 
 
-Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but not always impossible, and sometimes easier to write than a loop. (But you can learn to write loops <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">here</a>.)
+Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but it's sometimes easier to write than a loop. (You can learn to write loops <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">here</a>.)
 
 First, we'll subset our dataset to just a few tree genera to keep things light. Pick your favourite five, or use those we have defined here! Then we'll map them to see how they are distributed. 
 
