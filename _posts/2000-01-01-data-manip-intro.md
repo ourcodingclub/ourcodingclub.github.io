@@ -50,8 +50,13 @@ tags: data_manip intro_to_r
 
 Data come in all sorts of different shapes and formats, and what is useful or practical for one application is not necessarily so for another. R has specific requirements about the setup and the types of data that can be passed to functions, so one of the best skills in your coding toolbox is being able to play with your data like putty and give it any shape you need!
 
-This tutorial is an introduction to data manipulation and only requires an understanding of how to import and create objects in R. That said, there's still a lot of content in here for a beginner, so do not hesitate to complete only the base R section in one session, and the `dplyr` section in another. (Remember! The beauty of a script is that you can pick up where you left off, anytime.) __Haven't used R before, or need a refresher? No worries! Check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R and RStudio tutorial</a>, and then come back here to master tidy data management!__ 
+This tutorial is an introduction to data manipulation and only requires an understanding of how to import and create objects in R. That said, there's still a lot of content in here for a beginner, so do not hesitate to complete only the base R section in one session, and the `dplyr` section in another. (Remember! The beauty of a script is that you can pick up where you left off, anytime.)
 
+<div class="bs-callout-blue" markdown="1">
+__Haven't used R before, or need a refresher?__ No worries! Check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R and RStudio tutorial</a>, and then come back here to master tidy data management!
+
+__Know all of this already?__ Fast forward to our <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">Efficient Data Manipulation tutorial</a> for more advanced `dplyr` fun. 
+</div>
 
 In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the <a href="https://www.tidyverse.org/" target="_blank"> Tidyverse </a>, which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
