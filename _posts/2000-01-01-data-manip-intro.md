@@ -702,7 +702,7 @@ So there you are! Did your plots look something like this?
 #### 3. You can manipulate, subset, create and merge data with `dplyr`
 
 
-### And when you're ready for more `dplyr` tips and workflows, follow up with our [https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html](Efficient data manipulation) tutorial!
+### And when you're ready for more `dplyr` tips and workflows, follow up with our <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank"> Efficient data manipulation tutorial</a>!
 
 <hr>
 <hr>
