@@ -570,6 +570,7 @@ boxplot(length ~ Treatment, data = experiment)
 
 Are these differences statistically significant? We'll find out how to test this in our <a href="https://ourcodingclub.github.io/2017/02/28/modelling.html" target="_blank">modelling tutorial!</a> 
 
+
 But for now, don't you think it's enough for one tutorial? Congratulations for powering through and getting this far! If you want to test your knowledge, try your hand at the data manipulation challenge below. 
 
 
@@ -700,6 +701,8 @@ So there you are! Did your plots look something like this?
 
 #### 3. You can manipulate, subset, create and merge data with `dplyr`
 
+
+### And when you're ready for more `dplyr` tips and workflows, follow up with our [https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html](Efficient data manipulation) tutorial!
 
 <hr>
 <hr>
