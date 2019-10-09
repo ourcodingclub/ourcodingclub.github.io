@@ -31,7 +31,7 @@ tags: data_manip
 
 #### <a href="#dplyr"> Discover more functions of `dplyr` 
 
-##### <a href="#filter"> - `filter_all()` and `summarise_all()`
+##### <a href="#filter"> - `summarise_all()`
 ##### <a href="#case"> - `case_when()`
 
 
@@ -148,35 +148,9 @@ Neat, uh? Now let's play around with other functions that `dplyr` has to offer.
 <a name="dplyr"></a>
 ### More functions of `dplyr`
 
+An extension of the core `dplyr` functions is `summarise_all()`: you may have guessed, it will run a summary function of your choice over ALL the columns. Not meaningful here, but could be if all values were numeric, for instance. 
 
 <a name="filter"></a>
-#### 1. `filter_all()` - for tracking impostors or hard-to-find values
-
-Say we had plotted our data and noticed there was a potential outlier or mistake. With a large dataset, it may be tricky to find that exact point in your dataset to examine it further. Of course, in most cases, you still know which column the value is in, so you can use the normal `filter()` function, but we'll demonstrate it all the same. This command will filter across all columns to find all observations that meet the criteria, regardless of what column the value is held in.
-
-So let's say we plotted the map of the trees (with the Easting and Northing columns), and we know that nothing should be further west than 328025, or further north than 671200. 
-
-<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code05" markdown="1"> 
-```r 
-out.boundaries <- filter_all(trees, any_vars(. < 328025), any_vars(. > 671200))
-```
-</section>
-
-The `any_vars()` part means that the value could be in any column. __Here we are using `.` as a “placeholder” for the data frame: this is often necessary with non-native `tidyverse` functions, as explained earlier.__
-
-To be honest, in this case, this is not the most readable code, and a more controlled approach would be the good old filter function. However, this could be handy if, say, you are looking for a specific genetic sequence that could be in any of hundreds of columns in your data frame. 
-
-<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code06" markdown="1"> 
-```r 
-out.boundaries <- filter(trees, Easting < 328025 | Northing > 671200)
-
-# This should return the same result as above, and gives your reader a bit more context about what you're doing
-```
-</section>
-
-Another extension of the core `dplyr` functions is `summarise_all()`: you may have guessed, it will run a summary function of your choice over ALL the columns. Not meaningful here, but could be if all values were numeric, for instance. 
 
 <a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code07" markdown="1"> 
