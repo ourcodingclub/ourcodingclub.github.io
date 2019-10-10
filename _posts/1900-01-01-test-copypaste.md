@@ -12,7 +12,7 @@ author: Sandra
 ### Tutorial aims:
 
 #### 1. Get a script and button that copy and paste the code
-
+#### It works!
 
 <b> What is R? </b> 
 R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the "S" programming language. (Next time you need a fun fact, you can say "Did you know that S came before R?") R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there's hardly anything you <i>can't</i> do in R. 
