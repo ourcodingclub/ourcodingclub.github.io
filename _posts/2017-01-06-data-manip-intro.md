@@ -167,7 +167,7 @@ elongation[elongation$Zone <= 4, ]   # returns only the data for zones 2-3-4
 
 
 # This is completely equivalent to the last statement
-elongation[!elongation$Zone > 5, ]   # the ! means exclude
+elongation[!elongation$Zone >= 5, ]   # the ! means exclude
 
 
 # Subsetting with two conditions
@@ -500,7 +500,7 @@ This function will always agregate your original data frame, i.e. the output dat
 ```r
 # SUMMARISING OUR DATA
 
-summary1 <- summarise(elong_long, total.growth = sum(length))
+summary1 <- summarise(elongation_long, total.growth = sum(length))
 summary2 <- summarise(elong_grouped, total.growth = sum(length))
 ```
 </section>
