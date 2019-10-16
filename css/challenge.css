@@ -388,7 +388,29 @@ font header .navbar-default .navbar-nav li a:hover {
  background-image: url("../img/DL_gannets.jpg");
 }
  
+#challenge1intro.feature {
+ background-image: url("../img/DL_challenge_squirrel2.jpg");
+}
 
+#challenge1test.feature {
+ background-image: url("../img/DL-challenge-squirrel.jpg");
+}
+
+#challenge2intro.feature {
+ background-image: url("../img/DL-challenge-pine.jpg");
+}
+
+#challenge2test.feature {
+ background-image: url("../img/DL-challenge-larch.jpg");
+}
+
+#challenge3intro.feature {
+ background-image: url("../img/DL-challenge-may.jpg");
+}
+
+#challenge3test.feature {
+ background-image: url("../img/DL-challenge-puffinrazor.jpg");
+}
 
 --*/
 #testimonial {
