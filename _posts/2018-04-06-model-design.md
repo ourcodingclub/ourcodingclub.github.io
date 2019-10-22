@@ -272,7 +272,7 @@ __Here are some questions to consider.__
 
 ### How many variables can you have in a model?
 
-Is it better to have one model with five variables or one model per variable? When do we choose variables?
+### Is it better to have one model with five variables or one model per variable? When do we choose variables?
 
 ### What is a fixed effect? What is a random effect?
 
