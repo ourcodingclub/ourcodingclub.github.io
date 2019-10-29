@@ -4,6 +4,8 @@ title: Introduction to linear mixed models
 subtitle: 
 date: 2017-03-15 08:00:00
 author: Gabriela K Hajduk
+updated: 2019-09-10
+updater: Sandra
 meta: "Tutorials"
 tags: modelling
 ---
@@ -18,9 +20,9 @@ This workshop is aimed at people new to mixed modeling and as such, it doesn't c
 
 **Acknowledgements:** First of all, thanks where thanks are due. This tutorial has been built on the tutorial written by <a href="https://twitter.com/ldbailey255" target="_blank">Liam Bailey</a>, who has been kind enough to let me use chunks of his script, as well as some of the data. Having this backbone of code made my life much, much easier, so thanks Liam, you are a star! The seemingly excessive waffling is mine.
 
-If you are familiar with linear models, aware of their shortcomings and happy with their fitting, then you should be able to very quickly get through the first five sections below. I am however including them for the sake of completeness and in an attempt to cater to a broader audience. 
+If you are familiar with linear models, aware of their shortcomings and happy with their fitting, then you should be able to very quickly get through the first five sections below. Beginners might want to spend multiple sessions on this tutorial to take it all in. 
 
-Similarly, I include quite a bit of explanatory text: you might choose to just skim it for now and go through the "coding bits" of the tutorial. But it will be here to help you along when you start using mixed models with your own data and you need a bit more context.
+Similarly, you will find quite a bit of explanatory text: you might choose to just skim it for now and go through the "coding bits" of the tutorial. But it will be here to help you along when you start using mixed models with your own data and you need a bit more context.
 
 To get all you need for this session, __go to <a href = "https://github.com/ourcodingclub/CC-Linear-mixed-models" target="_blank">the repository for this tutorial</a>, click on `Clone/Download/Download ZIP` to download the files and then unzip the folder. Alternatively, fork the repository to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our <a href = "https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank"> Intro to Github for version control</a> tutorial.__ 
 
@@ -42,8 +44,8 @@ Alternatively, you can grab the **R script** [here](http://gkhajduk.d.pr/FG8/2bC
 ##### <a href="#implicit"> Implicit vs. explicit nesting</a>
 #### <a href="#second"> -- Our second mixed model</a>
 #### <a href="#presenting"> -- Presenting your model results</a>
+##### <a href="#plots"> Plotting model predictions</a>
 ##### <a href="#tables"> Tables</a>
-##### <a href="#dot"> Dot-and-Whisker plots</a>
 ##### <a href="#processing"> Further processing</a>
 #### <a href="#extra"> -- EXTRA: P-values and model selection</a>
 ##### <a href="#fixedstr"> Fixed effects structure</a>
@@ -54,7 +56,7 @@ Alternatively, you can grab the **R script** [here](http://gkhajduk.d.pr/FG8/2bC
 <a name="one"></a>
 ### What is mixed effects modelling and why does it matter?
 
-Ecological and biological data are often complex and messy. We can have different **grouping factors** like populations, species, sites we collect the data at etc. **Sample sizes** might leave something to be desired too, especially if we are trying to fit complicated models with **many parameters**. On top of that, our data points might **not be truly independent**. For instance, we might be using quadrats within our sites to collect the data (and so there is structure to our data: quadrats are nested within the sites).
+Ecological and biological data are often complex and messy. We can have different **grouping factors** like populations, species, sites where we collect the data, etc. **Sample sizes** might leave something to be desired too, especially if we are trying to fit complicated models with **many parameters**. On top of that, our data points might **not be truly independent**. For instance, we might be using quadrats within our sites to collect the data (and so there is structure to our data: quadrats are nested within the sites).
 
 This is why **mixed models** were developed, to deal with such messy data and to allow us to use all our data, even when we have low sample sizes, structured data and many covariates to fit. Oh, and on top of all that, mixed models allow us to save degrees of freedom compared to running standard linear models! Sounds good, doesn't it?
 
@@ -63,27 +65,40 @@ We will cover only linear mixed models here, but if you are trying to "extend" y
 <a name="two"></a>
 ### Explore the data
 
-We are going to focus on a fictional study system, dragons, so that we don't have to get too distracted with the specifics of this example (and so I don't throw too much biology/ecology at those of you who come from different fields). Imagine that we decided to train dragons and so we went out into the mountains and collected data on dragon intelligence (`testScore`) as a prerequisite. We sampled individuals with a range of body lengths across three sites in eight different mountain ranges. Start by loading the data and having a look at them.
+We are going to focus on a fictional study system, dragons, so that we don't have to get too distracted with the specifics of this example. Imagine that we decided to train dragons and so we went out into the mountains and collected data on dragon intelligence (`testScore`) as a prerequisite. We sampled individuals with a range of body lengths across three sites in eight different mountain ranges. Start by loading the data and having a look at them.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1">
 
 ```r
 load("dragons.RData")
 head(dragons)
 ```
+</section>
 
 Let's say we want to know how the body length of the dragons affects their test scores.
 
 You don't need to worry about the distribution of your **explanatory** variables. Have a look at the distribution of the response variable: 
 
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code02" markdown="1">
+
 ```r
 hist(dragons$testScore)  # seems close to a normal distribution - good!
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-1.png" alt="Img" style="width: 800px;"/></center>
 
-It is good practice to **standardise** your explanatory variables before proceeding so that they have a mean of zero and standard deviation of one. It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes. You can use ``scale()`` to do that:
+It is good practice to **standardise** your explanatory variables before proceeding so that they have a mean of zero ("centering") and standard deviation of one ("scaling"). It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes. You can use ``scale()`` to do that:
+
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1">
 
 ```r
-dragons$bodyLength2 <- scale(dragons$bodyLength)
+dragons$bodyLength2 <- scale(dragons$bodyLength, center = TRUE, scale = TRUE)
 ```
+</section>
 
 `scale()` centers the data (the column mean is subtracted from the values in the column) and then scales it (the centered column values are divided by the column's standard deviation).
 
@@ -92,17 +107,22 @@ Back to our question: is the test score affected by body length?
 <a name="three"></a>
 ### Fit all data in one analysis
 
-One way to analyse this data would be to fit a linear model to all our data, ignoring the sites and the mountain ranges for now.
+One way to analyse this data would be to fit a linear model to all our data, ignoring the sites and the mountain ranges for now. 
 
 Fit the model with `testScore` as the response and `bodyLength2` as the predictor and have a look at the output:
 
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code04" markdown="1">
 ```r
 basic.lm <- lm(testScore ~ bodyLength2, data = dragons)
 summary(basic.lm)
 ```
+</section>
 
 Let's plot the data with ggplot2.
 
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code05" markdown="1">
 ```r
 library(ggplot2)  # load the package
 
@@ -111,6 +131,7 @@ library(ggplot2)  # load the package
   geom_smooth(method = "lm"))
   
 ```
+</section>
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
@@ -122,20 +143,27 @@ But... are the assumptions met?
 
 Plot the residuals: the red line should be nearly flat, like the dashed grey line:
 
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code06" markdown="1">
 ```r
 plot(basic.lm, which = 1)  # not perfect... 
 ## but since this is a fictional example we will go with it
 ## for your own data be careful:
 ## the bigger the sample size, the less of a trend you'd expect to see
 ```
+</section>
 
 <center><img src="{{ site.baseurl }}/img/mm-3.png" alt="Img" style="width: 800px;"/></center>
 
 Have a quick look at the qqplot too: points should ideally fall onto the diagonal dashed line:
 
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code07" markdown="1">
 ```r
 plot(basic.lm, which = 2)  # a bit off at the extremes, but that's often the case; again doesn't look too bad
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-4.png" alt="Img" style="width: 800px;"/></center>
 
 However, what about observation independence? Are our data independent?
@@ -144,23 +172,30 @@ We collected multiple samples from eight mountain ranges. It's perfectly plausib
 
 Have a look at the data to see if above is true:
 
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code08" markdown="1">
 ```r
 boxplot(testScore ~ mountainRange, data = dragons)  # certainly looks like something is going on here
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-5.png" alt="Img" style="width: 800px;"/></center>
 
 We could also plot it and colour points by mountain range:
 
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code09" markdown="1">
 ```r
 (colour_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = mountainRange)) +
   geom_point(size = 2) +
   theme_classic() +
   theme(legend.position = "none"))
 ```
+</section>
 
 <center><img src="{{ site.baseurl }}/img/mm-6.png" alt="Img" style="width: 800px;"/></center>
 
-From the above plots, it looks like our mountain ranges vary both in the dragon body length and in their test scores. This confirms that our observations from within each of the ranges **aren't independent**. We can't ignore that.
+From the above plots, it looks like our mountain ranges vary both in the dragon body length __AND__ in their test scores. This confirms that our observations from within each of the ranges **aren't independent**. We can't ignore that: as we're starting to see, it could lead to a completely erroneous conclusion. 
 
 So what do we do?
 
@@ -171,18 +206,22 @@ We could run many separate analyses and fit a regression for each of the mountai
 
 Lets have a quick look at the data split by mountain range.  We use the `facet_wrap` to do that:
 
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code10" markdown="1">
 ```r
 (split_plot <- ggplot(aes(bodyLength, testScore), data = dragons) + 
   geom_point() + 
-  facet_wrap(~ mountainRange) + 
+  facet_wrap(~ mountainRange) + # create a facet for each mountain range
   xlab("length") + 
   ylab("test score"))
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-7.png" alt="Img" style="width: 800px;"/></center>
 
-That's eight analyses. Oh wait, we also have different sites, which similarly to mountain ranges aren't independent... So we could run an analysis for each site in each range separately.
+That's eight analyses. Oh wait, we also have different sites in each mountain range, which similarly to mountain ranges aren't independent... So we could run an analysis for each site in each range separately.
 
-To do the above, we would have to estimate a slope and intercept parameter for each regression. That's two parameters, three sites and eight mountain ranges, which means **48 parameter estimates** (2 x 3 x 8 = 48)! Moreover, the sample size for each analysis would be only 20.
+To do the above, we would have to estimate a slope and intercept parameter for __each regression__. That's two parameters, three sites and eight mountain ranges, which means **48 parameter estimates** (2 x 3 x 8 = 48)! Moreover, the sample size for each analysis would be only 20 (dragons per site).
 
 This presents problems: not only are we **hugely decreasing our sample size**, but we are also **increasing chances of a Type I Error (where you falsely reject the null hypothesis) by carrying out multiple comparisons**. Not ideal!
 
@@ -193,50 +232,68 @@ We want to use all the data, but account for the data coming from different moun
 
 Add mountain range as a fixed effect to our `basic.lm`
 
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code11" markdown="1">
 ```r
 mountain.lm <- lm(testScore ~ bodyLength2 + mountainRange, data = dragons)
 summary(mountain.lm)
 ```
+</section>
 
-Now body length is <u>not</u> significant. But let's think about what we are doing here for a second. The above model is estimating the difference in test scores between the mountain ranges - we can see all of them in the model output returned by `summary()`. But we are not interested in that, we just want to know whether body length affects test scores and we want to simply **control for the variation** coming from mountain ranges.
+Now body length is <u>not</u> significant. But let's think about what we are doing here for a second. The above model is estimating the difference in test scores between the mountain ranges - we can see all of them in the model output returned by `summary()`. But we are not interested in quantifying test scores for each specific mountain range: we just want to know whether body length affects test scores and we want to simply **control for the variation** coming from mountain ranges.
 
 This is what we refer to as **"random factors"** and so we arrive at mixed effects models. Ta-daa!
 
 <a name="six"></a>
 ### Mixed effects models
 
-A Mixed model is a good choice here: it will allow us to **use all the data we have** (higher sample size) and **account for the correlations between data** coming from the sites and mountain ranges. We will also **estimate fewer parameters** and **avoid problems with multiple comparisons** that we would encounter while using separate regressions.
+A mixed model is a good choice here: it will allow us to **use all the data we have** (higher sample size) and **account for the correlations between data** coming from the sites and mountain ranges. We will also **estimate fewer parameters** and **avoid problems with multiple comparisons** that we would encounter while using separate regressions.
 
 We are going to work in `lme4`, so load the package (or use `install.packages` if you don't have `lme4` on your computer).
 
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1">
 ```r
 library(lme4)
 ```
+</section>
 
 <a name="FERE"></a>
-#### Fixed and Random effects
+#### Fixed and random effects
 
-Let's talk a little about the **fixed and random effects** first. The literature isn't clear on the exact definitions of those so I'm going to give you an "introductory" explanation. See links in the further reading below if you want to know more. 
+Let's talk a little about the difference between **fixed and random effects** first. It's important to not that this difference has little to do with the variables themselves, and a lot to do with your research question! In many cases, the same variable could be considered either a random or a fixed effect (and sometimes even both at the same time!) so always refer to your questions and hypotheses to construct your models accordingly.
 
-In some cases, the same variable could be considered either a random or a fixed effect (and sometimes even both at the same time!) so you have to think not only about your data, but also **about the questions you are asking** and construct your models accordingly.
+<div class="bs-callout-blue" markdown="1">
 
-In broad terms, **fixed effects** are variables that we expect will have an effect on the dependent/response variable. In our case, we are interested in making conclusions about how dragon body length impacts the dragon's test score. So body length is a fixed effect and test score is the dependent variable.
+#### Should my variables be fixed or random effects?
 
-On the other hand, **random effects** (or random factors - as they will be **categorical**, you can't force R to treat a continuous variable as a random effect) are usually **grouping factors** for which we are trying to control. A lot of the time we are not specifically interested in their impact on the response variable. Additionally, the data for our random effect is just **a sample of all the possibilities**. Keep in mind that *random* doesn't have much to do with *mathematical randomness*. Yes, it's confusing. Just think about them as the *grouping* variables for now. 
+In broad terms, **fixed effects** are variables that we expect will have an effect on the dependent/response variable: they're what you call __explanatory__ variables in a standard linear regression. In our case, we are interested in making conclusions about how dragon body length impacts the dragon's test score. So body length is a fixed effect and test score is the dependent variable.
 
-Strictly speaking it's all about making our models better **and getting better estimates**.
+On the other hand, **random effects** are usually **grouping factors** for which we are trying to control. They are always categorical, as you can't force R to treat a continuous variable as a random effect. A lot of the time we are not specifically interested in their impact on the response variable, but we know that they might be influencing the patterns we see. 
 
-In this particular case, we are looking to control for the effects of mountain range. We haven't sampled all the mountain ranges in the world (we have eight) so our data are just a sample of all the existing mountain ranges. We are not really interested in the effect of each specific mountain range on the test score, but we know that the test scores from within the ranges might be correlated so we want to control for that.
+Additionally, the data for our random effect is just **a sample of all the possibilities**: with unlimited time and funding we might have sampled every mountain where dragons live, every school in the country, every chocolate in the box), but we usually tend to generalise results to a whole population based on representative sampling. We don't care about estimating how much better pupils in school A have done compared to pupils in school B, but we know that their respective teachers might be a reason why their scores would be different, and we'd like to know how much _variation_ is attributable to this when we predict scores for pupils in school Z. 
+
+</div>
+
+In our particular case, we are looking to control for the effects of mountain range. We haven't sampled all the mountain ranges in the world (we have eight) so our data are just a sample of all the existing mountain ranges. We are not really interested in the effect of each specific mountain range on the test score: we hope our model would also be generalisable to dragons from other mountain ranges! However, we know that the test scores from within the ranges might be correlated so we want to control for that.
 
 If we specifically chose eight particular mountain ranges *a priori* and we were interested in those ranges and wanted to make predictions about them, then mountain range would be fitted as a fixed effect. 
+<div class="bs-callout-yellow" markdown="1">
 
+#### More about random effects
 
-**NOTE:** Generally you want your random effect to have **more than five levels**. So, for instance, if we wanted to control for the effects of dragon's sex on intelligence, we would fit sex (a two level factor: male or female) **as a fixed, not random, effect**.
+Note that the golden rule is that you generally want your random effect to have **at least five levels**. So, for instance, if we wanted to control for the effects of dragon's sex on intelligence, we would fit sex (a two level factor: male or female) **as a fixed, not random, effect**.
 
+This is, put simply, because estimating variance on few data points is very imprecise. Mathematically you _could_, but you wouldn't have a lot of confidence in it. If you only have two or three levels, the model will struggle to partition the variance - it _will_ give you an output, but not necessarily one you can trust. 
 
-##### **So the big question is:** *what are you trying to do? What are you trying to make predictions about? What is just variation (a.k.a "noise") that you need to control for?*
+Finally, keep in mind that the name *random* doesn't have much to do with *mathematical randomness*. Yes, it's confusing. Just think about them as the *grouping* variables for now. Strictly speaking it's all about making our models representative of our questions **and getting better estimates**. Hopefully, our next few examples will help you make sense of how and why they're used.
+</div>
+
+##### **In the end, the big questions are:** *what are you trying to do? What are you trying to make predictions about? What is just variation (a.k.a "noise") that you need to control for?*
 
 <a name="Further_Reading"></a>
+
+<div class="bs-callout-grey" markdown="1">
 #### Further reading for the keen: 
 
 - [Is it a fixed or random effect?](https://dynamicecology.wordpress.com/2015/11/04/is-it-a-fixed-or-random-effect/){:target="_blank"} A useful way to think about fixed *vs*. random effects is in terms of partitioning the variation and estimating random effects with **partial pooling**. The description [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode){:target="_blank"} is the most accessible one I could find for now and you can find more opinions in the comments under the previous link too (search for *pooling* and *shrinkage* too if you are very keen).
@@ -247,6 +304,8 @@ If we specifically chose eight particular mountain ranges *a priori* and we were
 
 - Have a look at some of the fixed and random effects definitions gathered by Gelman in [this paper](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf){:target="_blank"} (you can also find them [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode/4702#4702){:target="_blank"} if you can't access the paper).
 
+</div>
+
 <a name="first"></a>
 ### Let's fit our first mixed model
 
@@ -256,45 +315,71 @@ Alright! Still with me? We have a response variable, the test score and we are a
 
 Note that **our question changes slightly here**: while we still want to know whether there is an association between dragon's body length and the test score, we want to know if that association exists ***after*** controlling for the variation in mountain ranges.
 
-We will fit the random effect using `(1|variableName)`:
+We will fit the random effect usingv the syntax `(1|variableName)`:
 
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code13" markdown="1">
 ```r
 mixed.lmer <- lmer(testScore ~ bodyLength2 + (1|mountainRange), data = dragons)
 summary(mixed.lmer)
 ```
+</section>
 
-Once we account for the mountain ranges, it's obvious that dragon body length doesn't actually explain the differences in the test scores. 
+Once we account for the mountain ranges, it's obvious that dragon body length doesn't actually explain the differences in the test scores. _How is it obvious? _ I hear you say?
+
+Take a look at the summary output: notice how the __model estimate__ is smaller than its associated error? That means that the effect, or slope, cannot be distinguised from zero.
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-output1.png" alt="summary output for dragon mixed model" style="width: 800px;"/></center>
 
 Keep in mind that the random effect of the mountain range is **meant to capture all the influences of mountain ranges on dragon test scores** - whether we observed those influences explicitly or not, whether those influences are big or small *etc*. It could be many, many teeny-tiny influences that, when combined, affect the test scores and that's what we are hoping to control for.
 
+We can see the variance for `mountainRange = 339.7`. Mountain ranges are clearly important: they explain a lot of variation. How do we know that? We can take the variance for the `mountainRange` and divide it by the total variance:
+
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code14" markdown="1">
+```r
+339.7/(339.7 + 223.8)  # ~60 %
+```
+</section>
+
+So the differences between mountain ranges explain ~60% of the variance that's "left over" *after* the variance explained by our fixed effects. 
+
+<div class="bs-callout-grey" markdown="1">
+#### More reading on random effects
+
+Still confused about interpreting random effects? These links have neat demonstrations and explanations:
+
+<a href="https://www.r-bloggers.com/making-sense-of-random-effects/" target="_blank">R-bloggers: Making sense of random effects</a>
+
+<a href="https://www.theanalysisfactor.com/understanding-random-effects-in-mixed-models/" target="_blank">The Analysis Factor: Understanding random effects in mixed models</a>
+
+<a href="http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf" target="_blank">Bodo Winter: A very basic tutorial for performing linear mixed effect analyses</a>
+
+</div>
+
 As always, it's good practice to have a look at the plots to check our assumptions:
 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1">
 ```r
-plot(mixed.lmer)  # looks alright, no paterns evident
+plot(mixed.lmer)  # looks alright, no patterns evident
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-8.png" alt="Img" style="width: 800px;"/></center>
 
 and "`qqplot`":
 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1">
 ```r
 qqnorm(resid(mixed.lmer))
 qqline(resid(mixed.lmer))  # points fall nicely onto the line - good!
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-9.png" alt="Img" style="width: 800px;"/></center>
 
-Let's go back to the summary and look at our results again.
-
-```r
-summary(mixed.lmer)
-```
-
-We can see the variance for `mountainRange = 339.7`. Mountain ranges are clearly important: they explain a lot of variation. How do we know that? We can take the variance for the `mountainRange` and divide it by the total variance:
-
-```r
-339.7/(339.7 + 223.8)  # ~60 %
-```
-
-So the differences between mountain ranges explain ~60% of the variance. Do keep in mind that's 60% of variance "left over" after the variance explained by our fixed effects.
 
 <a name="types"></a>
 #### Types of random effects
@@ -303,7 +388,7 @@ Before we go any further, let's review the syntax above and chat about crossed a
 
 **Reminder**: a factor is just any categorical independent variable.
 
-Above, we used `(1|mountainRange)` to fit our random effect. Whatever is on the right side of `|` operator is a factor and referred to as a "grouping factor" for the term.
+Above, we used `(1|mountainRange)` to fit our random effect. Whatever is on the right side of the `|` operator is a factor and referred to as a "grouping factor" for the term.
 
 **Random effects (factors) can be crossed or nested** - it depends on the relationship between the variables. Let's have a look.
 
@@ -312,61 +397,110 @@ Above, we used `(1|mountainRange)` to fit our random effect. Whatever is on the 
 
 Be careful with the nomenclature. There are **"hierarchical linear models"** (HLMs) or **“multilevel models”** out there, but while all HLMs are mixed models, **not all mixed models are hierarchical**. That's because you can have **crossed (or partially crossed) random factors** that do not represent levels in a hierarchy. 
 
-Think for instance about our study where you monitor dragons (subject) across different mountain ranges (context) and imagine that we collect **multiple observations per dragon** (we give it the test multiple times - risking **pseudoreplication**). Since our dragons can fly, it's easy to imagine that **we might observe the same dragon across different mountain ranges**, but also that we might not see all the dragons visiting all of the mountain ranges. Therefore, we can potentially observe every dragon in every mountain range (**crossed**) or at least observe some dragons across some of the mountain ranges (**partially crossed**). We would then fit the identity of the dragon and mountain range as (partially) crossed random effects.
+Think for instance about our study where you monitor dragons (subject) across different mountain ranges (context) and imagine that we collect **multiple observations per dragon** by giving it the test multiple times (and risking **pseudoreplication** - but more on that later). Since our dragons can fly, it's easy to imagine that **we might observe the same dragon across different mountain ranges**, but also that we might not see all the dragons visiting all of the mountain ranges. Therefore, we can potentially observe every dragon in every mountain range (**crossed**) or at least observe some dragons across some of the mountain ranges (**partially crossed**). We would then fit the identity of the dragon and mountain range as (partially) crossed random effects.
+
+Let's repeat with another example: an effect is __(fully) crossed__ when _all the subjects_ have experienced _all the levels_ of that effect. For instance, if you had a fertilisation experiment on seedlings growing in a seasonal forest and took repeated measurements over time (say 3 years) in each season, you may want to have a crossed factor called `season` (Summer1, Autumn1, Winter1, Spring1, Summer2, ..., Spring3), i.e. a factor for each season of each year. This grouping factor would account for the fact that all plants in the experiment, regardless of the fixed (treatment) effect (i.e. fertilised or not), may have experienced a very hot summer in the second year, or a very rainy spring in the third year, and those conditions could cause interference in the expected patterns. You don't even need to have associated climate data to account for it! You just know that all observations from spring 3 may be more similar to each other because they experienced the same environmental quirks rather than because they're responding to your treatment. 
+
+If this sounds confusing, not to worry - `lme4` handles partially and fully crossed factors well. Now, let's look at **nested** random effects and how to specify them.
 
 <a name="nested"></a>
 #### Nested random effects
 
-If this sounds confusing, not to worry - `lme4` handles partially and fully crossed factors well. They don't have to be hierarchical or “multilevel” by design. However, **the same model specification can be used to represent both (partially) crossed or nested factors** so you can't use the model's specification to tell you what's going on with the random factors: you have to look at the structure of the factors in the data. To make things easier for yourself, code your data properly and **avoid implicit nesting**. Not sure what implicit nesting is? Read on.
+If you're not sure what nested random effects are, think of those Russian nesting dolls. We've already hinted that we call these models __hierarchical__: there's often an element of scale, or sampling stratification in there. 
+
+Take our fertilisation experiment example again; let's say you have 50 seedlings in each bed, with 10 control and 10 experimental beds. That's 1000 seedlings altogether. And let's say you went out collecting once in each season in each of the 3 years. On each plant, you measure the length of 5 leaves. That's....(lots of maths)...5 leaves x 50 plants x 20 beds x 4 seasons x 3 years..... 60 000 measurements! 
+
+But if you were to run the analysis using a simple linear regression, eg. `leafLength ~ treatment `, you would be committing the crime (!!) of **pseudoreplication**, or massively increasing your sampling size by using non-independent data. With a sample size of 60,000 you would almost certainly get a "significant" effect of treatment which may have no ecological meaning at all. And it violates the __assumption of independance of observations__ that is central to linear regression.
+
+This is where our nesting dolls come in; leaves within a plant and plants within a bed may be more similar to each other (e.g. for genetic and environmental reasons, respectively). You could therefore add a random effect structure that accounts for this nesting:
+
+`leafLength ~ treatment + (1|Bed/Plant/Leaf)`
+
+This way, the model will account for non independence in the data: the same leaves have been sampled repeatedly, multiple leaves were measured on an individual, and plants are grouped into beds which may receive different amounts of sun, etc.
+
+What about the crossed effects we mentioned earlier? If all the leaves have been measured in all seasons, then your model would become something like:
+
+`leafLength ~ treatment + (1|Bed/Plant/Leaf) + (1|Season)`
+
+Phew!
+
 
 <a name="implicit"></a>
+<div class="bs-callout-yellow" markdown="1">
+
 #### Implicit *vs*. explicit nesting
+To make things easier for yourself, code your data properly and **avoid implicit nesting**. 
 
 To tackle this, let's look at another aspect of our study: we collected the data on dragons not only across multiple mountain ranges, but also across several sites within those mountain ranges. If you don't remember have another look at the data:
 
+<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code17" markdown="1">
 ```r
 head(dragons)  # we have site and mountainRange
 str(dragons)  # we took samples from three sites per mountain range and eight mountain ranges in total
 ```
+</section>
 
 Just like we did with the mountain ranges, we have to assume that data collected within our sites might be **correlated** and so we should include sites as **an additional random effect** in our model.
 
 Our site variable is a three-level factor, with sites called `a`, `b` and `c`. The nesting of the site within the mountain range is **implicit** - our sites are meaningless without being assigned to specific mountain ranges, i.e. there is nothing linking site `b` of the `Bavarian` mountain range with site `b` of the `Central` mountain range. To avoid future confusion we should create a new variable that is **explicitly nested**. Let's call it `sample`:
 
+<a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code18" markdown="1">
 ```r
 dragons <- within(dragons, sample <- factor(mountainRange:site))
 ```
+</section>
 
 Now it's obvious that we have 24 samples (8 mountain ranges x 3 sites) and not just 3: our `sample` is a 24-level factor and we should use that instead of using `site` in our models: each site belongs to a specific mountain range.
 
 **To sum up:** for **nested random effects**, the factor appears **ONLY** within a particular level of another factor (each site belongs to a specific mountain range and only to that range); for **crossed effects**, a given factor appears in more than one level of another factor (dragons appearing within more than one mountain range). **Or you can just remember that if your random effects aren't nested, then they are crossed!**
 
+</div>
+
 <a name="second"></a>
 ### Our second mixed model
 
-Based on the above, using following specification would be **<u>wrong</u>**:
+Based on the above, using following specification would be **<u>wrong</u>**, as it would imply that there are only three sites with observations at _each_ of the 8 mountain ranges (crossed):
 
+<a id="Acode19" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code19" markdown="1">
 ```r
 mixed.WRONG <- lmer(testScore ~ bodyLength2 + (1|mountainRange) + (1|site), data = dragons)  # treats the two random effects as if they are crossed
+summary(mixed.WRONG)
 ```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-output-wrong.png" alt="incorrect factor nesting" style="width: 800px;"/></center>
+
 But we can go ahead and fit a new model, one that takes into account both the differences between the mountain ranges, as well as the differences between the sites within those mountain ranges by using our `sample` variable.
 
 Our question gets **adjusted slightly again**: Is there an association between body length and intelligence in dragons ***after*** controlling for variation in mountain ranges and sites within mountain ranges?
 
+<a id="Acode20" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code20" markdown="1">
 ```r
 mixed.lmer2 <- lmer(testScore ~ bodyLength2 + (1|mountainRange) + (1|sample), data = dragons)  # the syntax stays the same, but now the nesting is taken into account
 summary(mixed.lmer2)
 ```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-output-right.png" alt="correct factor nesting" style="width: 800px;"/></center>
+
 
 Here, we are trying to account for **all the mountain-range-level** *and* **all the site-level influences** and we are hoping that our random effects have soaked up all these influences so we can control for them in the model. 
 
-For the record, you could also use the below syntax, but I'd advise you to set out your variables properly and make sure nesting is stated explicitly within them, that way you don't have to remember to specify the nesting.
+For the record, you could also use the below syntax, and you will often come across it if you read more about mixed models: 
 
 `(1|mountainRange/site)`  or even
 `(1|mountainRange) + (1|mountainRange:site)`
 
+However, it is advisable to set out your variables properly and make sure nesting is stated explicitly within them, that way you don't have to remember to specify the nesting.
+
 Let's plot this again - visualising what's going on is always helpful. You should be able to see eight mountain ranges with three sites (different colour points) within them, with a line fitted through each site.
 
+<a id="Acode21" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code21" markdown="1">
 ```r
 (mm_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = site)) +
   facet_wrap(~mountainRange, nrow=3) +
@@ -375,6 +509,8 @@ Let's plot this again - visualising what's going on is always helpful. You shoul
   geom_line(data = cbind(dragons, pred = predict(mixed.lmer2)), aes(y = pred)) +
   theme(legend.position = "none"))
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-10.png" alt="Img" style="width: 800px;"/></center>
 
 **Well done for getting here!** You have now fitted mixed models and you know how to account for crossed random effects too. You saw that failing to account for the correlation in data might lead to misleading results - it seemed that body length affected the test score until we accounted for the variation coming from mountain ranges. We can see now that body length doesn't influence the test scores - great! We can pick smaller dragons for any future training - smaller ones should be more manageable! ;] 
@@ -386,14 +522,61 @@ If you are particularly keen, the next section gives you a few options when it c
 
 Once you get your model, you have to **present** it in a nicer form. 
 
+<a name="plots"></a>
+#### Plotting model predictions
+
+Often you will want to visualise your model as a regression line with some error around it, just like you would a simple linear model. However, `ggplot2` stats options are not designed to estimate mixed-effect model objects correctly, so we will use the `ggeffects` package to help us draw the plots.
+
+<a id="Acode22" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code22" markdown="1">
+```
+library(ggeffects)  # install it first if you haven't already
+
+# Plot mixed model predictions
+ggpredict(mixed.lmer2, terms = c("bodyLength2")) %>% # extracting the model predictions for the fixed effect
+   plot() +  # creating the plot
+   labs(x = "Body Length", y = "Test Score", title = "Effect of body size on intelligence in dragons") +  #customising plot
+   theme_minimal()
+```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-ggpredict1.jpeg" alt="Img" style="width: 750px;"/></center>
+
+What if you want to visualise how the relationships vary according to different levels of random effects? You can specify `type = "re"` (for "random effects") in the `ggpredict()` function, and add the random effect to the terms argument:
+
+<a id="Acode23" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code23" markdown="1">
+```
+ggpredict(mixed.lmer2, terms = c("bodyLength2", "mountainRange"), type = "re") %>% 
+   plot() +
+   labs(x = "Body Length", y = "Test Score", title = "Effect of body size on intelligence in dragons") + 
+   theme_minimal()
+```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-ggpredict2.jpeg" alt="Img" style="width: 750px;"/></center>
+
+The lines for the different models are all parallel because we fitted a **random intercept** only model. In ecological and biological systems, it often makes sense to have **random slopes** as well, although these models are more complex and often will not converge.
+
+<div class="bs-callout-yellow" markdown="1">
+#### Work in progress!
+
+We will shortly be adding a random slope example here, but for now to see how they are coded, check out <a href="https://ourcodingclub.github.io/2018/04/06/model-design.html#lme4b" target="_blank">the lme4 section of our model design tutorial </a>. 
+</div>
+
+If you are looking for more ways to create plots of your results, check out `dotwhisker` and this <a href="https://cran.r-project.org/web/packages/dotwhisker/vignettes/dotwhisker-vignette.html" target="_blank">tutorial</a>.
+
 <a name="tables"></a>
 #### Tables
 
 For `lme4`, if you are looking for a table, I'd recommend that you have a look at the `stargazer` package.
 
+<a id="Acode24" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code24" markdown="1">
 ```r
 library(stargazer)
 ```
+</section>
 
 `stargazer`is very nicely annotated and there are lots of resources (e.g. [this](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf){:target="_blank"}) out there and a [great cheat sheet](http://jakeruss.com/cheatsheets/stargazer.html){:target="_blank"} so I won't go into too much detail, as I'm confident you will find everything you need.
 
@@ -401,17 +584,18 @@ Here is a quick example - simply plug in your model name, in this case `mixed.lm
 
 If you are keen, explore this table a little further - what would you change? What would you get rid off? 
 
+<a id="Acode25" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code25" markdown="1">
 ```r
 stargazer(mixed.lmer2, type = "text",
           digits = 3,
           star.cutoffs = c(0.05, 0.01, 0.001),
           digit.separator = "")
 ```
+</section>
+
 <center><img src="{{ site.baseurl }}/img/mm-tab.png" alt="Img" style="width: 400px;"/></center>
 
-<a name="dot"></a>
-
-If you are looking for **a way to create plots of your results** check out `dotwhisker` and this [tutorial](https://cran.r-project.org/web/packages/dotwhisker/vignettes/dotwhisker-vignette.html){:target="_blank"}.
 
 <a name="processing"></a>
 #### Further processing
@@ -447,19 +631,24 @@ I think that `MCMC` and bootstrapping are a bit out of our reach for this worksh
 
 Fit the models, a full model and a reduced model in which we dropped our fixed effect (`bodyLength2`):
 
+<a id="Acode26" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code26" markdown="1">
 ```r
 full.lmer <- lmer(testScore ~ bodyLength2 + (1|mountainRange) + (1|sample), 
 				  data = dragons, REML = FALSE)
 reduced.lmer <- lmer(testScore ~ 1 + (1|mountainRange) + (1|sample), 
 					     data = dragons, REML = FALSE)
 ```
+</section>
 
 Compare them:
 
+<a id="Acode27" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code27" markdown="1">
 ```r
 anova(reduced.lmer, full.lmer)  # the two models are not significantly different
 ```
-
+</section>
 
 Notice that we have fitted our models with `REML = FALSE`.
 
