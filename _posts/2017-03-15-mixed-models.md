@@ -628,7 +628,7 @@ summary(mixed.ranslope)
 ```
 </section>
 
-<center><img src="{{ site.baseurl }}/img/mixed-models-sjplot.png" alt="Img" style="width: 750px;"/></center>
+<center><img src="{{ site.baseurl }}/img/sjplot.png" alt="Img" style="width: 750px;"/></center>
 
 **Careful here!** The values you see are **NOT** *actual* values, but rather the *difference* between the general intercept or slope value found in your model summary and the estimate for this *specific level* of random effect. For instance, the relationship for dragons in the Maritime mountain range would have a slope of `(-2.91 + 0.67) = -2.24` and an intercept of `(20.77 + 51.43) = 72.20`. 
 
