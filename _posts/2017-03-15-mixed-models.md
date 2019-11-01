@@ -43,6 +43,7 @@ Alternatively, you can grab the **R script** [here](http://gkhajduk.d.pr/FG8/2bC
 ##### <a href="#nested"> Nested random effects</a>
 ##### <a href="#implicit"> Implicit vs. explicit nesting</a>
 #### <a href="#second"> -- Our second mixed model</a>
+#### <a href="#ranslopes"> -- Introducing random slopes </a> 
 #### <a href="#presenting"> -- Presenting your model results</a>
 ##### <a href="#plots"> Plotting model predictions</a>
 ##### <a href="#tables"> Tables</a>
@@ -503,17 +504,58 @@ Let's plot this again - visualising what's going on is always helpful. You shoul
 <section id= "code21" markdown="1">
 ```r
 (mm_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = site)) +
-  facet_wrap(~mountainRange, nrow=3) +
-  geom_point() +
-  theme_classic() +
-  geom_line(data = cbind(dragons, pred = predict(mixed.lmer2)), aes(y = pred)) +
-  theme(legend.position = "none"))
+      facet_wrap(~mountainRange, nrow=2) +   # a panel for each mountain range
+      geom_point(alpha = 0.5) +
+      theme_classic() +
+      geom_line(data = cbind(dragons, pred = predict(mixed.lmer2)), aes(y = pred), size = 1) +  # adding predicted line from mixed model 
+      theme(legend.position = "none",
+            panel.spacing = unit(2, "lines"))  # adding space between panels
+)
 ```
 </section>
 
 <center><img src="{{ site.baseurl }}/img/mm-10.png" alt="Img" style="width: 800px;"/></center>
 
-**Well done for getting here!** You have now fitted mixed models and you know how to account for crossed random effects too. You saw that failing to account for the correlation in data might lead to misleading results - it seemed that body length affected the test score until we accounted for the variation coming from mountain ranges. We can see now that body length doesn't influence the test scores - great! We can pick smaller dragons for any future training - smaller ones should be more manageable! ;] 
+<a name="ranslopes"></a>
+### Introducing random slopes
+
+You might have noticed that all the lines on the above figure are parallel: that's because so far, we have only fitted **random-intercept models**. A random-intercept model allows the intercept to vary for each level of the random effects, but keeps the slope constant among them. So in our case, using this model means that we expect dragons in all mountain ranges to exhibit the same relationship between body length and intelligence (fixed slope), although we acknowledge that some populations may be smarter or dumber to begin with (random intercept). 
+
+Now, in the life sciences, we perhaps more often assume that not all populations would show the exact same relationship, for instance if your study sites/populations are very far apart and have some relatively important environmental, genetic, etc differences. Therefore, we often want to fit a **random-slope and random-intercept model**. Maybe the dragons in a very cold vs a very warm mountain range have evolved different body forms for heat conservation and may therefore be smart even if they're smaller than average. 
+
+We only need to make one change to our model to allow for random slopes as well as intercept, and that's adding the fixed variable into the random effect brackets:
+
+<a id="Acode22" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code22" markdown="1">
+```r
+mixed.ranslope <- lmer(testScore ~ bodyLength2 + (1 + bodyLength2|mountainRange/site), data = dragons) 
+
+summary(mixed.slope)
+```
+</section>
+
+Here, we're saying, let's model the intelligence of dragons as a function of body length, knowing that populations have different intelligence baselines **and** that the relationship may vary among populations. 
+
+Let's see that with a quick plot (we'll plot predictions in more detail in the next section). Notice how the slopes for the different sites and mountain ranges are not parallel anymore?
+
+<a id="Acode23" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code23" markdown="1">
+```r
+### plot
+(mm_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore, colour = site)) +
+      facet_wrap(~mountainRange, nrow=2) +   # a panel for each mountain range
+      geom_point(alpha = 0.5) +
+      theme_classic() +
+      geom_line(data = cbind(dragons, pred = predict(mixed.ranslope)), aes(y = pred), size = 1) +  # adding predicted line from mixed model 
+      theme(legend.position = "none",
+            panel.spacing = unit(2, "lines"))  # adding space between panels
+)
+```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mm-ranslopes.png" alt="Img" style="width: 800px;"/></center>
+
+**Well done for getting here!** You have now fitted random-intercept and random-slopes, random-intercept mixed models and you know how to account for hierarchical and crossed random effects. You saw that failing to account for the correlation in data might lead to misleading results - it seemed that body length affected the test score until we accounted for the variation coming from mountain ranges. We can see now that body length doesn't influence the test scores - great! We can pick smaller dragons for any future training - smaller ones should be more manageable! ;] 
 
 If you are particularly keen, the next section gives you a few options when it comes to **presenting your model results** and in the last "extra" section you  can learn about the **model selection conundrum**. There is just a little bit more code there to get through if you fancy those.
 
@@ -527,25 +569,37 @@ Once you get your model, you have to **present** it in a nicer form.
 
 Often you will want to visualise your model as a regression line with some error around it, just like you would a simple linear model. However, `ggplot2` stats options are not designed to estimate mixed-effect model objects correctly, so we will use the `ggeffects` package to help us draw the plots.
 
-<a id="Acode22" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code22" markdown="1">
+<a id="Acode24" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code24" markdown="1">
 ```
-library(ggeffects)  # install it first if you haven't already
+library(ggeffects)  # install the package first if you haven't already, then load it
 
-# Plot mixed model predictions
-ggpredict(mixed.lmer2, terms = c("bodyLength2")) %>% # extracting the model predictions for the fixed effect
-   plot() +  # creating the plot
-   labs(x = "Body Length", y = "Test Score", title = "Effect of body size on intelligence in dragons") +  #customising plot
+# Extract the prediction data frame
+pred.mm <- ggpredict(mixed.lmer2, terms = c("bodyLength2"))  # this gives overall predictions for the model
+
+# Plot the predictions 
+
+(ggplot(pred.mm) + 
+   geom_line(aes(x = x, y = predicted)) +          # slope
+   geom_ribbon(aes(x = x, ymin = predicted - std.error, ymax = predicted + std.error), 
+               fill = "lightgrey", alpha = 0.5) +  # error band
+   geom_point(data = dragons,                      # adding the raw data (scaled values)
+              aes(x = bodyLength2, y = testScore, colour = mountainRange)) + 
+   labs(x = "Body Length (indexed)", y = "Test Score", 
+        title = "Body length does not affect intelligence in dragons") + 
    theme_minimal()
+)
 ```
 </section>
 
 <center><img src="{{ site.baseurl }}/img/mixed-models-ggpredict1.jpeg" alt="Img" style="width: 750px;"/></center>
 
-What if you want to visualise how the relationships vary according to different levels of random effects? You can specify `type = "re"` (for "random effects") in the `ggpredict()` function, and add the random effect to the terms argument:
+What if you want to visualise how the relationships vary according to different levels of random effects? You can specify `type = "re"` (for "random effects") in the `ggpredict()` function, and add the random effect name to the `terms` argument. 
 
-<a id="Acode23" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code23" markdown="1">
+We also demonstrate a way to plot the graph quicker with the `plot()` function of `ggEffects`:
+
+<a id="Acode25" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code25" markdown="1">
 ```
 ggpredict(mixed.lmer2, terms = c("bodyLength2", "mountainRange"), type = "re") %>% 
    plot() +
@@ -556,13 +610,27 @@ ggpredict(mixed.lmer2, terms = c("bodyLength2", "mountainRange"), type = "re") %
 
 <center><img src="{{ site.baseurl }}/img/mixed-models-ggpredict2.jpeg" alt="Img" style="width: 750px;"/></center>
 
-The lines for the different models are all parallel because we fitted a **random intercept** only model. In ecological and biological systems, it often makes sense to have **random slopes** as well, although these models are more complex and often will not converge.
+You can clearly see the random intercepts and fixed slopes from this graph. When assessing the quality of your model, it's always a good idea to look at the raw data, the summary output, and the predictions all together to make sure you understand what is going on (and that you have specified the model correctly). 
 
-<div class="bs-callout-yellow" markdown="1">
-#### Work in progress!
+Another way to visualise mixed model results, if you are interested in showing the variation among levels of your random effects, is to plot the *departure from the overall model estimate* for intercepts - and slopes, if you have a random slope model:
 
-We will shortly be adding a random slope example here, but for now to see how they are coded, check out <a href="https://ourcodingclub.github.io/2018/04/06/model-design.html#lme4b" target="_blank">the lme4 section of our model design tutorial </a>. 
-</div>
+<a id="Acode26" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code26" markdown="1">
+```r
+library(sjPlot)
+
+# Visualise random effects 
+(re.effects <- plot_model(mixed.ranslope, type = "re", show.values = TRUE))
+
+# show summary
+summary(mixed.ranslope)
+
+```
+</section>
+
+<center><img src="{{ site.baseurl }}/img/mixed-models-sjplot.png" alt="Img" style="width: 750px;"/></center>
+
+**Careful here!** The values you see are **NOT** *actual* values, but rather the *difference* between the general intercept or slope value found in your model summary and the estimate for this *specific level* of random effect. For instance, the relationship for dragons in the Maritime mountain range would have a slope of `(-2.91 + 0.67) = -2.24` and an intercept of `(20.77 + 51.43) = 72.20`. 
 
 If you are looking for more ways to create plots of your results, check out `dotwhisker` and this <a href="https://cran.r-project.org/web/packages/dotwhisker/vignettes/dotwhisker-vignette.html" target="_blank">tutorial</a>.
 
@@ -571,8 +639,8 @@ If you are looking for more ways to create plots of your results, check out `dot
 
 For `lme4`, if you are looking for a table, I'd recommend that you have a look at the `stargazer` package.
 
-<a id="Acode24" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code24" markdown="1">
+<a id="Acode27" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code27" markdown="1">
 ```r
 library(stargazer)
 ```
@@ -584,8 +652,8 @@ Here is a quick example - simply plug in your model name, in this case `mixed.lm
 
 If you are keen, explore this table a little further - what would you change? What would you get rid off? 
 
-<a id="Acode25" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code25" markdown="1">
+<a id="Acode28" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code28" markdown="1">
 ```r
 stargazer(mixed.lmer2, type = "text",
           digits = 3,
@@ -631,8 +699,8 @@ I think that `MCMC` and bootstrapping are a bit out of our reach for this worksh
 
 Fit the models, a full model and a reduced model in which we dropped our fixed effect (`bodyLength2`):
 
-<a id="Acode26" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code26" markdown="1">
+<a id="Acode29" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code29" markdown="1">
 ```r
 full.lmer <- lmer(testScore ~ bodyLength2 + (1|mountainRange) + (1|sample), 
 				  data = dragons, REML = FALSE)
@@ -643,8 +711,8 @@ reduced.lmer <- lmer(testScore ~ 1 + (1|mountainRange) + (1|sample),
 
 Compare them:
 
-<a id="Acode27" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code27" markdown="1">
+<a id="Acode30" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code30" markdown="1">
 ```r
 anova(reduced.lmer, full.lmer)  # the two models are not significantly different
 ```
