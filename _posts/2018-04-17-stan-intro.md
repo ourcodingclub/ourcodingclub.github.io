@@ -388,7 +388,7 @@ For simpler models, convergence is usually not a problem unless you have a bug i
 Try running a model for only 50 iterations and check the traceplots.
 
 ```r
-fit_bad <- stan(model1, data = stan_data, warmup = 25, iter = 50, chains = 4, cores = 2, thin = 1)
+fit_bad <- stan(stan_model1, data = stan_data, warmup = 25, iter = 50, chains = 4, cores = 2, thin = 1)
 posterior_bad <- extract(fit_bad)
 ```
 
