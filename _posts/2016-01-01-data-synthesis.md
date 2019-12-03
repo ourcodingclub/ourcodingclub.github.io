@@ -113,7 +113,7 @@ To make these data "tidy" (one column per variable and not the current wide form
 This takes our original dataset `bird_pops` and creates a new column called `year`, fills it with column names from columns `26:70` and then uses the data from these columns to make another column called `pop`.
 
 ```r
-bird_pops_long <- gather(data = bird_pops, key = "year", value = "pop", select = 27:71)
+bird_pops_long <- gather(data = bird_pops, key = "year", value = "pop", 27:71)
 
 # Examine the tidy data frame
 head(bird_pops_long)
