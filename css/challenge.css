@@ -93,6 +93,13 @@ header .navbar-default {
 header .navbar-default .navbar-nav {
   padding-top: 10px;
 }
+
+header .navbar-default .navbar-nav li {
+  color: #333333;
+  padding: 0;
+  font-size: 15px;
+}
+
 header .navbar-default .navbar-nav li a {
   color: #333333;
   padding: 10px 26px;
