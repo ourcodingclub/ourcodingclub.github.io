@@ -1045,6 +1045,11 @@ footer .footer-manu ul li a:hover {
   padding-bottom: 107px;
   position: relative;
   background-attachment: fixed;
+  background-position: center center;
+}
+
+#DL-header h1 {
+  font-size: 28px; 
 }
 /*--	
 	Data Lab call to action
