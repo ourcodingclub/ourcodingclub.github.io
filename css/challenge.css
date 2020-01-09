@@ -296,6 +296,7 @@ font header .navbar-default .navbar-nav li a:hover {
   font-weight: 600;
   margin-bottom: 30px;
   color:#f6f2ee;
+  padding-top: 10px;
 }
 
 .feature h3 {
