@@ -57,7 +57,7 @@ permalink: /course_home/
 </section>
           
     <!-- Course details -->
-<section id="portfolio-work">
+<section id="feature" style= "background-image: url({{ site.baseurl }}/img/DL-CC-background.png)">
 <div class="container">
         <div class="row">
       <div class="col-md-6 col-sm-12">
@@ -70,60 +70,91 @@ permalink: /course_home/
 
          </div>
       </div><!-- .col-md-6 close -->
-      
-      <div class="col-md-6 col-sm-12">
-        <div class="block"><!-- the 3 clickable streams here  -->
-          <a href="{{ site.baseurl }}/course/stats-scratch.html"><img src="{{ site.baseurl }}/img/DL_stream1.png" alt="Stream 1: Stats from Scratch" align="right" style="width: 450px; padding: 10px;" /></a>
-          <br><br>
-          <a href="{{ site.baseurl }}/course/wiz-viz.html"><img src="{{ site.baseurl }}/img/DL_stream2.png" alt="Stream 2: Wiz of Data Viz" align="right" style="width: 450px; padding: 10px;" /></a>
-          <br><br>
-          <a href="{{ site.baseurl }}/course/mastering-modelling.html"><img src="{{ site.baseurl }}/img/DL_stream3.png" alt="Stream 3: Mastering Modelling" align="right" style="width: 450px; padding: 10px;" /></a>
-          <br><br>
-        </div>
-      </div><!-- .col-md-6 close -->
    </div>
  </div>
 </section>
 
- <!-- Course workflow  -->
-<section id="workflow" class="feature"> 
-   <div class ="container">
-   <div class="row">
-      
-<btn-switch onclick="toggle(workflow)" style="float: right;"> Hide/show background </btn-switch>   
+<!-- Course workflow carousel -->
 
-    <div class="col-md-8 col-sm-12">
+<section id="testimonial">
+   <div class="container">
+    <div class="row">
+       <div class="section-title text-center">
+        <h2>How it works</h2>
+        </div>
+    </div>
+    
+    <div class="row">
+         <div class="col-md-8 col-md-offset-2">
+        <div class="testimonial-carousel">
+          <div id="testimonial-slider" class="owl-carousel">
+             
+            <div>
+               <i class="icon ion-ios-compass-outline"></i>
+               <p><big>1. Identify your needs</big></p>
+                <p>What do you want to learn? In our course you make your own adventure! Mix and match tutorials across our three <a href="#streams">course streams.</a> </p>
+            </div>
+            
+            <div>
+               <i class="icon ion-ios-code-working"></i>
+               <p><big>2. Code away and learn</big></p>
+                <p>Complete as few or as many tutorials as you want, in your own time. You can then test your knowledge with a quiz after each tutorial.</p>
+            </div>
 
-<h2>How it works</h2>
-
-<h3>1. Browse!</h3>
-<p>First, have a look at our course streams and their associated tutorials below. You can decide to do a full stream, or handpick tutorials you want to do across different streams. </p>
-
-<h3>2. Sign up </h3>
-<p>Once you know what you want to do, you can sign up and download the course materials. We host everything on a <a href= "http://github.com/" target="_blank"> GitHub</a> platform and use open data from environmental organisations, so everything is free and openly accessible. The "Let's Get Started" button below will take you to a page with all the information to sign up and download the data repositories.</p>
-
-<h3>3. Learn (and have fun!)</h3>
-<p>Start doing the tutorials! Each stream has a dedicated page with links to the relevant tutorials (click the banners above). You follow along, entering code in your own console, and of course we also encourage you to experiment and try things for yourself! Each tutorial ends with a challenge that will test your new skills (example solution provided), and a short quiz to record your successful completion of the tutorial. </p>
-
-<h3>4. Challenge yourself </h3>
-<p>We also have three case-study data challenges that we encourage participants to do after completing the course. That's where the fun is really at, as you'll get to use all of your new skills to creatively answer some questions about environmental issues, using real-life data! </p>
-
-<h3>5. Get your certificate </h3>
-<p>All done? We record all the individual tutorials and challenges you do during the course. When you have completed everything you want, you can request and download your certificate.</p>
+            <div>
+               <i class="icon ion-ios-cog"></i>
+               <p><big>3. Challenge yourself</big></p>
+                <p>Test your new skills with three case-study data challenges, each the culmination of a course stream. You will have to creatively answer questions about environmental issues, using real-life data!</p>
+            </div>
+            
+            <div>
+               <i class="icon ion-ios-ribbon-outline"></i>
+               <p><big>4. Get recognition</big></p>
+                <p>Learned what you wanted? Show the world by requesting your certificate!</p>
+            </div>
+	    
+          </div>
+        </div>
+      </div>
    </div>
-  </div>
- </div>
-</section><br>
+   </div>
+</section>
 
+<!-- Streams -->
+ <section id="streams">
+        <div class="container">
+         <center><h2>Our course streams</h2></center>
+         <center><p>The course currently includes three streams that cater to different interests and abilities. Please note that we have a wider range of <a href="" target="_blank">tutorials</a> that are not yet part of the course but might be of interest. </p></center>
+         
+         <center><p>Here is an overview of the topics covered by our streams. You can click on the stream banners below to learn more about each of them.</p></center>
 
- <!-- Course streams image  -->
-<section id="portfolio-work">
-      <div class="container">
-        <div class="block">
+<div class="block">
    <center><img src="{{ site.baseurl }}/img/DL_course_streams.png" alt="Img" style="width: 800px; padding: 20px;"/></center>
          </div> 
-      </div> 
-</section><br>
+         
+               <div class="row">
+      
+      <div class="col-md-4 col-sm-12">
+        <div class="block"><!-- stream 1  -->
+          <a href="{{ site.baseurl }}/course/stats-scratch.html"><img src="{{ site.baseurl }}/img/DL_stream1.png" alt="Stream 1: Stats from Scratch" align="center" style="width: 450px; padding: 10px;" /></a>
+        </div>
+      </div><!-- end of column -->
+      
+            <div class="col-md-4 col-sm-12">
+        <div class="block"><!-- stream 2  -->
+          <a href="{{ site.baseurl }}/course/wiz-viz.html"><img src="{{ site.baseurl }}/img/DL_stream2.png" alt="Stream 2: Wiz of Data Viz" align="center" style="width: 450px; padding: 10px;" /></a>
+        </div>
+      </div><!-- end of column -->
+      
+            <div class="col-md-4 col-sm-12">
+        <div class="block"><!-- stream 3  -->
+          <a href="{{ site.baseurl }}/course/mastering-modelling.html"><img src="{{ site.baseurl }}/img/DL_stream3.png" alt="Stream 3: Mastering Modelling" align="center" style="width: 450px; padding: 10px;" /></a>
+        </div>
+      </div><!-- end of column -->
+      
+            </div> <!-- end of row -->
+      </div>
+</section>
 
 
 
