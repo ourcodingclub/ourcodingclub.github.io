@@ -26,15 +26,17 @@ permalink: /course_info/
  <section id="portfolio-work">
         <div class="container">
 
-   <p>This page contains all the information you need to sign up for the course and choose which tutorials you want to complete. See our instructions on how best to access the course materials and how to test your new skills. And let us introduce ourselves - and don't hesitate to get in touch with questions or feedback! 
- </p>
+   <h3>This page contains all the information you need to <a href="#signup">sign up</a> for the course and choose <a href="streams">which tutorials</a> you want to complete. See our <a href="instructions">instructions</a> on how best to access the course materials and how to <a href="challenges">test</a> your new skills. We'll also <a href="about">introduce ourselves</a> - don't hesitate to <a href="contact">get in touch</a> with questions or feedback! 
+ </h3>
          </div>
 </section>
 
 <!-- WORKFLOW -->
 
+
  <!-- Sign up -->
- <section id="portfolio-work" style="background-color: #dcdcdc">
+ <a name = "signup"></a>
+ <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
         <div class="container">
            
 <div class="row-eq-height">
@@ -55,8 +57,72 @@ permalink: /course_info/
    </div>
 </section> <!-- end of sign up-->
 
+
+<!-- Streams -->
+<a name = "streams"></a>
+ <section id="portfolio-work">
+        <div class="container">
+           
+<div class="row-eq-height" style="background-color:#c09915; color:#ffffff; padding-bottom:20px">
+   
+      <div class="col-md-4 col-sm-12">
+        <div class="profile" style="border: 0px;">
+          <a href="{{ site.baseurl }}/course/stats-scratch.html"><img src="{{ site.baseurl }}/img/DL_stream1.png" alt="Stream 1: Stats from Scratch" align="center" style="width: 350px; padding: 10px;" /></a>
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-12">
+        <div class="block">
+            <h2>Stats from Scratch</h2>
+          <p>Our (anything but) basic introduction to R and object-oriented programming. Ideal for those with no previous coding experience - by the end you will have coded your way through all the key elements of scientific research, from manipulating data to conducting simple statistical analyses and presenting results in professional-looking graphs.</p>
+                    <p>Click on the banner for a full list of tutorials.</p>
+          
+        </div>
+      </div><!-- .col-md-8 close -->
+    </div>
+    
+    <div class="row-eq-height" style="background-color:#4d8287; color:#ffffff; padding-bottom:20px">
+   
+      <div class="col-md-4 col-sm-12">
+        <div class="profile" style="border: 0px;">
+          <a href="{{ site.baseurl }}/course/wiz-viz.html"><img src="{{ site.baseurl }}/img/DL_stream2.png" alt="Stream 2: Wiz of Data Viz" align="center" style="width: 350px; padding: 10px;" /></a>
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-12">
+        <div class="block">
+            <h2>Wiz of Data Viz</h2>
+          <p>A picture is worth a thousand words! This stream is ideal for those with a bit of coding experience in R, but it recaps some key elements of data manipulation to make sure you're off to a strong start. Then it's all about making your science come to life with nice, informative figures and interactive elements such as Markdown reports and Shiny apps.</p>
+          <p>Click on the banner for a full list of tutorials.</p>
+        </div>
+      </div><!-- .col-md-8 close -->
+    </div>
+    
+        <div class="row-eq-height" style="background-color:#553d62; color:#ffffff; padding-bottom:20px">
+   
+      <div class="col-md-4 col-sm-12">
+        <div class="profile" style="border: 0px;">
+          <a href="{{ site.baseurl }}/course/mastering-modelling.html"><img src="{{ site.baseurl }}/img/DL_stream3.png" alt="Stream 3: Mastering Modelling" align="center" style="width: 350px; padding: 10px;" /></a>
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-12">
+        <div class="block">
+            <h2>Mastering Modelling</h2>
+          <p>All about the stats! Learn how to turn research questions into code, accounting for various data structures and types. This stream is ideal for those with some coding experience in R, but also offers entry-level spatial analysis with the Google Earth Engine.</p>
+          <p>Click on the banner for a full list of tutorials.</p>
+        </div>
+      </div><!-- .col-md-8 close -->
+    </div>
+    
+    
+   </div>
+</section> <!-- end of streams-->
+
+
  <!-- Download --> 
- <section id="portfolio-work" style="background-color: #8fa2af">
+ <a name = "instructions"></a>
+ <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
         <div class="container">
 <div class="row-eq-height">
       
@@ -84,7 +150,7 @@ permalink: /course_info/
    </div>
       
    <div class="row" style="padding:30px 0px">
-     <center><img src="{{ site.baseurl }}/img/DL/clone-repo.png" style= "width=600" alt="clone-repo"></center> 
+     <center><img src="{{ site.baseurl }}/img/DL/clone-repo.png" style= "width: 600px" alt="clone-repo"></center> 
    </div>
    
    <div class="row">
@@ -96,42 +162,68 @@ permalink: /course_info/
 </section> <!-- download closes -->
 
  <!-- Learn -->
- <section id="portfolio-work" style="background-color: #dcdcdc">
+ <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
         <div class="container">
            
 <div class="row-eq-height">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-7 col-sm-12">
         <div class="block">
             <h2>3. Learn!</h2>
           <p>Now you're all set to start working on the tutorials! You can find the list of tutorials on each stream page, along with the links to related quizzes and challenges.</p>
           
-         <p>An average tutorial takes around 2 hours to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
+         <p>An average tutorial takes around <b>two hours</b> to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
           
          <p>When you work on the tutorials, we recommend that you have RStudio open in one window with your script and the tutorial data, and follow along the tutorial online in another window.</p>
          
-        <p><big>Test yourself!</big> When you finish a tutorial, go to our <a href="INSERT LINK" target="_blank">Test Centre</a> to take the associated quiz. The quizzes are short and their purpose is for you to recap concepts you have learned, and for us to verify that you have engaged with the tutorial. Remember, we're not here to catch you out! Still, better to take the test right after the tutorial, while everything is still fresh.</p> 
+        <p><b>Test yourself!</b> When you finish a tutorial, go to our <a href="INSERT LINK" target="_blank">Test Centre</a> to take the associated quiz. The quizzes are short and their purpose is for you to recap concepts you have learned, and for us to verify that you have engaged with the tutorial. Remember, we're not here to catch you out! Still, better to take the test right after the tutorial, while everything is still fresh.</p> 
          
         </div>
-      </div><!-- .col-md-6 close -->
-      <div class="col-md-6 col-sm-12">
+      </div><!-- .col-md-7 close -->
+      <div class="col-md-5 col-sm-12">
         <div class="profile" style="border: 0px;">
           <img src="{{ site.baseurl }}/img/DL/tut-and-quiz.png" style= "height:300px; width:auto" alt="Sign up icon">
         </div>
-      </div><!-- .col-md-6 close -->
+      </div><!-- .col-md-65 close -->
     </div>
    </div>
 </section> <!-- end of Learn-->
 
-<!-- Streams -->
-
 
 <!-- Test yourself -->
+<a name = "challenges"></a>
+ <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
+        <div class="container">
+           
+<div class="row-eq-height">
+      
+      <div class="col-md-4 col-sm-12">
+        <div class="profile" style="border: 0px;">
+          <img src="{{ site.baseurl }}/img/DL/challenge.png" style= "height:300px; width:auto" alt="Sign up icon">
+        </div>
+      </div><!-- .col-md-4 close -->
+      <div class="col-md-8 col-sm-12">
+        <div class="block">
+            <h2>4. Challenge yourself</h2>
+          <p>We offer three data challenges as the culmination of each course stream. In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations. The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance, so it is up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
+          
+          <p>You don't need to have done every tutorial in a stream to succeed in the challenge, but you might want to refer back to them for reminders or useful snippets of code. Remember also that search engines are your friend and you are encouraged to look things up! Like with the tutorials, we test your completion of the challenge with a set of questions, with the difference that these questions are already made available to you on the challenge page. </p>
+          
+         <p>Each challenge will probably take you anywhere between 3-8 hours to complete. Don't get frustrated if you get stuck somewhere: take a break, ask a friend or colleague for help, or get in touch with us. We want you to have fun and feel empowered: after all, you've worked hard and learned a lot! </p>
 
+        </div>
+      </div><!-- .col-md-8 close -->
+    </div>
+   </div>
+</section> <!-- end of challenges-->
+
+<!-- About the course -->
+<a name = "about"></a>
 
 <!-- Get help -->
+<a name = "contact"></a>
 
 <!-- bug icon-->
 <!--bee in your bonnet? technical issues? get in touch with us-->
 
-<!-- About the course -->
+
 
