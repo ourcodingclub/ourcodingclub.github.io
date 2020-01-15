@@ -88,7 +88,7 @@ permalink: /DL/challenge2
    <div class="row-eq-height">
       
       <div class="col-md-5 col-sm-12">
-        <div class="block"> 
+        <div class="profile" style="border: 0px;">
         <center><img src="{{ site.baseurl }}/img/DL/earth.png" style= "height:200px; width:auto; vertical-align: middle" alt="spatial-logo"></center>
         </div>
       </div>
@@ -155,7 +155,7 @@ permalink: /DL/challenge2
       </div>
       
    <div class="col-md-4 col-sm-12">
-      <div class="block"> 
+      <div class="profile" style="border: 0px;">
         <center><img src="{{ site.baseurl }}/img/DL/broom-light.png" style= "height:200px; width:auto; vertical-align:  middle" alt="broom-icon"></center>
        </div>
    </div>
@@ -173,7 +173,7 @@ permalink: /DL/challenge2
 <div class="row-eq-height">
    
    <div class="col-md-4 col-sm-12">
-      <div class="block"> 
+      <div class="profile" style="border: 0px;">
         <center><img src="{{ site.baseurl }}/img/DL/map.png" style= "height:200px; width:auto; vertical-align: middle" alt="spatial-logo"></center>
        </div>
    </div>
@@ -231,7 +231,7 @@ permalink: /DL/challenge2
 <div class="row-eq-height">
    
    <div class="col-md-4 col-sm-12">
-      <div class="block"> 
+      <div class="profile" style="border: 0px;">
         <center><img src="{{ site.baseurl }}/img/DL/biodiv.png" style= "height:200px; width:auto; vertical-align: middle" alt="biodiversity"></center>
        </div>
    </div>
@@ -304,10 +304,10 @@ There is no script or code provided for this challenge: how you go about solving
 
    <details markdown="1">
       <summary markdown= "span"> 
-   <h4>How do I crop the NWSS to just the NNRs I want? </h4></summary>
+   <h5>How do I crop the NWSS to just the NNRs I want? </h5></summary>
 
-<p>First, make sure that you have filtered both datasets to only keep the 6 habitats and 3 NNRs required. You can do this with the `filter` function from `dplyr`. </p>
-<p>Then, you need to do a spatial operation called an intersection with your two data objects, which will keep only the observations of <i>A</i> found within the boundaries of <i>B</i>. You can achieve this with `st_intersection(A, B)`.</p> 
+<p>First, make sure that you have filtered both datasets to only keep the 6 habitats and 3 NNRs required. You can do this with the <code>filter</code> function from <code>dplyr</code>. </p>
+<p>Then, you need to do a spatial operation called an intersection with your two data objects, which will keep only the observations of <i>A</i> found within the boundaries of <i>B</i>. You can achieve this with <code>st_intersection(A, B)`</code>.</p> 
 
    </details> 
          
