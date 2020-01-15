@@ -37,23 +37,26 @@ permalink: /DL/challenge2
 </section>
 
   <!-- Data section -->
-<section id="portfolio-work" style= "background-color: #607d8b; color: white">
+<section id="portfolio-work" style= "background-color: #324c58; color: white">
 
         <div class="container">
          <center><h2>Data overview </h2></center>
          
-          <p> You will use the following datasets, available from the <a href="https://github.com/ourcodingclub/CC_course_challenge2" target="_blank">Challenge repository</a> on GitHub <br> </p>
+          <h3> You will use the following datasets, available from the <a href="https://github.com/ourcodingclub/CC_course_challenge2" target="_blank">Challenge repository</a> on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers. <br> </h3>
           
-          <b><h3>Native Woodland Survey of Scotland</h3></b>
+          <p><b>NOTE:</b> The data files have been saved as RDS objects because of their relatively large size. You can easily read a RDS file in R using the <a href = "https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS" target="_blank">readRDS()</a> function.</p>
           
-          <li><b>FCPRODUCT S NWSS</b>, a shapefile of all woodland patches in Scotland. The most important variables in the dataset are: <ul>
+          <b><h2>Native Woodland Survey of Scotland</h2></b>
+          
+          <li><b>NWSS.RDS</b>, a shapefile of all woodland patches in Scotland. The most important variables in the dataset are: <ul>
              <li>- <b>DOM_HABITA</b>: the main habitat type for the polygon. We will only keep some priority habitats, listed in the specific tasks (INTERNAL LINK)</li>
              <li>- <b>HECTARES</b>: the area of a given patch</li>
           </ul>
           
           <br>Original data link <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_0" target="_blank">here</a> and more information about the survey <a href="https://forestry.gov.scot/forests-environment/biodiversity/native-woodlands/native-woodland-survey-of-scotland-nwss" target="_blank">here</a>.</li>
           
-           <li><b>NWSS Species Structure</b>, a spreadsheet containing tree species information from the woodlands. The most important variables in the dataset are: <ul>
+          <br>
+           <li><b>species_structure.RDS</b>, a spreadsheet containing tree species information from the woodlands. The most important variables in the dataset are: <ul>
               
               <li>- <b>SCPTDATA_I</b>: a unique identifier code that will allow to match the observations to the spatial data in <b>FCPRODUCT S NWSS</b></li>
               
@@ -62,9 +65,10 @@ permalink: /DL/challenge2
               <li>- <b>ESTIMT_HA</b>: the estimated area, in hectares, covered by a given species at this location</li>
            </ul>
            
-           <br>Original data link <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6" target="_blank">here</a>. </li><br>
+           <br>Original data link <a href="http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6" target="_blank">here</a>. </li>
+           <br>
           
-          <b><h3>National Nature Reserves</h3></b>
+          <b><h2>National Nature Reserves</h2></b>
           
       <p>A shapefile containing the outlines of Scotland's <a href="https://www.nnr.scot/" target="_blank">NNRs</a>. The most important variables in the dataset are: </p><ul>
 
@@ -77,21 +81,54 @@ permalink: /DL/challenge2
 
 </section>
 
+<!-- Spatial info -->
+<section id = "spatial" style= "background-color: #f1d13a; color: #2b3138">
+   <div class="container">
+   
+   <div class="row-eq-height">
+      
+      <div class="col-md-5 col-sm-12">
+        <div class="block"> 
+        <center><img src="{{ site.baseurl }}/img/DL/earth.png" style= "height:200px; width:auto" alt="spatial-logo"></center>
+        </div>
+      </div>
+      
+      <div class="col-md-7 col-sm-12">
+        <div class="block">        
+   <h2>About spatial data</h2>
+   <p>Two of the three datasets are <b>shapefiles</b>, which means that they contain geometric information that allow the data to be represented as shapes (polygons), points or lines. But don't panic! When you import the files into R, you will see that you can preview and manipulate the data much like any other dataframe.</p>
+   
+   <p>The spatial objects have been saved using the <a href="https://r-spatial.github.io/sf/articles/sf1.html" target="_blank">sf package</a> which allows for integration with the tidyverse: the <i>sf</i> functions are pipe-friendly and you can pretty much do everything to a <i>sf</i> object that you would do to a regular dataframe (e.g. merge with another dataset, subset to some values or conditions, etc). Remember, in the end, a spatial dataset is just like any other dataset, with extra geographic information tucked in one column!</p>
+   
+   <p>You will not have to do any complex spatial analysis for this, but the instructions will point you in the right direction when functions specific to the <i>sf</i> package might be needed. More <a href="#hints">hints</a> can be found at the bottom of the page.</p>
+      </div>
+     </div>
+      
+   </div>
 
-   <!-- Tasks section -->
-<section id="portfolio-work" style= "background-color: #bbd3c3; color: #2b3138">
+</div>
+</section>
+
+
+   <!-- Tasks -->
+
+<!-- Step 1 clean -->   
+<section id="portfolio-work" style= "background-color: #334b3b; color: #ffffff">
 
         <div class="container">
            
    <center><h2>Specific tasks </h2></center>
       
-      <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
-      
-   <h3> <b>1. Clean the data </b></h3>
-      
-<p>You will need to clean and filter the data to the sites and woodland types of interests. Specifically, you should: </p>
+      <p>Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.</p>
 
-<li>	Restrict the NWSS observations to the following dominant habitat types: </li>
+   <div class="row-eq-height">
+      <div class="col-md-8 col-sm-12">
+        <div class="block">        
+   <h3><b>1. Clean the data </b></h3>
+      
+<p>You will need to clean and filter the data to the sites and woodland types of interest. Specifically, you should: </p>
+
+<li>	Restrict the NWSS observations to the following <b>dominant habitat types</b>: </li>
 <ul>
 <li> - Native pinewood</li>
 <li> - Upland birchwood</li>
@@ -99,32 +136,78 @@ permalink: /DL/challenge2
 <li> - Upland oakwood </li>
 <li> - Wet woodland</li>
 <li> - Lowland mixed deciduous woodland</li>
-</ul>
+</ul><br>
 
-<li>	Restrict the NNR shapefile to the following areas, lump the last three under the same name, and rename as indicated: 
+<li>	Restrict the NNR shapefile to the <b>following areas</b>, lump the last three under the same name, and rename as indicated: 
 <ul>
-<li> - Great Trossachs Forest (rename to "Trossachs")</li>
+<li> - The Great Trossachs Forest (rename to "Trossachs")</li>
 <li> - Glen Affric (leave as such)</li>
 <li> - Cairngorms (part of the "Cairngorms" group)</li>
 <li> - Mar Lodge Estate (part of the "Cairngorms" group)</li>
 <li> - Abernethy (part of the "Cairngorms" group)</li>
 </ul></li>
 
-<i>NB: There are 6 more NNRs in the Cairngorms National Park, but these three are large ones within the core of the park, and the only ones we'll be considering for this analysis.</i>
+<i>NB: There are 6 more NNRs within the Cairngorms National Park, but these three are large ones within the core of the park, and the only ones we'll be considering for this analysis.</i> <br>
 
+<p><b>HINT:</b>Once you have filtered both datasets to only keep the regions and habitats of interest, the best way forward is to create <b>one object</b> that combines the two: i.e. only keep the habitats of interest <i>that are found within</i> the regions of interest. You may need some indepent research to figure it out, but only one function from the <i>sf</i> package is required to achieve this. To get you started, know that all <i>sf</i>functions begin with <i>"st_"</i>, and this type of spatial operation is called an <i>intersection</i>...</p>
 
-   <h3> <b>2. Map the areas of interest </b></h3>
+        </div>
+      </div>
       
+   <div class="col-md-4 col-sm-12">
+      <div class="block"> 
+        <center><img src="{{ site.baseurl }}/img/DL/broomlight.png" style= "height:200px; width:auto" alt="spatial-logo"></center>
+       </div>
+   </div>
+      
+   </div>
+
+</div>
+</section>
+
+<!-- Step 2 Map -->
+<section id="portfolio-work" style= "background-color: #f2f3f3; color: #2b3138">
+
+   <div class="container">
+
+<div class="row-eq-height">
+   
+   <div class="col-md-4 col-sm-12">
+      <div class="block"> 
+        <center><img src="{{ site.baseurl }}/img/DL/map.png" style= "height:200px; width:auto" alt="spatial-logo"></center>
+       </div>
+   </div>
+   
+   <div class="col-md-4 col-sm-12">
+      <div class="block">
+   
+   <h3> <b>2. Map the areas of interest </b></h3>
+    
 <p>Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric) showing the geographical distribution of the priority habitats. Specifically, you should: </p>
 
-<li>Create a colour palette that you will use consistently to refer to the habitat types</li>
+<li>Create a colour palette that you will use consistently to refer to the habitat types </li>
+<li>Produce a map for each region, complete with a legend. </li>
 
-<li>•	Be prepared to answer the question: 
-<ul>
-<li> - <i>What type(s) of priority habitat is (are) found in the Trossachs but not in the other two areas? </i></li>
-</ul></li>
+<li></li>
+
+<p>Be prepared to answer the question: </p>
+
+<li>What type(s) of priority habitat is (are) found in the Trossachs but not in the other two areas? </li>
+
+<p><b>HINT:</b>Producing a map is not very different than producing any other plot. The <i>sf</i> package integrates almost seamlessly with <i>ggplot2</i>, so you can use all your favourite ways of selecting colours based on factor levels, adding text and legends, etc. The only difference is that the <i>sf</i> objects are called in your plot through <i>geom_sf</i>. </p>
+
+       </div>
+   </div>
+</div>
          
-     
+</div>
+</section>
+
+<!-- Step 3 area -->
+<section id="portfolio-work" style= "background-color: #334b3b; color: #ffffff">
+
+        <div class="container">
+           
    <h3> <b>3. Calculate the proportion of land (in %) covered by each habitat in the three areas. </b></h3>
       
 <p> The total NNR area is found in the cell SITE_HA, and the habitat polygon size is contained in the cell HECTARES. <i>(Note that there are more than one polygon per habitat type! Think about grouping observations first.)</i> Specifically, you should: </p>
@@ -137,6 +220,13 @@ permalink: /DL/challenge2
 </ul>
          </li>
 
+</div>
+</section>
+
+<!-- Step 4 biodiv -->
+<section id="portfolio-work" style= "background-color: #334b3b; color: #ffffff">
+
+        <div class="container">
 <h3> <b>4. Calculate the species richness and evenness of the three areas. </b></h3>
       
 <p> <b>Species richness</b> simply corresponds to the number of different species in each area. <i>(Tip: all the species information is found in the Species Structure dataset.)</i> </p>
@@ -183,7 +273,7 @@ There is no script or code provided for this challenge: how you go about solving
 </div>
 </section>
 
-
+<a name="hints"></a>
 <!-- Help section -->
 <section id="portfolio-work" style= "background-color: #6f6473; color: white">
 
