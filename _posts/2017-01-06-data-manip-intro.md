@@ -21,7 +21,7 @@ tags: data_manip intro_to_r
 
 ##### <a href="#logic"> - logical operators for finer control
 ##### <a href="#objects"> - creating and assigning objects
-##### <a href="#factors"> - `specifying factors
+##### <a href="#factors"> - specifying factors
 
 #### 2. Turn messy data into tidy data with `tidyr`
 
@@ -406,7 +406,9 @@ elongation_long[elongation_long$zone %in% c(2,3) & elongation_long$year %in% c("
 ```
 </section>
 
-See how `dplyr`is already starting to shine by avoiding repetition and calling directly the column names?
+Note that here, we use `%in%` as a logical operator because we are looking to match a list of exact (character) values. If you want to keep observations within a range of *numeric* values, you either need two logical statements in your `filter()` function, e.g. `length > 4 & length <= 6.5` or you can use the convenient `between()` function, e.g. `between(length, 4, 6.5)`.
+
+See how `dplyr`is already starting to shine by avoiding repetition and calling directly the column names without needing to call the object every time?
 
 
 <div class="bs-callout-yellow" markdown="1">
