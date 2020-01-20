@@ -119,7 +119,7 @@ permalink: /DL/challenge1
    
    <div class="col-md-3 col-sm-12">
       <div class="profile" style="border: 0px;">
-        <center><img src="{{ site.baseurl }}/img/DL/temporal.png" style= "height:320px; width:auto; vertical-align:  middle" alt="temp-trend"></center>
+        <img src="{{ site.baseurl }}/img/DL/temporal.png" style= "height:320px; width:auto; vertical-align:  middle" alt="temp-trend">
        </div>
    </div>
    
@@ -156,8 +156,14 @@ permalink: /DL/challenge1
         <div class="container">
 
 <div class="row-eq-height">
+   
+   <div class="col-md-5 col-sm-12">
+      <div class="profile" style="border: 0px;">
+       <img src="{{ site.baseurl }}/img/DL/habitat.png" style= "height:320px; width:auto; vertical-align:  middle" alt="temp-trend">
+       </div>
+   </div>
 
-   <div class="col-md-9 col-sm-12">
+   <div class="col-md-7 col-sm-12">
         <div class="block">          
 
    <h3> <b>3. Do red and grey squirrels prefer different habitats? </b><br></h3>
@@ -177,13 +183,7 @@ permalink: /DL/challenge1
          </div>
    </div>
          
-          <div class="col-md-3 col-sm-12">
-      <div class="profile" style="border: 0px;">
-        <center><img src="{{ site.baseurl }}/img/DL/habitat.png" style= "height:320px; width:auto; vertical-align:  middle" alt="temp-trend"></center>
-       </div>
-   </div>
-         
-         
+
 </div>
 </div>
 </section>         
@@ -213,12 +213,12 @@ permalink: /DL/challenge1
 <li>o	50+ %</li>
 
 </ul>
-         </li><br>
+         </li>
          
-<li>	Create your visualisation</li>
+<li>	Create your visualisation</li><br>
 
-<p>Be prepared to answer the question:</p> 
-<li>In what cover classes are red squirrels more abundant than grey?</li>
+<p><b>Be prepared to answer the question:</b></p> 
+<li>In what cover classes are red squirrels more abundant than the grey?</li>
 
 
  </div>
@@ -270,10 +270,9 @@ There is no script or code provided for this challenge: how you go about solving
 
    <details markdown="1">
       <summary markdown= "span"> 
-   <big>How do I crop the NWSS to just the NNRs I want? </big></summary>
+   <big>How do I remove unwanted data points? </big></summary>
 
-<p>First, make sure that you have filtered both datasets to only keep the 6 habitats and 3 NNRs required. You can do this with the <code>filter</code> function from <code>dplyr</code>. </p>
-<p>Then, you need to do a spatial operation called an intersection with your two data objects, which will keep only the observations of <i>A</i> found within the boundaries of <i>B</i>. You can achieve this with <code>st_intersection(A, B)</code>.</p> 
+<p>You can specify a variety of <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-intro.html#logic" target="_blank">logical statements</a> in the the <code>filter</code> function from <code>dplyr</code>. </p>
 
    </details> 
    
@@ -281,43 +280,23 @@ There is no script or code provided for this challenge: how you go about solving
          
    <details markdown="1">
       <summary markdown= "span"> 
-   <big>How do I plot spatial data? </big></summary>
+   <big>I can't figure out how to replace NA values with something else. </big></summary>
 
-<p>You can plot <code>sf</code> objects from the comfort of <code>ggplot2</code>.</p>
+<p>NA values are something special in R, and there are special functions to handle them. Take a look at the <code>is.na()</code> logical function, and see if you can use it within a<code>mutate</code> call to create a new column based on existing values.</p>
 
-<p>You can try something like: <code>ggplot() + geom_sf(data = nwss, aes(fill = DOM_HABITA)) + theme_minimal()</code></p>
-   </details> 
- 
- <br>
- 
-    <details markdown="1">
-      <summary markdown= "span"> 
-   <big>Can I calculate the biodiversity metrics for the 3 sites at once? </big></summary>
-
-<p>Of course you can! Think of our favourite <code>dplyr</code> functions <code>group_by()</code> and <code>summarise()</code>.</p>
-   </details> 
- 
- <br>
- 
-     <details markdown="1">
-      <summary markdown= "span"> 
-   <big>How do I make my colour scheme consistent across plots? </big></summary>
-
-<p>We have a tutorial that shows exactly how to create a <a href=" https://ourcodingclub.github.io/2017/03/29/data-vis-2.html#palette" target="_blank">custom colour palette</a>.</p>
-
+<p>You'll want mutate to replace the value in a cell <i>IF</i> the original value was one, and <i>ELSE</i> you'll want to keep the original value. Oh, hey, do you know the <code>ifelse()</code> function?</p>
    </details> 
  
  <br>
  
 
- 
 <p>We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!</p>        
          </div>
 </section>
 
    
 <!-- Acknowledgements section -->
-<section id="portfolio-work" style= "background-color: #a7764a; color: white">
+<section id="portfolio-work" style= "background-color: #484b49; color: white">
 
         <div class="container">
          <center><h2>Acknowledgements </h2></center>
