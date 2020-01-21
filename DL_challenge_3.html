@@ -82,7 +82,7 @@ permalink: /DL/challenge3
       
          <div class="col-md-4 col-sm-12">
       <div class="profile" style="border: 0px;">
-        <center><img src="{{ site.baseurl }}/img/DL/temporal.png" style= "height:300px; width:auto; vertical-align: middle" alt=""></center>
+        <img src="{{ site.baseurl }}/img/DL/temporal.png" style= "height:300px; width:auto; vertical-align: middle" alt="">
        </div>
    </div>
       
@@ -91,7 +91,7 @@ permalink: /DL/challenge3
       
    <h3> <b>1. Temporal trends in breeding success</b></h3>
       
-<p>You will import the breeding success data, and plot the time series and a line of best fit for each species. Specifically, you should: </p>
+<p>You will import the breeding success data, and plot the time series and a line of best fit for each species. <b>Specifically, you should:</b> </p>
 
 <li> Reshape the data for analysis, with a “species” column. </li>
 
@@ -99,9 +99,9 @@ permalink: /DL/challenge3
 
 <li> Run a linear regression for each species and extract slopes, confidence intervals and goodness of fit information for these models. (Look at the <a href="#hints">Help & Hints</a> section if you cannot find a way to automate this – you should not copy and paste your code six times!). </li> 
 
-<li> Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. </li> 
+<li> Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. </li> <br>
 
-<p>Be prepared to answer the questions:</p> 
+<p><b>Be prepared to answer the questions:</b></p> 
 
 <li> From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</li>
 <li> From the model, which species has/have experienced a significant increase?</li>
@@ -128,9 +128,9 @@ permalink: /DL/challenge3
    
    <h3><b>2. Does climate affect breeding success? </b></h3>
       
-<p>There is growing evidence that climate change affects the dynamics of seabird populations, for instance by disrupting the timing and availability of food resources such as sandeels (and the plankton upon which eels depend). You will test whether temperature and other climatic variables at the time of nesting and chick rearing affect the breeding success.</p>
+<p>There is growing evidence that climate change affects the dynamics of seabird populations, for instance by disrupting the timing and availability of food resources such as sandeels (and the plankton upon which eels depend).</p>
 
-<p>Design a hierarchical model to test for the influence of climate on breeding success. First, you may assume that species might show similar responses and therefore want to predict seabird breeding success as a function of climate only, with other factors perhaps introducing some non-independence in the data. Specifically, you should: </p>
+<p>You will design a hierarchical model to test for the influence of climate on breeding success. First, you may assume that species might show similar responses and therefore want to predict seabird breeding success as a function of climate only, with other factors perhaps introducing some non-independence in the data. <b>Specifically, you should: </b></p>
 
 <li> Subset your breeding success dataset to exclude shags (if you’ve completed the first section, you probably saw that they’re not following the same trends as other species)</li>
 
@@ -138,13 +138,13 @@ permalink: /DL/challenge3
 
 <li> Extract and plot the predicted values from the model using the ggeffects package, and overlay the raw data on the graph. </li><br>
 
-<p>Be prepared to answer the questions: </p>
+<p><b>Be prepared to answer the questions: </b></p>
 
 <li> What are your random effects? </li>
 <li> Does June temperature affect the breeding success of seabirds? </li><br>
 
 
-<p><i>Remember that we are working with summarised data rather than the raw data, which limits our modelling options. </i> If we had access to the raw dataset, it would contain counts (integer) of actual fledglings per nest, with a row for each of the hundreds of nests surveyed. With this in mind, have a think about: </p>
+<p><i>Remember that we are working with summarised data rather than the raw data, which limits our modelling options. </i> If we had access to the raw dataset, it would contain counts (integer) of actual fledglings per nest, with a row for each of the hundreds of nests surveyed.<b> With this in mind, have a think about: </b></p>
 
 <li> What data distribution would you use to answer the same question as above?</li>
 <li> What random effect structure would you choose? </li>
@@ -173,7 +173,7 @@ permalink: /DL/challenge3
      
         <div class="col-md-3 col-sm-12">
       <div class="profile" style="border: 0px;">
-        <center><img src="{{ site.baseurl }}/img/DL/SCUBA.png" style= "height:310px; width:auto; vertical-align:  middle" alt=""></center>
+        <img src="{{ site.baseurl }}/img/DL/SCUBA.png" style= "height:310px; width:auto; vertical-align:  middle" alt="">
        </div>
    </div>
       
@@ -190,7 +190,7 @@ permalink: /DL/challenge3
 
 <p>The dataset contains the logged start and end time of each dive – to get you started, you’ll need to convert these to POSIXct format and calculate the duration of the interval. Don’t forget to remove the obvious outliers of impossible dive times (very long or negative), probably indicative of logger failure!</p>
 
-<p>For an extra challenge, why don’t you try answering those same questions using a Bayesian framework?</p>
+<p>For <b>an extra challenge</b>, why don’t you try answering those same questions using a Bayesian framework?</p>
 
  </div>
       </div>
