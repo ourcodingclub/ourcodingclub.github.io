@@ -9,7 +9,7 @@ permalink: /DL/challenge3
         <div class="container">
          <center><h2>Data analysis and modelling challenge: Seabird population dynamics </h2></center>
             <p></p>
-          <center><p> This challenge will require the use of data manipulation, plotting and analysis skills, and is the culmination of the <a href="https://ourcodingclub.github.io/course/mastering-modelling.html" target="_blank" style="color: #e6e7eb;"><i>MASTERING MODELLING</i></a> course stream. You will find here all the instructions you need to complete the challenge </p></center>
+          <center><p> This challenge will require the use of data manipulation, visualisation and analysis skills, and is the culmination of the <a href="https://ourcodingclub.github.io/course/mastering-modelling.html" target="_blank" style="color: #e6e7eb;"><i>MASTERING MODELLING</i></a> course stream. You will find here all the instructions you need to complete the challenge. </p></center>
         
 </div>
 
@@ -28,8 +28,6 @@ permalink: /DL/challenge3
       
 <p>Your mission will be to analyse the breeding success and other behaviours of seabirds compiled and summarised by the <a href = "http://ceh.ac.uk/" target="_blank">Center for Ecology and Hydrology</a> to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the breeding of the birds.</p>
 
-<p>This challenge builds on data manipulation, data visualisation and modelling skills. See below (LINK TO SECTION) for a list of tutorials you may want to refer to. </p>
-
     </div>
   </div>
   
@@ -41,22 +39,22 @@ permalink: /DL/challenge3
 </section>
 
     <!-- Data section -->
-<section id="portfolio-work" style= "background-color: #565064; color: white">
+<section id="portfolio-work" style= "background-color: #2f3235; color: white">
 
         <div class="container">
          <center><h2>Data overview </h2></center>
          
-          <p> You will use the following datasets, available to download from the <a href="https://github.com/ourcodingclub/CC_course_challenge3" target="_blank">Challenge repository</a> on GitHub <br> </p>
+          <h4> You will use the following datasets, available to download from the <a href="https://github.com/ourcodingclub/CC_course_challenge3" target="_blank">Challenge repository</a> on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers. </h4><br> 
           
           <b><h3>CEH's Isle of May Long-Term Study data</h3></b>
           
-          <li><b>Breeding success of sea birds</b>, compiled as the number of chicks fledged per nest. Original data link <a href="(https://catalogue.ceh.ac.uk/documents/02c98a4f-8e20-4c48-8167-1cd5044c4afe)" target="_blank">here</a>.</li>
+          <li><b>Breeding success of sea birds (IMLOTSBSDataset1982-2016.csv)</b>, compiled as the number of chicks fledged per nest. Original data link <a href="https://catalogue.ceh.ac.uk/documents/02c98a4f-8e20-4c48-8167-1cd5044c4afe" target="_blank">here</a>.</li>
           
-           <li><b>Dive times and depths of auks</b> from the Isle of May outside the breeding season, obtained by fitting birds with data loggers. Original data link <a href="https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372" target="_blank">here</a>. </li><br>
+           <li><b>Dive times and depths of auks (IoM_AukDiving.csv) </b> from the Isle of May outside the breeding season, obtained by fitting birds with data loggers. Original data link <a href="https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372" target="_blank">here</a>. </li><br>
           
           <b><h3>Climate data from the Met Office</h3></b>
           
-      <p>For the East of Scotland, extracted and compiled by us. It contains: </p>
+      <p><b>clim_east_Scotland.csv</b> For the East of Scotland, extracted and compiled by us. It contains: </p>
 
 <li>	minimum, mean and maximum monthly temperatures (°C)</li>
 <li>	monthly sunshine (hours)</li>
@@ -70,66 +68,138 @@ permalink: /DL/challenge3
 </section>
 
 
-   <!-- Tasks section -->
-<section id="portfolio-work" style= "background-color: #afbdcd; color: #2b3138">
+   <!-- Task 1. Temporal trends -->
+<section id="portfolio-work" style= "background-color: #f1e8c2; color: #2b3138">
 
         <div class="container">
            
    <center><h2>Specific tasks </h2></center>
       
-      <p>Here is a detailed list of the tasks you should achieve within this challenge, and the questions that will be asked in the quiz at the end to confirm your successful completion.</p>
+      <p>Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.</p>
+ 
+ 
+   <div class="row-eq-height">
+      
+         <div class="col-md-4 col-sm-12">
+      <div class="profile" style="border: 0px;">
+        <img src="{{ site.baseurl }}/img/DL/temporal.png" style= "height:300px; width:auto; vertical-align: middle" alt="">
+       </div>
+   </div>
+      
+      <div class="col-md-8 col-sm-12">
+        <div class="block">        
       
    <h3> <b>1. Temporal trends in breeding success</b></h3>
       
-<p>You will import the breeding success data, and plot the time series and a line of best fit for each species. Specifically, you should: </p>
+<p>You will import the breeding success data, and plot the time series and a line of best fit for each species. <b>Specifically, you should:</b> </p>
 
-<li>	Reshape the data for analysis, with a “species” column </li>
+<li> Reshape the data for analysis, with a “species” column. </li>
 
-<li>	Created a facetted plot showing the time series and a line of best fit for each species. Be prepared to answer the question: <i>From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</i> </li>
+<li> Created a facetted plot showing the time series and a line of best fit for each species. </li>
 
-<li>	Extract slopes, confidence intervals and goodness of fit information after running linear regressions for each species. (Look at the Help (INTERNAL LINK) – Hints section if you cannot find a way to automate this – you should not copy and paste your code six times!). Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. Be prepared to answer the questions: 
-<ul>
-<li> - <i>	Which species has/have experienced a significant increase? </i></li>
-<li> - <i>	Which species has experienced the strongest decrease?</i></li>
-<li> - <i>	For which species did you get the best goodness of fit?</i></li></ul>
-         </li>
-   
-   <h3><b>2. Does climate affect breeding success? </b></h3>
+<li> Run a linear regression for each species and extract slopes, confidence intervals and goodness of fit information for these models. (Look at the <a href="#hints">Help & Hints</a> section if you cannot find a way to automate this – you should not copy and paste your code six times!). </li> 
+
+<li> Create a visualisation of your choice showing the slope estimate and confidence intervals for each species, so that is clear which slopes differ from zero. </li> <br>
+
+<p><b>Be prepared to answer the questions:</b></p> 
+
+<li> From looking at the plot, which species (2) seem to have the greatest inter-annual variability in breeding success?</li>
+<li> From the model, which species has/have experienced a significant increase?</li>
+<li> From the model, Which species has/have experienced the strongest decrease?</li>
+<li> For which species did you get the best goodness of fit?</li> <br>
+         
+   </div>
+      </div>
       
-<p>There is growing evidence that climate change affects the dynamics of seabird populations, for instance by disrupting the timing and availability of food resources such as sandeels (and the plankton upon which eels depend). You will test whether temperature and other climatic variables at the time of nesting and chick rearing affect the breeding success.</p>
-
-<p>Design a hierarchical model to test for the influence of climate on breeding success. First, you may assume that species might show similar responses and therefore want to predict seabird breeding success as a function of climate only, with other factors perhaps introducing some non-independence in the data. Specifically, you should: </p>
-
-<li> Subset your breeding success dataset to exclude shags (if you’ve completed the first section, you probably saw that they’re not following the same trends as other species)</li>
-<li> Design a random-intercept mixed-model approach to answer the question. Use June max temperature (when chicks hatch and are reared) as the explanatory variable – but feel free to experiment with other possibly meaningful climate variables.  </li>      
-<li> Extract and plot the predicted values from the model using the ggeffects package, and overlay the raw data on the graph </li>
-<li>	Be prepared to answer the questions: 
-<ul>
-<li> - <i>	What are your random effects? </i></li>
-<li> - <i>	Does June temperature affect the breeding success of seabirds?</i></li>
-</ul>
-         </li>
-
-<p><i>Remember that we are working with summarised data rather than the raw data, which limits our modelling options. </i> The raw dataset would contain counts (integer) of actual fledglings per nest, with a row for each of the hundreds of nests surveyed.  With this in mind, have a think about:</p>
-<ul>
-<li> - <i>	What data distribution would you use to answer the same question as above? </i></li>
-<li> - <i>	What random effect structure would you choose? </i></li>
-</ul>
-
-   <h3><b>3. Dive deeper! (Optional)</b></h3>
-      
-<p>The <i>Dive times and depths</i> dataset contains information about the diving behaviour of monitored seabirds. It is a fairly large dataset with some interesting features, and is therefore ideal to test your data manipulation skills. So if you feel like going further in your data wrangling and modelling journey, try to answer the following questions:</p>
-<ul>
-<li> - <i>	Does dive depth vary among species, and between males and females of the same species? </i></li>
-<li> - <i>	Does dive duration also vary? </i></li>
-</ul>
-
-<p>The dataset contains the logged start and end time of each dive – to get you started, you’ll need to convert these to POSIXct format and calculate the duration of the interval. Don’t forget to remove the obvious outliers of impossible dive times (very long or negative), probably indicative of logger failure!</p>
-
-<p>For an extra challenge, why don’t you try answering those questions using a Bayesian framework?</p>
+   </div>
 
 </div>
 </section>
+
+    <!-- Task 2.Climate trends -->
+<section id="portfolio-work" style= "background-color: #353d5a; color: white">
+
+        <div class="container">        
+        
+   
+    <div class="row-eq-height">
+      <div class="col-md-9 col-sm-12">
+        <div class="block">       
+   
+   <h3><b>2. Does climate affect breeding success? </b></h3>
+      
+<p>There is growing evidence that climate change affects the dynamics of seabird populations, for instance by disrupting the timing and availability of food resources such as sandeels (and the plankton upon which eels depend).</p>
+
+<p>You will design a hierarchical model to test for the influence of climate on breeding success. First, you may assume that species might show similar responses and therefore want to predict seabird breeding success as a function of climate only, with other factors perhaps introducing some non-independence in the data. <b>Specifically, you should: </b></p>
+
+<li> Subset your breeding success dataset to exclude shags (if you’ve completed the first section, you probably saw that they’re not following the same trends as other species)</li>
+
+<li> Design a random-intercept mixed-model approach to answer the question. Use June max temperature (when chicks hatch and are reared) as the explanatory variable – but feel free to experiment with other possibly meaningful climate variables. </li>
+
+<li> Extract and plot the predicted values from the model using the ggeffects package, and overlay the raw data on the graph. </li><br>
+
+<p><b>Be prepared to answer the questions: </b></p>
+
+<li> What are your random effects? </li>
+<li> Does June temperature affect the breeding success of seabirds? </li><br>
+
+
+<p><i>Remember that we are working with summarised data rather than the raw data, which limits our modelling options. </i> If we had access to the raw dataset, it would contain counts (integer) of actual fledglings per nest, with a row for each of the hundreds of nests surveyed.<b> With this in mind, have a think about: </b></p>
+
+<li> What data distribution would you use to answer the same question as above?</li>
+<li> What random effect structure would you choose? </li>
+
+      </div>
+   </div>
+   
+    <div class="col-md-3 col-sm-12">
+      <div class="profile" style="border: 0px;">
+        <img src="{{ site.baseurl }}/img/DL/egg.png" style= "height:300px; width:auto; vertical-align:middle" alt="">
+       </div>
+   </div>
+   
+   
+   </div>
+ </div>
+</section>
+
+
+    <!-- Task 3 diving times -->
+<section id="portfolio-work" style= "background-color: #be6a59; color: #2b3138">
+
+        <div class="container">        
+        
+  <div class="row-eq-height">
+     
+        <div class="col-md-3 col-sm-12">
+      <div class="profile" style="border: 0px;">
+        <img src="{{ site.baseurl }}/img/DL/SCUBA.png" style= "height:310px; width:auto; vertical-align:  middle" alt="">
+       </div>
+   </div>
+      
+      
+      <div class="col-md-9 col-sm-12">
+        <div class="block">       
+        
+   <h3><b>3. Dive deeper! (Optional)</b></h3>
+      
+<p>The <i>Dive times and depths</i> dataset contains information about the diving behaviour of monitored seabirds. It is a fairly large dataset with some interesting features, and is therefore ideal to test your data manipulation skills. So if you feel like going further in your data wrangling and modelling journey, try to answer the following questions: </p>
+
+<li> Does dive depth vary among species, and between males and females of the same species? </li>
+<li> Does dive duration also vary? </li>
+
+<p>The dataset contains the logged start and end time of each dive – to get you started, you’ll need to convert these to POSIXct format and calculate the duration of the interval. Don’t forget to remove the obvious outliers of impossible dive times (very long or negative), probably indicative of logger failure!</p>
+
+<p>For <b>an extra challenge</b>, why don’t you try answering those same questions using a Bayesian framework?</p>
+
+ </div>
+      </div>
+      
+   </div>
+
+</div>
+</section>
+
 
 <!-- Get started -->
 <section id="challenge3test" class="feature">
@@ -144,42 +214,63 @@ permalink: /DL/challenge3
 <p>There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). </p>
 
 <h2> Finished? Take the test! </h2>
-<p> Once you have a fully working script and have completed the specific tasks, take the test (INSERT LINK). </p>
+<p> Once you have a fully working script and have completed the specific tasks, take the test. </p>
+<a class="button" href=" INSERT LINK" target="_blank" style="background-color:#e6eaed; color: #120a5a; padding:20px; border-radius:5px">Feature coming soon</a>
 
     </div>
   </div>
 </div>
 </section>
 
+
+
+<a name="hints"></a>
     <!-- Help section -->
-<section id="portfolio-work" style= "background-color: #515d69; color: white">
+<section id="portfolio-work" style= "background-color: #f6f4f4; color: #2b3138">
 
         <div class="container" markdown="1">
          <center><h2>Help & hints </h2></center>
    <p>Here is a list of tutorials that might help you: </p>
 
-<li> tutorial 1 </li>
-<li> tutorial 2 </li>
-<li> tutorial 3 </li>
+<li> <a href="https://ourcodingclub.github.io/2018/04/06/model-design.html" target="_blank">Intro to model design</a></li>
+<li> <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">Efficient data manipulation</a></li>
+<li> <a href="https://ourcodingclub.github.io/2017/03/15/mixed-models.html" target="_blank">Intro to linear mixed models</a></li>
+<li> <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">Working efficiently with large datasets</a>: this one was not part of the stream but has some <i>very useful</i> snippets that might help you run multiple linear models and extract their outputs (<i>wink wink</i>).</li><br>
 
-<p> If you are stuck or don't know how to go about a specific task, the hints below may help you back on the right track: </p>
+<h3> Need a hint? Just click on a question to expand. </h3>
 
+   <details markdown="1">
+      <summary markdown= "span"> 
+   <big>How do I avoid running copying my linear model code for the six different species? </big></summary>
+
+<p>There is a handy package in the <code>tidyverse</code> called <code>broom</code>. We suggest you take a look at the <code>tidy</code> and <code>glance</code> functions. Combined to some of our favourite <code>dplyr</code> functions for grouping, you'll be unstoppable!</p>
+   </details> 
    
-       <details markdown="1">
-   
-   <summary markdown= "span"> <h4>Here is a hint </h4></summary>
+         <br>
+         
+   <details markdown="1">
+      <summary markdown= "span"> 
+   <big>How do I bring the climate data into all this? </big></summary>
 
-<p>a test a test a test</p>
-<p>this is a hint</p> 
+<p>The first thing you probably want to do is to subset the climate data to the period and variables of interest: the <code>filter</code> function will be your friend here.</p>
 
-     </details> 
+<p>Then, find a variable that is shared by both datasets (there's only one!) and <code>merge</code> or <code>join</code> them together.</p>
+   </details> 
+ 
+ <br>
+
+ <br>
+ 
+
+ 
+<p>We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!</p>        
          
          </div>
 </section>
    
    
     <!-- Acknowledgements section -->
-<section id="portfolio-work" style= "background-color: #a95081; color: white">
+<section id="portfolio-work" style= "background-color: #22334f; color: white">
 
         <div class="container">
          <center><h2>Acknowledgements </h2></center>
