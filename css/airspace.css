@@ -1022,7 +1022,7 @@ footer .footer-manu ul li a:hover {
   padding: 18px;
   width: 100%;
   border: none;
-  text-align: left;
+  text-align: middle;
   outline: none;
   font-size: 15px;
   transition: 0.4s;
