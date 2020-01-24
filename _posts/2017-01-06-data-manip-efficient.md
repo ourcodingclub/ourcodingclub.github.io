@@ -295,6 +295,18 @@ Hence, plotting tree counts in each category before and after reordering the fac
 
 <center> <img src="{{ site.baseurl }}/img/DL_data-manip-2_treeheights.png" alt="Img" style="width: 850px;"/> </center>
 
+
+__Reordering according to the value of another column__
+
+Sometimes you might want to set your factor levels based on the numeric value *of another variable*. Imagine you have a dataset of the world's biomes and you want to plot the mean annual temperature in a bar plot. It would be nice for them to be ordered in increasing or decreasing order of temperature, and it makes no sense to have "Tundra" following "Tropical rainforest" just because they're alphabetically close!
+
+The `reorder()` function comes to the rescue here. It takes the factor variable as the first argument, and the numeric variable by which you want to order as a second. So we would have:
+
+```
+world$biome <- reorder(world$biome, world$temperature)   # order factor levels in increasing order
+world$biome <- reorder(world$biome, -world$temperature)   # order factor levels in decreasing order
+```
+
 </div>
 
 Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have <a href="https://ourcodingclub.github.io/tutorials/" target="blank">two whole tutorials</a> dedicated to making pretty and informative plots with it. Install and load the package if you need to:
