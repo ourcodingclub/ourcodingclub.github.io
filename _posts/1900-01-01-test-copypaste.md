@@ -19,11 +19,11 @@ author: Sandra
    <div class="container">
    
       <div class="col-md-3"> 
-         <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" height=100 alt="Img">
+         <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" style="height:100px;" alt="Img">
       </div>
       
       <div class="col-md-9"> 
-      <h3>This tutorial is part of the <a href= “https://ourcodingclub.github.io/course/stats-scratch.html” target=”_blank”>Stats from Scratch</a> stream of our online course. Want to join? More info <a href=”https://ourcodingclub.github.io/course_home/” target=”_blank”>here</a>!</h3>
+      <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
       </div>
       
    </div>
