@@ -14,19 +14,13 @@ author: Sandra
 #### 1. Get a script and button that copy and paste the code
 #### It works!
 
-
-<div class="block" markdown="1" style = "color:#378d80;">
-   <div class="container">
-   
-      <div class="col-md-3"> 
-         <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" style="height:100px;" alt="Img">
-      </div>
-      
-      <div class="col-md-9"> 
-      <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
-      </div>
-      
-   </div>
+<div class="row">
+  <div class="col-md-3" markdown="1">
+  <img height="100px" width="100px" class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png">
+  </div>
+  <div class="col-md-9" markdown="1" style = "color:#378d80;">
+  This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
+  </div>
 </div>
 
 <b> What is R? </b> 
