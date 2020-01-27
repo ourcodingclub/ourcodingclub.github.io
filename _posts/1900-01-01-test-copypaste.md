@@ -28,7 +28,10 @@ author: Sandra
 </div>
 
 <div class="bs-callout-white" markdown="1">
-![image](https://ourcodingclub.github.io/img/DL/shield_stream1.png)
+![image](https://ourcodingclub.github.io/img/DL/shield_stream1.png){
+   width:100px;
+   height:100px;
+}
 This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
 </div>
 
