@@ -918,8 +918,8 @@ footer .footer-manu ul li a:hover {
  vertical-align: middle;
  float:left; 
  padding: 20px;
-  height: 100px;
-  width: 100px;
+  height: 50%;
+  width: 50%;
 }
 
 /*--
