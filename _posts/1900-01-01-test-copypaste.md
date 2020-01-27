@@ -27,9 +27,9 @@ author: Sandra
   
 </div>
 
-<div class="bs-callout-dark" markdown="1">
+<div class="bs-callout-white" markdown="1">
 
- <img class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png" width="100" height="100" />
+ <img style="float: right;" src="{{ site.baseurl }}/img/DL/shield_stream1.png" width="100" height="100" />
 
  This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
 
