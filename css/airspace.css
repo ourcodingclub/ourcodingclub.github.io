@@ -911,6 +911,15 @@ footer .footer-manu ul li a:hover {
   background-color: #ffffff;
   border-color: #ffffff;
   color:#459a90;
+  font-size:16px;
+}
+
+.bs-callout-white img {
+ vertical-align: middle;
+ float:left; 
+ padding: 20px;
+  height: 100px;
+  width: 100px;
 }
 
 /*--
