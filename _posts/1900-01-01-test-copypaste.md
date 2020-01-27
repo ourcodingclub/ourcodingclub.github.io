@@ -15,14 +15,16 @@ author: Sandra
 #### It works!
 
 
-<div class="block" style = "color:#378d80;">
+<div class="block" markdown="1" style = "color:#378d80;">
 
-   <div class="col-md-3"> 
-      <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" alt="Img">
-   </div>
-   
-   <div class="col-md-3"> 
-      <p>This tutorial is part of the <a href= “https://ourcodingclub.github.io/course/stats-scratch.html” target=”_blank”>Stats from Scratch</a> stream of our online course. Want to join? More info <a href=”https://ourcodingclub.github.io/course_home/” target=”_blank”>here</a>!</p>
+   <div class="container">
+      <div class="col-md-3"> 
+         <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" alt="Img">
+      </div>
+      
+      <div class="col-md-9"> 
+      This tutorial is part of the <a href= “https://ourcodingclub.github.io/course/stats-scratch.html” target=”_blank”>Stats from Scratch</a> stream of our online course. Want to join? More info <a href=”https://ourcodingclub.github.io/course_home/” target=”_blank”>here</a>!
+      </div>
    </div>
    
 </div>
