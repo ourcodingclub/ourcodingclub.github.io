@@ -9,7 +9,7 @@ tags: datavis, data_manip
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_functions.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_functions.png" alt="Img)
 	</center>
 </div>
 
@@ -29,7 +29,7 @@ tags: datavis, data_manip
 
 <a name="function"></a>
 
-### All the resources for this tutorial, including some useful extra reading can be downloaded from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it.
+### All the resources for this tutorial, including some useful extra reading can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it.
 
 Next, open up a new R Script, preferably in RStudio, where you will write the code for this tutorial. Set the folder you just downloaded as your working directory by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
@@ -39,7 +39,7 @@ setwd("PATH_TO_FOLDER")
 
 ### Writing functions
 
-We've learned <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">how to import our data in RStudio</a>, <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">format and manipulate them</a>, <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html" target="_blank">write scripts and Markdown reports</a>, and <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">how to make beautiful and informative graphs using `ggplot2`</a>, meaning that you have all the basic tools to perform data simple data analysis using R. 
+We've learned [how to make beautiful and informative graphs using `ggplot2`](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">how to import our data in RStudio</a>, <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">format and manipulate them</a>, <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html" target="_blank">write scripts and Markdown reports</a>, and <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
 
 You may find as you work away on your project however, that you want to repeat the same action multiple times. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually.  
 
@@ -52,7 +52,7 @@ __`R` is a functional programming language at its heart. When you run a command 
 
 ## 2. Building a simple function 
 
-Open a new `RStudio` session and create a new `R` script. If you haven't already done so, download the resources needed for this tutorial from <a href="https://github.com/ourcodingclub/CC-5-fun-and-loop" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile, then unzip it. In your `R` script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
+Open a new `RStudio` session and create a new `R` script. If you haven't already done so, download the resources needed for this tutorial from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it. In your `R` script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
 ```r
 setwd("PATH_TO_FOLDER")
@@ -365,7 +365,7 @@ vultureITCR <- filter(vulture, Country.list == c("Croatia", "Italy"))
           legend.position = c(0.9, 0.9)))               # Setting the position for the legend - 0 is left/bottom, 1 is top/right
 ```
 
-<center><img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 800px;)
 
 Here we are using the `theme_bw()` theme but we are making lots of modifications to it. When we need to make lots of graphs, e.g. all the graphs for a given research project, we would ideally like to format them in a consistent way - same font size, same layout of the graph panel. That means that we will be repeating many lines of code, but instead of doing that, we can take all the changes we want to make to the `ggplot2` theme and combine them into a function of our own! As a reminder, to start writing a function, you first assign it to an object. Since we are making a personalised theme for `ggplot2`, here I've called my function `theme.my.own`. To tell R that you are writing a function, you use `function()` and then the commands that you want your function to include go between the `{}`.
 
@@ -458,7 +458,7 @@ ggsave(panel, file = "Pop_trend_panel.png", width = 10, height = 8)
 dev.off() # to close the image
 ```
 
-<center><img src="{{ site.baseurl }}/img/Pop_trend_panel.png" alt="Img" style="width: 1000px;"/></center>
+![]({{ site.baseurl }}/img/Pop_trend_panel.png" alt="Img" style="width: 1000px;)
 
 That wasn't too bad, but you are still repeating lots of code, and here you have only 4 graphs to make - what if you had to make a graph like this for every species in the `LPI.UK` dataset? That would mean repeating the same code over 200 times. That will be very time consumming, and it's very easy to make mistakes when you are monotonously copying and pasting for hours.
 
@@ -512,11 +512,11 @@ The files will be saved in your working directory - to find out where that is, r
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/NRKM679" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/NRKM679)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -564,7 +564,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

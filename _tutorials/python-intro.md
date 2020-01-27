@@ -8,7 +8,7 @@ meta: "PythonBasics"
 tags: python
 ---
 <div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheader_python.png" alt="Img"></center>
+![]({{ site.baseurl }}/img/tutheader_python.png" alt="Img)
 </div>
 
 ### Tutorial aims:
@@ -41,13 +41,13 @@ Python is a programming language, a tool used to make computers do useful things
 
 Python has grown hugely in popularity in recent years, by some measures it is *the* most popular programming language as of 2018. Consider the chart below, which is based on number of question views on StackOverflow:
 
-<center><img src="{{ site.baseurl }}/img/python_growth_major_languages.png" alt="Img" style="width: 1000px"></center>
+![]({{ site.baseurl }}/img/python_growth_major_languages.png" alt="Img" style="width: 1000px)
 
 You may also wish to have a look at this chart showing the growth of Python and other smaller, growing technologies (including R):
 
-<center><img src="{{ site.baseurl }}/img/python_growth_smaller_languages.png" alt="Img" style="width: 1000px"></center>
+![]({{ site.baseurl }}/img/python_growth_smaller_languages.png" alt="Img" style="width: 1000px)
 
-If you are interested in reading more about the growth of Python (and the background to the above charts), I highly recommend reading <a href="https://stackoverflow.blog/2017/09/06/incredible-growth-python/" target="_blank">this blog post from StackOverflow</a>.
+If you are interested in reading more about the growth of Python (and the background to the above charts), I highly recommend reading [this blog post from StackOverflow](https://stackoverflow.blog/2017/09/06/incredible-growth-python/).
 
 ## Python's strengths as a language
 
@@ -103,7 +103,7 @@ Because of its general-purpose design, Python is used in the real world in a ran
 
 ### 3. Scientific Python Community
 
-The third reason Python is so great is the community behind it. As mentioned before, writing code is as much a way of communicating between humans trying to solve the same scientific problems as it is telling the computer what to do. Python has a very friendly and active community supporting it, many of whom are found on internet resources such as forums and the popular <a href="https://stackoverflow.com" target="_blank">StackOverflow Q&A site</a>. 
+The third reason Python is so great is the community behind it. As mentioned before, writing code is as much a way of communicating between humans trying to solve the same scientific problems as it is telling the computer what to do. Python has a very friendly and active community supporting it, many of whom are found on internet resources such as forums and the popular [StackOverflow Q&A site](https://stackoverflow.com). 
 
 If you are stuck with a problem in Python, online resources are so plentiful that is often enough to just type "How do I do _X_ in Python", into a search engine - the first few results often will contain your answer, and often the top link is a StackOverflow question asked by someone with the same or very similar problem to you.
 
@@ -116,13 +116,13 @@ In the domain of science, the Scientific Python community is just as well establ
 
 ### Installation
 
-The method for installing Python depends on your operating system (Linux/Mac/Windows), but the easiest way I have found, which works across multiple operating systems is to install a distribution of Python called 'Anaconda'. Anaconda includes a range of useful packages for scientific coding, such as `matplotlib`, `numpy` and  `pandas` (We will cover these later on in the tutorial). It all comes with the conda package manager - a tool for easily installing other Python add-on packages that you may want to use. It also comes with a few useful programmes which can be used to write Python code. The download link is here: <a href="https://www.anaconda.com/download/" target="_blank">Downloading Anaconda</a>.
+The method for installing Python depends on your operating system (Linux/Mac/Windows), but the easiest way I have found, which works across multiple operating systems is to install a distribution of Python called 'Anaconda'. Anaconda includes a range of useful packages for scientific coding, such as `matplotlib`, `numpy` and  `pandas` (We will cover these later on in the tutorial). It all comes with the conda package manager - a tool for easily installing other Python add-on packages that you may want to use. It also comes with a few useful programmes which can be used to write Python code. The download link is here: [Downloading Anaconda](https://www.anaconda.com/download/).
 
 *Make sure to install a **Python 3** version specific to your operating system*
 
 **If you are in the 'live' workshop, now would be a good point to raise any issues or questions you have about installing Python.**
 
-On Windows, you may run into some problems, depending on you version, but help can be found in the official Python documentation pages for <a href="https://docs.python.org/3.3/using/windows.html" target="_blank">using Python on Windows</a>.
+On Windows, you may run into some problems, depending on you version, but help can be found in the official Python documentation pages for [using Python on Windows](https://docs.python.org/3.3/using/windows.html).
 
 ### The Python workflow 
 
@@ -132,7 +132,7 @@ From here you have two main options for how to write your Python code during thi
 
 This method of writing Python code is most applicable to Mac and Linux users, as it requires access to a terminal program like Terminal.app, or the Gnome Terminal.
 
-The way Python programming normally works is that you write a script, save the script, then run the script. Python scripts can be written using any plain text editor, e.g. <a href="https://atom.io" target="_blank">Atom</a>, <a href="http://www.pspad.com" target="_blank">PSPad</a>, <a href="https://www.vim.org" target="_blank">Vim</a>, or even simple programs like <a href="https://support.apple.com/en-gb/guide/textedit/welcome/mac" target="_blank">TextEdit.app</a>!
+The way Python programming normally works is that you write a script, save the script, then run the script. Python scripts can be written using any plain text editor, e.g. [TextEdit.app](https://atom.io" target="_blank">Atom</a>, <a href="http://www.pspad.com" target="_blank">PSPad</a>, <a href="https://www.vim.org" target="_blank">Vim</a>, or even simple programs like <a href="https://support.apple.com/en-gb/guide/textedit/welcome/mac)!
 
 To run the Python script, you then need to navigate to the folder where the Python script is saved, using the command line, and run it by typing this, assuming your Python script is called `myscript.py`:
 
@@ -142,22 +142,22 @@ python myscript.py
 
 Any output will be printed to the screen in the terminal or console you are running from.
 
-This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for <a href="https://learntocodewith.me/command-line/unix-command-cheat-sheet/" target="_blank">Linux/Mac terminal users</a> and <a href="http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/" target="_blank">Windows command line users</a>.
+This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Windows command line users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/" target="_blank">Linux/Mac terminal users</a> and <a href="http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/).
 
 
 #### Following the tutorial with Spyder or another IDE
 
 If you are not comfortable using the command line or terminal, or are on a Windows machine, we recommend using this method.
 
-Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as <a href="https://spyder-ide.github.io/" target="_blank">Spyder</a> (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the <a href="https://pythonhosted.org/spyder/" target="_blank">Spyder documentation</a> for more info on how to use Spyder.
+Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as [Spyder documentation](https://spyder-ide.github.io/" target="_blank">Spyder</a> (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the <a href="https://pythonhosted.org/spyder/) for more info on how to use Spyder.
 
 This diagram shows a basic Spyder session:
 
-<center><img src="{{ site.baseurl }}/img/spyder.png" alt="Img" style="width: 800px"></center>
+![]({{ site.baseurl }}/img/spyder.png" alt="Img" style="width: 800px)
 
 The window on the left is a text editor where you can write your script, the window on the right is the console where the output of the script will be shown. The green play button will run the script through the console, giving you the output.
 
-Although we recommend using Spyder if you are a beginner, there are many other ways to use Python. One notable method is called <a href="https://ipython.org/" target="_blank">IPython</a>. 
+Although we recommend using Spyder if you are a beginner, there are many other ways to use Python. One notable method is called [IPython](https://ipython.org/). 
 
 For consistency in this workshop and to maintain transferability between different platforms, the rest of the tutorial assumes that you are using the text editor and command line approach described above, but everything should still work if you want to use an IDE like Spyder.
 
@@ -187,11 +187,11 @@ Hopefully, regardless of what method you use, you should see "Hello, World!" pri
 
 This short tutorial is based around exploring data from the School of GeoSciences weather station, which is located on top of the James Clark Maxwell Building at the University of Edinburgh.
 
-## You can download the data, and some helpful Python cheatsheets from <a href="https://github.com/ourcodingclub/CC-python-intro" target="_blank">this github repository</a>. Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.
+## You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-python-intro" target="_blank">the repository</a> to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">previous tutorial.</a>
+Alternatively, you can fork [previous tutorial.](https://github.com/ourcodingclub/CC-python-intro" target="_blank">the repository</a> to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
 
-You can have a look at all the data via the <a href="https://www.ed.ac.uk/geosciences/weather-station/weather-station-data" target="_blank">link to the station webpage</a>, but for ease of use, we've provided the data file <a href="https://github.com/ourcodingclub/CC-python-intro" target="_blank">in the repo you just downloaded</a> (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from <a href="https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor" target="_blank">Storm Eleanor</a>, which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
+You can have a look at all the data via the [Storm Eleanor](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data" target="_blank">link to the station webpage</a>, but for ease of use, we've provided the data file <a href="https://github.com/ourcodingclub/CC-python-intro" target="_blank">in the repo you just downloaded</a> (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from <a href="https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 
 
 <a name="reading"></a>
@@ -220,7 +220,7 @@ with open("StormEleanor_2_3_Jan.csv", "r") as weatherfile:
 ```
 Note how when using `with` we do not have to worry about closing the file -- it is taken care of automatically when we exit the code block. `with` also makes sure that any exceptions that occur when opening the file are dealt with appropriately.
 
-The second argument we provide to the `open()` function, `"r"`, tells the Python we want to open the file for *reading* from it. There are other arguments that we could have given such as `"w"` for writing to the file. <a href="https://docs.python.org/3/library/functions.html#open" target="_blank">More details can be found in the Python documentation</a>.
+The second argument we provide to the `open()` function, `"r"`, tells the Python we want to open the file for *reading* from it. There are other arguments that we could have given such as `"w"` for writing to the file. [More details can be found in the Python documentation](https://docs.python.org/3/library/functions.html#open).
 
 <a name="feeling"></a>
 
@@ -528,7 +528,7 @@ The `plot` function will plot a line chart by default, and the first argument is
 
 Open the "pressure.png" file (it will be in the same folder) and you should see a simple line plot of the pressure data over the 2 days that Storm Eleanor passed over Edinburgh. It should look something like this:
 
-<center> <img src="{{ site.baseurl }}/img/pressure.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/pressure.png" alt="Img" style="width: 500px;)
 
 We can see how the pressure drops significantly as the storm passes over the weather station. However, the plot could be improved with some lables on the axes, and a title. To add them to the figure, change our script to include the following:
 
@@ -617,7 +617,7 @@ Make sure the script is saved, and then run it. Open up the "pressure_final.png"
 
 The final figure should look like this:
 
-<center> <img src="{{ site.baseurl }}/img/pressure_final.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/pressure_final.png" alt="Img" style="width: 500px;)
 
 ## Summary
 
@@ -641,11 +641,11 @@ In this tutorial we have looked at why Python is popular for scientific programm
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="width: 100px"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
-<h3><a href="https://www.surveymonkey.co.uk/r/WVL5GXB" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/WVL5GXB)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -693,7 +693,7 @@ __Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

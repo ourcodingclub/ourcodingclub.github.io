@@ -10,7 +10,7 @@ tags: modelling intermediate intro
 
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_knn.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_knn.png" alt="Img)
 	</center>
 </div>
 
@@ -52,7 +52,7 @@ __In this tutorial you will be introduced to a simple and well-established super
 
 `K-nn` is a non-parametric technique that stores all available cases and classifies new cases based on a similiarty measure (distance function). Therefore when classifying an unseen dataset using a trained `K-nn` algorithm, it looks through the training data and finds the **k** training examples that are closest to the new example. It then assigns a class label to the new example based on a majority vote between those **k** training examples. This means if **k** is equal to 1, the class label will be assigned based on the nearest neighbour. However if K is equal to 3, the algorithm will select the three closest data points to each case and classify it based on a majority vote based on the classes that those three adjacent points hold. 
 
-<center> <img src="https://cambridgecoding.files.wordpress.com/2016/01/knn2.jpg" alt="Img" style="width: 800px;"/></center>
+![](https://cambridgecoding.files.wordpress.com/2016/01/knn2.jpg" alt="Img" style="width: 800px;)
 <center>Diagram source: <a href="https://cambridgecoding.wordpress.com" target = "_blank">Cambridge Coding</a></center>
 
 You can see that the selection of **k** is quite important, as is the selection of your training data, because this is all your predictive model will be based on.
@@ -117,7 +117,7 @@ ggthemr("light")  # Optional
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-<center> <img src="{{ site.baseurl }}/img/iris_plot1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/iris_plot2.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/iris_plot2.png" alt="Img" style="width: 500px;)
 
 From the above plots we see a visual correlation between plant traits. We can also see that there is some clustering within species with traits varying greatly between the three iris species. Now that we know that there is a clear difference in structural traits between species we could ask the following question:
 
@@ -265,7 +265,7 @@ However there is still a whole world to explore. For those interested in learnin
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/77YWPQL" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/77YWPQL)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -300,7 +300,7 @@ However there is still a whole world to explore. For those interested in learnin
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

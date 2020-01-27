@@ -9,7 +9,7 @@ tags: modelling data_manip data_vis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_gee.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_gee.png" alt="Img)
 	</center>
 </div>
 
@@ -27,7 +27,7 @@ tags: modelling data_manip data_vis
 
 ### All the files you need to complete this tutorial will be generated and exported from the GEE during the course of the tutorial.
 
-### <a href="https://signup.earthengine.google.com/" target="_blank">Follow this link</a> to register for the Google Earth Engine - it is free. 
+### [Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free. 
 __Say what you'll be using the GEE for - for research, education, etc. It might take a few hours or a day or so for your registration to be approved.__
 
 <a name="intro"></a>
@@ -42,27 +42,27 @@ __From the Google Earth Engine, you can export `.csv` files of any values you've
 
 ## 2. Find out what types of analyses you can do using the GEE
 
-__With the GEE, you can answer large-scale research questions in an efficient way that really was just not possible before, so quite exciting! You can use large geospatial datasets to address a plethora of questions and challenges facing humanity in the modern world. We will see later on how to explore what datasets are available to work with in the GEE, and it's also possible to import your own georeferenced imagery (like photos from drone missions).__ You can find out how to import your own raster data from <a href="https://developers.google.com/earth-engine/image_upload" target="_blank">this page</a> on the GEE developers website.
+__With the GEE, you can answer large-scale research questions in an efficient way that really was just not possible before, so quite exciting! You can use large geospatial datasets to address a plethora of questions and challenges facing humanity in the modern world. We will see later on how to explore what datasets are available to work with in the GEE, and it's also possible to import your own georeferenced imagery (like photos from drone missions).__ You can find out how to import your own raster data from [this page](https://developers.google.com/earth-engine/image_upload) on the GEE developers website.
 
-For example, you can classify different land cover types, you can calculate and extract values for landscape features such as <a href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index" target="_blank">NDVI</a> (Normalised Difference Vegetation Index) - for the world, a particular region of interest, or many different areas around the world. Really, the possibilities are enormous, and here we are only scratching the surface by giving you an example of how you can use the GEE to calculate changes in forest cover over time.
+For example, you can classify different land cover types, you can calculate and extract values for landscape features such as [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Normalised Difference Vegetation Index) - for the world, a particular region of interest, or many different areas around the world. Really, the possibilities are enormous, and here we are only scratching the surface by giving you an example of how you can use the GEE to calculate changes in forest cover over time.
 
-### You can check out the tutorials on the <a href="https://developers.google.com/earth-engine/" target="_blank">Google Earth Engine Developers website</a> if you are keen to learn more and to practice your GEE skills!
+### You can check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/) if you are keen to learn more and to practice your GEE skills!
 
 <a name="layout"></a>
 
 ## 3. Get familiar with the GEE layout
 
-### <a href="https://code.earthengine.google.com" target="_blank">Go to the Earth Engine to start your GEE journey!</a>
+### [Go to the Earth Engine to start your GEE journey!](https://code.earthengine.google.com)
 
 _Take a moment to familiarise yourself with the layout of the Earth Engine editor - like when first starting to learn a new language, it can seem like a lot to take in at once! With your blank script, have a go at exploring the different tabs. Notice how if you draw polygons or drop points, they will appear in your script. You can go to the `Inspector` tab, click on a place in the map, and see what information is available for it. Here is an outline of what most of the tabs do:_
 
-<center> <img src="{{ site.baseurl }}/img/gee_layout.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/gee_layout.png" alt="Img" style="width: 900px;)
 
 <a name="javascript"></a>
 
 ## 4. Learn the basic principles of JavaScript
 
-__The Google Earth Engine uses the programming language <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript.</a>__
+__The Google Earth Engine uses the programming language [JavaScript.](https://en.wikipedia.org/wiki/JavaScript)__
 
 Similarly to other programming languages, there is support online - you can google `JavaScript` and Earth Engine tutorials. It will all seem unfamiliar at first, but thanks to the online programming community, you very rarely start completely from scratch - i.e., don't feel bad about yourself because you can't just think of the correct `JavaScript` code from the top of your head straight away.
 
@@ -101,7 +101,7 @@ __How has forest cover changed in different national parks around the world?__
 
 To import the protected area dataset (polygons of the protected areas around the world from the World Database of Protected Areas), type `protected area` in the search tab and select the polygon version of the database (the other one is just points, i.e. the coordinates of one point within the protected areas, not their outline).
 
-<center> <img src="{{ site.baseurl }}/img/gee_import.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/gee_import.png" alt="Img" style="width: 800px;)
 
 First, you'll see a pop window with some information about the dataset - the different types of information represented, the year it was created, etc. You can also practice searching for other types of data that come to your mind to see if they are available from the GEE.
 
@@ -109,7 +109,7 @@ __Select `Import`.__
 
 Your imported dataset appears at the top of the script - it's currently called `table` which is not particularly informative, so you can rename that something else, e.g., `parks`.
 
-<center> <img src="{{ site.baseurl }}/img/new_script.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/new_script.png" alt="Img" style="width: 800px;)
 
 __Remember to save your script and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
 
@@ -127,15 +127,15 @@ __Go to the `Inspector` tab, click on a point somewhere on the map and check out
 
 #### Move around the world, find a national park and "inspect" it - can you find the name, area, etc. - all this information is under the `Inspector` tab.
 
-<center> <img src="{{ site.baseurl }}/img/map_inspect.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/map_inspect.png" alt="Img" style="width: 800px;)
 
 ### Import and explore a dataset in the GEE - forest cover change
 
-Similarly to how you imported the protected area dataset, go to the search tab, type in `global forest change` and select the <a href="http://science.sciencemag.org/content/342/6160/850" target="_blank">Hansen et al. dataset</a>. 
+Similarly to how you imported the protected area dataset, go to the search tab, type in `global forest change` and select the [Hansen et al. dataset](http://science.sciencemag.org/content/342/6160/850). 
 
 Take a look at the different types of information held within this dataset - that will help you familiarise yourself with what to expect from our analyses later on.
 
-<center> <img src="{{ site.baseurl }}/img/hansen_data.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/hansen_data.png" alt="Img" style="width: 800px;)
 
 __Call the object `gfc`, or whatever else you wish, but remember that if you call it something else, you have to change `gfc` to your new name in all the code coming up! Next up, we will again map our dataset.__
 
@@ -144,7 +144,7 @@ __Call the object `gfc`, or whatever else you wish, but remember that if you cal
 Map.addLayer(gfc);
 ```
 
-<center> <img src="{{ site.baseurl }}/img/map_hansen.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/map_hansen.png" alt="Img" style="width: 800px;)
 
 Currently, we just have a black and red map - black for the places where there are no forests, and red from the places that do have forest cover. This is not terribly informative and over the course of the tutorial we will work on making this map better!
 
@@ -217,15 +217,15 @@ Map.addLayer(gain.updateMask(gain),
 
 Remember to click on `Run` so that you see your newly plotted maps. The forest layers might be easier to see if you either turn off the first two layers you plotted (the protected areas and the generic GFC layer), or you can keep the protected area layer on, but reduce the opacity by dragging the bar below that layer.
 
-<center> <img src="{{ site.baseurl }}/img/hansen_trio.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/hansen_trio.png" alt="Img" style="width: 800px;)
 
-You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellow. You can find examples of those online, for example <a href="https://htmlcolorcodes.com" target="_blank">this website</a>.
+You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellow. You can find examples of those online, for example [this website](https://htmlcolorcodes.com).
 
-<center> <img src="{{ site.baseurl }}/img/colours_hex.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/colours_hex.png" alt="Img" style="width: 500px;)
 
 _You can also switch between map view and satellite view. If you zoom in enough and go to satellite view, you can actually start spotting some patterns, like forest loss along roads in the Amazon._
 
-<center> <img src="{{ site.baseurl }}/img/amazon_forest.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/amazon_forest.png" alt="Img" style="width: 800px;)
 
 <a name="calculate"></a>
 
@@ -302,7 +302,7 @@ Export.table.toDrive({
   description: 'NP_forest_gain'});
 ```
 
-<center> <img src="{{ site.baseurl }}/img/drive.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/drive.png" alt="Img" style="width: 800px;)
 
 _Go check out your files in your Google Drive. Scroll all the way right to see the `sum` column, which shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
 
@@ -312,9 +312,9 @@ _Go check out your files in your Google Drive. Scroll all the way right to see t
 
 _We are keen to incorporate different platforms and languages in our analyses, playing to the strengths of each. `R` and `R` packages like `ggplot2` offer more flexibility in how you visualise your findings, so we will now switch over to `R` to make a barplot of forest loss and gain in the four protected areas we studied._
 
-Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow. You can find tutorials on how to create graphs in the Earth Engine on <a href="https://developers.google.com/earth-engine/charts" target="_blank">the Developers website</a>.
+Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow. You can find tutorials on how to create graphs in the Earth Engine on [the Developers website](https://developers.google.com/earth-engine/charts).
 
-_Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro to `R`</a> tutorial here.
+_Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our [intro to `R`](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) tutorial here.
 
 ```r
 # Load libraries ----
@@ -323,7 +323,7 @@ library(ggthemr)  # to set a custom theme
 library(forcats)  # to reorder categorical variables
 ```
 
-We can set a theme (changes the colours and background) for our plot using the `ggthemr` package. You can explore the different colour options <a href="https://github.com/cttobin/ggthemr" target="_blank">here</a>.
+We can set a theme (changes the colours and background) for our plot using the `ggthemr` package. You can explore the different colour options [here](https://github.com/cttobin/ggthemr).
 
 ```r
 # Set theme for the plot
@@ -383,21 +383,21 @@ ggsave(forest_barplot, filename = "forest_barplot.png",
        height = 5, width = 7)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/forest_barplot.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/forest_barplot.png" alt="Img" style="width: 600px;)
 
 __Now that we can see how much forest has been gained and lost in our protected areas of interest, we can go back to our original research question, how does forest change vary across protected areas, and we can see if we can spot any patterns - are there any types of protected areas that are more likely to loose forest?__
 
-### We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the <a href="https://developers.google.com/earth-engine/tutorials" target="_blank">Google Earth Engine Developers website</a>!
+### We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/tutorials)!
 
 
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/VKMZHD3" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VKMZHD3)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -447,7 +447,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

@@ -8,7 +8,7 @@ meta: "PythonIris"
 tags: python iris
 ---
 <div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheader_iris.png" alt="Img"></center>
+![]({{ site.baseurl }}/img/tutheader_iris.png" alt="Img)
 </div>
 
 _Material for this tutorial was adapted from the <a href="https://scitools.org.uk">SciTools</a> tutorial (SciTools is the group that maintain the Iris software.) It was adapted and modified under the GNU public licence v 3.0 for this OurCodingClub tutorial and we acknowledge appreciate the use of original source materials from SciTools - Thank you!_
@@ -85,7 +85,7 @@ Let's take a simple example to demonstrate the cube concept.
 
 Suppose we have a `(3, 2, 4)` NumPy array:
 
-<center> <img src="{{ site.baseurl }}/img/iris_multi_array.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/iris_multi_array.png" alt="Img" style="width: 500px;)
 
 Where dimensions 0, 1, and 2 have lengths 3, 2 and 4 respectively.
 
@@ -111,7 +111,7 @@ The Iris cube to represent this data may consist of:
 
 Pictorially the cube has taken on more information than a simple array:
 
-<center> <img src="{{ site.baseurl }}/img/iris_multi_array_to_cube.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/iris_multi_array_to_cube.png" alt="Img" style="width: 500px;)
 
 
 ### Working with a cube
@@ -916,7 +916,7 @@ In this tutorial we have looked at how to use the Python package `iris`: an exte
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/VH6XDVZ" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VH6XDVZ)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -951,7 +951,7 @@ In this tutorial we have looked at how to use the Python package `iris`: an exte
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>:w

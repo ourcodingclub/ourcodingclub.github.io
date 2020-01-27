@@ -10,7 +10,7 @@ tags: Intermediate data_manip data_vis
 
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_spatial.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_spatial.png" alt="Img)
 	</center>
 </div>
 
@@ -23,7 +23,7 @@ tags: Intermediate data_manip data_vis
 #### <a href="#section3"> 3. Manipulate rasters: NDVI and KMN classification</a>
 
 
-### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-spatial" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
 __In this tutorial, we are going to explore spatial analysis in `R` using satellite data of the Loch Tay area of Scotland. Satellite or remote-sensing data are increasingly used to answer ecological questions such as what are the characteristics of species’ habitats, can we predict the distribution of species and the spatial variability in species richness, and can we detect natural and man-made changes at scales ranging from a single valley to the entire world.__
 
@@ -41,7 +41,7 @@ Satellite data mostly consist of __reflectance data__, which can be defined as a
 
 ## 1. Explore raster data
 
-Once you have unzipped the files you downloaded from the <a href="https://github.com/ourcodingclub/CC-spatial" target="_blank">repository</a> on your computer, open `RStudio`, create a new script by clicking on `File/ New File/ R Script`. It is always a good idea the write a header to your script with your name, data and purpose such as `Intro to spatial analysis tutorial` as shown below. Then, set the working directory to the location of the unzipped files on your computer and load the following packages, installing them if necessary:
+Once you have unzipped the files you downloaded from the [repository](https://github.com/ourcodingclub/CC-spatial) on your computer, open `RStudio`, create a new script by clicking on `File/ New File/ R Script`. It is always a good idea the write a header to your script with your name, data and purpose such as `Intro to spatial analysis tutorial` as shown below. Then, set the working directory to the location of the unzipped files on your computer and load the following packages, installing them if necessary:
 
 ```r
 # Intro to spatial analysis tutorial
@@ -140,7 +140,7 @@ plot(b8)
 image(b8)
 
 ```
-<p align="center"> <img src="{{ site.baseurl }}/img/2tayplots.png" alt="Img" style="width: 800px;"/></p>
+![]({{ site.baseurl }}/img/2tayplots.png" alt="Img" style="width: 800px;)
 
 To __zoom in on the image__, after calling the function `zoom` and the band you wish to inspect, first plot the band, then
 __click twice on the plot__, once on two opposite corners of the area of interest in order to create a square. The zoomed in image will be of the standard `plot` function of the band, in the terrain colour palette, even when use in a different in a different plot.
@@ -151,7 +151,7 @@ plot(b8)
 zoom(b8)    # run this line, then click twice on your plot to define a box
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/zoom1.png" alt="Img" style="width: 400px;"/> <img src="{{ site.baseurl }}/img/zoom2.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/zoom2.png" alt="Img" style="width: 400px;)
 
 __Alternatively, an extent can be cropped and plotted from the plot image using the same double click method described above and the code below. Zooming in allows you to visualise spatial data for specific areas you might be interested in.__
 
@@ -182,7 +182,7 @@ To view the plot without saving the image, you only need the second line:
 image(b8, col= viridis_pal(option="D")(10), main="Sentinel 2 image of Loch Tay")
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/tayplot.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/tayplot.png" alt="Img" style="width: 400px;)
 
 __A useful way to visualise the satellite data is to plot a red-green-blue plot of a multi-layered object for a more realistic rendition. The layers or bands represent different bandwidth in the visible electromagnetic spectrum (corresponding to red, blue and green) and combined, create a naturalistic colour rendition of the earth surface.__
 
@@ -196,7 +196,7 @@ plotRGB(tayRGB, axes = TRUE, stretch = "lin", main = "Sentinel RGB colour compos
 dev.off()
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/RGB.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/RGB.png" alt="Img" style="width: 400px;)
 
 __Another popular way to visualise remote sensing data is using a false colour composite (FCC), where the red, green, and blue bands have been replaced in order to accentuate vegetation.__
 
@@ -227,7 +227,7 @@ ggsave("ggtay.png", scale = 1.5, dpi = 300) 		# to save plot
 
 Note that here we saved the plot in a slightly different way - for plots creates using `ggplot2`, we can use the `ggsave` function and we define the specifics of the saved plot after we've created it, whereas earlier in the tutorial when we were using the `png()` function in combination with `dev.off()`, the plot characteristics are defined before we make the plot inside the `png()` function.
 
- <p align="center"> <img src="{{ site.baseurl }}/img/ggtay.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/ggtay.png" alt="Img" style="width: 400px;)
 
 __To visualise all the bands together, we can use `facet_wrap` in `gplot`. First, we will create a stack of all the bands, so just putting them all on top of each other, like layers in a cake.__
 
@@ -254,7 +254,7 @@ gplot(t) +
 ggsave("allbands.png", scale = 1.5, dpi = 300) # to save plot
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/allbands.png" alt="Img" style="width: 800px;"/></p>
+![]({{ site.baseurl }}/img/allbands.png" alt="Img" style="width: 800px;)
 
 __Alternatively, for a quick visualisation, the original file can be loaded as a raster brick and plotted using 'plot'.__
 
@@ -263,7 +263,7 @@ s_tay <- brick('data/taycrop.tif')
 plot(s_tay)
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/allbands2.png" alt="Img" style="width: 800px;"/></p>
+![]({{ site.baseurl }}/img/allbands2.png" alt="Img" style="width: 800px;)
 
 __Notice the difference in colour and range of legend between the different bands. Different earth surfaces reflect the solar radiation differently and each raster layer represents how much incident solar radiation is reflected at a particular wavelength bandwidth. Bands 6 to 9 are in the Near Infrared Range (NIR). Vegetation reflects more NIR than other wavelengths but water absorbs NIR, therefore the lighter areas with high reflectance values are likely to be vegetation and the dark blue, low reflectance value areas, likely to be water. Also note that the Sentinel 2 bands have 3 levels of spatial resolution, 10 m, 20 m, and 60 m (see summary below).__
 
@@ -312,7 +312,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = 'Sentinel 2, Loch Tay-NDVI')
 dev.off()
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/NDVI.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/NDVI.png" alt="Img" style="width: 400px;)
 
 To find out the distribution of the pixel NDVI values, we can plot a histogram.
 
@@ -332,7 +332,7 @@ axis(side = 1, at = seq(-0.5,1, 0.05), labels = seq(-0.5,1, 0.05))
 dev.off()
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/ndvihist.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/ndvihist.png" alt="Img" style="width: 400px;)
 
 #### So what does this mean?
 
@@ -353,7 +353,7 @@ plot(veg, main = 'Veg cover')
 dev.off()
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/ndvimask.png" alt="Img" style="width: 400px;"/></p>
+![]({{ site.baseurl }}/img/ndvimask.png" alt="Img" style="width: 400px;)
 
 We still have a high vegetation cover, which is to be expected in this part of Scotland.
 
@@ -428,7 +428,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = "NDVI")
 plot(knr, main = "Kmeans", col = viridis_pal(option = "D")(10))
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/knr_ndvi.png" alt="Img" style="width: 800px;"/></p>
+![]({{ site.baseurl }}/img/knr_ndvi.png" alt="Img" style="width: 800px;)
 
 If we want to plot our classification alongside the RGB rendering of the raster, and save the two plots, we can use the code below:
 
@@ -440,7 +440,7 @@ plot(knr, main = "Kmeans", yaxt = 'n', col = viridis_pal(option = "D")(10))
 dev.off()
 ```
 
-<p align="center"> <img src="{{ site.baseurl }}/img/rgb_kmeans.png" alt="Img" style="width: 800px;"/></p>
+![]({{ site.baseurl }}/img/rgb_kmeans.png" alt="Img" style="width: 800px;)
 
 A simple classification like this one is only to give an idea of land cover types. In the above example, we could deduce that cluster 8, in green, is water as it covers the Loch. We can also spot patterns in the vegetation cover in both the NDVI and `kmeans` cluster plots. We could deduce that the areas with the highest NDVI ratio are likely to be forest cover.
 
@@ -467,11 +467,11 @@ __- Perform an unsupervised image classification using the kmeans algorithm to c
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.com/r/8MJ8GRY" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/8MJ8GRY)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -521,7 +521,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

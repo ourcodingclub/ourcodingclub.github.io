@@ -9,7 +9,7 @@ tags: data_manip, datavis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheadercluster.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheadercluster.png" alt="Img)
 	</center>
 </div>
 
@@ -72,7 +72,7 @@ library(cluster)
 
 As you might have realised by now, I work on tropical trees and forests in the Neotropics, and today I have decided to give you a quick tour through some of the amazing forests and floristic formations we have there. Today's destination is Bolivia, a large country in tropical South America with just about ten million people living in it. Most of these people live in four gigantic cities: La Paz, Sucre, Cochabamba and Santa Cruz de La Sierra. As a result, most of Bolivia's diversity is located away from human settlements and is, therefore, relatively protected from human impact. Biogeographically, Bolivia is where all the main Tropical South American biomes converge. This makes Bolivia one of the most interesting and exciting places to study (and visit) in South America.
 
-<b>The data we'll be using today come from a dataset called NeoTropTree which was developed by <a href="http://prof.icb.ufmg.br/treeatlan/" target="_blank">Professor Ary Oliveira-Filho (Federal University of Minas Gerais - Brazil)</a>. NeoTropTree is a large database containing records on forest tree species composition, gathered by reviewing the literature (published and unpublished - e.g. masters dissertations and PhD theses), compiling species check-lists, and studying herbarium records. Each site within the database has been assigned to a specific vegetation type (an ecologically meaningful unit). NeoTropTree is a very comprehensive and well kept dataset, which makes it very valuable and reliable when doing science. Professor Oliveira-Filho has kindly agreed to us using a tiny portion of it for this tutorial.</b>
+<b>The data we'll be using today come from a dataset called NeoTropTree which was developed by [Professor Ary Oliveira-Filho (Federal University of Minas Gerais - Brazil)](http://prof.icb.ufmg.br/treeatlan/). NeoTropTree is a large database containing records on forest tree species composition, gathered by reviewing the literature (published and unpublished - e.g. masters dissertations and PhD theses), compiling species check-lists, and studying herbarium records. Each site within the database has been assigned to a specific vegetation type (an ecologically meaningful unit). NeoTropTree is a very comprehensive and well kept dataset, which makes it very valuable and reliable when doing science. Professor Oliveira-Filho has kindly agreed to us using a tiny portion of it for this tutorial.</b>
 
 ```r
 # Loading the dataframes we'll be working with:
@@ -110,7 +110,7 @@ How does the chosen clustering method know which observations are more similar t
 
 Right now, what we need to do is use the data frames we have and create a presence and absence matrix with sites in the rows and species in the columns. As it is standard, `1` = species present in a site and `0` = the species absent in a site. No matter what distance metric you use, the pairwise distance matrix that will be used when clustering your data will always be constructed based on this table. Of course, if you have species abundance, than you'll be working with an abundance matrix.
 
-The way we are going to build such matrix is through a loop function. Loop functions are extremely useful used in many programming languages. If you want to learn more about them, you can check our tutorial on <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">how to use loops.</a>
+The way we are going to build such matrix is through a loop function. Loop functions are extremely useful used in many programming languages. If you want to learn more about them, you can check our tutorial on [how to use loops.](https://ourcodingclub.github.io/2017/02/08/funandloops.html)
 
 ```r
 # Making the species by site matrix (presence and abscence). We'll call it `commat`.
@@ -214,7 +214,7 @@ plot(bol_singlelink_tmp, direction = "downwards", cex = 0.5)  # You can change t
 write.tree(bol_singlelink_tmp, "bol_singlelink_tmp.tre")
 ```
 
-Let's open this file in Figtree and see how we can use this software to our advantage. You can quickly <a href="http://tree.bio.ed.ac.uk/software/figtree/" target="_blank">download Figtree for your operating system here</a> and install it on your computer. Figtree was originally designed to look at phylogenies, but we can use it to visualise dendograms (the outputs of our data clustering are called dendograms). You simply click on the document you want to open and select Figtree to open it. You can select branches and colour them to your liking with the `Colour` button. You can also zoom in with the `Zoom` button, allowing you to read the names on the tips of your dendogram and visualize your groups.
+Let's open this file in Figtree and see how we can use this software to our advantage. You can quickly [download Figtree for your operating system here](http://tree.bio.ed.ac.uk/software/figtree/) and install it on your computer. Figtree was originally designed to look at phylogenies, but we can use it to visualise dendograms (the outputs of our data clustering are called dendograms). You simply click on the document you want to open and select Figtree to open it. You can select branches and colour them to your liking with the `Colour` button. You can also zoom in with the `Zoom` button, allowing you to read the names on the tips of your dendogram and visualize your groups.
 
 ![Img]({{ site.baseurl }}/img/figtree_scrot.png)
 
@@ -447,7 +447,7 @@ points(sites_membership$Long10[which(sites_membership$cluster_membership == "Gro
 ```
 
 Which creates this map:
-<center><img src="{{ site.baseurl }}/img/cluster_map_plot.png" alt="Img" style="width: 700px;"/> </center>
+![]({{ site.baseurl }}/img/cluster_map_plot.png" alt="Img" style="width: 700px;)
 
 <b>Congratulations on completing the tutorial!!! I know the explanations were a bit long, but we needed to cover the theory before doing the clustering. Keen to practice your data clustering and spatial visualisation skills? Check out our challenges below!</b>
 
@@ -456,11 +456,11 @@ We mapped our sites using the `maps` package associated with R's basic `plot` fu
 
 <b>Try recreating the above map using the `ggmap` package, which offers more choices of map types and in general can make very pretty maps.</b> 
 
-In previous versions of this workshop, we used the ggmap package <a href="https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html" target="_blank">in our tutorial on spatial visualisation</a>, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too! 
+In previous versions of this workshop, we used the ggmap package [in our tutorial on spatial visualisation](https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html), but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too! 
 
 See below for an idea of the map you could create and if you are stuck, look at `ggmap_challenge.R` in the [repo for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering). 
 
-<center><img src="{{ site.baseurl }}/img/cluster_map_ggplot.png" alt="Img" style="width: 700px;"/> </center>
+![]({{ site.baseurl }}/img/cluster_map_ggplot.png" alt="Img" style="width: 700px;)
 
 ## Challenge number 2
 
@@ -477,7 +477,7 @@ In this tutorial we explored hierarchical agglomerative clustering methods, dist
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/B723DLF" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/B723DLF)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -525,7 +525,7 @@ In this tutorial we explored hierarchical agglomerative clustering methods, dist
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

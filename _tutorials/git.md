@@ -10,7 +10,7 @@ tags: github
 
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheadergit.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheadergit.png" alt="Img)
 	</center>
 </div>
 
@@ -73,7 +73,7 @@ brew install git
 
 Follow any instructions in the terminal window, you may need to enter your Mac's password or agree to questions by typing `yes`.
 
-The files you put on GitHub will be public (i.e. everyone can see them & suggest changes, but only the people with access to the repository can directly edit and add/remove files). You can also have private repositories on GitHub, which means that only you can see the files. GitHub now offers <a href="https://blog.github.com/2019-01-07-new-year-new-github/" target="_blank">free private repositories as standard</a> with up to three collaborators per repository. They also offer a free education package, with access to software and other perks, you can apply for one using <a href="https://education.github.com/discount_requests/new"> this link.</a>
+The files you put on GitHub will be public (i.e. everyone can see them & suggest changes, but only the people with access to the repository can directly edit and add/remove files). You can also have private repositories on GitHub, which means that only you can see the files. GitHub now offers [free private repositories as standard</a> with up to three collaborators per repository. They also offer a free education package, with access to software and other perks, you can apply for one using <a href="https://education.github.com/discount_requests/new"> this link.](https://blog.github.com/2019-01-07-new-year-new-github/)
 
 <a name="github"></a>
 
@@ -102,7 +102,7 @@ Each file on GitHub has a history, so instead of having many files like `Dissert
 
 For example, here is the history for a repo with an R script inside it, as viewed on Github. Obviously it took me a while to calculate those model predictions!
 
-<center> <img src="{{ site.baseurl }}/img/filehistory.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/filehistory.png" alt="Img" style="width: 800px;)
 
 <a name="github2"></a>
 
@@ -110,15 +110,15 @@ For example, here is the history for a repo with an R script inside it, as viewe
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wider audience. For now, we will focus on organising and using your main repository that holds the files for all your work. With a free GitHub account, you can use public or private respositories. 
 
-<center> <img src="{{ site.baseurl }}/img/newrepo.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/newrepo.png" alt="Img" style="width: 800px;)
 
 <b>Click on `Initialise repo with a README.md file`. </b>It's common practice for each repository to have a `README.md` file, which contains information about the project, the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, including `.txt` and `.md`. `.md` stands for a file written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> - you might have used Markdown before from within `RStudio` to create neatly organised reports of your code and its outputs (you can also check out our <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html">Markdown tutorial</a>). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
-<center> <img src="{{ site.baseurl }}/img/newrepo2.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/newrepo2.png" alt="Img" style="width: 800px;)
 
 You can directly edit your `README.md` file on Github by clicking on the file and then selecting `Edit this file`.
 
-<center> <img src="{{ site.baseurl }}/img/readme.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/readme.png" alt="Img" style="width: 800px;)
 
 
 #### Exercise 1: Write an informative README.md file
@@ -166,7 +166,7 @@ Go to `Create new file` and write a `.gitignore` file within your main repositor
 #### Exercise 3: Create folders
 Discuss among your lab what folders your repository will contain - some examples include: manuscripts, data, figures, scripts, scripts/users/personal_folder_your_name. To make a new folder, click on `Create new file` and add in the name of your new folder, e.g. `manuscripts/` before the file name, in this case a quick `README.md` file. When creating folders within your repo through GitHub's website, you always need to make at least one file associated with them, you can't just create an empty folder. Add a brief explanation of what the folder is for in the `README.md` file, scroll down and click on `Commit new file`. Add a quick message where it says `Create README.md file` in light grey text - we will cover GitHub etiquette later, but for now, when creating/editing files, it's always a good idea to change the default message to a more precise description of what was done and who did it. Stick with the default option of `Commit directly to master branch` - we will explain branches and pull requests at a later stage of the tutorial.
 
-<center> <img src="{{ site.baseurl }}/img/newfolder.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/newfolder.png" alt="Img" style="width: 800px;)
 
 <a name="etiquette"></a>
 
@@ -199,7 +199,7 @@ The "commit-pull-push" workflow can be embedded within `RStudio` using "Projects
 
 Click `Clone or download` and copy the HTTPS link.
 
-<center><img src="{{ site.baseurl }}/img/repo_clone.png" alt="Img" style="width: 1000px;"/></center>
+![]({{ site.baseurl }}/img/repo_clone.png" alt="Img" style="width: 1000px;)
 
 Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the HTTPS link from the Github repository into the `Repository URL:` field. Select a folder on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
@@ -212,13 +212,13 @@ We know that there might be problems with the newest updates of the Mac software
 #### Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 
 
-<center><img src="{{ site.baseurl }}/img/git_tab.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/git_tab.png" alt="Img" style="width: 800px;)
 
 You are now ready to start making changes and documenting them through Github!  __Note that you can't push empty folders.__
 
 You can open some of the files you made online earlier - for example if you click on your `README.md` file, it will open in `RStudio` and you can make changes. Add some more text just for the sake of exemplifying how version control works. Save the file in the same location (i.e., your repository). 
 
-<center><img src="{{ site.baseurl }}/img/readme_edit.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/readme_edit.png" alt="Img" style="width: 800px;)
 
 If you click on the `Git` tab you will see that now your `README.md` file is listed there. Add a tick next to it. Now it has an `M` - this means you have modified the file. If there's an `A`, that's an added file, and a `D` is a deleted file.
 
@@ -226,13 +226,13 @@ If you select the `README.md` file and click on `Diff`, you will see the changes
 
 Click on `Commit` and add in your `commit message` - aim to be concise and informative - what did you do? Once you have clicked on `Commit`, you will get a message about what changes you have made.
 
-<center><img src="{{ site.baseurl }}/img/commit_window.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/commit_window.png" alt="Img" style="width: 800px;)
 
 __If you are making your first ever commit, clicking on `Commit` may result in an error message - git will tell you that you need to configure your username and email. This is easily done, and you only need to do it once, afterwards you can commit-pull-push at your convenience!__
 
 In the top right corner of the RStudio screen, click on `More/Shell`. __NOTE: If using a Windows PC, DO NOT use the Shell through RStudio. Instead, find the Git Bash application on your computer and use the command line from it.__
 
-<center> <img src="{{ site.baseurl }}/img/shell.png" alt="Img" style="width: 700px;"/> </center>
+![]({{ site.baseurl }}/img/shell.png" alt="Img" style="width: 700px;)
 
 ### Copy the following code:
 
@@ -248,17 +248,17 @@ git config --global user.name "Your GitHub Username"
 
 You will see a message saying that your branch is now one commit ahead of the `origin/master` branch - that is the branch that is on Github - we now need to let Github know about the changes we have made.
 
-<center><img src="{{ site.baseurl }}/img/git4.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/git4.png" alt="Img" style="width: 700px;)
 
 We can't repeat it enough: __always `Pull` before you `Push`.__ `Pull` means that you are retrieving the most recent version of the Github repository onto your local branch - this command is especially useful if several people are working within the same repository - imagine there was a second script examining soil pH along this elevation gradient, and your collaborator was working on it the same time as you - you wouldn't want to "overwrite" their work and cause trouble. In this case, you are the only one working on these files, but it's still good to develop the practice of pulling before you push. Once you've pulled, you'll see a message that you are already up to date, you can now push! Click on `Push`, wait for the loading to be over and then click on `Close` - that was it, you have successfully pushed your work to Github!
 
 Go back to your repository on Github, where you can now see all of your updated files online.
 
-<center><img src="{{ site.baseurl }}/img/updated_repo.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/updated_repo.png" alt="Img" style="width: 800px;)
 
 Click on your script file and then on `History` - this is where you can see the different versions of your script - obviously in real life situations you will make many changes as your work progresses - here we just have two. Thanks to Github and version control, you don't need to save hundreds of almost identical files (e.g. `Dissertation_script_25thFeb.R`, `Dissertation_script_26thFeb.R`) - you have one file and by clicking on the different commits, you can see what it looked like at different points in time.
 
-<center><img src="{{ site.baseurl }}/img/repo_history.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/repo_history.png" alt="Img" style="width: 800px;)
 
 __You are now ready to add your scripts, plots, data files, etc. to your new project directory and follow the same workflow as outlined above - stage your files, commit, pull, push.__
 
@@ -287,7 +287,7 @@ Using these "undo" commands can be daunting, so make sure you read up on the dif
 
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. <a href = "http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git" target="_blank">Prof Simon Mudd's Numeracy, Modelling and Data management guide</a>, <a href = "https://swcarpentry.github.io/git-novice/" target="_blank">The Software Carpentry guide</a>, and this <a href = "https://github.com/BES2016Workshop/version-control" target="_blank">guide from the British Ecological Society Version Control workshop </a>. For more generic command line tools, look at this <a href="https://www.git-tower.com/blog/command-line-cheat-sheet">general cheat-sheet</a> and this <a href="https://github.com/0nn0/terminal-mac-cheatsheet">cheat-sheet for mac users</a>. We have also created a table and flow diagram with some basic Git commands and how they fit into the Git/Github workflow. Orange lines refer to the core workflow, the blue lines describe extra functions and the green lines deal with branches:
 
-<center><img src="{{ site.baseurl }}/img/git_cli_nmdm.png" alt="Img" style="width: 850px;"/></center>
+![]({{ site.baseurl }}/img/git_cli_nmdm.png" alt="Img" style="width: 850px;)
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -386,7 +386,7 @@ Below is a quick exercise so you can familiarise yourself with these command lin
 
 1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
 
-<center><img src="{{ site.baseurl }}/img/rstudio_new_terminal.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/rstudio_new_terminal.png" alt="Img" style="width: 700px;)
 
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git.
@@ -449,19 +449,19 @@ git push -u origin master
 Now you can continue editing files, adding changes (`git add <FILE>`), committing changes (`git commit`), pulling (`git pull`) and pushing (`git push`) changes, similar to the process you did with clicking buttons in RStudio. Feel free to explore some of the more advanced commands laid out in the table and flow diagram above. You can also check out a more advanced command line tutorial written by <a href = "http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git" target="_blank">Prof Simon Mudd for Numeracy, Modelling and Data management guide</a>.
 
 
-### This tutorial was developed as part of the collaboration between Coding Club and the NERC E3 Doctoral Training Programme. To learn more about the E3 DTP, check out  <a href="http://e3dtp.geos.ed.ac.uk/" target="_blank">the programme's website.</a>
+### This tutorial was developed as part of the collaboration between Coding Club and the NERC E3 Doctoral Training Programme. To learn more about the E3 DTP, check out  [the programme's website.](http://e3dtp.geos.ed.ac.uk/)
 
-<a href="http://e3dtp.geos.ed.ac.uk/"><img src="{{ site.baseurl }}/img/dtp_for_cc.jpg" alt="Img" style="width: 600px;"></a>
+![]({{ site.baseurl }}/img/dtp_for_cc.jpg" alt="Img" style="width: 600px;)
 	
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/NXNHYYX" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/NXNHYYX)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -509,7 +509,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

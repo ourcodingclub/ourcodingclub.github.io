@@ -11,7 +11,7 @@ tags: data_manip intro_to_r
 ---
 <div class="block"> 
           <center>
-          <img src="{{ site.baseurl }}/img/tutheader_DL_data_manip_1.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_DL_data_manip_1.png" alt="Img)
           </center>
         </div>
         
@@ -53,15 +53,15 @@ Data come in all sorts of different shapes and formats, and what is useful or pr
 This tutorial is an introduction to data manipulation and only requires an understanding of how to import and create objects in R. That said, there's still a lot of content in here for a beginner, so do not hesitate to complete only the base R section in one session, and the `dplyr` section in another. (Remember! The beauty of a script is that you can pick up where you left off, anytime.)
 
 <div class="bs-callout-blue" markdown="1">
-__Haven't used R before, or need a refresher?__ No worries! Check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R and RStudio tutorial</a>, and then come back here to master tidy data management!
+__Haven't used R before, or need a refresher?__ No worries! Check out our [Intro to R and RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), and then come back here to master tidy data management!
 
-__Know all of this already?__ Fast forward to our <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">Efficient Data Manipulation tutorial</a> for more advanced `dplyr` fun. 
+__Know all of this already?__ Fast forward to our [Efficient Data Manipulation tutorial](https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html) for more advanced `dplyr` fun. 
 </div>
 
-In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the <a href="https://www.tidyverse.org/" target="_blank"> Tidyverse </a>, which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
+In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
 
-#### __Note : all the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-3-DataManip" target="_blank">this repository</a>. Clone and download the repo as a zip file, then unzip it.__
+#### __Note : all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
 
 
 
@@ -77,10 +77,10 @@ Data frames are R objects made of rows and columns containing observations of di
 
 This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
 
-<center> <img src="{{ site.baseurl }}/img/crowberry.jpg" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/crowberry.jpg" alt="Img" style="width: 800px;)
 <center>  A crowberry shrub, <i> Empetrum hermaphroditum</i>. Isn't it pretty? </center>
 
-We have seen in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can access variables in R by using the dollar sign `$`. This is already one way of subsetting, as it essentially reduces your data frame (2 dimensions) to a vector (1 dimension). You can also access parts of a data frame using square brackets `[ , ]`. The first number you put will get the row number, and the second the column. Leave one blank to keep all rows or all columns.
+We have seen in our [intro tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) that we can access variables in R by using the dollar sign `$`. This is already one way of subsetting, as it essentially reduces your data frame (2 dimensions) to a vector (1 dimension). You can also access parts of a data frame using square brackets `[ , ]`. The first number you put will get the row number, and the second the column. Leave one blank to keep all rows or all columns.
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1">
@@ -182,7 +182,7 @@ As you can see, the more demanding you are with your conditions, the more clutte
 <a name="objects"></a>
 <div class="bs-callout-grey" markdown="1">
 
-Did you notice that last bit of code: `c(300:400)` ? We saw in our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">intro tutorial</a> that we can use `c()` to _concatenate_ elements in a vector. Using a colon between the two numbers means _counting up from 300 to 400_. 
+Did you notice that last bit of code: `c(300:400)` ? We saw in our [intro tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) that we can use `c()` to _concatenate_ elements in a vector. Using a colon between the two numbers means _counting up from 300 to 400_. 
 
 Other useful vector sequence builders are:
 
@@ -290,12 +290,12 @@ That was a lot, but now you'll be able to adapt these little chunks of code to m
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead of time and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
-<center> <img src="{{ site.baseurl }}/img/SAB_fig1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/SAB_fig1.png" alt="Img" style="width: 500px;)
 
 Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary, 
-<a href="https://www.jstatsoft.org/article/view/v059i10" target="_blank">tidy datasets</a> are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
+[tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
-<center> <img src="{{ site.baseurl }}/img/SAB_fig2.png" alt="Img" style="width: 400px;"/> </center>
+![]({{ site.baseurl }}/img/SAB_fig2.png" alt="Img" style="width: 400px;)
 
 This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc., R would be able to split the dataframe correctly, as each grouping factor has its own column. 
 
@@ -334,7 +334,7 @@ elongation_long2 <- gather(elongation, Year, Length, c(3:8))
 </section>
 
 
-However, these functions have limitations and will not work on every data structure. To quote <a href="https://www.jstatsoft.org/article/view/v059i10" target="_blank">Hadley Wickham</a>, <b>"every messy dataset is messy in its own way"</b>. This is why giving a bit of thought to your dataset structure *before* doing your digital entry can spare you a lot of frustration later!
+However, these functions have limitations and will not work on every data structure. To quote [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10), <b>"every messy dataset is messy in its own way"</b>. This is why giving a bit of thought to your dataset structure *before* doing your digital entry can spare you a lot of frustration later!
 
 Once you have the data in the right format, it's much easier to analyse them and visualise the results. For example, if we want to find out if there is inter-annual variation in the growth of <i>Empetrum hermaphroditum</i>, we can quickly make a boxplot:
 
@@ -347,10 +347,10 @@ boxplot(Length ~ Year, data = elongation_long,
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/emni-annual.jpeg" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/emni-annual.jpeg" alt="Img" style="width: 600px;)
 <center> Annual growth of <i>Empetrum hermaphroditum</i>. </center>
 
-From looking at the boxplot, there is a fairly big overlap between the annual growth in each year - nothing special to see. (Don't worry, we'll learn to make much prettier and interesting graphs in our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">data visualisation</a> tutorials.) 
+From looking at the boxplot, there is a fairly big overlap between the annual growth in each year - nothing special to see. (Don't worry, we'll learn to make much prettier and interesting graphs in our [data visualisation](https://ourcodingclub.github.io/2017/01/29/datavis.html) tutorials.) 
 
 
 <a name="dplyr"></a>
@@ -425,7 +425,7 @@ You may have noticed how we sometimes call values in quotes `""`, and sometimes 
 
 The first creates a duplicate of our object, because R recognises the name as an object in our environment. In the second case, you're creating an object consisting of one character value. 
 
-It takes time and practice to get used to these conventions, but just keep an eye out for <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank"> error messages </a> and you'll get there.
+It takes time and practice to get used to these conventions, but just keep an eye out for [ error messages ](https://ourcodingclub.github.io/2016/11/15/troubleshooting.html) and you'll get there.
 
 </div>
 
@@ -567,10 +567,10 @@ boxplot(length ~ Treatment, data = experiment)
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/emni-treatments.jpeg" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/emni-treatments.jpeg" alt="Img" style="width: 600px;)
 <center> Effects of warming (W) and fertilisation (F) treatments on crowberry growth (fictional data!). </center>
 
-Are these differences statistically significant? We'll find out how to test this in our <a href="https://ourcodingclub.github.io/2017/02/28/modelling.html" target="_blank">modelling tutorial!</a> 
+Are these differences statistically significant? We'll find out how to test this in our [modelling tutorial!](https://ourcodingclub.github.io/2017/02/28/modelling.html) 
 
 
 But for now, don't you think it's enough for one tutorial? Congratulations for powering through and getting this far! If you want to test your knowledge, try your hand at the data manipulation challenge below. 
@@ -687,7 +687,7 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
 ```
 So there you are! Did your plots look something like this? 
 
-<center> <img src="{{ site.baseurl }}/img/dragons-spice.jpeg" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/dragons-spice.jpeg" alt="Img" style="width: 800px;)
 ##### It looks like jalapeños are proper dragon fuel, but turmeric not so much!
 
 </summary>   
@@ -704,16 +704,16 @@ So there you are! Did your plots look something like this?
 #### 3. You can manipulate, subset, create and merge data with `dplyr`
 
 
-### And when you're ready for more `dplyr` tips and workflows, follow up with our <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank"> Efficient data manipulation tutorial</a>!
+### And when you're ready for more `dplyr` tips and workflows, follow up with our [ Efficient data manipulation tutorial](https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html)!
 
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/9QHFW33" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/9QHFW33)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -761,7 +761,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

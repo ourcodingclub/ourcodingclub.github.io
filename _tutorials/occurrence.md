@@ -9,7 +9,7 @@ tags: data_manip data_vis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderoccur.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderoccur.png" alt="Img)
 	</center>
 </div>
 
@@ -23,17 +23,17 @@ tags: data_manip data_vis
 
 <p></p>
 
-#### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-occurrence" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+#### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-occurrence). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
-<b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up dataframes and calculate new variables. Then, we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands, if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.</b>
+<b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up dataframes and calculate new variables. Then, we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands, if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis ([more info here](https://github.com/azizka/CoordinateCleaner)). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
-<center><img src="{{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;"/></center>
+![]({{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;)
 
 <a name="download"></a>
 
 ### 1. Download, format and manipulate biodiversity data
 
-We will be working with occurrence data for the beluga whale from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> and population data for the same species from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, both of which are publicly available datasets.
+We will be working with occurrence data for the beluga whale from the [Living Planet Database](http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> and population data for the same species from the <a href="http://www.livingplanetindex.org/home/index), both of which are publicly available datasets.
 
 
 #### Set your working directory.
@@ -55,14 +55,14 @@ setwd("~/Work/coding_club/CC-occurrence-master")
 
 #### Organise your script into sections
 
-As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to RStudio tutorial</a>. A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
+As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# Load data`. Then, underneath that comment, you would write the code for importing your data in `R`. RStudio has a great feature allowing you to turn your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# Load data ----`. To view your outline, click on the button shown below. You can then click on an outline item and jump straight to it - no more scrolling!
 
 
-<center> <img src="{{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;)
 
-__NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio. If you want to get this feature, you can <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">download</a> the newest version of RStudio.__
+__NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio. If you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
 
 #### Write an informative header
@@ -239,7 +239,7 @@ beluga.slopes <- beluga.slopes %>%
 
 ### 2. Clean species occurrence data
 
-We have over a thousand GBIF occurrence records of belugas. Using the `CleanCoordinates` function from the `CoordinateCleaner` package, developed by Alexander Zizka, we can perform different tests of validity to flag potentially wrong coordinates (<a href="https://github.com/azizka/CoordinateCleaner" target="_blank">more info here</a>). For example, we are currently working with a marine species, the beluga whale, so we don't expect to see those on land. Nevertheless, people sometimes see whales from land, i.e. when they are whalewatching from the coastline and when they take a GPS reading. That occurrence would technically be on land, since it's for the land-based observer, not the whale swimming by. Additionally, some of the records might be from zoos, which can explain species appearing to occur outside of their usual ranges.
+We have over a thousand GBIF occurrence records of belugas. Using the `CleanCoordinates` function from the `CoordinateCleaner` package, developed by Alexander Zizka, we can perform different tests of validity to flag potentially wrong coordinates ([more info here](https://github.com/azizka/CoordinateCleaner)). For example, we are currently working with a marine species, the beluga whale, so we don't expect to see those on land. Nevertheless, people sometimes see whales from land, i.e. when they are whalewatching from the coastline and when they take a GPS reading. That occurrence would technically be on land, since it's for the land-based observer, not the whale swimming by. Additionally, some of the records might be from zoos, which can explain species appearing to occur outside of their usual ranges.
 
 Before we perform the coordinate tests, we can make a quick map to get an idea of the spatial spread of the beluga GBIF records. With `ggplot2` and the `ggthemes` packages (the theme_map() function comes from `ggthemes`), you can make quick and easy maps. To choose colours for your map, you can use the `Rcolourpicker` addin, which offers a really easy way to get the colour codes for whatever colours you want right within `RStudio`.
 
@@ -255,11 +255,11 @@ install.packages("colourpicker")
 
 To find out what the code for a colour you like is, click on `Addins/Colour picker`.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;)
 
 When you click on `All R colours` you will see lots of different colours you can choose from. A good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour. The same goes for `2`, `3` - you can add mode colours with the `+` or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear. In this case, we just need the colour code so we can copy that and delete the rest.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;)
 
 __Now that we have our colours, we can make a map. A map is really like any other graph. In our `ggplot()` code, we have to specify a dataframe and then say what should be plotted on the x axis and on the y axis: in our case, the longitude and latitude of each occurrence record.__
 
@@ -285,9 +285,9 @@ __When you want to change the colour, fill, shape or size of your points, bars o
 
 __When you want to specify particular colours, shapes or sizes, those are included *outside of the `aes()` code*, e.g. `geom_point(alpha = 0.5, size = 2, colour = "aquamarine3")`.__
 
-__Later on, if you are interested in learning how to use the `ggplot2` package to make many different types of graphs, you can check out <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">our tutorial introducing `ggplot2`</a> and <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">our tutorial on further customisation and data visualisation</a>.__
+__Later on, if you are interested in learning how to use the `ggplot2` package to make many different types of graphs, you can check out [our tutorial on further customisation and data visualisation](https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">our tutorial introducing `ggplot2`</a> and <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html).__
 
-<center> <img src="{{ site.baseurl }}/img/beluga_map.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/beluga_map.png" alt="Img" style="width: 800px;)
 <center>Figure 1. Map of all GBIF occurrences for the beluga whale.</center>
 
 __Do you spot any beluga whales where there shouldn't be any? We can check what the `CleanCoordinates` function flags as potentially wrong records. The function performs a series of tests, e.g. are there any zeros among the longitude and latitude values, and then returns a summary dataframe of whether each occurrence record failed or passed each test (i.e. `FALSE` vs `TRUE`).__
@@ -343,7 +343,7 @@ __Now we can update our map by swapping the `beluga` object with the `beluga.cle
     geom_point(alpha = 0.5, size = 2, colour = "aquamarine3"))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/beluga_map_clean.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/beluga_map_clean.png" alt="Img" style="width: 800px;)
 <center>Figure 2. Map of GBIF occurrences for the beluga whale after filtering for records that passed the coordinate validity tests.</center>
 
 Interestingly, some land points still appear. The tests did remove the obvious outliers, like the beluga record near Africa. We can manually exclude points we think are not real if we wish, e.g. the Greenland land point is fairly distinct and easy to remove.
@@ -479,7 +479,7 @@ getwd()
 ggsave(beluga.map.final, filename = "beluga_map_final.png", width = 10, height = 3)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/beluga_map_final.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/beluga_map_final.png" alt="Img" style="width: 800px;)
 <center>Figure 3. Map of beluga occurrence and monitoring sites</center>
 
 __Next, we will have a go at two other kinds of graphs, a line graph and a few scatterplots with linear model fits. We can use our custom `ggplot2` theme, `theme_marine`, so that all of our graphs have consistent formatting and we don't need to repeat the same code, e.g. to make the font a certain size, many times.__
@@ -496,7 +496,7 @@ yearly.obs <- beluga.clean %>% group_by(year) %>% tally() %>% ungroup() %>% filt
     theme_marine())  # Use our customised theme, saves many lines of code!
 ```
 
-__For our final set of graphs, we will plot beluga abundance through time and a linear model fit of population change for each beluga population, part of the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>.__
+__For our final set of graphs, we will plot beluga abundance through time and a linear model fit of population change for each beluga population, part of the [Living Planet Database](http://www.livingplanetindex.org/home/index).__
 
 ```r
 # ** Population trends ----
@@ -547,11 +547,11 @@ beluga3 <- filter(beluga.pop, id == "1950" | id == "4557" | id == "4558")
     guides(shape = FALSE))
 ```
 
-You might have noticed that the process is a bit repetitive. We are performing the same action, but for different species. It's not that big of a deal for three populations, but imagine we had a thousand!  If that were the case, we could have used a loop that goes through each population and makes a graph, or we could have used a pipe, where we group by population id and then make the graphs and finally we could have used the `lapply()` function which applies a function, in our case making a graph, to e.g. each population. There are many options and if you would like to learn more on how to automate your analysis and data visualisation when doing the same thing for many places or species, you can check out <a href="https://ourcodingclub.github.io/2017/03/20/seecc.html" target="_blank">our tutorial comparing loops, pipes and `lapply()`</a> and <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">our tutorial on using functions and loops</a>.
+You might have noticed that the process is a bit repetitive. We are performing the same action, but for different species. It's not that big of a deal for three populations, but imagine we had a thousand!  If that were the case, we could have used a loop that goes through each population and makes a graph, or we could have used a pipe, where we group by population id and then make the graphs and finally we could have used the `lapply()` function which applies a function, in our case making a graph, to e.g. each population. There are many options and if you would like to learn more on how to automate your analysis and data visualisation when doing the same thing for many places or species, you can check out [our tutorial on using functions and loops](https://ourcodingclub.github.io/2017/03/20/seecc.html" target="_blank">our tutorial comparing loops, pipes and `lapply()`</a> and <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html).
 
 #### Arrange all graphs in a panel with the `gridExtra` package
 
-The `grid.arrange` function from the `gridExtra` package creates panels of different graphs. You can check out our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html#panel" target="_blank">data visualisation tutorial</a> to find out more about `grid.arrange`.
+The `grid.arrange` function from the `gridExtra` package creates panels of different graphs. You can check out our [data visualisation tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html#panel) to find out more about `grid.arrange`.
 
 
 ```r
@@ -565,17 +565,17 @@ beluga.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(0.9, 1.1))
 # Stitching it all together
 ```
 
-<center> <img src="{{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;"/> </center>
+![]({{ site.baseurl }}/img/beluga_panel.png" alt="Img" style="width: 1000px;)
 <center>Figure 4. <b>a. Map of beluga occurrence and monitoring sites; b. occurrence records through time and population trends in c. Hudson Bay, d. Cook Inlet stock and e. St. Lawrence estuary.</b> Note that in St. Lawrence estuary, beluga populations were monitored in three separate studies.</center>
 
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.com/r/JYDDZ8F" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/JYDDZ8F)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -623,7 +623,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

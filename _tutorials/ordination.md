@@ -9,7 +9,7 @@ tags: data_manip, datavis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderordination.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderordination.png" alt="Img)
 	</center>
 </div>
 
@@ -71,19 +71,19 @@ varespec %>%
 
 ```
 The plot you've made should look like this:
-<center> <img src="{{ site.baseurl }}/img/ordexample.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/ordexample.png" alt="Img" style="width: 800px;)
 
 It is now a lot easier to interpret your data. Can you see which samples have a similar species composition?
 
 __In this tutorial, we only focus on unconstrained ordination or indirect gradient analysis.__ This ordination goes in two steps. First, we will perfom an ordination on a species abundance matrix. Then we will use environmental data (samples by environmental variables) to interpret the gradients that were uncovered by the ordination. The final result will look like this:
 
-<center> <img src="{{ site.baseurl }}/img/ordexample2.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/ordexample2.png" alt="Img" style="width: 800px;)
 
 ## Ordination vs. classification
 
 Ordination and classification (or clustering) are the two main classes of multivariate methods that community ecologists employ. To some degree, these two approaches are complementary. Classification, or putting samples into (perhaps hierarchical) classes, is often useful when one wishes to assign names to, or to map, ecological communities. However, given the continuous nature of communities, ordination can be considered a more natural approach. __Ordination aims at arranging samples or species continuously along gradients.__
 
-If you want to know how to do a classification, please check out our <a href="https://ourcodingclub.github.io/2017/03/21/data-clustering.html" target="_blank">Intro to data clustering</a>.
+If you want to know how to do a classification, please check out our [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html).
 
 
 
@@ -97,7 +97,7 @@ __In this section you will learn more about how and when to use the three main (
 <a name="section4"></a>
 ## Principal Component Analysis (PCA)
 PCA uses a rotation of the original axes to derive new axes, which maximize the variance in the data set. In 2D, this looks as follows:
-<center> <img src="{{ site.baseurl }}/img/PCAexample.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/PCAexample.png" alt="Img" style="width: 800px;)
 
 Computationally, __PCA is an eigenanalysis__. The most important consequences of this are:
 
@@ -140,7 +140,7 @@ plot(PCA, display = "species", type = "text")
 ```
 
 Try to display both species and sites with points. This should look like this:
-<center> <img src="{{ site.baseurl }}/img/PCAresult.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/PCAresult.png" alt="Img" style="width: 800px;)
 
 ```r
 # You can extract the species and site scores on the new PC for further analyses:
@@ -152,7 +152,7 @@ speciesPCA <- PCA$CA$v # Species scores
 biplot(PCA, choices = c(1,2), type = c("text", "points"), xlim = c(-5,10)) # biplot of axis 1 vs 2
 biplot(PCA, choices = c(1,3), type = c("text","points")) # biplot of axis 1 vs 3
 ```
-<center> <img src="{{ site.baseurl }}/img/biplotresult.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/biplotresult.png" alt="Img" style="width: 800px;)
 
 ```r
 # Check out the help file how to pimp your biplot further:
@@ -167,7 +167,7 @@ library(ggbiplot)
 
 In contrast to some of the other ordination techniques, species are represented by arrows. This implies that the abundance of the species is continuously increasing in the direction of the arrow, and decreasing in the opposite direction. Thus PCA is a linear method. PCA is extremely useful when we expect species to be linearly (or even monotonically) related to each other. Unfortunately, we rarely encounter such a situation in nature. It is much more likely that species have a unimodal species response curve: 
 
-<center> <img src="{{ site.baseurl }}/img/Unimodalresp.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/Unimodalresp.png" alt="Img" style="width: 800px;)
 
 Unfortunately, __this linear assumption causes PCA to suffer from a serious problem, the horseshoe or arch effect__, which makes it unsuitable for most ecological datasets. The PCA solution is often distorted into a horseshoe/arch shape (with the toe either up or down) if beta diversity is moderate to high. The horseshoe can appear even if there is an important secondary gradient. Can you detect a horseshoe shape in the biplot?
 
@@ -175,9 +175,9 @@ Unfortunately, __this linear assumption causes PCA to suffer from a serious prob
 ### Principal Coordinate Analysis (PCoA)
 __Principal coordinates analysis (PCoA, also known as metric multidimensional scaling) attempts to represent the distances between samples in a low-dimensional, Euclidean space. In particular, it maximizes the linear correlation between the distances in the distance matrix, and the distances in a space of low dimension (typically, 2 or 3 axes are selected). The PCoA algorithm is analogous to rotating the multidimensional object such that the distances (lines) in the shadow are maximally correlated with the distances (connections) in the object:__
 
-<center> <img src="{{ site.baseurl }}/img/PCOAexample.gif" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/PCOAexample.gif" alt="Img" style="width: 800px;)
 
-__The first step of a PCoA is the construction of a (dis)similarity matrix__. While PCA is based on Euclidean distances, PCoA can handle (dis)similarity matrices calculated from quantitative, semi-quantitative, qualitative, and mixed variables. As always, the choice of (dis)similarity measure is critical and must be suitable to the data in question. If you want to know more about distance measures, please check out our <a href="https://ourcodingclub.github.io/2017/03/21/data-clustering.html#Distance" target="_blank">Intro to data clustering</a>. For abundance data, Bray-Curtis distance is often recommended. You can use Jaccard index for presence/absence data. When the distance metric is Euclidean, PCoA is equivalent to Principal Components Analysis. __Although PCoA is based on a (dis)similarity matrix, the solution can be found by eigenanalysis__. The interpretation of the results is the same as with PCA. 
+__The first step of a PCoA is the construction of a (dis)similarity matrix__. While PCA is based on Euclidean distances, PCoA can handle (dis)similarity matrices calculated from quantitative, semi-quantitative, qualitative, and mixed variables. As always, the choice of (dis)similarity measure is critical and must be suitable to the data in question. If you want to know more about distance measures, please check out our [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html#Distance). For abundance data, Bray-Curtis distance is often recommended. You can use Jaccard index for presence/absence data. When the distance metric is Euclidean, PCoA is equivalent to Principal Components Analysis. __Although PCoA is based on a (dis)similarity matrix, the solution can be found by eigenanalysis__. The interpretation of the results is the same as with PCA. 
 
 ```r
 # First step is to calculate a distance matrix. 
@@ -208,7 +208,7 @@ biplot.pcoa(PCOA)
 biplot.pcoa(PCOA, varespec)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/PCOA.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/PCOA.png" alt="Img" style="width: 800px;)
 
 ```r
 # Extract the plot scores from first two PCoA axes (if you need them):
@@ -242,7 +242,7 @@ Axes are not ordered in NMDS. `metaMDS()` in `vegan` automatically rotates the f
 
 A plot of stress (a measure of goodness-of-fit) vs. dimensionality can be used to assess the proper choice of dimensions. The stress values themselves can be used as an indicator. Stress values `>0.2` are generally poor and potentially uninterpretable, whereas values `<0.1` are good and `<0.05` are excellent, leaving little danger of misinterpretation. Stress values between `0.1` and `0.2` are useable but some of the distances will be misleading. Finding the inflexion point can instruct the selection of a minimum number of dimensions.
 
-<center> <img src="{{ site.baseurl }}/img/NMDSstress.PNG" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDSstress.PNG" alt="Img" style="width: 800px;)
 
 __Methodology of NMDS:__
 - __Step 1:__ Perform NMDS with 1 to 10 dimensions
@@ -269,7 +269,7 @@ NMDS.scree <- function(x) { #where x is the name of the data frame variable
 NMDS.scree(dist)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/NMDSscree.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDSscree.png" alt="Img" style="width: 800px;)
 
 On this graph, we don´t see a data point for 1 dimension. Do you know what happened? Tip: Run a NMDS (with the function `metaNMDS()` with one dimension to find out what's wrong. Then adapt the function above to fix this problem.
 
@@ -300,7 +300,7 @@ Let's check the results of NMDS1 with a stressplot
 stressplot(NMDS1)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/NMDSstressplot.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDSstressplot.png" alt="Img" style="width: 800px;)
 
 There is a good non-metric fit between observed dissimilarities (in our distance matrix) and the distances in ordination space. Also the stress of our final result was ok (do you know how much the stress is?). So we can go further and plot the results:
 
@@ -324,7 +324,7 @@ orditorp(NMDS3, display = "sites", cex = 1.1, air = 0.01)
 
 
 ```
-<center> <img src="{{ site.baseurl }}/img/NMDSbiplot.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDSbiplot.png" alt="Img" style="width: 800px;)
 
 <a name="section3"></a>
 # 3. Interpretation of the results
@@ -345,7 +345,7 @@ plot(NMDS3, type = "t", display = "sites")
 plot(ef, p.max = 0.05)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/NMDSenvfit.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDSenvfit.png" alt="Img" style="width: 800px;)
 
 It´s easy as that. Next, let's say that the we have two groups of samples. This could be the result of a classification or just two predefined groups (e.g. old versus young forests or two treatments). Now, we want to see the two groups on the ordination plot. Here is how you do it:
 
@@ -367,7 +367,7 @@ orditorp(NMDS3, display = "sites", col = c(rep("red",12),
   rep("blue", 12)), air = 0.01, cex = 1.25)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/NMDScluster.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/NMDScluster.png" alt="Img" style="width: 800px;)
 
 __Congratulations! You´ve made it to the end of the tutorial! Now you can put your new knowledge into practice with a couple of challenges.__
 
@@ -378,7 +378,7 @@ __Congratulations! You´ve made it to the end of the tutorial! Now you can put y
 Perform an ordination analysis on the dune dataset (use `data(dune)` to import) provided by the vegan package. Interpret your results using the environmental variables from `dune.env`. 
 
 ## Challenge number 2
-If you already know how to do a classification analysis, you can also perform a classification on the dune data. Then combine the ordination and classification results as we did above. Please have a look at out tutorial <a href="https://ourcodingclub.github.io/2017/03/21/data-clustering.html" target="_blank">Intro to data clustering</a>, for more information on classification.
+If you already know how to do a classification analysis, you can also perform a classification on the dune data. Then combine the ordination and classification results as we did above. Please have a look at out tutorial [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html), for more information on classification.
 
 
 ---------------------------
@@ -390,17 +390,17 @@ __This is the end of the tutorial. In this tutorial we learned:__
 ##### - how to perform an ordination analysis in vegan and ape
 ##### - how to interpret the results of the ordination
 
-For more on `vegan` and how to use it for multivariate analysis of ecological communities, read this <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" target="_blank">vegan tutorial</a>. Another good website to learn more about statistical analysis of ecological data is <a href="https://sites.google.com/site/mb3gustame/home" target="_blank">GUSTA ME</a>. To construct this tutorial, we borrowed from <a href="https://sites.google.com/site/mb3gustame/home" target="_blank">GUSTA ME</a> and and <a href="http://ordination.okstate.edu/" target="_blank">Ordination methods for ecologists</a>.
+For more on `vegan` and how to use it for multivariate analysis of ecological communities, read this [Ordination methods for ecologists](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" target="_blank">vegan tutorial</a>. Another good website to learn more about statistical analysis of ecological data is <a href="https://sites.google.com/site/mb3gustame/home" target="_blank">GUSTA ME</a>. To construct this tutorial, we borrowed from <a href="https://sites.google.com/site/mb3gustame/home" target="_blank">GUSTA ME</a> and and <a href="http://ordination.okstate.edu/).
 
 
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/VYLPZ29" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VYLPZ29)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -450,7 +450,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul> 

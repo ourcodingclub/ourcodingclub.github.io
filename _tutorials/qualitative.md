@@ -408,7 +408,7 @@ tidy_energy_often_comment %>%
 
 ![]({{ site.baseurl }}/assets/img/tutorials/qualitative/wordcloud_qual.png)
 
-For more on text mining using `tidytext`, you can check out <a href="https://www.tidytextmining.com" target="_blank">the Gitbook website</a>.
+For more on text mining using `tidytext`, you can check out [the Gitbook website](https://www.tidytextmining.com).
 
 
 ## 4. Analyse qualitative data

@@ -9,7 +9,7 @@ tags: modelling data_manip data_vis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderdesign.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderdesign.png" alt="Img)
 	</center>
 </div>
 
@@ -26,7 +26,7 @@ tags: modelling data_manip data_vis
 #### <a href="#lme4b"> 9. Random slopes versus random intercepts `lme4` </a>
 #### <a href="#MCMCglmm"> 10. Hierarchical models using `MCMCglmm` </a>
 
-### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-model-design" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
 ## Introduction
 
@@ -42,11 +42,11 @@ In order to answer research questions, we require statistical tests of the relat
 
 ## 2. The research question
 
-In this tutorial, we will work with part of the long-term plant cover dataset from the <a href="http://arc-lter.ecosystems.mbl.edu/terrestrial-data" target="_blank">Toolik Lake Field Station</a>.  These data (remember the word data is plural, thus data are ... not data is ...!) are plant composition data collected over four years across five sites over time in Arctic tundra in Northern Alaska.  A simple question we might ask with these data is: how has the species richness changed in these plots over time?
+In this tutorial, we will work with part of the long-term plant cover dataset from the [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).  These data (remember the word data is plural, thus data are ... not data is ...!) are plant composition data collected over four years across five sites over time in Arctic tundra in Northern Alaska.  A simple question we might ask with these data is: how has the species richness changed in these plots over time?
 
 ### Question 1: How has plant species richness changed over time at Toolik Lake?
 
-Once we have figured out our research question, we next need to figure out our hypothesis. To come up with a hypothesis, we need to learn something about this system. To start us off today, we will suggest a hypothesis for you: plant species richness is increasing over time. We might expect this as these tundra plots might be undergoing warming and warming might lead to increased plant species richness in tundra plant communities (see <a href="https://www.nature.com/articles/s41586-018-0005-6" target="_blank">this paper</a> for more on this topic).
+Once we have figured out our research question, we next need to figure out our hypothesis. To come up with a hypothesis, we need to learn something about this system. To start us off today, we will suggest a hypothesis for you: plant species richness is increasing over time. We might expect this as these tundra plots might be undergoing warming and warming might lead to increased plant species richness in tundra plant communities (see [this paper](https://www.nature.com/articles/s41586-018-0005-6) for more on this topic).
 
 __Hypothesis 1: Plant species richness has increased over time at Toolik Lake.__ (Remember to phrase your hypothesis in the past tense, as these data represent changes that have already occurred and remember that results are always written in the past tense.)
 
@@ -163,7 +163,7 @@ __Some plant categories are in as just `moss` and `lichen` and they might be dif
 
 You might wonder why people are recording vole poop. This relates to how the data were collected: each plot is 1m^2 and there are 100 points within it. When people survey the plots, they drop a pin from each point and then record everything that touches the pin, be it a plant, or vole poop!
 
-__The non-species records in the species column are a good opportunity for us to practice data manipulation (<a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">you can check out our data manipulation tutorial here later</a>). We will filter out the records we don't need using the `filter` function from the `dplyr` package.__
+__The non-species records in the species column are a good opportunity for us to practice data manipulation ([you can check out our data manipulation tutorial here later](https://ourcodingclub.github.io/2017/01/16/piping.html)). We will filter out the records we don't need using the `filter` function from the `dplyr` package.__
 
 ```r
 # We use ! to say that we want to exclude
@@ -215,7 +215,7 @@ To explore the data further, we can make a histogram of species richness.
 
 Note that putting your entire `ggplot` code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the `hist` object. 
 
-<center> <img src="{{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 400px;"/> </center>
+![]({{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 400px;)
 
 __There are some other things we should think about.  There are different types of numeric data here.  For example, the years are whole numbers: we can't have the year 2000.5.__
 
@@ -227,7 +227,7 @@ __The plant cover can be any value that is positive, it is therefore bounded at 
     theme_classic())
 ```
 
-<center> <img src="{{ site.baseurl }}/img/cover_hist.png" alt="Img" style="width: 400px;"/> </center>
+![]({{ site.baseurl }}/img/cover_hist.png" alt="Img" style="width: 400px;)
 
 __The plant cover data are skewed to the left, i.e., most of the records in the `Relative.Cover` column have small values. These distributions and characteristics of the data need to be taken into account when we design our model.__
 
@@ -258,7 +258,7 @@ __Richness is a function of time.__
 
 __In `R`, this turns into the code: `richness ~ time`.__
 
-__Richness is our dependent (predictor) variable and time is our independent variable (<a href="https://en.wikipedia.org/wiki/Dependent_and_independent_variables" target="_blank"> see here for more details</a>). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
+__Richness is our dependent (predictor) variable and time is our independent variable ([ see here for more details](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
 
 <a name="models"></a>
 
@@ -309,7 +309,7 @@ __We know that because of how the experimental design was set up (remember the R
 
 __Model convergence is whether or not the model has worked, whether it has estimated your response variable (and random effects, see below) - basically whether the underlying mathematics have worked or have "broken" in some way. When we fit more complicated models, then we are pushing the limits of the underlying mathematics and things can go wrong, so it is important to check that your model did indeed work and that the estimates that you are making do make sense in the context of your raw data and the question you are asking/hypotheses that you are testing.__
 
-__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club MCMCglmm tutorial (<a href="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">tutorial here</a>). For an advanced discussion of model convergence, check out <a href="https://rdrr.io/cran/lme4/man/convergence.html" target="_blank">model convergence in lme4</a>.__
+__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club MCMCglmm tutorial ([model convergence in lme4](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">tutorial here</a>). For an advanced discussion of model convergence, check out <a href="https://rdrr.io/cran/lme4/man/convergence.html).__
 
 __For now, let's check the residual versus predicted plot for our linear model. By using the 'plot()' function, we can plot the residuals versus fitted values, a Q-Q plot of standardised residuals, a scale-location plot (square roots of standardiaed residuals versus fitted values) and a plot of residuals versus leverage that adds bands corresponding to Cook’s distances of 0.5 and 1. Looking at these plots can help you identify any outliers that have huge leverage and confirm that your model has indeed run e.g. you want the data points on the Q-Q plot to follow the one-to-one line.__
 
@@ -371,7 +371,7 @@ save_plot(filename = "model_fe.png",
 
 Note how when we visualise our random effects, three different plots come up (use the arrow buttons in the "plots" window to scroll through the plots). The first two show the interaction effects. Here, we are only interested in the plot that shows us the random effects of site, i.e. the figure we see below:
 
-<center> <img src="{{ site.baseurl }}/img/model_re.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_fe.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/model_fe.png" alt="Img" style="width: 500px;)
 
 ### For our second question, how does temperature influence species richness, we can design a similar model with one important difference: we will include `Year` as a random effect to account for temporal autocorrelation.
 
@@ -397,7 +397,7 @@ save_plot(filename = "model_temp_fe.png",
 
 Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year. 
 
-<center> <img src="{{ site.baseurl }}/img/model_temp_re.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_temp_fe.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/model_temp_fe.png" alt="Img" style="width: 500px;)
 
 #### Assumptions made:
 
@@ -451,7 +451,7 @@ save_plot(filename = "model_plant_fe.png",
           height = 14, width = 9)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/model_plant_re.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_plant_fe.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/model_plant_fe.png" alt="Img" style="width: 500px;)
 
 To get a better idea of what the random slopes and intercepts are doing, we can visualise your model predictions. We will use the `ggeffects` package to calculate model predictions and plot them. First, we calculate the overall predictions for the relationship between species richness and temperature. Then, we calculate the predictions for each plot, thus visualising the among-plot variation. Note that the second graph has both freely varying slopes and intercepts (i.e., they're different for each plot).
 
@@ -465,7 +465,7 @@ save_plot(filename = "model_temp_richness_rs_ri.png",
           height = 9, width = 9)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/model_temp_richness.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/model_temp_richness_rs_ri.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/model_temp_richness_rs_ri.png" alt="Img" style="width: 500px;)
 
 #### An important note about honest graphs!
 
@@ -506,7 +506,7 @@ ggsave(pred_plot2, filename = "ri_rs_predictions.png",
 
 ```
 
-<center> <img src="{{ site.baseurl }}/img/overall_predictions.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/ri_rs_predictions.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/ri_rs_predictions.png" alt="Img" style="width: 500px;)
 
 __Just for the sake of really seeing the random intercepts and random slopes, here is a zoomed in version), but note that when preparing graphs for reports or publications, your axes should start at zero to properly visualise the magnitude of the shown relationship.__
 
@@ -519,7 +519,7 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
        height = 5, width = 5)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/ri_rs_predictions_zoom.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/ri_rs_predictions_zoom.png" alt="Img" style="width: 500px;)
 
 <a name="MCMCglmm"></a>
 
@@ -527,7 +527,7 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
 
 __Let's take our `lme4` model and explore what that model structure looks like in `MCMCglmm`. `MCMCglmm` fits Generalised Linear Mixed-effects Models using a Markov chain Monte Carlo approach under a Bayesian statistical framework.__
 
-__To learn more about hierarchical models using `MCMCglmm`, you can check out our <a href="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">tutorial here</a>, which has more details on the different model structures you can have and also provides an explanation of what priors are and how to set them in `MCMCglmm`.__
+__To learn more about hierarchical models using `MCMCglmm`, you can check out our [tutorial here](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html), which has more details on the different model structures you can have and also provides an explanation of what priors are and how to set them in `MCMCglmm`.__
 
 For now, we can proceed knowing that just like in `lme4`, in `MCMCglmm`, we can add random and fixed effects to account for the structure of the data we are modelling. In `MCMCglmm`, there is greater flexibility in terms of specifying __priors__ - that is, you can give your model additional information that is then taken into account when the model runs. For example, there might be some lower and upper bound limit for our response variable - e.g. we probably won't find more than 1000 species in one small plant plot and zero is the lowest species richness can ever be.
 
@@ -542,7 +542,7 @@ plant_mcmc <- MCMCglmm(Richness ~ I(Year - 2007), random = ~Site,
 
 But we have a different problem: the model doesn't converge.
 
-<center> <img src="{{ site.baseurl }}/img/mcmc_error.png" alt="Img" style="width: 700px;"/> </center>
+![]({{ site.baseurl }}/img/mcmc_error.png" alt="Img" style="width: 700px;)
 
 The `MCMC_dummy` warning message is just referring to the fact that the data, `toolik_plants`, has the characteristics of a `tibble`, a data format for objects that come out of a `dplyr` pipe. So that's not something to worry about now, the real problem is that the model can't converge when `Site` is a random effect. We might not have enough sites or enough variation in the data.
 
@@ -559,7 +559,7 @@ The model has ran, we have seen the many iterations roll down the screen, but wh
 summary(plant_mcmc)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/mcmc_results.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/mcmc_results.png" alt="Img" style="width: 500px;)
 
 The posterior mean (i.e., the slope) for the `Year` term is `-0.07` (remember that this is on the logarithmic scale, because we have used a Poisson distribution). So in general, based on this model, species richness has declined over time.
 
@@ -570,7 +570,7 @@ plot(plant_mcmc$VCV)
 plot(plant_mcmc$Sol)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/bad_traces.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/bad_traces.png" alt="Img" style="width: 500px;)
 
 __Let's see what the `MCMCglmm` models are like when we estimate changes in the cover of one species - _Betula nana_, dwarf birch. We can also use a `Poisson` distribution here, as we can think about plant cover as proportion data, e.g., _Betula nana_ cover say 42% of our sample plot. There might be other suitable distributions like a beta binomial distribution, which we will explore in the sequel to this tutorial, coming to you soon!__
 
@@ -600,7 +600,7 @@ The trace plots for this model are a bit better than the previous one and we hav
 
 #### Visualise model outputs
 
-We can use the package `MCMCvis` by <a href="https://github.com/caseyyoungflesh/MCMCvis" target="_blank">Casey Youngflesh</a> to plot the results of our _Betula nana_ model.
+We can use the package `MCMCvis` by [Casey Youngflesh](https://github.com/caseyyoungflesh/MCMCvis) to plot the results of our _Betula nana_ model.
 
 ```r
 MCMCplot(betula_m$Sol)
@@ -609,7 +609,7 @@ MCMCplot(betula_m$VCV)
 
 `Sol` refers to the fixed effects and `VCV` to the random effects, so we can see the effect sizes of the different variables we have added to our models. If the credible intervals overlap zero, then those effects are not significant, so we can see here that _Betula nana_ cover hasn't changed. `units` refers to the residual variance.
 
-<center> <img src="{{ site.baseurl }}/img/mcmc_vis1.png" alt="Img" style="width: 400px;"/>  <img src="{{ site.baseurl }}/img/mcmc_vis2.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/mcmc_vis2.png" alt="Img" style="width: 500px;)
 
 #### Conclusions
 
@@ -619,7 +619,7 @@ Today we have learned that in order to design a statistical model, we first need
 
 If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
 
-__You can check out <a href="https://ourcodingclub.github.io/2018/04/30/stan-2.html" target="_blank">the Stan hierarchical modelling tutorial here!</a>__
+__You can check out [the Stan hierarchical modelling tutorial here!](https://ourcodingclub.github.io/2018/04/30/stan-2.html)__
 
 <p></p>
 
@@ -627,11 +627,11 @@ __You can check out <a href="https://ourcodingclub.github.io/2018/04/30/stan-2.h
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/PFJ7S2D" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/PFJ7S2D)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -681,7 +681,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

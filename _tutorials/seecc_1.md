@@ -10,7 +10,7 @@ tags: datavis data_manip
 
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderbigdata.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderbigdata.png" alt="Img)
 	</center>
 </div>
 
@@ -29,13 +29,13 @@ tags: datavis data_manip
 
 # Quantifying population change
 
-This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index Database</a>. We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from <a href="http://www.gbif.org/" target="_blank">the Global Biodiversity Information Facility</a> and <a href="http://www.flickr.com/" target="_blank">Flickr</a>. We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
+This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the [Flickr](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index Database</a>. We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from <a href="http://www.gbif.org/" target="_blank">the Global Biodiversity Information Facility</a> and <a href="http://www.flickr.com/). We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
 
-<center><img src="{{ site.baseurl }}/img/tidyverse.png" alt="Img" style="width: 1100px;"/></center>
+![]({{ site.baseurl }}/img/tidyverse.png" alt="Img" style="width: 1100px;)
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">tutorial.</a>
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial.](https://ourcodingclub.github.io/2017/02/27/git.html)
 
 Make a new script file using `File/ New File/ R Script` and we are all set to begin exploring how vertebrate populations are changing.
 
@@ -80,12 +80,12 @@ load("puffin_GBIF.RData")
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
-<center> <img src="{{ site.baseurl }}/img/SAB_fig1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/SAB_fig1.png" alt="Img" style="width: 500px;)
 
 Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary,
-<a href="https://www.jstatsoft.org/article/view/v059i10" target="_blank">tidy datasets</a> are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
+[tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
-<center> <img src="{{ site.baseurl }}/img/SAB_fig2.png" alt="Img" style="width: 400px;"/> </center>
+![]({{ site.baseurl }}/img/SAB_fig2.png" alt="Img" style="width: 400px;)
 
 This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc, R would be able to split the dataframe correctly, as each grouping factor has its own column.
 
@@ -199,7 +199,7 @@ Check out the new data frame using `View(LPI_biome_summ)` to find out how many p
 
 ## 3. Automating data manipulation using `lapply()`, loops and pipes
 
-Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">loops</a> and <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">piping</a>, but for now, here is a brief summary.
+Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [piping](https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">loops</a> and <a href="https://ourcodingclub.github.io/2017/01/16/piping.html), but for now, here is a brief summary.
 
 The `apply()` function and it's variants (`lapply()`,`sapply()`, `tapply()`, `mapply()`) act as wrappers around other functions that you want to apply equally to items in an array (`apply()`), list (`lapply()`, `sapply()`), grouped vector (`tapply()`), or some other multivariate function (`mapply()`).
 
@@ -419,11 +419,11 @@ install.packages("colourpicker")
 
 To find out what is the code for a colour you like, click on `Addins/Colour picker`.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;)
 
 When you click on `All R colours` you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour, same goes for `2`, `3` - you can add mode colours with the `+`, or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear - in this case, we just need the colour code, so we can copy that, and delete the rest.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;)
 
 ### Plotting histograms of population change in different biomes and saving them
 
@@ -447,7 +447,7 @@ biome.plots <- LPI_long %>%
 
 The histograms will be saved in your working directory. You can use `getwd()` to find out where that is, if you've forgotten. Check out the histograms - how does population change vary between the different biomes?
 
-<center><img src="{{ site.baseurl }}/img/hist_tundra.png" alt="Img" style="width: 400px;"/> <img src="{{ site.baseurl }}/img/hist_polar_seas.png" alt="Img" style="width: 400px;"/></center>
+![]({{ site.baseurl }}/img/hist_polar_seas.png" alt="Img" style="width: 400px;)
 
 ### Ploting slope estimates for population change versus duration of monitoring and adding histograms along the margins
 Within RStudio, you can use addins, including `Rcolourpicker` that we discussed above, and `ggExtra` that we will use for our marginal histograms.
@@ -467,12 +467,12 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 
 Once you've installed the package by running `install.packages("ggExtra")`, you can select the `ggplot2` code, click on `ggplot2 Marginal Histograms` from the Addin menu and build your plot. Once you click `Done`, the code will be automatically added to your script.
 
-<center><img src="{{ site.baseurl }}/img/ggextra1.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/ggextra1.png" alt="Img" style="width: 800px;)
 
-<center><img src="{{ site.baseurl }}/img/ggextra2.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/ggextra2.png" alt="Img" style="width: 800px;)
 
 Here is the final graph - what do you think, how has biodiversity changed in the last ~40 years?
-<center><img src="{{ site.baseurl }}/img/popchangehist.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/popchangehist.png" alt="Img" style="width: 800px;)
 
 ## Visualising species occurrence
 
@@ -504,13 +504,13 @@ Then create the plot using `ggplot()`:
 
 We used a colour palette from `RColorBrewer` to colour the points (`Set1`). You can see all the colour palettes by running `display.brewer.all()` in R.
 
-<center><img src="{{ site.baseurl }}/img/puffinmap.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/puffinmap.png" alt="Img" style="width: 800px;)
 
 <a name="Flickr"></a>
 
 ## 5. Species occurrence maps based on GBIF and Flickr data
 
-In this part of the tutorial, we will use two datasets, one from the Global Biodiversity Information Facility <a href="https://www.gbif.org" target="_blank">(GBIF)</a> and one from  <a href="https://www.flickr.com" target="_blank">Flickr</a>, to create species occurrence maps. 
+In this part of the tutorial, we will use two datasets, one from the Global Biodiversity Information Facility [Flickr](https://www.gbif.org" target="_blank">(GBIF)</a> and one from  <a href="https://www.flickr.com), to create species occurrence maps. 
 
 __So called "big data" are being increasingly used in the life sciences because they provide a lot of information on large scales and very fine resolution. However, these datasets can be quite tricky to work with.
 Most of the time the data is in the form of presence-only records. Volunteers, or social media users, take a picture or record the presence of a particular species and they report the time of the sighting and its location. Therefore, what we have is thousands of points with temporal and spatial information attached to them.__
@@ -563,12 +563,12 @@ library(ggthemes)
     geom_point(alpha = 0.4, colour = "red")) 
 
 ```
-<center><img src="{{ site.baseurl }}/img/GBIFoccurr.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/GBIFoccurr.png" alt="Img" style="width: 800px;)
 
 
 ### Clean data from Flickr
 
-We will now use the dataset flickr_puffins.txt. This dataset has been collected from Flickr Application Programming Interface (API), which is an interface through which softwares can interact with each other. APIs make it easy for developers to create applications which access the features or data of an operating system, application or other service. Because of time constraints, we are not going to go through the code to download data from Flick API, but you can find the script <a href="https://github.com/ourcodingclub/SEECC-workshop/blob/master/FlickrAPI.R" target="_blank">here</a> and I am happy to help if you find something unclear.
+We will now use the dataset flickr_puffins.txt. This dataset has been collected from Flickr Application Programming Interface (API), which is an interface through which softwares can interact with each other. APIs make it easy for developers to create applications which access the features or data of an operating system, application or other service. Because of time constraints, we are not going to go through the code to download data from Flick API, but you can find the script [here](https://github.com/ourcodingclub/SEECC-workshop/blob/master/FlickrAPI.R) and I am happy to help if you find something unclear.
 
 First, load the dataset and have a look at it.
 
@@ -589,7 +589,7 @@ coordinates(geopics) <- c("longitude", "latitude")    # make it spatial
 plot(geopics)                                         # plot it
 ```
 
-<center><img src="{{ site.baseurl }}/img/FlickrAll.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/FlickrAll.png" alt="Img" style="width: 700px;)
 
 The function `coordinates` sets spatial coordinates to create a Spatial object or retrieves spatial coordinates from a Spatial object.
 
@@ -601,7 +601,7 @@ flickr <- flickr[-which(flickr$latitude < 49.9),]
 ```
 
 Let's check that all the points are in the UK now, using a nicer plot. We first assign a particular coordinate refernce system (CRS) to the data. A CRS defines, with the help of coordinates, how a two-dimensional map is related to real places on the earth. Since the coordinates in our dataset are recorded as decimal degrees, we can assign our spatial object a Geographic Coordinate System (GCS). WGS 1984 is the most commonly used GCS so that's what we will use. 
-If you want to know more about CRS in R here is a useful <a href="http://rspatial.org/spatial/rst/6-crs.html" target="_blank">link</a>. 
+If you want to know more about CRS in R here is a useful [link](http://rspatial.org/spatial/rst/6-crs.html). 
 
 
 ```r
@@ -618,7 +618,7 @@ library(rworldmap)
 data(countriesLow)
 plot(countriesLow, add = T)
 ```
-<center><img src="{{ site.baseurl }}/img/FlickrUK.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/FlickrUK.png" alt="Img" style="width: 700px;)
 
 There is one more problem we need to solve: some of the data points are not on the coast, which means that these pictures are probably not puffins. In order to delete them, we are going to use the UK coastline to select only the datapoints that are within 1 km of the coast and the ones that are on the sea. 
 The first step is to split the dataset into a marine and a terrestrial one. After that, we can select only the points that are on the coast from the terrestrial dataset. Finally, we will put the marine and coastal points together.
@@ -690,7 +690,7 @@ Plot to check it worked.
 plot(flickr_coast)
 ```
 
-<center><img src="{{ site.baseurl }}/img/FlickrCoast.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/FlickrCoast.png" alt="Img" style="width: 800px;)
 
 Now we can put the marine and coastal datasets together and plot to check that it worked.
 
@@ -700,7 +700,7 @@ plot(UK_coast)
 points(flickr_correct, pch = 20, col = "steelblue")
 ```
 
-<center><img src="{{ site.baseurl }}/img/FlickrCoast2.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/FlickrCoast2.png" alt="Img" style="width: 800px;)
 
 ### Density maps
 
@@ -713,7 +713,7 @@ UK.Df <- fortify(UK_diss, region = "ID_0")
 flickr.points <- fortify(cbind(flickr_correct@data, flickr_correct@coords))
 ```
 
-Now, we can build our map with `ggplot2`. If you want to know more about the way you build plots in `ggplot2` here is a useful <a href="http://vita.had.co.nz/papers/layered-grammar.pdf" target="_blank">link</a>. One feature that you might want to take notice of is the use of `fill = ..level.., alpha = ..level..`. This syntax sets the colour and transparency of your density layer as dependent on the density itself. The `stat_` functions compute new values (in this case the `level` variable using the `kde2d` function from the package `MASS`) and create new data frames. The `..level..` tells ggplot to reference that column in the newly built data frame. The two dots indicate that the variable `level` is not present in the original data, but has been computed by the `stat_` function.
+Now, we can build our map with `ggplot2`. If you want to know more about the way you build plots in `ggplot2` here is a useful [link](http://vita.had.co.nz/papers/layered-grammar.pdf). One feature that you might want to take notice of is the use of `fill = ..level.., alpha = ..level..`. This syntax sets the colour and transparency of your density layer as dependent on the density itself. The `stat_` functions compute new values (in this case the `level` variable using the `kde2d` function from the package `MASS`) and create new data frames. The `..level..` tells ggplot to reference that column in the newly built data frame. The two dots indicate that the variable `level` is not present in the original data, but has been computed by the `stat_` function.
 
 ```r
 (plot.years <- ggplot(data = flickr.points, aes(x = longitude, y = latitude)) +  # plot the flickr data
@@ -735,7 +735,7 @@ Now, we can build our map with `ggplot2`. If you want to know more about the way
 
 # This will take a while to plot!
 ```
-<center><img src="{{ site.baseurl }}/img/FlickrDensity.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/FlickrDensity.png" alt="Img" style="width: 800px;)
 
 You can see from this plot that there are a few hotspots for watching puffins in the UK, such as the Farne Islands, Shetland and Flamborough Head.
 
@@ -749,18 +749,18 @@ Now try to build your own plot for the GBIF data. Remeber to:
 
 __If you get stuck you can find the code in the script SEECC_script_final.R <a href="https://github.com/ourcodingclub/SEECC-workshop/SEECC_script_final.R" target="_blank">here/a>.__
 
-__This tutorial was prepared for a workshop on quantifying biodiversity change at the Scottish Ecology, Environment and Conservation Conference on 3rd April in Aberdeen. If you want to learn more about our joint workshop with the Aberdeen Study Group, led by <a href="https://francescamancini.github.io/" target="_blank">Francesca Mancini</a>, you can check out our blog posts on the <a href="https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards/" target="_blank">Team Shrub blog</a> and <a href="https://francescamancini.github.io/FirstSteps/" target="_blank">Francesca's blog</a>. The workshop organisation and preparation of teaching materials were supported by the Global Environment & Society Academy Innovation Fund.__
+__This tutorial was prepared for a workshop on quantifying biodiversity change at the Scottish Ecology, Environment and Conservation Conference on 3rd April in Aberdeen. If you want to learn more about our joint workshop with the Aberdeen Study Group, led by [Francesca's blog](https://francescamancini.github.io/" target="_blank">Francesca Mancini</a>, you can check out our blog posts on the <a href="https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards/" target="_blank">Team Shrub blog</a> and <a href="https://francescamancini.github.io/FirstSteps/). The workshop organisation and preparation of teaching materials were supported by the Global Environment & Society Academy Innovation Fund.__
 
-<center><img src="{{ site.baseurl }}/img/GESA.jpg" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/GESA.jpg" alt="Img" style="width: 800px;)
 
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/9L5ZFNK" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/9L5ZFNK)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -808,7 +808,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

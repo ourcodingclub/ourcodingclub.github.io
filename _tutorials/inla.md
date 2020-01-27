@@ -8,7 +8,7 @@ meta: "Tutorials"
 tags: Modelling Advanced
 ---
 <div class="block">
-          <center><img src="{{ site.baseurl }}/img/tutheader_inla.png" alt="Img"></center>
+![]({{ site.baseurl }}/img/tutheader_inla.png" alt="Img)
         </div>
 	
 ### Tutorial Aims:
@@ -26,11 +26,11 @@ tags: Modelling Advanced
 #### <a href="#spatialtemp"> 6. Learn about spatiotemporal analyses </a>
 
 <a name = "intro"></a>
-### All the files needed to complete this tutorial can be downloaded from this <a href="https://github.com/ourcodingclub/CC-INLA" target="_blank">GitHub repository</a>. Click on `Clone or Download/Download ZIP` and then unzip the files.
+### All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.
 
 ## 1. Learn about INLA and why it's useful
 
-Welcome to this tutorial on `INLA`, written by <a href="https://www.researchgate.net/profile/Gregory_Albery" target="_blank">Greg Albery</a> off of the <a href="http://rumdeer.biology.ed.ac.uk" target="_blank">Pemberton Group</a>, Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is <a href="https://twitter.com/Gfalbery?lang=en-gb" target="_blank">@Gfalbery</a>.
+Welcome to this tutorial on `INLA`, written by [@Gfalbery](https://www.researchgate.net/profile/Gregory_Albery" target="_blank">Greg Albery</a> off of the <a href="http://rumdeer.biology.ed.ac.uk" target="_blank">Pemberton Group</a>, Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is <a href="https://twitter.com/Gfalbery?lang=en-gb).
 
 __Spatial autocorrelation is a common problem in ecological studies. Googling it, you'll commonly come across this phrase, Tobler's first law of geography:__ 
 ### "Everything is related to everything else, but near things are more related than distant things."
@@ -54,7 +54,7 @@ Zuur et al., 2018: http://www.highstat.com/index.php/beginner-s-guide-to-regress
 
 #### It uses the Integrated Nested Laplace Approximation, a deterministic Bayesian method.
 
-__Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on inferring the probability of a set of data given the determined parameters (involves setting a prior!). For more details, you can check out our <a href="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">Intro to Bayesian Statistics tutorial</a>.
+__Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on inferring the probability of a set of data given the determined parameters (involves setting a prior!). For more details, you can check out our [Intro to Bayesian Statistics tutorial](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html).
 
 __Deterministic__ = comes up with the same results every time, contrasted with probabilistic (e.g. MCMC).
 
@@ -164,7 +164,7 @@ THEME <- theme(axis.text.x = element_text(size = 12,colour = "black"),
 
 Recall that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `samp_locations` after you've created the "samp_locations" object. 
 
-<center> <img src="{{ site.baseurl }}/img/TrapLocations.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/TrapLocations.png" alt="Img" style="width: 500px;)
 
 How often are different individuals trapped on different grids?
 
@@ -224,11 +224,11 @@ This shows a load of significant effects: months, sex, treatment. Looks promisin
 
 __NB: There are no P values in `INLA`. Importance or significance of variables can be deduced by examining the overlap of their 2.5% and 97.5% posterior estimates with zero.__
 
-<center> <img src="{{ site.baseurl }}/img/INLA1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/INLA1.png" alt="Img" style="width: 500px;)
 
 It's likely that this model is overloaded with explanatory variables. Let's carry out model selection to remove the covariates that are unimportant.
 
-This involves removing covariates one by one and seeing how this changes model fit according to the model's <a href="https://en.wikipedia.org/wiki/Deviance_information_criterion" target="_blank">Deviance Information Criterion</a> (DIC, a Bayesian measure analogous to <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion" target="_blank">AIC</a>). If removing any number of covariates does not increase a model's DIC by a threshold number (I use 2 DIC) then the covariate with the lowest impact is removed. This process is repeated, using fewer and fewer covariates each time, until eventually you end up with a minimal model where removing any covariates increases the DIC by greater than the threshold value.
+This involves removing covariates one by one and seeing how this changes model fit according to the model's [AIC](https://en.wikipedia.org/wiki/Deviance_information_criterion" target="_blank">Deviance Information Criterion</a> (DIC, a Bayesian measure analogous to <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion)). If removing any number of covariates does not increase a model's DIC by a threshold number (I use 2 DIC) then the covariate with the lowest impact is removed. This process is repeated, using fewer and fewer covariates each time, until eventually you end up with a minimal model where removing any covariates increases the DIC by greater than the threshold value.
 
 Instead of doing this manually, which takes time and a lot of code and is boring, I threw together a function (`INLAModelSel` in the `ggregplot` package) which will do it for us. 
 
@@ -287,7 +287,7 @@ The setup so far has involved using quite simple model formulae. The next step i
 ### A bit about `INLA`
 `INLA` is computationally efficient because it uses a SPDE (Stochastic Partial Differentiation Equation) to estimate the spatial autocorrelation of the data. This involves using a "mesh" of discrete sampling locations which are interpolated to estimate a continuous process in space (see very helpful figure).
 
-<center> <img src="{{ site.baseurl }}/img/INLADiagram.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/INLADiagram.png" alt="Img" style="width: 500px;)
 
 So, you create a mesh using sampling locations and/or the borders of your study system.
 
@@ -318,11 +318,11 @@ points(Locations, col = "red", pch = 2)
 
 ```
 
-<center> <img src="{{ site.baseurl }}/img/MeshA.jpg" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/MeshA.jpg" alt="Img" style="width: 500px;)
 
-<center> <img src="{{ site.baseurl }}/img/MeshB.jpg" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/MeshB.jpg" alt="Img" style="width: 500px;)
 
-<center> <img src="{{ site.baseurl }}/img/MeshC.jpg" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/MeshC.jpg" alt="Img" style="width: 500px;)
 
 There are several important aspects of a mesh. The triangle size (determined using a combination of max.edge and cutoff) determines how precisely the equations will be tailored by the data. Using smaller triangles increases precision but also exponentially increases computing power. Generally, the mesh function automatically creates a mesh like mesh A, where closer-together sampling locations produce smaller triangles. The sampling locations in this dataset are so evenly spaced that I had to jitter them to show this in mesh A. When exploring/setting up preliminary analyses, use a mesh like mesh B. for analyses to be reported in a paper, use a mesh like mesh C. Be careful of edges, and try to allow some space around your sampling area for INLA to estimate. The edge triangles can be bigger to reduce computing power.
 
@@ -477,7 +477,7 @@ ggField(IM3, Mesh, Groups = 1) +
 # ignore the Groups part of the function for now. That'll come later.
 ```
 
-<center> <img src="{{ site.baseurl }}/img/Field1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Field1.png" alt="Img" style="width: 500px;)
 
 At what range does autocorrelation fade in space? INLA models with a large kappa (inverse range) parameter change very quickly in space. Those with a large range and small kappa parameter have much longer, slower graidents.
 
@@ -494,7 +494,7 @@ Maxrange = 40
 
 INLARange(list(IM3), maxrange = Maxrange)
 ```
-<center> <img src="{{ site.baseurl }}/img/Range1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Range1.png" alt="Img" style="width: 500px;)
 
 However, being able to visualise spatial patterns does not necessarily mean that spatial autocorrelation is affecting the model substantially, and range does not correspond to the importance of autocorrelation! In order to investigate that, we have to look at model fit. How does the DIC of these models compare?
 
@@ -510,7 +510,7 @@ This is quite hard to visualise, so: another function in the package!
 
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE"))
 ```
-<center> <img src="{{ site.baseurl }}/img/DIC1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/DIC1.png" alt="Img" style="width: 500px;)
 
 Seems like spatial autocorrelation doesn't affect these data the way we've coded it! Whoever carried out this study could keep going as they were and not worry any more about spatial autocorrelation. __Except we had some expectations that there might be other varieties of spatial autocorrelation at work here.__
 
@@ -584,12 +584,12 @@ ggField(IM4, Mesh, Groups = NGroups) + # Notice the groups argument, using the n
   facet_wrap( ~ Group, labeller = labeller(Group = Labels), ncol = 3) # Doing this manually changes the facet labels
   
 ```
-<center> <img src="{{ site.baseurl }}/img/Field2.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Field2.png" alt="Img" style="width: 500px;)
 
 ```r
 INLARange(SpatialHostList[3:4], maxrange = Maxrange, mesh = Mesh, ModelNames = c("Full", "Monthly"))
 ```
-<center> <img src="{{ site.baseurl }}/img/Range2.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Range2.png" alt="Img" style="width: 500px;)
 
 <a name="spatialtemp"></a>
 
@@ -623,18 +623,18 @@ NB: with Exchangeable, all fields are correlated to the same extent. If we used 
 
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3"))
 ```
-<center> <img src="{{ site.baseurl }}/img/DIC3.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/DIC3.png" alt="Img" style="width: 500px;)
 
 ```r
 ggField(IM5, Mesh, Groups = NGroups) + # Notice the groups argument, using the number of unique months.
   scale_fill_brewer(palette = "Greens") 
 ```
-<center> <img src="{{ site.baseurl }}/img/Field3.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Field3.png" alt="Img" style="width: 500px;)
 
 ```r
 INLARange(SpatialHostList[3:5], maxrange = Maxrange, ModelNames = c("Full", "Monthly", "Monthly2"))
 ```
-<center> <img src="{{ site.baseurl }}/img/Range3.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Range3.png" alt="Img" style="width: 500px;)
 
 
 ### Within-grid model
@@ -700,7 +700,7 @@ __Has this fit the data better?__
 ```r
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
-<center> <img src="{{ site.baseurl }}/img/DIC4.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/DIC4.png" alt="Img" style="width: 500px;)
 
 Nope!
 
@@ -714,7 +714,7 @@ ggField(I6, Mesh2, Groups = NGroup2)  +
   facet_wrap(~Group, labeller = labeller(Group = Labels2)) + scale_fill_brewer(palette = "Oranges") + 
   ggsave("Fields6.png", units = "mm", width = 120, height = 100, dpi = 300)
 ```
-<center> <img src="{{ site.baseurl }}/img/Fields6.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Fields6.png" alt="Img" style="width: 500px;)
 
 But the fields look cool!
 
@@ -725,7 +725,7 @@ The best-fitting model is SPDE 3 (model 5). This features different spatial fiel
 ```r
 Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
-<center> <img src="{{ site.baseurl }}/img/FinalEffects.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/FinalEffects.png" alt="Img" style="width: 500px;)
 
 
 # Added extras #
@@ -734,7 +734,7 @@ Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3",
 
 2. You can add a boundary to your mesh using INLA to better represent your study system. Here's an example with the Isle of Rum system I work on, portraying the coastline:
 
-<center> <img src="{{ site.baseurl }}/img/Rum.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/Rum.png" alt="Img" style="width: 500px;)
 
 3. You can also remove areas of the mesh where e.g. your organism can't live, using the barrier functions.
 
@@ -742,11 +742,11 @@ Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3",
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/VVGXKZG" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VVGXKZG)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -794,7 +794,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

@@ -9,7 +9,7 @@ tags: data_vis modelling
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_time.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_time.png" alt="Img)
 	</center>
 </div>
 
@@ -25,13 +25,13 @@ tags: data_vis modelling
 
 In this tutorial, we will explore and analyse time series data in `R`. Time series analysis is a powerful technique that can be used to understand the various temporal patterns in our data by decomposing data into different cyclic trends. Time series analysis can also be used to predict how levels of a variable will change in the future, taking into account what has happened in the past. By completing this workshop, you will learn not only how to do some simple time series analysis, but also how to prepare temporal data so that `R` understands that the data points occur in a distinct sequence, which is an art in itself.
 
-### All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank">this github repository</a>. Before we start, clone and download the repo as a zipfile, then unzip it.
+### All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from [this github repository](https://github.com/ourcodingclub/CC-time-series). Before we start, clone and download the repo as a zipfile, then unzip it.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank">the repository</a> to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">`git` and version control tutorial.</a>
+Alternatively, you can fork [`git` and version control tutorial.](https://github.com/ourcodingclub/CC-time-series" target="_blank">the repository</a> to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
 
 First up, open `RStudio`, make a new script by clicking `File/ New File/ R Script` and we are all set to learn about time series analysis!
 
-Set your working directory to the location of the folder you just downloaded from <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank">the GitHub repository</a>. Use the code below as a guide, but remember that the location of the folder on your computer will be different:
+Set your working directory to the location of the folder you just downloaded from [the GitHub repository](https://github.com/ourcodingclub/CC-time-series). Use the code below as a guide, but remember that the location of the folder on your computer will be different:
 
 ```r
 setwd("~/Downloads/CC-time-series-master")
@@ -261,10 +261,10 @@ Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
 <center>
-	<img src="{{ site.baseurl }}/img/monthly_milk_plot.png" alt="Img" style="width: 700px;">
+![]({{ site.baseurl }}/img/monthly_milk_plot.png" alt="Img" style="width: 700px;)
 </center>
 
-Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">tutorial on making your own `ggplot2` theme</a>, and if you want to learn more about the basics of `ggplot2`, <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">we have a workshop on that as well</a>!
+Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [we have a workshop on that as well](https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">tutorial on making your own `ggplot2` theme</a>, and if you want to learn more about the basics of `ggplot2`, <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html)!
 
 Play around with `date_labels`, replacing `"%Y"` with some other date marks from the table above (e.g. `%m-%Y`). `date_breaks` can also be customised to change the axis label frequency. Other options include `month`, `week` and `day` (e.g. `"5 weeks"`)
 
@@ -304,7 +304,7 @@ Firstly, it looks like there is a general upward trend: more milk is being produ
 `span` sets the number of points used to plot each local regression in the curve: the smaller the number, the more points are used and the more closely the curve will fit the original data.
 
 <center>
-	<img src="{{ site.baseurl }}/img/monthly_milk_loess.png" alt="Img" style="width: 700px;">
+![]({{ site.baseurl }}/img/monthly_milk_loess.png" alt="Img" style="width: 700px;)
 </center>
 
 
@@ -326,7 +326,7 @@ year_pal <- sequential(color = "darkturquoise", percentage = 5, what = "value")
 ```
 
 <center>
-	<img src="{{ site.baseurl }}/img/monthly_milk_month_trend.png" alt="Img" style="width: 700px;">
+![]({{ site.baseurl }}/img/monthly_milk_month_trend.png" alt="Img" style="width: 700px;)
 </center>
 
 It's clear from the plot that while milk production is steadily getting higher, the same pattern occurs throughout each year, with a peak in May and a trough in November.
@@ -349,7 +349,7 @@ seasonplot(monthly_milk_ts)
 ```
 
 <center>
-	<img src="{{ site.baseurl }}/img/monthly_milk_4plot.png" alt="Img" style="width: 700px;">
+![]({{ site.baseurl }}/img/monthly_milk_4plot.png" alt="Img" style="width: 700px;)
 </center>
 
 
@@ -357,7 +357,7 @@ seasonplot(monthly_milk_ts)
 
 Often time series data are used to predict what might happen in the future, given the patterns seen in the data. This is known as forecasting. There are many methods used to forecast time series data, and they vary widely in complexity, but this should serve as a brief introduction to the most commonly used methods.
 
-All the models used in this workshop are known as ETS models. ETS stands for Error, Trend, Seasonality. ETS models are also known as Exponential Smoothing State Space models. ETS models are used for modelling how a single variable will change over time by identifying its underlying trends, not taking into account any other variables. ETS models differ from a simple moving average by weighting the influence of previous points on future time points based on how much time is between the two points. i.e. over a longer period of time it is more likely that some unmeasured condition has changed, resulting in different behaviour of the variable that has been measured. Another important group of forecast models are the ARIMA models, autoregressive models which describe autocorrelations in the data rather than trends and seasonality. Unfortunately there isn't a lot of time to get into ARIMA models during this workshop, but <a href="https://www.otexts.org/fpp/8" target="_blank">Rob Hyndman and George Athanasopoulos have a great book that is freely available online which covers ARIMA models and a lot more</a>. 
+All the models used in this workshop are known as ETS models. ETS stands for Error, Trend, Seasonality. ETS models are also known as Exponential Smoothing State Space models. ETS models are used for modelling how a single variable will change over time by identifying its underlying trends, not taking into account any other variables. ETS models differ from a simple moving average by weighting the influence of previous points on future time points based on how much time is between the two points. i.e. over a longer period of time it is more likely that some unmeasured condition has changed, resulting in different behaviour of the variable that has been measured. Another important group of forecast models are the ARIMA models, autoregressive models which describe autocorrelations in the data rather than trends and seasonality. Unfortunately there isn't a lot of time to get into ARIMA models during this workshop, but [Rob Hyndman and George Athanasopoulos have a great book that is freely available online which covers ARIMA models and a lot more](https://www.otexts.org/fpp/8). 
 
 ETS models are normally denoted by three letters, e.g. `ETS_AMZ`. The first letter (A) refers to the error type, the second letter (M) is the trend type and the third letter (Z) is the season type. Possible letters are:
 
@@ -369,7 +369,7 @@ ETS models are normally denoted by three letters, e.g. `ETS_AMZ`. The first lett
 
 `Z` = Automatically selected
 
-I wouldn't worry too much about the implications of these model types for now. For this tutorial we will just pick some basic model types and compare them. If you want to read more about ETS model types, I recommend <a href="http://www.exponentialsmoothing.net" target="_blank">this book</a>.
+I wouldn't worry too much about the implications of these model types for now. For this tutorial we will just pick some basic model types and compare them. If you want to read more about ETS model types, I recommend [this book](http://www.exponentialsmoothing.net).
 
 Choosing which model to use to forecast your data can be difficult and requires using your own intuition, as well as looking at test statistics. To test the accuracy of a model, we have to compare it to data that has not been used to generate the forecast, so let's create some data subsets from the `monthly_milk_ts` time series object - one for generating the model (`monthly_milk_model`) and one for testing the model's accuracy (`monthly_milk_test`). `window()` is a function similar to `subset()` or `filter()`, subsetting an object based on arguments, but it is used especially for time series (`ts`) objects. `window()` takes the original time series object (`x`) and the `start` and `end` points of the subset. If `end` is not included, the subset extends to the end of the time series:
 
@@ -378,7 +378,7 @@ monthly_milk_model <- window(x = monthly_milk_ts, start = c(1962), end = c(1970)
 monthly_milk_test <- window(x = monthly_milk_ts, start = c(1970))
 ```
 
-Let's first compare model forecasts of different ETS models visually by extracting forecast data from `forecast` objects and plotting it using `ggplot()` against the test data. The code below is quite long and could be made more concise by using <a href="http://www.ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">pipes, or `apply()` functions</a> but writing it long-hand like this allows you to investigate all the intermediate objects for yourself so you understand how they are structured and what they show:
+Let's first compare model forecasts of different ETS models visually by extracting forecast data from `forecast` objects and plotting it using `ggplot()` against the test data. The code below is quite long and could be made more concise by using [pipes, or `apply()` functions](http://www.ourcodingclub.github.io/2017/01/16/piping.html) but writing it long-hand like this allows you to investigate all the intermediate objects for yourself so you understand how they are structured and what they show:
 
 ```r
 # Creating model objects of each type of ets model
@@ -429,7 +429,7 @@ __Now that we have all the information for the forecasts, we are ready to make o
 ```
 
 <center>
-	<img src="{{ site.baseurl }}/img/monthly_milk_fc_all.png" alt="Img" style="width: 700px;">
+![]({{ site.baseurl }}/img/monthly_milk_fc_all.png" alt="Img" style="width: 700px;)
 </center>
 
 You can also numerically compare the accuracy of different models to the data we excluded from the model (`monthly_milk_test`) using `accuracy()`:
@@ -467,7 +467,7 @@ Let's pick apart those statistics:
 
 `Theil's U`: Compares the forecast with results from a model using minimal data. Errors are squared to give more weight to large errors. A `U<1` means the forecast is better than guessing, while a `U>1` means the forecast is worse than guessing.
 
-`MAPE` is the most commonly used measure of forecast accuracy, probably due to it being easy to understand conceptually. However, `MAPE` becomes highly skewed when observed values in the time series are close to zero and infinite when observations equal zero, making it unsuitable for some time series that have low report values. `MAPE` also gives a heavier penalty to positive deviations than negative deviations, which makes it useful for some analyses, e.g. economic forecasts which don't want to run the risk of over-estimating the value of a commodity. `MASE` is suggested here as an alternative which avoids the shortcomings of `MAPE` while remaining interpretable. If you're really keen, have a read of <a href="https://www.researchgate.net/publication/222665190_Another_look_at_measures_of_forecast_accuracy" target="_blank">Hyndman & Koehler 2006</a> for more on `MASE` and the potential shortcomings of all these proxies for model accuracy.
+`MAPE` is the most commonly used measure of forecast accuracy, probably due to it being easy to understand conceptually. However, `MAPE` becomes highly skewed when observed values in the time series are close to zero and infinite when observations equal zero, making it unsuitable for some time series that have low report values. `MAPE` also gives a heavier penalty to positive deviations than negative deviations, which makes it useful for some analyses, e.g. economic forecasts which don't want to run the risk of over-estimating the value of a commodity. `MASE` is suggested here as an alternative which avoids the shortcomings of `MAPE` while remaining interpretable. If you're really keen, have a read of [Hyndman & Koehler 2006](https://www.researchgate.net/publication/222665190_Another_look_at_measures_of_forecast_accuracy) for more on `MASE` and the potential shortcomings of all these proxies for model accuracy.
 
 `Training set` denotes values that were gathered from comparing the forecast to the data that was used to generate the forecast (notice how the Mean Error (`ME`) is very small).
 
@@ -476,7 +476,7 @@ Let's pick apart those statistics:
 By comparing the MAPE and MASE statistics of the four models in the `Test set` row, we can see that the `monthly_milk_ets_fc` and `monthly_milk_ets_zzz_fc` models have the lowest values. Looking at the graphs for this forecast and comparing it visually to the test data, we can see that this is the forecast which best matches the test data. So we can use that forecast to project into the future.
 
 ### Extracting values from a forecast
-Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I'm using functions from the <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">`dplyr` package, with pipes (`%>%`)</a>, but you could use any other method of subsetting such as the `[]` square bracket method using base `R`:
+Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I'm using functions from the [`dplyr` package, with pipes (`%>%`)](https://ourcodingclub.github.io/2017/01/16/piping.html), but you could use any other method of subsetting such as the `[]` square bracket method using base `R`:
 
 ```r
 milk_ets_fc_df %>%
@@ -493,12 +493,12 @@ milk_ets_zzz_fc_df %>%
 
 ## 4. Coding challenge
 
-Now that you have worked through the tutorial, use what you have learnt to make some model forecasts and plot some graphs to investigate temporal patterns for our data on CO2 concentrations on Mauna Loa, Hawaii. See if you can predict the CO2 concentration for June 2050. You can find the data in `co2_loa.csv` in the folder you downloaded from the <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank">the GitHub repository for this tutorial</a>.
+Now that you have worked through the tutorial, use what you have learnt to make some model forecasts and plot some graphs to investigate temporal patterns for our data on CO2 concentrations on Mauna Loa, Hawaii. See if you can predict the CO2 concentration for June 2050. You can find the data in `co2_loa.csv` in the folder you downloaded from the [the GitHub repository for this tutorial](https://github.com/ourcodingclub/CC-time-series).
 
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/26V3WTJ" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/26V3WTJ)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -546,7 +546,7 @@ Now that you have worked through the tutorial, use what you have learnt to make 
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

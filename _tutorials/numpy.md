@@ -8,7 +8,7 @@ meta: "Tutorials"
 tags: python
 ---
 <div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheader-numpy.png" alt="Img"></center>
+![]({{ site.baseurl }}/img/tutheader-numpy.png" alt="Img)
 </div>
 
 ### Tutorial aims:
@@ -306,7 +306,7 @@ As a scientific computing tool, Python is a powerful tool, with NumPy at its hea
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/795PKMV" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/795PKMV)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -341,7 +341,7 @@ As a scientific computing tool, Python is a powerful tool, with NumPy at its hea
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

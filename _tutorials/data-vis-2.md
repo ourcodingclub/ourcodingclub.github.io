@@ -11,7 +11,7 @@ tags: data_manip, datavis
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderdatavis2.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderdatavis2.png" alt="Img)
 	</center>
 </div>
 
@@ -35,15 +35,15 @@ tags: data_manip, datavis
 
 #### <a href="#challenge"> 6. Challenge yourself! </a>
 
-Following from our first tutorial on <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank"> data visualisation using `ggplot2`</a>, we are now back for more `ggplot2` practice and customisation. Since no two figures are ever the same, the ability to customise your figures is key. __The ultimate aim of this tutorial is to help you to make your figures even more beautiful and informative!__ 
+Following from our first tutorial on [ data visualisation using `ggplot2`](https://ourcodingclub.github.io/2017/01/29/datavis.html), we are now back for more `ggplot2` practice and customisation. Since no two figures are ever the same, the ability to customise your figures is key. __The ultimate aim of this tutorial is to help you to make your figures even more beautiful and informative!__ 
 
 ### Downloading data 
 
 We will use made-up data consisting of the abundance and height of different plant species occurring in two magic lands: Hogsmeade and Narnia. 
 
-#### The imaginary data for this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">this repository.</a> Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (replacing with your actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
+#### The imaginary data for this tutorial can be downloaded from [this repository.](https://github.com/ourcodingclub/CC-10-DataVis2) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (replacing with your actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">the repository</a>  to your own GitHub account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on GitHub, download Git, sync RStudio and Github and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">Git tutorial.</a>
+Alternatively, you can fork [Git tutorial.](https://github.com/ourcodingclub/CC-10-DataVis2" target="_blank">the repository</a>  to your own GitHub account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on GitHub, download Git, sync RStudio and Github and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
 
 Make a new script file through clicking `File/ New File/ R Script`, give it a title and some information, and we are all set to explore how plant communities have changed in our magical lands: Hogsmeade and Narnia!
 
@@ -88,7 +88,7 @@ species_counts <- magic_veg %>%
   summarise(Species_number = length(unique(species)))
 ```
 
-Using what we've learnt from our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">previous data visualisation tutorial</a> , we run the following code to create a histogram. 
+Using what we've learnt from our [previous data visualisation tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html) , we run the following code to create a histogram. 
 
 ```r
 (hist <- ggplot(species_counts, aes(x = plot)) +
@@ -97,7 +97,7 @@ Using what we've learnt from our <a href="https://ourcodingclub.github.io/2017/0
 
 __Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer.__ If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the "hist" object. 
 
-<center> <img src="{{ site.baseurl }}/img/histwrong1.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histwrong1.png" alt="Img" style="width: 750px;)
 <center> <b>Uh, oh... That's a weird histogram! </b></center>
 
 This is the common way of making a histogram, when you have one observation per row and the histogram tallies them for you. But you can immediately see that it doesn't look right, because we are working with summarised data. You therefore need to tell R that you _already know_ how many species are in each plot. You do that by specifying the `stat` argument:
@@ -112,7 +112,7 @@ This is the common way of making a histogram, when you have one observation per 
    )
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histwrong2.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histwrong2.png" alt="Img" style="width: 750px;)
 
 That looks a bit better, but it still seems to have far too many species. That's because plots from each land are being grouped together. We can separate them by introducing a colour code, and make a stacked bar plot like this:
 
@@ -123,7 +123,7 @@ That looks a bit better, but it still seems to have far too many species. That's
 # Remember that any aesthetics that are a function of your data (like fill here) need to be INSIDE the aes() brackets.
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histwrong3.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histwrong3.png" alt="Img" style="width: 750px;)
 
 And if we want to make the columns to appear side by side rather than being stacked, you add `position = "dodge"` to the `geom`'s arguments. 
 
@@ -132,7 +132,7 @@ And if we want to make the columns to appear side by side rather than being stac
     geom_histogram(stat = "identity", position = "dodge"))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbase.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histbase.png" alt="Img" style="width: 750px;)
 <center> <b>That's certainly much better... not perfect though!</b> </center>
 
 Note how our figure __only shows plot numbers 2, 4, and 6.__ If you want the axis to display every plot number, 1 - 6, you can run the following code using `breaks = c(1,2,3,4,5,6)` or using `breaks = 1:6`. We can also specify the limits of the plot axes - running the code below, you'll be able to see that the limit of the y axis now extends to the value of 50! This helps us keep all our data within the axis labels that we have, in terms of the visualisation!
@@ -144,7 +144,7 @@ Note how our figure __only shows plot numbers 2, 4, and 6.__ If you want the axi
     scale_y_continuous(limits = c(0, 50)))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbase2.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histbase2.png" alt="Img" style="width: 750px;)
 
 <a name="labs"></a>
 
@@ -163,14 +163,14 @@ Now it's time for us to add more information to our graphs, for example, the plo
          x = "\n Plot number", y = "Number of species \n"))     # \n adds space before x and after y axis text
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut1a.png" alt="Img" style="width: 850px;"/> </center>
+![]({{ site.baseurl }}/img/histbeaut1a.png" alt="Img" style="width: 850px;)
 
 
 <div class="bs-callout-yellow" markdown="1">
 
 #### Control _everything_!
 
-You can also add in `theme()` elements to your plot, which let you customise even more aspects! We already introduced theme elements in our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank"> previous tutorial</a>. Here, we're showing you how to change the font sizes of the axis label (axis text), axis title and plot title. Other things you can play around with are:
+You can also add in `theme()` elements to your plot, which let you customise even more aspects! We already introduced theme elements in our [ previous tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html). Here, we're showing you how to change the font sizes of the axis label (axis text), axis title and plot title. Other things you can play around with are:
 - italicise or bold the text with `face = "italic"` or `face = "bold"` respectively 
 - center the title using `hjust = 0.5` 
 
@@ -190,7 +190,7 @@ __Note:__ if we wanted to specify different options for the x and y axis, we cou
           plot.title = element_text(size = 14, hjust = 0.5, face = "bold")))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut1b.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histbeaut1b.png" alt="Img" style="width: 750px;)
 
 
 <a name="panel"></a>
@@ -215,7 +215,7 @@ To remove the grid lines, we add the code `panel.grid = element_blank()` within 
           plot.title = element_text(size = 14, hjust = 0.5, face = "bold")))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut2.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histbeaut2.png" alt="Img" style="width: 750px;)
 
 <a name="legend"></a>
 
@@ -229,7 +229,7 @@ The `scale_fill_manual(values = c("your-colour-1", "your-colour-2", ...))` funct
 <div class="bs-callout-blue" markdown="1">
 #### Need inspiration for your colours?
 
-You can define colours using R's <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">built-in colour names</a> or by specifying their <a href="https://www.color-hex.com/" target="_blank">Hex codes</a>. The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our <a href="https://ourcodingclub.github.io/2015/01/29/datavis_update.html#practice" target="_blank">previous tutorial</a> for instructions on how to install it.
+You can define colours using R's [previous tutorial](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">built-in colour names</a> or by specifying their <a href="https://www.color-hex.com/" target="_blank">Hex codes</a>. The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our <a href="https://ourcodingclub.github.io/2015/01/29/datavis_update.html#practice) for instructions on how to install it.
 
 </div>
 
@@ -296,7 +296,7 @@ __Note:__ If you want your file to be saved in a specific folder that is _within
 ggsave("magical-sp-rich-hist.png", width = 7, height = 5, dpi = 300)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/histbeaut-final.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/histbeaut-final.png" alt="Img" style="width: 750px;)
 
 <center> <b>Congratulations, you've made a beautiful graph!</b> </center> 
 
@@ -305,7 +305,7 @@ ggsave("magical-sp-rich-hist.png", width = 7, height = 5, dpi = 300)
 
 ## 3. Create your own colour palette
 
-When you have several factor levels and need to come up with a pretty, clear, and contrasting colour scheme, it is always a good idea to look online for inspiration. Some great websites we use are <a href="http://colorbrewer2.org/" target="_blank">Colour Brewer</a> or <a href="https://coolors.co/" target="_blank">coolors</a>. Colour Brewer even allows you to specify colourblind-safe palettes, which you definitely should want! 
+When you have several factor levels and need to come up with a pretty, clear, and contrasting colour scheme, it is always a good idea to look online for inspiration. Some great websites we use are [coolors](http://colorbrewer2.org/" target="_blank">Colour Brewer</a> or <a href="https://coolors.co/). Colour Brewer even allows you to specify colourblind-safe palettes, which you definitely should want! 
 
 A more advanced use of colour palettes is to create one linked to your factor levels. This is great when you work on a project that will have multiple figures, and you want the colour-coding to be consistent across the board. Linking colours specifically to factor levels ensures that if a factor is dropped from a data frame, the corresponding colour will be dropped from the resulting plot, too, instead of being reassigned to the next available factor level.
 
@@ -369,7 +369,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 
 ```
 
-<center> <img src="{{ site.baseurl }}/img/DL_datavis2_magiclands.png" alt="Img" style="width: 850px;"/> </center>
+![]({{ site.baseurl }}/img/DL_datavis2_magiclands.png" alt="Img" style="width: 850px;)
 
 <center> <b> Notice the consistent colour coding when dropping factors! </b> </center> <br>
 
@@ -379,7 +379,7 @@ names(magic.palette) <- levels(more_magic$land)                                 
 
 So far we've used `scale_colour_manual()` and `scale_fill_manual()` to define custom colours for factor levels. But what if your variable is continuous rather than categorical, so that you can't possibly assign a colour to every value? You might then want the colour scheme to go from light to dark according to the values, and `scale_colour_gradient()` (and its friend `scale_fill_gradient()`) are there for you (and might be useful for the challenge too, _cough cough_). 
 
-You can learn <a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" target="_blank">more about these functions here</a>; basically, you just have to set your `low = ` and `high = ` colour values and the function will do the rest for you. We love it!
+You can learn [more about these functions here](https://ggplot2.tidyverse.org/reference/scale_gradient.html); basically, you just have to set your `low = ` and `high = ` colour values and the function will do the rest for you. We love it!
 
 </div>
 
@@ -388,7 +388,7 @@ You can learn <a href="https://ggplot2.tidyverse.org/reference/scale_gradient.ht
 
 We could also plot the data using boxplots. Boxplots sometimes look better than bar plots, as they make more efficient use of space than bars and can reflect uncertainty in nice ways. 
 
-To make the boxplots, we will slightly reshape the dataset to take account of year as well. For more information on data manipulation using `dplyr` and pipes `%>%`, you can check out our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">data manipulation tutorial</a>.
+To make the boxplots, we will slightly reshape the dataset to take account of year as well. For more information on data manipulation using `dplyr` and pipes `%>%`, you can check out our [data manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html).
 
 
 ```r
@@ -406,7 +406,7 @@ We first can plot the basic boxplot, without all the extra beautification we've 
   geom_boxplot())
 ```
 
-<center> <img src="{{ site.baseurl }}/img/boxbase.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/boxbase.png" alt="Img" style="width: 750px;)
 
 This does a much nicer job of showing which plots are the most species rich. With the beautifying customisations we've just learnt, we can make the plot much prettier! 
 
@@ -435,7 +435,7 @@ ggsave("magical-sp-rich-boxplot1.png", width = 7, height = 5, dpi = 300)
 
 ```
 
-<center> <img src="{{ site.baseurl }}/img/boxbeaut1.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/boxbeaut1.png" alt="Img" style="width: 750px;)
 <br>
 
 <div class="bs-callout-yellow" markdown="1">
@@ -445,7 +445,7 @@ Bar plots are very commonly used to show differences or ranking among groups. A 
 
 An easy alternative is a __dot plot__, which you could have done by summarising the `species_counts` data to get a mean and standard deviation of species counts for each land. You'd then use `geom_point(aes(x = land, y = mean))` rather than `geom_histogram()`, and add your uncertainty with `geom_errorbar(aes(x = land, ymin = mean - sd, ymax = mean + sd)`. This results in a plot like this:
 
-<center> <img src="{{ site.baseurl }}/img/DL_datavis2_dotplot.png" alt="Img" style="width: 400px;"/> </center>
+![]({{ site.baseurl }}/img/DL_datavis2_dotplot.png" alt="Img" style="width: 400px;)
 <br>
 
 <details>
@@ -488,7 +488,7 @@ Boxplots, just like dot plots, give a more accurate idea of the range of values 
 
 ### Reordering factors
 
-Remember how we learnt to recode and reorder factors in our <a href="https://ourcodingclub.github.io/2015/10/11/data-manip-advanced.html#factors" target="_blank">advanced data manipulation tutorial</a>? We often want to do this so that we can __plot values in a specific order__.
+Remember how we learnt to recode and reorder factors in our [advanced data manipulation tutorial](https://ourcodingclub.github.io/2015/10/11/data-manip-advanced.html#factors)? We often want to do this so that we can __plot values in a specific order__.
 
 If we wanted to have Narnia come before Hogsmeade, we would first have to reorder the data in the dataframe. From this point, after reordering the data, `ggplot` will always plot Narnia before Hogsmeade. Also, note how we've changed the order of things in `scale_fill_manual` - above we had it as "Hogsmeade", then "Narnia", and now we have "Narnia" come before "Hogsmeade" to also reorder the legend. 
 
@@ -520,7 +520,7 @@ yearly_counts$land <- factor(yearly_counts$land,
 	
 ```
 
-<center> <img src="{{ site.baseurl }}/img/boxbeaut2.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/boxbeaut2.png" alt="Img" style="width: 750px;)
 
 If we wanted to reorder the y axis of plot numbers, such that the boxplot for plot 6 comes before 1, then 2, 3, 4, 5, we can use the same principle. Again, from this point on, `ggplot` will always plot "6" before the rest. 
 
@@ -551,7 +551,7 @@ yearly_counts$plot <- factor(yearly_counts$plot,
           legend.box.background = element_rect(color = "grey", size = 0.3)))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/boxbeaut3.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/boxbeaut3.png" alt="Img" style="width: 750px;)
 
 
 
@@ -580,7 +580,7 @@ We can view this as a basic scatterplot in `ggplot2`:
   theme_bw())
 ```
 
-We can see pretty clear trends over time, and so we can try to plot a simple straight line through this using `stat_smooth` in `ggplot2`, by specifying a linear model (lm) method. We did this briefly at the end of our <a href="https://ourcodingclub.github.io/2015/01/29/datavis_update.html#scatter" target="_blank">first `ggplot` tutorial</a>.
+We can see pretty clear trends over time, and so we can try to plot a simple straight line through this using `stat_smooth` in `ggplot2`, by specifying a linear model (lm) method. We did this briefly at the end of our [first `ggplot` tutorial](https://ourcodingclub.github.io/2015/01/29/datavis_update.html#scatter).
 
 ```r
 (basic_mm_scatter_line <- ggplot(heights, aes(year, Height, colour = land)) +
@@ -589,9 +589,9 @@ We can see pretty clear trends over time, and so we can try to plot a simple str
   stat_smooth(method = "lm"))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/mixmod2.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/mixmod2.png" alt="Img" style="width: 750px;)
 
-However, perhaps this isn't what we really want, because you can see the relationship isn't linear. An alternative would be to use a different smoothing equation. Let's try a quadratic fit - something slightly more complicated to produce than the standard fits provided by R. Thankfully, `ggplot2` lets us customise to pretty much any type of fit we want, as we can add in an equation to tell it what to plot. There are also several different base fits available. You can check out some <a href="http://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/" target="_blank">here</a>.
+However, perhaps this isn't what we really want, because you can see the relationship isn't linear. An alternative would be to use a different smoothing equation. Let's try a quadratic fit - something slightly more complicated to produce than the standard fits provided by R. Thankfully, `ggplot2` lets us customise to pretty much any type of fit we want, as we can add in an equation to tell it what to plot. There are also several different base fits available. You can check out some [here](http://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/).
 
 
 ```r
@@ -601,13 +601,13 @@ However, perhaps this isn't what we really want, because you can see the relatio
   stat_smooth(method = "lm", formula = y ~ x + I(x^2)))
 ```
 <br>
-<center> <img src="{{ site.baseurl }}/img/mixmod3.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/mixmod3.png" alt="Img" style="width: 750px;)
 
 
 <div class="bs-callout-blue" markdown="1">
 #### What about fancier stats?
 
-Some of you might have picked up on the fact that our data are nested (species within plots within magic lands) and come from different years: therefore, a mixed-effects modelling approach might be better here. For an introduction to linear mixed effects modelling, <a href="https://ourcodingclub.github.io/2017/03/15/mixed-models.html" target="_blank">check out our tutorial</a>, where we show how to plot the model predictions.
+Some of you might have picked up on the fact that our data are nested (species within plots within magic lands) and come from different years: therefore, a mixed-effects modelling approach might be better here. For an introduction to linear mixed effects modelling, [check out our tutorial](https://ourcodingclub.github.io/2017/03/15/mixed-models.html), where we show how to plot the model predictions.
 
 </div>
 
@@ -693,7 +693,7 @@ You can try out the effects of the theme by replacing all the code starting with
 )
 
 ```
-<center> <img src="{{ site.baseurl }}/img/mixmod3.png" alt="Img" style="width: 750px;"/> </center>
+![]({{ site.baseurl }}/img/mixmod3.png" alt="Img" style="width: 750px;)
 
 
 
@@ -748,7 +748,7 @@ And you're all set to go! For an additional challenge, try ordering the bars so 
 )
 ```
 
-<center> <img src="{{ site.baseurl }}/img/DL_datavis2_endemism.png" alt="Img" style="width: 700px;"/> </center>
+![]({{ site.baseurl }}/img/DL_datavis2_endemism.png" alt="Img" style="width: 700px;)
 
 </summary>   
  </details> <br>
@@ -756,7 +756,7 @@ And you're all set to go! For an additional challenge, try ordering the bars so 
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/X7VHQ6S" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/X7VHQ6S)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -804,7 +804,7 @@ And you're all set to go! For an additional challenge, try ordering the bars so 
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

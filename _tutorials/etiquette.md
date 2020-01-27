@@ -9,7 +9,7 @@ tags: intro_to_r, github, data_manip
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderet.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderet.png" alt="Img)
 	</center>
 </div>
 
@@ -25,23 +25,23 @@ When analysing data in `R`, the lines of code can quickly pile up: hundreds of l
 
 The coding etiquette outlined in this tutorial is applicable to most analyses and much of it is also applicable to other programming languages.
 
-__We recommend that you follow the tutorial by typing code from the examples into a blank script file to build your own example script file with perfect formatting and etiquette. After you have done that, use your knowledge of coding etiquette to improve the formatting of `bad_script.R`, which you can find in <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank">the github repository for this tutorial</a>. Alternatively, feel free to edit some of your own scripts using the etiquette guidelines.__ 
+__We recommend that you follow the tutorial by typing code from the examples into a blank script file to build your own example script file with perfect formatting and etiquette. After you have done that, use your knowledge of coding etiquette to improve the formatting of `bad_script.R`, which you can find in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette). Alternatively, feel free to edit some of your own scripts using the etiquette guidelines.__ 
 
-### You can download all the resources for the tutorial, including some helpful cheatsheets from <a href="https://github.com/ourcodingclub/CC-Etiquette" target="_blank">this github repository.</a> Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
+### You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository.](https://github.com/ourcodingclub/CC-Etiquette) Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank">the repository</a> to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">tutorial.</a>
+Alternatively, you can fork [tutorial.](https://github.com/ourcodingclub/CC-etiquette" target="_blank">the repository</a> to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
 
 <a name="sections"></a>
 
 ### 1. Organising scripts into sections
 
-As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to RStudio tutorial</a>. A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section. 
+As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section. 
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# ggplot of population frequency`. Then underneath that comment, you would write the code for making your plot using ggplot. RStudio has a neat feature whereby you can make your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# ggplot of population frequency ----`. To view your outline, click the button as shown below, you can then click an outline item and jump straight to it: no more scrolling!
 
-<center> <img src="{{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;)
 
-__NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio - if you want to get this feature, you can <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">download</a> the newest version of RStudio.__
+__NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio - if you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
 #### Script structure:
 
@@ -75,14 +75,14 @@ library(readr)  # Manipulating data
 
 __You might have noticed that when you create a section using four or more `-` at the end of a comment line, a little arrow appears in the margin next to the comment. Clicking these arrows allows you to collapse the section, which is very useful when traversing a long script.__
 
-<center> <img src="{{ site.baseurl }}/img/etiquette_outline.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/etiquette_outline.png" alt="Img" style="width: 800px;)
 
 __You can also go to `Edit/Folding/Collapse all` to collapse all sections. This is the outline of your script and from here you can navigate to whichever section you need. `Expand all` displays all of the code you've written. Here is an example:__
 
-<center> <img src="{{ site.baseurl }}/img/outline2.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/outline2.png" alt="Img" style="width: 800px;)
 
 
-__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">create your own `ggplot2` theme.</a> Here is an example functions section:
+__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme.](https://ourcodingclub.github.io/2017/02/08/funandloops.html) Here is an example functions section:
 
 ```r
 # Defining functions ----
@@ -158,7 +158,7 @@ LPI_biome_summ <- LPI2 %>%  # use of pipe operator
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-<center><img src="https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;"/></center>
+![](https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;)
 Figure 1. Abundance of species populations for each biome.
 
 __The outputs of your analysis__: Remember to keep your filepath sensible not only when loading data in, but also when you are outputting files (e.g. `.Rdata`, `.csv` files and any figures you want saved). `.csv` files are more transferable and can be used across multiple platforms, whereas `.Rdata` files are more compressed and are quicker to work with. Saving graphs as `.pdf` files is better practice, since `.pdf` files are vector based and don't decrease in quality when you zoom in or out. `.png` files, on the other hand, are easily inserted in text documents and presentations, so ideally you should save a `.pdf` and a `.png` file of your graph. It is also good practice to save image outputs in a subdirectory of your working directory, e.g. `img/`. Remember that you will have to create the folder `img` manually before saving plots to it:
@@ -181,7 +181,7 @@ ggplot(LPI_biome_summ, aes(biome, color = biome, y = populations)) + geom_bar(st
 dev.off()
 ```
 
-Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank">this data visualization tutorial</a> for an example of how to do so. 
+Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of [this data visualization tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html) for an example of how to do so. 
 
 <a name="syntax"></a>
 
@@ -439,7 +439,7 @@ tidy_dir(path="whatever/your/path/is", recursive = TRUE)
 
 If, like us, you find yourself having to use a script from before you knew any better, you might have objects with really uninformative, unnecesarily hard to type names. There is an easy fix to that: just like in most text editors, you can `Find` and `Replace` words, in our case object names. You can type up the object whose name you want to change, then add the new one and replace either individual occurrences, or all of the occasions when the object name is mentioned. You can also select lines of code and only rename the object in that part of the code - careful that you have clicked on `In selection`, as otherwise the object name will be replaced in the entire script, despite you having selected only some of the lines.
 
-<center> <img src="{{ site.baseurl }}/img/replace.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/replace.png" alt="Img" style="width: 800px;)
 
 __If you want to rename your variable names, that's quickly done, too.__
 
@@ -477,16 +477,16 @@ devtools::install_github("ThinkRstat/littleboxes")
 # formatR messes up these boxes otherwise!
 ```
 
-<center> <img src="{{ site.baseurl }}/img/boxes.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/boxes.png" alt="Img" style="width: 800px;)
 
-__Now that you have read through the tutorial, try to clean up `bad_script.R`, which can be found in <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank">the github repository for this tutorial</a>, or tidy up one of your own scripts.__ 
+__Now that you have read through the tutorial, try to clean up `bad_script.R`, which can be found in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette), or tidy up one of your own scripts.__ 
 
-Our coding etiquette was developed with the help of <a href="http://adv-r.had.co.nz/Style.html" target="_blank">Hadley Whickham's R Style Guide</a>.
+Our coding etiquette was developed with the help of [Hadley Whickham's R Style Guide](http://adv-r.had.co.nz/Style.html).
 
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/8YBXTMT" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/8YBXTMT)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -534,7 +534,7 @@ Our coding etiquette was developed with the help of <a href="http://adv-r.had.co
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

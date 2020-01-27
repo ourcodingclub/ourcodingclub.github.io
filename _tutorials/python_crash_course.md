@@ -10,7 +10,7 @@ tags: intro_to_python
 
 <div class="block">
   <center>
-  <img src="{{ site.baseurl }}/img/tutheader_python_crash.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_python_crash.png" alt="Img)
 </center>
 </div>
 
@@ -87,7 +87,7 @@ Open up a Command Prompt (terminal) and type `conda --version`. If everything ha
 
 Now we have Python installed it is time to launch Spyder. You can do this by launching the Anaconda Navigator from the start menu. When this starts up click on the Spyder application to open it up.
 
-<center><img src="{{ site.baseurl }}/img/python_crash_course-spyder_demo.gif" alt="img" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/python_crash_course-spyder_demo.gif" alt="img" style="width: 900px;)
 
 <br />Once you have launched Spyder you will see three main panels by default. You can edit the layout of these panels if you want but for this tutorial I will assume that you don't want to mess with that yet. On the left, the large panel is where you can write scripts. At the top of this panel you can see that there has been a script started for you called `temp.py`. If you wanted to you could write code into this script (similar to writing a MS Word document) and then save it to run later.
 
@@ -97,7 +97,7 @@ So when you write commands into the python script on the left, it is just like w
 
 In the bottom right of the window you will see the console, and this is what we are going to focus on for this part of the tutorial. This is different to the script panel. **In the console**, whenever you **type a command and then press enter**, that command will be **run right away**, not stored for later like in the script. You can think of using the console as **similar to using a calculator**. Whenever you type something in it is run right away. You can see this in the demo below. First we tell the console what the variable `x` is; then we tell it to print `x` so that we can see it again. After this we tell it to print other products of `x`. Try typing these same lines of code into your own editor and see what happens.
 
-<center><img src="{{ site.baseurl }}/img/python_crash_course-console_demo.gif" alt="img" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/python_crash_course-console_demo.gif" alt="img" style="width: 900px;)
 
 <br />Note that whilst writing lines of code into the console I made a mistake and the console showed me an error message. In this case all I needed to do is fix the error and run the correct line.
 
@@ -238,7 +238,7 @@ Can you guess, or get python to calculate, what `True | True` will be? How about
 
 Note: One of the really nice things about Python is how much it can read like plain English by using **Python Keywords**. In the above examples you could replace, `&` with `and`, replace `|` with `or`, and replace `!` with `not` and still get the same answers. Why not try rewriting the exampes above using the `and`, `or` and `not` keywords instead of the symbols. I'll start you off
 
-<center><img src="{{ site.baseurl }}/img/python_crash_course-boolean_logic.gif" alt="img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/python_crash_course-boolean_logic.gif" alt="img" style="width: 700px;)
 
 <br />
 Using what you know so far can you solve Hamlet's dilemma below? What will the answer be if `to_be = True` or with `to_be = False
@@ -251,7 +251,7 @@ print(to_be or not to_be)
 # Loops
 In loops we write instructions that will be repeated a number of times in a row. We can use loops to repeat actions more efficiently.
 <center>
-<img src="{{ site.baseurl }}/img/python_crash_course-y_bird.gif" alt="img" style="width: 400px;"/>
+![]({{ site.baseurl }}/img/python_crash_course-y_bird.gif" alt="img" style="width: 400px;)
 <br />https://giphy.com/gifs/simpsons-dippy-bird-drinking-l41lUJ1YoZB1lHVPG
 </center>
 
@@ -285,7 +285,7 @@ Loops can be hard when you are new to coding and so it might take you a bit long
 # Functions
 Functions are mini computing boxes that we write in Python. Functions take an input (we could call this x), do some computing with it, and output the result.
 <center>
-<img src="{{ site.baseurl }}/img/python_crash_course-function_diagram.png" alt="img" style="width: 300px;"/><br />
+![]({{ site.baseurl }}/img/python_crash_course-function_diagram.png" alt="img" style="width: 300px;)
 image credit <br /> https://hackernoon.com/a-simple-introduction-to-one-way-functions-a2429d427546
 </center>
 
@@ -413,7 +413,7 @@ I could write a loop to do this for me and it would be good practice for my Pyth
 
 <br />
 <center>
-<img src="{{ site.baseurl }}/img/python_crash_course-list_sort.gif" alt="img" style="width: 900px;"/>
+![]({{ site.baseurl }}/img/python_crash_course-list_sort.gif" alt="img" style="width: 900px;)
 </center>
 
 <br />The link to the answer I found is <a href="https://stackoverflow.com/questions/25374190/how-to-sort-integer-list-in-python-descending-order">here</a>.
@@ -451,11 +451,11 @@ There are some websites which are specifically devoted to hosting challenges for
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/VN5XKPR" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VN5XKPR)</h3>
 <br />
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br />
@@ -503,7 +503,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

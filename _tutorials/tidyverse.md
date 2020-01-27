@@ -17,12 +17,12 @@ tags: data_manip data_vis github
 #### <a href="#mapping"> 4. Download and map data from large datasets </a>
 
 <p></p>
-<center> <img src="{{ site.baseurl }}/img/bes_qe.png" alt="Img"> </center>
+![]({{ site.baseurl }}/img/bes_qe.png" alt="Img)
 
-## This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. <a href="https://bes-qsig.github.io" target="_blank">Check out the QE SIG website for more info!</a>
-You can follow the BES QE SIG on <a href="https://twitter.com/BES_QE_SIG" target="_blank">Twitter</a>, too.	
+## This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. [Check out the QE SIG website for more info!](https://bes-qsig.github.io)
+You can follow the BES QE SIG on [Twitter](https://twitter.com/BES_QE_SIG), too.	
 
-### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-Liverpool" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Liverpool). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 <a name="markdown"></a>
 
@@ -32,12 +32,12 @@ You can follow the BES QE SIG on <a href="https://twitter.com/BES_QE_SIG" target
 
 R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis. You might choose to create an R markdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. R Markdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook. Your report can also be what you base your future methods and results sections in your manuscripts, thesis chapters, etc.
 
-R Markdown uses <a href="http://www.markdowntutorial.com" target="_blank">markdown syntax</a>. Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
+R Markdown uses [markdown syntax](http://www.markdowntutorial.com). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
 
-<center> <img src="{{ site.baseurl }}/img/md_script.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/md_script.png" alt="Img" style="width: 900px;)
 
 ## Download R Markdown
-To get R Markdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from <a href="https://cran.r-project.org/web/packages/rmarkdown/index.html" target="_blank">CRAN</a> by running the following commands in R or RStudio:
+To get R Markdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from [CRAN](https://cran.r-project.org/web/packages/rmarkdown/index.html) by running the following commands in R or RStudio:
 
 ``` r
 install.packages("rmarkdown")
@@ -50,7 +50,7 @@ library(rmarkdown)
 
 ### The YAML Header
 
-At the top of any R Markdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see <a href="http://rmarkdown.rstudio.com/html_document_format.html" target="_blank">here for `.html` options</a> and <a href="http://rmarkdown.rstudio.com/pdf_document_format.html" target="_blank">here for `.pdf` options</a>. Rules in the header section will alter the whole document.
+At the top of any R Markdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.pdf` options](http://rmarkdown.rstudio.com/html_document_format.html" target="_blank">here for `.html` options</a> and <a href="http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document.
 
 Add your own details at the top of your`.Rmd` script, e.g.:
 
@@ -67,7 +67,7 @@ By default, the `title`, `author`, `date` and `output` format are printed at the
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
-<img src="{{ site.baseurl }}/img/Knit_HTML_Screenshot.jpg" alt="Img">
+![]({{ site.baseurl }}/img/Knit_HTML_Screenshot.jpg" alt="Img)
 
  Not only does a preview appear in the `Viewer` window in RStudio, but it also saves a `.html` file to the same folder where you saved your `.Rmd` file.
 
@@ -158,7 +158,7 @@ __If you are keen, you can complete the rest of the workshop using an `R Markdow
 
 You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
 
-<img src="{{ site.baseurl }}/img/run_sel.png" alt="Img" style="width: 900px;"/>
+![]({{ site.baseurl }}/img/run_sel.png" alt="Img" style="width: 900px;)
 
 ### Summary of  code chunk instructions
 
@@ -295,7 +295,7 @@ __Now that you have started your `Markdown` document, you can use that when comp
 
 <b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
-We will be working with population data from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a> and red deer occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, both of which are publicly available datasets.
+We will be working with population data from the [Global Biodiversity Information Facility](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a> and red deer occurrence data from the <a href="http://www.gbif.org/), both of which are publicly available datasets.
 
 __First, we will model population change for vertebrate forest species to see whether greater population change is found for longer duration studies.__
 
@@ -350,7 +350,7 @@ load("LPDdata_Feb2016.RData")
 head(LPDdata_Feb2016)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/wide.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/wide.png" alt="Img" style="width: 600px;)
 
 At the moment, each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years.
 
@@ -387,7 +387,7 @@ LPD_long$biome <- gsub("/", "", LPD_long$biome, fixed = TRUE)
 head(LPD_long)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/long.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/long.png" alt="Img" style="width: 600px;)
 
 Now that our dataset is *tidy* we can get it ready for our analysis. We want to only use populations that have more than 5 years of data to make sure our analysis has enough data to capture population change. We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different - imagine tiny fish whose abundance is in the millions, and large carnivores whose abundance is much smaller. Scaling also normalises the data, as later on we will be using linear models assuming a normal distribution. To do all of this in one go, we can use pipes.
 
@@ -502,7 +502,7 @@ forest.panel <- grid.arrange(forest.hist, duration.forests, ncol = 2)
 ggsave(forest.panel, file = "forest_panel.png", height = 5, width = 10)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/forest_panel.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/forest_panel.png" alt="Img" style="width: 900px;)
 
 We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 1785 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
@@ -562,7 +562,7 @@ __Now we can visualise the outputs of all our models and see how they vary based
 ggsave(density.slopes, filename = "slopes_duration.png", height = 6, width = 6)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/slopes_duration.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/slopes_duration.png" alt="Img" style="width: 600px;)
 
 <a name="pipes"></a>
 
@@ -612,7 +612,7 @@ do(ggsave(ggplot(., aes(x = estimate)) +
 A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not NULL` - you can ignore this, it's because the `do()` function expects a data frame as an output, but in our case we are making graphs, not data frames.
 
 If you go check out your folder now, you should see four histograms, one per taxa:
-<center> <img src="{{ site.baseurl }}/img/folder.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/mamm.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/mamm.png" alt="Img" style="width: 500px;)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -683,7 +683,7 @@ walk2(paste0(path2, names(taxa.slopes), ".pdf"), taxa.plots, ggsave)
 14. How to map occurence data and populations
 15. How to make a custom function for plotting figures
 
-__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> which we will download in `R` using the `rgbif` package.__
+__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org/) which we will download in `R` using the `rgbif` package.__
 
 Occurrence data can be messy and when you are working with thousands of records, not all of them might be valid records. If you are keen to find out how to test the validity of geographic coordinates using the `CoordinateCleaner` package, check out our tutorial <a href="https://ourcodingclub.github.io/2018/01/06/occurrence.html" target = "_blank">here</a>.
 
@@ -755,7 +755,7 @@ We are working with thousands of records, so depending on your computer, making 
                size = 2, colour = "darkgreen"))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/deer_map.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/deer_map.png" alt="Img" style="width: 900px;)
 
 The map already looks fine, but we can customise it further to add more information. For example, we can add labels for the locations of some of the monitored populations and we can add plots of population change next to our map.
 
@@ -937,7 +937,7 @@ deer.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(1.2, 0.8))
 ggsave(deer.panel, filename = "deer_panel2.png", height = 10, width = 15)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/deer_panel2.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/deer_panel2.png" alt="Img" style="width: 900px;)
 
 ## Challenges
 
@@ -950,16 +950,16 @@ __Use another projection for the map - the default is Mercator, but that's not t
 
 ## Extra resources
 
-You can find more info on `pander` <a href="https://cran.r-project.org/web/packages/pander/pander.pdf" target="_blank"> here</a>.
+You can find more info on `pander` [ here](https://cran.r-project.org/web/packages/pander/pander.pdf).
 
 To learn more about the power of pipes check out:
-<a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and <a href="http://r4ds.had.co.nz/pipes.html" target="_blank"> the R for Data Science book</a>.
+<a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and [ the R for Data Science book](http://r4ds.had.co.nz/pipes.html).
 
-To learn more about `purrr` check out the <a href="http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html" target="_blank"> R for Data Science book</a>.
+To learn more about `purrr` check out the [ R for Data Science book](http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html).
 
-For more information on functional programming see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
+For more information on functional programming see the [R for Data Science book chapter here](http://r4ds.had.co.nz/functions.html).
 
-To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides <a href="https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides" target="_blank">here</a>.
+To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides [here](https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides).
 
 
 
@@ -968,7 +968,7 @@ To learn more about the `tidyverse` in general, check out Charlotte Wickham's sl
 
 
 
-<h3><a href="https://www.surveymonkey.com/r/XD85MW5" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/XD85MW5)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -1004,7 +1004,7 @@ To learn more about the `tidyverse` in general, check out Charlotte Wickham's sl
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

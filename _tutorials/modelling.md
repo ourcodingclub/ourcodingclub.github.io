@@ -12,7 +12,7 @@ tags:
 
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderlm.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderlm.png" alt="Img)
 	</center>
 </div>
 
@@ -37,7 +37,7 @@ Things get real in this tutorial! As you are setting out to answer your research
 
 A slightly more complicated model might look like: `skylark.m <- lm(abundance ~ treatment + farm.area, family = poisson, data = skylarks)`. Here you are modelling `abundance`, the response variable, as a function of `treatment` (e.g. a categorical variable describing different types of farms) AND of `farm.area` (i.e. the size of each farm where abundance data were collected), which are both your explanatory variables. The `family` argument refers to the _distribution_ of the data. In this case, `abundance` represents count, zero-inflated data (allows for zero-valued observations), for which a Poisson distribution is suitable (but more on this later). The `data` argument refers to the data frame in which all the variables are stored.
 
-Are your data all nicely formatted and ready for analysis? You can check out our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">Data formatting and manipulation tutorial</a> if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
+Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
 
 __Go to <a href = "https://github.com/ourcodingclub/CC-8-Modelling" target="_blank">the repository for this tutorial</a>, click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our <a href = "https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank"> Intro to Github for version control</a> tutorial.__
 
@@ -53,7 +53,7 @@ Here is a brief summary of the data distributions you might encounter most often
 
 Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Choosing a model" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Choosing a model" style="width: 700px;)
 
 
 
@@ -99,7 +99,7 @@ Some might say this model is very complex, and they would be right - there are a
 
 #### Don't go over the top!
 
-It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting <a href="https://statisticsbyjim.com/regression/overfitting-regression-models/" target="_blank">here</a>. 
+It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting [here](https://statisticsbyjim.com/regression/overfitting-regression-models/). 
 
 Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
 
@@ -126,7 +126,7 @@ summary(apples)
 ```
 </section>
 
-Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">data visualisation tutorial</a>), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
+Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our [data visualisation tutorial](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html)), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
 
 <a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code05" markdown="1"> 
@@ -169,7 +169,7 @@ library(ggplot2)
 
 _Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._ 
 
-<center><img src="{{ site.baseurl }}/img/apples2.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/apples2.png" alt="Img" style="width: 700px;)
 
 From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the range in the data across the categories almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. __Let's run a model to explicitly test this.__
 
@@ -183,7 +183,7 @@ summary(apples.m)
 
 __Check out the summary output of our model:__
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs1.png" alt="Model outputs" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_outputs1.png" alt="Model outputs" style="width: 800px;)
 
 Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth. 
 
@@ -217,7 +217,7 @@ summary(sheep.m1)                                # study the output
 ```
  </section>
  
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Model outputs" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Model outputs" style="width: 900px;)
 
 
 Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
@@ -237,7 +237,7 @@ summary(sheep.m2)
 
 Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Model outputs" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Model outputs" style="width: 900px;)
 
 Let's write the equations. For a female, which happens to be the reference group in the model, it's fairly simple:
 
@@ -262,7 +262,7 @@ It always makes a lot more sense when you can visualise the relationship, too:
 ```
 </section>
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Regression plot" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Regression plot" style="width: 700px;)
 <center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly.</center>
 
 
@@ -275,7 +275,7 @@ Linear regression and linear model are complete synonyms, and we usually use the
 
 Now enters the ANOVA, which stands for Analysis of Variance. We usually talk about an ANOVA when we're quantifying the effect of a __discrete, or categorical__ explanatory variable on a __continuous__ response variable. We just did with the apples: how does the mean yield vary depending on the spacing category? It is also a linear model, but instead of getting a slope that allows us to predict the yield for any value of spacing, we get an estimate of the yield for each category. 
 
-So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and here is a <a href="https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/" target="_blank">nice article</a> explaining the nitty gritty stuff). You can run the `anova` function on our linear model object `apples.m` and see how you get the same p-value:
+So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and here is a [nice article](https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/) explaining the nitty gritty stuff). You can run the `anova` function on our linear model object `apples.m` and see how you get the same p-value:
 
 <a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code11" markdown="1"> 
@@ -331,7 +331,7 @@ This will produce a set of four plots:
 ##### - a scale-location plot (square roots of standardized residuals versus fitted values) 
 ##### - a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
 
-In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this <a href="https://data.library.virginia.edu/diagnostic-plots/" target="_blank">helpful page</a> to get you started.
+In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this [helpful page](https://data.library.virginia.edu/diagnostic-plots/) to get you started.
 
 
 
@@ -358,7 +358,7 @@ shag$year <- as.numeric(shag$year)  # transform year from character into numeric
 ```
 </section>
 
-<center><img src="{{ site.baseurl }}/img/poisson2.png" alt="histogram" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/poisson2.png" alt="histogram" style="width: 700px;)
 
 Our `pop` variable represents __count__ abundance data, i.e. integer values (whole European Shags!) so a Poisson distribution is appropriate here. Often count abundance data are zero-inflated and skewed towards the right. Here our data are not like that, but if they were, a Poisson distribution would still have been appropriate.
 
@@ -384,7 +384,7 @@ From the summary of our model we can see that European Shag abundance varies sig
 ```
 </section>
 
-<center><img src="{{ site.baseurl }}/img/shag.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/shag.png" alt="Img" style="width: 700px;)
 
 __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.__ Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.
 
@@ -477,7 +477,7 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    theme.clean()
 ```
 
-<center><img src="{{ site.baseurl }}/img/DL_intro_lm_guineapigs.png" alt="boxplots" style="width: 600px;"/></center>
+![]({{ site.baseurl }}/img/DL_intro_lm_guineapigs.png" alt="boxplots" style="width: 600px;)
 
 
 
@@ -488,15 +488,15 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
 
 
 
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/NNRS98G" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/NNRS98G)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -544,7 +544,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

@@ -9,7 +9,7 @@ tags: modelling data_vis advanced
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_stan2.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_stan2.png" alt="Img)
 	</center>
 </div>
 
@@ -24,19 +24,19 @@ tags: modelling data_vis advanced
 #### <a href="#brms"> 7. Compare `rstanarm` and `brms`</a>
 
 
-### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-Stan-2" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
 <a name="model"></a>
 
 ## Introduction
 
-__Finding answers to our research questions often requires statistical models. Designing models, choosing what variables to include, which data distribution to use are all worth thinking about carefully. In this tutorial, we will continue exploring different model structures in search of the best way to find the answers to our research questions. We will build on the Coding Club tutorials on <a href="{{ site.baseurl }}/tutorials/model-design/index.html" target="_blank"> how to design a model</a>, and on<a href="{{ site.baseurl }}/tutorials/mcmcglmm/index.html" target="_blank">Bayesian Modelling in `MCMCglmm`</a> for key background information on model design and Bayesian statistics.__
+__Finding answers to our research questions often requires statistical models. Designing models, choosing what variables to include, which data distribution to use are all worth thinking about carefully. In this tutorial, we will continue exploring different model structures in search of the best way to find the answers to our research questions. We will build on the Coding Club tutorials on [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/model-design/index.html" target="_blank"> how to design a model</a>, and on<a href="{{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
 
-__Statistical models can be fit in a variety of packages in `R` or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as <a href="http://mc-stan.org/" target="_blank">`Stan`</a>. For an introduction to `Stan`, you can check out our <a href="{{ site.baseurl }}/tutorials/stan-intro/index.html" target="_blank">intro tutorial here</a>.__
+__Statistical models can be fit in a variety of packages in `R` or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as [intro tutorial here](http://mc-stan.org/" target="_blank">`Stan`</a>. For an introduction to `Stan`, you can check out our <a href="{{ site.baseurl }}/tutorials/stan-intro/index.html).__
 
 <a name="rstanarm"></a>
 
-In this tutorial, we will learn about two packages, `rstanarm` and `brms` which allow us to fit `Stan` models using syntax similar to packages like `lme4`, `nlme` and `MCMCglmm`. We will use these packages to fit models that test how species richness has changed over time near <a href="http://arc-lter.ecosystems.mbl.edu/terrestrial-data" target="_blank">Toolik Lake Field Station</a>.
+In this tutorial, we will learn about two packages, `rstanarm` and `brms` which allow us to fit `Stan` models using syntax similar to packages like `lme4`, `nlme` and `MCMCglmm`. We will use these packages to fit models that test how species richness has changed over time near [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).
 
 ### Research question: How has plant species richness changed over time at Toolik Lake?
 
@@ -86,7 +86,7 @@ Now, let's think about the distribution of the data, specifically our response v
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the "hist" object. 
 
-<center> <img src="{{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 500px;)
 
 __We are working with integers (similar to count data, species only come in whole numbers) and the data are right-skewed, that is because we have a few data points on the extreme right end, they are pulling the mean and median or our data to the right. For ecological data, this is quite common - across all of the sampling plots, we expect that they won't all have lots of different species within them.__
 
@@ -142,7 +142,7 @@ stan_glm1 <- stan_glm(Richness ~ I(Year-2007),
                      chains = 4, cores = 4)
 ```
 
-If you find this code still takes a long time, you can change the `chains` argument to only two chains, but note that it's better to run models with more than two chains - then you have more room for comparison. If one or more of the four chains is behaving really differently from the rest, then the model might not have converged. What is model convergence? In brief, if a model hasn't converged, you can't trust the estimates it gives you. You can find more details in <a href="{{ site.baseurl }}/tutorials/model-design/index.html" target="_blank"> the model design tutorial here</a>.
+If you find this code still takes a long time, you can change the `chains` argument to only two chains, but note that it's better to run models with more than two chains - then you have more room for comparison. If one or more of the four chains is behaving really differently from the rest, then the model might not have converged. What is model convergence? In brief, if a model hasn't converged, you can't trust the estimates it gives you. You can find more details in [ the model design tutorial here]({{ site.baseurl }}/tutorials/model-design/index.html).
 
 <a name="assess"></a>
 
@@ -154,7 +154,7 @@ __One way to assess model convergence is by visually examining the trace plots. 
 plot(stan_glm1, plotfun = "trace")
 ```
 
-<center> <img src="{{ site.baseurl }}/img/stan2_traces.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/stan2_traces.png" alt="Img" style="width: 900px;)
 Here, the trace plots look fine.
 
 Next we can look at the summary output.
@@ -163,7 +163,7 @@ Next we can look at the summary output.
 summary(stan_glm1)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/stan2_summary.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/stan2_summary.png" alt="Img" style="width: 500px;)
 
 __We can see that the effective sample size is alright (there is no hard cut threshold, but more than around 1000 is usually a good sign), another diagnostic metric, the `Rhat` value is also indicating convergence (an `Rhat` of 1 is a good sign, more than 1 could indicate trouble).__
 
@@ -176,7 +176,7 @@ pp_check(stan_glm1, plotfun = "stat", stat = "mean")
 pp_check(stan_glm1, plotfun = "dens_overlay")
 ```
 
-<center><img src="{{ site.baseurl }}/img/stan2_hist.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;)
 
 __What do you think? How does the density distribution of the model predictions compare with that of the raw data?__
 
@@ -192,11 +192,11 @@ We can launch the app using the code below. That will open a window in our inter
 launch_shinystan(stan_glm1)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/shinystan.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/shinystan.png" alt="Img" style="width: 900px;)
 
 Have a go at exploring the various options - you'll probably spot some of the plots we've already made in `R`, but there are many others as well. Here, for example, if there were any divergent chains (i.e. a chain that is behaving in a very weird unexpected way), we would have seen red points. In our case, we don't have any divergent chains.
 
-<center> <img src="{{ site.baseurl }}/img/shinystan2.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/shinystan2.png" alt="Img" style="width: 900px;)
 
 ### Back to our research question
 
@@ -217,7 +217,7 @@ To get the answer, we can plot the model predictions for our model as well as th
 
 __Looks like species richness is decreasing, but also, four years of data is not enough to really test temporal dynamics!__
 
-<center> <img src="{{ site.baseurl }}/img/stan_pred.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/stan_pred.png" alt="Img" style="width: 500px;)
 
 <a name="priors"></a>
 
@@ -259,13 +259,13 @@ stancode <- rstan::get_stancode(stan_glm1$stanfit)
 cat(stancode)
 ```
 
-You'll see a lot of code appear in the console - this is what `rstanarm` has "written" for you. Amidst the many letters, you can see that the overall structure is like the `Stan` models we wrote in <a href="{{ site.baseurl }}/tutorials/stan-intro/index.html" target="_blank">our intro `Stan` tutorial</a> - first, we state the parameters for the data, the data gets transformed (scaled and centered), then we define our model and finally, we calculate the predictions in the generated quantities block.
+You'll see a lot of code appear in the console - this is what `rstanarm` has "written" for you. Amidst the many letters, you can see that the overall structure is like the `Stan` models we wrote in [our intro `Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html) - first, we state the parameters for the data, the data gets transformed (scaled and centered), then we define our model and finally, we calculate the predictions in the generated quantities block.
 
 <a name="negbin"></a>
 
 ## Explore a model using a negative binomial distribution
 
-Up until now, we've been using a `Poisson` distribution for our models, which is suitable for when we are working with discrete count data. The <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank">Poisson distribution</a> assumes that the mean and variance are the same. In ecology and probably other disciplines too, the data might have variance greater than the mean. In this case, we call the data <a href="https://en.wikipedia.org/wiki/Overdispersion" taget="_blank">overdispersed</a>. The negative binomial distribution adjusts the variance independently from the mean and as such is more flexible than Poisson. The Poisson distribution is actually a type of a negative binomial distribution.
+Up until now, we've been using a `Poisson` distribution for our models, which is suitable for when we are working with discrete count data. The [Poisson distribution</a> assumes that the mean and variance are the same. In ecology and probably other disciplines too, the data might have variance greater than the mean. In this case, we call the data <a href="https://en.wikipedia.org/wiki/Overdispersion" taget="_blank">overdispersed](https://en.wikipedia.org/wiki/Poisson_distribution). The negative binomial distribution adjusts the variance independently from the mean and as such is more flexible than Poisson. The Poisson distribution is actually a type of a negative binomial distribution.
 
 __In `rstanarm`, it's easy to *update* a model using a different data distribution. In our case, we can try a negative binomial distribution.__
 
@@ -282,7 +282,7 @@ pp_check(stan_glm2, plotfun = "stat", stat = "mean")
 pp_check(stan_glm2, plotfun = "dens_overlay")
 ```
 
-<center><img src="{{ site.baseurl }}/img/stan2_hist.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;)
 
 You can see that the model outputs are very similar - this is to be expected, because the Poisson distribution is actually a type of a negative binomial distribution. Once again, the model is underpredicting the frequency of low species richness values.
 
@@ -312,36 +312,36 @@ stancode(stan_glm_brms)
 ```
 
 ## Conclusion
-In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and `brms` packages which write the `Stan` code for us, so they can be seen as a gentler introduction to `Stan`. We looked at two different data distributions that are suitable for left-skewed discrete count data - `Poisson` and `negative binomial`. If you are keen to get back into `Stan` coding, we've showed how to extract the `Stan` code behind the `rstanarm` and `brms` models, so you can take that code and develop it further. You can check out our other <a href="{{ site.baseurl }}/tutorials/stan-intro/index.html" target="_blank">`Stan` tutorial</a>. to see how to write and run `Stan` code using the `rstan` package.
+In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and `brms` packages which write the `Stan` code for us, so they can be seen as a gentler introduction to `Stan`. We looked at two different data distributions that are suitable for left-skewed discrete count data - `Poisson` and `negative binomial`. If you are keen to get back into `Stan` coding, we've showed how to extract the `Stan` code behind the `rstanarm` and `brms` models, so you can take that code and develop it further. You can check out our other [`Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html). to see how to write and run `Stan` code using the `rstan` package.
 
 ## Further resources
 
-<a href="https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf" target="_blank">rstanarm vignette</a>
+[rstanarm vignette](https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf)
 
-<a href="https://cran.r-project.org/web/packages/brms/brms.pdf" target="_blank">brms vignette</a>
+[brms vignette](https://cran.r-project.org/web/packages/brms/brms.pdf)
 
-<a href="https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html" target="_blank">How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich </a>
+[How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich ](https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html)
 
-<a href="http://mc-stan.org/" target="_blank">Stan website</a>
+[Stan website](http://mc-stan.org/)
 
-<a href="https://github.com/stan-dev/stan/releases/download/v2.14.0/stan-reference-2.14.0.pdf" target="_blank">Stan manual(v2.14)</a>
+[Stan manual(v2.14)](https://github.com/stan-dev/stan/releases/download/v2.14.0/stan-reference-2.14.0.pdf)
 
-<a href="https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html" target="_blank">Rstan vignette</a>
+[Rstan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html)
 
-<a href="https://t.co/6d3omvBkrd" target="_blank">STANCON 2017 Intro Course Materials</a>
+[STANCON 2017 Intro Course Materials](https://t.co/6d3omvBkrd)
 
-<a href="http://xcelab.net/rm/statistical-rethinking/" target="_blank">Statistical Rethinking by R. McElreath</a>
+[Statistical Rethinking by R. McElreath](http://xcelab.net/rm/statistical-rethinking/)
 
-<a href="https://groups.google.com/forum/#!forum/stan-users" target="_blank">Stan mailing list</a>
+[Stan mailing list](https://groups.google.com/forum/#!forum/stan-users)
 
 <hr>
 <hr>
 
-__Check out <a href="{{ site.baseurl }}/workshop.html" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page]({{ site.baseurl }}/workshop.html) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.co.uk/r/PX3XHD2" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/PX3XHD2)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -391,7 +391,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

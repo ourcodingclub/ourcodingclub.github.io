@@ -37,7 +37,7 @@ survey_link: https://www.surveymonkey.co.uk/r/795PKMV
 
 <a name="ggplot"></a>
 
-#### Аll the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-4-Datavis" target="_blank">this repository</a>. Clone and download the repo as a zip file, then unzip it.
+#### Аll the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-4-Datavis). Clone and download the repo as a zip file, then unzip it.
 
 ### 1. Good data visualisation and ggplot2 syntax
 
@@ -55,9 +55,9 @@ We've learned [how to import our datasets in Rstudio](https://ourcodingclub.gith
 
 A very key part of making any data visualisation is making sure that it is appropriate to your data type (e.g. discrete vs continuous), and fits your purpose, i.e. what you are trying to communicate! 
 
-You can start with our simple guide for common graph types, and visit <a href="https://www.r-graph-gallery.com/" target="_blank">the R Graph Gallery</a>, a fantastic resource for `ggplot2` code and inspiration!
+You can start with our simple guide for common graph types, and visit [the R Graph Gallery](https://www.r-graph-gallery.com/), a fantastic resource for `ggplot2` code and inspiration!
 
-<center><img src="{{ site.baseurl }}/img/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;"/> </center>
+![]({{ site.baseurl }}/img/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;)
 <center> <b> Feeling inspired? Let's make these graphs! </b> </center>
 
 
@@ -82,14 +82,14 @@ library(readr)
 library(gridExtra)
 ```
 
-We will use data from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index</a>, which you have already downloaded from <a href="https://github.com/ourcodingclub/CC-4-Datavis" target="_blank">the repository</a> (Click on `Clone or Download/Download ZIP` and then unzip the files). 
+We will use data from the [the repository](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index</a>, which you have already downloaded from <a href="https://github.com/ourcodingclub/CC-4-Datavis) (Click on `Clone or Download/Download ZIP` and then unzip the files). 
 
 ```r
 # Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
 LPI <- read.csv("LPIdata_CC.csv")
 ```
 
-The data are in wide format - the different years are column names, when really they should be rows in the same column. We will reshape the data using the `gather()` function from the `tidyr` package, something we cover in our <a href="https://ourcodingclub.github.io/2015/10/11/data-manip-intro.html" target="_blank">basic data manipulation</a> tutorial.
+The data are in wide format - the different years are column names, when really they should be rows in the same column. We will reshape the data using the `gather()` function from the `tidyr` package, something we cover in our [basic data manipulation](https://ourcodingclub.github.io/2015/10/11/data-manip-intro.html) tutorial.
 
 ```r
 # Reshape data into long form
@@ -155,7 +155,7 @@ vulture_hist
 # For another way to check whether your data is normally distributed, you can either create density plots using package ggpubr and command ggdensity(), OR use functions qqnorm() and qqline()
 ```
 
-<center> <img src="{{ site.baseurl }}/img/base_hist.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/gg_hist.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/gg_hist.png" alt="Img" style="width: 500px;)
 
 The default ggplot settings (right) are not ideal: there is lots of unnecessary grey space behind the histogram, the axis labels are quite small, and the bars blend with each other. Lets beautify the histogram a bit! This is where the true power of `ggplot2` shines. 
 
@@ -175,7 +175,7 @@ The default ggplot settings (right) are not ideal: there is lots of unnecessary 
 # We can see from the histogram that the data are very skewed - a typical distribution of count abundance data
 ```
  
-<center><img src="{{ site.baseurl }}/img/gg_hist2.png" alt="Img" style="width: 769px;"/></center>
+![]({{ site.baseurl }}/img/gg_hist2.png" alt="Img" style="width: 769px;)
 
 <center> <b>Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?</b></center>
 
@@ -192,7 +192,7 @@ __aes__: short for __aesthetics__. Usually placed within a `geom_`, this is wher
 
 __stat__: a stat layer applies some statistical transformation to the underlying data: for instance, `stat_smooth(method = "lm")` displays a linear regression line and confidence interval ribbon on top of a scatter plot (defined with `geom_point()`).
 
-__theme__: a theme is made of a set of visual parameters that control the background, borders, grid lines, axes, text size, legend position, etc. You can use <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">pre-defined themes</a>, create <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html#theme" target="_blank">your own</a>, or use a theme and overwrite only the elements you don't like. Examples of elements within themes are `axis.text`, `panel.grid`, `legend.title`, and so on. You define their properties with `elements_...()` functions: `element_blank()` would return something empty (ideal for removing background colour), while `element_text(size = ..., face = ..., angle = ...)` lets you control all kinds of text properties. 
+__theme__: a theme is made of a set of visual parameters that control the background, borders, grid lines, axes, text size, legend position, etc. You can use [your own](https://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">pre-defined themes</a>, create <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html#theme), or use a theme and overwrite only the elements you don't like. Examples of elements within themes are `axis.text`, `panel.grid`, `legend.title`, and so on. You define their properties with `elements_...()` functions: `element_blank()` would return something empty (ideal for removing background colour), while `element_text(size = ..., face = ..., angle = ...)` lets you control all kinds of text properties. 
 
 
 Also useful to remember is that layers are added on top of each other as you progress into the code, which means that elements written later may hide or overwrite previous elements. 
@@ -212,11 +212,11 @@ install.packages("colourpicker")
 
 To find out the code for a colour you like, click on `Addins/Colour picker`.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;)
 
 When you click on `All R colours` you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour, same goes for `2`, `3` - you can add more colours with the `+`, or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear - in this case, we just need the colour code, so we can copy that, and delete the rest. Try changing the colour of the histogram you made just now.
 
-<center><img src="{{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;"/></center>
+![]({{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;)
 <br>
 
 <a name="scatter"></a>
@@ -236,7 +236,7 @@ plot(vultureITCR$year, vultureITCR$abundance, col = c("#1874CD", "#68228B"))
     geom_point())
 ```
 
-<center> <img src="{{ site.baseurl }}/img/base_scatter.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/gg_scatter1.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/gg_scatter1.png" alt="Img" style="width: 500px;)
 
 __Hopefully by now we've convinced you of the perks of ggplot2, but again like with the histogram, the graph above needs a bit more work.__
 
@@ -260,7 +260,7 @@ __Hopefully by now we've convinced you of the perks of ggplot2, but again like w
           legend.position = c(0.9, 0.9)))                                 # Setting legend position - 0 is left/bottom, 1 is top/right
 ```
 
-<center><img src="{{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 769px;"/></center>
+![]({{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 769px;)
 
 <center><b> Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals.</b></center>
 
@@ -298,7 +298,7 @@ Box plots are very informative as they show the median and spread of your data, 
           legend.position = "none"))                                    # Removing legend - not needed with only 2 factors
 ```
 
-<center><img src="{{ site.baseurl }}/img/gg_boxplot2.png" alt="Img" style="width: 769px;"/></center>
+![]({{ site.baseurl }}/img/gg_boxplot2.png" alt="Img" style="width: 769px;)
 
 <center><b>Griffon vulture abundance in Croatia and Italy.</b></center>
 <br>
@@ -327,12 +327,12 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
           plot.margin = unit(c(1,1,1,1), units = , "cm")))
 ```
 
-<center><img src="{{ site.baseurl }}/img/gg_bar2.png" alt="Img" style="width: 769px;"/></center>
+![]({{ site.baseurl }}/img/gg_bar2.png" alt="Img" style="width: 769px;)
 
 <center><b>Species richness in five European countries (based on LPI data).</b></center>
 
 
-You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">create your own theme</a> - you can now reuse this theme in all your ggplots!
+You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to [create your own theme](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html) - you can now reuse this theme in all your ggplots!
 
 <a name="panel"></a>
 
@@ -383,7 +383,7 @@ That's cluttered! Can you really figure out what populations are doing? By addin
 Some useful arguments to include in `facet_wrap()`are `nrow = ` or `ncol = `, specifying the number of rows or columns, respectively. You can also see that we used `scales = "free_y"`, to allow different y axis values because of the wide range of abundance values in the data. You can use "fixed" when you want to constrain all axis values. 
 
 
-<center><img src="{{ site.baseurl }}/img/DL_datavis1_facets.png" alt="Img" style="width: 780px;"/></center>
+![]({{ site.baseurl }}/img/DL_datavis1_facets.png" alt="Img" style="width: 780px;)
 
 <center><b>Population change of Griffon vulture across the world, from the LPI dataset.</b></center>
 
@@ -423,12 +423,12 @@ To get around the too stretched/too squished panel problems, we will save the fi
 ggsave(panel, file = "vulture_panel2.png", width = 5, height = 12) 
 ```
 
-<center><img src="{{ site.baseurl }}/img/vulture_panel2.png" alt="Img" style="width: 500px;"/></center>
+![]({{ site.baseurl }}/img/vulture_panel2.png" alt="Img" style="width: 500px;)
 
 <center><b>Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy.</b></center>
 
 
-And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank">follow-up ggplot tutorial</a>. 
+And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our [follow-up ggplot tutorial](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html). 
 
 <a name="challenge"></a>
 ### 5. Challenge yourself!

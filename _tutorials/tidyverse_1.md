@@ -9,7 +9,7 @@ tags: data_manip data_vis github
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheader_ghent.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheader_ghent.png" alt="Img)
 	</center>
 </div>
 
@@ -26,9 +26,9 @@ tags: data_manip data_vis github
 
 <p></p>
 
-### All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-Ghent" target="_blank">this repository</a>. Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Ghent). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
-<center><img src="{{ site.baseurl }}/img/CodingClub_logo2.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/CodingClub_logo2.png" alt="Img" style="width: 700px;)
 
 __We started Coding Club to help people at all career stages gain statistical and programming fluency, facilitating the collective advancement of ecology across institutions and borders. We use in-person workshops and online tutorials to equip participants not only with new skills, but also with the means to communicate these new skills broadly via online tutorials.__
 
@@ -39,7 +39,7 @@ There are similar initiatives already in place, including in Ghent University, U
 ## How does a Coding Club workshop work?
 There are many ways to run a coding workshop and different approaches might work better in different situations. Here is how we usually structure our workshops. The workshops take two hours and begin with a super short presentation or introductory talk about what we will be doing, what skills we will acquire and what they are useful for. We then direct workshop attendants to the link for the tutorial around which the workshop is focused. People usually open the tutorial on half of their screen and `RStudio` on the other half.
 
-<center><img src="{{ site.baseurl }}/img/workshop.png" alt="Img" style="width: 650px;"/></center>
+![]({{ site.baseurl }}/img/workshop.png" alt="Img" style="width: 650px;)
 
 At each workshop, we have a team of demonstrators who are there to answer questions and help out. We find that it works well to let people go through the tutorial at their own pace and we usually walk around and check whether things are going fine. Most of the tutorials have challenges at the end, for which people can work individually or in small teams. We bring cookies, popcorn and other treats, occasionally make bad R jokes and try our best to make the atmosphere light and positive. We don't require people to sign up and there are no obligations to attend all the workshops: people are free to attend whichever workshops are of interest to them. At the end of the workshops, we usually stay behind for a while in case people have any specific questions about their own coding projects.
 
@@ -51,7 +51,7 @@ We write our tutorials in Markdown. Markdown is a language with plain text forma
 
 We use the Atom text editor, which is a user-friendly text editor and easy on the eyes. You can use another text editor, like Brackets or TextEdit on a Mac and Notepad on a Windows computer if you prefer, the principle is the same. A plain text editor is a programme, which allow you to create, save and edit various types of text files, like `.txt` and in our case, Markdown (`.md`) files. So for example, `Microsoft Word` is a text editor, but not a plain one. In the "fancier" plain text editors, you get "syntax" highlighting: different types of text, like code and links, are colour coded so they are easier to spot.
 
-__You can <a href="https://atom.io/" target="_blank">download Atom here</a>, if you wish, but it's a fairly large file, so you can also proceed with whatever text editor you already have and you can check out Atom later.__
+__You can [download Atom here](https://atom.io/), if you wish, but it's a fairly large file, so you can also proceed with whatever text editor you already have and you can check out Atom later.__
 
 You can also open the tutorial template in RStudio, but note that there are small differences between Markdown and GitHub-flavoured Markdown (the curly brackets):__
 
@@ -100,19 +100,19 @@ To find the backticks on your keyboard, look towards the top left corner on a Wi
 
 __Next we can publish our tutorial on GitHub, which will turn it into a website, whose link you can share with your peers - transferring quantitative skills among ecologists in action!__
 
-__Go to the <a href="https://github.com" target="_blank">GitHub website</a>, register if you don't already have an account (it's free) and click on `New Repository`.__
+__Go to the [GitHub website](https://github.com), register if you don't already have an account (it's free) and click on `New Repository`.__
 
-<center> <img src="{{ site.baseurl }}/img/new_repo_eab.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/new_repo_eab.png" alt="Img" style="width: 600px;)
 
 Choose a name for your repository: that will form part of the link for your online tutorial so choose something short and informative. Add a brief description, click on `Initialize with a README.md` and then click on `Create repository`.
 
-<center> <img src="{{ site.baseurl }}/img/new_repo_eab2.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/new_repo_eab2.png" alt="Img" style="width: 600px;)
 
 #### Now you can see your new repository. Click on `Upload files` and upload your filled in `Markdown` template and the graph you saved. Make sure you save the file as `index.md` - that will make your tutorial the landing (home) page of the website. Upload any images you are using in your tutorial as well.
 
 You are two clicks away from having a website with your tutorial! Now click on `Settings` and scroll down to the `GitHub pages` section. We need to enable the `GitHub pages` feature, which turns our `index.md` file into a page, i.e. website. Change `Source` from `None` to `master` - the master branch of our repository. Click on `Save`.
 
-<center> <img src="{{ site.baseurl }}/img/github_pages.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/github_pages.png" alt="Img" style="width: 600px;)
 
 #### Your repository is now published as a website!
 
@@ -128,7 +128,7 @@ Version control allows you to keep track of your work and helps you to easily ex
 
 ### How does GitHub work?
 
-__You make a repository (a folder that is under version control) and you have two copies of it - a local copy (on your computer) and a remote copy (online on GitHub). Repositories can be public or private. <a href="https://blog.github.com/2019-01-07-new-year-new-github/" target="_blank">Github now provides free private repositories as standard with up to three collaborators</a>. 
+__You make a repository (a folder that is under version control) and you have two copies of it - a local copy (on your computer) and a remote copy (online on GitHub). Repositories can be public or private. [Github now provides free private repositories as standard with up to three collaborators](https://blog.github.com/2019-01-07-new-year-new-github/). 
 
 ## The GitHub workflow can be summaried by commit-pull-push.
 
@@ -150,7 +150,7 @@ __Each file on GitHub has a history, so instead of having many files like `Disse
 
 For example, here is the history for a script. You can see it took me a while to calculate those model predictions!
 
-<center> <img src="{{ site.baseurl }}/img/filehistory.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/filehistory.png" alt="Img" style="width: 800px;)
 
 You can embed this workflow within `RStudio` using projects and enabling version control for them - we will be doing that shortly in the tutorial. You can use `git` through the command line, or through `RStudio` and/or GitHub desktop.
 
@@ -166,15 +166,15 @@ GitHub uses repositories - you can think of a repository (_aka_ a repo) as a "ma
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wide audience.
 
-<center> <img src="{{ site.baseurl }}/img/newrepo.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/newrepo.png" alt="Img" style="width: 800px;)
 
 Click on `Initialise repo with a README.md file`. It's common practice for each repository to have a `README.md` file, which contains information about the project/lab group, what is the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, among which `.txt` and `.md`. `.md` stands for a file written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> - you might have used Markdown before from within `RStudio` to create reports of your code and its outputs. You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
-<center> <img src="{{ site.baseurl }}/img/newrepo2.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/newrepo2.png" alt="Img" style="width: 800px;)
 
 You can directly edit your `README.md` file on Github by clicking on the file and then selecting `Edit this file`.
 
-<center> <img src="{{ site.baseurl }}/img/readme.png" alt="Img" style="width: 800px;"/> </center>
+![]({{ site.baseurl }}/img/readme.png" alt="Img" style="width: 800px;)
 
 
 
@@ -216,7 +216,7 @@ We are now ready to start using your repository - first you need to create a loc
 
 __Click `Clone or download` and copy the HTTPS link (that's the one that automatically appears in the box).__
 
-<center> <img src="{{ site.baseurl }}/img/clone.png" alt="Img" style="width: 1200px;"/> </center>
+![]({{ site.baseurl }}/img/clone.png" alt="Img" style="width: 1200px;)
 
 Now open `RStudio`, click `File/ New Project/ Version control/ Git` and paste the link you copied from Github. Select a directory on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
@@ -236,7 +236,7 @@ and follow any instructions in the terminal window, you may need to enter your M
 
 Once the files have finished copying across, you will notice that a few things about your `RStudio` session have changed:
 
-<center><img src="{{ site.baseurl }}/img/project2.png" alt="Img" style="width: 1200px;"/></center>
+![]({{ site.baseurl }}/img/project2.png" alt="Img" style="width: 1200px;)
 
 __The working directory in the top left corner is set to your local copy of the repository.__ You can load in data using `read.csv("data/your_file.csv")` - this would load a `.csv` file in a folder called `data` within your lab's repository - notice that there is no need to include the repository's name - by setting up a RStudio project, you are already within it. Similarly, when saving files, you can specify the folder where you want them saved without the repository's name.
 
@@ -247,7 +247,7 @@ __All the files that were in the repository online are now on your computer as w
 #### Tell RStudio who you are on GitHub
 In the top right corner of the RStudio screen, click on `More/Shell`.
 
-<center> <img src="{{ site.baseurl }}/img/shell.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/shell.png" alt="Img" style="width: 900px;)
 
 __Copy the following code:__
 
@@ -309,7 +309,7 @@ If you had just cloned the `tidyverse` repository (i.e. copying the HTTPS link o
 
 <b>In this tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
-We will be working with population data from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a> and red deer occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, both of which are publicly available datasets.
+We will be working with population data from the [Global Biodiversity Information Facility](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a> and red deer occurrence data from the <a href="http://www.gbif.org/), both of which are publicly available datasets.
 
 __First, we will model population change for vertebrate forest species to see whether greater population change is found for longer duration studies.__
 
@@ -364,7 +364,7 @@ load("LPDdata_Feb2016.RData")
 head(LPDdata_Feb2016)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/wide.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/wide.png" alt="Img" style="width: 600px;)
 
 At the moment, each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years.
 
@@ -401,7 +401,7 @@ LPD_long$biome <- gsub("/", "", LPD_long$biome, fixed = TRUE)
 head(LPD_long)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/long.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/long.png" alt="Img" style="width: 600px;)
 
 Now that our dataset is *tidy* we can get it ready for our analysis. We want to only use populations that have more than 5 years of data to make sure our analysis has enough data to capture population change. We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different - imagine tiny fish whose abundance is in the millions, and large carnivores whose abundance is much smaller. Scaling also normalises the data, as later on we will be using linear models assuming a normal distribution. To do all of this in one go, we can use pipes. 
 
@@ -516,7 +516,7 @@ forest.panel <- grid.arrange(forest.hist, duration.forests, ncol = 2)
 ggsave(forest.panel, file = "forest_panel.png", height = 5, width = 10)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/forest_panel.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/forest_panel.png" alt="Img" style="width: 900px;)
 
 We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 1785 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
@@ -573,7 +573,7 @@ __Now we can visualise the outputs of all our models and see how they vary based
 ggsave(density.slopes, filename = "slopes_duration.png", height = 6, width = 6)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/slopes_duration.png" alt="Img" style="width: 600px;"/> </center>
+![]({{ site.baseurl }}/img/slopes_duration.png" alt="Img" style="width: 600px;)
 
 ### PART 2: Using pipes to make figures with large datasets
 How to print plots of population change for multiple taxa
@@ -621,7 +621,7 @@ do(ggsave(ggplot(., aes(x = estimate)) +
 A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not NULL` - you can ignore this, it's because the `do()` function expects a data frame as an output, but in our case we are making graphs, not data frames.
 
 If you go check out your folder now, you should see four histograms, one per taxa:
-<center> <img src="{{ site.baseurl }}/img/folder.png" alt="Img" style="width: 500px;"/> <img src="{{ site.baseurl }}/img/mamm.png" alt="Img" style="width: 500px;"/> </center>
+![]({{ site.baseurl }}/img/mamm.png" alt="Img" style="width: 500px;)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -688,7 +688,7 @@ walk2(paste0(path2, names(taxa.slopes), ".pdf"), taxa.plots, ggsave)
 14. How to map occurence data and populations
 15. How to make a custom function for plotting figures
 
-__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a> which we will download in `R` using the `rgbif` package.__
+__In this part of the tutorial, we will focus on one particular species, red deer (*Cervus elaphus*), where it has been recorded around the world, and where it's populations are being monitored. We will use occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org/) which we will download in `R` using the `rgbif` package.__
 
 Occurrence data can be messy and when you are working with thousands of records, not all of them might be valid records. If you are keen to find out how to test the validity of geographic coordinates using the `CoordinateCleaner` package, check out our tutorial <a href="https://ourcodingclub.github.io/2018/01/06/occurrence.html" target = "_blank">here</a>.
 
@@ -760,7 +760,7 @@ We are working with thousands of records, so depending on your computer, making 
                size = 2, colour = "darkgreen"))
 ```
 
-<center> <img src="{{ site.baseurl }}/img/deer_map.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/deer_map.png" alt="Img" style="width: 900px;)
 
 The map already looks fine, but we can customise it further to add more information. For example, we can add labels for the locations of some of the monitored populations and we can add plots of population change next to our map. 
 
@@ -942,7 +942,7 @@ deer.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(1.2, 0.8))
 ggsave(deer.panel, filename = "deer_panel2.png", height = 10, width = 15)
 ```
 
-<center> <img src="{{ site.baseurl }}/img/deer_panel2.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/deer_panel2.png" alt="Img" style="width: 900px;)
 
 ## A challenge for later if you are keen
 
@@ -957,12 +957,12 @@ Take what you have learned about pipes and make a map for the five most well-sam
 
 R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis. You might choose to create an R markdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. R Markdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook. Your report can also be what you base your future methods and results sections in your manuscripts, thesis chapters, etc.
 
-R Markdown uses <a href="http://www.markdowntutorial.com" target="_blank">markdown syntax</a>. Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
+R Markdown uses [markdown syntax](http://www.markdowntutorial.com). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
 
-<center> <img src="{{ site.baseurl }}/img/md_script.png" alt="Img" style="width: 900px;"/> </center>
+![]({{ site.baseurl }}/img/md_script.png" alt="Img" style="width: 900px;)
 
 ## Download R Markdown
-To get R Markdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from <a href="https://cran.r-project.org/web/packages/rmarkdown/index.html" target="_blank">CRAN</a> by running the following commands in R or RStudio:
+To get R Markdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from [CRAN](https://cran.r-project.org/web/packages/rmarkdown/index.html) by running the following commands in R or RStudio:
 
 ``` r
 install.packages("rmarkdown")
@@ -973,7 +973,7 @@ library(rmarkdown)
 
 ### The YAML Header
 
-At the top of any R Markdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see <a href="http://rmarkdown.rstudio.com/html_document_format.html" target="_blank">here for `.html` options</a> and <a href="http://rmarkdown.rstudio.com/pdf_document_format.html" target="_blank">here for `.pdf` options</a>. Rules in the header section will alter the whole document.
+At the top of any R Markdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.pdf` options](http://rmarkdown.rstudio.com/html_document_format.html" target="_blank">here for `.html` options</a> and <a href="http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document.
 
 Add your own details at the top of your`.Rmd` script, e.g.:
 
@@ -990,7 +990,7 @@ By default, the `title`, `author`, `date` and `output` format are printed at the
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
-<img src="{{ site.baseurl }}/img/Knit_HTML_Screenshot.jpg" alt="Img">
+![]({{ site.baseurl }}/img/Knit_HTML_Screenshot.jpg" alt="Img)
 
  Not only does a preview appear in the `Viewer` window in RStudio, but it also saves a `.html` file to the same folder where you saved your `.Rmd` file.
 
@@ -1080,7 +1080,7 @@ __Now you can start copying across the code from your tidyverse script and inser
 
 You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
 
-<img src="{{ site.baseurl }}/img/run_sel.png" alt="Img" style="width: 900px;"/>
+![]({{ site.baseurl }}/img/run_sel.png" alt="Img" style="width: 900px;)
 
 ### Summary of  code chunk instructions
 
@@ -1196,22 +1196,22 @@ pander(richness_abund)  # Create the table
 
 ## Extra resources
 
-You can find more info on `pander` <a href="https://cran.r-project.org/web/packages/pander/pander.pdf" target="_blank"> here</a>.
+You can find more info on `pander` [ here](https://cran.r-project.org/web/packages/pander/pander.pdf).
 
 To learn more about the power of pipes check out:
-<a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and <a href="http://r4ds.had.co.nz/pipes.html" target="_blank"> the R for Data Science book</a>.
+<a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and [ the R for Data Science book](http://r4ds.had.co.nz/pipes.html).
 
-To learn more about `purrr` check out the <a href="http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html" target="_blank"> R for Data Science book</a>.
+To learn more about `purrr` check out the [ R for Data Science book](http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html).
 
-For more information on functional programming see the <a href="http://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book chapter here</a>.
+For more information on functional programming see the [R for Data Science book chapter here](http://r4ds.had.co.nz/functions.html).
 
-To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides <a href="https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides" target="_blank">here</a>.
+To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides [here](https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides).
 
 
 ### Git in the command line
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. <a href = "http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git" target="_blank">Prof Simon Mudd's Numeracy, Modelling and Data management guide</a>, <a href = "https://swcarpentry.github.io/git-novice/" target="_blank">The Software Carpentry guide</a>, and this <a href = "https://github.com/BES2016Workshop/version-control" target="_blank">guide from the British Ecological Society Version Control workshop </a>. For more generic command line tools, look at this <a href="https://www.git-tower.com/blog/command-line-cheat-sheet">general cheat-sheet</a> and this <a href="https://github.com/0nn0/terminal-mac-cheatsheet">cheat-sheet for mac users</a>. We have also created a table and flow diagram with some basic Git commands and how they fit into the Git/Github workflow. Orange lines refer to the core workflow, the blue lines describe extra functions and the green lines deal with branches:
 
-<center><img src="{{ site.baseurl }}/img/git_cli_nmdm.png" alt="Img" style="width: 850px;"/></center>
+![]({{ site.baseurl }}/img/git_cli_nmdm.png" alt="Img" style="width: 850px;)
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -1310,7 +1310,7 @@ Below is a quick exercise so you can familiarise yourself with these command lin
 
 1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
 
-<center><img src="{{ site.baseurl }}/img/rstudio_new_terminal.png" alt="Img" style="width: 700px;"/></center>
+![]({{ site.baseurl }}/img/rstudio_new_terminal.png" alt="Img" style="width: 700px;)
 
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git.
@@ -1366,11 +1366,11 @@ Now you can continue editing files, adding changes (`git add <FILE>`), committin
 <hr>
 <hr>
 
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
+__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"/></a>
+![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
 
-<h3><a href="https://www.surveymonkey.com/r/XD85MW5" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/XD85MW5)</h3>
 
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
@@ -1419,7 +1419,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

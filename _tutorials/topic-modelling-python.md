@@ -8,7 +8,7 @@ meta: "Tutorials"
 tags: mix Python Advanced Modelling
 ---
 <div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheader-topic-modelling-python.png" alt="Img"></center>
+![]({{ site.baseurl }}/img/tutheader-topic-modelling-python.png" alt="Img)
 </div>
 
 ### Tutorial aims:
@@ -46,7 +46,7 @@ Twitter is a fantastic source of data for a social scientist, with over 8,000 tw
 
 The first thing we will do is to get you set up with the data.
 
-### The data\* you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-topic-modelling-python" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+### The data\* you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-topic-modelling-python). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 \* The original dataset was taken from <a href="https://data.world/crowdflower/sentiment-of-climate-change">the data.world website</a> but we have modified it slightly, so for this tutorial you should use the version on our Github.
 
@@ -213,7 +213,7 @@ plt.yscale('log', nonposy='clip')
 plt.show()
 ```
 
-<center><img src="{{ site.baseurl }}/img/topic-modelling-python-tweet_distribution.png" alt="img" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/topic-modelling-python-tweet_distribution.png" alt="img" style="width: 900px;)
 
 
 <a name="who_what"></a>
@@ -537,7 +537,7 @@ sns.heatmap(corrleations,
     cbar_kws={'label':'correlation'})
 plt.show()
 ```
-<center><img src="{{ site.baseurl }}/img/topic-modelling-python-hashtag_correlation.png" alt="img" style="width: 900px;"/></center>
+![]({{ site.baseurl }}/img/topic-modelling-python-hashtag_correlation.png" alt="img" style="width: 900px;)
 
 
 From the plot above we can see that there are fairly strong correlations between
@@ -880,7 +880,7 @@ Topic modelling is a really useful tool to explore text data and find the latent
 <hr>
 <hr>
 
-<h3><a href="https://www.surveymonkey.co.uk/r/7C5N3QV" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
+<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/7C5N3QV)</h3>
 <br>
 <h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
 <br>
@@ -915,7 +915,7 @@ Topic modelling is a really useful tool to explore text data and find the latent
 <ul class="social-icons">
 	<li>
 		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
 		</h3>
 	</li>
 </ul>

@@ -9,7 +9,7 @@ tags: data_manip
 ---
 <div class="block">
 	<center>
-		<img src="{{ site.baseurl }}/img/tutheaderpiping.png" alt="Img">
+![]({{ site.baseurl }}/img/tutheaderpiping.png" alt="Img)
 	</center>
 </div>	
 

@@ -1,71 +1,58 @@
 ---
-layout: post
+layout: tutorial
 title: Python Data Analysis with Pandas and Matplotlib
 subtitle: Create plots and manipulate data with Pandas and Matplotlib 
 date: 2018-04-18 00:00:00
 author: Declan V.
-meta: "PythonPandas"
-tags: python pandas
+survey_link: https://www.surveymonkey.co.uk/r/R6PJGKJ
 ---
-<div class="block">
-  <center><img src="{{ site.baseurl }}/img/tutheaderpandas.png" alt="Img"></center>
-</div>
 
-Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the <a href="https://ourcodingclub.github.io/2018/01/26/python-intro.html" target="_blank">Introduction to Python tutorial</a>, you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 
+Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html), you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 
 
 ### Tutorial aims:
 
-#### <a href="#understanding">1. Understand what Pandas is</a>
-
-#### <a href="#following">2. Ways of running Python and Pandas</a>
-
-#### <a href="#datastructures">3. Understanding the basic Pandas data structures</a>
-
-#### <a href="#accessing">4. Learn how to access data from a Pandas DataFrame</a>
-
-#### <a href="#filtering">5. Learn how to filter data in a Pandas DataFrame</a>
-
-#### <a href="#sorting">6. Learn how to read and sort data from a file</a>
-
-#### <a href="#matplotlib">7. Understand the basics of the Matplotlib plotting package</a>
-
-#### <a href="#stats">8. Learn how to bring together other packages to enhance your plots</a>
-
-#### <a href="#customise">9. Learn how to further customise the appearance of Matplotlib plots</a>
-
-#### <a href="#inspiration">10. Be inspired to experiment further with Matplotlib!</a>
+1. [Understand what Pandas is](#understanding)
+2. [Ways of running Python and Pandas](#following)
+3. [Understanding the basic Pandas data structures](#datastructures)
+4. [Learn how to access data from a Pandas DataFrame](#accessing)
+5. [Learn how to filter data in a Pandas DataFrame](#filtering)
+6. [Learn how to read and sort data from a file](#sorting)
+7. [Understand the basics of the Matplotlib plotting package](#matplotlib)
+8. [Learn how to bring together other packages to enhance your plots](#stats)
+9. [Learn how to further customise the appearance of Matplotlib plots](#customise)
+10. [Be inspired to experiment further with Matplotlib!](#inspiration)
 
 
-<a name="understanding"></a>
 
 ## What is Pandas?
+{: #understanding}
 
 `pandas` is a package commonly used to deal with data analysis. It simplifies the loading of data from external sources such as text files and databases, as well as providing ways of analysing and manipulating data once it is loaded into your computer. The features provided in `pandas` automate and simplify a lot of the common tasks that would take many lines of code to write in the basic Python langauge.
 
 _If you have used R's dataframes before, or the `numpy` package in Python, you may find some similarities in the Python `pandas` package. But if not, don't worry because this tutorial doesn't assume any knowledge of NumPy or R, only basic-level Python._
 
-Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the <a href="https://ourcodingclub.github.io/2018/01/26/python-intro.html" target="_blank">Introduction to Python tutorial</a> we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the <a href="https://stackoverflow.com" target="_blank">StackOverflow</a> question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
+Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html) we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the [StackOverflow](https://stackoverflow.com) question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
 
-<center><img src="{{ site.baseurl }}/img/python-pandas-growth.png" alt="Img" style="width: 700px"></center>
+![]({{ site.baseurl }}/img/python-pandas-growth.png)
 
 These graphs of course should be taken with a pinch of salt, as there is no agreed way of absolutely determing programming langauge and library popularity, but they are interesting to think about nonetheless. 
 
-Pandas is best suited for structured, __labelled__ data, in other words, tabular data, that has headings associated with each column of data. The <a href="https://pandas.pydata.org" target="_blank">official Pandas website</a> describes Pandas' data-handling strengths as:
+Pandas is best suited for structured, __labelled__ data, in other words, tabular data, that has headings associated with each column of data. The [official Pandas website](https://pandas.pydata.org) describes Pandas' data-handling strengths as:
 
-##### - Tabular data with heterogeneously-typed columns, as in an SQL table or Excel spreadsheet.
-##### - Ordered and unordered (not necessarily fixed-frequency) time series data.
-##### - Arbitrary matrix data (homogeneously typed or heterogeneous) with row and column labels.
-##### - Any other form of observational / statistical data sets. The data actually need not be labelled at all to be placed into a `pandas` data structure.
+- Tabular data with heterogeneously-typed columns, as in an SQL table or Excel spreadsheet.
+- Ordered and unordered (not necessarily fixed-frequency) time series data.
+- Arbitrary matrix data (homogeneously typed or heterogeneous) with row and column labels.
+- Any other form of observational / statistical data sets. The data actually need not be labelled at all to be placed into a `pandas` data structure.
  
 Some other important points to note about Pandas are:
 
-##### - Pandas is __fast__. Python sometimes gets a bad rap for being a bit slow compared to 'compiled' languages such as C and Fortran. But deep down in the internals of Pandas, it is actually written in C, and so processing large datasets is no problem for Pandas.
-##### - Pandas is a dependency of another library called `statsmodels`, making it an important part of the statistical computing ecosystem in Python.
+- Pandas is __fast__. Python sometimes gets a bad rap for being a bit slow compared to 'compiled' languages such as C and Fortran. But deep down in the internals of Pandas, it is actually written in C, and so processing large datasets is no problem for Pandas.
+- Pandas is a dependency of another library called `statsmodels`, making it an important part of the statistical computing ecosystem in Python.
 
-You can read more about the Pandas package at the <a href="https://pandas.pydata.org/" target="_blank">Pandas project website</a>.
+You can read more about the Pandas package at the [Pandas project website](https://pandas.pydata.org/).
 
-<a name="following"></a>
 ## Ways of running Python with Pandas
+{: #following}
 
 Here we briefly discuss the different ways you can folow this tutorial. There are lots of different ways to run Python programs, and I don't want to prescribe any one way as being the 'best'. Users of RStudio and Matlab may find that the **Spyder** programming environment most closely matches the feel of RStudio and Matlab, with a window for editing scripts and an 'interactive' mode that can be used along side. For a more minimalist approach, you may prefer to write their scripts/programs in a text editor such as Notepadd++ (Windows), vim, emacs, or other popular editors. (But do *not* use Windows Notepad!). Personally this is how I like to work with Python as it frees you from the distractions of an IDE like Spyder, and reduces the number of problems that can arise from the Spyder program being set-up incorrectly.
 
@@ -75,9 +62,9 @@ Some more information on the three methods is described below:
 
 ### Spyder
 
-If you are attending the workshop 'live' on-site at Edinburgh University, the easiest way is to use the Spyder IDE (Integrated Development Environment) which is installed on the GeoSciences computers. It can also be installed on your laptop relatively easily. It is included in the <a href="https://www.anaconda.com/download/" target="_blank">Anconda Python distibution which can be downloaded here</a>. Be sure to download the Python 3 version!
+If you are attending the workshop 'live' on-site at Edinburgh University, the easiest way is to use the Spyder IDE (Integrated Development Environment) which is installed on the GeoSciences computers. It can also be installed on your laptop relatively easily. It is included in the [Anconda Python distibution which can be downloaded here](https://www.anaconda.com/download/). Be sure to download the Python 3 version!
 
-The basics of Spyder were covered in the <a href="https://ourcodingclub.github.io/2018/01/26/python-intro.html" target="_blank">Introduction to Python tutorial</a>.
+The basics of Spyder were covered in the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html).
 
 ### Text Editor with the Linux/Mac Terminal or Command-line
 
@@ -139,16 +126,16 @@ Run the script and note the output. My script prints `'0.22.0'`, but you may be 
 
 This short tutorial is mainly based around working with the basic Pandas commands and data structures, but we also use some data about Scottish mountains, provided in the form of a `.csv` file (`scottish_hills.csv`).
 
-You can download the data from <a href="https://github.com/ourcodingclub/CC-python-pandas-matplotlib" target="_blank">this Github repository</a>. Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any Python scripts to that folder, so they can access the data easily.
+You can download the data from [this Github repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any Python scripts to that folder, so they can access the data easily.
 
-Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-python-pandas-matplotlib" target="_blank">the repository</a> to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank">previous tutorial.</a>
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
 
-The original data came from a series of databases about the mountains of Scotland, which if you are interested further can be found here: <a href="http://www.haroldstreet.org.uk/other/excel-csv-files/" target="_blank">http://www.haroldstreet.org.uk/other/excel-csv-files/</a>.
+The original data came from a series of databases about the mountains of Scotland, which if you are interested further can be found here: [http://www.haroldstreet.org.uk/other/excel-csv-files/].
 
 _As a side note, and some interesting trivia, the dataset we are using was originally compiled in **1891** by Sir Hugh Munro. He compiled a list of all the mountains in Scotland above 3000 feet (914m if you prefer the metric system). The table has been revised since with more accurate heights and coordinates._
 
-<a name="datastructures"></a>
 ## Understand the basic Pandas data structures
+{: #datastructures}
 
 Pandas has two core data structures used to store data: The _Series_ and the _DataFrame_. 
 
@@ -318,8 +305,8 @@ Run the modified script. You should now get output that looks like this:
 
 Note how the dictionary keys have become column headers running along the top, and as with the Series, an index number has been automatically generated. The columns are also in the order we specified.
 
-<a name="accessing"></a>
 ## Learn how to access data from a Pandas DataFrame
+{: #accessing}
 
 Pandas DataFrames have many useful methods that can be used to inspect the data and manipulate it. We are going to have a look at just a few of them.
 
@@ -439,9 +426,9 @@ Name: Height, dtype: int64
 **Experiment with modifying your script (or interactively if using IPython) to access different elements of your DataFrame**
 
 
-<a name="filtering"></a>
 
 ## Learn how to filter data in a Pandas DataFrame
+{: #filtering}
 
 We can also apply conditions to the data we are inspecting, such as to filter our data.
 
@@ -465,9 +452,9 @@ This returns a new Series of True/False values though. To actually filter the da
 dataframe[dataframe.Height > 1300]
 ```
 
-<a name="appending"></a>
 
 ## Learn how to append data to an existing DataFrame
+{: #appending}
 
 We can also append data to the DataFrame. This is done using the following syntax:
 
@@ -500,13 +487,13 @@ Run the script again, the output should now be:
 3             Cairn Toul    1291  57.054611  -3.710420  Cairngorm
 4  Sgòr an Lochain Uaine    1258  57.057999  -3.725416  Cairngorm
 ```
-<a name="sorting"></a>
 
 ## Learn how to read data from a file using Pandas
+{: #sorting}
 
 So far we have only created data in Python itself, but Pandas has built in tools for reading data from a variety of external data formats, including Excel spreadsheets, raw text and `.csv` files. It can also interface with databases such as MySQL, but we are not going to cover databases in this tutorial.
 
-We've provided the `scottish_hills.csv` file <a href="https://github.com/ourcodingclub/CC-python-pandas-matplotlib" target="_blank">in this Github repository</a>. The file contains **all** the mountains above 3000 feet (about 914 metres) in Scotland. We can load this easily into a DataFrame with the `read_csv` function.
+We've provided the `scottish_hills.csv` file [in this Github repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib). The file contains **all** the mountains above 3000 feet (about 914 metres) in Scotland. We can load this easily into a DataFrame with the `read_csv` function.
 
 If you are writing a complete script to follow the tutorial, create a new file and enter:
 
@@ -558,12 +545,12 @@ Run the script with these extra lines, and have a look at the output:
 
 We now have our hills sorted by height. Note how we've used the `by=['Height']` argument to specify that we want to sort by height, and then the `ascending=False` argument to get the heights sorted in descending order, from highest to lowest.
 
-<a name="matplotlib"></a>
 ## Understand the basics of the Matplotlib plotting package
+{: #matplotlib}
 
 `matplotlib` is a Python package used for data plotting and visualisation. It is a useful complement to Pandas, and like Pandas, is a very feature-rich library which can produce a large variety of plots, charts, maps, and other visualisations. It would be impossible to cover the entirety of Matplotlib in one tutorial, so this section is really to give you a flavour of the capabilities of Matplotlib, and to cover some of the basics, as well as a couple of more interesting 'advanced' features. 
 
-If you have a bit of basic Python knowledge already, the common route to learning Matplotib is to find examples of plots similar to ones you are trying to create and walk through them, trying to reproduce them with your own data perhaps. A great starting point is the <a href="https://matplotlib.org/gallery.html" target="_blank">Matplotlib gallery of examples</a>. I recommend this because in practice it is difficult to cover each and every plot type, as the needs of scientists differ considerably depending on the type of data they are working with or the message they are trying to convey in their visualisation. You might also find it useful to refer to the <a href="https://matplotlib.org/api/pyplot_api.html" target="_blank">Matplotlib official documentation</a> as you go along.
+If you have a bit of basic Python knowledge already, the common route to learning Matplotib is to find examples of plots similar to ones you are trying to create and walk through them, trying to reproduce them with your own data perhaps. A great starting point is the [Matplotlib gallery of examples](https://matplotlib.org/gallery.html). I recommend this because in practice it is difficult to cover each and every plot type, as the needs of scientists differ considerably depending on the type of data they are working with or the message they are trying to convey in their visualisation. You might also find it useful to refer to the [Matplotlib official documentation](https://matplotlib.org/api/pyplot_api.html) as you go along.
 
 ### Matplotlib conventions
 
@@ -630,14 +617,13 @@ plt.show()  # or plt.savefig("name.png")
 
 Run the script and have a look at the figure. It should look something like this:
 
-<center><img src="{{ site.baseurl }}/img/python-scatter.png" alt="Img" style="width: 600px"></center>
+![]({{ site.baseurl }}/img/python-scatter.png)
 
 **IPython users**: the figure should render automatically after calling `plt.scatter(x, y)`.
 
 
-<a name="stats"></a>
-
 ## Learn how to bring together other Python libraries with Matplotlib
+{: #stats}
 
 Now we are going to do some basic statistics so we can plot a line of linear regression on our chart. I'm a software engineer, not a statistician, so this will be pretty basic...
 
@@ -658,13 +644,10 @@ b = stats.intercept
 
 Let's pause and recap what we've done here before plotting the regression.
 
-##### 1. We used an `import` statement with a slightly different format here: `from module.submodule import function`. This is a handy way of importing just a single function from a Python module. In this case we only want to use the `linregress` function in SciPy's `stats` submodule, so we can just import it without anything else using that syntax.
-
-##### 2. Next we are assigning the results of `linregress` to variable called `stats`. 
-
-##### 3. The `linregress` function is slightly different to the functions we've seen so far, because it returns an object with multiple values. In fact it returns the `slope`, `intercept`, `rvalue`, `pvalue`, and `stderr` (standard error). We can get hold of each of these values by using the dot notation: e.g. `stats.slope`, for example, much in the same way we can access our DataFrame attributes with `dataframe.Height`. 
-
-##### 4. For ease of typing later, we've assigned the `stats.slope` to a variable `m`, and `stats.intercept` to a variable `b`.
+1. We used an `import` statement with a slightly different format here: `from module.submodule import function`. This is a handy way of importing just a single function from a Python module. In this case we only want to use the `linregress` function in SciPy's `stats` submodule, so we can just import it without anything else using that syntax.
+2. Next we are assigning the results of `linregress` to variable called `stats`. 
+3. The `linregress` function is slightly different to the functions we've seen so far, because it returns an object with multiple values. In fact it returns the `slope`, `intercept`, `rvalue`, `pvalue`, and `stderr` (standard error). We can get hold of each of these values by using the dot notation: e.g. `stats.slope`, for example, much in the same way we can access our DataFrame attributes with `dataframe.Height`. 
+4. For ease of typing later, we've assigned the `stats.slope` to a variable `m`, and `stats.intercept` to a variable `b`.
 
 The equation for the straight line that describes linear regression is `y = mx + b`, where `m` is the slope and `b` is the intercept.
 
@@ -703,17 +686,17 @@ plt.savefig("figure.png")
 Hopefully, you will have a figure that should look similar to this:
 
 
-<center><img src="{{ site.baseurl }}/img/python-linear-reg.png" alt="Img" style="width: 600px"></center>
+![]({{ site.baseurl }}/img/python-linear-reg.png)
 
 I will leave it as an exercise for the reader to determine if they think this is a good fit or statistically significant...
 
 (Hint: you have some extra information in the `stats` object - `stats.rvalue` and `stats.pvalue`.)
 
 
-<a name="customise"></a>
 ## Learn how to customise Matplotlib plots further
+{: #customise}
 
-Matplotlib figures are highly customisable, and there are so many options it is usually best to consult the <a href="https://matplotlib.org/tutorials/index.html" target="_blank">documentation first</a>. In addition, the <a href="https://matplotlib.org/users/pyplot_tutorial.html" target="_blank">Matplotlib official pyplot tutorial is quite useful</a>. To get started on Matplotlib plot customisation, here is an extended version of the above which sets the font sizes, axes lables, linewidths, and marker types:
+Matplotlib figures are highly customisable, and there are so many options it is usually best to consult the [documentation first](https://matplotlib.org/tutorials/index.html). In addition, the [Matplotlib official pyplot tutorial is quite useful](https://matplotlib.org/users/pyplot_tutorial.html). To get started on Matplotlib plot customisation, here is an extended version of the above which sets the font sizes, axes lables, linewidths, and marker types:
 
 Again, the best way to learn the features of Matplotlib is by example, so try to modify your script above with some of the extra arguments added below, such as `fontsize`, `linewidth`, `color`, etc. Have a go at adding your own values, and producing nicer looking plots. Here's my example to start you off:
 
@@ -754,11 +737,11 @@ plt.savefig("python-linear-reg-custom.png")
 
 It will produce a figure that looks like this:
 
-<center><img src="{{ site.baseurl }}/img/python-linear-reg-custom.png" alt="Img" style="width: 600px"></center>
+![]({{ site.baseurl }}/img/python-linear-reg-custom.png)
 
 
-<a name="inspiration"></a>
 ## Bonus Matplotlib: plotting data onto maps with Cartopy
+{: #inspiration}
 
 The best way to learn Matplotlib I believe is to learn from examples. I'm going to leave you with two examples that use an extra Python package called `cartopy`, unfortunately, Cartopy is not installed (yet) on the University of Edinburgh's lab computers, so you will have to try this at home or on your own laptops later. We won't go through this step-by-step in the tutorial, it is more of an example of how you could take things further in your own time.
 
@@ -799,16 +782,16 @@ plt.scatter(dataframe['Longitude'],dataframe['Latitude'],
 plt.savefig("munros.png")
 ```
 
-<center><img src="{{ site.baseurl }}/img/python-munros.png" alt="Img" style="width: 600px"></center>
+![]({{ site.baseurl }}/img/python-munros.png)
 
-Finally, there is one more bonus Matplotlib example plot I would like to share, create by PhD student James Warner at Exeter University. It shows precipitable water in the atmopshere over the year 2017, projected over the globe. He has even created an animation of it which can be viewed <a href="https://twitter.com/MetmanJames/status/978659301337202693" target="_blank">on his Twitter account</a>. This was all done using Python and some other Python libraries, including Matplotlib, Numpy, Cartopy, and a few others. It would take a long time to explain all of it, but hopefully it is some inspiration of the cool things you can do in Python with data visualisation. 
+Finally, there is one more bonus Matplotlib example plot I would like to share, create by PhD student James Warner at Exeter University. It shows precipitable water in the atmopshere over the year 2017, projected over the globe. He has even created an animation of it which can be viewed [on his Twitter account](https://twitter.com/MetmanJames/status/978659301337202693). This was all done using Python and some other Python libraries, including Matplotlib, Numpy, Cartopy, and a few others. It would take a long time to explain all of it, but hopefully it is some inspiration of the cool things you can do in Python with data visualisation. 
 
-The Python code for this is actually not too complicated and he has shared it <a href="http://empslocal.ex.ac.uk/people/phd/jw773/Plot_PWAT_OrthoProj.py" target="_blank">here</a>.
+The Python code for this is actually not too complicated and he has shared it [here](http://empslocal.ex.ac.uk/people/phd/jw773/Plot_PWAT_OrthoProj.py).
 
 If you are feeling ambitious, try reproducing the images!
 
 
-<center><img src="{{ site.baseurl }}/img/python-global-water.png" alt="Img" style="width: 600px"></center>
+![]({{ site.baseurl }}/img/python-global-water.png)
 
 ## Summary
 
@@ -816,65 +799,8 @@ In this tutorial we have covered the various ways in which we can use Pandas, Ma
 
 ### Tutorial outcomes:
 
-#### 1. Understood what the Pandas library does
-
-#### 2. Understood the basic Pandas data structures and how to manipulate them.
-
-#### 3. Understood the basics of the Matplotlib plotting package
-
-#### 4. Learnt how to bring use additional packages to enhance your plots
-
-
-<hr>
-<hr>
-
-__Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="width: 100px"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-
-<h3><a href="https://www.surveymonkey.co.uk/r/R6PJGKJ" target="_blank">&nbsp; We would love to hear your feedback, please fill out our survey!</a></h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
-		</h3>
-	</li>
-</ul>
-
-
-
-
-
-
+1. Understood what the Pandas library does
+2. Understood the basic Pandas data structures and how to manipulate them.
+3. Understood the basics of the Matplotlib plotting package
+4. Learnt how to bring use additional packages to enhance your plots
 
