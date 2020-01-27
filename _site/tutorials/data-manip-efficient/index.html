@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Efficient data manipulation</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			
+	<div class="banner">
+	
+		
+			<h1 style="color: $bannerNoImageColour">Efficient data manipulation</h1>
+			
+				<h3 style="color: $bannerNoImageColour">Use pipes to streamline your code</h3>
+			
+		
+	
+</div>
+
+
+
+
+<div class="content">
+	<p class="author">
+		
+			Created by Sandra
+		
+		
+			- last updated 4th April 2019
+		
+		
+			by Sandra
+		
+	</p>
+	<hr>
+	<h3 id="tutorial-aims">Tutorial aims:</h3>
+
+<ol>
+  <li>Chain together multiple lines of codes with pipes <code class="language-plaintext highlighter-rouge">%&gt;%</code>
+</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">dplyr</code> to its full potential</li>
+  <li>Automate advanced tasks like plotting without writing a loop</li>
+</ol>
+
+<h3 id="steps">Steps:</h3>
+
+<ol>
+  <li><a href="#pipes">An introduction to pipes</a></li>
+  <li>
+<a href="#dplyr">Discover more functions of <code class="language-plaintext highlighter-rouge">dplyr</code></a>
+    <ul>
+      <li><a href="#filter"><code class="language-plaintext highlighter-rouge">summarise_all()</code></a></li>
+      <li><a href="#case"><code class="language-plaintext highlighter-rouge">case_when()</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#factors">Rename and reorder factor levels or create categorical variables</a></li>
+  <li><a href="#piping-graphs">Advanced piping</a></li>
+  <li><a href="#challenge">Challenge yourself!</a></li>
+</ol>
+
+<p>Welcome to our second tutorial on data manipulation! In our (anything but) <strong>basic tutorial</strong>, we learned to subset and modify data to suit most of our coding needs, and to use a tidy data format. Today we dig deeper into the wonderful world of <code class="language-plaintext highlighter-rouge">dplyr</code> with one of our favourite feature, the pipe operator <code class="language-plaintext highlighter-rouge">%&gt;%</code>. We also explore some extra <code class="language-plaintext highlighter-rouge">dplyr</code> functions and give some tips to recode and reclassify values.</p>
+
+<p><strong>All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-data-manip-2" target="_blank" rel="noopener noreferrer">this repository</a>. Clone and download the repo as a zip file, then unzip it.</strong></p>
+
+<p>We are working with a subset of a larger dataset of <a href="https://data.edinburghcouncilmaps.info/datasets/4dfc8f18a40346009b9fc32cbee34039_39" target="_blank" rel="noopener noreferrer">trees within the City of Edinburgh</a>*. We subsetted this large dataset (over 50 thousand trees!) to the <a href="https://data.edinburghcouncilmaps.info/datasets/33969ec66f9b46cf9617c40c023bb89e_35" target="_blank" rel="noopener noreferrer">Special Landscape Area</a> around Craigmillar Castle. Our <strong>Spatial analysis tutorials</strong> could teach you how to do this yourself, but for now the file is all ready for you to use and is named <code class="language-plaintext highlighter-rouge">trees.csv</code>.</p>
+
+<p>*(Copyright City of Edinburgh Council, contains Ordnance Survey data © Crown copyright and database right 2019)</p>
+
+<p><strong>Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags <code class="language-plaintext highlighter-rouge">#</code> to comment and annotate your script).</strong></p>
+
+<h3 id="pipes">An introduction to pipes</h3>
+
+<p>The pipe operator <code class="language-plaintext highlighter-rouge">%&gt;%</code> is a funny little thing that serves as a channel for the output of a command to be passed to another function seamlessly, i.e., without creating intermediary objects. It really makes your code flow, and avoids repetition. Let’s first import the data, and then we’ll see what pipes are all about.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># LIBRARIES</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">     </span><span class="c1"># for data manipulation</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">   </span><span class="c1"># for making graphs; make sure you have it installed, or install it now</span><span class="w">
+
+</span><span class="c1"># Set your working directory</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"your-file-path"</span><span class="p">)</span><span class="w">   </span><span class="c1"># replace with the tutorial folder path on your computer</span><span class="w">
+</span><span class="c1"># If you're working in an R project, skip this step</span><span class="w">
+
+</span><span class="c1"># LOAD DATA</span><span class="w">
+</span><span class="n">trees</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"trees.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span><span class="w">  </span><span class="c1"># make sure the data imported OK, familiarise yourself with the variables</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Let’s say we want to know how many trees of each species are found in the dataset. If you remember our first data manipulation tutorial, this is a task made for the functions <code class="language-plaintext highlighter-rouge">group_by()</code> and <code class="language-plaintext highlighter-rouge">summarise()</code>. So we could do this:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Count the number of trees for each species</span><span class="w">
+
+</span><span class="n">trees.grouped</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">group_by</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span><span class="w"> </span><span class="n">CommonName</span><span class="p">)</span><span class="w">    </span><span class="c1"># create an internal grouping structure, so that the next function acts on groups (here, species) separately. </span><span class="w">
+
+</span><span class="n">trees.summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summarise</span><span class="p">(</span><span class="n">trees.grouped</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">CommonName</span><span class="p">))</span><span class="w">   </span><span class="c1"># here we use length to count the number of rows (trees) for each group (species). We could have used any row name.</span><span class="w">
+
+</span><span class="c1"># Alternatively, dplyr has a tally function that does the counts for you!</span><span class="w">
+</span><span class="n">trees.summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tally</span><span class="p">(</span><span class="n">trees.grouped</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This works well, but notice how we had to create an extra data frame, <code class="language-plaintext highlighter-rouge">trees.grouped</code>, before achieving our desired output of <code class="language-plaintext highlighter-rouge">trees.summary</code>. For a larger, complex analysis, this would rapidly clutter your environment with lots of objects you don’t really need!</p>
+
+<p>This is where the pipe comes in to save the day. It takes the data frame created on its left side, and <em>passes it</em> to the function on its right side. This saves you the need for creating intermediary objects, and also avoids repeating the object name in every function: the tidyverse functions “know” that the object that is passed through the pipe is the <code class="language-plaintext highlighter-rouge">data =</code> argument of that function.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Count the number of trees for each species, with a pipe!</span><span class="w">
+
+</span><span class="n">trees.summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                   </span><span class="c1"># the data frame object that will be passed in the pipe</span><span class="w">
+                 </span><span class="n">group_by</span><span class="p">(</span><span class="n">CommonName</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">    </span><span class="c1"># see how we don't need to name the object, just the grouping variable?</span><span class="w">
+                 </span><span class="n">tally</span><span class="p">()</span><span class="w">                     </span><span class="c1"># and we don't need anything at all here, it has been passed through the pipe!</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>See how we go from <code class="language-plaintext highlighter-rouge">trees</code> to <code class="language-plaintext highlighter-rouge">trees.summary</code> while running one single chunk of code?</p>
+
+<p><strong>Important notes:</strong> Pipes only work on data frame objects, and functions outside the tidyverse often require that you specify the data source with a full stop dot <code class="language-plaintext highlighter-rouge">.</code>. But as we will see later, you can still do advanced things while keeping these limitations in mind!</p>
+
+<div class="callout" style="">
+
+  <p><strong>We’re not lazy, but we love shortcuts!</strong> In RStudio, you can use <code class="language-plaintext highlighter-rouge">Ctrl + Shift + M</code> (or <code class="language-plaintext highlighter-rouge">Cmd + Shift + M</code> on a Mac) to create the <code class="language-plaintext highlighter-rouge">%&gt;%</code> operator.</p>
+
+</div>
+
+<p>Let’s use some more of our favourite <code class="language-plaintext highlighter-rouge">dplyr</code> functions in pipe chains. Can you guess what this does?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trees.subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                </span><span class="n">filter</span><span class="p">(</span><span class="n">CommonName</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Common Ash'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Rowan'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Scots Pine'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                </span><span class="n">group_by</span><span class="p">(</span><span class="n">CommonName</span><span class="p">,</span><span class="w"> </span><span class="n">AgeGroup</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                </span><span class="n">tally</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Here we are first subsetting the data frame to only three species, and counting the number of trees for each species, but also breaking them down by age group. The intuitive names of <code class="language-plaintext highlighter-rouge">dplyr</code>’s actions make the code very readable for your colleagues, too.</p>
+
+<p>Neat, uh? Now let’s play around with other functions that <code class="language-plaintext highlighter-rouge">dplyr</code> has to offer.</p>
+
+<h3 id="dplyr">More functions of <code class="language-plaintext highlighter-rouge">dplyr</code>
+</h3>
+
+<p>An extension of the core <code class="language-plaintext highlighter-rouge">dplyr</code> functions is <code class="language-plaintext highlighter-rouge">summarise_all()</code>: you may have guessed, it will run a summary function of your choice over ALL the columns. Not meaningful here, but could be if all values were numeric, for instance.</p>
+
+<div id="filter" class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summ.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summarise_all</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>As only two of the columns had numeric values over which a mean could be calculated, the other columns have missing values.</p>
+
+<p>Now let’s move on to a truly exciting function that not so many people know about.</p>
+
+<h4 id="case">2. <code class="language-plaintext highlighter-rouge">case_when()</code> - a favourite for re-classifying values or factors</h4>
+
+<p>But first, it seems poor form to introduce this function without also introducing the simpler function upon which it builds, <code class="language-plaintext highlighter-rouge">ifelse()</code>. You give <code class="language-plaintext highlighter-rouge">ifelse()</code> a conditional statement which it will evaluate, and the values it should return when this statement is true or false. Let’s do a very simple example to begin with:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vector</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span><span class="w">      </span><span class="c1"># create a vector to evaluate</span><span class="w">
+
+</span><span class="n">ifelse</span><span class="p">(</span><span class="n">vector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">)</span><span class="w">  </span><span class="c1"># give the conditions: if inferior to 10, return A, if not, return B</span><span class="w">
+
+</span><span class="c1"># Congrats, you're a dancing queen! (Or king!)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The super useful <code class="language-plaintext highlighter-rouge">case_when()</code> is a generalisation of <code class="language-plaintext highlighter-rouge">ifelse()</code> that lets you assign more than two outcomes. All logical operators are available, and you assign the new value with a tilde <code class="language-plaintext highlighter-rouge">~</code>. For instance:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vector2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"What am I?"</span><span class="p">,</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">case_when</span><span class="p">(</span><span class="n">vector2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"What am I?"</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"I am the walrus"</span><span class="p">,</span><span class="w">
+          </span><span class="n">vector2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"goo"</span><span class="p">,</span><span class="w">
+          </span><span class="n">vector2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"C"</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"ga"</span><span class="p">,</span><span class="w">
+          </span><span class="n">vector2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"D"</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"joob"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>But enough singing, and let’s see how we can use those functions in real life to reclassify our variables.</p>
+
+<h3 id="factors">Changing factor levels or create categorical variables</h3>
+
+<p>The use of <code class="language-plaintext highlighter-rouge">mutate()</code> together with <code class="language-plaintext highlighter-rouge">case_when()</code> is a great way to change the names of factor levels, or create a new variable based on existing ones. We see from the <code class="language-plaintext highlighter-rouge">LatinName</code> columns that there are many tree species belonging to some genera, like birches (Betula), or willows (Salix), for example. We may want to create a <code class="language-plaintext highlighter-rouge">Genus</code> column using <code class="language-plaintext highlighter-rouge">mutate()</code> that will hold that information.</p>
+
+<p>We will do this using a character string search with the <code class="language-plaintext highlighter-rouge">grepl</code> function, which looks for patterns in the data, and specify what to return for each genus. Before we do that, we may want the full list of species occuring in the data!</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">unique</span><span class="p">(</span><span class="n">trees</span><span class="o">$</span><span class="n">LatinName</span><span class="p">)</span><span class="w">  </span><span class="c1"># Shows all the species names</span><span class="w">
+
+</span><span class="c1"># Create a new column with the tree genera</span><span class="w">
+
+</span><span class="n">trees.genus</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">mutate</span><span class="p">(</span><span class="n">Genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">case_when</span><span class="p">(</span><span class="w">               </span><span class="c1"># creates the genus column and specifies conditions</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Acer"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Acer"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Fraxinus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Fraxinus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Sorbus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Sorbus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Betula"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Betula"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Populus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Populus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Laburnum"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Laburnum"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Aesculus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Aesculus"</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Fagus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Fagus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Prunus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Prunus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Pinus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Pinus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Sambucus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Sambucus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Crataegus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Crataegus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Ilex"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Ilex"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Quercus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Quercus"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Larix"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Larix"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Salix"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Salix"</span><span class="p">,</span><span class="w">
+                  </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"Alnus"</span><span class="p">,</span><span class="w"> </span><span class="n">LatinName</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Alnus"</span><span class="p">)</span><span class="w">
+               </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We have searched through the <code class="language-plaintext highlighter-rouge">LatinName</code>column for each genus name, and specified a value to put in the new <code class="language-plaintext highlighter-rouge">Genus</code> column for each case. It’s a lot of typing, but still quicker than specifying the genus individually for related trees (e.g. <em>Acer pseudoplatanus</em>, <em>Acer platanoides</em>, <em>Acer</em> spp.).</p>
+
+<p><strong>BONUS FUNCTION!</strong> In our specific case, we could have achieved the same result much quicker. The genus is always the first word of the <code class="language-plaintext highlighter-rouge">LatinName</code> column, and always separated from the next word by a space. We could use the <code class="language-plaintext highlighter-rouge">separate()</code> function from the <code class="language-plaintext highlighter-rouge">tidyr</code> package to split the column into several new columns filled with the words making up the species names, and keep only the first one.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">trees.genus.2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                  </span><span class="n">tidyr</span><span class="o">::</span><span class="n">separate</span><span class="p">(</span><span class="n">LatinName</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Genus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Species"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  
+                  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">Species</span><span class="p">)</span><span class="w">
+                  
+</span><span class="c1"># we're creating two new columns in a vector (genus name and species name), "sep" refers to the separator, here space between the words, and remove = FALSE means that we want to keep the original column LatinName in the data frame</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Mind blowing! Of course, sometimes you have to be typing more, so here is another example of how we can reclassify a factor. The <code class="language-plaintext highlighter-rouge">Height</code> factor has 5 levels representing brackets of tree heights, but let’s say three categories would be enough for our purposes. We create a new height category variable <code class="language-plaintext highlighter-rouge">Height.cat</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trees.genus</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">   </span><span class="c1"># overwriting our data frame </span><span class="w">
+               </span><span class="n">mutate</span><span class="p">(</span><span class="n">Height.cat</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="c1"># creating our new column</span><span class="w">
+                         </span><span class="n">case_when</span><span class="p">(</span><span class="n">Height</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Up to 5 meters"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5 to 10 meters"</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Short"</span><span class="p">,</span><span class="w">
+                                   </span><span class="n">Height</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"10 to 15 meters"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15 to 20 meters"</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Medium"</span><span class="p">,</span><span class="w">
+                                   </span><span class="n">Height</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"20 to 25 meters"</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Tall"</span><span class="p">)</span><span class="w">
+                      </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="callout" style="">
+
+  <p><strong>Reordering factors levels</strong></p>
+
+  <p>We’ve seen how we can change the names of a factor’s levels, but what if you want to change the order in which they display? R will always show them in alphabetical order, which is not very handy if you want them to appear in a more logical order.</p>
+
+  <p>For instance, if we plot the number of trees in each of our new height categories, we may want the bars to read, from left to right: ‘Short’, ‘Medium’, ‘Tall’. However, by default, R will order them ‘Medium’, ‘Short’, ‘Tall’.</p>
+
+  <p>To fix this, you can specify the order explicitly, and even add labels if you want to change the names of the factor levels. Here, we put them in all capitals to illustrate.</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1">## Reordering a factor's levels</span><span class="w">
+
+</span><span class="n">levels</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Height.cat</span><span class="p">)</span><span class="w">  </span><span class="c1"># shows the different factor levels in their default order</span><span class="w">
+
+</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Height.cat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Height.cat</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Short'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Medium'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Tall'</span><span class="p">),</span><span class="w">   </span><span class="c1"># whichever order you choose will be reflected in plots etc</span><span class="w">
+                                 </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'SHORT'</span><span class="p">,</span><span class="w"> </span><span class="s1">'MEDIUM'</span><span class="p">,</span><span class="w"> </span><span class="s1">'TALL'</span><span class="p">)</span><span class="w">    </span><span class="c1"># Make sure you match the new names to the original levels!</span><span class="w">
+                                 </span><span class="p">)</span><span class="w">   
+
+</span><span class="n">levels</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Height.cat</span><span class="p">)</span><span class="w">  </span><span class="c1"># a new order and new names for the levels</span><span class="w">
+</span></code></pre></div>  </div>
+
+</div>
+
+<p>Are you now itching to make graphs too? We’ve kept to base R plotting in our intro tutorials, but we are big fans of <code class="language-plaintext highlighter-rouge">ggplot2</code> and that’s what we’ll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven’t used <code class="language-plaintext highlighter-rouge">ggplot2</code> before, don’t worry, we won’t go far with it today. We have <a href="https://ourcodingclub.github.io/tutorials/" target="_blank" rel="noopener noreferrer">two tutorials</a> dedicated to making pretty and informative plots with it. Install and load the package if you need to:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>And let’s build up a plot-producing factory chain!</p>
+
+<h3 id="piping-graphs">Advanced piping</h3>
+
+<p>Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of <code class="language-plaintext highlighter-rouge">dplyr</code> with non native <code class="language-plaintext highlighter-rouge">dplyr</code> functions, for instance to run series of models or produce plots. It can be tricky, but it’s sometimes easier to write than a loop. (You can learn to write loops <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank" rel="noopener noreferrer">here</a>.)</p>
+
+<p>First, we’ll subset our dataset to just a few tree genera to keep things light. Pick your favourite five, or use those we have defined here! Then we’ll map them to see how they are distributed.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Subset data frame to fewer genera</span><span class="w">
+
+</span><span class="n">trees.five</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">filter</span><span class="p">(</span><span class="n">Genus</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Acer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fraxinus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Salix"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Aesculus"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Pinus"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Map all the trees</span><span class="w">
+
+</span><span class="p">(</span><span class="n">map.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">trees.five</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+            </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Easting</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Northing</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Height.cat</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Genus</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+            </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+            </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                  </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+                  </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/DL_data-manip-2_treemap.jpeg" alt=""></p>
+
+<p>Don’t worry too much about all the arguments in the <code class="language-plaintext highlighter-rouge">ggplot</code> code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the <code class="language-plaintext highlighter-rouge">aes()</code> call: we’re telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We’ll explain everything else in our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">data visualisation</a> tutorial.</p>
+
+<p>Now, let’s say we want to save a separate map for each genus (so 5 maps in total). You could filter the data frame five times for each individual genus, and copy and paste the plotting code five times too, but imagine we kept all 17 genera! This is where pipes and <code class="language-plaintext highlighter-rouge">dplyr</code> come to the rescue again. (If you’re savvy with <code class="language-plaintext highlighter-rouge">ggplot2</code>, you’ll know that facetting is often a better option, but sometimes you do want to save things as separate files.) The <code class="language-plaintext highlighter-rouge">do()</code> function allows us to use pretty much any R function within a pipe chain, provided that we supply the data as <code class="language-plaintext highlighter-rouge">data = .</code> where the function requires it.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plotting a map for each genus</span><span class="w">
+
+</span><span class="n">tree.plots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  
+   </span><span class="n">trees.five</span><span class="w">  </span><span class="o">%&gt;%</span><span class="w">      </span><span class="c1"># the data frame</span><span class="w">
+   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Genus</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># grouping by genus</span><span class="w">
+   </span><span class="n">do</span><span class="p">(</span><span class="n">plots</span><span class="w"> </span><span class="o">=</span><span class="w">           </span><span class="c1"># the plotting call within the do function</span><span class="w">
+         </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Easting</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Northing</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Height.cat</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"Map of"</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="o">$</span><span class="n">Genus</span><span class="p">,</span><span class="w"> </span><span class="s2">"at Craigmillar Castle"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+               </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+               </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+               </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+               </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">)</span><span class="w">
+   </span><span class="p">)</span><span class="w"> 
+   
+</span><span class="c1"># You can view the graphs before saving them</span><span class="w">
+</span><span class="n">tree.plots</span><span class="o">$</span><span class="n">plots</span><span class="w">
+   
+</span><span class="c1"># Saving the plots to file</span><span class="w">
+
+</span><span class="n">tree.plots</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">              </span><span class="c1"># the saving call within the do function</span><span class="w">
+   </span><span class="n">do</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> 
+      </span><span class="n">ggsave</span><span class="p">(</span><span class="n">.</span><span class="o">$</span><span class="n">plots</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">getwd</span><span class="p">(),</span><span class="w"> </span><span class="s2">"/"</span><span class="p">,</span><span class="w"> </span><span class="s2">"map-"</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="o">$</span><span class="n">Genus</span><span class="p">,</span><span class="w"> </span><span class="s2">".png"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">),</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"png"</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/DL_data-manip-2_treemaps.png" alt=""></p>
+
+<p>You should get five different plots looking something like the one above.</p>
+
+<p>Phew! This could even be chained in one long call without creating the <code class="language-plaintext highlighter-rouge">tree.plots</code> object, but take a moment to explore this object: the plots are saved as <em>lists</em> within the <code class="language-plaintext highlighter-rouge">plots</code> column that we created. The <code class="language-plaintext highlighter-rouge">do()</code> function allows to use a lot of external functions within <code class="language-plaintext highlighter-rouge">dplyr</code> pipe chains. However, it is sometimes tricky to use and is becoming deprecated. <a href="https://www.brodrigues.co/blog/2017-03-29-make-ggplot2-purrr/" target="_blank" rel="noopener noreferrer">This page</a> shows an alternative solution using the <code class="language-plaintext highlighter-rouge">purr</code> package to save the files.</p>
+
+<div class="callout" style="">
+
+  <p><strong>Sticking things together with <code class="language-plaintext highlighter-rouge">paste()</code></strong></p>
+
+  <p>Did you notice how we used the <code class="language-plaintext highlighter-rouge">paste()</code> function to define the <code class="language-plaintext highlighter-rouge">filename=</code> argument of the last piece of code? (We did the same to define the titles that appear on the graphs.) It’s a useful function that lets you combine text strings as well as outputs from functions or object names in the environment. Let’s take apart that last piece of code here:</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">paste</span><span class="p">(</span><span class="n">getwd</span><span class="p">(),</span><span class="w"> </span><span class="s1">'/'</span><span class="p">,</span><span class="w"> </span><span class="s1">'map-'</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="o">$</span><span class="n">Genus</span><span class="p">,</span><span class="w"> </span><span class="s1">'.png'</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+
+  <ul>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">getwd()</code>: You are familiar with this call: try it in the console now! It writes the path to your working directory, i.e. the root folder where we want to save the plots.</p>
+    </li>
+    <li>
+      <p>’/’: we want to add a slash after the directory folder and before writing the name of the plot</p>
+    </li>
+    <li>
+      <p>‘map-‘: a custom text bit that will be shared by all the plots. We’re drawing maps after all!</p>
+    </li>
+    <li>
+      <p>’.$Genus’: accesses the Genus name of the tree.plots object, so each plot will bear a different name according to the tree genus.</p>
+    </li>
+    <li>
+      <p>‘.png’: the file extension; we could also have chosen a pdf, jpg, etc.</p>
+    </li>
+    <li>
+      <p>‘sep = ‘’’: we want all the previous bits to be pasted together with nothing separating them</p>
+    </li>
+  </ul>
+
+  <p>So, in the end, the whole string could read something like: ‘C:/Coding_Club/map-Acer.png’.</p>
+
+</div>
+
+<p>We hope you’ve learned new hacks that will simplify your code and make it more efficient! Let’s see if you can use what we learned today to accomplish a last data task.</p>
+
+<h3 id="challenge">Challenge yourself!</h3>
+
+<p>The Craigmillar Castle team would like a summary of the different species found within its grounds, but broken down in four quadrants (NE, NW, SE, SW). You can start from the <code class="language-plaintext highlighter-rouge">trees.genus</code> object created earlier.</p>
+
+<ol>
+  <li>Can you calculate the species richness (e.g. the number of different species) in each quadrant?</li>
+  <li>They would also like to know how abundant the genus <em>Acer</em> is (as a % of the total number of trees) in each quadrant.</li>
+  <li>Finally, they would like, <em>for each quadrant separately</em>, a bar plot showing counts of <em>Acer</em> trees in the different age classes, ordered so they read from Young (lumping together juvenile and semi-mature trees), Middle Aged, and Mature.</li>
+</ol>
+
+<p><button class="reveal" onclick="reveal()">Click this line to see the solution!</button></p>
+
+<div class="reveal-container" id="reveal-container">
+
+  <p>First of all, we need to create the four quadrants. This only requires simple maths and the use of mutate to create a new factor.</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1">## Calculate the quadrants</span><span class="w">
+
+</span><span class="c1"># Find the center coordinates that will divide the data (adding half of the range in longitude and latitude to the smallest value)</span><span class="w">
+
+</span><span class="n">lon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Easting</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Easting</span><span class="p">))</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Easting</span><span class="p">)</span><span class="w">
+</span><span class="n">lat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Northing</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Northing</span><span class="p">))</span><span class="o">/</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">trees.genus</span><span class="o">$</span><span class="n">Northing</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Create the column</span><span class="w">
+
+</span><span class="n">trees.genus</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">mutate</span><span class="p">(</span><span class="n">Quadrant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">case_when</span><span class="p">(</span><span class="w">
+                     </span><span class="n">Easting</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'NW'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">Easting</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'SW'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">Easting</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'NE'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">Easting</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'SE'</span><span class="p">)</span><span class="w">
+   </span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># We can check that it worked</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">trees.genus</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Easting</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Northing</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quadrant</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme_bw</span><span class="p">()</span><span class="w">
+</span></code></pre></div>  </div>
+
+  <p>It did work, but there is a NA value (check the legend)! Probably this point has the exact integer value of middle Easting, and should be attributed to one side or the other (your choice).</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">trees.genus</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">mutate</span><span class="p">(</span><span class="n">Quadrant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">case_when</span><span class="p">(</span><span class="w">
+      </span><span class="n">Easting</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'NW'</span><span class="p">,</span><span class="w">  </span><span class="c1"># using inferior OR EQUAL ensures that no point is forgotten</span><span class="w">
+      </span><span class="n">Easting</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'SW'</span><span class="p">,</span><span class="w">
+      </span><span class="n">Easting</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'NE'</span><span class="p">,</span><span class="w">
+      </span><span class="n">Easting</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Northing</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'SE'</span><span class="p">)</span><span class="w">
+   </span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+
+  <p>To answer the first question, a simple pipeline combining <code class="language-plaintext highlighter-rouge">group_by()</code> and <code class="language-plaintext highlighter-rouge">summarise()</code> is what we need.</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">sp.richness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Quadrant</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">summarise</span><span class="p">(</span><span class="n">richness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">LatinName</span><span class="p">)))</span><span class="w">
+</span></code></pre></div>  </div>
+  <p>There we are! We have 7, 15, 8 and 21 species for the NE, NW, SE, and SW corners respectively!</p>
+
+  <p>There are different ways to calculate the proportion of <em>Acer</em> trees, here is one (maybe base R would have been less convoluted in this case!):</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">acer.percent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Quadrant</span><span class="p">,</span><span class="w"> </span><span class="n">Genus</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">tally</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                      </span><span class="c1"># get the count of trees in each quadrant x genus</span><span class="w">
+   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Quadrant</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">           </span><span class="c1"># regroup only by quadrant </span><span class="w">
+   </span><span class="n">mutate</span><span class="p">(</span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">       </span><span class="c1"># sum the total of trees in a new column</span><span class="w">
+   </span><span class="n">filter</span><span class="p">(</span><span class="n">Genus</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'Acer'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">      </span><span class="c1"># keep only acer</span><span class="w">
+   </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="w">        </span><span class="c1"># calculate the proportion</span><span class="w">
+
+</span><span class="c1"># We can make a plot representing the %</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">acer.percent</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_col</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quadrant</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">percent</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Quadrant'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Proportion of Acer'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme_bw</span><span class="p">()</span><span class="w">
+</span></code></pre></div>  </div>
+
+  <p>And finally, we can use our manipulation skills to subset the data frame to <em>Acer</em> only and change the age factor, and then use our pipes to create the four plots.</p>
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Create an Acer-only data frame </span><span class="w">
+
+</span><span class="n">acer</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trees.genus</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+   </span><span class="n">filter</span><span class="p">(</span><span class="n">Genus</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'Acer'</span><span class="p">)</span><span class="w">
+   
+
+</span><span class="c1"># Rename and reorder age factor</span><span class="w">
+
+</span><span class="n">acer</span><span class="o">$</span><span class="n">AgeGroup</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">acer</span><span class="o">$</span><span class="n">AgeGroup</span><span class="p">,</span><span class="w">
+                        </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Juvenile'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Semi-mature'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Middle Aged'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mature'</span><span class="p">),</span><span class="w">
+                        </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Young'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Young'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Middle Aged'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mature'</span><span class="p">))</span><span class="w">
+
+
+</span><span class="c1"># Plot the graphs for each quadrant</span><span class="w">
+
+</span><span class="n">acer.plots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">acer</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Quadrant</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+   </span><span class="n">do</span><span class="p">(</span><span class="n">plots</span><span class="w"> </span><span class="o">=</span><span class="w">           </span><span class="c1"># the plotting call within the do function</span><span class="w">
+         </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgeGroup</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s1">'Age distribution of Acer in '</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="o">$</span><span class="n">Quadrant</span><span class="p">,</span><span class="w"> </span><span class="s1">' corner'</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="p">),</span><span class="w">
+              </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Age group'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Number of trees'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+         </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+               </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+               </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+               </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="w">
+   </span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># View the plots (use the arrows on the Plots viewer)</span><span class="w">
+</span><span class="n">acer.plots</span><span class="o">$</span><span class="n">plots</span><span class="w">
+</span></code></pre></div>  </div>
+
+  <p>Well done for getting so far!</p>
+
+</div>
+
+<p>We hope this was useful. Let’s look back at what you can now do, and as always, get in touch if there is more content you would like to see!</p>
+
+<h3 id="tutorial-outcomes">Tutorial Outcomes:</h3>
+
+<ol>
+  <li>You can streamline your code using pipes</li>
+  <li>You know how to reclassify values or recode factors using logical statements</li>
+  <li>You can tweak <code class="language-plaintext highlighter-rouge">dplyr</code>’s function <code class="language-plaintext highlighter-rouge">group_by()</code> to act as a loop without having to write one, following it by <code class="language-plaintext highlighter-rouge">do()</code>
+</li>
+</ol>
+
+
+	<div class="survey">
+	<hr>
+	<hr>
+	
+		<h4><a href="" target="_blank">We would love to hear your feedback, please fill out our survey!</a></h4>
+	
+	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h4>
+	<br>
+	<h3>Related tutorials:</h3>
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+	<br>
+	<h3>Subscribe to our mailing list:</h3>
+
+	<div class="container">
+		<div class="block">
+			<!-- subscribe form start -->
+			<div class="form-group">
+				<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" name="Email" placeholder="Email" required>
+					</div>
+					<div>
+            			<button class="btn btn-default" type="submit">Subscribe</button>
+        			</div>
+            	</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

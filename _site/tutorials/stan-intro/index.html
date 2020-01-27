@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Intro to Stan</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			
+	<div class="banner">
+	
+		
+			<h1 style="color: $bannerNoImageColour">Intro to Stan</h1>
+			
+				<h3 style="color: $bannerNoImageColour">Getting started with Bayesian modelling in Stan</h3>
+			
+		
+	
+</div>
+
+
+
+
+<div class="content">
+	<p class="author">
+		
+			Created by Max Farrell &amp; Isla Myers-Smith
+		
+		
+		
+	</p>
+	<hr>
+	<h3 id="tutorial-aims">Tutorial Aims:</h3>
+
+<ol>
+  <li><a href="#intro">Learn about <code class="language-plaintext highlighter-rouge">Stan</code></a></li>
+  <li><a href="#data">Prepare a dataset for modelling</a></li>
+  <li><a href="#stan">Write a programme in <code class="language-plaintext highlighter-rouge">Stan</code></a></li>
+  <li><a href="#run">Run a <code class="language-plaintext highlighter-rouge">Stan</code> programme</a></li>
+  <li><a href="#priors">Specify priors in <code class="language-plaintext highlighter-rouge">Stan</code></a></li>
+  <li><a href="#priors">Assess convergence diagnostics</a></li>
+</ol>
+
+<p>All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-Stan-intro" target="_blank" rel="noopener noreferrer">this Github repository</a>. Click on <code class="language-plaintext highlighter-rouge">Clone/Download/Download ZIP</code> and unzip the folder, or clone the repository to your own GitHub account.</p>
+
+<p><strong>This tutorial is based on work by <a href="http://farrell.research.mcgill.ca" target="_blank" rel="noopener noreferrer">Max Farrell</a> - you can find Max’s original tutorial <a href="https://github.com/maxfarrell/qcbs_stan_workshop/blob/master/QCBS_stan.Rmd" target="_blank" rel="noopener noreferrer">here</a> which includes an explanation about how <code class="language-plaintext highlighter-rouge">Stan</code> works using simulated data, as well as information about model verification and comparison.</strong></p>
+
+<h3 id="intro">1. Learn about <code class="language-plaintext highlighter-rouge">Stan</code>
+</h3>
+
+<p><strong>Bayesian modelling like any statistical modelling can require work to design the appropriate model for your research question and then to develop that model so that it meets the assumptions of your data and runs. You can check out the Coding Club tutorial on <a href="how%20to%20design%20a%20model">https://ourcodingclub.github.io/2018/04/06/model-design.html</a>, and <a href="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank" rel="noopener noreferrer">Bayesian Modelling in <code class="language-plaintext highlighter-rouge">MCMCglmm</code></a> for key background information on model design and Bayesian statistics.</strong></p>
+
+<p><strong>Statistical models can be fit in a variety of packages in <code class="language-plaintext highlighter-rouge">R</code> or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as <a href="http://mc-stan.org/" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">Stan</code></a>.</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">Stan</code> is a new-ish language that offers a more comprehensive approach to learning and implementing Bayesian models that can fit complex data structures. A goal of the <code class="language-plaintext highlighter-rouge">Stan</code> development team is to make Bayesian modelling more accessible with clear syntax, a better sampler (sampling here refers to drawing samples out of the Bayesian posterior distribution), and integration with many platforms and including <code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">RStudio</code>, <code class="language-plaintext highlighter-rouge">ggplot2</code>, and <code class="language-plaintext highlighter-rouge">Shiny</code>.</p>
+
+<p>In this introductory tutorial we’ll go through the iterative process of model building starting with a linear model. In our advanced <code class="language-plaintext highlighter-rouge">Stan</code> tutorial we will explore more complex model structures.</p>
+
+<p>First, before building a model you need to define your question and get to know your data. Explore them, plot them, calculate some summary statistics.</p>
+
+<p>Once you have a sense of your data and what question you want to answer with your statistical model, you can begin the iterative process of building a Bayesian model:</p>
+
+<ol>
+  <li>Design your model.</li>
+  <li>Choose priors (Informative? Not? Do you have external data you could turn into a prior?)</li>
+  <li>Sample the posterior distribution.</li>
+  <li>Inspect model convergence (traceplots, rhats, and for Stan no divergent transitions - we will go through these later in the tutorial)</li>
+  <li>Critically assess the model using posterior predictions and checking how they compare to your data!</li>
+  <li>Repeat…</li>
+</ol>
+
+<p>It’s also good practice to simulate data to make sure your model is doing what you think it’s doing, as a further way to test your model!</p>
+
+<h3 id="data">2. Data</h3>
+
+<p><strong>First, let’s find a dataset where we can fit a simple linear model. <a href="https://nsidc.org/" target="_blank" rel="noopener noreferrer">The National Snow and Ice Data Center</a> provides loads of public data that you can download and explore. One of the most prominent climate change impacts on planet earth is the decline in annual sea ice extent in the Northern Hemisphere. Let’s explore how sea ice extent is changing over time using a linear model in Stan.</strong></p>
+
+<p>Set your working directory to the folder where you’ve saved the data by either clicking on <code class="language-plaintext highlighter-rouge">Session/Set working directory/Choose directory</code> or running the code <code class="language-plaintext highlighter-rouge">setwd("your-file-path")</code> with your own filepath inside. Now, let’s load the data:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Adding stringsAsFactors = F means that numeric variables won't be</span><span class="w">
+</span><span class="c1"># read in as factors/categorical variables</span><span class="w">
+</span><span class="n">seaice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"seaice.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Let’s have a look at the data:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">seaice</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If for some reason the column names are not read in properly, you can change column names using:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colnames</span><span class="p">(</span><span class="n">seaice</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="s2">"extent_north"</span><span class="p">,</span><span class="w"> </span><span class="s2">"extent_south"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>What research question can we ask with these data? How about the following:</strong></p>
+
+<h3 id="research-question-is-sea-ice-extent-declining-in-the-northern-hemisphere-over-time">
+<em>Research Question:</em> Is sea ice extent declining in the Northern Hemisphere over time?</h3>
+
+<p>To explore the answer to that question, first we can make a figure.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">extent_north</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seaice</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<figure class="image">
+  	<img src="/assets/img/tutorials/stan-intro/sea_ice1.png" alt="">
+  <figcaption>Figure 1. Change in sea ice extent in the Northern Hemisphere over time.</figcaption>
+</figure>
+
+<p>Now, let’s run a general linear model using <code class="language-plaintext highlighter-rouge">lm()</code>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">extent_north</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seaice</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">lm1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We can add that model fit to our plot:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">abline</span><span class="p">(</span><span class="n">lm1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<figure class="image">
+  	<img src="/assets/img/tutorials/stan-intro/sea_ice2.png" alt="">
+  <figcaption>Figure 2. Change in sea ice extent in the Northern Hemisphere over time (plus linear model fit).</figcaption>
+</figure>
+
+<p><strong>Let’s remember the equation for a linear model:</strong></p>
+
+<p>y = α + β∗x + error</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">Stan</code> you need to specify the equation that you are trying to model, so thinking about that model equation is key!</p>
+
+<p>We have the answer to our question perhaps, but the point of this tutorial is to explore using the programming language <code class="language-plaintext highlighter-rouge">Stan</code>, so now let’s try writing the same model in Stan.</p>
+
+<h3 id="preparing-the-data">Preparing the data</h3>
+
+<p>Let’s rename the variables and index the years from 1 to 39. One critical thing about Bayesian models is that you have to describe the variation in your data with informative distributions. Thus, you want to make sure that your data do conform to those distributions and that they will work with your model. In this case, we really want to know is sea ice changing from the start of our dataset to the end of our dataset, not specifically the years 1979 to 2017 which are really far from the year 0. We don’t need our model to estimate what sea ice was like in the year 500, or 600, just over the duration of our dataset. So we set up our year data to index from 1 to 30 years.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">seaice</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1978</span><span class="p">)</span><span class="w">
+</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seaice</span><span class="o">$</span><span class="n">extent_north</span><span class="w">
+</span><span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">seaice</span><span class="o">$</span><span class="n">year</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We can re-run that linear model with our new data.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">lm1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We can also extract some of the key summary statistics from our simple model, so that we can compare them with the outputs of the <code class="language-plaintext highlighter-rouge">Stan</code> models later.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm_alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">lm1</span><span class="p">)</span><span class="o">$</span><span class="n">coeff</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># the intercept</span><span class="w">
+</span><span class="n">lm_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">lm1</span><span class="p">)</span><span class="o">$</span><span class="n">coeff</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w">  </span><span class="c1"># the slope</span><span class="w">
+</span><span class="n">lm_sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sigma</span><span class="p">(</span><span class="n">lm1</span><span class="p">)</span><span class="w">  </span><span class="c1"># the residual error</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Now let’s turn that into a dataframe for inputting into a <code class="language-plaintext highlighter-rouge">Stan</code> model. Data passed to Stan needs to be a list of named objects. The names given here need to match the variable names used in the models (see the model code below).</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stan_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="libraries">Libraries</h4>
+
+<p>Please make sure the following libraries are installed (these are the libraries for this and the next <code class="language-plaintext highlighter-rouge">Stan</code> tutorial). <code class="language-plaintext highlighter-rouge">rstan</code> is the most important, and requires a little extra if you dont have a C++ compiler.</p>
+
+<p><strong>You can find detailed instructions <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started" target="_blank" rel="noopener noreferrer">here</a>.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rstan</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gdata</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">bayesplot</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="stan">3. Our first <code class="language-plaintext highlighter-rouge">Stan</code> program</h3>
+
+<p><strong>We’re going to start by writing a linear model in the language <code class="language-plaintext highlighter-rouge">Stan</code>. This can be written in your R script, or saved seprately as a <code class="language-plaintext highlighter-rouge">.stan</code> file and called into <code class="language-plaintext highlighter-rouge">R</code>.</strong></p>
+
+<p><strong>A <code class="language-plaintext highlighter-rouge">Stan</code> program has three required “blocks”:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>“data”</strong> block: where you declare the data types, their dimensions, any restrictions (i.e. upper = or lower = , which act as checks for <code class="language-plaintext highlighter-rouge">Stan</code>), and their names. Any names you give to your <code class="language-plaintext highlighter-rouge">Stan</code> program will also be the names used in other blocks.</p>
+  </li>
+  <li>
+    <p><strong>“parameters”</strong> block: This is where you indicate the parameters you want to model, their dimensions, restrictions, and name. For a linear regression, we will want to model the intercept, any slopes, and the standard deviation of the errors around the regression line.</p>
+  </li>
+  <li>
+    <p><strong>“model”</strong> block: This is where you include any sampling statements, including the “likelihood” (model) you are using. The model block is where you indicate any prior distributions you want to include for your parameters. If no prior is defined, <code class="language-plaintext highlighter-rouge">Stan</code> uses default priors with the specifications <code class="language-plaintext highlighter-rouge">uniform(-infinity, +infinity)</code>. You can restrict priors using upper or lower when declaring the parameters (i.e. <code class="language-plaintext highlighter-rouge">lower = 0</code>&gt; to make sure a parameter is positive). You can find more information about prior specification <a href="https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations" target="_blank" rel="noopener noreferrer">here</a>.</p>
+  </li>
+</ol>
+
+<p><strong>Sampling is indicated by the <code class="language-plaintext highlighter-rouge">~</code> symbol, and <code class="language-plaintext highlighter-rouge">Stan</code> already includes many common distributions as vectorized functions. You can check out <a href="http://mc-stan.org/users/documentation/" target="_blank" rel="noopener noreferrer">the manual</a> for a comprehensive list and more information on the optional blocks you could include in your <code class="language-plaintext highlighter-rouge">Stan</code> model.</strong></p>
+
+<p>There are also four optional blocks:</p>
+
+<ul>
+  <li><strong>“functions”</strong></li>
+  <li><strong>“transformed data”</strong></li>
+  <li><strong>“transformed parameters”</strong></li>
+  <li><strong>“generated quantities”</strong></li>
+</ul>
+
+<p>Comments are indicated by <code class="language-plaintext highlighter-rouge">//</code> in Stan. The <code class="language-plaintext highlighter-rouge">write("model code", "file_name")</code> bit allows us to write the Stan model in our R script and output the file to the working directory (or you can set a different file path).</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">write</span><span class="p">(</span><span class="s2">"// Stan model for simple linear regression
+
+data {
+ int &lt; lower = 1 &gt; N; // Sample size
+ vector[N] x; // Predictor
+ vector[N] y; // Outcome
+}
+
+parameters {
+ real alpha; // Intercept
+ real beta; // Slope (regression coefficients)
+ real &lt; lower = 0 &gt; sigma; // Error SD
+}
+
+model {
+ y ~ normal(alpha + x * beta , sigma);
+}
+
+generated quantities {
+} // The posterior predictive distribution"</span><span class="p">,</span><span class="w">
+
+</span><span class="s2">"stan_model1.stan"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>First, we should check our <code class="language-plaintext highlighter-rouge">Stan</code> model to make sure we wrote a file.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stanc</span><span class="p">(</span><span class="s2">"stan_model1.stan"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now let’s save that file path.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stan_model1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"stan_model1.stan"</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Here we are implicitly using <code class="language-plaintext highlighter-rouge">uniform(-infinity, +infinity)</code> priors for our parameters. These are also known as “flat” priors. Weakly informative priors (e.g. <code class="language-plaintext highlighter-rouge">normal(0, 10)</code> are more restricted than flat priors. You can find more information about prior specification <a href="https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations" target="_blank" rel="noopener noreferrer">here</a>.</strong></p>
+
+<h3 id="run">4. Running our <code class="language-plaintext highlighter-rouge">Stan</code> model</h3>
+
+<p><strong>Stan programs are complied to <code class="language-plaintext highlighter-rouge">C++</code> before being used. This means that the C++ code needs to be run before R can use the model. For this you must have a <code class="language-plaintext highlighter-rouge">C++</code> compiler installed (see <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started" target="_blank" rel="noopener noreferrer">this wiki if you don’t have one already</a>). You can use your model many times per session once you compile it, but you must re-compile when you start a new <code class="language-plaintext highlighter-rouge">R</code> session. There are many <code class="language-plaintext highlighter-rouge">C++</code> compilers and they are often different across systems. If your model spits out a bunch of errors (unintelligible junk), don’t worry. As long as your model can be used with the <code class="language-plaintext highlighter-rouge">stan()</code> function, it compiled correctly. If we want to use a previously written <code class="language-plaintext highlighter-rouge">.stan</code> file, we use the <code class="language-plaintext highlighter-rouge">file</code> argument in the <code class="language-plaintext highlighter-rouge">stan_model()</code> function.</strong></p>
+
+<p>We fit our model by using the <code class="language-plaintext highlighter-rouge">stan()</code> function, and providing it with the model, the data, and indicating the number of iterations for warmup (these iterations won’t be used for the posterior distribution later, as they were just the model “warming up”), the total number of iterations, how many chains we want to run, the number of cores we want to use (<code class="language-plaintext highlighter-rouge">Stan</code> is set up for parallelization), which indicates how many chains are run simultaneously (i.e., if you computer has four cores, you can run one chain on each, making for four at the same time), and the thinning, which is how often we want to store our post-warmup iterations. “thin = 1” will keep every iteration, “thin = 2” will keep every second, etc…</p>
+
+<p><code class="language-plaintext highlighter-rouge">Stan</code> automatically uses half of the iterations as warm-up, if the <code class="language-plaintext highlighter-rouge">warmup =</code> argument is not specified.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stan</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_model1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_data</span><span class="p">,</span><span class="w"> </span><span class="n">warmup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="accessing-the-contents-of-a-stanfit-object">Accessing the contents of a <code class="language-plaintext highlighter-rouge">stanfit</code> object</h3>
+
+<p><strong>Results from <code class="language-plaintext highlighter-rouge">stan()</code> are saved as a <code class="language-plaintext highlighter-rouge">stanfit</code> object (S4 class). You can find more details in the <code class="language-plaintext highlighter-rouge">Stan</code> vignette: [https://cran.r-project.org/web/packages/rstan/vignettes/stanfit-objects.html].</strong></p>
+
+<p><strong>We can get summary statistics for parameter estimates, and sampler diagnostics by executing the name of the object:</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_summary.png" alt=""></p>
+
+<p><strong>What does the model output show you?  How do you know your model has converged?  Can you see that text indicating that your C++ compiler has run?</strong></p>
+
+<p><strong>From this output we can quickly assess model convergence by looking at the <code class="language-plaintext highlighter-rouge">Rhat</code> values for each parameter. When these are at or near 1, the chains have converged. There are many other diagnostics, but this is an important one for Stan.</strong></p>
+
+<p>We can also look at the full posterior of our parameters by extracting them from the model object. There are many ways to view the posterior.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">posterior</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">posterior</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">extract()</code> puts the posterior estimates for each parameter into a list.</p>
+
+<p>Let’s compare to our previous estimate with “lm”:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
+
+</span><span class="n">abline</span><span class="p">(</span><span class="n">lm1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/sea_ice3.png" alt=""> <img src="/img/sea_ice4.png" alt=""></p>
+
+<p>Figure 3. Change in sea ice extent in the Northern Hemisphere over time (comparing a <code class="language-plaintext highlighter-rouge">Stan</code> linear model fit and a general <code class="language-plaintext highlighter-rouge">lm</code> fit).</p>
+
+<p>The result is identical to the <code class="language-plaintext highlighter-rouge">lm</code> output. This is because we are using a simple model, and have put non-informative priors on our parameters.</p>
+
+<p>One way to visualize the variability in our estimation of the regression line is to plot multiple estimates from the posterior.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="n">abline</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="n">abline</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">abline</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/sea_ice5.png" alt=""></p>
+
+<p>Figure 4. Change in sea ice extent in the Northern Hemisphere over time (<code class="language-plaintext highlighter-rouge">Stan</code> linear model fits).</p>
+
+<h3 id="priors">5. Changing our priors</h3>
+
+<p><strong>Let’s try again, but now with more informative priors for the relationship between sea ice and time. We’re going to use normal priors with small standard deviations. If we were to use normal priors with very large standard deviations (say 1000, or 10,000), they would act very similarly to uniform priors.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">write</span><span class="p">(</span><span class="s2">"// Stan model for simple linear regression
+
+data {
+ int &lt; lower = 1 &gt; N; // Sample size
+ vector[N] x; // Predictor
+ vector[N] y; // Outcome
+}
+
+parameters {
+ real alpha; // Intercept
+ real beta; // Slope (regression coefficients)
+ real &lt; lower = 0 &gt; sigma; // Error SD
+}
+
+model {
+ alpha ~ normal(10, 0.1);
+ beta ~ normal(1, 0.1);
+ y ~ normal(alpha + x * beta , sigma);
+}
+
+generated quantities {}"</span><span class="p">,</span><span class="w">
+
+</span><span class="s2">"stan_model2.stan"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">stan_model2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"scripts/users/imyerssmith/CC-Stan-Part-1/stan_model2.stan"</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>We’ll fit this model and compare it to the mean estimate using the uniform priors.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stan</span><span class="p">(</span><span class="n">stan_model2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_data</span><span class="p">,</span><span class="w"> </span><span class="n">warmup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">posterior2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract</span><span class="p">(</span><span class="n">fit2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
+
+</span><span class="n">abline</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">posterior2</span><span class="o">$</span><span class="n">alpha</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">posterior2</span><span class="o">$</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_fits.png" alt=""></p>
+
+<p>Figure 5. Change in sea ice extent in the Northern Hemisphere over time (<code class="language-plaintext highlighter-rouge">Stan</code> linear model fits).</p>
+
+<p><strong>So what happened to the posterior predictions (your modelled relationship)? Does the model fit the data better or not? Why did the model fit change? What did we actually change about our model by making very narrow prior distributions? Try changing the priors to some different numbers yourself and see what happens! This is a common issue in Bayesian modelling, if your prior distributions are very narrow and yet don’t fit your understanding of the system or the distribution of your data, you could run models that do not meaningfully explain variation in your data. However, that isn’t to say that you shouldn’t choose somewhat informative priors, you do want to use previous analyses and understanding of your study system inform your model priors and design. You just need to think carefully about each modelling decision you make!</strong></p>
+
+<h3 id="convergence">6. Convergence Diagnostics</h3>
+
+<p><strong>Before we go on, we should check again the <code class="language-plaintext highlighter-rouge">Rhat</code> values, the effective sample size (<code class="language-plaintext highlighter-rouge">n_eff</code>), and the traceplots of our model parameters to make sure the model has converged and is reliable. To find out more about what effective sample sizes and trace plots, you can check out the tutorial on <a href="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank" rel="noopener noreferrer">Bayesian statistics using <code class="language-plaintext highlighter-rouge">MCMCglmm</code></a>.</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">n_eff</code> is a crude measure of the effective sample size. You usually only need to worry is this number is less than 1/100th or 1/1000th of
+your number of iterations.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Anything over an `n_eff` of 100 is usually "fine"' - Bob Carpenter
+</code></pre></div></div>
+
+<p>For traceplots, we can view them directly from the posterior:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/alpha_trace.png" alt=""></p>
+
+<p>Figure 6. Trace plot for alpha, the intercept.</p>
+
+<p>For simpler models, convergence is usually not a problem unless you have a bug in your code, or run your sampler for too few iterations.</p>
+
+<h4 id="poor-convergence">Poor convergence</h4>
+
+<p>Try running a model for only 50 iterations and check the traceplots.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_bad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stan</span><span class="p">(</span><span class="n">stan_model1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_data</span><span class="p">,</span><span class="w"> </span><span class="n">warmup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">posterior_bad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract</span><span class="p">(</span><span class="n">fit_bad</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>This also has some “divergent transitions” after warmup, indicating a mis-specified model, or that the sampler that has failed to fully sample the posterior (or both!). Divergent transitions sound like some sort of teen fiction about <a href="https://en.wikipedia.org/wiki/Divergent_trilogy" target="_blank" rel="noopener noreferrer">a future dystopia</a>, but actually it indicates problems with your model.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">posterior_bad</span><span class="o">$</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior_bad</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior_bad</span><span class="o">$</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"l"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/bad_traces2.png" alt=""></p>
+
+<p>Figure 7. Bad trace plot for alpha, the intercept.</p>
+
+<h4 id="parameter-summaries">Parameter summaries</h4>
+
+<p>We can also get summaries of the parameters through the posterior directly. Let’s also plot the non-Bayesian linear model values to make sure our model is doing what we think it is…</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">alpha</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Alpha"</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm_alpha</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Beta"</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm_beta</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">sigma</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sigma"</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm_sigma</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_panel.png" alt=""></p>
+
+<p>Figure 8. Density plot distributions from the <code class="language-plaintext highlighter-rouge">Stan</code> model fit compared with the estimates from the general <code class="language-plaintext highlighter-rouge">lm</code> fit.</p>
+
+<p>From the posterior we can directly calculate the probability of any parameter being over or under a certain value of interest.</p>
+
+<p><strong>Probablility that beta is &gt;0:</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">sum</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 0</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Probablility that beta is &gt;0.2:</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">sum</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="o">&gt;</span><span class="m">0.2</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">posterior</span><span class="o">$</span><span class="n">beta</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 0</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="diagnostic-plots-in-rstan">Diagnostic plots in <code class="language-plaintext highlighter-rouge">rstan</code>
+</h4>
+
+<p>While we can work with the posterior directly, <code class="language-plaintext highlighter-rouge">rstan</code> has a lot of useful functions built-in.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">traceplot</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_chains.png" alt=""></p>
+
+<p>Figure 9. Trace plots of the different chains of the <code class="language-plaintext highlighter-rouge">Stan</code> model.</p>
+
+<p>This is a wrapper for the <code class="language-plaintext highlighter-rouge">stan_trace()</code> function, which is much better than our previous plot because it allows us to compare the chains.</p>
+
+<p>We can also look at the posterior densities &amp; histograms.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stan_dens</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span><span class="w">
+</span><span class="n">stan_hist</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_density.png" alt=""> <img src="/img/stan_histogram.png" alt=""></p>
+
+<p>Figure 10. Density plots and histograms of the posteriors for the intercept, slope and residual variance from the <code class="language-plaintext highlighter-rouge">Stan</code> model.</p>
+
+<p>And we can generate plots which indicate the mean parameter estimates and any credible intervals we may be interested in. Note that the 95% credible intervals for the <code class="language-plaintext highlighter-rouge">beta</code> and <code class="language-plaintext highlighter-rouge">sigma</code> parameters are very small, thus you only see the dots. Depending on the variance in your own data, when you do your own analyses, you might see smaller or larger credible intervals.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">show_density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">ci_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">outer_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="n">fill_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"salmon"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/stan_caterpillar.png" alt=""></p>
+
+<p>Figure 11. Parameter estimates from the <code class="language-plaintext highlighter-rouge">Stan</code> model.</p>
+
+<h4 id="posterior-predictive-checks">Posterior Predictive Checks</h4>
+
+<p>For prediction and as another form of model diagnostic, <code class="language-plaintext highlighter-rouge">Stan</code> can use random number generators to generate predicted values for each data point, at each iteration. This way we can generate predictions that also represent the uncertainties in our model and our data generation process. We generate these using the Generated Quantities block. This block can be used to get any other information we want about the posterior, or make predictions for new data.</p>
+
+<pre><code class="language-stan">
+write("// Stan model for simple linear regression
+
+data {
+ int &lt; lower = 1 &gt; N; // Sample size
+ vector[N] x; // Predictor
+ vector[N] y; // Outcome
+}
+
+parameters {
+ real alpha; // Intercept
+ real beta; // Slope (regression coefficients)
+ real &lt; lower = 0 &gt; sigma; // Error SD
+}
+
+model {
+ y ~ normal(x * beta + alpha, sigma);
+}
+
+generated quantities {
+ real y_rep[N];
+
+ for (n in 1:N) {
+ y_rep[n] = normal_rng(x[n] * beta + alpha, sigma);
+ }
+
+}",
+
+"stan_model2_GQ.stan")
+
+stan_model2_GQ &lt;- "scripts/users/imyerssmith/CC-Stan-Part-1/stan_model2_GQ.stan"
+</code></pre>
+
+<p>Note that vectorization is not supported in the GQ (generated quantities) block, so we have to put it in a loop. But since this is compiled to <code class="language-plaintext highlighter-rouge">C++</code>, loops are actually quite fast and Stan only evaluates the GQ block once per iteration, so it won’t add too much time to your sampling. Typically, the data generating functions will be the distributions you used in the model block but with an <code class="language-plaintext highlighter-rouge">_rng</code> suffix. (Double-check in the Stan manual to see which sampling statements have corresponding <code class="language-plaintext highlighter-rouge">rng</code> functions already coded up.)</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stan</span><span class="p">(</span><span class="n">stan_model2_GQ</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_data</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="extracting-the-y_rep-values-from-posterior">Extracting the <code class="language-plaintext highlighter-rouge">y_rep</code> values from posterior.</h4>
+
+<p>There are many options for dealing with <code class="language-plaintext highlighter-rouge">y_rep</code> values.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_rep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">fit3</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"y_rep"</span><span class="p">)</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">y_rep</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Each row is an iteration (single posterior estimate) from the model.</p>
+
+<p>We can use the <code class="language-plaintext highlighter-rouge">bayesplot</code> package to make some prettier looking plots. This package is a wrapper for many common <code class="language-plaintext highlighter-rouge">ggplot2</code> plots, and has a lot of built-in functions to work with posterior predictions. For details, you can check out the <a href="https://cran.r-project.org/web/packages/bayesplot/index.html" target="_blank" rel="noopener noreferrer">bayesplot vignettes</a>.</p>
+
+<p>Comparing density of <code class="language-plaintext highlighter-rouge">y</code> with densities of <code class="language-plaintext highlighter-rouge">y</code> over 200 posterior draws.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ppc_dens_overlay</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y_rep</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="p">])</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/bayes1.png" alt=""></p>
+
+<p>Figure 12. Comparing estimates across random posterior draws.</p>
+
+<p>Here we see data (dark blue) fit well with our posterior predictions.</p>
+
+<p>We can also use this to compare estimates of summary statistics.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ppc_stat</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">yrep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_rep</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mean"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="/img/bayes2.png" alt=""></p>
+
+<p>Figure 13. Comparing estimates of summary statistics.</p>
+
+<p>We can change the function passed to the <code class="language-plaintext highlighter-rouge">stat</code> function, and even write our own!</p>
+
+<p>We can investigate mean posterior prediction per datapoint vs the observed value for each datapoint (default line is 1:1)</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ppc_scatter_avg</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">yrep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_rep</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/bayes2.png" alt=""></p>
+
+<p>Figure 14. Mean posterior prediction per datapoint vs the observed value for each datapoint.</p>
+
+<h5 id="bayesplot-options">
+<code class="language-plaintext highlighter-rouge">bayesplot</code> options</h5>
+
+<p>Here is a list of currently available plots (<code class="language-plaintext highlighter-rouge">bayesplot 1.2</code>):</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">available_ppc</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You can change the colour scheme in <code class="language-plaintext highlighter-rouge">bayesplot</code> too:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">color_scheme_view</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pink"</span><span class="p">,</span><span class="w"> </span><span class="s2">"purple"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"red"</span><span class="p">,</span><span class="s2">"teal"</span><span class="p">,</span><span class="s2">"yellow"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/img/bayes_colours.png" alt=""></p>
+
+<p>And you can even mix them:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">color_scheme_view</span><span class="p">(</span><span class="s2">"mix-blue-red"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You can set color schemes with:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">color_scheme_set</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="back-to-our-research-question">Back to our research question</h3>
+
+<p>So now you have learned how to run a linear model in <code class="language-plaintext highlighter-rouge">Stan</code> and to check the model convergence. But what is the answer to our research question?</p>
+
+<h4 id="research-question-is-sea-ice-extent-declining-in-the-northern-hemisphere-over-time-1">
+<em>Research Question:</em> Is sea ice extent declining in the Northern Hemisphere over time?</h4>
+
+<p>What do your <code class="language-plaintext highlighter-rouge">Stan</code> model results indicate?</p>
+
+<p>How would you write up these results? What is the key information to report from a Stan model? Effect sizes, credible intervals, sample sizes, what else?  Check out some Stan models in the ecological literature to see how those Bayesian models are reported.</p>
+
+<h4 id="now-as-an-added-challenge-can-you-go-back-and-test-a-second-research-question">Now as an added challenge, can you go back and test a second research question:</h4>
+
+<h4 id="research-question-is-sea-ice-extent-declining-in-the-southern-hemisphere-over-time">
+<em>Research Question:</em> Is sea ice extent declining in the Southern Hemisphere over time?</h4>
+
+<p>Is the same pattern happening in the Antarctic as in the Arctic?  Fit a <code class="language-plaintext highlighter-rouge">Stan</code> model to find out!</p>
+
+<p>In the next Stan tutorial, we will build on the concept of a simple linear model in Stan to learn about more complex modelling structures including different distributions and random effects. And in a future tutorial, we will introduce the concept of a mixture model where two different distributions are modelled at the same time - a great way to deal with zero inflation in your proportion or count data!</p>
+
+<h3 id="additional-ways-to-run-stan-models-in-r">Additional ways to run <code class="language-plaintext highlighter-rouge">Stan</code> models in <code class="language-plaintext highlighter-rouge">R</code>
+</h3>
+
+<p><strong>Check out our <a href="https://ourcodingclub.github.io/2018/04/30/stan-2.html" target="_blank" rel="noopener noreferrer">second <code class="language-plaintext highlighter-rouge">Stan</code> tutorial</a> to learn how to fit <code class="language-plaintext highlighter-rouge">Stan</code> models using model syntax similar to the style of other common modelling packages like <code class="language-plaintext highlighter-rouge">lme4</code> and <code class="language-plaintext highlighter-rouge">MCMCglmm</code>, as well as how to fit generalised linear models using <code class="language-plaintext highlighter-rouge">Poisson</code> and negative binomial distributions.</strong></p>
+
+<h3 id="stan-references">
+<code class="language-plaintext highlighter-rouge">Stan</code> References</h3>
+
+<p><strong>Stan is a run by a small, but dedicated group of developers. If you are new to Stan, you can join the mailing list. It’s a great resource for understanding and diagnosing problems with Stan, and by posting problems you encounter you are helping yourself, and giving back to the community.</strong></p>
+
+<ul>
+  <li><a href="http://mc-stan.org/" target="_blank" rel="noopener noreferrer">Stan website</a></li>
+  <li><a href="https://github.com/stan-dev/stan/releases/download/v2.14.0/stan-reference-2.14.0.pdf" target="_blank" rel="noopener noreferrer">Stan manual (v2.14)</a></li>
+  <li><a href="https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html" target="_blank" rel="noopener noreferrer">Rstan vignette</a></li>
+  <li><a href="https://t.co/6d3omvBkrd" target="_blank" rel="noopener noreferrer">STANCON 2017 Intro Course Materials</a></li>
+  <li><a href="http://xcelab.net/rm/statistical-rethinking/" target="_blank" rel="noopener noreferrer">Statistical Rethinking by R. McElreath</a></li>
+  <li><a href="https://groups.google.com/forum/#!forum/stan-users" target="_blank" rel="noopener noreferrer">Stan mailing list</a></li>
+</ul>
+
+<p><strong>This tutorial is based on work by <a href="http://farrell.research.mcgill.ca" target="_blank" rel="noopener noreferrer">Max Farrell</a> - you can find Max’s original tutorial <a href="https://github.com/maxfarrell/qcbs_stan_workshop/blob/master/QCBS_stan.Rmd" target="_blank" rel="noopener noreferrer">here</a> which includes an explanation about how <code class="language-plaintext highlighter-rouge">Stan</code> works using simulated data, as well as information about model verification and comparison.</strong></p>
+
+	<div class="survey">
+	<hr>
+	<hr>
+	
+		<h4><a href="" target="_blank">We would love to hear your feedback, please fill out our survey!</a></h4>
+	
+	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h4>
+	<br>
+	<h3>Related tutorials:</h3>
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+    				
+			
+    				
+			
+    				
+			
+		
+	
+		
+  			
+		
+	
+		
+  			
+    				
+			
+		
+	
+	<br>
+	<h3>Subscribe to our mailing list:</h3>
+
+	<div class="container">
+		<div class="block">
+			<!-- subscribe form start -->
+			<div class="form-group">
+				<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" name="Email" placeholder="Email" required>
+					</div>
+					<div>
+            			<button class="btn btn-default" type="submit">Subscribe</button>
+        			</div>
+            	</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

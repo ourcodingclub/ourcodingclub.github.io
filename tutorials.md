@@ -1,0 +1,498 @@
+---
+layout: page
+title: "TUTORIALS"
+banner: "../assets/img/banner/slider-bg-pale.jpg"
+---
+
+Here you can find our collection of programming and statistics tutorials. We welcome feedback on our work and are happy to answer any questions you might have on how to complete the tutorials.
+
+We regularly post tutorials, which you can complete in-person at one of [our workshops in Edinburgh](https://drive.google.com/file/d/1etKfW5HtOhrut9nBhl4dY8heoyJafAyC/view?usp=sharing) or online in your own time.
+
+<div id="accordion">
+	<h3>R basics</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<a href="{{ site.baseurl }}/tutorials/intro-to-r">
+        		<div class="tuthex">
+            		<img src="{{ site.baseurl }}/assets/img/hex/work1.jpg" alt="">
+        		</div>
+        		<div class="tutdesc">
+                		<h2>Introduction to R: Part 1</h2>
+                		<p>Getting started with R and R studio</p>
+        		</div>
+            </a>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/intro_2.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/troubleshooting">
+                	<h2>Introduction to R: Part 2</h2>
+                	<p>Troubleshooting and how to find help</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/funl.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/funandloops">
+                	<h2>Functions and loops in R</h2>
+                	<p>Save yourself lots of copying and pasting </p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Data manipulation</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work2.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-manip-intro">
+                	<h2>Basic data manipulation</h2>
+                	<p>Subset, modify and shape your data</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work3.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-manip-efficient">
+                	<h2>Efficient data manipulation</h2>
+                	<p>Use pipes to streamline your code</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work9.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/webscraping">
+                	<h2>Web scraping</h2>
+                	<p>Retrieving useful information from web pages </p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Data visualisation</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work6.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/datavis">
+                	<h2>Data visualisation: Part 1</h2>
+                	<p>Making beautiful and informative graphs </p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/ggplot2.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-vis-2">
+                	<h2>Data visualisation: Part 2</h2>
+                	<p>Customising your figures </p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/hex_qual.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/qualitative">
+                	<h2>Qualitative data</h2>
+                	<p>Survey data, Likert scales, and text mining</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work5.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/shiny">
+                	<h2>Shiny</h2>
+                	<p>Making interactive graphs and web apps</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Spatial data</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/maps_tutorial">
+                	<h2>Basic maps and spatial analysis</h2>
+                	<p>Using R as a GIS software tool to create informative maps</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/spatial_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/spatial">
+                	<h2>Analysis with rasters and remote-sensing data</h2>
+                	<p>Using multispectral data, raster stacks, and k-means clustering</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc.html#Flickr">
+                	<h2>Species occurrence and density maps</h2>
+                	<p>Using GBIF and Flickr data to visualise species occurrence</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc">
+                	<h2>Working efficiently with large datasets</h2>
+                	<p>Quantifying population change and visualising species occurrence</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/tidyverse.html#tidyverse">
+                	<h2>Visualisation workflows in the tidyverse</h2>
+                	<p>Working with many models & functional programming</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/popchange2.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/popchange">
+                	<h2>Quantifying and visualising population trends</h2>
+                	<p>Making maps of populations and population change</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/occur_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/occurrence">
+                	<h2>Manipulation and visualisation of occurrence data</h2>
+                	<p>Cleaning occurrence data and customising graphs and maps</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Modelling</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/lmicon.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/modelling">
+                	<h2>From distributions to linear models</h2>
+                	<p>Getting comfortable with the basics of statistical modelling</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/model-design">
+                	<h2>Introduction to model design</h2>
+                	<p>How to turn a research question into a model</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/mix_mod.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/mixed-models">
+                	<h2>Linear mixed models</h2>
+                	<p>Getting to grips with fixed and random effects</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/meta_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/mcmcglmm">
+                	<h2>Meta-analysis & Bayesian statistics</h2>
+                	<p>Using the MCMCglmm package</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/stan_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/stan-intro">
+                	<h2>Introduction to Stan</h2>
+                	<p>Getting started with Bayesian modelling in Stan</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/stan2_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/stan-2">
+                	<h2>Generalised linear models in Stan</h2>
+                	<p>Using the rstanarm and brms packages</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/inla_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/inla">
+                	<h2>Modelling using INLA</h2>
+                	<p>Accounting for spatial autocorrelation</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/oridnation_icon.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/ordination">
+                	<h2>Introduction to ordination</h2>
+                	<p>Finding patterns in your data</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work10.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/time">
+                	<h2>Time series data</h2>
+                	<p>Forecasting and decomposing temporal trends</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/machine_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/machine-learning">
+                	<h2>Machine learning in R</h2>
+                	<p>Using the K-nn algorithm</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/clustericon.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-clustering">
+                	<h2>Data clustering</h2>
+                	<p>Finding patterns in your data</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Reproducible research</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work4.jpg" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/rmarkdown-1">
+                	<h2>Markdown</h2>
+                	<p>Using Markdown to save and share code</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work7.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/git">
+                	<h2>Introduction to Github for version control</h2>
+                	<p>Keeping track of your code and its many versions</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/git_lab.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/git-for-labs">
+                	<h2>Setting up a GitHub repository for your lab</h2>
+                	<p>Version control & code management with GitHub</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/sharing.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/tutorials">
+                	<h2>Transferring quantitative skills among scientists</h2>
+                	<p>Turning your code into online tutorials</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Google Earth Engine</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/gee_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/earth-engine">
+                	<h2>Analysing remote-sensing data using the Google Earth Engine</h2>
+                	<p>Quantifying forest cover change in protected areas</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Python</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/python_crash_course">
+                	<h2>Python crash course</h2>
+                	<p>How to get started with Python</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/python-intro">
+                	<h2>Working with data in Python</h2>
+                	<p>Reading and plotting scientific data</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/numpy_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/numpy">
+                	<h2>Numbers in Python with NumPy</h2>
+                	<p>Working with array of numbers</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/python_pandas.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/pandas-python-intro">
+                	<h2>Python for data analysis and visualisation</h2>
+                	<p>Using Pandas and Matplotlib</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/iris_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/iris-python-data-vis">
+                	<h2>Introduction to Iris</h2>
+                	<p>Analysing Earth science and climate data with Python's Iris toolkit</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/timeseries_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/pandas-time-series">
+                	<h2>Time series analysis in Python</h2>
+                	<p>Manipulating and plotting time series data using pandas</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/topic-modelling-python.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/topic-modelling-python">
+                	<h2>Topic modelling in Python</h2>
+                	<p>Unsupervised machine learning to find Tweet topics</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h3>Fortran</h3>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/fortran_logo.png" alt="">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/fortran-intro">
+                	<h2>Introduction to Fortran</h2>
+                	<p>Writing a simple Fortran program</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+</div>
+
+## COMING SOON:
+
+* Animated graphs
+* Power analysis
+* Webscraping using Python
+* Structural equation modelling
+* Biodiversity metrics & similarity analysis

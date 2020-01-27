@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Time series analysis with pandas</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+  <center><img src="/img/tutheader_pandas-time-series.png" alt="Img"></center>
+</div>
+
+<p>In this tutorial we will do some basic exploratory visualisation and analysis of time series data. We will learn how to create a <code class="language-plaintext highlighter-rouge">pandas.DataFrame</code> object from an input data file, plot its contents in various ways, work with resampling and rolling calculations, and identify correlations and periodicity.</p>
+
+<p>To complete the tutorial, you will need a Python environment with a recent version of <code class="language-plaintext highlighter-rouge">pandas</code> (I used v0.23.4). I strongly recommend using Jupyter for this kind of work - <a href="https://www.dataquest.io/blog/jupyter-notebook-tutorial/" target="_blank" rel="noopener noreferrer">you can read more about Jupyter here</a>.</p>
+
+<h3 id="tutorial-aims">Tutorial aims:</h3>
+
+<h4 id="0-what-is-a-time-series-and-how-can-pandas-help"><a href="#intro">0. What is a time series and how can pandas help?</a></h4>
+
+<h4 id="1-loading-data-into-a-pandas-dataframe"><a href="#loading">1. Loading data into a pandas dataframe</a></h4>
+
+<h4 id="2-creating-a-datetime-index"><a href="#timeindex">2. Creating a datetime index</a></h4>
+
+<h4 id="3-plotting-dataframe-contents"><a href="#plotting">3. Plotting dataframe contents</a></h4>
+
+<h4 id="4-resampling-rolling-calculations-and-differencing"><a href="#resampling">4. Resampling, rolling calculations, and differencing</a></h4>
+
+<h4 id="5-identifying-periodicity-and-correlation"><a href="#periodicity">5. Identifying periodicity and correlation</a></h4>
+
+<h4 id="6-splitting-and-stacking-cycles"><a href="#stacking">6. Splitting and stacking cycles</a></h4>
+
+<p><a name="intro"></a></p>
+
+<h2 id="0-what-is-a-time-series-and-how-can-pandas-help-1">0. What is a time series and how can pandas help?</h2>
+
+<p>If you are not already familiar with <a href="https://pandas.pydata.org/" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas</code></a> then you may want to start with <a href="https://ourcodingclub.github.io/2018/04/18/pandas-python-intro.html" target="_blank" rel="noopener noreferrer">our previous tutorial</a> but you should be okay if you understand the concept of a dataframe. It will also help if you are already familiar with the <a href="https://docs.python.org/3/library/datetime.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">datetime</code></a> module.</p>
+
+<p>Quantitative work often involves working with time series data in various guises. A time series is an ordered sequence of data that typically represents how some quantity changes over time. Examples of such quantities could be high frequency measurements from a seismometer over a few days, to yearly temperature averages measured at a range of locations across a century, to population changes of different species, but we can use the same software tools to work with them!</p>
+
+<p>In Python it is very popular to use the <a href="https://pandas.pydata.org/pandas-docs/stable/10min.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas</code></a> package to work with time series. It offers a powerful suite of optimised tools that can produce useful analyses in just a few lines of code. A <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas.DataFrame</code></a> object can contain several quantities, each of which can be extracted as an individual <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas.Series</code></a> object, and these objects have a number of useful methods specifically for working with time series data.</p>
+
+<p>First import the packages we will use:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+
+<p><a name="loading"></a></p>
+
+<h2 id="1-loading-data-into-a-pandas-dataframe-1">1. Loading data into a pandas dataframe</h2>
+
+<p>This tutorial will use a heliophysics dataset as an example which contains a range of different measurements. The version of the dataset we will use is available as a raw text file and contains hourly measurements from the beginning of 1963 onwards. This type of file (often <code class="language-plaintext highlighter-rouge">.dat</code>, <code class="language-plaintext highlighter-rouge">.txt</code>, or <code class="language-plaintext highlighter-rouge">.csv</code>) is the least sophisticated and is not the right solution for larger datasets but is okay here (the file is around 150MB) - large/new datasets will often use formats like HDF or NetCDF. <code class="language-plaintext highlighter-rouge">pandas</code> contains a range of IO tools for different formats - <a href="https://pandas.pydata.org/pandas-docs/stable/io.html" target="_blank" rel="noopener noreferrer">look here</a> when you want to read or write a dataset.</p>
+
+<div class="bs-callout-yellow">
+  <h2 id="please-bear-with-us-while-we-update-this-tutorial">Please bear with us while we update this tutorial!</h2>
+
+  <p>In August 2019, NASA changed their data access protocol, so the ftp links and code below won’t work. To access the data and proceed with the tutorial, we propose the following workaround:</p>
+
+  <ol>
+    <li>Use the <a href="https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat" target="_blank" rel="noopener noreferrer">http address instead</a>
+</li>
+    <li>Right-click to Save As <code class="language-plaintext highlighter-rouge">omni2_all_years.dat</code>
+</li>
+    <li>Continue the tutorial!</li>
+  </ol>
+</div>
+
+<p>[IGNORE THIS BIT!] 
+Download the dataset from <a href="ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat" target="_blank">ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat</a> and take a quick look at the accompanying description: <a href="ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2.text" target="_blank">ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2.text</a> Look for <code class="language-plaintext highlighter-rouge">OMNI2_YYYY.DAT FORMAT DESCRIPTION</code> to see the list of columns contained in the dataset. This is pretty complicated! but we will only use a few of the columns:</p>
+<h5 id="--columns-1-2-3-giving-the-year-day-of-year-doy-and-hour-of-day-of-each-measurement">- columns 1, 2, 3 giving the year, day of year (DOY), and hour of day of each measurement</h5>
+<h5 id="--column-40-the-sunspot-number-r---the-number-of-spots-on-the-surface-of-the-sun-indicating-how-active-it-is">- column 40: the sunspot number (R) - the number of spots on the surface of the Sun, indicating how active it is</h5>
+<h5 id="--column-41-the-dst-index---an-hourly-magnetic-activity-index-measured-at-earths-surface-in-nt">- column 41: the Dst index - an hourly magnetic activity index measured at Earth’s surface, in nT</h5>
+<h5 id="--column-51-the-f107-index---the-radio-flux-at-107cm-ie-how-bright-the-sun-is-at-that-wavelength-in-solar-flux-units-sfu">- column 51: the F10.7 index - the radio flux at 10.7cm (i.e. how bright the Sun is at that wavelength), in “solar flux units” (sfu)</h5>
+
+<p>We will investigate this data to see if there is a connection between conditions on the Sun (R and Dst), and magnetic conditions at Earth (Dst).</p>
+
+<p>NB: if you in a Jupyter notebook you can download the file with (this code won’t work now due to change in NASA ftp access):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!wget ftp://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat 
+</code></pre></div></div>
+
+<p>Take a quick look at the first line of the data file:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"omni2_all_years.dat"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</code></pre></div></div>
+<p>You should see something like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1963   1  0 1771 99 99 999 999 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 999.9 9999999. 999.9 9999. 999.9 999.9 9.999 99.99 9999999. 999.9 9999. 999.9 999.9 9.999 999.99 999.99 999.9  7  33    -6  119 999999.99 99999.99 99999.99 99999.99 99999.99 99999.99  0   3 999.9 999.9 99999 99999 99.9
+</code></pre></div></div>
+
+<p>It’s a pretty unfriendly file with the column names explained in the other file, so we have to do some careful work to load the data and ensure we know what is what. Some pandas magic to load it is this (there are also other ways):</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"omni2_all_years.dat"</span><span class="p">,</span>
+                 <span class="n">delim_whitespace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                 <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                 <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">"Year"</span><span class="p">,</span> <span class="s">"DOY"</span><span class="p">,</span> <span class="s">"Hour"</span><span class="p">,</span> <span class="s">"R"</span><span class="p">,</span> <span class="s">"Dst"</span><span class="p">,</span> <span class="s">"F10.7"</span><span class="p">])</span>
+</code></pre></div></div>
+<p>We specify that columns are delimited by white space, the columns we want to extract (remembering that we count from 0 instead of 1), and the names to assign to them. We have now created the dataframe, <code class="language-plaintext highlighter-rouge">df</code>. Take a look at the top of it with <code class="language-plaintext highlighter-rouge">df.head()</code>. It should look like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Year  DOY  Hour   R  Dst  F10.7
+0  1963    1     0  33   -6  999.9
+1  1963    1     1  33   -5  999.9
+2  1963    1     2  33   -5  999.9
+3  1963    1     3  33   -3  999.9
+4  1963    1     4  33   -3  999.9
+</code></pre></div></div>
+
+<p><a name="timeindex"></a></p>
+
+<h2 id="2-creating-a-datetime-index-1">2. Creating a datetime index</h2>
+
+<p>Now we have the data loaded, we want to fix it a bit to make it more useful. First we will change the index from its current state as a sequence of integers to the more functional <a href="https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DatetimeIndex.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas.DatetimeIndex</code></a> which is based on Python <code class="language-plaintext highlighter-rouge">datetime</code> objects,.</p>
+
+<p>We use the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_datetime.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas.to_datetime()</code></a> function to create the new index from the “Year”, “DOY”, and “Hour” columns, then assign it directly to the <code class="language-plaintext highlighter-rouge">.index</code> property of <code class="language-plaintext highlighter-rouge">df</code>, then drop the unneeded columns:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">"Year"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100000</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s">"DOY"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s">"Hour"</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s">"</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">j</span><span class="si">%</span><span class="s">H"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"Year"</span><span class="p">,</span> <span class="s">"DOY"</span><span class="p">,</span> <span class="s">"Hour"</span><span class="p">])</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">df["Year"] * 100000 + df["DOY"] * 100 + df["Hour"]</code> combines the columns into one column of fixed-width numbers following the <code class="language-plaintext highlighter-rouge">[YearDOYHour]</code> pattern that can be parsed by the <code class="language-plaintext highlighter-rouge">"%Y%j%H"</code> format specifier. <code class="language-plaintext highlighter-rouge">df.head()</code> should now show:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                      R  Dst  F10.7
+1963-01-01 00:00:00  33   -6  999.9
+1963-01-01 01:00:00  33   -5  999.9
+1963-01-01 02:00:00  33   -5  999.9
+1963-01-01 03:00:00  33   -3  999.9
+1963-01-01 04:00:00  33   -3  999.9
+</code></pre></div></div>
+
+<p>When working with other data, you will need to find an appropriate way to build the index from the time stamps in your data, but <code class="language-plaintext highlighter-rouge">pandas.to_datetime()</code> will often help. Now that we are using a <code class="language-plaintext highlighter-rouge">DatetimeIndex</code>, we have access to a number of time series-specific functionality within <code class="language-plaintext highlighter-rouge">pandas</code>.</p>
+
+<p>In this dataset, data gaps have been infilled with 9’s. We can replace these occurrences with NaN:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s">"R"</span><span class="p">:</span><span class="mi">999</span><span class="p">,</span>
+                 <span class="s">"Dst"</span><span class="p">:</span><span class="mi">99999</span><span class="p">,</span>
+                 <span class="s">"F10.7"</span><span class="p">:</span><span class="mf">999.9</span><span class="p">},</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We should now have:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                      R  Dst  F10.7
+1963-01-01 00:00:00  33   -6    NaN
+1963-01-01 01:00:00  33   -5    NaN
+1963-01-01 02:00:00  33   -5    NaN
+1963-01-01 03:00:00  33   -3    NaN
+1963-01-01 04:00:00  33   -3    NaN
+</code></pre></div></div>
+
+<p>It’s good practice to perform a few checks on the data. For instance, is the data really sampled every hour? Are there any gaps? We can check this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Dataframe shape: "</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Number of hours between start and end dates: "</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">/</span><span class="mi">3600</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This tells us that there is the same number of records in the dataset as the number of hours between the first and last times sampled. We are dealing with over 55 years of hourly samples that results in about half a million records:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">55</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"{h} hours/day * {d} days/year * {y} years = {h*d*y} hours"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>NB: The last line uses “f-strings” which are new in Python 3.6. The old, and older, ways of doing this are:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"{} hours/day * {} days/year * {} years = {} hours"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">d hours/day * </span><span class="si">%</span><span class="s">d days/year * </span><span class="si">%</span><span class="s">d years = </span><span class="si">%</span><span class="s">d hours"</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><a name="plotting"></a></p>
+
+<h2 id="3-plotting-dataframe-contents-1">3. Plotting dataframe contents</h2>
+
+<p>The data should now be in an “analysis-ready” format and we should start inspecting it. Let’s start by using the <code class="language-plaintext highlighter-rouge">.plot()</code> method. Try each of the following and compare what you get:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s">"R"</span><span class="p">,</span> <span class="s">"F10.7"</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"R"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s">"F10.7"</span><span class="p">,</span> <span class="s">"Dst"</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="s">'.'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This has quickly achieved four different plots:</p>
+<h5 id="1-plotting-all-the-time-series-on-one-axis">1. Plotting all the time series on one axis</h5>
+<h5 id="2-plotting-them-all-on-separate-subplots-to-see-them-more-clearly-sharing-the-x-axis">2. Plotting them all on separate subplots to see them more clearly (sharing the x axis)</h5>
+<h5 id="3-plotting-a-selection-of-columns">3. Plotting a selection of columns</h5>
+<h5 id="4-plotting-two-of-the-variables-against-one-of-the-others">4. Plotting two of the variables against one of the others</h5>
+
+<p>Now you can start to get a feel for the data. F10.7 and R look well correlated, each with 5 peaks evenly spaced over time. There is a lot of noise in all the measurements, and it is hard to see any relation with Dst. So what can we do to look deeper for trends and relationships?</p>
+
+<center><img src="/img/pandas-time-series_raw-series.png" alt="img" style="width: 900px;"></center>
+
+<p><a name="resampling"></a></p>
+
+<h2 id="4-resampling-rolling-calculations-and-differencing-1">4. Resampling, rolling calculations, and differencing</h2>
+
+<p>To reduce the noise in the data, we can smooth it. There are various ways to do this and so there is a choice to be made about the method to use and the degree of smoothing required. <code class="language-plaintext highlighter-rouge">pandas</code> offers a convenient way to reduce the data cadence by resampling with the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.resample.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">.resample()</code></a> method:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[[</span><span class="s">"F10.7"</span><span class="p">,</span> <span class="s">"R"</span><span class="p">]]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">"1y"</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_resample.png" alt="img" style="width: 900px;"></center>
+
+<p>Here we have extracted a dataframe with the columns we are interested in with <code class="language-plaintext highlighter-rouge">df[["F10.7", "R"]]</code>, produced a year-based <a href="https://pandas.pydata.org/pandas-docs/stable/api.html#resampling" target="_blank" rel="noopener noreferrer">“resampler” object</a>, which is then reduced to the new yearly time series by taking medians over each year interval.</p>
+
+<p><code class="language-plaintext highlighter-rouge">.resample()</code> has given us a lower cadence dataset which then doesn’t contain the high frequency noise. Similar to this are <a href="https://pandas.pydata.org/pandas-docs/stable/api.html#window" target="_blank" rel="noopener noreferrer">rolling window</a> calculations, which return the same cadence of data as the input but calculations are performed over a rolling window of a given width about each datapoint. We can use the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rolling.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">.rolling()</code></a> method to do this. Here we construct a moving median filter:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[[</span><span class="s">"F10.7"</span><span class="p">,</span> <span class="s">"R"</span><span class="p">]]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_roll.png" alt="img" style="width: 900px;"></center>
+
+<p>Rolling calculations take the size of the window as the argument, whereas resampling takes a frequency specifier as the argument. NB: we can now see the appearance of some gaps in the F10.7 time series since by default no gaps are allowed within each window calculated - this behaviour can be changed with the <code class="language-plaintext highlighter-rouge">min_periods</code> argument.</p>
+
+<p>Take a look at the documentation to see what other calculations can be done on resampler and rolling objects.</p>
+
+<p>Differencing is often a useful tool which can be part of time series algorithms. See for example how we can use smoothing and differencing to more clearly isolate the periodic signal:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[[</span><span class="s">"F10.7"</span><span class="p">,</span> <span class="s">"R"</span><span class="p">]]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">"3y"</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_diff.png" alt="img" style="width: 900px;"></center>
+
+<p>The centres of the maximum and minimum of each period of the cycle can be defined by the maxima and minima of this curve.</p>
+
+<p><a name="periodicity"></a></p>
+
+<h2 id="5-identifying-periodicity-and-correlation-1">5. Identifying periodicity and correlation</h2>
+
+<p>We can see by eye that there is an approximately 10 year cycle in R and F10.7. A handy high level tool to identify this periodicity is <a href="https://pandas.pydata.org/pandas-docs/stable/visualization.html#autocorrelation-plot" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">pandas.plotting.autocorrelation_plot()</code></a>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">autocorrelation_plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">"R"</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">"1y"</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_autocorr.png" alt="img" style="width: 600px;"></center>
+
+<p>This produces an autocorrelation plot: the correlation of a time series with itself at a range of lag times. We have applied it to the downsampled yearly time series which makes the calculation a lot quicker. Since the cadence of the time series is one year, the “Lag” axis is measured in years. The first peak (after a lag of 0) is around 11 years, meaning that the series correlates well with itself at a lag time of 11 years. This is the well-known solar activity cycle.</p>
+
+<p>Let’s look again at the Dst index and try to find if there is a connection to R. It is helpful to consider the context of the quantities we are examining. R, the sunspot number, indicates solar activity, and Dst indicates geomagnetic activity, the magnetic field created by time-varying large scale electric currents around Earth. We could try to smooth Dst as well to try to reduce the noise to see if there is some correlation with R, but I can tell you now that it will be tricky to prove something from that. Variations in Dst actually tend to occur in discrete events called “geomagnetic storms”, where Dst suddenly drops well below 0nT and takes some hours or days to recover back to 0. We can classify a large storm as when Dst drops below -100nT. Let’s use this to search for occurrences of large storms!</p>
+
+<p>We can mask out where Dst drops below -100 with <code class="language-plaintext highlighter-rouge">df["Dst"].where(df["Dst"]&lt;-100)</code>, and then count how many entries there are each year that satisfy this condition:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Dst_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">"Dst"</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">"Dst"</span><span class="p">]</span><span class="o">&lt;-</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">"1y"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">Dst_count</span> <span class="o">=</span> <span class="n">Dst_count</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">"bfill"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We have also reindexed Dst_count so that its index will match that of <code class="language-plaintext highlighter-rouge">df</code> (instead of the yearly index created by the resampling). Let’s append this “yearly storm count” back onto <code class="language-plaintext highlighter-rouge">df</code> and plot it along with R:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="s">"Dst_count"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dst_count</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s">"R"</span><span class="p">,</span> <span class="s">"Dst_count"</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_stormcount.png" alt="img" style="width: 900px;"></center>
+
+<p>It looks like there is a correlation between high sunspot numbers (the peaks of the solar cycle) and the occurrence rate of large storms. However, there is a lot more variation in this storm rate - lots of sunspots doesn’t guarantee lots of storms, and storms can still occur when there are few sunspots.</p>
+
+<p><a name="stacking"></a></p>
+
+<h2 id="6-splitting-and-stacking-cycles-1">6. Splitting and stacking cycles</h2>
+
+<p>Let’s split the time series up into its constituent cycles and stack them together. This requires some more complex work with <code class="language-plaintext highlighter-rouge">pandas</code> and <code class="language-plaintext highlighter-rouge">matplotlib</code>. At this point we will also downsample to a daily rate, which makes the plot a bit clearer and quicker to generate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://en.wikipedia.org/wiki/List_of_solar_cycles
+</span><span class="n">minima</span> <span class="o">=</span> <span class="p">[</span><span class="s">"1964-10"</span><span class="p">,</span> <span class="s">"1976-03"</span><span class="p">,</span> <span class="s">"1986-09"</span><span class="p">,</span> <span class="s">"1996-08"</span><span class="p">,</span> <span class="s">"2008-12"</span><span class="p">,</span> <span class="s">"2019-12"</span><span class="p">]</span>
+<span class="n">df_daily</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">"1D"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">split_into_cycles</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="s">"""Returns a list of dataframes, one for each solar cycle"""</span>
+    <span class="n">cycles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Split by solar cycle
+</span>    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">minima</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">minima</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">cycle</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="c1"># Convert from dates to days from minimum
+</span>        <span class="n">cycle</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">cycle</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">cycle</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">days</span>
+        <span class="c1"># Extend so that each cycle lasts a full 5000 days (filled with nan)
+</span>        <span class="n">ix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Int64Index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5000</span><span class="p">))</span>
+        <span class="n">cycle</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">ix</span><span class="p">)</span>
+        <span class="n">cycles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cycles</span>
+
+<span class="n">cycles</span> <span class="o">=</span> <span class="n">split_into_cycles</span><span class="p">(</span><span class="n">df_daily</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We now have a list, <code class="language-plaintext highlighter-rouge">cycles</code>, containing five dataframes, each containing a different cycle. On each dataframe, we have changed the index into the number of days from the minimum, and used <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.reindex.html#pandas.Series.reindex" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">.reindex()</code></a> to fix them all to the same length so that we can perform arithmetic operations on them together. The following will create a plot of each parameter, with the cycles superposed over each other. In this example, we first create the figure and its axes using <code class="language-plaintext highlighter-rouge">matplotlib</code> directly (using <code class="language-plaintext highlighter-rouge">sharex=True</code> to link the x-axes on each plot), then direct the <code class="language-plaintext highlighter-rouge">pandas</code> plotting commands to point them to the axis we want each thing to plot onto using the <code class="language-plaintext highlighter-rouge">ax</code> kwarg. We also calculate the mean of the stacked time series.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cycles</span><span class="p">):</span>
+    <span class="n">cycle</span><span class="p">[</span><span class="s">"R"</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">"Cycle {i}"</span><span class="p">)</span>
+    <span class="n">cycle</span><span class="p">[</span><span class="s">"F10.7"</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">cycle</span><span class="p">[</span><span class="s">"Dst_count"</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">N_cycles</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cycles</span><span class="p">)[</span><span class="s">"R"</span><span class="p">]</span><span class="o">/</span><span class="n">N_cycles</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Mean"</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cycles</span><span class="p">)[</span><span class="s">"F10.7"</span><span class="p">]</span><span class="o">/</span><span class="n">N_cycles</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cycles</span><span class="p">)[</span><span class="s">"Dst_count"</span><span class="p">]</span><span class="o">/</span><span class="n">N_cycles</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Sunspot Number"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"F10.7"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Storm rate"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Days since minimum"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</code></pre></div></div>
+
+<center><img src="/img/pandas-time-series_stackplot.png" alt="img" style="width: 900px;"></center>
+
+<p>This helps us to see how the cycles differ from each other: for example, the most recent cycle is consistently lower than the mean, both in the solar conditions and the rate of geomagnetic storms. By constructing the mean of the cycles, we are actually reinforcing the similar pattern over each cycle and reducing the effect of the random noise. This is the basis of a technique called <a href="https://doi.org/10.1016/j.jastp.2006.01.007" target="_blank" rel="noopener noreferrer">superposed epoch analysis</a>, which is useful for identifying periodicities and similarities between noisy time series.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>We have explored how we can do some first steps in investigating time series using the power of <code class="language-plaintext highlighter-rouge">pandas</code>. We have shown how methods can be stringed along to perform complex operations on a dataframe in a single line and results plotted easily.</p>
+
+<p><a href="https://science.nasa.gov/science-news/news-articles/solar-minimum-is-coming" target="_blank" rel="noopener noreferrer">See here</a> if you would like to know a bit more about solar activity and the upcoming solar minimum!</p>
+
+<h3 id="tutorial-outcomes">Tutorial outcomes</h3>
+
+<h5 id="--know-how-to-create-dataframes-with-datetime-indexes">- Know how to create dataframes with datetime indexes</h5>
+<h5 id="--know-where-to-look-to-figure-out-how-to-do-things-with-pandas">- Know where to look to figure out how to do things with pandas</h5>
+<h5 id="--can-manipulate-time-series-performing-resampling-and-rolling-calculations">- Can manipulate time series, performing resampling and rolling calculations</h5>
+<h5 id="--comfortable-with-inspecting-and-plotting-time-series-in-different-ways">- Comfortable with inspecting and plotting time series in different ways</h5>
+
+<hr>
+
+<hr>
+
+<h3><a href="SURVEY_MONKEY_LINK" target="_blank">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

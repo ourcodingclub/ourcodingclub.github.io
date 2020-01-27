@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Intro to spatial analysis in R</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheader_spatial.png" alt="Img">
+	</center>
+</div>
+
+<h2 id="tutorial-aims">Tutorial Aims:</h2>
+
+<h4 id="-1-explore-raster-data"><a href="#section1"> 1. Explore raster data</a></h4>
+
+<h4 id="-2-visualise-spectral-bands"><a href="#section2"> 2. Visualise spectral bands</a></h4>
+
+<h4 id="-3-manipulate-rasters-ndvi-and-kmn-classification"><a href="#section3"> 3. Manipulate rasters: NDVI and KMN classification</a></h4>
+
+<h3 id="all-the-files-you-need-to-complete-this-tutorial-can-be-downloaded-from-this-repository-click-on-clonedownloaddownload-zip-and-unzip-the-folder-or-clone-the-repository-to-your-own-github-account">All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-spatial" target="_blank" rel="noopener noreferrer">this repository</a>. Click on <code class="language-plaintext highlighter-rouge">Clone/Download/Download ZIP</code> and unzip the folder, or clone the repository to your own GitHub account.</h3>
+
+<p><strong>In this tutorial, we are going to explore spatial analysis in <code class="language-plaintext highlighter-rouge">R</code> using satellite data of the Loch Tay area of Scotland. Satellite or remote-sensing data are increasingly used to answer ecological questions such as what are the characteristics of species’ habitats, can we predict the distribution of species and the spatial variability in species richness, and can we detect natural and man-made changes at scales ranging from a single valley to the entire world.</strong></p>
+
+<p>Around Loch Tay, for instance, remote-sensing data could be used to map different vegetation types, such as invasive species like rhododendron, and track changes over time. Alternatively, satellite data can be used to estimate forest cover for an area like Scotland and help policy makers set new targets and assess progress.</p>
+
+<p><code class="language-plaintext highlighter-rouge">R</code> is a widely used open source programming language for data analysis and visualisation but it is also a powerful tool to explore spatial data. If you are not familiar with <code class="language-plaintext highlighter-rouge">R</code> or <code class="language-plaintext highlighter-rouge">Rstudio</code>, this introductory <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank" rel="noopener noreferrer">tutorial</a> and this <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank" rel="noopener noreferrer">troubleshooting tutorial</a> are good starting points.</p>
+
+<p>Working with spatial data can be complicated due to the many different file formats and large size they can have. To simplify this tutorial, we will use a Sentinel 2 satellite image collected on the 27th June 2018 and downloaded from the <a href="https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access" target="_blank" rel="noopener noreferrer">Copernicus Hub</a>. This website provides free and open access to satellite data, but please note the files are very large and may take some time to download. The image used in this tutorial was cropped to reduced its size and corrected for atmospheric correction in <a href="http://step.esa.int/main/download/" target="_blank" rel="noopener noreferrer">SNAP</a>, the free open source esa toolbox, and saved as a ‘geoTIF’ file (georeferenced image) to make it easier to import. Introductory tutorials for SNAP are availlable <a href="http://step.esa.int/main/doc/tutorials/snap-tutorials/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<p>Alternatively, for large scale analysis where downloading huge files is not an option, Google Earth Engine is a powerful tool providing an online code editor where users can work with a large selection of databases, whilst harnessing the power of the Google servers. You can find a Google Earth Engine intro tutorial <a href="https://ourcodingclub.github.io/2018/11/26/earth-engine.html" target="_blank" rel="noopener noreferrer">here</a> if you’re interested.</p>
+
+<p>Satellite data mostly consist of <strong>reflectance data</strong>, which can be defined as a measure of the intensity of the reflected sun radiation by the earth’s surface. Reflectance is measured for <strong>different wavelength of the electromagnetic spectrum</strong>. The Sentinel 2 optical sensor measures reflectance at <strong>13 wavelength bandwidths</strong>, or bands for short. In satellite images, these data are stored in <strong>rasters</strong>, or a matrix data structure, where <strong>each pixel stores the data for the 13 wavelengths</strong>. Therefore, Sentinel 2 data contains several raster layers, one for each spectral band. More information on Sentinel 2 can be accessed <a href="https://en.wikipedia.org/wiki/Sentinel-2" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<p><a name="section1"></a></p>
+
+<h2 id="1-explore-raster-data">1. Explore raster data</h2>
+
+<p>Once you have unzipped the files you downloaded from the <a href="https://github.com/ourcodingclub/CC-spatial" target="_blank" rel="noopener noreferrer">repository</a> on your computer, open <code class="language-plaintext highlighter-rouge">RStudio</code>, create a new script by clicking on <code class="language-plaintext highlighter-rouge">File/ New File/ R Script</code>. It is always a good idea the write a header to your script with your name, data and purpose such as <code class="language-plaintext highlighter-rouge">Intro to spatial analysis tutorial</code> as shown below. Then, set the working directory to the location of the unzipped files on your computer and load the following packages, installing them if necessary:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Intro to spatial analysis tutorial</span><span class="w">
+</span><span class="c1"># Satellite data available from https://scihub.copernicus.eu/</span><span class="w">
+
+</span><span class="c1"># Maude Grenier s0804311@ed.ac.uk</span><span class="w">
+</span><span class="c1"># 03-12-2018</span><span class="w">
+</span><span class="c1">##############################################################</span><span class="w">
+
+</span><span class="c1"># Set the working directory (example, replace with your own file path)</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"C:/Users/name/folder/spatialR"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Load packages</span><span class="w">
+
+</span><span class="c1"># If you haven't installed the packages before, use e.g.:</span><span class="w">
+</span><span class="c1"># install.packages("sp")</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rasterVis</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>The <code class="language-plaintext highlighter-rouge">sp</code> package is central for spatial data analysis in R as it defines a set of classes to represent spatial data. Another important package for spatial analysis is the <code class="language-plaintext highlighter-rouge">raster</code> package.</strong></p>
+
+<h4 id="a-raster-is-a-grid-of-equal-size-cells-or-pixels-in-satellite-images-and-it-is-commonly-used-to-represent-spatially-continuous-data-the-cells-can-have-one-or-more-values-or-even-no-values-for-the-variable-of-interest-in-the-trimmed-multispectral-image-we-will-be-using-each-cell-contains-relfectance-data-for-12-spectral-bands">A raster is a grid of equal size cells, or pixels in satellite images, and it is commonly used to represent spatially continuous data. The cells can have one or more values, or even no values for the variable of interest. In the trimmed multispectral image we will be using, each cell contains relfectance data for 12 spectral bands.</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">raster</code> package has functions that allow the creation, reading, manipulation and saving of raster data. The package <code class="language-plaintext highlighter-rouge">rgdal</code> is used to read or save spatial data files and the package <code class="language-plaintext highlighter-rouge">raster</code> uses it behind the scenes.</p>
+
+<p>The package <code class="language-plaintext highlighter-rouge">viridis</code> is an aesthetically pleasing colour palette visible to people with colour blindness. We will use it to plot our results as well as <code class="language-plaintext highlighter-rouge">ggplot</code>.</p>
+
+<p>First, we will use the <code class="language-plaintext highlighter-rouge">raster</code> package to read the satellite image file and inspect its properties.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load data</span><span class="w">
+</span><span class="n">tay</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Get properties of the Tay raster</span><span class="w">
+</span><span class="n">tay</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In the output, we get details of the image such as the number of bands, dimension (number of rows, columns, and cells), the extent given by the coordinate references, and the coordinate reference system (CRS) which is here the Universal Trans Mercator (UTM) with datum WGS84.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">tay</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">class</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="n">RasterLayer</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">band</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="p">(</span><span class="n">of</span><span class="w">  </span><span class="m">12</span><span class="w">  </span><span class="n">bands</span><span class="p">)</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dimensions</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="m">507</span><span class="p">,</span><span class="w"> </span><span class="m">848</span><span class="p">,</span><span class="w"> </span><span class="m">429936</span><span class="w">  </span><span class="p">(</span><span class="n">nrow</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="p">,</span><span class="w"> </span><span class="n">ncell</span><span class="p">)</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">resolution</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="m">9.217891e-05</span><span class="p">,</span><span class="w"> </span><span class="m">9.217891e-05</span><span class="w">  </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">extent</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="m">-4.320218</span><span class="p">,</span><span class="w"> </span><span class="m">-4.242051</span><span class="p">,</span><span class="w"> </span><span class="m">56.45366</span><span class="p">,</span><span class="w"> </span><span class="m">56.50039</span><span class="w">  </span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="p">)</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">coord.</span><span class="w"> </span><span class="n">ref.</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">+</span><span class="n">proj</span><span class="o">=</span><span class="n">longlat</span><span class="w"> </span><span class="o">+</span><span class="n">datum</span><span class="o">=</span><span class="n">WGS84</span><span class="w"> </span><span class="o">+</span><span class="n">no_defs</span><span class="w"> </span><span class="o">+</span><span class="n">ellps</span><span class="o">=</span><span class="n">WGS84</span><span class="w"> </span><span class="o">+</span><span class="n">towgs84</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">maude</span><span class="err">\</span><span class="n">Desktop</span><span class="err">\</span><span class="n">sentinel2</span><span class="err">\</span><span class="n">Taycrop.tif</span><span class="w">
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">names</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="n">Taycrop</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>We can create individual raster layers for each of the spectral bands in the raster tay.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">b2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">b3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">b4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span><span class="n">b5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">b6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">6</span><span class="p">)</span><span class="w">
+</span><span class="n">b7</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">7</span><span class="p">)</span><span class="w">
+</span><span class="n">b8</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">8</span><span class="p">)</span><span class="w">
+</span><span class="n">b9</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">9</span><span class="p">)</span><span class="w">
+</span><span class="n">b10</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="n">b11</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">11</span><span class="p">)</span><span class="w">
+</span><span class="n">b12</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">,</span><span class="w"> </span><span class="n">band</span><span class="o">=</span><span class="m">12</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We can now compare two bands to see if they have the same extent, number of rows and column, projection,
+resolution and origin. As can be seen below, bands 2 and 3 match.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">compareRaster</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span><span class="w"> </span><span class="n">b3</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># TRUE</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p><strong>Checking the coordinate systems and extents of rasters is a very useful skill - quite often when you have problems with working with multiple raster objects, it’s because of differences in coordinate systems or extents.</strong></p>
+
+<p>The bands can be plotted using the <code class="language-plaintext highlighter-rouge">plot</code> or <code class="language-plaintext highlighter-rouge">image</code> function. Note that the <code class="language-plaintext highlighter-rouge">plot</code> function only plots 100,000 pixels
+but <code class="language-plaintext highlighter-rouge">image</code> strectches the view.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">b8</span><span class="p">)</span><span class="w">
+
+</span><span class="n">image</span><span class="p">(</span><span class="n">b8</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+<p align="center"> <img src="/img/2tayplots.png" alt="Img" style="width: 800px;"></p>
+
+<p>To <strong>zoom in on the image</strong>, after calling the function <code class="language-plaintext highlighter-rouge">zoom</code> and the band you wish to inspect, first plot the band, then
+<strong>click twice on the plot</strong>, once on two opposite corners of the area of interest in order to create a square. The zoomed in image will be of the standard <code class="language-plaintext highlighter-rouge">plot</code> function of the band, in the terrain colour palette, even when use in a different in a different plot.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">b8</span><span class="p">)</span><span class="w">
+</span><span class="n">zoom</span><span class="p">(</span><span class="n">b8</span><span class="p">)</span><span class="w">    </span><span class="c1"># run this line, then click twice on your plot to define a box</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/zoom1.png" alt="Img" style="width: 400px;"> <img src="/img/zoom2.png" alt="Img" style="width: 400px;"></p>
+
+<p><strong>Alternatively, an extent can be cropped and plotted from the plot image using the same double click method described above and the code below. Zooming in allows you to visualise spatial data for specific areas you might be interested in.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">tay</span><span class="p">)</span><span class="w">
+</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">drawExtent</span><span class="p">()</span><span class="w">    </span><span class="c1"># run this line, then click twice on your plot to define a box</span><span class="w">
+</span><span class="n">cropped_tay</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">crop</span><span class="p">(</span><span class="n">b7</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">cropped_tay</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="section2"></a></p>
+
+<h2 id="2-visualise-spectral-bands">2. Visualise spectral bands</h2>
+
+<p><strong>The bands can be plotted with different colour palettes to improve visualisation, such as <code class="language-plaintext highlighter-rouge">viridis</code>, and saved using the code below.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s1">'tayplot.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">                	</span><span class="c1"># to save plot</span><span class="w">
+</span><span class="n">image</span><span class="p">(</span><span class="n">b8</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="w"> </span><span class="n">viridis_pal</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)(</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s2">"Sentinel 2 image of Loch Tay"</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">         									</span><span class="c1"># to save plot</span><span class="w">
+</span><span class="c1"># dev.off() is a function that "clears the slate" - it just means you are done using that specific plot</span><span class="w">
+</span><span class="c1"># if you don't dev.off(), that can create problems when you want to save another plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p>To view the plot without saving the image, you only need the second line:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">image</span><span class="p">(</span><span class="n">b8</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="w"> </span><span class="n">viridis_pal</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)(</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s2">"Sentinel 2 image of Loch Tay"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/tayplot.png" alt="Img" style="width: 400px;"></p>
+
+<p><strong>A useful way to visualise the satellite data is to plot a red-green-blue plot of a multi-layered object for a more realistic rendition. The layers or bands represent different bandwidth in the visible electromagnetic spectrum (corresponding to red, blue and green) and combined, create a naturalistic colour rendition of the earth surface.</strong></p>
+
+<p><strong>First, we will create a raster stack, a multi-layered raster object, of the red(b4), green(b3) and blue(b2) bands</strong>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># this code specifies how we want to save the plot</span><span class="w">
+</span><span class="n">png</span><span class="p">(</span><span class="s1">'RGB.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">
+</span><span class="n">tayRGB</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stack</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">b4</span><span class="p">,</span><span class="w"> </span><span class="n">b3</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="p">))</span><span class="w">              </span><span class="c1"># creates raster stack</span><span class="w">
+</span><span class="n">plotRGB</span><span class="p">(</span><span class="n">tayRGB</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">stretch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lin"</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sentinel RGB colour composite"</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/RGB.png" alt="Img" style="width: 400px;"></p>
+
+<p><strong>Another popular way to visualise remote sensing data is using a false colour composite (FCC), where the red, green, and blue bands have been replaced in order to accentuate vegetation.</strong></p>
+
+<p>In a FCC, the red bands is replaced by the near infrared band (band 8 in Sentinel 2), the green band by red and the blue band by green. This creates an image where the vegetation stands out in red. Check <code class="language-plaintext highlighter-rouge">(help(plotRGB))</code> for more information and other arguments for the function.</p>
+
+<h3 id="exercise-create-a-fcc-of-the-loch-tay-area-using-a-raster-stack">Exercise: Create a FCC of the Loch Tay area using a raster stack.</h3>
+
+<p>The package <code class="language-plaintext highlighter-rouge">rasterVis</code> provides a number of ways to enhance the visualisation and analysis of raster data, as can be seen on the package’s website <a href="https://oscarperpinan.github.io/rastervis/" target="_blank" rel="noopener noreferrer">here</a>. The function <code class="language-plaintext highlighter-rouge">levelplot</code> allows level and contour plots to be made of raster objects with elevation data, such as LIDAR and <code class="language-plaintext highlighter-rouge">plot3D</code> allows 3D mapping. We do not have elevation data from Sentinel 2, but the package’s <code class="language-plaintext highlighter-rouge">gplot</code> function allows us to plot a uni or multivariate raster object using <code class="language-plaintext highlighter-rouge">ggplot2</code> like syntax.</p>
+
+<p>For an introduction to the <code class="language-plaintext highlighter-rouge">ggplot2</code> package, check out our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">tutorial here</a> or you can find a cheatsheet <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gplot</span><span class="p">(</span><span class="n">b8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1"># value is the specific value (of reflectance) each pixel is associated with</span><span class="w">
+  </span><span class="n">scale_fill_viridis_c</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"West of Loch tay, raster plot"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Longitude"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Latitude"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_classic</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">   					    </span><span class="c1"># removes defalut grey background</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">             </span><span class="c1"># centres plot title</span><span class="w">
+        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">),</span><span class="w">		       	    </span><span class="c1"># font size</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">  </span><span class="c1"># rotates x axis text</span><span class="w">
+
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"ggtay.png"</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> 		</span><span class="c1"># to save plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that here we saved the plot in a slightly different way - for plots creates using <code class="language-plaintext highlighter-rouge">ggplot2</code>, we can use the <code class="language-plaintext highlighter-rouge">ggsave</code> function and we define the specifics of the saved plot after we’ve created it, whereas earlier in the tutorial when we were using the <code class="language-plaintext highlighter-rouge">png()</code> function in combination with <code class="language-plaintext highlighter-rouge">dev.off()</code>, the plot characteristics are defined before we make the plot inside the <code class="language-plaintext highlighter-rouge">png()</code> function.</p>
+
+<p align="center"> <img src="/img/ggtay.png" alt="Img" style="width: 400px;"></p>
+
+<p><strong>To visualise all the bands together, we can use <code class="language-plaintext highlighter-rouge">facet_wrap</code> in <code class="language-plaintext highlighter-rouge">gplot</code>. First, we will create a stack of all the bands, so just putting them all on top of each other, like layers in a cake.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stack</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="w"> </span><span class="n">b3</span><span class="p">,</span><span class="w"> </span><span class="n">b4</span><span class="p">,</span><span class="w"> </span><span class="n">b5</span><span class="p">,</span><span class="w"> </span><span class="n">b6</span><span class="p">,</span><span class="w"> </span><span class="n">b7</span><span class="p">,</span><span class="w"> </span><span class="n">b8</span><span class="p">,</span><span class="w"> </span><span class="n">b9</span><span class="p">,</span><span class="w"> </span><span class="n">b10</span><span class="p">,</span><span class="w"> </span><span class="n">b11</span><span class="p">,</span><span class="w"> </span><span class="n">b12</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now we are ready to make out facetted plots.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gplot</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_viridis_c</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">variable</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Sentinel 2 Loch tay, raster plots"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Longitude"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Latitude"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_classic</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="w">
+
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"allbands.png"</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span><span class="c1"># to save plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/allbands.png" alt="Img" style="width: 800px;"></p>
+
+<p><strong>Alternatively, for a quick visualisation, the original file can be loaded as a raster brick and plotted using ‘plot’.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s_tay</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">brick</span><span class="p">(</span><span class="s1">'data/taycrop.tif'</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">s_tay</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/allbands2.png" alt="Img" style="width: 800px;"></p>
+
+<p><strong>Notice the difference in colour and range of legend between the different bands. Different earth surfaces reflect the solar radiation differently and each raster layer represents how much incident solar radiation is reflected at a particular wavelength bandwidth. Bands 6 to 9 are in the Near Infrared Range (NIR). Vegetation reflects more NIR than other wavelengths but water absorbs NIR, therefore the lighter areas with high reflectance values are likely to be vegetation and the dark blue, low reflectance value areas, likely to be water. Also note that the Sentinel 2 bands have 3 levels of spatial resolution, 10 m, 20 m, and 60 m (see summary below).</strong></p>
+
+<p><strong>10 m resolution</strong>
+band 2, band 3, band 4 and band 8</p>
+
+<p><strong>20 m resolution</strong>
+ band 5, band 6, band 7, band 11 and band 12</p>
+
+<p><strong>60 m resolution</strong>
+band 1, band 9 and band 10</p>
+
+<p><a name="section3"></a></p>
+
+<h2 id="3-manipulate-rasters-ndvi-and-kmn-classification">3. Manipulate rasters: NDVI and KMN classification</h2>
+
+<p><strong>The <a href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index" target="_blank" rel="noopener noreferrer">Normalised Difference Vegetation Index (NDVI)</a> is a widely used vegetation index that quantifies vegetation presence, health or structure. It is calculated using the Near Infrared (NIR) and Red bandwith of the spectrum. Healthy vegetation reflects light strongly in the NIR part of the spectrum and absorbs light in red part of the visible spectrum for photosynthesis. A high ratio between light refected in the NIR part of the spectrum and light reflected in the red part of the spectrum would represent areas that potentially have healthy vegetation. It is worth noting that different plant species absorb light in the red part of the spectrum at different rates. The same plant will also absorb light in the red band differently depending on whether it is stressed or healthy, or the time of year. It is often used over large areas as an indication of land cover change.</strong></p>
+
+<p>The NDVI ratio is calculated using (NIR - Red) / (NIR + Red). For example, a pixel with an NDVI of less than 0.2 is not likely to be dominated by vegetation, and an NDVI of 0.6 and above is likely to be dense vegetation.</p>
+
+<p><strong>In <code class="language-plaintext highlighter-rouge">R</code>, we can calculate the NDVI by creating a function and using raster math operations where <code class="language-plaintext highlighter-rouge">NIR = band 8</code> and <code class="language-plaintext highlighter-rouge">Red = band 4</code> in Sentinel 2 images. We will first use the raster brick we created earlier from the original file.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># NDVI</span><span class="w">
+
+</span><span class="c1"># Created a VI function (vegetation index)</span><span class="w">
+</span><span class="n">VI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">bk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">img</span><span class="p">[[</span><span class="n">k</span><span class="p">]]</span><span class="w">
+  </span><span class="n">bi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">img</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="w">
+  </span><span class="n">vi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">bk</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bi</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">bk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bi</span><span class="p">)</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># For Sentinel 2, the relevant bands to use are:</span><span class="w">
+</span><span class="c1"># NIR = 8, red = 4</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now we are ready to apply our function to the raster we’ve been working with so far!</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ndvi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">VI</span><span class="p">(</span><span class="n">s_tay</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 8 and 4 refer to the bands we'll use</span><span class="w">
+
+</span><span class="n">png</span><span class="p">(</span><span class="s1">'ndviplot.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">10</span><span class="p">)),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Sentinel 2, Loch Tay-NDVI'</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/NDVI.png" alt="Img" style="width: 400px;"></p>
+
+<p>To find out the distribution of the pixel NDVI values, we can plot a histogram.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create histogram of NDVI data</span><span class="w">
+
+</span><span class="n">png</span><span class="p">(</span><span class="s1">'ndvihist.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span><span class="w">
+     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Distribution of NDVI values"</span><span class="p">,</span><span class="w">
+     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NDVI"</span><span class="p">,</span><span class="w">
+     </span><span class="n">ylab</span><span class="o">=</span><span class="w"> </span><span class="s2">"Frequency"</span><span class="p">,</span><span class="w">
+     </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aquamarine3"</span><span class="p">,</span><span class="w">
+     </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w">
+     </span><span class="n">xaxt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'n'</span><span class="p">)</span><span class="w">
+</span><span class="n">axis</span><span class="p">(</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/ndvihist.png" alt="Img" style="width: 400px;"></p>
+
+<h4 id="so-what-does-this-mean">So what does this mean?</h4>
+
+<p><strong>The histogram is strongly skewed to the right, towards highh NDVI values, indicating a highly vegetated area.</strong></p>
+
+<p>Now that we know that this area has lots of vegetation, we can also mask the pixels with an NDVI value of less than 0.4 (less likely to be vegetation) to highlight where the vegetated areas occur.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Mask cells that have NDVI of less than 0.4 (less likely to be vegetation)</span><span class="w">
+
+</span><span class="n">png</span><span class="p">(</span><span class="s1">'ndvimask.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">
+
+</span><span class="n">veg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">reclassify</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="o">-</span><span class="kc">Inf</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w">
+</span><span class="c1"># We are reclassifying our object and making all values between</span><span class="w">
+</span><span class="c1"># negative infinity and 0.4 be NAs</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">veg</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Veg cover'</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/ndvimask.png" alt="Img" style="width: 400px;"></p>
+
+<p>We still have a high vegetation cover, which is to be expected in this part of Scotland.</p>
+
+<h4 id="how-can-we-save-the-raster-itself-not-just-plots">How can we save the raster itself, not just plots?</h4>
+
+<p>We might want to export the NDVI raster we just created to use in <code class="language-plaintext highlighter-rouge">QGIS</code> or other software, or to save it for further use in <code class="language-plaintext highlighter-rouge">R</code>.</p>
+
+<p><strong>To save a raster object, use the <code class="language-plaintext highlighter-rouge">writeraster</code> function. Saving the data as integers rather than floats requires less memory and processing for the computer to handle. A float is a term used to describe a variable with a fractional value or decimals, e.g. <code class="language-plaintext highlighter-rouge">0.002</code>.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">writeRaster</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ndvi</span><span class="p">,</span><span class="w">
+
+            </span><span class="c1"># where your file will go - update with your file path!</span><span class="w">
+	    
+            </span><span class="n">filename</span><span class="o">=</span><span class="s2">"yourepo/sentinel2/tay_ndvi_2018.tif"</span><span class="p">,</span><span class="w"> 	
+            </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GTiff"</span><span class="p">,</span><span class="w"> 					</span><span class="c1"># save as a tif</span><span class="w">
+            </span><span class="n">datatype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'INT2S'</span><span class="p">)</span><span class="w"> 					</span><span class="c1"># save as a INTEGER rather than a float</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Raster operations also allow us to perform an unsupervised classification, or a clustering of the pixels, in the satellite image. In this context, unsupervised means that we are not using training data for the clustering.</strong></p>
+
+<p><strong>This type of classification can be useful when not a lot is known about an area. In the example below, we are going to use the kmeans algorithm. The algorithm groups pixels that have similar spectral properties in the same cluster. We are going to create 10 clusters using the NDVI raster we have just created above, but first, we need to convert the raster into an array, which is the object format required for the classification.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># convert the raster to vector/matrix ('getValues' converts the RasterLAyer to array) )</span><span class="w">
+
+</span><span class="n">nr</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">getValues</span><span class="p">(</span><span class="n">ndvi</span><span class="p">)</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># important to set the seed generator because `kmeans` initiates the centres in random locations</span><span class="w">
+</span><span class="c1"># the seed generator just generates random numbers</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">99</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># create 10 clusters, allow 500 iterations, start with 5 random sets using 'Lloyd' method</span><span class="w">
+
+</span><span class="n">kmncluster</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">na.omit</span><span class="p">(</span><span class="n">nr</span><span class="p">),</span><span class="w"> </span><span class="n">centers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">iter.max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w">
+                     </span><span class="n">nstart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Lloyd"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># kmeans returns an object of class 'kmeans'</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">kmncluster</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Kmeans returns an object with 9 elements. The length of the cluster element within <code class="language-plaintext highlighter-rouge">kmncluster</code> is 429936
+which is the same as the length of <code class="language-plaintext highlighter-rouge">nr</code> created from the <code class="language-plaintext highlighter-rouge">ndvi</code> object. The cell values of <code class="language-plaintext highlighter-rouge">kmncluster$cluster</code> range between 1 to 10 corresponding to the input number of clusters we provided in the <code class="language-plaintext highlighter-rouge">kmeans()</code> function. <code class="language-plaintext highlighter-rouge">kmncluster$cluster</code> indicates
+the cluster label for the corresponding pixel.</p>
+
+<p><strong>Our classification is now complete, and to visualise the results, we need to convert the <code class="language-plaintext highlighter-rouge">kmncluster$cluster</code> array back to a <code class="language-plaintext highlighter-rouge">RasterLayer</code> of the same dimension as the <code class="language-plaintext highlighter-rouge">ndvi</code> object.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># First create a copy of the ndvi layer</span><span class="w">
+</span><span class="n">knr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ndvi</span><span class="w">
+
+</span><span class="c1"># Now replace raster cell values with kmncluster$cluster</span><span class="w">
+</span><span class="c1"># array</span><span class="w">
+</span><span class="n">knr</span><span class="p">[]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmncluster</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+
+</span><span class="c1"># Alternative way to achieve the same result</span><span class="w">
+</span><span class="n">values</span><span class="p">(</span><span class="n">knr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmncluster</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+</span><span class="n">knr</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>We can see that <code class="language-plaintext highlighter-rouge">knr</code> is a <code class="language-plaintext highlighter-rouge">RasterLayer</code> with 429,936 cells, but we do not know which cluster (1-10) belongs what land cover or vegetation type. One way of attributing a class to a land cover type is by plotting the cluster side-by-side with a reference layer of land cover and using unique colours for each cluster. As we don’t have one for our example area, we can use the NDVI map we created earlier or the RGB plot.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">10</span><span class="p">)),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NDVI"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">knr</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Kmeans"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viridis_pal</span><span class="p">(</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)(</span><span class="m">10</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/knr_ndvi.png" alt="Img" style="width: 800px;"></p>
+
+<p>If we want to plot our classification alongside the RGB rendering of the raster, and save the two plots, we can use the code below:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s1">'rgb_kmeans.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10.8</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">10.8</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">plotRGB</span><span class="p">(</span><span class="n">tayRGB</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">stretch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lin"</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"RGB"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">knr</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Kmeans"</span><span class="p">,</span><span class="w"> </span><span class="n">yaxt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'n'</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viridis_pal</span><span class="p">(</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)(</span><span class="m">10</span><span class="p">))</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p align="center"> <img src="/img/rgb_kmeans.png" alt="Img" style="width: 800px;"></p>
+
+<p>A simple classification like this one is only to give an idea of land cover types. In the above example, we could deduce that cluster 8, in green, is water as it covers the Loch. We can also spot patterns in the vegetation cover in both the NDVI and <code class="language-plaintext highlighter-rouge">kmeans</code> cluster plots. We could deduce that the areas with the highest NDVI ratio are likely to be forest cover.</p>
+
+<h3 id="exercise-using-the-ndvi-rgb-and-kmeans-plot-can-you-deduce-other-land-cover-around-the-loch-tay-area">Exercise: Using the NDVI, RGB and <code class="language-plaintext highlighter-rouge">kmeans</code> plot, can you deduce other land cover around the Loch Tay area?</h3>
+
+<hr>
+
+<h4 id="in-our-introduction-to-remote-sensing-spatial-analysis-we-have-covered-how-to">In our introduction to remote sensing spatial analysis, we have covered how to:</h4>
+
+<p><strong>- Import a GeoTIFF file as a raster in R</strong></p>
+
+<p><strong>- Extract layers from a multi-layer raster objects and get the raster properties</strong></p>
+
+<p><strong>- Explore raster visulaisation of single and mutil-layered object with rasterVis, ggplot and base R</strong></p>
+
+<p><strong>- Explore raster manipulations by calculating and plotting the NDVI ratio of the pixels in our image</strong></p>
+
+<p><strong>- Perform an unsupervised image classification using the kmeans algorithm to cluster the pixels in 10 clusters.</strong></p>
+
+<h3 id="if-you-want-to-explore-further-there-are-excellent-resources-availabe-in-the-spatial-data-science-with-r-by-robert-j-hijmans">If you want to explore further, there are excellent resources availabe in <a href="http://rspatial.org/index.html" target="_blank" rel="noopener noreferrer">the Spatial Data Science with R by Robert J. Hijmans</a>.</h3>
+
+<hr>
+
+<hr>
+
+<p><strong>Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank" rel="noopener noreferrer">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you’d like to write a tutorial!</strong></p>
+
+<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"></a></p>
+
+<h3><a href="https://www.surveymonkey.com/r/8MJ8GRY" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

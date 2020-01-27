@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Beautiful and informative data visualisation</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheadervis.png" alt="Img">
+	</center>
+</div>
+
+<h3 id="tutorial-aims-and-steps">Tutorial aims and steps:</h3>
+
+<h4 id="-1-get-familiar-with-the-ggplot2-syntax-"><a href="#ggplot"> 1. Get familiar with the <code class="language-plaintext highlighter-rouge">ggplot2</code> syntax </a></h4>
+
+<h4 id="-2-decide-on-the-right-type-of-plot-"><a href="#whichplot"> 2. Decide on the right type of plot </a></h4>
+
+<h4 id="-3-practice-making-different-plots-with-ggplot2-"><a href="#practice"> 3. Practice making different plots with <code class="language-plaintext highlighter-rouge">ggplot2</code> </a></h4>
+<h5 id="---histograms"><a href="#histograms"> - Histograms</a></h5>
+<h5 id="---scatter-plots"><a href="#scatter"> - Scatter plots</a></h5>
+<h5 id="---box-plots"><a href="#boxplot"> - Box plots</a></h5>
+<h5 id="---bar-plots"><a href="#barplot"> - Bar plots</a></h5>
+
+<h4 id="-4-learn-to-arrange-graphs-in-a-panel-and-to-save-files"><a href="#panel"> 4. Learn to arrange graphs in a panel and to save files</a></h4>
+
+<h4 id="-5-challenge-yourself"><a href="#challenge"> 5. Challenge yourself!</a></h4>
+
+<p><a name="ggplot"></a></p>
+
+<h4 id="аll-the-files-you-need-to-complete-this-tutorial-can-be-downloaded-from-this-repository-clone-and-download-the-repo-as-a-zip-file-then-unzip-it">Аll the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-4-Datavis" target="_blank" rel="noopener noreferrer">this repository</a>. Clone and download the repo as a zip file, then unzip it.</h4>
+
+<h3 id="1-good-data-visualisation-and-ggplot2-syntax">1. Good data visualisation and ggplot2 syntax</h3>
+
+<p>We’ve learned <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank" rel="noopener noreferrer">how to import our datasets in RStudio</a>, and <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">format and manipulate them</a>, and now it’s time we talk about communicating the results of our analyses - data visualisation! When it comes to data visualisation, the package <code class="language-plaintext highlighter-rouge">ggplot2</code> by Hadley Wickham has won over many scientists’ hearts. In this tutorial, we will learn how to make beautiful and informative graphs and how to arrange them in a panel. Before we tackle the <code class="language-plaintext highlighter-rouge">ggplot2</code> syntax, let’s briefly cover what good graphs have in common.</p>
+
+<center>
+<img src="/img/davis_10_steps.png" alt="Img" style="width: 950px;"> </center>
+
+<p><code class="language-plaintext highlighter-rouge">ggplot2</code> is a great package to guide you through those steps. The <code class="language-plaintext highlighter-rouge">gg</code> in <code class="language-plaintext highlighter-rouge">ggplot2</code> stands for grammar of graphics. Writing the code for your graph is like constructing a sentence made up of different parts that logically follow from one another. In a more visual way, it means adding layers that take care of different elements of the plot. Your plotting workflow will therefore be something like creating an empty plot, adding a layer with your data points, then your measure of uncertainty, the axis labels, and so on.</p>
+
+<center>
+<img src="/img/DL_datavis1_layers.png" alt="Img" style="width: 900px;"> </center>
+<center> <b>Just like onions (and ogres!), graphs in ggplot2 have layers. </b> </center>
+
+<p><a name="whichplot"></a></p>
+<h3 id="2-decide-on-the-right-type-of-plot">2. Decide on the right type of plot</h3>
+
+<p>A very key part of making any data visualisation is making sure that it is appropriate to your data type (e.g. discrete vs continuous), and fits your purpose, i.e. what you are trying to communicate!</p>
+
+<p>You can start with our simple guide for common graph types, and visit <a href="https://www.r-graph-gallery.com/" target="_blank" rel="noopener noreferrer">the R Graph Gallery</a>, a fantastic resource for <code class="language-plaintext highlighter-rouge">ggplot2</code> code and inspiration!</p>
+
+<center>
+<img src="/img/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;"> </center>
+<center> <b> Feeling inspired? Let's make these graphs! </b> </center>
+
+<p><a name="practice"></a></p>
+<h3 id="3-making-different-plots-with-ggplot2">3. Making different plots with ggplot2</h3>
+
+<p>Open RStudio, select <code class="language-plaintext highlighter-rouge">File/New File/R script</code> and start writing your script with the help of this tutorial.</p>
+
+<p><a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code01">
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Purpose of the script</span><span class="w">
+</span><span class="c1"># Your name, date and email</span><span class="w">
+
+</span><span class="c1"># Your working directory, set to the folder you just downloaded from Github, e.g.:</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"~/Downloads/CC-4-Datavis-master"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Libraries - if you haven't installed them before, run the code install.packages("package_name")</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>We will use data from the <a href="http://www.livingplanetindex.org/home/index" target="_blank" rel="noopener noreferrer">Living Planet Index</a>, which you have already downloaded from <a href="https://github.com/ourcodingclub/CC-4-Datavis" target="_blank" rel="noopener noreferrer">the repository</a> (Click on <code class="language-plaintext highlighter-rouge">Clone or Download/Download ZIP</code> and then unzip the files).</p>
+
+<p><a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code02">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014</span><span class="w">
+</span><span class="n">LPI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"LPIdata_CC.csv"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>The data are in wide format - the different years are column names, when really they should be rows in the same column. We will reshape the data using the <code class="language-plaintext highlighter-rouge">gather()</code> function from the <code class="language-plaintext highlighter-rouge">tidyr</code> package, something we cover in our <a href="https://ourcodingclub.github.io/2015/10/11/data-manip-intro.html" target="_blank" rel="noopener noreferrer">basic data manipulation</a> tutorial.</p>
+
+<p><a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code03">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Reshape data into long form</span><span class="w">
+</span><span class="c1"># By adding 9:53, we select columns 9 to 53, the ones for the different years of monitoring</span><span class="w">
+</span><span class="n">LPI2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">LPI</span><span class="p">,</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abundance"</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="o">:</span><span class="m">53</span><span class="p">)</span><span class="w">
+</span><span class="n">View</span><span class="p">(</span><span class="n">LPI2</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>There is an ‘X’ in front of all the years because when we imported the data, all column names became characters. (The <code class="language-plaintext highlighter-rouge">X</code> is R’s way of turning numbers into characters.) Now that the years are rows, not columns, we need them to be proper numbers, so we will transform them using <code class="language-plaintext highlighter-rouge">parse_number()</code> from the <code class="language-plaintext highlighter-rouge">readr</code> package.</p>
+
+<p><a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code04">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">LPI2</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parse_number</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">year</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># When manipulating data it's always good check if the variables have stayed how we want them</span><span class="w">
+</span><span class="c1"># Use the str() function</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">LPI2</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Abundance is also a character variable, when it should be numeric, let's fix that</span><span class="w">
+</span><span class="n">LPI2</span><span class="o">$</span><span class="n">abundance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">abundance</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>This is a very large dataset, so for the first few graphs we will focus on how the population of <strong>only one species</strong> has changed. Pick a species of your choice, and make sure you spell the name exactly as it is entered in the dataframe. In this example, we are using the “Griffon vulture”, but you can use whatever species you want. To see what species are available, use the following code to get a list:</p>
+
+<p><a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code05">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">unique</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">`Common.Name`</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Now, filter out just the records for that species, substituting <code class="language-plaintext highlighter-rouge">Common.Name</code> for the name of your chosen species.</p>
+
+<p><a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code06">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">vulture</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">LPI2</span><span class="p">,</span><span class="w"> </span><span class="n">Common.Name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Griffon vulture / Eurasian griffon"</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">vulture</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># There are a lot of NAs in this dataframe, so we will get rid of the empty rows using na.omit()</span><span class="w">
+</span><span class="n">vulture</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">vulture</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p><a name="histograms"></a></p>
+<h4 id="histograms-to-visualise-data-distribution">Histograms to visualise data distribution</h4>
+
+<p>We will do a quick comparison between base R graphics and <code class="language-plaintext highlighter-rouge">ggplot2</code> - of course both can make good graphs when used well, but here at Coding Club, we like working with <code class="language-plaintext highlighter-rouge">ggplot2</code> because of its powerful customisation abilities.</p>
+
+<p><a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code07">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># With base R graphics</span><span class="w">
+</span><span class="n">base_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hist</span><span class="p">(</span><span class="n">vulture</span><span class="o">$</span><span class="n">abundance</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>To do the same with ggplot, we need to specify the type of graph using <code class="language-plaintext highlighter-rouge">geom_histogram()</code>. Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don’t have the brackets, you’ve only created the object, but haven’t visualized it. You would then have to call the object in the command line, e.g. by typing <code class="language-plaintext highlighter-rouge">vulture_hist</code> after creating the object.</p>
+
+<p><a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code08">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># With ggplot2: creating graph with no brackets</span><span class="w">
+</span><span class="n">vulture_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w">  </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_histogram</span><span class="p">()</span><span class="w"> 
+  
+</span><span class="c1"># Calling the object to display it in the plot viewer</span><span class="w">
+</span><span class="n">vulture_hist</span><span class="w">
+
+</span><span class="c1"># With brackets: you create and display the graph at the same time</span><span class="w">
+</span><span class="p">(</span><span class="n">vulture_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w">  </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_histogram</span><span class="p">())</span><span class="w">
+  
+
+</span><span class="c1"># For another way to check whether your data is normally distributed, you can either create density plots using package ggpubr and command ggdensity(), OR use functions qqnorm() and qqline()</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center> <img src="/img/base_hist.png" alt="Img" style="width: 500px;"> <img src="/img/gg_hist.png" alt="Img" style="width: 500px;"> </center>
+
+<p>The default ggplot settings (right) are not ideal: there is lots of unnecessary grey space behind the histogram, the axis labels are quite small, and the bars blend with each other. Lets beautify the histogram a bit! This is where the true power of <code class="language-plaintext highlighter-rouge">ggplot2</code> shines.</p>
+
+<p><a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code09">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">vulture_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#8B5A00"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#CD8500"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">    </span><span class="c1"># Changing the binwidth and colours</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">abundance</span><span class="p">)),</span><span class="w">                       </span><span class="c1"># Adding a line for mean abundance</span><span class="w">
+             </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dashed"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">           </span><span class="c1"># Changing the look of the line</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">                                                      </span><span class="c1"># Changing the theme to get rid of the grey background</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Count\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                                   </span><span class="c1"># Changing the text of the y axis label</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nGriffon vulture abundance"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">                              </span><span class="c1"># \n adds a blank line between axis and text</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">                          </span><span class="c1"># Changing font size of axis labels and title</span><span class="w">
+        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">       </span><span class="c1"># face="plain" is the default, you can change it to italic, bold, etc. </span><span class="w">
+        </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                 </span><span class="c1"># Removing the grey grid lines</span><span class="w">
+        </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">)))</span><span class="w">              </span><span class="c1"># Putting a 1 cm margin around the plot</span><span class="w">
+
+</span><span class="c1"># We can see from the histogram that the data are very skewed - a typical distribution of count abundance data</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/gg_hist2.png" alt="Img" style="width: 769px;"></center>
+
+<center> <b>Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?</b>
+</center>
+
+<p><strong>Note: Pressing enter after each “layer” of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.</strong></p>
+
+<div class="bs-callout-blue">
+  <h4 id="understanding-ggplot2s-jargon">Understanding <code class="language-plaintext highlighter-rouge">ggplot2</code>’s jargon</h4>
+
+  <p>Perhaps the trickiest bit when starting out with <code class="language-plaintext highlighter-rouge">ggplot2</code> is understanding what type of elements are responsible for the contents (data) versus the container (general look) of your plot. Let’s de-mystify some of the common words you will encounter.</p>
+
+  <p><strong>geom</strong>: a geometric object which defines the type of graph you are making. It reads your data in the <strong>aesthetics</strong> mapping to know which variables to use, and creates the graph accordingly. Some common types are <code class="language-plaintext highlighter-rouge">geom_point()</code>, <code class="language-plaintext highlighter-rouge">geom_boxplot()</code>, <code class="language-plaintext highlighter-rouge">geom_histogram()</code>, <code class="language-plaintext highlighter-rouge">geom_col()</code>, etc.</p>
+
+  <p><strong>aes</strong>: short for <strong>aesthetics</strong>. Usually placed within a <code class="language-plaintext highlighter-rouge">geom_</code>, this is where you specify your data source and variables, AND the properties of the graph <em>which depend on those variables</em>. For instance, if you want all data points to be the same colour, you would define the <code class="language-plaintext highlighter-rouge">colour = </code> argument <em>outside</em> the <code class="language-plaintext highlighter-rouge">aes()</code> function; if you want the data points to be coloured by a factor’s levels (e.g. by site or species), you specify the <code class="language-plaintext highlighter-rouge">colour = </code> argument <em>inside</em> the <code class="language-plaintext highlighter-rouge">aes()</code>.</p>
+
+  <p><strong>stat</strong>: a stat layer applies some statistical transformation to the underlying data: for instance, <code class="language-plaintext highlighter-rouge">stat_smooth(method = "lm")</code> displays a linear regression line and confidence interval ribbon on top of a scatter plot (defined with <code class="language-plaintext highlighter-rouge">geom_point()</code>).</p>
+
+  <p><strong>theme</strong>: a theme is made of a set of visual parameters that control the background, borders, grid lines, axes, text size, legend position, etc. You can use <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank" rel="noopener noreferrer">pre-defined themes</a>, create <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html#theme" target="_blank" rel="noopener noreferrer">your own</a>, or use a theme and overwrite only the elements you don’t like. Examples of elements within themes are <code class="language-plaintext highlighter-rouge">axis.text</code>, <code class="language-plaintext highlighter-rouge">panel.grid</code>, <code class="language-plaintext highlighter-rouge">legend.title</code>, and so on. You define their properties with <code class="language-plaintext highlighter-rouge">elements_...()</code> functions: <code class="language-plaintext highlighter-rouge">element_blank()</code> would return something empty (ideal for removing background colour), while <code class="language-plaintext highlighter-rouge">element_text(size = ..., face = ..., angle = ...)</code> lets you control all kinds of text properties.</p>
+
+  <p>Also useful to remember is that layers are added on top of each other as you progress into the code, which means that elements written later may hide or overwrite previous elements.</p>
+
+</div>
+
+<p><a name="colourpicker"></a></p>
+
+<h3 id="learning-how-to-use-colourpicker">Learning how to use colourpicker</h3>
+
+<p>In the code above, you can see a colour code <code class="language-plaintext highlighter-rouge">colour = "#8B5A00"</code> - each colour you can dream of has a code, called a “hex code”, a combination of letters and numbers. You can get the codes for different colours online, from Paint, Photoshop or similar programs, or even from RStudio, which is very convenient! There is an RStudio <code class="language-plaintext highlighter-rouge">Colourpicker</code> addin which was a game changer for us - to install it, run the following code:</p>
+
+<p><a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code10">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"colourpicker"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>To find out the code for a colour you like, click on <code class="language-plaintext highlighter-rouge">Addins/Colour picker</code>.</p>
+
+<center><img src="/img/colourpicker.png" alt="Img" style="width: 800px;"></center>
+
+<p>When you click on <code class="language-plaintext highlighter-rouge">All R colours</code> you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don’t go crazy with the colours. When you click on <code class="language-plaintext highlighter-rouge">1</code>, and then on a certain colour, you fill up <code class="language-plaintext highlighter-rouge">1</code> with that colour, same goes for <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code> - you can add more colours with the <code class="language-plaintext highlighter-rouge">+</code>, or delete them by clicking the bin. Once you’ve made your pick, click <code class="language-plaintext highlighter-rouge">Done</code>. You will see a line of code <code class="language-plaintext highlighter-rouge">c("#8B5A00", "#CD8500")</code> appear - in this case, we just need the colour code, so we can copy that, and delete the rest. Try changing the colour of the histogram you made just now.</p>
+
+<center><img src="/img/colourpicker2.png" alt="Img" style="width: 800px;"></center>
+<p><br></p>
+
+<p><a name="scatter"></a></p>
+<h4 id="scatter-plot-to-examine-population-change-over-time">Scatter plot to examine population change over time</h4>
+
+<p>Let’s say we are interested in how the Griffon vulture populations have changed between 1970 and 2017 in Croatia and in Italy.</p>
+
+<p><a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code11">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Filtering the data to get records only from Croatia and Italy using the `filter()` function from the `dplyr` package</span><span class="w">
+</span><span class="n">vultureITCR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">Country.list</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Croatia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italy"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Using default base graphics</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="o">$</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">vultureITCR</span><span class="o">$</span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#1874CD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#68228B"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Using default ggplot2 graphics</span><span class="w">
+</span><span class="p">(</span><span class="n">vulture_scatter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># linking colour to a factor inside aes() ensures that the points' colour will vary according to the factor levels</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">())</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center> <img src="/img/base_scatter.png" alt="Img" style="width: 500px;"> <img src="/img/gg_scatter1.png" alt="Img" style="width: 500px;"> </center>
+
+<p><strong>Hopefully by now we’ve convinced you of the perks of ggplot2, but again like with the histogram, the graph above needs a bit more work.</strong></p>
+
+<p><a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code12">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">vulture_scatter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                               </span><span class="c1"># Changing point size</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">               </span><span class="c1"># Adding linear model fit, colour-code by country</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                </span><span class="c1"># Adding custom colours for solid geoms (ribbon)</span><span class="w">
+    </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">),</span><span class="w">                </span><span class="c1"># Adding custom colours for lines and points</span><span class="w">
+                        </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Croatia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italy"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                </span><span class="c1"># Adding labels for the legend</span><span class="w">
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Griffon vulture abundance\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nYear"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">     </span><span class="c1"># making the years at a bit of an angle</span><span class="w">
+          </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">                        
+          </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                   </span><span class="c1"># Removing the background grid lines               </span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">                 </span><span class="c1"># Adding a 1cm margin around the plot</span><span class="w">
+          </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">         </span><span class="c1"># Setting the font for the legend text</span><span class="w">
+          </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                 </span><span class="c1"># Removing the legend title</span><span class="w">
+          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">)))</span><span class="w">                                 </span><span class="c1"># Setting legend position - 0 is left/bottom, 1 is top/right</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/gg_scatter3.png" alt="Img" style="width: 769px;"></center>
+
+<center><b> Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals.</b></center>
+
+<div class="bs-callout-yellow">
+  <h4 id="good-to-know">Good to know</h4>
+
+  <p>If your axis labels need to contain special characters or superscript, you can get <code class="language-plaintext highlighter-rouge">ggplot2</code> to plot that, too. It might require some googling regarding your specific case, but for example, this code <code class="language-plaintext highlighter-rouge">ylabs(expression(paste("Grain yield","  ","(ton.", ha^-1,")", sep="")))</code> will create a y axis with a label reading Grain yield (ton. ha<sup>-1</sup>).</p>
+
+  <p>To create additional space between an axis title and the axis itself, use <code class="language-plaintext highlighter-rouge">\n</code> when writing your title, and it will act as a line break.</p>
+
+</div>
+
+<p><a name="boxplot"></a></p>
+<h4 id="boxplot-to-examine-whether-vulture-abundance-differs-between-croatia-and-italy">Boxplot to examine whether vulture abundance differs between Croatia and Italy</h4>
+
+<p>Box plots are very informative as they show the median and spread of your data, and allow you to quickly compare values among groups. If some boxes don’t overlap with one another, you probably have significant differences, and it’s worth to investigate further with statistical tests.</p>
+
+<p><a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code13">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">vulture_boxplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">`Country list`</span><span class="p">,</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">())</span><span class="w">
+
+</span><span class="c1"># Beautifying</span><span class="w">
+
+</span><span class="p">(</span><span class="n">vulture_boxplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">               </span><span class="c1"># Adding custom colours</span><span class="w">
+    </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">             </span><span class="c1"># Adding custom colours</span><span class="w">
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Griffon vulture abundance\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nCountry"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">                     
+          </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                 </span><span class="c1"># Removing the background grid lines               </span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">               </span><span class="c1"># Adding a margin</span><span class="w">
+          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">))</span><span class="w">                                    </span><span class="c1"># Removing legend - not needed with only 2 factors</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/gg_boxplot2.png" alt="Img" style="width: 769px;"></center>
+
+<center><b>Griffon vulture abundance in Croatia and Italy.</b></center>
+<p><br></p>
+
+<p><a name="barplot"></a></p>
+<h4 id="barplot-to-compare-species-richness-of-a-few-european-countries">Barplot to compare species richness of a few European countries</h4>
+
+<p>We are now going to calculate how many species are found in the LPI dataset for some European countries, and plot the species richness.</p>
+
+<p><a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code14">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Calculating species richness using pipes %&gt;% from the dplyr package</span><span class="w">
+</span><span class="n">richness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LPI2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="p">(</span><span class="n">Country.list</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Germany"</span><span class="p">,</span><span class="w"> </span><span class="s2">"France"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Netherlands"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italy"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">group_by</span><span class="p">(</span><span class="n">Country.list</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">mutate</span><span class="p">(</span><span class="n">richness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">Common.Name</span><span class="p">))))</span><span class="w"> </span><span class="c1"># create new column based on how many unique common names (or species) there are in each country </span><span class="w">
+
+</span><span class="c1"># Plotting the species richness</span><span class="w">
+</span><span class="p">(</span><span class="n">richness_barplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">richness</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">richness</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(),</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Species richness\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Country"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">  </span><span class="c1"># Angled labels, so text doesn't overlap</span><span class="w">
+          </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">                      
+          </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                          
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">)))</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/gg_bar2.png" alt="Img" style="width: 769px;"></center>
+
+<center><b>Species richness in five European countries (based on LPI data).</b></center>
+
+<p>You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it’s important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank" rel="noopener noreferrer">create your own theme</a> - you can now reuse this theme in all your ggplots!</p>
+
+<p><a name="panel"></a></p>
+
+<h3 id="4-using-facets-and-creating-panels">4. Using facets and creating panels</h3>
+
+<p>Sometimes, displaying all the data on one graph makes it too cluttered. If we wanted to examine the population change of vultures across all the countries, rather than Italy and Croatia, we would have 10 populations on the same graph:</p>
+
+<p><a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code15">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the population change for all countries</span><span class="w">
+</span><span class="p">(</span><span class="n">vulture_scatter_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                               </span><span class="c1"># Changing point size</span><span class="w">
+      </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">               </span><span class="c1"># Adding linear model fit, colour-code by country</span><span class="w">
+      </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Griffon vulture abundance\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+      </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nYear"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">     </span><span class="c1"># making the years at a bit of an angle</span><span class="w">
+            </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">                        
+            </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                   </span><span class="c1"># Removing the background grid lines               </span><span class="w">
+            </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">                 </span><span class="c1"># Adding a 1cm margin around the plot</span><span class="w">
+            </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">         </span><span class="c1"># Setting the font for the legend text</span><span class="w">
+            </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                 </span><span class="c1"># Removing the legend title</span><span class="w">
+            </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">))</span><span class="w">   
+</span></code></pre></div>  </div>
+</section>
+
+<p>That’s cluttered! Can you really figure out what populations are doing? By adding a <strong>facetting layer</strong>, we can split the data in multiple facets representing the different countries. This is done using <code class="language-plaintext highlighter-rouge">facet_wrap()</code>.</p>
+
+<p><a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code16">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the population change for countries individually</span><span class="w">
+</span><span class="p">(</span><span class="n">vulture_scatter_facets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vulture</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                               </span><span class="c1"># Changing point size</span><span class="w">
+      </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">               </span><span class="c1"># Adding linear model fit, colour-code by country</span><span class="w">
+      </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_y"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                      </span><span class="c1"># THIS LINE CREATES THE FACETTING</span><span class="w">
+      </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Griffon vulture abundance\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+      </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nYear"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">     </span><span class="c1"># making the years at a bit of an angle</span><span class="w">
+            </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">                        
+            </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                   </span><span class="c1"># Removing the background grid lines               </span><span class="w">
+            </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">                 </span><span class="c1"># Adding a 1cm margin around the plot</span><span class="w">
+            </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">         </span><span class="c1"># Setting the font for the legend text</span><span class="w">
+            </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                 </span><span class="c1"># Removing the legend title</span><span class="w">
+            </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">))</span><span class="w">   
+
+</span></code></pre></div>  </div>
+</section>
+
+<p>Some useful arguments to include in <code class="language-plaintext highlighter-rouge">facet_wrap()</code>are <code class="language-plaintext highlighter-rouge">nrow = </code> or <code class="language-plaintext highlighter-rouge">ncol = </code>, specifying the number of rows or columns, respectively. You can also see that we used <code class="language-plaintext highlighter-rouge">scales = "free_y"</code>, to allow different y axis values because of the wide range of abundance values in the data. You can use “fixed” when you want to constrain all axis values.</p>
+
+<center><img src="/img/DL_datavis1_facets.png" alt="Img" style="width: 780px;"></center>
+
+<center><b>Population change of Griffon vulture across the world, from the LPI dataset.</b></center>
+
+<p><em>Note: some of these population trends do weird things, possibly because there are many sub-populations being monitored within a country (e.g. Italy), so in practice we probably would not fit a single regression line per country.</em></p>
+
+<p>And finally, sometimes you want to arrange multiple figures together to create a panel. We will do this using <code class="language-plaintext highlighter-rouge">grid.arrange()</code> from the package <code class="language-plaintext highlighter-rouge">gridExtra</code>.</p>
+
+<p><a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code17">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">grid.arrange</span><span class="p">(</span><span class="n">vulture_hist</span><span class="p">,</span><span class="w"> </span><span class="n">vulture_scatter</span><span class="p">,</span><span class="w"> </span><span class="n">vulture_boxplot</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># This doesn't look right - the graphs are too stretched, the legend and text are all messed up, the white margins are too big</span><span class="w">
+
+</span><span class="c1"># Fixing the problems - adding ylab() again overrides the previous settings</span><span class="w">
+
+</span><span class="p">(</span><span class="n">panel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid.arrange</span><span class="p">(</span><span class="w">
+      </span><span class="n">vulture_hist</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"(a)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Count"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Abundance"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">   </span><span class="c1"># adding labels to the different plots</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">)),</span><span class="w">
+                 
+      </span><span class="n">vulture_boxplot</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"(b)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Abundance"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Country"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">)),</span><span class="w">
+                 
+      </span><span class="n">vulture_scatter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"(c)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Abundance"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Year"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">     
+            </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                   
+            </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.85</span><span class="p">,</span><span class="w"> </span><span class="m">0.85</span><span class="p">)),</span><span class="w"> </span><span class="c1"># changing the legend position so that it fits within the panel</span><span class="w">
+      
+      </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="c1"># ncol determines how many columns you have</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>If you want to change the width or height of any of your pictures, you can add either ` widths = c(1, 1, 1)<code class="language-plaintext highlighter-rouge"> or </code> heights = c(2, 1, 1)` for example, to the end of your grid arrange command. In these examples, this would create three plots of equal width, and the first plot would be twice as tall as the other two, respectively. This is helpful when you have different sized figures or if you want to highlight the most important figure in your panel.</p>
+
+<p>To get around the too stretched/too squished panel problems, we will save the file and give it exact dimensions using <code class="language-plaintext highlighter-rouge">ggsave</code> from the <code class="language-plaintext highlighter-rouge">ggplot2</code> package. The default <code class="language-plaintext highlighter-rouge">width</code> and <code class="language-plaintext highlighter-rouge">height</code> are measured in inches. If you want to swap to pixels or centimeters, you can add <code class="language-plaintext highlighter-rouge">units = "px"</code> or <code class="language-plaintext highlighter-rouge">units = "cm"</code> inside the <code class="language-plaintext highlighter-rouge">ggsave()</code> brackets, e.g. <code class="language-plaintext highlighter-rouge">ggsave(object, filename = "mymap.png", width = 1000, height = 1000, units = "px"</code>. The file will be saved to wherever your working directory is, which you can check by running <code class="language-plaintext highlighter-rouge">getwd()</code> in the console.</p>
+
+<p><a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code18">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">ggsave</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vulture_panel2.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/vulture_panel2.png" alt="Img" style="width: 500px;"></center>
+
+<center><b>Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy.</b></center>
+
+<p>And there you go, you can now make all sorts of plots and start customising them with <code class="language-plaintext highlighter-rouge">ggplot2</code>! To discover more of <code class="language-plaintext highlighter-rouge">ggplot2</code>’s plotting power, check out our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank" rel="noopener noreferrer">follow-up ggplot tutorial</a>.</p>
+
+<p><a name="challenge"></a></p>
+<h3 id="5-challenge-yourself">5. Challenge yourself!</h3>
+
+<p>To practice making graphs, go back to the original LPI dataset that you imported at the beginning of the tutorial. Now, can you:</p>
+
+<p>1 - Choose TWO species from the LPI data and <strong>display their population trends over time</strong>, using a scatterplot and a linear model fit?</p>
+
+<p>2 - Using the same two species, filter the data to include only records from FIVE countries of your choice, and <strong>make a boxplot</strong> to compare how the abundance of those two species varies between the five countries?</p>
+
+<details>
+   <summary> Click this line to view an example </summary>
+    <summary>
+
+    <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1"># I chose two Arctic animals</span><span class="w">
+</span><span class="n">arctic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">LPI2</span><span class="p">,</span><span class="w"> </span><span class="n">Common.Name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Reindeer / Caribou"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Beluga whale"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># GRAPH 1 - POPULATION CHANGE OVER TIME</span><span class="w">
+
+</span><span class="p">(</span><span class="n">arctic.scatter</span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">arctic</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                </span><span class="c1"># alpha controls transparency</span><span class="w">
+   </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">Common.Name</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_y"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                   </span><span class="c1"># facetting by species</span><span class="w">
+   </span><span class="n">stat_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">    </span><span class="c1"># colour coding by country</span><span class="w">
+   </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#8B3A3A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#4A708B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#FFA500"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#8B8989"</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#8B3A3A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#4A708B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#FFA500"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#8B8989"</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abundance \n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># GRAPH 2 - BOXPLOTS OF ABUNDANCE ACROSS FIVE COUNTRIES</span><span class="w">
+
+</span><span class="c1"># Only have four countries so no subsetting; let's plot directly:</span><span class="w">
+</span><span class="p">(</span><span class="n">arctic.box</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">arctic</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abundance \n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Common.Name</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_y"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+         </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+         </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Not great becausE of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)</span><span class="w">
+</span><span class="p">(</span><span class="n">arctic.box</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">arctic</span><span class="p">,</span><span class="w"> </span><span class="n">abundance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">8000</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abundance \n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Common.Name</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_y"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+            </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+            </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#Align together in a panel - here I use the egg package that lines up plots together regardless of whether they have a legend or not</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">egg</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggarrange</span><span class="p">(</span><span class="n">arctic.scatter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Population change over time"</span><span class="p">),</span><span class="w"> 
+          </span><span class="n">arctic.box</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Population size across countries"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>    </div>
+    <center><img src="/img/DL_datavis1_arcticpops.png" alt="Img" style="width: 700px;"></center>
+    <center><b> Population trends and abundance of two Arctic species across their range according to the LPI dataset. </b></center>
+
+  </summary>   
+ </details>
+
+<hr>
+
+<hr>
+
+<p><strong>Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank" rel="noopener noreferrer">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you’d like to write a tutorial!</strong></p>
+
+<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"></a></p>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/83WV8HV" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

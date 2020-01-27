@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Coding etiquette</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheaderet.png" alt="Img">
+	</center>
+</div>
+
+<h3 id="tutorial-aims">Tutorial Aims:</h3>
+
+<h4 id="-1-organising-scripts-into-sections-"><a href="#sections"> 1. Organising scripts into sections </a></h4>
+
+<h4 id="-2-following-a-coding-syntax-etiquette"><a href="#syntax"> 2. Following a coding syntax etiquette</a></h4>
+
+<h4 id="-3-tidying-up-old-scripts-and-data-frames"><a href="#tidy"> 3. Tidying up old scripts and data frames</a></h4>
+
+<p>When analysing data in <code class="language-plaintext highlighter-rouge">R</code>, the lines of code can quickly pile up: hundreds of lines to scroll through, numerous objects whose names might make sense to you, but not to other people or future you. This tutorial offers tips on how to make your code easy to read and understand, for yourself and others who may want to read your code in the future. Following a coding etiquette, a set of “rules” you follow consistently throughout your work, will improve your <code class="language-plaintext highlighter-rouge">R</code> workflow and reduce the occurrence of annoying errors.</p>
+
+<p>The coding etiquette outlined in this tutorial is applicable to most analyses and much of it is also applicable to other programming languages.</p>
+
+<p><strong>We recommend that you follow the tutorial by typing code from the examples into a blank script file to build your own example script file with perfect formatting and etiquette. After you have done that, use your knowledge of coding etiquette to improve the formatting of <code class="language-plaintext highlighter-rouge">bad_script.R</code>, which you can find in <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank" rel="noopener noreferrer">the github repository for this tutorial</a>. Alternatively, feel free to edit some of your own scripts using the etiquette guidelines.</strong></p>
+
+<h3 id="you-can-download-all-the-resources-for-the-tutorial-including-some-helpful-cheatsheets-from-this-github-repository-clone-and-download-the-repo-as-a-zipfile-then-unzip-it-so-it-appears-as-a-folder">You can download all the resources for the tutorial, including some helpful cheatsheets from <a href="https://github.com/ourcodingclub/CC-Etiquette" target="_blank" rel="noopener noreferrer">this github repository.</a> Clone and download the repo as a zipfile, then unzip it so it appears as a folder.</h3>
+
+<p>Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank" rel="noopener noreferrer">the repository</a> to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer">tutorial.</a></p>
+
+<p><a name="sections"></a></p>
+
+<h3 id="1-organising-scripts-into-sections">1. Organising scripts into sections</h3>
+
+<p>As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a <code class="language-plaintext highlighter-rouge">.R</code> file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won’t be able to reuse it later. To make a new <code class="language-plaintext highlighter-rouge">.R</code> file, open RStudio and go to <code class="language-plaintext highlighter-rouge">File/New file/R script</code>. For more information on the general RStudio layout, you can check out our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank" rel="noopener noreferrer">Intro to RStudio tutorial</a>. A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.</p>
+
+<p>The best way to split your script into sections is to use comments. You can define a comment by adding <code class="language-plaintext highlighter-rouge">#</code> to the start of any line and typing text after it, e.g. <code class="language-plaintext highlighter-rouge"># ggplot of population frequency</code>. Then underneath that comment, you would write the code for making your plot using ggplot. RStudio has a neat feature whereby you can make your sections into an outline, similar to that which you can find in <code class="language-plaintext highlighter-rouge">Microsoft Word</code>. To add a comment to the outline, type four <code class="language-plaintext highlighter-rouge">-</code> after your comment text, e.g. <code class="language-plaintext highlighter-rouge"># ggplot of population frequency ----</code>. To view your outline, click the button as shown below, you can then click an outline item and jump straight to it: no more scrolling!</p>
+
+<center> <img src="/img/outline.png" alt="Img" style="width: 800px;"> </center>
+
+<p><strong>NOTE: If you don’t see the outline icon, you most likely do not have the newest version of RStudio - if you want to get this feature, you can <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank" rel="noopener noreferrer">download</a> the newest version of RStudio.</strong></p>
+
+<h4 id="script-structure">Script structure:</h4>
+
+<p><strong>There are no strict rules for the number and names of sections: you can adapt section content to your needs, but in general a script includes the following sections:</strong></p>
+
+<p><strong>Introduction</strong>: Author statement (what does this script do?), author(s) names, contact details and date.</p>
+
+<p><strong>Libraries</strong>: What packages are you using for this script? Keep all of them together at the start of your script. When switching between scripts, with your packages already loaded, it’s easy to forget to copy across the library, which means future you might get confused as to why the code isn’t working anymore. Your library will be extra informative to you and other people if you add in comments about what you are using each package for. Here are two examples, good and bad, to illustrate these first two sections:</p>
+
+<p>A not particularly useful script intro:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># My analysis</span><span class="w">
+</span></code></pre></div></div>
+
+<p>A more informative script intro:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analysing vertebrate population change based on the Living Planet Index</span><span class="w">
+</span><span class="c1"># Data available from http://www.livingplanetindex.org/</span><span class="w">
+
+</span><span class="c1"># Gergana Daskalova ourcodingclub@gmail.com</span><span class="w">
+</span><span class="c1"># 25-04-2017</span><span class="w">
+
+</span><span class="c1"># Libraries ----</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">  </span><span class="c1"># Formatting data for analysis</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">  </span><span class="c1"># Manipulating data</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Visualising results</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">  </span><span class="c1"># Manipulating data</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>You might have noticed that when you create a section using four or more <code class="language-plaintext highlighter-rouge">-</code> at the end of a comment line, a little arrow appears in the margin next to the comment. Clicking these arrows allows you to collapse the section, which is very useful when traversing a long script.</strong></p>
+
+<center> <img src="/img/etiquette_outline.png" alt="Img" style="width: 800px;"> </center>
+
+<p><strong>You can also go to <code class="language-plaintext highlighter-rouge">Edit/Folding/Collapse all</code> to collapse all sections. This is the outline of your script and from here you can navigate to whichever section you need. <code class="language-plaintext highlighter-rouge">Expand all</code> displays all of the code you’ve written. Here is an example:</strong></p>
+
+<center> <img src="/img/outline2.png" alt="Img" style="width: 800px;"> </center>
+
+<p><strong>Functions</strong>: Are you using any functions written by you and/or others? Define them here. For example, functions to remove <code class="language-plaintext highlighter-rouge">NA</code> values, functions to <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank" rel="noopener noreferrer">create your own <code class="language-plaintext highlighter-rouge">ggplot2</code> theme.</a> Here is an example functions section:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Defining functions ----</span><span class="w">
+</span><span class="c1"># A custom ggplot2 function</span><span class="w">
+</span><span class="n">theme.LPI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(){</span><span class="w">
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.text.y</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"plain"</span><span class="p">),</span><span class="w">             
+          </span><span class="n">axis.title.y</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"plain"</span><span class="p">),</span><span class="w">             
+          </span><span class="n">panel.grid.major.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                          
+          </span><span class="n">panel.grid.minor.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">panel.grid.minor.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">panel.grid.major.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">  
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">),</span><span class="w">
+          </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">          
+          </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                              
+          </span><span class="n">legend.position</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If you run the code for the <code class="language-plaintext highlighter-rouge">ggplot2</code> theme function above, you will see the name of the function you created appear in your <code class="language-plaintext highlighter-rouge">Global Environment</code> in the top right corner of your <code class="language-plaintext highlighter-rouge">RStudio</code> screen (you might need to scroll down past any objects you’ve created). Once you create a certain function, <code class="language-plaintext highlighter-rouge">RStudio</code> will remember it for the remainder of your session. If you close <code class="language-plaintext highlighter-rouge">RStudio</code> and then open it again later, you will need to run the code for the function again. <strong>NOTE: When you close <code class="language-plaintext highlighter-rouge">RStudio</code>, a message will ask if you want to save your workspace image. If you click yes, the next time you open <code class="language-plaintext highlighter-rouge">RStudio</code>, it will look exactly as it did when you closed it, with the same objects stored in your <code class="language-plaintext highlighter-rouge">Global environment</code>. If you click no, the next time you open <code class="language-plaintext highlighter-rouge">RStudio</code>, you will need to open your script and run through the code again if you want to use the same objects. We personally don’t often save our workspace image, as it makes <code class="language-plaintext highlighter-rouge">RStudio</code> run more slowly and can introduce errors as you might confuse objects from different analyses and/or overwrite objects without noticing.</strong></p>
+
+<p><strong>Setting the working directory</strong>: It helps to keep all your data, scripts, image outputs etc. in a single folder. This minimises the chance of losing any part of your analysis and makes it easier to move the analysis on your computer without breaking filepaths. Note that filepaths are defined differently on Mac/Linux and Windows machines. On a Mac/Linux machine, user files are found in the ‘home’ directory (<code class="language-plaintext highlighter-rouge">~</code>), whereas on a Windows machine, files can be placed in multiple ‘drives’ (e.g. <code class="language-plaintext highlighter-rouge">D:</code>). Also note that on a Windows machine, if you copy and paste a filepath from Windows Explorer into RStudio, it will appear with backslashes (<code class="language-plaintext highlighter-rouge">\ </code>), but R requires all filepaths to be written using forward-slashes (<code class="language-plaintext highlighter-rouge">/</code>), so you will have to change those manually. <strong>Set your working directory to the folder you downloaded from Github earlier, it should be called <code class="language-plaintext highlighter-rouge">CC-etiquette-master</code>. See below for some examples for both Windows and Mac/Linux:</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set the working directory on Windows ----</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"D:/Work/coding_club/CC-etiquette-master"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Set the working directory on Mac/Linux ----</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"~/Work/coding_club/CC-etiquette-master"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Importing data</strong>: what data are you using and where is it stored? <strong>Import <code class="language-plaintext highlighter-rouge">LPIdata_CC.csv</code> from your working directory</strong>. Here is an example:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Import data ----</span><span class="w">
+</span><span class="n">LPI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"LPIdata_CC.csv"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>The different sections of your analysis</strong>: what is the logical workflow of your analysis? Keep the order in which you tackle your analysis consistent. If this is code for an undergraduate dissertation, a thesis chapter, or a manuscript, you can follow the same order in your script. Here is an example. If you copy these across to a script file, you’ll see the sections appear. Once you have imported in <code class="language-plaintext highlighter-rouge">LPIdata_CC.csv</code>, run the following code to generate the plot called <code class="language-plaintext highlighter-rouge">barplot</code>, which you can see in the image below:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Formatting data ----</span><span class="w">
+</span><span class="n">LPI2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">LPI</span><span class="p">,</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abundance"</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="o">:</span><span class="m">53</span><span class="p">)</span><span class="w">  </span><span class="c1"># Transforming the data from wide to long format, some blank cells may disappear</span><span class="w">
+	</span><span class="c1"># gather function requires tidyr package</span><span class="w">
+</span><span class="n">LPI2</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parse_number</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">year</span><span class="p">)</span><span class="w">  </span><span class="c1"># Do you see awkward Xs before all the years? This gets rid of them.</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">LPI2</span><span class="p">)</span><span class="w">  </span><span class="c1"># Check what the different variables are called</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">LPI2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">LPI2</span><span class="p">))</span><span class="w">  </span><span class="c1"># Make all variable names lower case</span><span class="w">
+
+</span><span class="c1"># When manipulating data it's always good check if the variables have stayed how we want them</span><span class="w">
+</span><span class="c1"># Use the str() function</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">LPI2</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Abundance is a character variable, when it should be numeric, let's fix that</span><span class="w">
+</span><span class="n">LPI2</span><span class="o">$</span><span class="n">abundance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">abundance</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Calc summary stats for each biome in the LPI database ----</span><span class="w">
+</span><span class="n">levels</span><span class="p">(</span><span class="n">LPI2</span><span class="o">$</span><span class="n">biome</span><span class="p">)</span><span class="w">  </span><span class="c1"># list all biomes</span><span class="w">
+
+</span><span class="n">LPI_biome_summ</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LPI2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># use of pipe operator</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">biome</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Group by biome</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">populations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">  </span><span class="c1"># Create columns, number of populations</span><span class="w">
+
+</span><span class="c1"># Visualising the number of populations in each biome with ggplot2 package ---- </span><span class="w">
+</span><span class="p">(</span><span class="n">barplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">LPI_biome_summ</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">populations</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  
+  		</span><span class="n">theme.LPI</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">                     </span><span class="c1"># Use of personal theme function</span><span class="w">
+  		</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of populations"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Biome"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+		</span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">))</span><span class="w">  </span><span class="c1"># Removal of legend for simplicity</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don’t have the brackets, you’ve only created the object, but haven’t visualized it. You would then have to call the object such that it will be displayed by just typing <code class="language-plaintext highlighter-rouge">barplot</code> after you’ve created the “barplot” object.</p>
+
+<center><img src="https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;"></center>
+<p>Figure 1. Abundance of species populations for each biome.</p>
+
+<p><strong>The outputs of your analysis</strong>: Remember to keep your filepath sensible not only when loading data in, but also when you are outputting files (e.g. <code class="language-plaintext highlighter-rouge">.Rdata</code>, <code class="language-plaintext highlighter-rouge">.csv</code> files and any figures you want saved). <code class="language-plaintext highlighter-rouge">.csv</code> files are more transferable and can be used across multiple platforms, whereas <code class="language-plaintext highlighter-rouge">.Rdata</code> files are more compressed and are quicker to work with. Saving graphs as <code class="language-plaintext highlighter-rouge">.pdf</code> files is better practice, since <code class="language-plaintext highlighter-rouge">.pdf</code> files are vector based and don’t decrease in quality when you zoom in or out. <code class="language-plaintext highlighter-rouge">.png</code> files, on the other hand, are easily inserted in text documents and presentations, so ideally you should save a <code class="language-plaintext highlighter-rouge">.pdf</code> and a <code class="language-plaintext highlighter-rouge">.png</code> file of your graph. It is also good practice to save image outputs in a subdirectory of your working directory, e.g. <code class="language-plaintext highlighter-rouge">img/</code>. Remember that you will have to create the folder <code class="language-plaintext highlighter-rouge">img</code> manually before saving plots to it:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">"img/biome_pop.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2000</span><span class="p">)</span><span class="w">  </span><span class="c1"># Note that png() uses pixel values for width and height</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">LPI_biome_summ</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">populations</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">theme.LPI</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of populations"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Biome"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+		</span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">  </span><span class="c1"># This tells R you are done with the plotting and it can save the file</span><span class="w">
+
+</span><span class="n">pdf</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">"img/biome_pop.pdf"</span><span class="p">,</span><span class="w">  </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13.33</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26.66</span><span class="p">)</span><span class="w">  </span><span class="c1"># pdf() uses inches</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">LPI_biome_summ</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biome</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">populations</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">theme.LPI</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of populations"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  		</span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Biome"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+		</span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w">
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that you can also save the outputs of your analysis with the use of another package <code class="language-plaintext highlighter-rouge">ggsave</code>, and you can refer to the end of <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">this data visualization tutorial</a> for an example of how to do so.</p>
+
+<p><a name="syntax"></a></p>
+
+<h3 id="2-following-a-coding-syntax-etiquette">2. Following a coding syntax etiquette</h3>
+
+<h4 id="21-naming-files-and-objects">2.1. Naming files and objects.</h4>
+
+<h5 id="there-are-only-two-hard-things-in-computer-science-cache-invalidation-and-naming-things---phil-karlton">“There are only two hard things in Computer Science: cache invalidation and naming things.” - Phil Karlton</h5>
+
+<p>We’re not too familiar with cache invalidation, but we would definitely agree that naming things is hard and going for a quick and easy solution, like calling your graphs <code class="language-plaintext highlighter-rouge">graph</code>, might cause trouble later!</p>
+
+<p><strong>File names for scripts should be meaningful and end in <code class="language-plaintext highlighter-rouge">.R</code>. Avoid spaces and funky characters!!! They can cause trouble when uploading files to Github and in general when trying to locate files through certain file paths.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LPI_analysis_Apr_2017.R</span><span class="w">  </span><span class="c1"># Alright.</span><span class="w">
+
+</span><span class="n">yet_another_script.R</span><span class="w">  </span><span class="c1"># Bad. Took me hours to find the file when I needed it one year later.</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Object names should be concise and meaningful.</strong></p>
+
+<p>Calling your objects <code class="language-plaintext highlighter-rouge">data</code> or something similarly vague might cause problems if you are doing multiple analyses at once/don’t clean your environment periodically, as these object names will get overwritten and can mess up your script if you aren’t running it in order.</p>
+
+<p>Long object names are annoying to type. More letters = higher chance you’ll make a typo.</p>
+
+<p>Object, variable (e.g.<code class="language-plaintext highlighter-rouge">object$variable</code>) and function names should be lowercase. <code class="language-plaintext highlighter-rouge">MinPrecip_august</code> is confusing to remember, <code class="language-plaintext highlighter-rouge">min.precip.aug</code> is a bit long, but informative and easier to type.</p>
+
+<h5 id="--variable-names-should-be-nouns-eg-abundance-richness">- <strong>Variable names should be nouns.</strong> e.g. <code class="language-plaintext highlighter-rouge">abundance</code> <code class="language-plaintext highlighter-rouge">richness</code>
+</h5>
+<h5 id="--function-names-should-be-verbs-eg-calcsprichness">- <strong>Function names should be verbs.</strong> e.g. <code class="language-plaintext highlighter-rouge">calc.sp.richness</code>
+</h5>
+<h5 id="--use-an-underscore-to-separate-words-within-a-script-file-eg-lpi_analysis_apr_2017r">- <strong>Use an underscore to separate words within a script file.</strong> e.g. <code class="language-plaintext highlighter-rouge">LPI_analysis_Apr_2017.R</code>
+</h5>
+<h5 id="--the-preferred-form-for-objectvariable-names-is-all-lower-case-letters-and-words-separated-with-underscores-eg-object_namevariable_name">- <strong>The preferred form for object/variable names is all lower case letters and words separated with underscores</strong> e.g. (<code class="language-plaintext highlighter-rouge">object_name$variable_name</code>).</h5>
+<h5 id="--for-functions-all-lower-case-letters-and-words-separated-by-dots-eg-functionname">- <strong>For functions, all lower case letters and words separated by dots</strong> e.g. (<code class="language-plaintext highlighter-rouge">function.name</code>).</h5>
+
+<p><strong>This way it is clear what is an object and what is an external file. These are not strict rules - variable names like <code class="language-plaintext highlighter-rouge">variable_name</code> are also acceptable. The most important thing is to be consistent: choose one style of variable, object and file names and stick with it!</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Object names</span><span class="w">
+ </span><span class="n">avg_clicks</span><span class="w">  </span><span class="c1"># Good.</span><span class="w">
+ </span><span class="n">avg.clicks</span><span class="w">  </span><span class="c1"># Acceptable.</span><span class="w">
+ </span><span class="n">avg_Clicks</span><span class="w">  </span><span class="c1"># Not okay.</span><span class="w">
+
+</span><span class="c1"># Function names</span><span class="w">
+ </span><span class="n">calculate.avg.clicks</span><span class="w">  </span><span class="c1"># This is what we are aiming for.</span><span class="w">
+ </span><span class="n">CalculateAvgClicks</span><span class="w">  </span><span class="c1"># Not that bad, but mixing capital and lowercase letters can lead to typos</span><span class="w">
+ </span><span class="n">calculate_avg_clicks</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">calculateAvgClicks</span><span class="w">  </span><span class="c1"># Bad. The convention is that functions are defined using dots, not underscores.</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="22-spacing">2.2 Spacing</h4>
+
+<p><strong>Place spaces around all infix operators (<code class="language-plaintext highlighter-rouge">=</code>, <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">&lt;-</code>, etc.).</strong> The same rule applies when using <code class="language-plaintext highlighter-rouge">=</code> in function calls.
+<strong>Always put a space after a comma, and never before, just like in normal prose.</strong></p>
+
+<p>There are two exceptions to this rule (that we know of): <code class="language-plaintext highlighter-rouge">:</code> and <code class="language-plaintext highlighter-rouge">::</code> don’t need spaces around them and one should not add spaces when defining coordinate systems in spatial objects.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="w">  </span><span class="c1"># Good</span><span class="w">
+</span><span class="n">base</span><span class="o">::</span><span class="n">get</span><span class="w">  </span><span class="c1"># Good</span><span class="w">
+</span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="w">  </span><span class="c1"># When you use `package_name::function_name` in your code like the example here, this means you are calling the function `select()` from the package `dplyr` - this way of using functions works without having loaded the package beforehand using `library(dplyr)`, but it's not very commonly used, since it's longer.</span><span class="w">
+
+</span><span class="n">crs.geo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CRS</span><span class="p">(</span><span class="s2">"+proj=longlat +ellps=WGS84 +datum=WGS84"</span><span class="p">)</span><span class="w">  </span><span class="c1"># geographical, datum WGS84</span><span class="w">
+</span><span class="c1"># Here we are creating an imaginary object with a geographical projection commonly used for the UK</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Don’t place a space before left parentheses, except in a function call.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Good</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="n">do</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Bad</span><span class="w">
+</span><span class="k">if</span><span class="p">(</span><span class="n">debug</span><span class="p">)</span><span class="n">do</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Extra spacing (i.e., more than one space in a row) is ok if it improves alignment of equal signs or assignments (<code class="language-plaintext highlighter-rouge">&lt;-</code>).</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sample code just to illustrate the point, no need to run the code at this point!</span><span class="w">
+</span><span class="n">LPI_biome_summ</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LPI_long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">biome</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Group by biome</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">populations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">(),</span><span class="w">   </span><span class="c1"># Create columns, number of populations</span><span class="w">
+            </span><span class="n">mean_study_length_years</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">lengthyear</span><span class="p">),</span><span class="w">  </span><span class="c1"># mean study length</span><span class="w">
+            </span><span class="n">max_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">decimal_latitude</span><span class="p">),</span><span class="w">  </span><span class="c1"># max latitude</span><span class="w">
+            </span><span class="n">min_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">decimal_latitude</span><span class="p">),</span><span class="w">  </span><span class="c1"># max longitude</span><span class="w">
+            </span><span class="n">dominant_sampling_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">sampling_method</span><span class="p">))),</span><span class="w">  </span><span class="c1"># modal sampling method</span><span class="w">
+            </span><span class="n">dominant_units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">units</span><span class="p">))))</span><span class="w">  </span><span class="c1"># modal unit type</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Do not place spaces around code in parentheses or square brackets (unless there’s a comma, in which case see above).</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Good</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="n">do</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="n">diamonds</span><span class="p">[</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># Bad</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">do</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1"># No spaces around debug</span><span class="w">
+</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,]</span><span class="w">   </span><span class="c1"># Needs a space after the comma</span><span class="w">
+</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="w"> </span><span class="p">,]</span><span class="w">  </span><span class="c1"># Space goes after comma not before</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Inline commenting</strong>: If you are commenting inline with code, place  <strong>two spaces</strong> after the code, followed by <code class="language-plaintext highlighter-rouge">#</code>, a <strong>single space</strong> and then your text, e.g. <code class="language-plaintext highlighter-rouge">summary(model)&lt;space&gt;&lt;space&gt;#&lt;space&gt;comment</code>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Calculating summary statistics for each biome in the Living Planet Index database</span><span class="w">
+</span><span class="c1"># No need to copy and run this code now, this just illustrates comments</span><span class="w">
+</span><span class="n">LPI_biome_summ</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LPI2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">biome</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Group by biome</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">populations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">(),</span><span class="w">   </span><span class="c1"># Create columns, number of populations</span><span class="w">
+            </span><span class="n">mean_study_length_years</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">lengthyear</span><span class="p">),</span><span class="w">  </span><span class="c1"># mean study length</span><span class="w">
+            </span><span class="n">max_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">decimal_latitude</span><span class="p">),</span><span class="w">  </span><span class="c1"># max latitude</span><span class="w">
+            </span><span class="n">min_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">decimal_latitude</span><span class="p">),</span><span class="w">  </span><span class="c1"># max longitude</span><span class="w">
+            </span><span class="n">dominant_sampling_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">sampling_method</span><span class="p">))),</span><span class="w">  </span><span class="c1"># modal sampling method</span><span class="w">
+            </span><span class="n">dominant_units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">units</span><span class="p">))))</span><span class="w">  </span><span class="c1"># modal unit type</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="23-curly-braces">2.3 Curly braces</h4>
+
+<p>An opening curly brace should never go on its own line and should always be followed by a new line. A closing curly brace should always go on its own line, unless it’s followed by <code class="language-plaintext highlighter-rouge">else</code>.
+<strong>Always indent the code inside curly braces.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Good</span><span class="w">
+
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">message</span><span class="p">(</span><span class="s2">"Y is negative"</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">y</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># Bad</span><span class="w">
+
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">debug</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="n">message</span><span class="p">(</span><span class="s2">"Y is negative"</span><span class="p">)}</span><span class="w">
+
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">y</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It’s ok to leave very short statements on the same line:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="n">message</span><span class="p">(</span><span class="s2">"Y is negative"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="24-line-length">2.4 Line length</h4>
+
+<p><strong>The official convention is to limit your code to 80 characters per line.</strong> Having to continuously scroll left and right can be annoying and confusing. Also, when you publish your code to Github, the scroll bar is all the way down at the bottom of the page, so to scroll right, you first need to scroll all the way down, scroll right, then scroll all the way up to wherever you want to be … unnecessary.</p>
+
+<p><strong>How do you know what’s 80 characters though? RStudio can place a handy line in your editor as a reminder! Go to <code class="language-plaintext highlighter-rouge">Tools/Global Options/Code/Display/Show Margin/80 characters</code>.</strong> Sometimes it might make more sense for your code to be a bit longer than 80 characters, but in general code is easier to read if there is no need for continuous scrolling left and right: around 100 characters should work alright.</p>
+
+<h5 id="when-using-pipes-from-the-dplyr-package-keep-the-pipe-operator--at-the-end-of-the-line-and-continue-your-pipe-on-a-new-line">When using pipes from the <code class="language-plaintext highlighter-rouge">dplyr</code> package, keep the pipe operator <code class="language-plaintext highlighter-rouge">%&gt;%</code> at the end of the line and continue your pipe on a new line.</h5>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Just an example of what a pipe could look like, no need to run the code at this stage.</span><span class="w">
+</span><span class="n">LPI_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LPI_long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">genus_species_id</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># group rows so that each group is one population</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">maxyear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">year</span><span class="p">),</span><span class="w"> </span><span class="n">minyear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Create columns for the first and most recent years that data was collected</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">lengthyear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maxyear</span><span class="o">-</span><span class="n">minyear</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Create a column for the length of time data available</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scalepop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pop</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">pop</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">pop</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Scale population trend data</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="nf">is.finite</span><span class="p">(</span><span class="n">scalepop</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">lengthyear</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Only keep rows with more than 5 years of data</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">(</span><span class="n">.</span><span class="p">)</span><span class="w">  </span><span class="c1"># Remove any groupings you've greated in the pipe, not entirely necessary but it's better to be safe</span><span class="w">
+</span></code></pre></div></div>
+
+<h5 id="when-using-ggplot2-keep-the--at-the-end-of-the-line-and-continue-adding-on-layers-on-a-new-line">When using <code class="language-plaintext highlighter-rouge">ggplot2</code>, keep the <code class="language-plaintext highlighter-rouge">+</code> at the end of the line and continue adding on layers on a new line.</h5>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Just an example of what the code could look like, no need to run the code at this stage.</span><span class="w">
+</span><span class="p">(</span><span class="n">vulture_scatter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">vultureITCR</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abundance</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                                                
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Country.list</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                    
+    </span><span class="n">theme_my_own</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">               
+    </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#EE7600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#00868B"</span><span class="p">),</span><span class="w">               
+                        </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Croatia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Italy"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                 
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Griffon vulture abundance\n"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                             
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"\nYear"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="25-indentation">2.5 Indentation</h4>
+<p>If a command runs over multiple lines, indent the second line to where the definition starts. You can check out the indentation in the <code class="language-plaintext highlighter-rouge">ggplot2</code> code above: when you click <code class="language-plaintext highlighter-rouge">Enter</code> after the <code class="language-plaintext highlighter-rouge">+</code> sign, the new line automatically gets indented.</p>
+
+<p>Here is a before and after of a <code class="language-plaintext highlighter-rouge">ggplot2</code> figure code:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Again, just an example, don't run this, it won't work!</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">()</span><span class="o">+</span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">linetype</span><span class="o">=</span><span class="s2">"dotted"</span><span class="p">,</span><span class="n">colour</span><span class="o">=</span><span class="s2">"darkgrey"</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cwa.sub</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Season</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Total.Concentration</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_ribbon</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">preds2</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Season</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="o">=</span><span class="n">ploBT</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="o">=</span><span class="n">phiBT</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="s2">"#3cd0ea"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">preds2</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Season</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Total.ConcentrationBT</span><span class="p">),</span><span class="n">colour</span><span class="o">=</span><span class="s2">"#3cd0ea"</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="o">+</span><span class="n">theme_bw</span><span class="p">()</span><span class="o">+</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Minimum Sea Ice Concentration"</span><span class="p">)</span><span class="o">+</span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Season"</span><span class="p">)</span><span class="o">+</span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="m">2012</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="m">0.4</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"p = "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">pval.cwa.sub</span><span class="p">,</span><span class="m">4</span><span class="p">)),</span><span class="n">size</span><span class="o">=</span><span class="m">6</span><span class="p">)</span><span class="o">+</span><span class="n">theme</span><span class="p">(</span><span class="n">legend.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"plain"</span><span class="p">,</span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="n">legend.text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">18</span><span class="p">,</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">),</span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span><span class="n">legend.key</span><span class="w"> </span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="n">axis.title.y</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="n">axis.text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">16</span><span class="p">),</span><span class="n">panel.grid.minor</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="n">panel.grid.major</span><span class="o">=</span><span class="n">element_blank</span><span class="p">())</span><span class="w">
+
+</span><span class="p">(</span><span class="n">plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"darkgrey"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cwa.sub</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Season</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Total.Concentration</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_ribbon</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preds2</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Season</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ploBT</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phiBT</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#3cd0ea"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preds2</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Season</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Total.ConcentrationBT</span><span class="p">),</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#3cd0ea"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Minimum Sea Ice Concentration"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Season"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2012</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"p = "</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pval.cwa.sub</span><span class="p">,</span><span class="m">4</span><span class="p">)),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">,</span><span class="w">
+        </span><span class="n">legend.key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">margin</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="w">
+        </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">margin</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="w">
+        </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">16</span><span class="p">),</span><span class="w">
+        </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">()))</span><span class="w">
+	
+</span><span class="c1"># The second version is much easier to read and there is no need to keep scrolling left and right.</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="tidy"></a></p>
+
+<h3 id="3-tidying-up-old-scripts-and-data-frames">3. Tidying up old scripts and data frames</h3>
+
+<p>It’s best to start following a sensible coding etiquette from the very beginning, but realistically we are often in a hurry: we want to code quickly and even if we know we are not following best practices, we still go ahead, because we are thinking of our short-term goals - getting it done, as opposed to the more long-term goals of having a sensible and reproducible record of our analysis. As we are writing this tutorial, we are just as guilty as everyone else of having messy scripts, missing spaces around <code class="language-plaintext highlighter-rouge">=</code>, etc. But it’s important to try to be consistent with your coding and once you get into the habit of it, it hopefully won’t seem like “one extra thing to do.”</p>
+
+<h4 id="what-if-you-want-to-make-your-old-code-neater"><strong>What if you want to make your old code neater?</strong></h4>
+
+<p>That’s a lot of spaces you might need to add in… First, you could try using RStudio to format the code for you. Click on <code class="language-plaintext highlighter-rouge">Code/Reformat code</code> and see what happens. You will get all the spaces in, but R puts the code on a new line after each comma - too many lines! You can try this instead (<strong>back up your scripts before you start any experimenting!!!</strong>):</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Reformat your old code to add in spaces and limit line length</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"formatR"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"formatR"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Set working directory to wherever your messy script is</span><span class="w">
+</span><span class="n">tidy_source</span><span class="p">(</span><span class="s2">"messy_script_2017-02-25.R"</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"tidy_script_2017-02-25.R"</span><span class="p">,</span><span class="w"> </span><span class="n">width.cutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+</span><span class="c1"># If you don't specify file = "new_script.R", your script will get overwritten, dangerous!</span><span class="w">
+</span><span class="c1"># If you don't specify a width cutoff point, tidy_source just adds in the spaces</span><span class="w">
+</span><span class="c1"># 100 characters seems like a reasonable cutoff point</span><span class="w">
+
+</span><span class="c1"># Reformat all the scripts in a directory</span><span class="w">
+</span><span class="c1"># Set your working directory to wherever your messy scripts are</span><span class="w">
+
+</span><span class="c1"># IMPORTANT this will override script files, so make a duplicate back up folder, in case tidy_dir messes up</span><span class="w">
+</span><span class="n">tidy_dir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">"whatever/your/path/is"</span><span class="p">,</span><span class="w"> </span><span class="n">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="c1"># recursive	- whether to look for R scripts in subdirectories of the directory specified under path</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="renaming-old-objects-and-variables">Renaming old objects and variables</h4>
+
+<p>If, like us, you find yourself having to use a script from before you knew any better, you might have objects with really uninformative, unnecesarily hard to type names. There is an easy fix to that: just like in most text editors, you can <code class="language-plaintext highlighter-rouge">Find</code> and <code class="language-plaintext highlighter-rouge">Replace</code> words, in our case object names. You can type up the object whose name you want to change, then add the new one and replace either individual occurrences, or all of the occasions when the object name is mentioned. You can also select lines of code and only rename the object in that part of the code - careful that you have clicked on <code class="language-plaintext highlighter-rouge">In selection</code>, as otherwise the object name will be replaced in the entire script, despite you having selected only some of the lines.</p>
+
+<center> <img src="/img/replace.png" alt="Img" style="width: 800px;"> </center>
+
+<p><strong>If you want to rename your variable names, that’s quickly done, too.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">names</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span><span class="w"> </span><span class="n">fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="c1"># This code takes all of the variable names in the imaginary dataset `dataframe` and replaces `.` with `_`</span><span class="w">
+</span><span class="c1"># Depending on the naming style you are using, you might want to go the other way around and use `.` in all variable names</span><span class="w">
+
+</span><span class="nf">names</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span><span class="w">
+</span><span class="c1"># This code makes all of the variable names in the imaginary dataset lowercase</span><span class="w">
+
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)[</span><span class="n">colnames</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'Old_Complicated_Name'</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'new.simple.name'</span><span class="w">
+</span><span class="c1"># Renaming an individual column in the imaginary dataset</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="rstudio-addins">RStudio addins:</h3>
+
+<p>RStudio addins are available for the newest version of RStudio and add some functionality to RStudio using point and click menus. After you have installed certain addins, you can access them by clicking on <code class="language-plaintext highlighter-rouge">Addins</code>, which is under the <code class="language-plaintext highlighter-rouge">Profile</code> and <code class="language-plaintext highlighter-rouge">Tools</code> bar in the RStudio menu. To get a full list of RStudio plugins, run:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s1">'addinslist'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>When you click on <code class="language-plaintext highlighter-rouge">Addins/Browse RStudio Addins</code>, you will see the list of addins and the links to their Github repos.</p>
+
+<p><strong>Boxes around introductory sections of scripts have become a trendy addition to script files, definitely not an essential component, but if that appeals to you, you can add a box using this plugin, saving you the time of typing up many hashtags.</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Insert a box around the introductory section of your script</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"devtools"</span><span class="p">)</span><span class="w">
+</span><span class="n">devtools</span><span class="o">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">"ThinkRstat/littleboxes"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Afterwards select your introductory comments, click on Addins/ Little boxes and the box appears!</span><span class="w">
+</span><span class="c1"># Note that if you are also reformatting your code using formatR, reformat the code first, then add the box.</span><span class="w">
+</span><span class="c1"># formatR messes up these boxes otherwise!</span><span class="w">
+</span></code></pre></div></div>
+
+<center> <img src="/img/boxes.png" alt="Img" style="width: 800px;"> </center>
+
+<p><strong>Now that you have read through the tutorial, try to clean up <code class="language-plaintext highlighter-rouge">bad_script.R</code>, which can be found in <a href="https://github.com/ourcodingclub/CC-etiquette" target="_blank" rel="noopener noreferrer">the github repository for this tutorial</a>, or tidy up one of your own scripts.</strong></p>
+
+<p>Our coding etiquette was developed with the help of <a href="http://adv-r.had.co.nz/Style.html" target="_blank" rel="noopener noreferrer">Hadley Whickham’s R Style Guide</a>.</p>
+
+<hr>
+
+<hr>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/8YBXTMT" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

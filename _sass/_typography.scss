@@ -1,0 +1,89 @@
+// Site-wide base styles
+body {
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: $bodyColour;
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', sans-serif;
+	color: $headingColour;
+	font-weight: 400;
+	padding-top: 5px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 25px;
+}
+
+h5 {
+  font-size: 22px;
+}
+
+h6 {
+  font-size: 20px;
+}
+
+
+// Body text 
+p {
+  font-size: 15px;
+  line-height: 28px;
+}
+
+ul {
+	list-style: square;
+	list-style-position: inside;
+	margin: 5px;
+	padding: 0;
+}
+
+ol {
+	list-style-position: inside;
+	margin: 5px;
+	padding: 0;
+}
+
+li {
+   padding-left: 20px;
+   margin:0 0 10px 0;
+}
+
+
+// Links
+a { 
+	color: $linkColour;
+	text-decoration: none;
+	transition: color .1s, background-color .1s;
+
+	&:hover, &:active, &:focus {
+		color: $hoverColour;
+		text-decoration: underline;
+	}
+}
+
+// Code
+code, pre {
+	background-color: $codeBackgroundColour;
+	font-family: "Menlo, monospace",
+}
+
+pre {
+	display: block;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+

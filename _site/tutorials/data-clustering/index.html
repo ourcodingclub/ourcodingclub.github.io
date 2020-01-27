@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Intro to data clustering</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheadercluster.png" alt="Img">
+	</center>
+</div>
+
+<h1 id="tutorial-aims">Tutorial Aims:</h1>
+
+<h3 id="-1-get-acquainted-with-data-clustering-"><a href="#Introduction"> 1. Get acquainted with data clustering </a></h3>
+
+<h3 id="-2-learn-about-different-distance-metrics-"><a href="#Distance"> 2. Learn about different distance metrics </a></h3>
+
+<h3 id="-3-learn-about-different-linkage-methods-"><a href="#Linkage"> 3. Learn about different linkage methods </a></h3>
+
+<h3 id="-4-turn-groups-into-a-grouping-variable-"><a href="#Grouping"> 4. Turn groups into a grouping variable </a></h3>
+
+<h3 id="-5-map-cluster-groups-in-geographic-space-"><a href="#Mapping"> 5. Map cluster groups in geographic space </a></h3>
+
+<p><a name="Introduction"></a></p>
+
+<p>To get all you need for this session, <strong>go to <a href="https://github.com/ourcodingclub/CC-9-Data-clustering" target="_blank" rel="noopener noreferrer">the repository for this tutorial</a>, fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer"> Intro to Github for version control</a> tutorial. Alternatively you can download the repo as a zip file.</strong></p>
+
+<h3 id="get-acquainted-with-data-clustering">Get acquainted with data clustering</h3>
+
+<p><b>Hierarchical data clustering allows you to explore your data and look for discontinuities (e.g. gaps in your data), gradients and meaningful ecological units (e.g. groups or subgroups of species). It is a great way to start looking for patterns in ecological data (e.g. abundance, frequency, occurrence), and is one of the most used analytical methods in ecology. Your research questions are the limit. Hierarchical clustering offers insight into how your biodiversity data are organized and can help you to disentangle different patterns and the scales at which they can be observed. For example, you could use data clustering to understand algae distribution along a ocean depth gradient, or look at the distribution of bats along an elevation gradient, or study how fish communities are distributed along water basins and see if rapid streams and waterfalls are limiting their dispersal, or even determine which are the main biogeographic realms in the world.</b></p>
+
+<p>Let’s imagine the following: you are an ecologist working on tropical forests in the Neotropics and you want to understand how these forests, composed of different species of tree, are related to one another. You could use data clustering to split them into ecologically meaningful sub-groups that can then be used as a grouping variable (a categorical variable) in future analyses. You might be interested in questions such as: How many ecologically meaningful floristic units are present in the Neotropics? Which ones are more similar to each other? How many species do they share? How are these units distributed in geographic space? Does each unit occupy a certain portion of the geographic space, or is the spatial distribution of units mixed?</p>
+
+<p>You can then build your next set of research questions based on the answers you got from the data clustering. What are the environmental drivers of the patterns in my data? Is climate one of these drivers? How will these tree groups respond to climate change? Are these floristic units related to climate? In such a big region (the Neotropics), are there biogeographic and environmental barriers separating these units? Do you get clear splits from one group to another or do you get a gradient of floristic turnover across the border of two of these floristic units?</p>
+
+<p><b>To answer these questions, you can construct a dataset which consists of tree species occurrence records for a multitude of sites in the Neotropics and perform a series of hierarchical clustering analyses.</b></p>
+
+<h3 id="hierarchical-agglomerative-data-clustering">Hierarchical agglomerative data clustering</h3>
+<p>Hierarchical agglomerative data clustering is one part of the broader category of “data clustering”.</p>
+
+<h4 id="data-clustering-methods">Data clustering methods:</h4>
+<ul>
+  <li>
+    <p><strong>Sequential and simultaneous</strong> - refers to how the clustering is conducted. If it’s through an algorithm that is repeated till all data have been clustered, it’s sequential. If the algorithm clusters all your data together at the same time, it’s simultaneous.</p>
+  </li>
+  <li>
+    <p><strong>Agglomerative and divisive</strong> - refers to how your data are being grouped. Agglomerative is a bottom up approach, meaning that the clustering will begin by putting similar observations together, gradually forming subgroups till all your observations are included. Divisive is the exact opposite, your set of observations will be considered as whole group and the algorithm will divide your data into progressively smaller chunks till each observation forms a sub-group on its own.</p>
+  </li>
+  <li>
+    <p><strong>Monothetic and polythetic</strong> -  refers to the amount of descriptors being employed to cluster your data into subgroups. If it uses just one descriptor on every step, it’s monothetic; if it uses more than one, it’s polythetic.</p>
+  </li>
+  <li>
+    <p><strong>Hierarchical and non-hierarchical</strong> - hierarchical means that your groups will be organized in ranks according to how similar they are. You’ll have sub-groups forming larger groups till all your observations are included in your cluster. Non-hierarchical clustering methods do not include that option.</p>
+  </li>
+</ul>
+
+<p><b>In sum, hierarchical agglomerative clustering methods group your observations in increasingly large subgroups till all observations are included. The subgroups formed by the clustering are ordered in ranks according to their level of similarity.</b></p>
+
+<h3 id="create-a-new-r-script-file-and-start-working-your-way-through-the-tutorial">Create a new R script file and start working your way through the tutorial</h3>
+<p>We find having the tutorial on half of your screen, and RStudio on the other half, useful for following along and seeing what the results of each code chunk are. For today’s session, we’ll be working with four different packages. Please install them and load their libraries:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"recluster"</span><span class="p">)</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"phytools"</span><span class="p">)</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"maps"</span><span class="p">)</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"vegan"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Loading libraries</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">recluster</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">phytools</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>As you might have realised by now, I work on tropical trees and forests in the Neotropics, and today I have decided to give you a quick tour through some of the amazing forests and floristic formations we have there. Today’s destination is Bolivia, a large country in tropical South America with just about ten million people living in it. Most of these people live in four gigantic cities: La Paz, Sucre, Cochabamba and Santa Cruz de La Sierra. As a result, most of Bolivia’s diversity is located away from human settlements and is, therefore, relatively protected from human impact. Biogeographically, Bolivia is where all the main Tropical South American biomes converge. This makes Bolivia one of the most interesting and exciting places to study (and visit) in South America.</p>
+
+<p><b>The data we’ll be using today come from a dataset called NeoTropTree which was developed by <a href="http://prof.icb.ufmg.br/treeatlan/" target="_blank" rel="noopener noreferrer">Professor Ary Oliveira-Filho (Federal University of Minas Gerais - Brazil)</a>. NeoTropTree is a large database containing records on forest tree species composition, gathered by reviewing the literature (published and unpublished - e.g. masters dissertations and PhD theses), compiling species check-lists, and studying herbarium records. Each site within the database has been assigned to a specific vegetation type (an ecologically meaningful unit). NeoTropTree is a very comprehensive and well kept dataset, which makes it very valuable and reliable when doing science. Professor Oliveira-Filho has kindly agreed to us using a tiny portion of it for this tutorial.</b></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Loading the dataframes we'll be working with:</span><span class="w">
+</span><span class="c1"># First load the data-frame containing all species for which NeoTropTree has at least one record in Bolivia.</span><span class="w">
+</span><span class="n">spp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"spp_bol.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">head</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">spp</span><span class="p">)</span><span class="w">  </span><span class="c1"># View the first few columns</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">spp</span><span class="p">)</span><span class="w">  </span><span class="c1"># How many rows and columns are there?</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Each species has a <code class="language-plaintext highlighter-rouge">SppID</code> number and a code, which is in the <code class="language-plaintext highlighter-rouge">Species.code</code> column. These two columns will be of major importance to us later on. There are 3369 tree species registered for Bolivia in NeoTropTree.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load the dataframe containing all sites NeoTropTree has in Bolivia.</span><span class="w">
+</span><span class="n">sites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"sites_bolivia.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">head</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">sites</span><span class="p">)</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">sites</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Each site has an AreaID, an Area Code, information on locality, vegetation type, geographic coordinates and elevation. You can also see that the sites are classified in Phytogeographic Domains (<code class="language-plaintext highlighter-rouge">Domain</code>). This is important because the <code class="language-plaintext highlighter-rouge">AreaCode</code> column, to which we’ll be referring very often, is based on these domains - the first three letters of an area code correspond to the <code class="language-plaintext highlighter-rouge">Domain</code> on which the site is located. <b>Sites beginning with <code class="language-plaintext highlighter-rouge">Amz</code>, are a part of the Amazon Domain; <code class="language-plaintext highlighter-rouge">And</code> = Andes; <code class="language-plaintext highlighter-rouge">Cer</code> = Cerrado (South American savannas); Cha = Chaco woodlands (mainly subtropical, shrubby, mostly deciduous and dry floristic formation). Pay attention to this, as this will be very important when looking for sub-groups in our dataset.</b></p>
+
+<p><b>Now it’s time for us to load the correspondence matrix, a matrix indicating what species are present on which site, information that is vital to us in order to make a presence and abscence matrix.</b></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load the sppxarea matrix</span><span class="w">
+</span><span class="n">sppxsites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"sppxsites_bol.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">head</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">sppxsites</span><span class="p">)</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">sppxsites</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Please note that you only have two columns in here - <code class="language-plaintext highlighter-rouge">SppID</code> and <code class="language-plaintext highlighter-rouge">AreaID</code>.The number of rows is the number of occurrence records in our dataset - 42015.</p>
+
+<h3 id="making-a-presenceabsence-matrix-through-a-loop">Making a presence/absence matrix through a loop</h3>
+
+<p>How does the chosen clustering method know which observations are more similar to one another than others? Simple. You will provide it with a pairwise distance matrix. This is a quadratic (number of rows is equal to the number of columns) matrix containing the distance values taken for each pair of sites in the dataset. There are different ways of calculating these pairwise distances and the most suitable method for you will largely depend on the kind of data you are working with.</p>
+
+<p>Right now, what we need to do is use the data frames we have and create a presence and absence matrix with sites in the rows and species in the columns. As it is standard, <code class="language-plaintext highlighter-rouge">1</code> = species present in a site and <code class="language-plaintext highlighter-rouge">0</code> = the species absent in a site. No matter what distance metric you use, the pairwise distance matrix that will be used when clustering your data will always be constructed based on this table. Of course, if you have species abundance, than you’ll be working with an abundance matrix.</p>
+
+<p>The way we are going to build such matrix is through a loop function. Loop functions are extremely useful used in many programming languages. If you want to learn more about them, you can check our tutorial on <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank" rel="noopener noreferrer">how to use loops.</a></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Making the species by site matrix (presence and abscence). We'll call it `commat`.</span><span class="w">
+
+</span><span class="n">sites_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">sppxsites</span><span class="o">$</span><span class="n">AreaID</span><span class="p">)</span><span class="w">  </span><span class="c1"># Making a vector with sites in our dataset</span><span class="w">
+</span><span class="n">spp_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">sppxsites</span><span class="o">$</span><span class="n">SppID</span><span class="p">)</span><span class="w">  </span><span class="c1"># Making a vector with species in our dataset</span><span class="w">
+
+</span><span class="c1"># First we'll create an empty matrix with our sites in the rows and our species in the columns. The loop function will place a `1` on a given cell when the species is present in an area and will fill out the remaining cells with a `0`.</span><span class="w">
+
+</span><span class="n">spp_commat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">sites_sub</span><span class="p">),</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">spp_sub</span><span class="p">))</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">)){</span><span class="w">
+  </span><span class="n">temp_sites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sppxsites</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sppxsites</span><span class="o">$</span><span class="n">AreaID</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sites_sub</span><span class="p">[</span><span class="n">i</span><span class="p">]),]</span><span class="w">
+  </span><span class="n">spp_commat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">spp_sub</span><span class="o">%in%</span><span class="n">temp_sites</span><span class="o">$</span><span class="n">SppID</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">
+  </span><span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># Now let's name our rows and columns with the codes for the sites and the codes for the species.</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">sites</span><span class="o">$</span><span class="n">AreaCode</span><span class="p">[</span><span class="n">match</span><span class="p">(</span><span class="n">sites_sub</span><span class="p">,</span><span class="w"> </span><span class="n">sites</span><span class="o">$</span><span class="n">AreaID</span><span class="p">)])</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">spp</span><span class="o">$</span><span class="n">Species.code</span><span class="p">[</span><span class="n">match</span><span class="p">(</span><span class="n">spp_sub</span><span class="p">,</span><span class="w"> </span><span class="n">spp</span><span class="o">$</span><span class="n">SppID</span><span class="p">)])</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Check if the loop function worked alright and did its job</span><span class="w">
+</span><span class="n">spp_commat</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>When working with large presence/absence datasets, it is good practice to remove “uniques”. “Uniques” are species that only have one recorded presence in only one observation/sample. The reason behind this is that such species will only bring noise (somewhat random, hard to explain variation) to the analysis and will only blur the patterns we get. Later on, for the sake of practice, we’ll compare the results we’ll get with the full presence and absence matrix with the results we’ll get with the same matrix without any “Uniques”.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spp_commat_trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spp_commat</span><span class="p">[,</span><span class="n">which</span><span class="p">(</span><span class="o">!</span><span class="n">colSums</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)]</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># We removed 275 species from our dataset. We'll check if this makes much of a difference later on.</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="Distance"></a></p>
+<h2 id="the-clustering-begins">The Clustering Begins</h2>
+<h3 id="distance-metrics">Distance Metrics</h3>
+<p>To learn which distance measures are available to us, check out:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="s2">"vegdist"</span><span class="p">)</span><span class="w">
+</span><span class="n">help</span><span class="p">(</span><span class="s2">"recluster.dist"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>I know, these are scary, complicated and lengthy lists filled with things that you may not understand that well (or at all!). Don’t worry though, the most used distance metrics in hierarchical data clustering are the Euclidean distance metric, the Jaccard index, Sorensen distance, Simpson distance metric (pay attention: this is not the Simpson diversity index) and Bray-Curtis.</p>
+
+<p>You have to be careful when using Euclidean and Sorensen distances, as they tend to be heavily influenced by big differences in species frequencies (our case), a lot of absences in the matrix (our case), and a great amount of observations (surprise, surprise, our case). Do avoid them in case your dataset meets any of these conditions. On such occasions, use Simpson instead, as it is a distance metric that deals very well with these issues and is becoming increasingly common in ecology. Euclidean is good for continuous data in general, Sorensen as well. You can use adapted Jaccard indices for abundance and occurrence data. Bray-curtis and Morisita-Horn are used for abundance data. And similar to Jaccard, there are different Simpson equations to estimate distance based on abundance or occurrence data.</p>
+
+<p>This can be a bit of a stretch, but it is worthwhile mentioning that, in most cases, you’ll be working with beta diversity when calculating these distance matrices. Beta diversity can be decomposed into two components: turnover and nested-ness.</p>
+
+<p><b>Turnover refers to when you have species replacing each other over an environmental gradient or geographic space. Nestedness refers to when a site/sample is occupied by a fraction, a subset, of the surrounding species pool, not by new species (nestedness is commonly associated with environmental filtering). Depending on the patterns you want to look at and how big your dataset is in terms of scale, these fractions must be taken into account. Jaccard distance is defined as turnover + nestedness = 1, Simpson focus on species turnover only, so it is great for biogeographic analysis.</b></p>
+
+<p>The Simpson distance metric (not Simpson’s diversity index) is becoming increasingly common in ecology for the reasons described above. Since our dataset is big, not very well balanced and filled with absences, we’ll be using it in our analyses today and will not pay attention to the other distance metrics. Besides, it is wise for us to focus only on species turnover, since we are working on such a broad geographic scale.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Picking a metric is difficult, but calculating it is actually simple. Simply use the recluster.dist command or the vegdist command in order to estimate such distances.</span><span class="w">
+</span><span class="n">simpson_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.dist</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="o">=</span><span class="s2">"simpson"</span><span class="p">)</span><span class="w">
+</span><span class="n">jaccard_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.dist</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="o">=</span><span class="s2">"jaccard"</span><span class="p">)</span><span class="w">
+</span><span class="n">sorensen_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.dist</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="o">=</span><span class="s2">"sorensen"</span><span class="p">)</span><span class="w">
+</span><span class="n">euclidian_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">vegdist</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Distance metrics are a very broad topic that deserves a tutorial on it’s own and we only covered a tiny portion of it. You should definitely explore this topic more when clustering your own data. There is one more thing we need to know before we start clustering - linkage-methods.</p>
+
+<p><a name="Linkage"></a></p>
+<h3 id="linkage-methods">Linkage Methods</h3>
+
+<p>The linkage method is the criterion that will determine how your observations will be grouped together. Here, we’ll discuss the most commonly used linkage methods in ecology:</p>
+
+<p><a href="#single-den">- <strong>Single-linkage method (single dendogram)</strong></a></p>
+
+<p><a href="#concensus-den">- <strong>Single-linkage method (concensus dendogram)</strong></a></p>
+
+<p><a href="#complete-link">- <strong>Complete-linkage method</strong></a></p>
+
+<p><a href="#ward">- <strong>Clustering using Ward’s minimum variance</strong></a></p>
+
+<p><a href="#average-link">- <strong>Average linkage</strong></a></p>
+
+<p>Run this code to check out the linkage methods that are available to us:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="n">hclust</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="making-our-first-clusters-and-learning-more-about-linkage-methods">Making our first clusters and learning more about linkage methods.</h2>
+
+<p>The function we’ll be using today <code class="language-plaintext highlighter-rouge">recluster.cons</code> uses the Simpson’s distance metric by default and that is what we will be using in this tutorial. The <code class="language-plaintext highlighter-rouge">recluster.dist</code> function makes the pairwise distance table for you, all you have to do is select the distance metric you want.</p>
+
+<p><a name="single-den"></a></p>
+<h2 id="single-linkage-method-single-dendogram">Single-linkage method (single dendogram)</h2>
+
+<p>This method is the simplest of them all. It links observations according to the shortest pairwise distance in your distance matrix. A given observation will be linked to a group if the distance between this site and any other element within that group is the shortest one available at that step. This is not a very strict criterion and can lead to weird group formations if your dataset is very big and you have many equally similar observations.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_singlelink</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"simpson"</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"single"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_singlelink_tmp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_singlelink</span><span class="o">$</span><span class="n">cons</span><span class="w">  </span><span class="c1"># Selecting the consensus tree (we'll discuss it later)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_singlelink_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1"># You can change the "direction" argument to your liking.</span><span class="w">
+
+</span><span class="c1"># the write.tree function will let you save your cluster in TRE format so you can open it with Figtree and visualise it better.</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_singlelink_tmp</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_singlelink_tmp.tre"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Let’s open this file in Figtree and see how we can use this software to our advantage. You can quickly <a href="http://tree.bio.ed.ac.uk/software/figtree/" target="_blank" rel="noopener noreferrer">download Figtree for your operating system here</a> and install it on your computer. Figtree was originally designed to look at phylogenies, but we can use it to visualise dendograms (the outputs of our data clustering are called dendograms). You simply click on the document you want to open and select Figtree to open it. You can select branches and colour them to your liking with the <code class="language-plaintext highlighter-rouge">Colour</code> button. You can also zoom in with the <code class="language-plaintext highlighter-rouge">Zoom</code> button, allowing you to read the names on the tips of your dendogram and visualize your groups.</p>
+
+<p><img src="/img/figtree_scrot.png" alt="Img"></p>
+
+<p>As you can see in the dendogram, we do not have any clearly defined groups. This is to be expected when using the single-linkage method, which is good for examining gradients in the dataset. You can still see some small groups scattered across the dendogram that are mainly formed by Amazonic (starting with <code class="language-plaintext highlighter-rouge">Amz</code>) and Andean (starting with <code class="language-plaintext highlighter-rouge">And</code>) sites.</p>
+
+<p><b>Now that we have made our first cluster (congratulations!), there is something else you need to know. We are clustering data from a big dataset by using a distance matrix that most likely has many observations that are equally similar to one another. This means that these sites/samples can be clustered together in different ways and each way would be equally correct. How can we deal with this problem?</b></p>
+
+<p>The answer is simple: we will build a solution which reflects the groups we encountered across different clusters made with the same distance matrix and the same linkage method. In other words, the solution will be made through a consensus. We will establish a criterion of inclusion that will indicate the number of times a certain subgroup/branch was recovered in a pool of equally valid solutions (dendograms) to our clustering problem. This is determined through the <code class="language-plaintext highlighter-rouge">p</code> argument. <code class="language-plaintext highlighter-rouge">p</code> can be any number ranging from 0.5 to 1 (recovered in 50% of the dendograms to recovered in 100% of the dendograms). Smaller numbers will give you a better chance of recovering sub-groups in your consensus dendogram. Numbers close to 100% will diminish that chance. The number you assign to the <code class="language-plaintext highlighter-rouge">p</code> argument largely depends on your research questions and on how stable you want your groups to be. The size of our solutions pool (equally possible and valid dendograms) is determined by the <code class="language-plaintext highlighter-rouge">tr</code> argument, the standard number to use here is 100.</p>
+
+<p><b>Now, let’s see if we can get a better solution when using different, equally valid, dendograms to come up with a solution to our clustering problem.</b></p>
+
+<p><a name="concensus-den"></a></p>
+<h2 id="single-linkage-method-concensus-dendogram">Single-linkage method (concensus dendogram)</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_singlelink</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"single"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_singlelink_cons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_singlelink</span><span class="o">$</span><span class="n">cons</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_singlelink_cons</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_singlelink_cons.tre"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_singlelink_cons</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Apart from a few sites changing their positions, the dendogram doesn’t look that different. This is largely because we have a lot of individual sites being treated as single groups. The order in which these sites are presented is not important, because the relationship between them is the same (they come up from the same node). There aren’t many differences in the solution because there is nothing much to vary in here, most groups are coming out of the same node.</p>
+
+<p><b>Now we will move on to the other methods and we will always work with the solution reached through the application of the consensus criterion (p=0.5)</b></p>
+
+<p><a name="complete-link"></a></p>
+<h2 id="complete-linkage-method">Complete-linkage method</h2>
+
+<p>Using the complete-linkage method, an observation is only allowed to be linked to a subgroup when it is more related to it than to the most distant pair of observations in that group. By doing so, when a observation is linked to a subgroup, you can assume that it is related to all observations in that group.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_completelink</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_completelink_cons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_completelink</span><span class="o">$</span><span class="n">cons</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_completelink_cons</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_completelink_cons.tre"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_completelink_cons</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This is a great example of how important selecting a linkage method is! Look how well defined the groups are now, even though there are no clear relationships between the subgroups we’ve got (they all come out of the same node). Since the linkage criterion is more strict, the groups are better defined. You can open the file you’ve just created in Figtree and explore the subgroups.</p>
+
+<p>The complete linkage method allows you to highlight discontinuities in your dataset, i.e. find out about potential gaps in your data. However, be advised that it is important for these groups to be ecologically meaningful and that is up to you to decide what that means. In here, you were given the phytogeographic domain in which these sites are located and how each site was classified according to its vegetation structure and other characteristics. You can use that in order to verify if these groups make sense from an ecological perspective.</p>
+
+<p><a name="ward"></a></p>
+<h2 id="clustering-using-wards-minimum-variance">Clustering using Ward’s minimum variance</h2>
+
+<p>This is a special kind of linkage method designed to form groups in a way that minimises the within group sum of squares (within total sum of squares expresses the amount of vegetation in each subgroup). This method is usually advisable when the groups obtained through data clustering will be used as categorical variables in subsequent analyses, such as ANOVAs and MANOVAs.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_ward</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ward.D"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_ward_cons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_ward</span><span class="o">$</span><span class="n">cons</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_ward_cons</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_ward_cons</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_ward_cons.tre"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This dendogram’s topology (‘dendogram topology’ refers the branching pattern relationship among individuals) is different from the other two dendograms we produced before. How many main groups can you see in here? Considering the phytogeographic domains in which these sites are located, are these groups ecologically meaningful? Why don’t you open the cluster you created with the complete linkage method and compare it with this one? How different are they? Which one would you use in order to perform further analysis?</p>
+
+<p><a name="ward"></a></p>
+<h2 id="average-linkage-method-upgma-and-an-observation-on-uniques-and-potential-biases-in-the-dendograms">Average linkage method (UPGMA) and an observation on “uniques” and potential biases in the dendograms</h2>
+
+<p>Remember that I said we would investigate if there are any differences between the results you obtain with the complete presence/absence matrix and the matrix without any “uniques”? We are going to do it now. Will removing “uniques” improve the resolution within your dendograms or not? We’ll discover as soon as we learn more about the Average linkage method.</p>
+
+<p><b>UPGMA stands for unweigthed Pair-Group Method Using Arithmetic Averages. Big name, I know. However, the name pretty much says how this linkage-method will link our observations: it will link our sites/samples by considering their distance to a subgroup’s arithmetic average (calculated using the pairwise distances). This is a very sensible linkage-method that usually tends to form ecologically meaningful groups and it is one of the most used hierarchical linkage methods in ecology, especially in biogeography. This is why the rest of our analyses will focus on this particular linkage method. </b></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Full species presence/abscence matrix</span><span class="w">
+
+</span><span class="n">bol_upgma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"average"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_upgma_cons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_upgma</span><span class="o">$</span><span class="n">cons</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_upgma_cons</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_upgma_cons.tre"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_upgma_cons</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Trimmed species presence/abscence matrix</span><span class="w">
+
+</span><span class="n">bol_upgma_trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.cons</span><span class="p">(</span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"average"</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_upgma_trim_cons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bol_upgma</span><span class="o">$</span><span class="n">cons</span><span class="w">
+</span><span class="n">write.tree</span><span class="p">(</span><span class="n">bol_upgma_trim_cons</span><span class="p">,</span><span class="w"> </span><span class="s2">"bol_upgma_cons_trim.tre"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">bol_upgma_trim_cons</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Removing “uniques” in this particular analysis didn’t change our dendogram. This is a good thing: it means that we can keep work with the most complete form of the dataset without having to worry about bias. However, depending on the analysis you’ll do afterwards, it is advisable to remove these species anyway, just to be on the safe side.</p>
+
+<h1 id="bootstrap-and-support-values-for-subgroups">Bootstrap and support values for subgroups</h1>
+
+<p><b>Bootstrapping is one of the main ways of calculating support values for the subgroups we have got in our dendogram. It is usually used to test significance through randomisation procedures. However, since hierarchical clustering analysis do not work with significance, here bootstrapping assesses whether you’ll get the same subgroups in a dendogram even if you resample the species occurring in each site (with replacement - meaning you can repeat species and even not include some species at all. Bootstrap values range from 0 to 100 and express the proportion of times a certain subgroup was recovered during the resampling. The bigger the number, the stronger the subgroup.</b></p>
+
+<p>However, bootstrap values tend to decrease when you have matrices with an unequal data distribution (a lot of zeroes). In our case, we have many sites and groups with low species richness. During the resampling, the calculation will end up removing species that are important to define groups, bringing the support values down, since the same groups will not be recovered. So don’t get frustrated by the low values we get, as bootstrapping is not useful in our case. Nevertheless, bootstrap values tend to be reliable when you have equally distributed data.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">boot</code> argument tells the function how many randomizations you want to make before calculating the bootstrap values. The bigger the number, the longer it will take for your computer to run it. The standard number is <code class="language-plaintext highlighter-rouge">1000</code>, but that takes at least three hours till you to get results. So we are going to set it to <code class="language-plaintext highlighter-rouge">10</code> instead.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_upgma_trim_boot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">recluster.boot</span><span class="p">(</span><span class="n">bol_upgma_trim_cons</span><span class="p">,</span><span class="w"> </span><span class="n">spp_commat_trim</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"average"</span><span class="p">,</span><span class="w"> </span><span class="n">boot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">recluster.plot</span><span class="p">(</span><span class="n">bol_upgma_cons</span><span class="p">,</span><span class="w"> </span><span class="n">bol_upgma_trim_boot</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"downwards"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>There are some high values for a few of the groups in here, but if you set the <code class="language-plaintext highlighter-rouge">boot</code> value to a higher number (100 - 1000), the support values you found will go down.</p>
+
+<p><a name="Grouping"></a></p>
+<h1 id="creating-a-grouping-variable">Creating a grouping variable</h1>
+
+<p>It would be interesting to visualise the spatial distribution of the groups you found in your cluster. To do that, you need to create a vector linking the plant observations to the cluster they belong to. We have to make R acknowledge the existence of polytomies in our dendograms. Polytomies are the nodes that lead to more than two nodes/tips and/or groups (pretty much what we got when using the simple linkage method, remember?).</p>
+
+<p>If you type the name of your consensus tree on your console, you get a quick summary of your cluster (it says that it is a phylogenetic tree, but it’s a dendogram), and how many tips (terminal branches) and nodes (ramifications) it has.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_upgma_trim_cons</span><span class="w">
+</span></code></pre></div></div>
+
+<p>A dendogram with no polytomies will have <code class="language-plaintext highlighter-rouge">x</code> tips and <code class="language-plaintext highlighter-rouge">x-1</code> internal nodes. However, all dendograms we have produced so far will have this number, because R does not automatically recognize polytomies. Let’s use the <code class="language-plaintext highlighter-rouge">di2multi</code> function from the <code class="language-plaintext highlighter-rouge">phytools</code> package and identify these politomies.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_upgma_cons</span><span class="w">
+</span><span class="n">bol_upgma_cons_nodi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">di2multi</span><span class="p">(</span><span class="n">bol_upgma_cons</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_upgma_cons_nodi</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This cluster in particular has just four politomies, but others might have more than that. Always use this command, even if you are pretty sure you don’t have any polytomies. Depending on how big your dendogram is, it can be hard to assess presence or absence of polytomies visually. Let’s take a look at what this function will do to a dendogram with a lot of polytomies in it.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bol_singlelink_cons</span><span class="w">
+</span><span class="n">bol_singlelink_cons_nodi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">di2multi</span><span class="p">(</span><span class="n">bol_upgma_trim_cons</span><span class="p">)</span><span class="w">
+</span><span class="n">bol_singlelink_cons_nodi</span><span class="w">
+
+</span><span class="c1"># We went from 216 nodes to 127 nodes in here. Impressive!</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This step is important because we want to create a vector with our cluster groups and if the presence of polytomies is not acknowledged now, we are going to have a hard time in the near future. Let’s create the vector with the politomy-free dendogram. We will call it <code class="language-plaintext highlighter-rouge">cluster memberships</code>. The vector can also be used to do further analysis where the cluster groups are a categorical (grouping) variable, for example mapping our sites on a map of Bolivia, or running PCAs, NMDSs, PCoAs, and more.</p>
+
+<p>We will now determine the node that links together all sites in one of our subgroups (this will be done through the <code class="language-plaintext highlighter-rouge">findMRCA</code> function in the <code class="language-plaintext highlighter-rouge">phytools</code> package) and then we’ll get all tips and internal nodes connected to the node we’ve selected. After that, we’ll remove the internal nodes and get just the dendogram tips in our group of sites.</p>
+
+<p>When doing this, it is standard procedure to cut a dendogram into subgroups at the same level and not at different levels (you are working with ranks, remember). Imagine yourself placing a ruler horizontally across your dendogram on your computer screen. This is how you cut your cluster into subgroups. As for the level where you want to make the cut, it’s largely up to you, but keep in mind that you want to create units that will summarize the variation in your data. Most ecologists will aim at cutting their dendograms in a way that will produce the smallest possible number of ecologically meaningful subgroups. Of course, if you must, you can cut your cluster at different rank levels, it depends on the units you want to create. But remember this: cutting groups at different rank levels might make your subsequent analyses harder to interpret.</p>
+
+<p><b>We will cut our dendogram <code class="language-plaintext highlighter-rouge">bol_singlelink_cons</code> at one of the deepest levels possible (towards the base of the dendogram). That will give us four subgroups to work with. By looking at the phytogeographic domain, it seems that we’ve got a group which is mainly Amazonic (group1), a small group which is partially amazonic and savannic (group2), a group which is composed mainly of savannas (group3) and a group which seems to be Andean (group 4).</b></p>
+
+<p><a name="Mapping"></a></p>
+<h2 id="plotting-our-cluster-groups-on-a-map">Plotting our cluster groups on a map</h2>
+
+<p>On the first line (the one with the <code class="language-plaintext highlighter-rouge">findMRCA</code> function), you’ll have to cite the names of the tips at the “beginning” and “end” of your subgroups. You’ll notice that I’ve written some site codes in here. These are the names I’ve got on my cluster, but this will probably change from one computer to the other, so you’ll need to open the <code class="language-plaintext highlighter-rouge">bol_singlelink_cons</code> object on figtree and look for the necessary tip names yourself. My guess is that most of you will get the same tips I have placed here, but don’t worry if your dendogram looks different from the one in here. Simply change the names on the code and you’ll be fine.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Group 1 tips</span><span class="w">
+</span><span class="n">group1_node</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">findMRCA</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"AmzBO066"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AmzBO033"</span><span class="p">))</span><span class="w">  </span><span class="c1"># Get the node that connects all observations between the interval you set (in this cases, observations between"AmzBO066" and "AmzBO033").</span><span class="w">
+</span><span class="n">group1_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getDescendants</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="n">group1_node</span><span class="p">)</span><span class="w">  </span><span class="c1"># Get all nodes and tips linked to the node you have determined above.</span><span class="w">
+</span><span class="n">group1_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="o">$</span><span class="n">tip.label</span><span class="p">[</span><span class="n">group1_tips</span><span class="p">])</span><span class="w">  </span><span class="c1"># Remove the nodes (NAs) and return just the tips to you.</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">group1_tips</span><span class="p">)</span><span class="w">  </span><span class="c1"># Count the number of tips you've got for each group. This will be useful to check if the code worked well.</span><span class="w">
+</span><span class="c1"># 90 tips</span><span class="w">
+
+</span><span class="c1">#Group 2 tips</span><span class="w">
+</span><span class="n">group2_node</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">findMRCA</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"CerBO012"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AmzBO044"</span><span class="p">))</span><span class="w">
+</span><span class="n">group2_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getDescendants</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="n">group2_node</span><span class="p">)</span><span class="w">
+</span><span class="n">group2_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="o">$</span><span class="n">tip.label</span><span class="p">[</span><span class="n">group2_tips</span><span class="p">])</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">group2_tips</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 28 tips</span><span class="w">
+
+</span><span class="c1">#Group 3 tips</span><span class="w">
+</span><span class="n">group3_node</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">findMRCA</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"AndBO034"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CerBO018"</span><span class="p">))</span><span class="w">
+</span><span class="n">group3_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getDescendants</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="n">group3_node</span><span class="p">)</span><span class="w">
+</span><span class="n">group3_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="o">$</span><span class="n">tip.label</span><span class="p">[</span><span class="n">group3_tips</span><span class="p">])</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">group3_tips</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 52 tips</span><span class="w">
+
+</span><span class="c1"># Group 4 tips</span><span class="w">
+</span><span class="n">group4_node</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">findMRCA</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"AndBO046"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AndBO018"</span><span class="p">))</span><span class="w">
+</span><span class="n">group4_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getDescendants</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="p">,</span><span class="w"> </span><span class="n">group4_node</span><span class="p">)</span><span class="w">
+</span><span class="n">group4_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">bol_upgma_cons_nodi</span><span class="o">$</span><span class="n">tip.label</span><span class="p">[</span><span class="n">group4_tips</span><span class="p">])</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">group4_tips</span><span class="p">)</span><span class="w">
+</span><span class="c1"># 47 tips</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now that we have the tips, we need to check if any tip was left behind. This is done by simply summing the amount of tips we’ve got for each group and seeing if we get all 217 tips that we have in our dendogram.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="m">90+28+52+47</span><span class="w">
+</span><span class="c1"># There you go. Everyone is here.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Let’s make the vector linking the plant observations to the cluster they belong to, and bind it with our sites data frame.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_tips</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">group1_tips</span><span class="p">,</span><span class="w"> </span><span class="n">group2_tips</span><span class="p">,</span><span class="w"> </span><span class="n">group3_tips</span><span class="p">,</span><span class="w"> </span><span class="n">group4_tips</span><span class="p">)</span><span class="w"> </span><span class="c1">#First we put all tips together</span><span class="w">
+</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">vector</span><span class="p">(</span><span class="s2">"character"</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">all_tips</span><span class="p">))</span><span class="w"> </span><span class="c1">#Then we create a vector as long as the object all_tips</span><span class="w">
+</span><span class="n">cluster_membership</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">all_tips</span><span class="o">%in%</span><span class="w"> </span><span class="n">group1_tips</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Group 1"</span><span class="w"> </span><span class="c1">#Then we assign each set of tips to a subgroup</span><span class="w">
+</span><span class="n">cluster_membership</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">all_tips</span><span class="o">%in%</span><span class="w"> </span><span class="n">group2_tips</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Group 2"</span><span class="w">
+</span><span class="n">cluster_membership</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">all_tips</span><span class="o">%in%</span><span class="w"> </span><span class="n">group3_tips</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Group 3"</span><span class="w">
+</span><span class="n">cluster_membership</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">all_tips</span><span class="o">%in%</span><span class="w"> </span><span class="n">group4_tips</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Group 4"</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">cluster_membership</span><span class="p">)</span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">cluster_membership</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We need to match the sites’ order in the <code class="language-plaintext highlighter-rouge">cluster_membership</code> object with the order we have on the <code class="language-plaintext highlighter-rouge">sites</code> data frame, so we can correctly add <code class="language-plaintext highlighter-rouge">cluster_membership</code> as a column in <code class="language-plaintext highlighter-rouge">sites</code>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cluster_membership</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cluster_membership</span><span class="p">[</span><span class="n">match</span><span class="p">(</span><span class="n">sites</span><span class="o">$</span><span class="n">AreaCode</span><span class="p">,</span><span class="w"> </span><span class="n">all_tips</span><span class="p">)]</span><span class="w">
+</span><span class="c1">#Binding "cluster_membership" to "sites"</span><span class="w">
+
+</span><span class="n">sites_membership</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">sites</span><span class="p">,</span><span class="w"> </span><span class="n">cluster_membership</span><span class="p">)</span><span class="w">
+</span><span class="n">unique</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="p">)</span><span class="w">  </span><span class="c1"># Checking if all groups are in here</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">sites_membership</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">sites_membership</span><span class="p">)</span><span class="w">  </span><span class="c1"># The cluster-membership column is now added.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now we are going to map these sites in geographic space. This is a great way to check if these units make sense ecologically and geographically. What should we expect here? Will these groups be separate or inter-dispersed? What are the possible factors behind the patterns we are about to observe? Could it possibly be climate? Are there any biogeographic or environmental barriers setting these groups apart?</p>
+
+<p><b>Clustering methods do not provide us with direct answers to these questions, but it is a great way for you to start exploring what the possible answers might be.</b></p>
+
+<h2 id="visualising-the-results-of-our-clustering-on-a-map">Visualising the results of our clustering on a map</h2>
+
+<p>We can now create our map using the following code:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">map</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-70</span><span class="p">,</span><span class="w"> </span><span class="m">-55</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-25</span><span class="p">,</span><span class="w"> </span><span class="m">-8</span><span class="p">))</span><span class="w">  </span><span class="c1"># setting the lat and long limits on our map</span><span class="w">
+</span><span class="n">map.axes</span><span class="p">()</span><span class="w">
+</span><span class="c1"># Group 1</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Long10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 1"</span><span class="p">)]</span><span class="w">  </span><span class="c1"># Colour-coding by group.</span><span class="w">
+       </span><span class="p">,</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Lat10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 1"</span><span class="p">)],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="w">
+       </span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"chartreuse4"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"chartreuse4"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">#Group 2</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Long10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 2"</span><span class="p">)]</span><span class="w">
+       </span><span class="p">,</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Lat10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 2"</span><span class="p">)],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"O"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="w">
+       </span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"gray53"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"gray53"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">#Group 3</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Long10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 3"</span><span class="p">)]</span><span class="w">
+       </span><span class="p">,</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Lat10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 3"</span><span class="p">)],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="w">
+       </span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">#Group 4</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Long10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 4"</span><span class="p">)]</span><span class="w">
+       </span><span class="p">,</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">Lat10</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">sites_membership</span><span class="o">$</span><span class="n">cluster_membership</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Group 4"</span><span class="p">)],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="w">
+       </span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"saddlebrown"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">,</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">col2rgb</span><span class="p">(</span><span class="s2">"saddlebrown"</span><span class="p">))</span><span class="o">/</span><span class="m">255</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Which creates this map:</p>
+<center>
+<img src="/img/cluster_map_plot.png" alt="Img" style="width: 700px;"> </center>
+
+<p><b>Congratulations on completing the tutorial!!! I know the explanations were a bit long, but we needed to cover the theory before doing the clustering. Keen to practice your data clustering and spatial visualisation skills? Check out our challenges below!</b></p>
+
+<h2 id="challenge-number-1">Challenge number 1</h2>
+<p>We mapped our sites using the <code class="language-plaintext highlighter-rouge">maps</code> package associated with R’s basic <code class="language-plaintext highlighter-rouge">plot</code> function and its arguments.</p>
+
+<p><b>Try recreating the above map using the <code class="language-plaintext highlighter-rouge">ggmap</code> package, which offers more choices of map types and in general can make very pretty maps.</b></p>
+
+<p>In previous versions of this workshop, we used the ggmap package <a href="https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html" target="_blank" rel="noopener noreferrer">in our tutorial on spatial visualisation</a>, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too!</p>
+
+<p>See below for an idea of the map you could create and if you are stuck, look at <code class="language-plaintext highlighter-rouge">ggmap_challenge.R</code> in the <a href="https://github.com/ourcodingclub/CC-9-Data-clustering" target="_blank" rel="noopener noreferrer">repo for this tutorial</a>.</p>
+
+<center>
+<img src="/img/cluster_map_ggplot.png" alt="Img" style="width: 700px;"> </center>
+
+<h2 id="challenge-number-2">Challenge number 2</h2>
+
+<p>When I look at the map we’ve made, I can’t help but to think that we should look for simpler patterns first. It seems that there is probably a north to south or an Andean - non-Andean gradient at play in Bolivia. Could elevation be one of the main drivers of tree species distribution there? You can explore that using the knowledge you’ve gained today! When you take a look at the cluster we have just mapped, you can see that you have two main groups - one composed of vegetation usually found in the lowlands (groups 1 and 2) and a group with Andean vegetation and Chaco woodlands (which are usually subtropical).</p>
+
+<p><b>With the help of the code above, create a vector containing these two groups (lowland and subtropical vegetation), map the sites according to these new categories, and check if elevation and temperature could be behind the observed patterns.</b> If you get stuck, you can find the code to complete the challenge <a href="https://github.com/ourcodingclub/CC-9-Data-clustering" target="_blank" rel="noopener noreferrer">the repository for this tutorial.</a></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In this tutorial we explored hierarchical agglomerative clustering methods, distance metrics, and linkage methods. We also made a vector of cluster (subgroups) memberships and used that to assess how our sites are positioned in geographic space. This is an awesome start and you should be proud of it! I hope you have enjoyed it as much as I did.</p>
+
+<p><b>For more information on hierarchical data clustering, you can have a look at chapter 4 of “Numerical Ecology with R”, by Daniel Borcard, François Gillet and Pierre Legendre (2011, Springer - New York, Dordrecht, London, Heidelberg)</b></p>
+
+<hr>
+
+<hr>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/B723DLF" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

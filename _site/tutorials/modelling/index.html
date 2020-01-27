@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>From distributions to linear models</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheaderlm.png" alt="Img">
+	</center>
+</div>
+
+<h3 id="tutorial-aims--steps">Tutorial Aims &amp; Steps:</h3>
+
+<h4 id="-1-get-familiar-with-different-data-distributions"><a href="#distributions"> 1. Get familiar with different data distributions</a></h4>
+
+<h4 id="-2-choosing-your-model-structure-"><a href="#design"> 2. Choosing your model structure </a></h4>
+
+<h4 id="-3-practice-linear-models-and-anovas-"><a href="#linear"> 3. Practice linear models (and ANOVAs) </a></h4>
+<h5 id="--write-and-run-the-models">- Write and run the models</h5>
+<h5 id="--understand-the-outputs">- Understand the outputs</h5>
+<h5 id="--verify-the-assumptions">- Verify the assumptions</h5>
+
+<h4 id="-4-practice-generalised-linear-models"><a href="#generalised"> 4. Practice generalised linear models</a></h4>
+
+<h4 id="-5-challenge-yourself"><a href="#challenge"> 5. Challenge yourself!</a></h4>
+
+<p>Things get real in this tutorial! As you are setting out to answer your research questions, often you might want to know what the effect of X on Y is, how X changes with Y, etc. The answer to “What statistical analysis are you going to use?” will probably be a model of some sort. A model in its simplest form may look something like:</p>
+
+<p><code class="language-plaintext highlighter-rouge">temp.m &lt;- lm(soil.temp ~ elevation)</code> - i.e. we are trying to determine the effect of elevation (the <em>independent</em>, <em>predictor</em>, or <em>explanatory</em> variable) on soil temperature (the <em>dependent</em>, or <em>response</em> variable). We might hypothesise that as you go up in elevation, the soil temperature decreases, which would give you a negative effect (i.e. a downward slope).</p>
+
+<p>A slightly more complicated model might look like: <code class="language-plaintext highlighter-rouge">skylark.m &lt;- lm(abundance ~ treatment + farm.area, family = poisson, data = skylarks)</code>. Here you are modelling <code class="language-plaintext highlighter-rouge">abundance</code>, the response variable, as a function of <code class="language-plaintext highlighter-rouge">treatment</code> (e.g. a categorical variable describing different types of farms) AND of <code class="language-plaintext highlighter-rouge">farm.area</code> (i.e. the size of each farm where abundance data were collected), which are both your explanatory variables. The <code class="language-plaintext highlighter-rouge">family</code> argument refers to the <em>distribution</em> of the data. In this case, <code class="language-plaintext highlighter-rouge">abundance</code> represents count, zero-inflated data (allows for zero-valued observations), for which a Poisson distribution is suitable (but more on this later). The <code class="language-plaintext highlighter-rouge">data</code> argument refers to the data frame in which all the variables are stored.</p>
+
+<p>Are your data all nicely formatted and ready for analysis? You can check out our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">Data formatting and manipulation tutorial</a> if tidying up your data is still on your to-do list, but for now we’ll provide you with some ready-to-go data to get practising!</p>
+
+<p><strong>Go to <a href="https://github.com/ourcodingclub/CC-8-Modelling" target="_blank" rel="noopener noreferrer">the repository for this tutorial</a>, click on <code class="language-plaintext highlighter-rouge">Clone\Download</code>, select <code class="language-plaintext highlighter-rouge">Download ZIP</code> and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer"> Intro to Github for version control</a> tutorial.</strong></p>
+
+<p><a name="distributions"></a></p>
+<h3 id="1-get-familiar-with-different-data-distributions">1. Get familiar with different data distributions</h3>
+
+<p>Here is a brief summary of the data distributions you might encounter most often.</p>
+
+<h5 id="gaussian---continuous-data-normal-distribution-and-homoscedasticity-assumed">
+<strong>Gaussian</strong> - Continuous data (normal distribution and homoscedasticity assumed)</h5>
+<h5 id="poisson---count-abundance-data-integer-values-zero-inflated-data-left-skewed-data">
+<strong>Poisson</strong> - Count abundance data (integer values, zero-inflated data, left-skewed data)</h5>
+<h5 id="binomial---binary-variables-truefalse-01-presenceabsence-data">
+<strong>Binomial</strong> - Binary variables (TRUE/FALSE, 0/1, presence/absence data)</h5>
+
+<p>Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.</p>
+
+<center><img src="/img/DL_intro_lm_which.png" alt="Choosing a model" style="width: 700px;"></center>
+
+<p><a name="design"></a></p>
+
+<h3 id="2-choosing-your-model-structure">2. Choosing your model structure</h3>
+
+<p>Another important aspect of modelling to consider is how many terms, i.e. explanatory variables, you want your model to include. It’s a good idea to draft out your model structure <em>before</em> you even open your R session. <strong>Let your hypotheses guide you!</strong> Think about what it is you want to examine and what the potential confounding variables are, i.e. what else might influence your response variable, aside from the explanatory variable you are most interested in? Here is an example model structure from before:</p>
+
+<p><a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code01">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">skylark.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">abundance</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">treatment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">farm.area</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Here we are chiefly interested in the effect of treatment: does skylark abundance vary between the different farm treatments? This is the research question we might have set out to answer, but we still need to acknowledge that these treatments are probably not the only thing out there influencing bird abundance. Based on our ecological understanding, we can select other variables we may want to control for. For example, skylark abundance will most likely be higher on larger farms, so we need to account for that.</p>
+
+<p>But wait - surely bird abundance on farms also depends on where the species occur to begin with, and the location of the farms within the country might also have an effect. Thus, let’s add <code class="language-plaintext highlighter-rouge">latitude + longitude</code> to the model.</p>
+
+<p><a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code02">
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">skylark.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">abundance</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">treatment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">farm.area</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">latitude</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">longitude</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Last, imagine your experimental design didn’t go as planned: you meant to visit all farms three times to collect data, but some farms you managed to visit only twice. Ignoring this would weaken your final results - is abundance different / the same because the treatment has no / an effect, or because there were differences in study effort? To test that, you can include a <code class="language-plaintext highlighter-rouge">visits</code> term examining the effect of number of visits on abundance.</p>
+
+<p><a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code03">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">skylark.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">abundance</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">treatment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">farm.area</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">latitude</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">longitude</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">visits</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Some might say this model is very complex, and they would be right - there are a lot of terms in it! A simple model is usually prefered to a complex model, but <strong>if you have strong reasons for including a term in your model, then it should be there</strong> (whether it ends up having an effect or not). Once you have carefully selected the variables whose effects you need to quantify or account for, you can move onto running your models.</p>
+
+<div class="bs-callout-yellow">
+
+  <h4 id="dont-go-over-the-top">Don’t go over the top!</h4>
+
+  <p>It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of <strong>overfitting</strong>. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model’s output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting <a href="https://statisticsbyjim.com/regression/overfitting-regression-models/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+  <p>Another thing to think about is <strong>collinarity</strong> among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky.</p>
+
+</div>
+
+<p><a name="linear"></a></p>
+
+<h3 id="3-some-practice-with-linear-models">3. Some practice with linear models</h3>
+
+<p>We will now explore a few different types of models. Create a new script and add in your details. We will start by working with a sample dataset about apple yield in relation to different factors. The dataset is part of the <code class="language-plaintext highlighter-rouge">agridat</code> package.</p>
+
+<p><a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code04">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"agridat"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">agridat</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Loading the dataset from agridat</span><span class="w">
+</span><span class="n">apples</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">agridat</span><span class="o">::</span><span class="n">archbold.apple</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">apples</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">apples</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Check out the dataset. Before we run our model, it’s a good idea to visualise the data just to get an idea of what to expect. First, we can define a <code class="language-plaintext highlighter-rouge">ggplot2</code> theme (as we’ve done in our <a href="https://ourcodingclub.github.io/2017/03/29/data-vis-2.html" target="_blank" rel="noopener noreferrer">data visualisation tutorial</a>), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.</p>
+
+<p><a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code05">
+
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">theme.clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(){</span><span class="w">
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">             
+        </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plain"</span><span class="p">),</span><span class="w">             
+        </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">                                          
+        </span><span class="n">panel.grid.minor.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">panel.grid.minor.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">panel.grid.major.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">  
+        </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">          
+        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p><strong>We can now make a boxplot to examine our data.</strong> We can check out the effect of spacing on apple yield. We can hypothesise that the closer apple trees are to other apple trees, the more they compete for resources, thus reducing their yield. Ideally, we would have sampled yield from many orchards where the trees were planted at different distances from one another - from the summary of the dataset you can see that there are only three <code class="language-plaintext highlighter-rouge">spacing</code> categories - 6, 10 and 14 m. It would be a bit of a stretch to count three numbers as a continuous variable, so let’s make them a factor instead. This turns the previously numeric <code class="language-plaintext highlighter-rouge">spacing</code> variable into a 3-level categorical variable, with 6, 10 and 14 being the levels.</p>
+
+<p><a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code06">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">apples</span><span class="o">$</span><span class="n">spacing2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">apples</span><span class="o">$</span><span class="n">spacing</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="p">(</span><span class="n">apples.p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">apples</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">spacing2</span><span class="p">,</span><span class="w"> </span><span class="n">yield</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#CD3333"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#8B2323"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme.clean</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">  
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Spacing (m)"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Yield (kg)"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p><em>Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don’t have the brackets, you’ve only created the object, but will need to call it to visualise the plot.</em></p>
+
+<center><img src="/img/apples2.png" alt="Img" style="width: 700px;"></center>
+
+<p>From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the range in the data across the categories almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. <strong>Let’s run a model to explicitly test this.</strong></p>
+
+<p><a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code07">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">apples.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">yield</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">spacing2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apples</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">apples.m</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p><strong>Check out the summary output of our model:</strong></p>
+
+<center><img src="/img/DL_intro_lm_outputs1.png" alt="Model outputs" style="width: 800px;"></center>
+
+<p>Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other’s growth.</p>
+
+<p>But let’s take a look at a few other things from the summary output. Notice how because <code class="language-plaintext highlighter-rouge">spacing2</code> is a factor, you get results for <code class="language-plaintext highlighter-rouge">spacing210</code> and <code class="language-plaintext highlighter-rouge">spacing214</code>. If you are looking for the <code class="language-plaintext highlighter-rouge">spacing26</code> category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. <strong>A very important thing to understand is that the estimates for the other categories are presented <i> relative to </i> the reference level. So, for the 10-m spacing category, the estimated value from the model is not <code class="language-plaintext highlighter-rouge">35.9</code>, but <code class="language-plaintext highlighter-rouge">35.9 + 120.6 = 156.5</code>.</strong> A look at our boxplot will make this easy to verify.</p>
+
+<p>You also get a <code class="language-plaintext highlighter-rouge">Multiple R-squared</code> value and an <code class="language-plaintext highlighter-rouge">Adjusted R-squared</code> value. These values refer to how much of the variation in the <code class="language-plaintext highlighter-rouge">yield</code> variable is explained by our predictor <code class="language-plaintext highlighter-rouge">spacing2</code>. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. <code class="language-plaintext highlighter-rouge">R-squared</code> values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The <code class="language-plaintext highlighter-rouge">Adjusted R-squared</code> value takes into account how many terms your model has and how many data points are available in the response variable.</p>
+
+<p><strong>So now, can we say this is a good model?</strong> It certainly tells us that spacing has a <em>significant</em> effect on yield, but maybe not a very <em>important</em> one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye!</p>
+
+<h4 id="more-practice-another-model">More practice: another model</h4>
+
+<p>Now that we’ve written a model and understood its output, let’s analyse another dataset and learn to read it’s output, too. We’ll introduce something just a bit different.</p>
+
+<p>We will use the <code class="language-plaintext highlighter-rouge">ilri.sheep</code> dataset, also from the agridat package, to answer the question: <em>Is the weight of lambs at weaning a function of their age at weaning?</em>, with the hypothesis that lambs that are weaned later are also heavier.</p>
+
+<p><a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code08">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">sheep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">agridat</span><span class="o">::</span><span class="n">ilri.sheep</span><span class="w">   </span><span class="c1"># load the data</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">sheep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">sheep</span><span class="p">,</span><span class="w"> </span><span class="n">ewegen</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"R"</span><span class="p">)</span><span class="w">   </span><span class="c1"># there are confounding variables in this dataset that we don't want to take into account. We'll only consider lambs that come from mothers belonging to the breed "R".</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">sheep</span><span class="p">)</span><span class="w">  </span><span class="c1"># overview of the data; we'll focus on weanwt (wean weight) and weanage</span><span class="w">
+
+</span><span class="n">sheep.m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">weanwt</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">weanage</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">)</span><span class="w">   </span><span class="c1"># run the model</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">sheep.m1</span><span class="p">)</span><span class="w">                                </span><span class="c1"># study the output</span><span class="w">
+
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/DL_intro_lm_outputs2.png" alt="Model outputs" style="width: 900px;"></center>
+
+<p>Can you spot the difference between this model and the apple model? In the apple model, our predictor <code class="language-plaintext highlighter-rouge">spacing</code> was a <strong>categorical</strong> variable. Here, our predictor <code class="language-plaintext highlighter-rouge">weanage</code> is a <strong>continuous</strong> variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with <em>Intercept</em> being our reference level).</p>
+
+<p>Here, the intercept is the value of <em>Y</em> when <em>X</em> is 0. In many models this is not of interest and sometimes doesn’t make a ton of sense, but in our case you could potentially argue that it’s the weight of a newborn lamb. 
+Then, the output gives us an estimate, which is the <em>slope</em> of the relationship. In this case, every day you wait to wean a lamb will result in an average increase of 0.08 kg in its weight. You probably remember how to write linear equations from school, so that you could write it thus: <strong>lamb weight = 2.60 + 0.08(age)</strong>.</p>
+
+<p>So far, so good? Let’s read one extra output where things get a little bit more complex. Our model, with <code class="language-plaintext highlighter-rouge">weanage</code>as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let’s run a new model to test this:</p>
+
+<p><a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code09">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">sheep.m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">weanwt</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">weanage</span><span class="o">*</span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">sheep.m2</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?</p>
+
+<center><img src="/img/DL_intro_lm_outputs3.png" alt="Model outputs" style="width: 900px;"></center>
+
+<p>Let’s write the equations. For a female, which happens to be the reference group in the model, it’s fairly simple:</p>
+
+<p><strong>Female weight = 3.66 + 0.06(age)</strong> : The weight at 100 days would be 3.66 + 0.06(100) = 9.66 kg.</p>
+
+<p>For a male, it’s a little more complicated as you need to add the differences in intercept and slopes due to the sex level being male:</p>
+
+<p><b>Male weight = 3.66 + <i>[-2.52]</i> + 0.06(age) + <i>[0.03(age)]</i> </b> : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.</p>
+
+<p>It always makes a lot more sense when you can visualise the relationship, too:</p>
+
+<p><a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code10">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">sheep.p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">sheep</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weanage</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weanwt</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">                                </span><span class="c1"># scatter plot, coloured by sex</span><span class="w">
+      </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Age at weaning (days)"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Wean weight (kg)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">stat_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">    </span><span class="c1"># adding regression lines for each sex</span><span class="w">
+      </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#FFC125"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#36648B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#FFC125"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#36648B"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+      </span><span class="n">theme.clean</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/DL_intro_lm_sheep.png" alt="Regression plot" style="width: 700px;"></center>
+<center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly.</center>
+
+<div class="bs-callout-yellow">
+  <h4 id="model-terminology-and-the-special-case-of-the-anova">Model terminology, and the special case of the ANOVA</h4>
+
+  <p>Confused when hearing the terms linear regression, linear model, and ANOVA? Let’s put an end to this: they’re all fundamentally the same thing!</p>
+
+  <p>Linear regression and linear model are complete synonyms, and we usually use these terms when we’re quantifying the effect of a <strong>continuous</strong> explanatory variable on a <strong>continuous</strong> response variable: what is the change in <em>Y</em> for a 1 unit change in <em>X</em>? We just did this for the sheep data: what is the weight gain for each extra day pre-weaning?</p>
+
+  <p>Now enters the ANOVA, which stands for Analysis of Variance. We usually talk about an ANOVA when we’re quantifying the effect of a <strong>discrete, or categorical</strong> explanatory variable on a <strong>continuous</strong> response variable. We just did with the apples: how does the mean yield vary depending on the spacing category? It is also a linear model, but instead of getting a slope that allows us to predict the yield for any value of spacing, we get an estimate of the yield for each category.</p>
+
+  <p>So, just to let it sink, repeat after us: <em>ANOVA is a linear regression</em> (and here is a <a href="https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/" target="_blank" rel="noopener noreferrer">nice article</a> explaining the nitty gritty stuff). You can run the <code class="language-plaintext highlighter-rouge">anova</code> function on our linear model object <code class="language-plaintext highlighter-rouge">apples.m</code> and see how you get the same p-value:</p>
+
+  <p><a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+  <section id="code11">
+    <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">anova</span><span class="p">(</span><span class="n">apples.m</span><span class="p">)</span><span class="w">
+</span></code></pre></div>    </div>
+  </section>
+
+</div>
+
+<h4 id="checking-assumptions">Checking assumptions</h4>
+
+<p>In addition to checking whether this model makes sense from an ecological perspective, we should check that it actually meets the assumptions of a linear model:</p>
+
+<p>1- are the residuals, which describe the difference between the observed and predicted value of the dependent variable, normally distributed?</p>
+
+<p>2- are the data homoscedastic? (i.e. is the variance in the data around the same at all values of the predictor variable)</p>
+
+<p>3- are the observations independent?</p>
+
+<p><a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code12">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Checking that the residuals are normally distributed</span><span class="w">
+</span><span class="n">apples.resid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">resid</span><span class="p">(</span><span class="n">apples.m</span><span class="p">)</span><span class="w">              </span><span class="c1"># Extracting the residuals</span><span class="w">
+</span><span class="n">shapiro.test</span><span class="p">(</span><span class="n">apples.resid</span><span class="p">)</span><span class="w">                   </span><span class="c1"># Using the Shapiro-Wilk test</span><span class="w">
+</span><span class="c1"># The null hypothesis of normal distribution is accepted: there is no significant difference (p &gt; 0.05) from a normal distribution</span><span class="w">
+
+</span><span class="c1"># Checking for homoscedasticity</span><span class="w">
+</span><span class="n">bartlett.test</span><span class="p">(</span><span class="n">apples</span><span class="o">$</span><span class="n">yield</span><span class="p">,</span><span class="w"> </span><span class="n">apples</span><span class="o">$</span><span class="n">spacing2</span><span class="p">)</span><span class="w">
+</span><span class="n">bartlett.test</span><span class="p">(</span><span class="n">yield</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">spacing2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apples</span><span class="p">)</span><span class="w">  </span><span class="c1"># Note that these two ways of writing the code give the same results</span><span class="w">
+</span><span class="c1"># The null hypothesis of homoscedasticity is accepted</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>The assumptions of a linear model are met (we can imagine that the data points are independent - since we didn’t collect the data, we can’t really know). If your residuals are not normally distributed and/or the data are heteroscedastic (i.e. the variances are not equal), you can consider transforming your data using a logarithmic transformation or a square root transformation.</p>
+
+<p>We can examine the model fit further by looking at a few plots:</p>
+
+<p><a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code13">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">apples.m</span><span class="p">)</span><span class="w">  </span><span class="c1"># you will have to press Enter in the command line to view the plots</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>This will produce a set of four plots:</p>
+
+<h5 id="--residuals-versus-fitted-values">- Residuals versus fitted values</h5>
+<h5 id="--a-q-q-plot-of-standardized-residuals">- a Q-Q plot of standardized residuals</h5>
+<h5 id="--a-scale-location-plot-square-roots-of-standardized-residuals-versus-fitted-values">- a scale-location plot (square roots of standardized residuals versus fitted values)</h5>
+<h5 id="--a-plot-of-residuals-versus-leverage-that-adds-bands-corresponding-to-cooks-distances-of-05-and-1">- a plot of residuals versus leverage that adds bands corresponding to Cook’s distances of 0.5 and 1.</h5>
+
+<p>In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to “eyeball” what is acceptable or not, but you can look at this <a href="https://data.library.virginia.edu/diagnostic-plots/" target="_blank" rel="noopener noreferrer">helpful page</a> to get you started.</p>
+
+<p><a name="generalised"></a></p>
+<h3 id="4-practicing-generalised-linear-models">4. Practicing generalised linear models</h3>
+
+<p>The model we used above was a <strong>general</strong> linear model since it met all the assumptions for one (normal distribution, homoscedasticity, etc.) Quite often in ecology and environmental science that is not the case and then we use different data distributions. Here we will talk about a Poisson and a binomial distribution. To use them, we need to run <strong>generalised</strong> linear models.</p>
+
+<h4 id="a-model-with-a-poisson-distribution">A model with a Poisson distribution</h4>
+
+<p>Import the <code class="language-plaintext highlighter-rouge">shagLPI.csv</code> dataset and check it’s summary using <code class="language-plaintext highlighter-rouge">summary(shagLPI)</code>. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let’s fix that so that we don’t run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the <a href="http://www.livingplanetindex.org/home/index" target="_blank" rel="noopener noreferrer">Living Planet Index.</a></p>
+
+<p><a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code14">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">shag</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"shagLPI.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">shag</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">shag</span><span class="o">$</span><span class="n">year</span><span class="p">)</span><span class="w">  </span><span class="c1"># transform year from character into numeric variable</span><span class="w">
+
+</span><span class="c1"># Making a histogram to assess data distribution</span><span class="w">
+</span><span class="p">(</span><span class="n">shag.hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">shag</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">pop</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme.clean</span><span class="p">())</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/poisson2.png" alt="histogram" style="width: 700px;"></center>
+
+<p>Our <code class="language-plaintext highlighter-rouge">pop</code> variable represents <strong>count</strong> abundance data, i.e. integer values (whole European Shags!) so a Poisson distribution is appropriate here. Often count abundance data are zero-inflated and skewed towards the right. Here our data are not like that, but if they were, a Poisson distribution would still have been appropriate.</p>
+
+<p><a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code15">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">shag.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">glm</span><span class="p">(</span><span class="n">pop</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">poisson</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shag</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">shag.m</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p>From the summary of our model we can see that European Shag abundance varies significantly based on the predictor <code class="language-plaintext highlighter-rouge">year</code>. Let’s visualise how European Shag abundance has changed through the years:</p>
+
+<p><a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code16">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">shag.p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">shag</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#483D8B"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glm</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#483D8B"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#483D8B"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1975</span><span class="p">,</span><span class="w"> </span><span class="m">1980</span><span class="p">,</span><span class="w"> </span><span class="m">1985</span><span class="p">,</span><span class="w"> </span><span class="m">1990</span><span class="p">,</span><span class="w"> </span><span class="m">1995</span><span class="p">,</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="m">2005</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme.clean</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"European Shag abundance"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<center><img src="/img/shag.png" alt="Img" style="width: 700px;"></center>
+
+<p><strong>Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.</strong> Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.</p>
+
+<h4 id="a-model-with-a-binomial-distribution">A model with a binomial distribution</h4>
+
+<p>We will now work this the <code class="language-plaintext highlighter-rouge">Weevil_damage.csv</code> data that you can import from your project’s directory. We can examine if damage to Scot’s pine by weevils (a binary, TRUE/FALSE variable) varies based on the block in which the trees are located. You can imagine that different blocks represent different Scot’s pine populations, and perhaps some of them will be particularly vulnerable to weevils? Because of the binary nature of the response variable (true or false), a binomial model is appropriate here.</p>
+
+<p><a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
+<section id="code17">
+  <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">Weevil_damage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"Weevil_damage.csv"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Making block a factor (a categorical variable)</span><span class="w">
+</span><span class="n">Weevil_damage</span><span class="o">$</span><span class="n">block</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">Weevil_damage</span><span class="o">$</span><span class="n">block</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Running the model</span><span class="w">
+</span><span class="n">weevil.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">glm</span><span class="p">(</span><span class="n">damage_T_F</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Weevil_damage</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">weevil.m</span><span class="p">)</span><span class="w">
+</span></code></pre></div>  </div>
+</section>
+
+<p><strong>Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.</strong> The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in <em>Y</em> for a change in 1 unit of X, because binomial models are a type of <strong>logistic regression</strong> which relies on log odd ratios - but we won’t get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it’s not a linear relationship! And finally, you won’t get a R squared value to assess the <strong>goodness of fit</strong> of your model, but you can get at that by looking at the difference between the <code class="language-plaintext highlighter-rouge">Null deviance</code> (variability explained by a null model, e.g. <code class="language-plaintext highlighter-rouge">glm(damage_T_F ~ 1)</code>) and the <code class="language-plaintext highlighter-rouge">Residual deviance</code>, e.g. the amount of variability that remains after you’ve explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship.</p>
+
+<p><strong>We have now covered the basics of modelling. Next, you can go through <a href="https://ourcodingclub.github.io/2017/03/15/mixed-models.html" target="_blank" rel="noopener noreferrer">our tutorial on mixed effects models</a>, which  account for the structure and nestedness of data. You can also check out a couple of other tutorials on modelling to further your knowledge:</strong></p>
+
+<p><a href="http://data.princeton.edu/R/linearModels.html" target="_blank" rel="noopener noreferrer"> General and generalised linear models, by Germán Rodríguez. </a></p>
+
+<p><a href="http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html" target="_blank" rel="noopener noreferrer"> Regression modelling in R, by Harvard University. </a></p>
+
+<p><a name="challenge"></a></p>
+<h3 id="5-challenge-yourself">5. Challenge yourself!</h3>
+
+<p>Now that you can write and understand linear regressions, why don’t you have a go at modelling another dataset?</p>
+
+<p>Using the <code class="language-plaintext highlighter-rouge">ToothGrowth</code> built-in dataset describing tooth growth in guinea pigs under different vitamin C treatments, can you answer the following questions?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ToothGrowth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">::</span><span class="n">ToothGrowth</span><span class="w">
+</span></code></pre></div></div>
+
+<p>1- Are higher doses of vitamin C beneficial for tooth growth?</p>
+
+<p>2- Does the method of administration (orange juice, <code class="language-plaintext highlighter-rouge">OJ</code>, or ascorbic acid, <code class="language-plaintext highlighter-rouge">VC</code>) influence the effect of the dose?</p>
+
+<p>3- What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?</p>
+
+<p><br></p>
+
+<details>
+   <summary> Click this line to view a solution </summary>
+    <summary>
+
+    <p>First, we need to convert the <code class="language-plaintext highlighter-rouge">dose</code> variable into a categorical variable.</p>
+
+    <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">ToothGrowth</span><span class="o">$</span><span class="n">dose</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">ToothGrowth</span><span class="o">$</span><span class="n">dose</span><span class="p">)</span><span class="w">
+</span></code></pre></div>    </div>
+    <p>Now we can run a model (ANOVA) using two interacting terms:</p>
+
+    <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">tooth.m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">dose</span><span class="o">*</span><span class="n">supp</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ToothGrowth</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">tooth.m</span><span class="p">)</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p>The model is highly significant, and together, dose and method explain around 77% of the variation in tooth growth. Not bad! And to answer our questions:</p>
+
+    <ol>
+      <li>
+        <p>Higher doses of vitamin C promote tooth growth, but</p>
+      </li>
+      <li>
+        <p>the effect of dose on growth depends on the administration method.</p>
+      </li>
+      <li>
+        <p>A guinea pig given 1 mg a day as ascorbic acid would have a predicted tooth growth of:</p>
+      </li>
+    </ol>
+
+    <p><strong>13.23</strong> (growth for dose 0.5, orange juice)</p>
+    <ul>
+      <li>
+<strong>9.47</strong> (extra growth for dose 1.0, orange juice)</li>
+      <li>
+<strong>-5.25</strong> (difference in growth linked to the ascorbic acid treatment for dose 0.5)</li>
+      <li>
+<strong>-0.68</strong> (difference in growth for the interaction between dose 1.0 and ascorbic acid treatment)
+<strong>= 16.77</strong>
+</li>
+    </ul>
+
+    <p>And you can visualise the differences with a box plot:</p>
+
+    <div class="language-r highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">ToothGrowth</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dose</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">len</span><span class="p">))</span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">supp</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">theme.clean</span><span class="p">()</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <center><img src="/img/DL_intro_lm_guineapigs.png" alt="boxplots" style="width: 600px;"></center>
+
+  </summary>   
+ </details>
+<p><br></p>
+
+<hr>
+
+<hr>
+
+<p><strong>Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank" rel="noopener noreferrer">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you’d like to write a tutorial!</strong></p>
+
+<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"></a></p>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/NNRS98G" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

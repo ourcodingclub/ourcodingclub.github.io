@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Numbers in Python with NumPy</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+  <center><img src="/img/tutheader-numpy.png" alt="Img"></center>
+</div>
+
+<h3 id="tutorial-aims">Tutorial aims:</h3>
+
+<h4 id="-1-what-is-numpy"><a href="introduction"> 1. What is NumPy?</a></h4>
+
+<h4 id="-2-basic-manipulation-numpy-arrays"><a href="basic"> 2. Basic manipulation NumPy arrays</a></h4>
+
+<h4 id="-3-masked-arrays"><a href="mask"> 3. Masked arrays</a></h4>
+
+<h4 id="-4-reading-and-writing-data"><a href="io"> 4. Reading and writing data</a></h4>
+
+<h4 id="-5-cautions-when-using-numpy-arrays"><a href="cautions"> 5. Cautions when using NumPy arrays</a></h4>
+
+<p><a name="introduction"></a></p>
+
+<h2 id="what-is-numpy">What is NumPy?</h2>
+
+<p>So what is NumPy? According to the official website, NumPy is the fundamental package for scientific computing with Python. One trade-off of using Python is its computing speed. On the other hand, C is known for its high speed. Hence, the developers came to the conclusion of writing a package of numerical functions which is written in C, but which you can run from Python. So, without having to learn C, you can use its power in Python.</p>
+
+<p>The biggest advantage of NumPy is its ability to handle numerical arrays. For example, if you have a list of values and you want to square each of them, the code in base Python will look like:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+<p>and you will get <code class="language-plaintext highlighter-rouge">[1, 4, 9, 16, 25]</code> for <code class="language-plaintext highlighter-rouge">b</code>. Now, if you want to do the same with a 2-dimensional array, the base Python to do this is:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[],[]]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This would give you <code class="language-plaintext highlighter-rouge">b</code> equal to <code class="language-plaintext highlighter-rouge">[[1, 4], [9, 16]]</code>. To do the same with a 3D array you would need 3 nested loops and to do it in 4D would require 4 nested loops. However, with NumPy you can take the square of an array of any dimensions using the same line of code and no loops:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</code></pre></div></div>
+<p>Using numpy is much faster than the base python version! It is faster to run, saving you on computing time, and faster to write, saving you time writing your code. All of this allows you to write and run code much faster, and therefore do more science in less time. Not only that, if your friend has a look at your code, they will read the code and understand you want a squared value of the array in an instant, without having to decipher what the for loop is trying to do.</p>
+
+<p>NumPy serves as the basis of most scientific packages in Python, including pandas, matplotlib, scipy, etc. Hence, it would be a good idea to explore the basics of data handling in Python with NumPy. This tutorial does not come with any pre-written files, but is a follow-along tutorial. So better start typing on your IDE or IPython.</p>
+
+<p><a name="basic"></a></p>
+
+<h2 id="basic-manipulation-numerical-arrays">Basic manipulation numerical arrays</h2>
+
+<h3 id="importing-the-package">Importing the package.</h3>
+<p>So let us get started. If you have the NumPy package installed, you should import it.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+<p>This is a standard import statement, which uses the syntax <code class="language-plaintext highlighter-rouge">import package as alias</code>. This allows us to call NumPy with <code class="language-plaintext highlighter-rouge">np</code>, instead of having to keep typing the whole word <code class="language-plaintext highlighter-rouge">numpy</code> each time we want to use one of the NumPy functions. The same syntax can be used with other modules such as <code class="language-plaintext highlighter-rouge">import pandas as pd</code>. It is very common to use the alias <code class="language-plaintext highlighter-rouge">np</code> for NumPy, but you can choose whatever alias you want.</p>
+
+<h3 id="creating-numpy-arrays">Creating NumPy arrays</h3>
+<p>Creating arrays in NumPy is very easy. Below we create 3 different arrays. Try running these lines of code in Python.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+<p>These are simple ways create arrays filled with different values. We created the first array, <code class="language-plaintext highlighter-rouge">a</code>, which is 2D, to have 5 rows and 6 columns, where every element is 10.0. The second array <code class="language-plaintext highlighter-rouge">b</code> is a 3D array of size 2x2x2, where every element is 1.0. The last array, <code class="language-plaintext highlighter-rouge">c</code>, is a 1D array of size 3, where every element is 0.</p>
+
+<p>You can create 2D, 3D or any-D arrays, by creating a 1D array, and reshaping it. Try entering the code below in Python.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">9.0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">a</code> will be a 2D array of size 3x3. The rows will be <code class="language-plaintext highlighter-rouge">[0., 1., 2.], [3., 4., 5.], [6., 7., 8.]</code>. The print statement should return a tuple <code class="language-plaintext highlighter-rouge">(3, 3)</code>.</p>
+
+<h3 id="accessing-and-slicing-data">Accessing and slicing data</h3>
+<p>Accessing NumPy array is straight-forward.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">30.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># the next line will print the first row of the array
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># the next line will print the last row of the array
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># which should be same as:
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># the next line will print the value in the third row and first column
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+<p>The first print statement above should return the first row of the array, which should be <code class="language-plaintext highlighter-rouge">[0., 1., 2.]</code>. In Python, counting starts from 0, so <code class="language-plaintext highlighter-rouge">a[1]</code> will give you the second row instead of the first.</p>
+
+<p>If you are from another language such as IDL, Matlab, Fortran, etc., you would have expected the result of the above code to slice columns of the array. The difference comes in the fact that NumPy uses C style arrays, where the most rapidly changing index comes last. In this case, rows are the least rapidly changing index, hence the slice is made on the row.</p>
+
+<p>For those unfamiliar with the term, there are 2 types of arrays in computing: C and Fortran style arrays. This is basically how each element of an array are linearly allocated in memory. For a 2D array, the former will store the array row by row in a long line, while the latter stores the data column by column. When accessing the element on the ith row and jth column in a 2D array <code class="language-plaintext highlighter-rouge">x</code>, you would use <code class="language-plaintext highlighter-rouge">x[i, j]</code> in C style arrays and <code class="language-plaintext highlighter-rouge">x[j, i]</code> in Fortran style arrays.</p>
+
+<p>Going back to NumPy, you can select range of rows using:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">30.</span><span class="p">)</span>
+<span class="c1"># selects the elements in positions from 11 to 20
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># selects the elements in positions from start to 10
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="c1"># which should be same as:
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># selects the elements in positions from 20 to last
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">:])</span>
+<span class="c1"># which should be same as:
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Now that we explored how to slice rows, let us slice columns.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">30.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># select second column
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="c1"># select columns 1 (second) and 2 (third)
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">:</code> on its own stands for select all in this dimension. So, you are in effect selecting all rows, then selecting the first values of each row. If you have been following the tutorial so far, you should now know that if you want to access values in a 3D array, you would use <code class="language-plaintext highlighter-rouge">x[i, j, k]</code>. Now consider the following code snippet.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># create 3d array with dimensions (time, latitude, longitude)
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># create 4d array with dimensions (time, height, latitude, longitude)
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># add 1 to the first columns
+</span><span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+<span class="n">b</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+</code></pre></div></div>
+<p>When with atmospheric data, you often find you are dealing with both 3D and 4D variables. If you would like to modify all points at certain longitudes (columns), you could write them explicitly as above. Or you could write a loop like below where you execute different commands depending on the dimension of the array:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># create 3d array with dimensions (time, latitude, longitude)
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># create 4d array with dimensions (time, height, latitude, longitude)
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># add 1 to the first columns
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]:</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dimensions</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+    <span class="k">elif</span> <span class="n">dimensions</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+</code></pre></div></div>
+<p>While there is nothing wrong with this code, and it will do what we want, there is a better method:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># create 3d array with dimensions (time, latitude, longitude)
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># create 4d array with dimensions (time, height, latitude, longitude)
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># add 1 to the first columns
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]:</span>
+    <span class="n">i</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">...</code> is called the ellipsis, and it is used to select all unspecified dimensions.</p>
+
+<p>NumPy has more slicing options, such as striding (e.g. select every other rows) and select multiple points at a time using fancy indexing. Or you can pass a Boolean array (array containing <code class="language-plaintext highlighter-rouge">True</code> and <code class="language-plaintext highlighter-rouge">False</code>) to select values and create 1D array with them.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># get every other row
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">27.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># get diagonal values in the 5x5 array using fancy indexing
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+
+<span class="c1"># use Boolean array to create 1d array of selection
+</span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">],</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
+
+<span class="c1"># create and use the Boolean array to selectively change data
+</span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">9.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">e</span><span class="o">&gt;</span><span class="mi">5</span>  <span class="c1"># select values greater than 5.0
+</span><span class="n">e</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.</span>  <span class="c1"># make all values greater than 5.0 to 10.0
+</span><span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="c1"># or you can simply do
+</span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">9.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">e</span><span class="p">[</span><span class="n">e</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+</code></pre></div></div>
+<p><a name="mask"></a></p>
+
+<h2 id="masked-arrays">Masked Arrays</h2>
+
+<p>Suppose you have a time series with missing data, and want to perform the row sum.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>What is the result? The sum along the second row comes out as 15.0, but the sum along the first would give you <code class="language-plaintext highlighter-rouge">nan</code>, which stands for “not a number”. If we want to do the sum along rows but ignore <code class="language-plaintext highlighter-rouge">nan</code> values in the data we can used masked arrays! Try the code below.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Now we get 4.0 and 15.0. Another common reason to mask the data is to get rid of some values not fit for purpose. For example, if you are studying the damages caused by earthquakes in a region using historic data, and decide you want the sum of losses of the events with magnitude greater or equal to 5.0. You can simply do:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">damage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">,</span> <span class="mi">110000</span><span class="p">,</span> <span class="mf">10.</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_where</span><span class="p">(</span><span class="n">magnitude</span><span class="o">&lt;</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">damage</span><span class="p">)))</span>
+</code></pre></div></div>
+<p>This should give you 210,000.
+There are numerous ways to mask your data for different purposes. All the available methods are listed in the <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.generic.html" target="_blank" rel="noopener noreferrer"> numpy.ma documentation </a> on the web.</p>
+
+<p><a name="io"></a></p>
+
+<h2 id="reading-and-writing-data">Reading and writing data</h2>
+
+<p>Using standard .csv files, there are number of methods that let you read data file. While the shortest way is to use <code class="language-plaintext highlighter-rouge">np.genfromtxt()</code> function, my personal favourite is to use Pandas to read it and then convert it to pure NumPy arrays.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># read file as pandas.DataFrame then get values
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'your_csv_file'</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+</code></pre></div></div>
+<p>When writing the data to file, I use <code class="language-plaintext highlighter-rouge">np.savetxt</code> with <code class="language-plaintext highlighter-rouge">delimeter=','</code> option, or <code class="language-plaintext highlighter-rouge">pandas.DataFrame.to_csv</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># save csv file using numpy
+</span><span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">'save_file.csv'</span><span class="p">,</span> <span class="n">your_data</span><span class="p">,</span> <span class="n">delimeter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The choice of tool is entirely up to you. The biggest reason why I tend to read csv data with Pandas is because the <code class="language-plaintext highlighter-rouge">np.genfromtxt()</code> often messes up the string/integer/float format of the data, and setting them up manually can be a bit messy.</p>
+
+<p>If you just want to store data, and it does not matter whether it is human-readable or not, you can choose to use the NumPy binary format.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># save one data to npy file
+</span><span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'save_file1.npy'</span> <span class="p">,</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># save collection of data to single npz file
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="p">{</span><span class="s">'temperature'</span><span class="p">:</span> <span class="n">data1</span><span class="p">,</span>
+		   <span class="s">'humidity'</span><span class="p">:</span> <span class="n">data2</span><span class="p">}</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="s">'save_file2.npz'</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="c1"># reopen files
+</span><span class="n">open_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">'save_file1.npy'</span><span class="p">)</span>
+<span class="n">open_dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">'save_file2.npz'</span><span class="p">)</span>
+<span class="c1"># access data in dataset
+</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">open_dataset</span><span class="p">[</span><span class="s">'temperature'</span><span class="p">]</span>
+</code></pre></div></div>
+<p>There are also a number of packages available to allow you to open files of different formats as NumPy arrays (e.g. <code class="language-plaintext highlighter-rouge">netCDF4</code> for netCDF files).</p>
+
+<p><a name="cautions"></a></p>
+
+<h2 id="cautions-when-using-numpy">Cautions when using NumPy</h2>
+
+<p>Some of you (with some experience in  Python) might have felt something is not quite right. The culprit might be the fact that we have been able change the values of the original arrays within loops, which is not the default behaviour of Python!</p>
+
+<p>Consider the following code:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">c</span>
+<span class="c1"># add 1 to d 5 times
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">+=</span> <span class="mf">1.</span>  <span class="c1"># d = d + 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</code></pre></div></div>
+<p>As expected, the print statement will return <code class="language-plaintext highlighter-rouge">(1., 6.)</code>.</p>
+
+<p>Now consider the code below.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3.</span><span class="p">)</span>  <span class="c1"># array containing [0., 1., 2.]
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">c</span>
+<span class="c1"># add 1 to d 5 times
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">+=</span> <span class="mf">1.</span>  <span class="c1"># d = d + 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</code></pre></div></div>
+<p>You must be expecting the answer to be <code class="language-plaintext highlighter-rouge">[0., 1., 2.] [5., 6., 7.]</code>. But no, both of them comes out as <code class="language-plaintext highlighter-rouge">[5., 6., 7.]</code>. You should be asking why <code class="language-plaintext highlighter-rouge">c</code> is changed when you specified it is <code class="language-plaintext highlighter-rouge">d</code> that changes. Well, the answer is that the <code class="language-plaintext highlighter-rouge">c = np.arange(3.)</code> statement creates an array in memory and assigns <code class="language-plaintext highlighter-rouge">c</code> with its id to access it. So when you did <code class="language-plaintext highlighter-rouge">d = c</code>, you essentially copied the id, not the actual array in memory. The code should look like the following to do what you “expect” it to do.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3.</span><span class="p">)</span>  <span class="c1"># array containing [0., 1., 2.]
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># add 1 to d 5 times
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">+=</span> <span class="mf">1.</span>  <span class="c1"># d = d + 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">ndarray.copy()</code> will copy the array itself and produce the result you want.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>As a scientific computing tool, Python is a powerful tool, with NumPy at its heart. This tutorial hopefully would have helped people starting in their quest of using numerical analysis with Python.</p>
+
+<h3 id="tutorial-outcomes">Tutorial outcomes:</h3>
+
+<h4 id="1-you-know-what-numpy-is-used-for">1. You know what NumPy is used for.</h4>
+
+<h4 id="2-you-manipulate-and-explore-numpy-arrays-using-slicing">2. You manipulate and explore NumPy arrays using slicing</h4>
+
+<h4 id="3-you-can-create-simple-masks-on-data-to-ignore-some-of-the-entries">3. You can create simple masks on data to ignore some of the entries</h4>
+
+<h4 id="4-you-can-read-data-to-and-write-data-in-numpy-array-format">4. You can read data to and write data in NumPy array format</h4>
+
+<h4 id="5-you-know-that-variables-copied-from-numpy-objects-might-be-different-from-other-python-objects">5. You know that variables copied from NumPy objects might be different from other Python objects</h4>
+
+<hr>
+
+<hr>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/795PKMV" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

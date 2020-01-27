@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Analysing Time Series Data</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="/css/owlcarousel/owl.theme.default.css">
+
+<!-- JS -->
+<script src="https://use.fontawesome.com/4dd22df1f8.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/scripts/accordion.js"></script>
+<script src="/scripts/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+<script src="/scripts/ticker.js"></script>
+
+	</head>
+	<body>
+    	<header class="header">
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			
+				<a class="logo" href="/">
+  <img src="/assets/img/logos/logo_stack.svg" alt="Coding Club logo">
+</a>
+
+			
+			<nav>
+				<label for="hamburger">☰</label>
+				<input type="checkbox" id="hamburger">
+				<ul>
+					
+						
+					<li class="item item-nav">
+						<a href="/">Home</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/tutorials.html">Tutorials</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/course.html">Course</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/team.html">Team</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/involve.html">Get involved</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/links.html">Links</a>
+					</li>
+					
+						
+					<li class="item item-nav">
+						<a href="/contact.html">Contact</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+			<div class="block">
+	<center>
+		<img src="/img/tutheader_time.png" alt="Img">
+	</center>
+</div>
+
+<h3 id="tutorial-aims">Tutorial Aims:</h3>
+
+<h4 id="-1-formatting-time-series-data-"><a href="#format"> 1. Formatting time series data </a></h4>
+
+<h4 id="-2-visualising-time-series-data"><a href="#datavis"> 2. Visualising time series data</a></h4>
+
+<h4 id="-3-statistically-analysing-time-series-data"><a href="#stats"> 3. Statistically analysing time series data</a></h4>
+
+<h4 id="-4-challenge-yourself-with-new-data"><a href="#challenge"> 4. Challenge yourself with new data</a></h4>
+
+<p>In this tutorial, we will explore and analyse time series data in <code class="language-plaintext highlighter-rouge">R</code>. Time series analysis is a powerful technique that can be used to understand the various temporal patterns in our data by decomposing data into different cyclic trends. Time series analysis can also be used to predict how levels of a variable will change in the future, taking into account what has happened in the past. By completing this workshop, you will learn not only how to do some simple time series analysis, but also how to prepare temporal data so that <code class="language-plaintext highlighter-rouge">R</code> understands that the data points occur in a distinct sequence, which is an art in itself.</p>
+
+<h3 id="all-the-resources-for-this-tutorial-including-the-data-and-some-helpful-cheatsheets-can-be-downloaded-from-this-github-repository-before-we-start-clone-and-download-the-repo-as-a-zipfile-then-unzip-it">All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank" rel="noopener noreferrer">this github repository</a>. Before we start, clone and download the repo as a zipfile, then unzip it.</h3>
+
+<p>Alternatively, you can fork <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank" rel="noopener noreferrer">the repository</a> to your own GitHub account and then add it as a new <code class="language-plaintext highlighter-rouge">RStudio</code> project by copying the <code class="language-plaintext highlighter-rouge">HTTPS/SSH</code> link. For more details on how to register on GitHub, download <code class="language-plaintext highlighter-rouge">git</code>, sync <code class="language-plaintext highlighter-rouge">RStudio</code> and GitHub and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">git</code> and version control tutorial.</a></p>
+
+<p>First up, open <code class="language-plaintext highlighter-rouge">RStudio</code>, make a new script by clicking <code class="language-plaintext highlighter-rouge">File/ New File/ R Script</code> and we are all set to learn about time series analysis!</p>
+
+<p>Set your working directory to the location of the folder you just downloaded from <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank" rel="noopener noreferrer">the GitHub repository</a>. Use the code below as a guide, but remember that the location of the folder on your computer will be different:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"~/Downloads/CC-time-series-master"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Next, load (<code class="language-plaintext highlighter-rouge">library()</code>) the packages needed for this tutorial. If this the first time you’re using these packages, you’ll need to install them first (e.g. by runnign <code class="language-plaintext highlighter-rouge">install.packages("ggplot2)</code> and afterwards you can load them using <code class="language-plaintext highlighter-rouge">library()</code>. You only need to install packages once, but you have to load them in every new <code class="language-plaintext highlighter-rouge">RStudio</code> session.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">colortools</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Next up, load the <code class="language-plaintext highlighter-rouge">.csv</code> files we will be using for this workshop - those are the sample time series data we will be analysing, but you can also have a go using your own data.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">monthly_milk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"monthly_milk.csv"</span><span class="p">)</span><span class="w">  </span><span class="c1"># Milk production per cow per month</span><span class="w">
+</span><span class="n">daily_milk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"daily_milk.csv"</span><span class="p">)</span><span class="w">  </span><span class="c1"># Milk production per cow per milking</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="format"></a></p>
+
+<h2 id="1-formatting-time-series-data">1. Formatting time series data</h2>
+
+<p>The most common issue when using time series data in <code class="language-plaintext highlighter-rouge">R</code> is getting it into a format that is easily readable by <code class="language-plaintext highlighter-rouge">R</code> and any extra packages you are using. A common format for time series data puts the largest chunk of time first (e.g. year) and gets progressively smaller, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017-02-25 18:30:45
+</code></pre></div></div>
+
+<p><strong>This can be generalised to <code class="language-plaintext highlighter-rouge">YYYY-MM-DD HH:MM:SS</code>. If you can record your data in this format to begin with, analysis will be much easier. If time isn’t important for your measurements, you can drop the <code class="language-plaintext highlighter-rouge">HH:MM:SS</code> bit from your records.</strong></p>
+
+<p>The data in <code class="language-plaintext highlighter-rouge">monthly_milk</code> shows the monthly milk production by a herd of cattle between 1962 and 1975. First, we should check the form of the data set:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">)</span><span class="w">
+
+</span><span class="nf">class</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">)</span><span class="w">
+
+</span><span class="nf">class</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">head(monthly_milk)</code> shows us that the <code class="language-plaintext highlighter-rouge">month</code> column is in a sensible format (<code class="language-plaintext highlighter-rouge">YYYY-MM-DD</code>) and contains no time data. <code class="language-plaintext highlighter-rouge">class(monthly_milk)</code> shows us that the data is in the form of a data frame, which is ideal. However, <code class="language-plaintext highlighter-rouge">class(monthly_milk$month)</code> shows us that the data is currently being interpreted as a <code class="language-plaintext highlighter-rouge">factor</code>. Factors are a data class that can have distinct categories, but infer no sequential order or heirarchy beyond simple alphabetic order, so if we tried to analyse this data in its current form, <code class="language-plaintext highlighter-rouge">R</code> wouldn’t understand that <code class="language-plaintext highlighter-rouge">1962-01-01</code> comes before <code class="language-plaintext highlighter-rouge">1962-02-01</code>. Luckily, <code class="language-plaintext highlighter-rouge">R</code> also has a <code class="language-plaintext highlighter-rouge">Date</code> class, which is much easier to work with. So let’s coerce the data to the <code class="language-plaintext highlighter-rouge">Date</code> class:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Coerce to `Date` class</span><span class="w">
+</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Check it worked</span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Data in the <code class="language-plaintext highlighter-rouge">Date</code> class in the conventional <code class="language-plaintext highlighter-rouge">YYYY-MM-DD</code> format are easier to use in <code class="language-plaintext highlighter-rouge">ggplot2</code> and various time series analysis packages. In the code above, <code class="language-plaintext highlighter-rouge">format =</code> tells <code class="language-plaintext highlighter-rouge">as.Date()</code> what form the original data is in. The symbols <code class="language-plaintext highlighter-rouge">%Y</code>, <code class="language-plaintext highlighter-rouge">%m</code>, <code class="language-plaintext highlighter-rouge">%d</code> etc. are codes understood by many programming languages to define date class data. Note that <code class="language-plaintext highlighter-rouge">as.Date()</code> requires a year, month, and day somewhere in the original data. So if the original data doesn’t have one of those, you can add them manually using <code class="language-plaintext highlighter-rouge">paste()</code>. You will see an example of using <code class="language-plaintext highlighter-rouge">paste()</code> to add date information later on when we run some forecast models. Here is an expanded table of date codes, which you can use for reference:</p>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<table class="tg">
+  <tr>
+    <th class="tg-4w4l">Name</th>
+    <th class="tg-4w4l">Code</th>
+    <th class="tg-yw4l">Example</th>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Long year</td>
+    <td class="tg-4w4l">%Y</td>
+    <td class="tg-yw4l">2017</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Short year</td>
+    <td class="tg-4w4l">%y</td>
+    <td class="tg-yw4l">17</td>
+  </tr>
+ <tr>
+    <td class="tg-4w4l">Numeric month</td>
+    <td class="tg-4w4l">%m</td>
+    <td class="tg-yw4l">02</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Abbreviated month</td>
+    <td class="tg-4w4l">%b</td>
+    <td class="tg-yw4l">Feb</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Full month</td>
+    <td class="tg-4w4l">%B</td>
+    <td class="tg-yw4l">February</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Day of the month</td>
+    <td class="tg-4w4l">%d</td>
+    <td class="tg-yw4l">25</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Abbreviated weekday</td>
+    <td class="tg-4w4l">%a</td>
+    <td class="tg-yw4l">Sat</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Full weekday</td>
+    <td class="tg-4w4l">%A</td>
+    <td class="tg-yw4l">Monday</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Day of the week (1-7)</td>
+    <td class="tg-4w4l">%u</td>
+    <td class="tg-yw4l">6</td>
+  </tr>
+  <tr>
+    <td class="tg-4w4l">Day of the year</td>
+    <td class="tg-4w4l">%j</td>
+    <td class="tg-yw4l">56</td>
+  </tr>
+</table>
+
+<p>To transform a <code class="language-plaintext highlighter-rouge">Date</code> class object into a <code class="language-plaintext highlighter-rouge">character</code> format with an alternative layout, you can use <code class="language-plaintext highlighter-rouge">format()</code> in conjunction with any of the date codes in the table above. For example you could transform <code class="language-plaintext highlighter-rouge">2017-02-25</code> into <code class="language-plaintext highlighter-rouge">February - Saturday 25 - 2017</code>. But note that this new <code class="language-plaintext highlighter-rouge">character</code> format won’t be interpreted as a date by <code class="language-plaintext highlighter-rouge">R</code> in analyses. Try a few different combinations of date codes from the table above, using the code below as an example:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">format</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%B-%u"</span><span class="p">)</span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%B-%u"</span><span class="p">))</span><span class="w">  </span><span class="c1"># class is no longer `Date`</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="dates-and-times">Dates and times</h3>
+
+<p>Sometimes, both the date and time of observation are important. The best way to format time information is to append it after the date in the same column like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017-02-25 18:30:45
+</code></pre></div></div>
+
+<p>The most appropriate and useable class for this data is the <code class="language-plaintext highlighter-rouge">POSIXct POSIXt</code> double. To explore this data class, let’s look at another milk production dataset, this time with higher resolution, showing morning and evening milking times over the course of a few months:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">daily_milk</span><span class="p">)</span><span class="w">
+
+</span><span class="nf">class</span><span class="p">(</span><span class="n">daily_milk</span><span class="o">$</span><span class="n">date_time</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Again, the date and time are in a sensible format (YYYY-MM-DD HH:MM:SS), but are interpreted by <code class="language-plaintext highlighter-rouge">R</code> as being in the <code class="language-plaintext highlighter-rouge">factor</code> class. Let’s change this to <code class="language-plaintext highlighter-rouge">POSIXct POSIXt</code> using <code class="language-plaintext highlighter-rouge">as.POSIXct()</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">daily_milk</span><span class="o">$</span><span class="n">date_time_posix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.POSIXct</span><span class="p">(</span><span class="n">daily_milk</span><span class="o">$</span><span class="n">date_time</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d %H:%M:%S"</span><span class="p">)</span><span class="w">
+
+</span><span class="nf">class</span><span class="p">(</span><span class="n">daily_milk</span><span class="o">$</span><span class="n">date_time_posix</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Below is an expanded table of time codes which you can use for reference:</p>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<table class="tg">
+  <tr>
+    <th class="tg-4w4l">Name</th>
+    <th class="tg-4w4l">Code</th>
+    <th class="tg-yw4l">Example</th>
+  </tr>
+  <tr>
+    <th class="tg-4w4l">Hour (24 hour)</th>
+    <th class="tg-4w4l">%H</th>
+    <th class="tg-yw4l">18</th>
+  </tr>
+  <tr>
+    <th class="tg-4w4l">Hour (12 hour)</th>
+    <th class="tg-4w4l">%I</th>
+    <th class="tg-yw4l">06</th>
+  </tr>
+ <tr>
+    <th class="tg-4w4l">Minute</th>
+    <th class="tg-4w4l">%M</th>
+    <th class="tg-yw4l">30</th>
+  </tr>
+ <tr>
+    <th class="tg-4w4l">AM/PM (only with %I)</th>
+    <th class="tg-4w4l">%p</th>
+    <th class="tg-yw4l">AM</th>
+  </tr>
+ <tr>
+    <th class="tg-4w4l">Second</th>
+    <th class="tg-4w4l">%S</th>
+    <th class="tg-yw4l">45</th>
+  </tr>
+</table>
+
+<p><a name="MARK"></a></p>
+
+<h3 id="correcting-badly-formatted-date-data">Correcting badly formatted date data</h3>
+
+<p>If your data are not already nicely formatted, not to worry, it’s easy to transform it back into a useable format using <code class="language-plaintext highlighter-rouge">format()</code>, before you transform it to <code class="language-plaintext highlighter-rouge">Date</code> class. First, let’s create some badly formatted date data to look similar to <code class="language-plaintext highlighter-rouge">01/Dec/1975-1</code>, the day of the month, abbreviated month, year and day of the week:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">monthly_milk</span><span class="o">$</span><span class="n">bad_date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d/%b/%Y-%u"</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">bad_date</span><span class="p">)</span><span class="w">  </span><span class="c1"># Awful... </span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">bad_date</span><span class="p">)</span><span class="w">  </span><span class="c1"># Not in `Date` class</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Then to transform it back to the useful <code class="language-plaintext highlighter-rouge">YYYY-MM-DD</code> <code class="language-plaintext highlighter-rouge">Date</code> format, just use <code class="language-plaintext highlighter-rouge">as.Date()</code>, specifying the format that the badly formatted data is in:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">monthly_milk</span><span class="o">$</span><span class="n">good_date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">bad_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d/%b/%Y-%u"</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">good_date</span><span class="p">)</span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">good_date</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now we know how to transform data in to the <code class="language-plaintext highlighter-rouge">Date</code> class, and how to create <code class="language-plaintext highlighter-rouge">character</code> class data from <code class="language-plaintext highlighter-rouge">Date</code> data.</p>
+
+<p><a name="datavis"></a></p>
+
+<h2 id="2-visualising-time-series-data">2. Visualising time series data</h2>
+
+<p>Plotting time series data with <code class="language-plaintext highlighter-rouge">ggplot2</code> requires the use of <code class="language-plaintext highlighter-rouge">scale_x_date()</code> to correctly build axis labels and allow easy customisation of axis ticks:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">time_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">scale_x_date</span><span class="p">(</span><span class="n">date_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y"</span><span class="p">,</span><span class="w"> </span><span class="n">date_breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1 year"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don’t have the brackets, you’ve only created the object, but haven’t visualized it. You would then have to call the object such that it will be displayed by just typing <code class="language-plaintext highlighter-rouge">barplot</code> after you’ve created the “barplot” object.</p>
+
+<center>
+	<img src="/img/monthly_milk_plot.png" alt="Img" style="width: 700px;">
+</center>
+
+<p>Using <code class="language-plaintext highlighter-rouge">theme_classic()</code> produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our <a href="https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank" rel="noopener noreferrer">tutorial on making your own <code class="language-plaintext highlighter-rouge">ggplot2</code> theme</a>, and if you want to learn more about the basics of <code class="language-plaintext highlighter-rouge">ggplot2</code>, <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">we have a workshop on that as well</a>!</p>
+
+<p>Play around with <code class="language-plaintext highlighter-rouge">date_labels</code>, replacing <code class="language-plaintext highlighter-rouge">"%Y"</code> with some other date marks from the table above (e.g. <code class="language-plaintext highlighter-rouge">%m-%Y</code>). <code class="language-plaintext highlighter-rouge">date_breaks</code> can also be customised to change the axis label frequency. Other options include <code class="language-plaintext highlighter-rouge">month</code>, <code class="language-plaintext highlighter-rouge">week</code> and <code class="language-plaintext highlighter-rouge">day</code> (e.g. <code class="language-plaintext highlighter-rouge">"5 weeks"</code>)</p>
+
+<p>Plotting date and time data is done similarly using <code class="language-plaintext highlighter-rouge">scale_x_datetime()</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">time_plot_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">daily_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date_time_posix</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">scale_x_datetime</span><span class="p">(</span><span class="n">date_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%p-%d"</span><span class="p">,</span><span class="w"> </span><span class="n">date_breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"36 hour"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="stats"></a></p>
+
+<h2 id="3-statistical-analysis-of-time-series-data">3. Statistical analysis of time series data</h2>
+
+<h3 id="decomposition">Decomposition</h3>
+
+<p>Time series data can contain multiple patterns acting at different temporal scales. The process of isolating each of these patterns is known as decomposition. Have a look at a simple plot of <code class="language-plaintext highlighter-rouge">monthly_milk</code> like the one we saw earlier:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">decomp_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">scale_x_date</span><span class="p">(</span><span class="n">date_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y"</span><span class="p">,</span><span class="w"> </span><span class="n">date_breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1 year"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Firstly, it looks like there is a general upward trend: more milk is being produced in 1975 than in 1962. This is known as a “<strong>smooth</strong>” pattern, one that increases or decreases regularly (monotonically) over the course of the time series. We can see this pattern more clearly by plotting a loess regression through the data. A loess regression fits a smooth curve between two variables.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">decomp_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">span</code> sets the number of points used to plot each local regression in the curve: the smaller the number, the more points are used and the more closely the curve will fit the original data.</p>
+
+<center>
+	<img src="/img/monthly_milk_loess.png" alt="Img" style="width: 700px;">
+</center>
+
+<p>Next, it looks like there are some peaks and troughs that occur regularly in each year. This is a “<strong>seasonal</strong>” pattern. We can investigate this pattern more by plotting each year as it’s own line and comparing the different years:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract month and year and store in separate columns</span><span class="w">
+</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y"</span><span class="p">)</span><span class="w">
+</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_num</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%m"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Create a colour palette using the `colortools` package </span><span class="w">
+</span><span class="n">year_pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sequential</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"darkturquoise"</span><span class="p">,</span><span class="w"> </span><span class="n">percentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"value"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Make the plot</span><span class="w">
+</span><span class="p">(</span><span class="n">seasonal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">monthly_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">month_num</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+	</span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year_pal</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<center>
+	<img src="/img/monthly_milk_month_trend.png" alt="Img" style="width: 700px;">
+</center>
+
+<p>It’s clear from the plot that while milk production is steadily getting higher, the same pattern occurs throughout each year, with a peak in May and a trough in November.</p>
+
+<p>“<strong>Cyclic</strong>” trends are similar to seasonal trends in that they recur over time, but occur over longer time scales. It may be that the general upward trend and plateau seen with the loess regression may be part of a longer decadal cycle related to sunspot activity, but this is impossible to test without a longer time series.</p>
+
+<p>An alternative method to generating these plots in <code class="language-plaintext highlighter-rouge">ggplot2</code> is to convert the time series data frame to a <code class="language-plaintext highlighter-rouge">ts</code> class object and decompose it using <code class="language-plaintext highlighter-rouge">stl()</code> from the <code class="language-plaintext highlighter-rouge">stats</code> package. This reduces the ability to customise the plots, but is arguably quicker:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Transform to `ts` class</span><span class="w">
+</span><span class="n">monthly_milk_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ts</span><span class="p">(</span><span class="n">monthly_milk</span><span class="o">$</span><span class="n">milk_prod</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1962</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1975</span><span class="p">,</span><span class="w"> </span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w">  </span><span class="c1"># Specify start and end year, measurement frequency (monthly = 12)</span><span class="w">
+
+</span><span class="c1"># Decompose using `stl()`</span><span class="w">
+</span><span class="n">monthly_milk_stl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stl</span><span class="p">(</span><span class="n">monthly_milk_ts</span><span class="p">,</span><span class="w"> </span><span class="n">s.window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"period"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Generate plots</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">monthly_milk_stl</span><span class="p">)</span><span class="w">  </span><span class="c1"># top=original data, second=estimated seasonal, third=estimated smooth trend, bottom=estimated irregular element i.e. unaccounted for variation</span><span class="w">
+</span><span class="n">monthplot</span><span class="p">(</span><span class="n">monthly_milk_ts</span><span class="p">,</span><span class="w"> </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"seasonal"</span><span class="p">)</span><span class="w">  </span><span class="c1"># variation in milk production for each month</span><span class="w">
+</span><span class="n">seasonplot</span><span class="p">(</span><span class="n">monthly_milk_ts</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<center>
+	<img src="/img/monthly_milk_4plot.png" alt="Img" style="width: 700px;">
+</center>
+
+<h3 id="forecasting">Forecasting</h3>
+
+<p>Often time series data are used to predict what might happen in the future, given the patterns seen in the data. This is known as forecasting. There are many methods used to forecast time series data, and they vary widely in complexity, but this should serve as a brief introduction to the most commonly used methods.</p>
+
+<p>All the models used in this workshop are known as ETS models. ETS stands for Error, Trend, Seasonality. ETS models are also known as Exponential Smoothing State Space models. ETS models are used for modelling how a single variable will change over time by identifying its underlying trends, not taking into account any other variables. ETS models differ from a simple moving average by weighting the influence of previous points on future time points based on how much time is between the two points. i.e. over a longer period of time it is more likely that some unmeasured condition has changed, resulting in different behaviour of the variable that has been measured. Another important group of forecast models are the ARIMA models, autoregressive models which describe autocorrelations in the data rather than trends and seasonality. Unfortunately there isn’t a lot of time to get into ARIMA models during this workshop, but <a href="https://www.otexts.org/fpp/8" target="_blank" rel="noopener noreferrer">Rob Hyndman and George Athanasopoulos have a great book that is freely available online which covers ARIMA models and a lot more</a>.</p>
+
+<p>ETS models are normally denoted by three letters, e.g. <code class="language-plaintext highlighter-rouge">ETS_AMZ</code>. The first letter (A) refers to the error type, the second letter (M) is the trend type and the third letter (Z) is the season type. Possible letters are:</p>
+
+<p><code class="language-plaintext highlighter-rouge">N</code> = None</p>
+
+<p><code class="language-plaintext highlighter-rouge">A</code> = Additive</p>
+
+<p><code class="language-plaintext highlighter-rouge">M</code> = Multiplicative</p>
+
+<p><code class="language-plaintext highlighter-rouge">Z</code> = Automatically selected</p>
+
+<p>I wouldn’t worry too much about the implications of these model types for now. For this tutorial we will just pick some basic model types and compare them. If you want to read more about ETS model types, I recommend <a href="http://www.exponentialsmoothing.net" target="_blank" rel="noopener noreferrer">this book</a>.</p>
+
+<p>Choosing which model to use to forecast your data can be difficult and requires using your own intuition, as well as looking at test statistics. To test the accuracy of a model, we have to compare it to data that has not been used to generate the forecast, so let’s create some data subsets from the <code class="language-plaintext highlighter-rouge">monthly_milk_ts</code> time series object - one for generating the model (<code class="language-plaintext highlighter-rouge">monthly_milk_model</code>) and one for testing the model’s accuracy (<code class="language-plaintext highlighter-rouge">monthly_milk_test</code>). <code class="language-plaintext highlighter-rouge">window()</code> is a function similar to <code class="language-plaintext highlighter-rouge">subset()</code> or <code class="language-plaintext highlighter-rouge">filter()</code>, subsetting an object based on arguments, but it is used especially for time series (<code class="language-plaintext highlighter-rouge">ts</code>) objects. <code class="language-plaintext highlighter-rouge">window()</code> takes the original time series object (<code class="language-plaintext highlighter-rouge">x</code>) and the <code class="language-plaintext highlighter-rouge">start</code> and <code class="language-plaintext highlighter-rouge">end</code> points of the subset. If <code class="language-plaintext highlighter-rouge">end</code> is not included, the subset extends to the end of the time series:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">monthly_milk_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">window</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">monthly_milk_ts</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1962</span><span class="p">),</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1970</span><span class="p">))</span><span class="w">
+</span><span class="n">monthly_milk_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">window</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">monthly_milk_ts</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1970</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Let’s first compare model forecasts of different ETS models visually by extracting forecast data from <code class="language-plaintext highlighter-rouge">forecast</code> objects and plotting it using <code class="language-plaintext highlighter-rouge">ggplot()</code> against the test data. The code below is quite long and could be made more concise by using <a href="http://www.ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">pipes, or <code class="language-plaintext highlighter-rouge">apply()</code> functions</a> but writing it long-hand like this allows you to investigate all the intermediate objects for yourself so you understand how they are structured and what they show:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating model objects of each type of ets model</span><span class="w">
+</span><span class="n">milk_ets_auto</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ets</span><span class="p">(</span><span class="n">monthly_milk_model</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_mmm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ets</span><span class="p">(</span><span class="n">monthly_milk_model</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"MMM"</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_zzz</span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ets</span><span class="p">(</span><span class="n">monthly_milk_model</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ZZZ"</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_mmm_damped</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ets</span><span class="p">(</span><span class="n">monthly_milk_model</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"MMM"</span><span class="p">,</span><span class="w"> </span><span class="n">damped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Creating forecast objects from the model objects</span><span class="w">
+</span><span class="n">milk_ets_fc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">forecast</span><span class="p">(</span><span class="n">milk_ets_auto</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span><span class="w">  </span><span class="c1"># `h = 60` means that the forecast will be 60 time periods long, in our case a time period is one month</span><span class="w">
+</span><span class="n">milk_ets_mmm_fc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">forecast</span><span class="p">(</span><span class="n">milk_ets_mmm</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_zzz_fc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">forecast</span><span class="p">(</span><span class="n">milk_ets_zzz</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_mmm_damped_fc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">forecast</span><span class="p">(</span><span class="n">milk_ets_mmm_damped</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Convert forecasts to data frames</span><span class="w">
+</span><span class="n">milk_ets_fc_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="s2">"Month"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_fc</span><span class="p">)),</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_fc</span><span class="p">))</span><span class="w">  </span><span class="c1"># Creating a data frame</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_fc_df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_fc_df</span><span class="p">))</span><span class="w">  </span><span class="c1"># Removing whitespace from column names</span><span class="w">
+</span><span class="n">milk_ets_fc_df</span><span class="o">$</span><span class="n">Date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"01-"</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_fc_df</span><span class="o">$</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">),</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d-%b %Y"</span><span class="p">)</span><span class="w">  </span><span class="c1"># prepending day of month to date</span><span class="w">
+</span><span class="n">milk_ets_fc_df</span><span class="o">$</span><span class="n">Model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"ets"</span><span class="p">)</span><span class="w">  </span><span class="c1"># Adding column of model type</span><span class="w">
+
+</span><span class="n">milk_ets_mmm_fc_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="s2">"Month"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_mmm_fc</span><span class="p">)),</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_mmm_fc</span><span class="p">))</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_mmm_fc_df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_mmm_fc_df</span><span class="p">))</span><span class="w">
+</span><span class="n">milk_ets_mmm_fc_df</span><span class="o">$</span><span class="n">Date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"01-"</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_mmm_fc_df</span><span class="o">$</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">),</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d-%b %Y"</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_mmm_fc_df</span><span class="o">$</span><span class="n">Model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"ets_mmm"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">milk_ets_zzz_fc_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="s2">"Month"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_zzz_fc</span><span class="p">)),</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_zzz_fc</span><span class="p">))</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_zzz_fc_df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_zzz_fc_df</span><span class="p">))</span><span class="w">
+</span><span class="n">milk_ets_zzz_fc_df</span><span class="o">$</span><span class="n">Date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"01-"</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_zzz_fc_df</span><span class="o">$</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">),</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d-%b %Y"</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_zzz_fc_df</span><span class="o">$</span><span class="n">Model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"ets_zzz"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="s2">"Month"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_mmm_damped_fc</span><span class="p">)),</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">milk_ets_mmm_damped_fc</span><span class="p">))</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="p">))</span><span class="w">
+</span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="o">$</span><span class="n">Date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"01-"</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="o">$</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">),</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%d-%b %Y"</span><span class="p">)</span><span class="w">
+</span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="o">$</span><span class="n">Model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"ets_mmm_damped"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Combining into one data frame</span><span class="w">
+</span><span class="n">forecast_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">milk_ets_fc_df</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_mmm_fc_df</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_zzz_fc_df</span><span class="p">,</span><span class="w"> </span><span class="n">milk_ets_mmm_damped_fc_df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Now that we have all the information for the forecasts, we are ready to make our plot!</strong></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plotting with ggplot</span><span class="w">
+</span><span class="p">(</span><span class="n">forecast_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">monthly_milk</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">month_date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">milk_prod_per_cow_kg</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Plotting original data</span><span class="w">
+	</span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forecast_all</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point_Forecast</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Plotting model forecasts</span><span class="w">
+	</span><span class="n">theme_classic</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<center>
+	<img src="/img/monthly_milk_fc_all.png" alt="Img" style="width: 700px;">
+</center>
+
+<p>You can also numerically compare the accuracy of different models to the data we excluded from the model (<code class="language-plaintext highlighter-rouge">monthly_milk_test</code>) using <code class="language-plaintext highlighter-rouge">accuracy()</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">accuracy</span><span class="p">(</span><span class="n">milk_ets_fc</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_milk_test</span><span class="p">)</span><span class="w">
+</span><span class="n">accuracy</span><span class="p">(</span><span class="n">milk_ets_mmm_fc</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_milk_test</span><span class="p">)</span><span class="w">
+</span><span class="n">accuracy</span><span class="p">(</span><span class="n">milk_ets_zzz_fc</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_milk_test</span><span class="p">)</span><span class="w">
+</span><span class="n">accuracy</span><span class="p">(</span><span class="n">milk_ets_mmm_damped_fc</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_milk_test</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This outputs a whole load of different statistics in tables like the one below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                      ME      RMSE      MAE         MPE      MAPE      MASE       ACF1 Theil's U
+Training set -0.06896592  2.723633 2.087071 -0.02713133 0.6737187 0.2182860 0.02707694        NA
+Test set      6.12353156 10.633503 8.693532  1.58893810 2.3165456 0.9092534 0.82174403 0.4583252
+</code></pre></div></div>
+
+<p>Let’s pick apart those statistics:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ME</code>: Mean Error: the mean difference between modelled and observed values</p>
+
+<p><code class="language-plaintext highlighter-rouge">RMSE</code>: Root Mean Squared Error. Take each difference between the model and the observed values, square it, take the mean, then square root it.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MAE</code>: Mean Absolute Error. The same as <code class="language-plaintext highlighter-rouge">ME</code>, but all errors are transformed to positive values so positive and negative errors don’t cancel each other out.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MPE</code>: Mean Percentage Error. Similar to <code class="language-plaintext highlighter-rouge">ME</code>, but each error is expressed as a percentage of the forecast estimate. Percentage Errors are not scale dependent so they can be used to compare forecast accuracy between datasets.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MAPE</code>: Mean Absolute Percentage Error. The same as <code class="language-plaintext highlighter-rouge">MPE</code>, but all errors are transformed to positive values so positive and negative errors don’t cancel each other out.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MASE</code>: Mean Absolute Scaled Error. Compares the <code class="language-plaintext highlighter-rouge">MAE</code> of the forecast with the <code class="language-plaintext highlighter-rouge">MAE</code> produced by a naive forecast. A naive forecast is one which simply projects a straight line into the future, the value of which is the final value of the time series used to construct the model. A <code class="language-plaintext highlighter-rouge">MASE&gt;1</code> tells us that the naive forecast fit the observed data better than the model, while a <code class="language-plaintext highlighter-rouge">MASE&lt;1</code> tells us that the model was better than the naive model.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ACF1</code>: Auto-Correlation Function at lag 1. How correlated are data points with data points directly after them, where <code class="language-plaintext highlighter-rouge">ACF = 1</code> means points are fully correlated and <code class="language-plaintext highlighter-rouge">ACF = 0</code> means points are not at all correlated.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Theil's U</code>: Compares the forecast with results from a model using minimal data. Errors are squared to give more weight to large errors. A <code class="language-plaintext highlighter-rouge">U&lt;1</code> means the forecast is better than guessing, while a <code class="language-plaintext highlighter-rouge">U&gt;1</code> means the forecast is worse than guessing.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MAPE</code> is the most commonly used measure of forecast accuracy, probably due to it being easy to understand conceptually. However, <code class="language-plaintext highlighter-rouge">MAPE</code> becomes highly skewed when observed values in the time series are close to zero and infinite when observations equal zero, making it unsuitable for some time series that have low report values. <code class="language-plaintext highlighter-rouge">MAPE</code> also gives a heavier penalty to positive deviations than negative deviations, which makes it useful for some analyses, e.g. economic forecasts which don’t want to run the risk of over-estimating the value of a commodity. <code class="language-plaintext highlighter-rouge">MASE</code> is suggested here as an alternative which avoids the shortcomings of <code class="language-plaintext highlighter-rouge">MAPE</code> while remaining interpretable. If you’re really keen, have a read of <a href="https://www.researchgate.net/publication/222665190_Another_look_at_measures_of_forecast_accuracy" target="_blank" rel="noopener noreferrer">Hyndman &amp; Koehler 2006</a> for more on <code class="language-plaintext highlighter-rouge">MASE</code> and the potential shortcomings of all these proxies for model accuracy.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Training set</code> denotes values that were gathered from comparing the forecast to the data that was used to generate the forecast (notice how the Mean Error (<code class="language-plaintext highlighter-rouge">ME</code>) is very small).</p>
+
+<p><code class="language-plaintext highlighter-rouge">Test set</code> denotes values that were gathered from comparing the forecast to the test data which we deliberately excluded when training the forecast.</p>
+
+<p>By comparing the MAPE and MASE statistics of the four models in the <code class="language-plaintext highlighter-rouge">Test set</code> row, we can see that the <code class="language-plaintext highlighter-rouge">monthly_milk_ets_fc</code> and <code class="language-plaintext highlighter-rouge">monthly_milk_ets_zzz_fc</code> models have the lowest values. Looking at the graphs for this forecast and comparing it visually to the test data, we can see that this is the forecast which best matches the test data. So we can use that forecast to project into the future.</p>
+
+<h3 id="extracting-values-from-a-forecast">Extracting values from a forecast</h3>
+<p>Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I’m using functions from the <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">dplyr</code> package, with pipes (<code class="language-plaintext highlighter-rouge">%&gt;%</code>)</a>, but you could use any other method of subsetting such as the <code class="language-plaintext highlighter-rouge">[]</code> square bracket method using base <code class="language-plaintext highlighter-rouge">R</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">milk_ets_fc_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="n">filter</span><span class="p">(</span><span class="n">Month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Jan 1975"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="n">select</span><span class="p">(</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">Point_Forecast</span><span class="p">)</span><span class="w">
+
+</span><span class="n">milk_ets_zzz_fc_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="n">filter</span><span class="p">(</span><span class="n">Month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Jan 1975"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="n">select</span><span class="p">(</span><span class="n">Month</span><span class="p">,</span><span class="w"> </span><span class="n">Point_Forecast</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a name="challenge"></a></p>
+
+<h2 id="4-coding-challenge">4. Coding challenge</h2>
+
+<p>Now that you have worked through the tutorial, use what you have learnt to make some model forecasts and plot some graphs to investigate temporal patterns for our data on CO2 concentrations on Mauna Loa, Hawaii. See if you can predict the CO2 concentration for June 2050. You can find the data in <code class="language-plaintext highlighter-rouge">co2_loa.csv</code> in the folder you downloaded from the <a href="https://github.com/ourcodingclub/CC-time-series" target="_blank" rel="noopener noreferrer">the GitHub repository for this tutorial</a>.</p>
+
+<hr>
+
+<hr>
+
+<h3><a href="https://www.surveymonkey.co.uk/r/26V3WTJ" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a></h3>
+<p><br></p>
+<h3>  You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
+</h3>
+<p><br></p>
+<h3>  Related tutorials:</h3>
+
+<ul>
+  
+  
+</ul>
+<p><br></p>
+<h3>  Subscribe to our mailing list:</h3>
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
+			</div>
+			<div>
+                        	<button class="btn btn-default" type="submit">Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+    	<footer class="footer">
+	<hr>
+	<div class="footer-container">
+    	<ul class="footer-link-list">
+        	<li><a href="/tutorials">Tutorials</a></li>
+        	<li><a href="/team">About Us</a></li>
+        	<li><a href="/contact">Contact us</a></li>
+	    	<li><a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer">Follow us on Twitter</a></li>
+    	</ul>
+    	<div class="footer-text">
+			<p>We are happy for people to use and further develop our tutorials - please give credit to Coding Club by linking to <a href="https://ourcodingclub.github.io/" target="_blank" rel="noopener noreferrer">our website</a>. We are also happy to discuss possible collaborations, so get in touch at <b>ourcodingclub@gmail.com</b></p>
+    		<p>See our <a href="/terms">Terms of Use</a> and our <a href="/privacy">Data Privacy policy</a>.</p>
+			<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img class="license" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="CC-by-sa-4.0"></a>
+    	</div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/scripts/owl.carousel.js"></script>
+<script src="/scripts/owl.carousel-init.js"></script>
+<script src="/scripts/reveal.js"></script>
+
+
+	
+	</body>
+</html>

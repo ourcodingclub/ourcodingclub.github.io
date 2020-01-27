@@ -1,0 +1,37 @@
+<div class="survey">
+	<hr>
+	<hr>
+	{% if page.survey_link %}
+		<h4><a href="{{ include.survey_link }}" target="_blank">We would love to hear your feedback, please fill out our survey!</a></h4>
+	{% endif %}
+	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h4>
+	<br>
+	<h3>Related tutorials:</h3>
+	{% for tutorial in site.tutorials%}
+		{% if tutorial.url != page.url %}
+  			{% for tag in tutorial.tags %}
+    				{% if page.tags contains tag %}
+						<h4><a style="margin:0 padding:0" href="{{ tutorial.url }}">- {{ tutorial.title }}</a></h4>
+  				{% endif %}
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+	<br>
+	<h3>Subscribe to our mailing list:</h3>
+
+	<div class="container">
+		<div class="block">
+			<!-- subscribe form start -->
+			<div class="form-group">
+				<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+					<div class="form-group">
+						<input type='text' class="form-control" name='Email' placeholder="Email" required/>
+					</div>
+					<div>
+            			<button class="btn btn-default" type='submit'>Subscribe</button>
+        			</div>
+            	</form>
+			</div>
+		</div>
+	</div>
+</div>
