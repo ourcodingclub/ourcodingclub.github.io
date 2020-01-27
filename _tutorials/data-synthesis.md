@@ -37,7 +37,7 @@ __The goal of this tutorial is to advance skills in working efficiently with dat
 
 <b>Across the tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
 
-We will be working with bird population data (abundance over time) from the [Global Biodiversity Information Facility](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, bird trait data from the <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1" target="_blank">Elton Database</a>, and emu occurrence data from the <a href="http://www.gbif.org/), all of which are publicly available datasets.
+We will be working with bird population data (abundance over time) from the [Living Planet Database](http://www.livingplanetindex.org/home/index), bird trait data from the [Elton Database](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1), and emu occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org/), all of which are publicly available datasets.
 
 __First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is their average duration.__
 
@@ -1029,8 +1029,7 @@ Can you think of any data you can combine with some of the data from the tutoria
 
 ## Extra resources
 
-To learn more about the power of pipes check out:
-<a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and [ the R for Data Science book](http://r4ds.had.co.nz/pipes.html).
+To learn more about the power of pipes check out the [tidyverse website](http://dplyr.tidyverse.org/) and the [R for Data Science book](http://r4ds.had.co.nz/pipes.html).
 
 To learn more about `purrr` check out the [ R for Data Science book](http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html).
 

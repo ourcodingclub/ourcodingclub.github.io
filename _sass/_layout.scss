@@ -359,6 +359,31 @@ h1, h2, h3, h4, h5, h6 {
 	padding-top: 5px;
 }
 
+// Copy code button
+.copy-button {
+  webkit-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+  opacity: 0.75;
+  margin: 5px;
+  border: none;
+  background-color: $linkColour;
+  border-radius: 5px;
+  color: $white;
+  float: right;
+  width: 150px;
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+div.highlight:hover .copy-button, div.highlight .copy-button:focus {
+    opacity: 1;
+}
+
+div.highlight .copy-button:hover {
+    opacity: 1;
+}
+
 
 // * {
 //   background: #000 !important;

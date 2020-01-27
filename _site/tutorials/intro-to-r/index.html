@@ -104,54 +104,49 @@
 	<hr>
 	<h3 id="tutorial-aims">Tutorial aims:</h3>
 
-<h4 id="1-understand-what-are-r-and-r-studio">1. Understand what are R and R Studio</h4>
-
-<h4 id="2-develop-the-good-habit-of-working-with-scripts">2. Develop the good habit of working with scripts</h4>
-
-<h4 id="3-learn-to-import-data-in-r">3. Learn to import data in R</h4>
-
-<h4 id="4-learn-to-manipulate-r-objects-like-vectors-and-data-frames">4. Learn to manipulate R objects like vectors and data frames</h4>
-
-<h4 id="5-make-a-simple-plot">5. Make a simple plot</h4>
+<ol>
+  <li>Understand what are R and R Studio</li>
+  <li>Develop the good habit of working with scripts</li>
+  <li>Learn to import data in R</li>
+  <li>Learn to manipulate R objects like vectors and data frames</li>
+  <li>Make a simple plot</li>
+</ol>
 
 <h3 id="steps">Steps:</h3>
 
-<h4 id="1-download-r-and-rstudio"><a href="#download">1. Download R and RStudio</a></h4>
-
-<h4 id="2-import-and-check-data"><a href="#import">2. Import and check data</a></h4>
-
-<h4 id="3-calculate-species-richness"><a href="#richness">3. Calculate species richness</a></h4>
-
-<h4 id="4-create-a-vector-and-plot-it"><a href="#vector">4. Create a vector and plot it</a></h4>
-
-<h4 id="5-create-a-data-frame-and-plot-it"><a href="#df">5. Create a data frame and plot it</a></h4>
-
-<h4 id="6-challenge-yourself-"><a href="#challenge">6. Challenge yourself </a></h4>
-
-<h4 id="5-glossary-"><a href="#glossary">5. Glossary </a></h4>
+<ol>
+  <li><a href="#download">Download R and RStudio</a></li>
+  <li><a href="#import">Import and check data</a></li>
+  <li><a href="#richness">Calculate species richness</a></li>
+  <li><a href="#vector">Create a vector and plot it</a></li>
+  <li><a href="#df">Create a data frame and plot it</a></li>
+  <li><a href="#challenge">Challenge yourself</a></li>
+  <li><a href="#glossary">Glossary</a></li>
+</ol>
 
 <p>In our first tutorial we will begin to explore “R” as a tool to analyse and visualise data.</p>
 
-<p><b> What is R? </b> 
-R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the “S” programming language. (Next time you need a fun fact, you can say “Did you know that S came before R?”) R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there’s hardly anything you <i>can’t</i> do in R.</p>
+<p><strong>What is R?</strong></p>
 
-<p>If you already know your way around statistical softwares like <code class="language-plaintext highlighter-rouge">Minitab</code> or <code class="language-plaintext highlighter-rouge">SPSS</code>, the main difference is that <code class="language-plaintext highlighter-rouge">R</code> has no <b>graphical user interface</b>, which means there are no buttons to click and no dropdown menus. <code class="language-plaintext highlighter-rouge">R</code> can be run entirely by typing commands into a text interface (welcome to the Matrix!). This may seem a little daunting, but it also means a whole lot more flexibility, as you are not relying on a pre-determined toolkit for your analyses.</p>
+<p>R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the “S” programming language. (Next time you need a fun fact, you can say “Did you know that S came before R?”) R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there’s hardly anything you <em>can’t</em> do in R.</p>
+
+<p>If you already know your way around statistical softwares like <code class="language-plaintext highlighter-rouge">Minitab</code> or <code class="language-plaintext highlighter-rouge">SPSS</code>, the main difference is that <code class="language-plaintext highlighter-rouge">R</code> has no <strong>graphical user interface</strong>, which means there are no buttons to click and no dropdown menus. <code class="language-plaintext highlighter-rouge">R</code> can be run entirely by typing commands into a text interface (welcome to the Matrix!). This may seem a little daunting, but it also means a whole lot more flexibility, as you are not relying on a pre-determined toolkit for your analyses.</p>
 
 <p>Thanks for joining us on your learning journey. Like with any language, there is a learning curve (trust me, I’m learning German at the moment), but we will take it step by step, and in no time you will be coding your own analyses and graphs!</p>
 
-<center><img src="/img/terminal_gui.png" alt="Img" style="width: 800px;"></center>
+<p><img src="/img/terminal_gui.png" alt=""></p>
 
 <p>If you need any more convincing, why are we using R and not one of the many other statistical packages like MATLAB, Minitab, or even Microsoft Excel? Well, R is great because:</p>
 
-<h5 id="--r-is-free-and-open-source-and-always-will-be-anybody-can-use-the-code-and-see-exactly-how-it-works">- R is free and open source, and always will be! Anybody can use the code and see exactly how it works.</h5>
-<h5 id="--because-r-is-a-programming-language-rather-than-a-graphical-interface-the-user-can-easily-save-scripts-as-small-text-files-for-use-in-the-future-or-share-them-with-collaborators">- Because R is a programming language rather than a graphical interface, the user can easily save scripts as small text files for use in the future, or share them with collaborators.</h5>
-<h5 id="--r-has-a-very-active-and-helpful-online-community---normally-a-quick-search-is-all-it-takes-to-find-that-somebody-has-already-solved-the-problem-youre-having-you-can-start-with-our-links-page">- R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you’re having. You can start with our <a href="https://ourcodingclub.github.io/links/" target="_blank" rel="noopener noreferrer">links page</a>!</h5>
+<ul>
+  <li>R is free and open source, and always will be! Anybody can use the code and see exactly how it works.</li>
+  <li>Because R is a programming language rather than a graphical interface, the user can easily save scripts as small text files for use in the future, or share them with collaborators.</li>
+  <li>R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you’re having. You can start with our <a href="https://ourcodingclub.github.io/links/" target="_blank" rel="noopener noreferrer">links page</a>!</li>
+</ul>
 
-<p><a name="download"></a></p>
+<h3 id="download">1. Download R and RStudio</h3>
 
-<h3 id="1-download-r-and-rstudio-1">1. Download R and RStudio</h3>
-
-<p>As we said before, R itself does not have a graphical interface, but most people interact with R through graphical platforms that provide extra functionality. We will be using a program called <b>RStudio</b> as a graphical front-end to R, so that we can access our scripts and data, find help, and preview plots and outputs all in one place.</p>
+<p>As we said before, R itself does not have a graphical interface, but most people interact with R through graphical platforms that provide extra functionality. We will be using a program called <strong>RStudio</strong> as a graphical front-end to R, so that we can access our scripts and data, find help, and preview plots and outputs all in one place.</p>
 
 <p>You can download R from <a href="https://cran.r-project.org/" target="_blank" rel="noopener noreferrer">CRAN (The Comprehensive R Archive Network)</a>. Select the link appropriate for your operating system.</p>
 
@@ -159,189 +154,138 @@ R is a statistical programming language that has rapidly gained popularity in ma
 
 <p>If you are using a Mac, in addition to R and RStudio, you need to download XQuartz (<a href="https://www.xquartz.org/" target="_blank" rel="noopener noreferrer">available here</a>).</p>
 
-<h3 id="open-rstudio-click-on-filenew-filer-script">Open RStudio. Click on <i>File/New File/R script</i>.</h3>
+<h3 id="open-rstudio-click-on-filenew-filer-script">Open RStudio. Click on <em>File/New File/R script</em>.</h3>
 
-<center><img src="https://i.imgur.com/yutV805.png" alt="Img" style="width: 800px;"></center>
+<p><img src="https://i.imgur.com/yutV805.png" alt=""></p>
 
-<p>You will now see a window like the one above. You <i>can</i> type code directly into the <b>console</b> on the lower left (doesn’t mean that you <i>should</i>*!). Pressing enter at the end of the line runs the code (try typing <code class="language-plaintext highlighter-rouge">2 + 2</code> and running it now). You can (should!) also write your code in the <b>script</b> file in the top left window. To run a line of code from your script, press <code class="language-plaintext highlighter-rouge">Ctrl+R</code> on Windows or <code class="language-plaintext highlighter-rouge">Cmd+Enter</code> on a Mac. On newer Windows computers, the default shortcut is <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code>. The <b>environment window</b> gives you an overview of your current <b>workspace**</b>. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded.</p>
+<p>You will now see a window like the one above. You <em>can</em> type code directly into the <strong>console</strong> on the lower left (doesn’t mean that you <em>should</em>*!). Pressing enter at the end of the line runs the code (try typing <code class="language-plaintext highlighter-rouge">2 + 2</code> and running it now). You can (should!) also write your code in the <strong>script</strong> file in the top left window. To run a line of code from your script, press <code class="language-plaintext highlighter-rouge">Ctrl+R</code> on Windows or <code class="language-plaintext highlighter-rouge">Cmd+Enter</code> on a Mac. On newer Windows computers, the default shortcut is <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code>. The <strong>environment window</strong> gives you an overview of your current <strong>workspace**</strong>. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded.</p>
 
-<div class="bs-callout-blue">
+<div class="callout" style="">
 
-  <p><strong>*A note about scripts (We love scripts!)</strong>: Remember that if you enter code directly into the console, it will <strong>not</strong> be saved by R: it runs and disappears (although you can access your last few operations by hitting the “up” key on your keyboard). Instead, by typing your code into a script file, you are creating a reproducible record of your analysis. Writing your code in a script is similar to writing an essay in Word: it saves your progress and you can always pick up where you left off, or make some changes to it. (Remember to click <em>Save</em> (<code class="language-plaintext highlighter-rouge">Ctrl+S</code>) often, so that you actually save your script!) 
-<br></p>
+  <p><strong>*A note about scripts (We love scripts!)</strong>: Remember that if you enter code directly into the console, it will <strong>not</strong> be saved by R: it runs and disappears (although you can access your last few operations by hitting the ‘up’ key on your keyboard). Instead, by typing your code into a script file, you are creating a reproducible record of your analysis. Writing your code in a script is similar to writing an essay in Word: it saves your progress and you can always pick up where you left off, or make some changes to it. (Remember to click <em>Save</em> (<code class="language-plaintext highlighter-rouge">Ctrl+S</code>) often, so that you actually save your script!)</p>
 
-  <p>When writing a script, it’s useful to add comments to describe what you are doing by inserting a hasthag <code class="language-plaintext highlighter-rouge">#</code> in front of a line of text. R will see anything that begins with <code class="language-plaintext highlighter-rouge">#</code>as text instead of code, so it will not try to run it, but the text will provide valuable information about the code for whoever is reading your script (including future you!). Like with any piece of writing, scripts benefit from structure and clarity: we will learn more about proper <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank" rel="noopener noreferrer">coding etiquette</a> in a later tutorial.
-<br><br>
-<strong>**A quicker note about the workspace</strong>: The workspace will have everything you have used in a session floating around your computer memory. When you exit, R will ask you if you want to save the current workspace. You almost <a href="https://www.r-bloggers.com/using-r-dont-save-your-workspace/" target="_blank" rel="noopener noreferrer">never need to</a>, and it’s best to click no and start with a clear slate every time. (DO make sure you save your script though!!)</p>
+  <p>When writing a script, it’s useful to add comments to describe what you are doing by inserting a hasthag <code class="language-plaintext highlighter-rouge">#</code> in front of a line of text. R will see anything that begins with <code class="language-plaintext highlighter-rouge">#</code>as text instead of code, so it will not try to run it, but the text will provide valuable information about the code for whoever is reading your script (including future you!). Like with any piece of writing, scripts benefit from structure and clarity: we will learn more about proper <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank" rel="noopener noreferrer">coding etiquette</a> in a later tutorial.</p>
+
+  <p><strong>**A quicker note about the workspace</strong>: The workspace will have everything you have used in a session floating around your computer memory. When you exit, R will ask you if you want to save the current workspace. You almost <a href="https://www.r-bloggers.com/using-r-dont-save-your-workspace/" target="_blank" rel="noopener noreferrer">never need to</a>, and it’s best to click no and start with a clear slate every time. (DO make sure you save your script though!!)</p>
 
 </div>
 
 <h3 id="begin-to-write-in-your-script">Begin to write in your script</h3>
 <p>For now, start by recording who is writing, the date, and the main goal - in our case, determining how many species from different taxa have been recorded in Edinburgh. Here’s an example, which you can copy, paste and edit into your new script:</p>
 
-<p><a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code01">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="c1"># Coding Club Workshop 1 - R Basics</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Coding Club Workshop 1 - R Basics</span><span class="w">
 </span><span class="c1"># Learning how to import and explore data, and make graphs about Edinburgh's biodiversity</span><span class="w">
 </span><span class="c1"># Written by Gergana Daskalova 06/11/2016 University of Edinburgh</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
-<p>The next few lines of code usually load the packages you will be needing for your analysis. A <b>package</b> is a bundle of commands that can be loaded into R to provide extra functionality. For example, you might load a package for formatting data, or for making maps. (Or for making graphs with <a href="https://github.com/Gibbsdavidl/CatterPlots" target="_blank" rel="noopener noreferrer">cats on them</a>, or whatever floats your boat… As we said before, there’s virtually nothing you cannot do!)</p>
+<p>The next few lines of code usually load the packages you will be needing for your analysis. A <strong>package</strong> is a bundle of commands that can be loaded into R to provide extra functionality. For example, you might load a package for formatting data, or for making maps. (Or for making graphs with <a href="https://github.com/Gibbsdavidl/CatterPlots" target="_blank" rel="noopener noreferrer">cats on them</a>, or whatever floats your boat… As we said before, there’s virtually nothing you cannot do!)</p>
 
 <p>To install a package, type <code class="language-plaintext highlighter-rouge">install.packages("package-name")</code>. You only need to install packages once, so in this case you can type directly in the console box, rather than saving the line in your script and re-installing the package every time.</p>
 
-<p>Once installed, you just need to load the packages using <code class="language-plaintext highlighter-rouge">library(package-name)</code>. Today we will be using the <a href="https://cran.r-project.org/web/packages/dplyr/index.html" target="_blank" rel="noopener noreferrer"> <code class="language-plaintext highlighter-rouge">dplyr</code> package</a> to provide extra commands for formatting and manipulating data. (You will learn more about the powerful features of <code class="language-plaintext highlighter-rouge">dplyr</code>in <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer"> a later tutorial.</a>)</p>
+<p>Once installed, you just need to load the packages using <code class="language-plaintext highlighter-rouge">library(package-name)</code>. Today we will be using the <a href="https://cran.r-project.org/web/packages/dplyr/index.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">dplyr</code> package</a> to provide extra commands for formatting and manipulating data. (You will learn more about the powerful features of <code class="language-plaintext highlighter-rouge">dplyr</code>in <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">a later tutorial</a>).</p>
 
-<p>The next lines of code should define your <b>working directory</b>. This is a folder on your computer where R will look for data, save your plots, etc. To make your workflow easier, it is good practice to save everything related to one project in the same place, as it will save you a lot of time typing up computer paths or hunting for files that got saved R-knows-where. For instance, you could save your script and all the data for this tutorial in a folder called “Intro_to_R”. (It is good practice to avoid spaces in file names as it can sometimes confuse R.) For bigger projects, consider having a root folder with the name of the project (e.g. “My_PhD”) as your working directory, and other folders nested within to separate data, scripts, images, etc. (e.g. My_PhD/Chapter_1/data, My_PhD/Chapter_1/plots, My_PhD/Chapter_2/data, etc.)</p>
+<p>The next lines of code should define your <strong>working directory</strong>. This is a folder on your computer where R will look for data, save your plots, etc. To make your workflow easier, it is good practice to save everything related to one project in the same place, as it will save you a lot of time typing up computer paths or hunting for files that got saved R-knows-where. For instance, you could save your script and all the data for this tutorial in a folder called “Intro_to_R”. (It is good practice to avoid spaces in file names as it can sometimes confuse R.) For bigger projects, consider having a root folder with the name of the project (e.g. “My_PhD”) as your working directory, and other folders nested within to separate data, scripts, images, etc. (e.g. My_PhD/Chapter_1/data, My_PhD/Chapter_1/plots, My_PhD/Chapter_2/data, etc.)</p>
 
 <p>To find out where your working directory is now, run the code <code class="language-plaintext highlighter-rouge">getwd()</code>. If you want to change it, you can use <code class="language-plaintext highlighter-rouge">setwd()</code>. Set your working directory to the folder you just downloaded from GitHub:</p>
 
-<p><a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code02">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Note that there are quotation marks when installing a package, but not when loading it</span><span class="w">
 </span><span class="c1"># and remember that hashtags let you add useful notes to your code! </span><span class="w">
 
 </span><span class="n">setwd</span><span class="p">(</span><span class="s2">"C:/User/CC-1-RBasics-master"</span><span class="p">)</span><span class="w">
 </span><span class="c1"># This is an example filepath, alter to your own filepath</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
-<p><b>Watch out!<b></b> Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (<code class="language-plaintext highlighter-rouge">"C:\folder\data"</code>), but the filepath you enter into R should use <b>forward slashes<b></b> (<code class="language-plaintext highlighter-rouge">"C:/folder/data"</code>).</b></b></p>
+<p><strong>Watch out!</strong> Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (<code class="language-plaintext highlighter-rouge">"C:\folder\data"</code>), but the filepath you enter into R should use <strong>forward slashes</strong> (<code class="language-plaintext highlighter-rouge">"C:/folder/data"</code>).</p>
 
-<p><a name="import"></a></p>
-
-<h3 id="2-import-and-check-data-1">2. Import and check data</h3>
+<h3 id="import">2. Import and check data</h3>
 
 <p>Practice is the best way to learn any new language, so let’s jump straight in and do some of our own statistical analysis using a publicly available dataset of occurrence records for many animal, plant and fungi species. We downloaded the records for 2000-2016 (from the <a href="https://data.nbn.org.uk/" target="_blank" rel="noopener noreferrer"> NBN Gateway </a>) and saved them as <code class="language-plaintext highlighter-rouge">edidiv.csv</code>. First, you will need to download the data.</p>
 
 <h3 id="you-can-find-all-the-files-needed-to-complete-this-tutorial-in-this-github-repository">You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</h3>
 
-<p><b>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</b></p>
+<p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
 
-<center><img src="https://i.imgur.com/hfawsYe.png" style="width: 960px;"></center>
+<p><img src="https://i.imgur.com/hfawsYe.png" alt=""></p>
 
-<p>Now that you have the data saved on your computer, let’s import it! In RStudio, you can either click on the <i>Import dataset</i> button and navigate to where you have saved your file, or use the <code class="language-plaintext highlighter-rouge">read.csv()</code> command. If you use the button, a window will pop up previewing your data. Make sure that next to <em>Heading</em> you have selected <em>Yes</em> (this tells R to treat the first row of your data as the column names) and click <i>Import</i>. In the console, you will see the code for your import, which includes the file path - it’s a good idea to copy this code into your script, so that for future reference you know where your dataset came from.</p>
+<p>Now that you have the data saved on your computer, let’s import it! In RStudio, you can either click on the <em>Import dataset</em> button and navigate to where you have saved your file, or use the <code class="language-plaintext highlighter-rouge">read.csv()</code> command. If you use the button, a window will pop up previewing your data. Make sure that next to <em>Heading</em> you have selected <em>Yes</em> (this tells R to treat the first row of your data as the column names) and click <em>Import</em>. In the console, you will see the code for your import, which includes the file path - it’s a good idea to copy this code into your script, so that for future reference you know where your dataset came from.</p>
 
-<center><img src="https://i.imgur.com/1htdMJy.png" alt="Img" style="width: 960px;"></center>
+<p><img src="https://i.imgur.com/1htdMJy.png" alt=""></p>
 
-<p>R works best with <code class="language-plaintext highlighter-rouge">.csv</code> (comma separated values) files. If you entered your data in Excel, you would need to click on <i>Save as</i> and select <code class="language-plaintext highlighter-rouge">csv</code> as the file extension. When entering data in Excel, don’t put any spaces in your row names, as they will confuse R later (e.g. go for something like <code class="language-plaintext highlighter-rouge">height_meters</code> rather than <code class="language-plaintext highlighter-rouge">height (m)</code>. Some computers save <code class="language-plaintext highlighter-rouge">.csv</code> files with semicolons <code class="language-plaintext highlighter-rouge">;</code>, not commas <code class="language-plaintext highlighter-rouge">,</code> as the separators. This usually happens when English is not the first or only language on your computer. If your files are separated by semicolons, use <code class="language-plaintext highlighter-rouge">read.csv2</code> instead of <code class="language-plaintext highlighter-rouge">read.csv</code>, or alternatively use the argument “sep” (for separator) in the <code class="language-plaintext highlighter-rouge">read.csv</code>function: <code class="language-plaintext highlighter-rouge">r.csv("your-file-path", sep = ";")</code>.</p>
+<p>R works best with <code class="language-plaintext highlighter-rouge">.csv</code> (comma separated values) files. If you entered your data in Excel, you would need to click on <em>Save as</em> and select <code class="language-plaintext highlighter-rouge">csv</code> as the file extension. When entering data in Excel, don’t put any spaces in your row names, as they will confuse R later (e.g. go for something like <code class="language-plaintext highlighter-rouge">height_meters</code> rather than <code class="language-plaintext highlighter-rouge">height (m)</code>. Some computers save <code class="language-plaintext highlighter-rouge">.csv</code> files with semicolons <code class="language-plaintext highlighter-rouge">;</code>, not commas <code class="language-plaintext highlighter-rouge">,</code> as the separators. This usually happens when English is not the first or only language on your computer. If your files are separated by semicolons, use <code class="language-plaintext highlighter-rouge">read.csv2</code> instead of <code class="language-plaintext highlighter-rouge">read.csv</code>, or alternatively use the argument “sep” (for separator) in the <code class="language-plaintext highlighter-rouge">read.csv</code>function: <code class="language-plaintext highlighter-rouge">r.csv("your-file-path", sep = ";")</code>.</p>
 
-<p><a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code03">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">edidiv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"C:/Users/user/Desktop/Intro_to_R/edidiv.csv"</span><span class="p">)</span><span class="w">  </span><span class="c1"># This is the file path based on where I saved the data, your filepath will be different</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">edidiv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"C:/Users/user/Desktop/Intro_to_R/edidiv.csv"</span><span class="p">)</span><span class="w">  </span><span class="c1"># This is the file path based on where I saved the data, your filepath will be different</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Remember to save your script once in a while! If you haven’t saved it already, why not save it in the same directory as the rest of the tutorial file, and give it a meaningful name.</p>
 
-<div class="bs-callout-blue">
+<div class="callout" style="">
 
-  <p><strong>A note about objects</strong>: R is an object-based language - this means that the data you import, and any values you create later, are stored in objects that you name. The arrow <code class="language-plaintext highlighter-rouge">&lt;-</code> in the code above is how you assign objects. Here, we assigned our csv file to the object <code class="language-plaintext highlighter-rouge">edidiv</code>. We could just as easily have called it <code class="language-plaintext highlighter-rouge">mydata</code> or <code class="language-plaintext highlighter-rouge">hello</code> or <code class="language-plaintext highlighter-rouge">biodiversity_recorded_around_Edinburgh_Scotland</code>, but it’s best to choose a unique, informative, and short name. In the top right window of RStudio, you can see the names of any objects currently loaded into R. See your <code class="language-plaintext highlighter-rouge">edidiv</code> object?
-<br>
-When you import your data into R, it will most likely become an object called a data frame. A data frame is like a table, or spreadsheet - it has rows and columns with the different variables and observations you have loaded. But more on that later!</p>
+  <p><strong>A note about objects</strong>: R is an object-based language - this means that the data you import, and any values you create later, are stored in objects that you name. The arrow <code class="language-plaintext highlighter-rouge">&lt;-</code> in the code above is how you assign objects. Here, we assigned our csv file to the object <code class="language-plaintext highlighter-rouge">edidiv</code>. We could just as easily have called it <code class="language-plaintext highlighter-rouge">mydata</code> or <code class="language-plaintext highlighter-rouge">hello</code> or <code class="language-plaintext highlighter-rouge">biodiversity_recorded_around_Edinburgh_Scotland</code>, but it’s best to choose a unique, informative, and short name. In the top right window of RStudio, you can see the names of any objects currently loaded into R. See your <code class="language-plaintext highlighter-rouge">edidiv</code> object?</p>
+
+  <p>When you import your data into R, it will most likely become an object called a data frame. A data frame is like a table, or spreadsheet - it has rows and columns with the different variables and observations you have loaded. But more on that later!</p>
 
 </div>
 
 <p>A really important step is to check that your data was imported without any mistakes. It’s good practice to always run this code and check the output in the console - do you see any missing values, do the numbers/names make sense? If you go straight into analysis, you risk later finding out that R didn’t read your data correctly and having to re-do it, or worse, analysing wrong data without noticing. To preview more than just the few first lines, you can also click on the object in your Environment panel, and it will show up as a spreadsheet in a new tab next to your open script. Large files may not display entirely, so keep in mind you could be missing rows or columns.</p>
 
-<p><a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code04">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">                </span><span class="c1"># Displays the first few rows</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">                </span><span class="c1"># Displays the first few rows</span><span class="w">
 </span><span class="n">tail</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">                </span><span class="c1"># Displays the last rows</span><span class="w">
 </span><span class="n">str</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">                 </span><span class="c1"># Tells you whether the variables are continuous, integers, categorical or characters</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">str(object.name)</code> is a great command that shows the structure of your data. So often, analyses in R go wrong because R decides that a variable is a certain type of data that it is not. For instance, you might have four study groups that you simply called “1, 2, 3, 4”, and while <strong>you</strong> know that it should be a categorical grouping variable (i.e. a <strong>factor</strong>), R might decide that this column contains <strong>numeric</strong> (numbers) or <strong>integer</strong> (whole number) data. If your study groups were called “one, two, three, four”, R might decide it’s a <strong>character</strong> variable (words or strings of words), which will not get you far if you want to compare means among groups. Bottom line: always check your data structure!</p>
 
 <p>You’ll notice the <code class="language-plaintext highlighter-rouge">taxonGroup</code> variable shows as a character variable, but it should be a factor (categorical variable), so we’ll force it to be one. When you want to access just one column of a data frame, you append the variable name to the object name with a dollar <code class="language-plaintext highlighter-rouge">$</code>sign. This syntax lets you see, modify, and/or reassign this variable.</p>
 
-<p><a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code05">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">     </span><span class="c1"># Displays the first few rows of this column only</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">     </span><span class="c1"># Displays the first few rows of this column only</span><span class="w">
 </span><span class="nf">class</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">    </span><span class="c1"># Tells you what type of variable we're dealing with: it's character now but we want it to be a factor</span><span class="w">
 
 </span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">     </span><span class="c1"># What are we doing here?!</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p>In that last line of code, the <code class="language-plaintext highlighter-rouge">as.factor()</code> function turns whatever values you put inside into a factor (here, we specified we wanted to transform the character values in the <code class="language-plaintext highlighter-rouge">taxonGroup</code> column from the <code class="language-plaintext highlighter-rouge">edidiv</code> object). However, if you were to run just the bit of code on the <em>right side</em> of the arrow, it would work that one time, but would not modify the data stored <em>in</em> the object. By <em>assigning</em> with the arrow the output of the function to the variable, the original <code class="language-plaintext highlighter-rouge">edidiv$taxonGroup</code> in fact gets <em>overwritten</em> : the transformation is stored in the object. Try again to run <code class="language-plaintext highlighter-rouge">class(edidiv$taxonGroup)</code> - what do you notice?</p>
 
-<p><a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code06">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="c1"># More exploration</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># More exploration</span><span class="w">
 </span><span class="nf">dim</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">                 </span><span class="c1"># Displays number of rows and columns</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">edidiv</span><span class="p">)</span><span class="w">             </span><span class="c1"># Gives you a summary of the data</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">  </span><span class="c1"># Gives you a summary of that particular variable (column) in your dataset</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
-<p><a name="richness"></a></p>
-
-<h3 id="3-calculate-species-richness-1">3. Calculate species richness</h3>
+<h3 id="richness">3. Calculate species richness</h3>
 
 <p><strong>Our <code class="language-plaintext highlighter-rouge">edidiv</code> object has occurrence records of various species collected in Edinburgh from 2000 to 2016. To explore Edinburgh’s biodiversity, we will create a graph showing how many species were recorded in each taxonomic group.</strong> You could calculate species richness in Excel, but that has several disadvantages, especially when working with large datasets like ours - you have no record of what you clicked on, how you sorted the data and what you copied/deleted - mistakes can slip by without you noticing. In R, on the other hand, you have your script, so you can go back and check all the steps in your analysis.</p>
 
 <p>Species richness is simply the total number of different species in a given place or group. To know how many bird, plant, mammal, etc. species we have in Edinburgh, we first need to split <code class="language-plaintext highlighter-rouge">edidiv</code> into multiple objects, each containing rows for only one taxonomic group. We do this with the useful <code class="language-plaintext highlighter-rouge">filter()</code>function from the <code class="language-plaintext highlighter-rouge">dplyr</code>package.</p>
 
-<p><a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code07">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">Beetle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">edidiv</span><span class="p">,</span><span class="w"> </span><span class="n">taxonGroup</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Beetle"</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Beetle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">edidiv</span><span class="p">,</span><span class="w"> </span><span class="n">taxonGroup</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Beetle"</span><span class="p">)</span><span class="w">
 </span><span class="c1"># The first argument of the function is the data frame, the second argument is the condition you want to filter on. Because we only want the beetles here, we say: the variable taxonGroup MUST BE EXACTLY (==) Beetle - drop everything else from the dataset. (R is case-sensitive so it's important to watch your spelling! "beetle" or "Beetles" would not have worked here.)</span><span class="w">
 
 </span><span class="n">Bird</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">edidiv</span><span class="p">,</span><span class="w"> </span><span class="n">taxonGroup</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bird"</span><span class="p">)</span><span class="w">   </span><span class="c1"># We do the same with birds. It's very similar to filtering in Excel if you are used to it.</span><span class="w">
 </span><span class="c1"># You can create the objects for the remaining taxa. If you need to remind yourself of the names and spellings, type summary(edidiv$taxonGroup)</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p><strong>You need to do these steps for ALL of the taxa in the data, here we have given examples for the first two.</strong> If you see an error saying <code class="language-plaintext highlighter-rouge">R</code> can’t find the object <code class="language-plaintext highlighter-rouge">Beetle</code> or similar, chances are you either haven’t installed and/or loaded the <code class="language-plaintext highlighter-rouge">dplyr</code> package. Go back and install it using <code class="language-plaintext highlighter-rouge">install.packages("dplyr")</code> and then load it using <code class="language-plaintext highlighter-rouge">library(dplyr)</code>.</p>
 
 <p>Once you have created objects for each taxon, we can calculate species richness, i.e. the number of <em>different</em> species in each group. For this, we will nest two functions together: <code class="language-plaintext highlighter-rouge">unique()</code>, which identifies different species, and <code class="language-plaintext highlighter-rouge">length()</code>, which counts them. You can try them separately in the console and see what they return!</p>
 
-<p><a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code08">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">Beetle</span><span class="o">$</span><span class="n">taxonName</span><span class="p">))</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">Beetle</span><span class="o">$</span><span class="n">taxonName</span><span class="p">))</span><span class="w">
 </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">Bird</span><span class="o">$</span><span class="n">taxonName</span><span class="p">))</span><span class="w">
 </span><span class="c1"># You can choose whatever names you want for your objects, here I used a, b, c, d... for the sake of brevity.</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p>If you type <code class="language-plaintext highlighter-rouge">a</code> (or however you named your count variables) in the console, what does it return? What does it mean? It should represent the number of distinct beetle species in the record.</p>
 
 <p><strong>Again, calculate species richness for the other taxa in the dataset.</strong> You’re probably noticing this is quite repetitive and using a lot of copying and pasting! That’s not particularly efficient - in <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">future tutorials</a> we will learn how to use more of <code class="language-plaintext highlighter-rouge">dplyr</code>’s functions and achieve the same result with way less code! You will be able to do everything you just did in ONE line (promise!).</p>
 
-<p><a name="vector"></a></p>
-
-<h3 id="4-create-a-vector-and-plot-it-1">4. Create a vector and plot it</h3>
+<h3 id="vector">4. Create a vector and plot it</h3>
 
 <p>Now that we have species richness for each taxon, we can combine all those values in a <strong>vector</strong>. A vector is another type of R object that stores values. As opposed to a data frame, which has two dimensions (rows and columns), a vector only has one. When you call a column of a data frame like we did earlier with <code class="language-plaintext highlighter-rouge">edidiv$taxonGroup</code>, you are essentially producing a vector - but you can also create them from scratch.</p>
 
 <p>We do this using the <code class="language-plaintext highlighter-rouge">c()</code> function (c stands for concatenate, or chain if that makes it easier to remember). We can also add labels with the <code class="language-plaintext highlighter-rouge">names()</code>function, so that the values are not coming out of the blue.</p>
 
-<p><a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code09">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">biodiv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="w">     </span><span class="c1"># We are chaining together all the values; pay attention to the object names you have calculated and their order</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">biodiv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="w">     </span><span class="c1"># We are chaining together all the values; pay attention to the object names you have calculated and their order</span><span class="w">
 </span><span class="nf">names</span><span class="p">(</span><span class="n">biodiv</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Beetle"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"Bird"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"Butterfly"</span><span class="p">,</span><span class="w">
@@ -353,8 +297,7 @@ When you import your data into R, it will most likely become an object called a 
                    </span><span class="s2">"Liverwort"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"Mammal"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"Mollusc"</span><span class="p">)</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p>Notice:</p>
 
@@ -367,51 +310,37 @@ When you import your data into R, it will most likely become an object called a 
 
 <p><strong>We can now visualise species richness with the <code class="language-plaintext highlighter-rouge">barplot()</code> function.</strong> Plots appear in the bottom right window in RStudio.</p>
 
-<p><a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code10">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">barplot</span><span class="p">(</span><span class="n">biodiv</span><span class="p">)</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">barplot</span><span class="p">(</span><span class="n">biodiv</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Ta-daaaa! But there are a few things not quite right that we should fix - there are no axis titles, not all column labels are visible, and the value for plant species (n = 521) exceeds the highest value on the y axis, so we need to extend it. The great thing about R is that you don’t need to come up with all the code on your own - you can use the <code class="language-plaintext highlighter-rouge">help()</code> function and see what arguments you need to add in. Look through the help output, what code do you need to add in?</p>
 
-<p><a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code11">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="n">barplot</span><span class="p">)</span><span class="w">     </span><span class="c1"># For help with the barplot() function</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="n">barplot</span><span class="p">)</span><span class="w">     </span><span class="c1"># For help with the barplot() function</span><span class="w">
 </span><span class="n">help</span><span class="p">(</span><span class="n">par</span><span class="p">)</span><span class="w">         </span><span class="c1"># For help with plotting in general</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
-<p>We also want to save our plot. To do this, click <i>Export</i> in the Plots window. If you don’t change the directory, the file will be saved in your working directory. You can adjust the dimensions to get the bar chart to look how you like it, and you should also add in a meaningful file name - <code class="language-plaintext highlighter-rouge">Rplot01.png</code> won’t be helpful when you try to find the file later.</p>
+<p>We also want to save our plot. To do this, click <em>Export</em> in the Plots window. If you don’t change the directory, the file will be saved in your working directory. You can adjust the dimensions to get the bar chart to look how you like it, and you should also add in a meaningful file name - <code class="language-plaintext highlighter-rouge">Rplot01.png</code> won’t be helpful when you try to find the file later.</p>
 
-<center><img src="https://i.imgur.com/NHQRlHq.png" alt="Img" style="width: 800px;"></center>
+<p><img src="https://i.imgur.com/NHQRlHq.png" alt=""></p>
 
 <p>You can also save your file by wrapping the code in the <code class="language-plaintext highlighter-rouge">png()</code> and <code class="language-plaintext highlighter-rouge">dev.off()</code> functions, which respectively open and shut down the plotting device.</p>
 
-<p><a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code12">
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s2">"barplot.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">1600</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">  </span><span class="c1"># look up the help for this function: you can customise the size and resolution of the image</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s2">"barplot.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">1600</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">  </span><span class="c1"># look up the help for this function: you can customise the size and resolution of the image</span><span class="w">
 </span><span class="n">barplot</span><span class="p">(</span><span class="n">biodiv</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s2">"Taxa"</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s2">"Number of species"</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">600</span><span class="p">),</span><span class="w"> </span><span class="n">cex.names</span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">cex.axis</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">cex.lab</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span><span class="w">
 </span><span class="n">dev.off</span><span class="p">()</span><span class="w">
 </span><span class="c1"># The cex code increases the font size when greater than one (and decreases it when less than one). </span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
-<center><img src="https://i.imgur.com/xxPfWa1.png" alt="Img" style="width: 950px;"></center>
-<p>Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</p>
+<figure class="image">
+  	<img src="/https://i.imgur.com/xxPfWa1.png" alt="">
+  <figcaption>Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</figcaption>
+</figure>
 
-<p><a name="df"></a></p>
-
-<h3 id="5-create-a-data-frame-and-plot-it-1">5. Create a data frame and plot it</h3>
+<h3 id="df">5. Create a data frame and plot it</h3>
 
 <p>In the last section we created vectors, i.e. a series of values, each with a label. This object type is suitable when dealing with just one set of values. Often, however, you will have more than one variable and have multiple data types - e.g. some continuous, some categorical. In those cases, we use data frame objects. <strong>Data frames are tables of values: they have a two-dimensional structure with rows and columns, where each column can have a different data type.</strong> For instance, a column called “Wingspan” would have numeric values measured on different birds (21.3, 182.1, 25.1, 8.9), and a column “Species” would have character values of with the names of the species (“House sparrow”, “Golden eagle”, “Eurasian kingfisher”, “Ruby-throated hummingbird”) Another possible data format is a matrix - a matrix can have several rows of data as well (e.g. you can combine vectors into a matrix), but the variables must be all of the same type. For instance they are all numerical and are the same length in terms of the number of rows.</p>
 
-<div class="bs-callout-blue">
+<div class="callout" style="">
 
   <p><strong>A note on good housekeeping</strong>:
 ALWAYS keep a copy of your raw data as you first collected it. The beauty of manipulating a file in an R script is that the modifications live <em>on the script</em>, not in the data. For Photoshop-savvy people, it’s like adding layers to an image: you’re not altering the original photo, just creating new things on top of it. That said, if you wrote a long piece of code to tidy up a large dataset and get it ready to analyse, you may not want to re-run the whole script every time you need to access the clean data. It’s therefore a good idea to save your shiny new object as a <em>new</em> csv file that you can load, ready-to-go, with just one command. We will now create a data frame with our species richness data, and then save it using <code class="language-plaintext highlighter-rouge">write.csv()</code>.</p>
@@ -420,11 +349,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 <p>We will use the <code class="language-plaintext highlighter-rouge">data.frame()</code> function, but first we will create an object that contains the names of all the taxa (one column) and another object with all the values for the species richness of each taxon (another column).</p>
 
-<p><a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code13">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="c1"># Creating an object called "taxa" that contains all the taxa names</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating an object called "taxa" that contains all the taxa names</span><span class="w">
 </span><span class="n">taxa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Beetle"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"Bird"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"Butterfly"</span><span class="p">,</span><span class="w">
@@ -447,16 +372,11 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 </span><span class="c1"># Saving the file</span><span class="w">
 </span><span class="n">write.csv</span><span class="p">(</span><span class="n">biodata</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="s2">"biodata.csv"</span><span class="p">)</span><span class="w">  </span><span class="c1"># it will be saved in your working directory</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p>If we want to create and save a barplot using the data frame, we need to slightly change the code - because data frames can contain multiple variables, we need to tell R exactly which one we want it to plot. Like before, we can specify columns from a data frame using <code class="language-plaintext highlighter-rouge">$</code>:</p>
 
-<p><a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br></p>
-<section id="code14">
-
-  <div class="language-r highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s2">"barplot2.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">1600</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s2">"barplot2.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">1600</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
 </span><span class="n">barplot</span><span class="p">(</span><span class="n">biodata</span><span class="o">$</span><span class="n">richness</span><span class="p">,</span><span class="w"> </span><span class="n">names.arg</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"Beetle"</span><span class="p">,</span><span class="w">
                                       </span><span class="s2">"Bird"</span><span class="p">,</span><span class="w">
                                       </span><span class="s2">"Butterfly"</span><span class="p">,</span><span class="w">
@@ -470,27 +390,23 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
                                       </span><span class="s2">"Mollusc"</span><span class="p">),</span><span class="w">
         </span><span class="n">xlab</span><span class="o">=</span><span class="s2">"Taxa"</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s2">"Number of species"</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">600</span><span class="p">))</span><span class="w">
 </span><span class="n">dev.off</span><span class="p">()</span><span class="w">
-</span></code></pre></div>  </div>
-</section>
+</span></code></pre></div></div>
 
 <p>In this tutorial, we found out how many species from a range of taxa have been recorded in Edinburgh. We hope you enjoyed your introduction to R and RStudio - the best is yet to come! Keen to make more graphs? Check out our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">Data Visualisation tutorial!</a></p>
 
-<p>For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank" rel="noopener noreferrer">Troubleshooting and how to find help online</a>. Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">tidyr and dplyr tutorial!</a></p>
+<p>For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank" rel="noopener noreferrer">troubleshooting and how to find help online</a>. Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">tidyr and dplyr tutorial</a>.</p>
 
 <h3 id="tutorial-outcomes">Tutorial outcomes:</h3>
 
-<h4 id="1-you-are-familiar-with-the-rstudio-interface">1. You are familiar with the RStudio interface</h4>
+<ol>
+  <li>You are familiar with the RStudio interface</li>
+  <li>You can create and annotate a script file</li>
+  <li>You can import your own datasets into RStudio</li>
+  <li>You can check and explore data</li>
+  <li>You can make simple figures</li>
+</ol>
 
-<h4 id="2-you-can-create-and-annotate-a-script-file">2. You can create and annotate a script file</h4>
-
-<h4 id="3-you-can-import-your-own-datasets-into-rstudio">3. You can import your own datasets into RStudio</h4>
-
-<h4 id="4-you-can-check-and-explore-data">4. You can check and explore data</h4>
-
-<h4 id="5-you-can-make-simple-figures">5. You can make simple figures</h4>
-
-<p><a name="challenge"></a></p>
-<h3 id="challenge-yourself">Challenge yourself!</h3>
+<h3 id="challenge">Challenge yourself!</h3>
 
 <p>Still with us? Well done! If you’re completely new to R, don’t worry if you don’t grasp quite everything just yet. Go over the sections you found difficult with a fresh eye later, or check our resources to get up to speed with certain concepts.</p>
 
@@ -568,14 +484,11 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 <p>Don’t peek until you’ve tried! Here we suggest a solution; note that yours could be different and also work! The object names and the look of your plot will probably be different and that’s totally ok - as long as the values themselves are correct.</p>
 
-<details>
-   <summary> Ready? Click this line to view the solution </summary>
-   
-    <summary>
+<p><button class="reveal" onclick="reveal()">Ready? Click this line to view the solution</button></p>
 
-    <p>You could do something like this:</p>
+<div class="reveal-container" id="reveal-container">
 
-    <div class="language-r highlighter-rouge">
+  <div class="language-r highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="c1"># Calculate the mean wingspan for each bird species. The function to do that is simply: mean()</span><span class="w">
 </span><span class="n">sparrow</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">21</span><span class="p">)</span><span class="w">
 </span><span class="n">kingfisher</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="m">26</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">)</span><span class="w">
@@ -586,8 +499,8 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 </span><span class="n">wingspan</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">sparrow</span><span class="p">,</span><span class="w"> </span><span class="n">kingfisher</span><span class="p">,</span><span class="w"> </span><span class="n">eagle</span><span class="p">,</span><span class="w"> </span><span class="n">hummingbird</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Create a bird species vector (careful to match the order of the previous vector!)</span><span class="w">
-</span><span class="n">bird_sp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"sparrow"</span><span class="p">,</span><span class="w"> </span><span class="s2">"kingfisher"</span><span class="p">,</span><span class="w"> </span><span class="s2">"eagle"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hummingbird"</span><span class="p">)</span><span class="w">
-</span><span class="c1"># notice how we put quotation marks around the names. It's because we're creating (character) values; writing sparrow without the "" would call the object we created in the code above, which would return the value 22!</span><span class="w">
+</span><span class="n">bird_sp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'sparrow'</span><span class="p">,</span><span class="w"> </span><span class="s1">'kingfisher'</span><span class="p">,</span><span class="w"> </span><span class="s1">'eagle'</span><span class="p">,</span><span class="w"> </span><span class="s1">'hummingbird'</span><span class="p">)</span><span class="w">
+</span><span class="c1"># notice how we put quotation marks around the names. It's because we're creating (character) values; writing sparrow without the '' would call the object we created in the code above, which would return the value 22!</span><span class="w">
 
 </span><span class="c1"># Bird species is currently in character form, but it should be a factor. Let's fix that:</span><span class="w">
 </span><span class="c1"># (To be honest it does not make any difference to the output here, but it would for some other types of plot. Take good habits early!)</span><span class="w">
@@ -601,453 +514,71 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 </span><span class="c1"># Plot the bar plot &amp; save it to file</span><span class="w">
 
-</span><span class="n">png</span><span class="p">(</span><span class="s2">"wingspan_plot.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
+</span><span class="n">png</span><span class="p">(</span><span class="s1">'wingspan_plot.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
 </span><span class="n">barplot</span><span class="p">(</span><span class="n">wings</span><span class="o">$</span><span class="n">wingspan</span><span class="p">,</span><span class="w"> </span><span class="n">names.arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wings</span><span class="o">$</span><span class="n">bird_sp</span><span class="p">,</span><span class="w">    </span><span class="c1"># notice how we call the bird_sp column instead of typing all the names</span><span class="w">
-        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Bird species"</span><span class="p">,</span><span class="w"> 
-        </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Average wingspan (cm)"</span><span class="p">,</span><span class="w">               </span><span class="c1"># adding axis titles</span><span class="w">
+        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Bird species'</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Average wingspan (cm)'</span><span class="p">,</span><span class="w">               </span><span class="c1"># adding axis titles</span><span class="w">
         </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w">                             </span><span class="c1"># setting the limits of the y axis to fit the eagle</span><span class="w">
-        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gold"</span><span class="w">                                  </span><span class="c1"># changing the colour because why not!</span><span class="w">
+        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'gold'</span><span class="w">                                  </span><span class="c1"># changing the colour because why not!</span><span class="w">
         </span><span class="p">)</span><span class="w">
 </span><span class="n">dev.off</span><span class="p">()</span><span class="w">
 
-</span></code></pre></div>    </div>
+</span></code></pre></div>  </div>
 
-    <p>And the final plot would look something like this:</p>
+</div>
 
-    <center> <img src="/img/intro_challenge_wingspan.jpeg" alt="Img" style="width: 600px;"> </center>
-
-  </summary>
-   
-   
- </details>
-
-<p><a name="glossary"></a></p>
 <h3 id="glossary">Glossary:</h3>
 
-<p>To recap, here are a few important terms we learned in this lesson:</p>
-<div class="bs-callout-yellow">
+<div class="callout" style="">
 
-  <h5 id="argument-an-element-of-a-function-either-essential-or-optional-that-informs-or-alters-how-the-function-works-for-instance-it-can-be-a-file-path-where-the-function-should-import-from-or-save-to-file--file-path-it-can-modify-the-colours-in-a-plot-col--blue-you-can-always-find-which-arguments-are-taken-by-a-function-by-typing-function-nameinto-the-command-line">
-<strong>argument</strong>: an element of a function, either essential or optional, that informs or alters how the function works. For instance, it can be a file path where the function should import from or save to: <code class="language-plaintext highlighter-rouge">file = "file-path"</code>. It can modify the colours in a plot: <code class="language-plaintext highlighter-rouge">col = "blue"</code>. You can always find which arguments are taken by a function by typing <code class="language-plaintext highlighter-rouge">?function-name</code>into the command line.</h5>
+  <p>To recap, here are a few important terms we learned in this lesson:</p>
 
-  <h5 id="class-the-type-of-data-contained-in-a-variable-usually-character-textwords-numeric-numbers-integer-whole-numbers-or-factor-grouping-values-useful-when-you-have-multiple-observations-for-sites-or-treatments-in-your-data">
-<strong>class</strong>: the type of data contained in a variable: usually character (text/words), numeric (numbers), integer (whole numbers), or factor (grouping values, useful when you have multiple observations for sites or treatments in your data).</h5>
-
-  <h5 id="command-a-chunk-of-code-that-performs-an-action-typically-contains-one-or-more-functions-you-run-a-command-by-pressing-run-or-using-a-keyboard-shortcut-like-cmdenter-ctrlenter-or-ctrlr">
-<strong>command</strong>: a chunk of code that performs an action, typically contains one or more functions. You run a command by pressing “Run” or using a keyboard shortcut like <code class="language-plaintext highlighter-rouge">Cmd+Enter</code>, <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code> or <code class="language-plaintext highlighter-rouge">Ctrl+R</code>
-</h5>
-
-  <h5 id="comment-a-bit-of-text-in-a-script-that-starts-with-a-hashtag--and-isnt-read-as-a-command-comments-make-your-code-readable-to-other-people-use-them-to-create-sections-in-your-script-and-to-annotate-each-step-of-your-analysis">
-<strong>comment</strong>: a bit of text in a script that starts with a hashtag <code class="language-plaintext highlighter-rouge">#</code> and isn’t read as a command. Comments make your code readable to other people: use them to create sections in your script and to annotate each step of your analysis</h5>
-
-  <h5 id="console-the-window-where-you-can-type-code-directly-in-the-command-line-22-followed-by-enter-will-return-4-and-where-the-outputs-of-commands-you-run-will-show">
-<strong>console</strong>: the window where you can type code directly in the command line (<code class="language-plaintext highlighter-rouge">2+2</code> followed by <code class="language-plaintext highlighter-rouge">Enter</code> will return <code class="language-plaintext highlighter-rouge">4</code>), and where the outputs of commands you run will show.</h5>
-
-  <h5 id="data-frame-a-type-of-r-object-which-consists-of-many-rows-and-columns-think-excel-spreadsheet-usually-the-columns-are-different-variables-eg-age-colour-weight-wingspan-and-rows-are-observations-of-these-variables-eg-for-bird1-bird2-bird3-">
-<strong>data frame</strong>: a type of R object which consists of many rows and columns; think Excel spreadsheet. Usually the columns are different variables (e.g. age, colour, weight, wingspan), and rows are observations of these variables (e.g. for bird1, bird2, bird3) .</h5>
-
-  <h5 id="csv-file-a-type-of-file-commonly-used-to-import-data-in-r-where-the-values-of-different-variables-are-compressed-together-a-string-or-line-of-values-per-row-and-separated-only-by-commas-indicating-columns-r-can-also-accept-excel-xlsx-files-but-we-do-not-recommend-it-as-formatting-errors-are-harder-to-avoid">
-<strong>csv file</strong>: a type of file commonly used to import data in R, where the values of different variables are compressed together (a string, or line of values per row) and separated only by commas (indicating columns). R can also accept Excel (.xlsx) files, but we do not recommend it as formatting errors are harder to avoid.</h5>
-
-  <h5 id="function-code-that-performs-an-action-and-really-how-you-do-anything-in-r-usually-takes-an-input-does-something-to-it-and-returns-an-output-an-object-a-test-result-a-file-a-plot-there-are-functions-for-importing-converting-and-manipulating-data-for-performing-specific-calculations-can-you-guess-what-min10155-and-max10155-would-return-making-graphs-and-more">
-<strong>function</strong>: code that performs an action, and really how you do anything in R. Usually takes an input, does something to it, and returns an output (an object, a test result, a file, a plot). There are functions for importing, converting, and manipulating data, for performing specific calculations (can you guess what <code class="language-plaintext highlighter-rouge">min(10,15,5)</code> and <code class="language-plaintext highlighter-rouge">max(10,15,5)</code> would return?), making graphs, and more.</h5>
-
-  <h5 id="object-the-building-blocks-of-r-if-r-was-a-spoken-language-functions-would-be-verbs-actions-and-objects-would-be-nouns-the-subjects-or-well-objects-of-these-actions-objects-are-called-by-typing-their-name-without-quotation-marks-objects-store-data-and-can-take-different-forms-the-most-common-objects-are-data-frames-and-vectors-but-there-are-many-more-such-as-lists-and-matrices">
-<strong>object</strong>: the building blocks of R. If R was a spoken language, functions would be verbs (actions) and objects would be nouns (the subjects or, well, objects of these actions!). Objects are called by typing their name <em>without</em> quotation marks. Objects store data, and can take different forms. The most common objects are data frames and vectors, but there are many more, such as lists and matrices.</h5>
-
-  <h5 id="package-a-bundle-of-functions-that-provide-functionality-to-r-many-packages-come-automatically-with-r-others-you-can-download-for-specific-needs">
-<strong>package</strong>: a bundle of functions that provide functionality to R. Many packages come automatically with R, others you can download for specific needs.</h5>
-
-  <h5 id="script-similar-to-a-text-editor-this-is-where-you-write-and-save-your-code-for-future-reference-it-contains-a-mix-of-code-and-comments-and-is-saved-as-a-simple-text-file-that-you-can-easily-share-so-that-anyone-can-reproduce-your-work">
-<strong>script</strong>: Similar to a text editor, this is where you write and save your code for future reference. It contains a mix of code and comments and is saved as a simple text file that you can easily share so that anyone can reproduce your work.</h5>
-
-  <h5 id="vector-a-type-of-r-object-with-one-dimension-it-stores-a-line-of-values-which-can-be-character-numeric-etc">
-<strong>vector</strong>: a type of R object with one dimension: it stores a line of values which can be character, numeric, etc.</h5>
-
-  <h5 id="working-directory-the-folder-on-your-computer-linked-to-your-current-r-session-where-you-import-data-from-and-save-files-to-you-set-it-at-the-beginning-of-your-session-with-the-setwd-function">
-<strong>working directory</strong>: the folder on your computer linked to your current R session, where you import data from and save files to. You set it at the beginning of your session with the <code class="language-plaintext highlighter-rouge">setwd()</code> function.</h5>
-
-  <h5 id="workspace-this-is-your-virtual-working-environment-which-contains-all-the-functions-of-the-packages-you-have-loaded-the-data-you-have-imported-the-objects-you-have-created-and-so-on-its-usually-best-to-start-a-work-session-with-a-clear-workspace">
-<strong>workspace</strong>: this is your virtual working environment, which contains all the functions of the packages you have loaded, the data you have imported, the objects you have created, and so on. It’s usually best to start a work session with a clear workspace.</h5>
+  <ul>
+    <li>
+<strong>argument</strong>: an element of a function, either essential or optional, that informs or alters how the function works. For instance, it can be a file path where the function should import from or save to: <code class="language-plaintext highlighter-rouge">file = 'file-path'</code>. It can modify the colours in a plot: <code class="language-plaintext highlighter-rouge">col = 'blue'</code>. You can always find which arguments are taken by a function by typing <code class="language-plaintext highlighter-rouge">?function-name</code>into the command line.</li>
+    <li>
+<strong>class</strong>: the type of data contained in a variable: usually character (text/words), numeric (numbers), integer (whole numbers), or factor (grouping values, useful when you have multiple observations for sites or treatments in your data).</li>
+    <li>
+<strong>command</strong>: a chunk of code that performs an action, typically contains one or more functions. You run a command by pressing ‘Run’ or using a keyboard shortcut like <code class="language-plaintext highlighter-rouge">Cmd+Enter</code>, <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code> or <code class="language-plaintext highlighter-rouge">Ctrl+R</code>
+</li>
+    <li>
+<strong>comment</strong>: a bit of text in a script that starts with a hashtag <code class="language-plaintext highlighter-rouge">#</code> and isn’t read as a command. Comments make your code readable to other people: use them to create sections in your script and to annotate each step of your analysis</li>
+    <li>
+<strong>console</strong>: the window where you can type code directly in the command line (<code class="language-plaintext highlighter-rouge">2+2</code> followed by <code class="language-plaintext highlighter-rouge">Enter</code> will return <code class="language-plaintext highlighter-rouge">4</code>), and where the outputs of commands you run will show.</li>
+    <li>
+<strong>data frame</strong>: a type of R object which consists of many rows and columns; think Excel spreadsheet. Usually the columns are different variables (e.g. age, colour, weight, wingspan), and rows are observations of these variables (e.g. for bird1, bird2, bird3) .</li>
+    <li>
+<strong>csv file</strong>: a type of file commonly used to import data in R, where the values of different variables are compressed together (a string, or line of values per row) and separated only by commas (indicating columns). R can also accept Excel (.xlsx) files, but we do not recommend it as formatting errors are harder to avoid.</li>
+    <li>
+<strong>function</strong>: code that performs an action, and really how you do anything in R. Usually takes an input, does something to it, and returns an output (an object, a test result, a file, a plot). There are functions for importing, converting, and manipulating data, for performing specific calculations (can you guess what <code class="language-plaintext highlighter-rouge">min(10,15,5)</code> and <code class="language-plaintext highlighter-rouge">max(10,15,5)</code> would return?), making graphs, and more.</li>
+    <li>
+<strong>object</strong>: the building blocks of R. If R was a spoken language, functions would be verbs (actions) and objects would be nouns (the subjects or, well, objects of these actions!). Objects are called by typing their name <em>without</em> quotation marks. Objects store data, and can take different forms. The most common objects are data frames and vectors, but there are many more, such as lists and matrices.</li>
+    <li>
+<strong>package</strong>: a bundle of functions that provide functionality to R. Many packages come automatically with R, others you can download for specific needs.</li>
+    <li>
+<strong>script</strong>: Similar to a text editor, this is where you write and save your code for future reference. It contains a mix of code and comments and is saved as a simple text file that you can easily share so that anyone can reproduce your work.</li>
+    <li>
+<strong>vector</strong>: a type of R object with one dimension: it stores a line of values which can be character, numeric, etc.</li>
+    <li>
+<strong>working directory</strong>: the folder on your computer linked to your current R session, where you import data from and save files to. You set it at the beginning of your session with the <code class="language-plaintext highlighter-rouge">setwd()</code> function.</li>
+    <li>
+<strong>workspace</strong>: this is your virtual working environment, which contains all the functions of the packages you have loaded, the data you have imported, the objects you have created, and so on. It’s usually best to start a work session with a clear workspace.</li>
+  </ul>
 
 </div>
-
-<hr>
-
-<hr>
-
-<p><strong>Check out <a href="https://ourcodingclub.github.io/workshop/" target="_blank" rel="noopener noreferrer">this page</a> to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you’d like to write a tutorial!</strong></p>
-
-<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a>. <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;"></a></p>
-
-<p><a href="https://www.surveymonkey.co.uk/r/6CQF3J7" target="_blank" rel="noopener noreferrer">  We would love to hear your feedback, please fill out our survey!</a>
-<br>
-  You can contact us with any questions at <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
-<br></p>
-<h3>  Related tutorials:</h3>
-
-<ul>
-  
-  
-</ul>
-<p><br></p>
-<h3>  Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type="text" class="form-control" name="Email" placeholder="Email" required="">
-			</div>
-			<div>
-                        	<button class="btn btn-default" type="submit">Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank" rel="noopener noreferrer"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
-		</h3>
-	</li>
-</ul>
 
 
 	<div class="survey">
 	<hr>
 	<hr>
 	
+		<h4><a href="" target="_blank">We would love to hear your feedback, please fill out our survey!</a></h4>
+	
 	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target="_top">ourcodingclub@gmail.com</a>
 </h4>
 	<br>
 	<h3>Related tutorials:</h3>
 	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-    				
-			
-    				
-			
-    				
-			
-		
-	
-		
-  			
-		
-	
-		
-  			
-    				
-			
 		
 	
 	<br>
@@ -1094,6 +625,8 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 <script src="/scripts/owl.carousel.js"></script>
 <script src="/scripts/owl.carousel-init.js"></script>
 <script src="/scripts/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script src="/scripts/codeselect.js"></script>
 
 
 	
