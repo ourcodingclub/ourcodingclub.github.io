@@ -14,14 +14,35 @@ author: Sandra
 #### 1. Get a script and button that copy and paste the code
 #### It works!
 
+
 <div class="row">
   <div class="col-md-3" markdown="1">
-  <img style="height:100px; width:auto;" class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png">
+  <img width="100" height="100" class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png">
   </div>
   <div class="col-md-9" markdown="1">
-  ### This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
+  <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
   </div>
 </div>
+
+<div class="bs-callout-dark" markdown="1">
+ <div class="col-md-3" markdown="1">
+  <img width="100" height="100" class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png">
+  </div>
+  <div class="col-md-9" markdown="1">
+  <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
+  </div>
+</div>
+
+
+<div class="bs-callout-white" markdown="1">
+ <div class="col-md-3" markdown="1">
+  <img width="100" height="100" class="center-block" src="{{ site.baseurl }}/img/DL/shield_stream1.png">
+  </div>
+  <div class="col-md-9" markdown="1">
+  <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
+  </div>
+</div>
+
 
 <b> What is R? </b> 
 R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the "S" programming language. (Next time you need a fun fact, you can say "Did you know that S came before R?") R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there's hardly anything you <i>can't</i> do in R. 

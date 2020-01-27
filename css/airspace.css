@@ -893,6 +893,25 @@ footer .footer-manu ul li a:hover {
   border-color: #ededed;
 }
 
+.bs-callout-dark {
+  margin: 20px 0;
+  padding: 15px 15px 15px 15px;
+  border-left: 5px;
+  border-radius: 10px;
+  background-color: #25242b;
+  border-color: #25242b;
+  color:#f4f5f6;
+}
+
+.bs-callout-white {
+  margin: 20px 0;
+  padding: 15px 15px 15px 15px;
+  border-left: 5px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color:#459a90;
+}
 
 /*--
 	Data Lab header
