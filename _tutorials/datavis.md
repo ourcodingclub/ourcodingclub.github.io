@@ -29,7 +29,7 @@ survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 
 We've learned [how to import our datasets in RStudio](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), and [format and manipulate them](https://ourcodingclub.github.io/2017/01/16/piping.html), and now it's time we talk about communicating the results of our analyses - data visualisation! When it comes to data visualisation, the package `ggplot2` by Hadley Wickham has won over many scientists' hearts. In this tutorial, we will learn how to make beautiful and informative graphs and how to arrange them in a panel. Before we tackle the `ggplot2` syntax, let's briefly cover what good graphs have in common.
 
-![]({{ site.baseurl }}/img/davis_10_steps.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/davis_10_steps.png)
 
 `ggplot2` is a great package to guide you through those steps. The `gg` in `ggplot2` stands for grammar of graphics. Writing the code for your graph is like constructing a sentence made up of different parts that logically follow from one another. In a more visual way, it means adding layers that take care of different elements of the plot. Your plotting workflow will therefore be something like creating an empty plot, adding a layer with your data points, then your measure of uncertainty, the axis labels, and so on.
 
@@ -137,7 +137,7 @@ vulture_hist
 # For another way to check whether your data is normally distributed, you can either create density plots using package ggpubr and command ggdensity(), OR use functions qqnorm() and qqline()
 ```
 
-![]({{ site.baseurl }}/img/base_hist.png) ![]({{ site.baseurl }}/img/gg_hist.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/base_hist.png) ![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_hist.png)
 
 The default ggplot settings (right) are not ideal: there is lots of unnecessary grey space behind the histogram, the axis labels are quite small, and the bars blend with each other. Lets beautify the histogram a bit! This is where the true power of `ggplot2` shines. 
 
@@ -160,8 +160,6 @@ The default ggplot settings (right) are not ideal: there is lots of unnecessary 
 {% include figure.html url="assets/img/tutorials/datavis/gg_hist2.png" caption="Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?" %}
 
 __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.__
-
-<div class="bs-callout-blue" markdown="1">
 
 {% include callout.html content="
 
@@ -192,11 +190,11 @@ install.packages("colourpicker")
 
 To find out the code for a colour you like, click on `Addins/Colour picker`.
 
-![]({{ site.baseurl }}/img/colourpicker.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/colourpicker.png)
 
 When you click on `All R colours` you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour, same goes for `2`, `3` - you can add more colours with the `+`, or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear - in this case, we just need the colour code, so we can copy that, and delete the rest. Try changing the colour of the histogram you made just now.
 
-![]({{ site.baseurl }}/img/colourpicker2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/colourpicker2.png)
 
 #### Scatter plot to examine population change over time
 {: #scatter}
@@ -215,7 +213,7 @@ plot(vultureITCR$year, vultureITCR$abundance, col = c("#1874CD", "#68228B"))
     geom_point())
 ```
 
-![]({{ site.baseurl }}/img/base_scatter.png) ![]({{ site.baseurl }}/img/gg_scatter1.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/base_scatter.png) ![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_scatter1.png)
 
 __Hopefully by now we've convinced you of the perks of ggplot2, but again like with the histogram, the graph above needs a bit more work.__
 
@@ -277,7 +275,7 @@ Box plots are very informative as they show the median and spread of your data, 
           legend.position = "none"))                                    # Removing legend - not needed with only 2 factors
 ```
 
-![]({{ site.baseurl }}/img/gg_boxplot2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_boxplot2.png)
 
 {% include figure.html url="assets/img/tutorials/datavis/gg_boxplot2.png" caption="Griffon vulture abundance in Croatia and Italy." %}
 
@@ -306,7 +304,7 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
           plot.margin = unit(c(1,1,1,1), units = , "cm")))
 ```
 
-![]({{ site.baseurl }}/img/gg_bar2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_bar2.png)
 
 {% include figure.html url="assets/img/tutorials/datavis/gg_bar2.png" caption="Species richness in five European countries (based on LPI data)." %}
 
@@ -398,7 +396,7 @@ To get around the too stretched/too squished panel problems, we will save the fi
 ggsave(panel, file = "vulture_panel2.png", width = 5, height = 12) 
 ```
 
-![]({{ site.baseurl }}/img/vulture_panel2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/datavis/vulture_panel2.png)
 
 {% include figure.html url="assets/img/tutorials/datavis/vulture_panel2.png" caption="Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy." %}
 

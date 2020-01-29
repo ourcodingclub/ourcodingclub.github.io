@@ -1,30 +1,22 @@
 ---
-layout: post
+layout: tutorial
 title: Intro to Machine Learning in R (K Nearest Neighbours Algorithm)
 subtitle: Getting started with machine learning in R
 date: 2018-10-15 08:00:00
 author: Samuel Kellerhals
-meta: "Tutorials"
-tags: modelling intermediate intro
+survey_link: https://www.surveymonkey.co.uk/r/77YWPQL
 ---
 
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheader_knn.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims:
 
-#### <a href="#intro"> 1. What is about machine learning</a>
+1. [What is about machine learning](#intro)
+2. [Train your algorithm](#train)
+3. [Assess your model](#test)
 
-#### <a href="#train"> 2. Train your algorithm</a>
-
-#### <a href="#test"> 3. Asses your model</a>
-
-<a name="intro"></a>
 
 ## What is Machine Learning?
+{: #intro}
 
 __Today machine learning is everywhere. From the content delivered to you on your Facebook newsfeed to the spam emails being filtered out of your emails, we live in an increasingly data driven society.__
 
@@ -52,8 +44,7 @@ __In this tutorial you will be introduced to a simple and well-established super
 
 `K-nn` is a non-parametric technique that stores all available cases and classifies new cases based on a similiarty measure (distance function). Therefore when classifying an unseen dataset using a trained `K-nn` algorithm, it looks through the training data and finds the **k** training examples that are closest to the new example. It then assigns a class label to the new example based on a majority vote between those **k** training examples. This means if **k** is equal to 1, the class label will be assigned based on the nearest neighbour. However if K is equal to 3, the algorithm will select the three closest data points to each case and classify it based on a majority vote based on the classes that those three adjacent points hold. 
 
-![](https://cambridgecoding.files.wordpress.com/2016/01/knn2.jpg" alt="Img" style="width: 800px;)
-<center>Diagram source: <a href="https://cambridgecoding.wordpress.com" target = "_blank">Cambridge Coding</a></center>
+{% include figure.html url="https://cambridgecoding.files.wordpress.com/2016/01/knn2.jpg" caption = "Diagram source: [Cambridge Coding](https://cambridgecoding.wordpress.com)" %}
 
 You can see that the selection of **k** is quite important, as is the selection of your training data, because this is all your predictive model will be based on.
 Regarding **k**, generally in binary cases it is best to pick an odd K value to avoid ties between neigbours. Slightly higher **k** values can also act to reduce noise in datasets. However it is best to experiment with different **k** values and use [cross validation techniques](https://genomicsclass.github.io/book/pages/crossvalidation.html) to find the best value for your specific case.
@@ -79,7 +70,7 @@ devtools::install_github('cttobin/ggthemr')
 # This package is just for setting the colour palette, optional
 library(ggthemr)
 ```
-  
+
 ### Loading our data
 
 For this tutorial we will be using the built-in Iris Machine Learning dataset. In order to start learning something from our data, it is first important that we familiarise ourselves with it first.
@@ -117,12 +108,12 @@ ggthemr("light")  # Optional
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![]({{ site.baseurl }}/img/iris_plot2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/machine-learning/iris_plot2.png)
 
 From the above plots we see a visual correlation between plant traits. We can also see that there is some clustering within species with traits varying greatly between the three iris species. Now that we know that there is a clear difference in structural traits between species we could ask the following question:
 
-<a name="train"></a>
 ## Train your algorithm
+{: #train}
 
 ### Could we predict what species iris plants belong to based on structural trait data alone?
 
@@ -191,8 +182,8 @@ Note that we also select a value for **k**, which in this case is **3**. By chos
 iris.knn <- knn(train = iris.training, test = iris.test, cl = irisTraining.labels, k = 3)
 ```
 
-<a name="test"></a>
 ## Assess your model
+{: #test}
 
 Next, we need to evaluate the performance of our model. To do this we want to find out if the classes our algorithm predicts based on the training data accurately predict the species classes in our original iris dataset. For this we compare the original class labels to the predictions made by our algorithm.
 
@@ -243,6 +234,7 @@ irisTest.labels |     setosa | versicolor |  virginica |  Row Total |
                 |      0.300 |      0.350 |      0.350 |            | 
 ----------------|------------|------------|------------|------------|
 ```
+
 To evaluate our algorithm's performance we can check if there are any discrepancies between our `iris.knn` model predictions and the actual `irisTest.labels`. To do this you can first check the total number of predicted classes per category in the last row under column total. 
 
 These can then be compared against the actual classes on the right under row total. Our knn model predicted 12 setosa, 14 versicolor and 14 virginica. However when comparing this to our actual data there were 12 setosa, 12 versicolor and 16 virginca species in our test dataset. 
@@ -261,46 +253,3 @@ In this tutorial we have now covered the following:
 - testing and evaluating our knn algorithm using cross-tabulation
 
 However there is still a whole world to explore. For those interested in learning more have a look at this [freely available book](https://daviddalpiaz.github.io/r4sl/index.html) on machine learning in R.
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/77YWPQL)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>

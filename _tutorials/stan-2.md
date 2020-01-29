@@ -1,42 +1,35 @@
 ---
-layout: post
+layout: tutorial
 title: Generalised linear models in Stan
 subtitle: Using the rstanarm and brms packages to run Stan models
 date: 2018-04-30 10:00:00
 author: Gergana and Maxwell Farrell
-meta: "Tutorials"
-tags: modelling data_vis advanced
+survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 ---
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheader_stan2.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims:
 
-#### <a href="#model"> 1. Learn about generalised models in `Stan`</a>
-#### <a href="#rstanarm"> 2. Use the `rstanarm` package to run a `Poisson` model</a>
-#### <a href="#assess"> 3. Assess model convergence </a>
-#### <a href="#priors"> 4. Check priors in `rstanarm` </a>
-#### <a href="#code"> 5. Extract `Stan` code</a>
-#### <a href="#negbin"> 6. Run a model with a negative binomial distribution </a>
-#### <a href="#brms"> 7. Compare `rstanarm` and `brms`</a>
-
+1. [Learn about generalised models in `Stan`](#model)
+2. [Use the `rstanarm` package to run a `Poisson` model](#rstanarm)
+3. [Assess model convergence](#assess)
+4. [Check priors in `rstanarm`](#priors)
+5. [Extract `Stan` code](#code)
+6. [Run a model with a negative binomial distribution](#negbin)
+7. [Compare `rstanarm` and `brms`](#brms)
 
 ### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
-<a name="model"></a>
 
 ## Introduction
+{: #model}
 
-__Finding answers to our research questions often requires statistical models. Designing models, choosing what variables to include, which data distribution to use are all worth thinking about carefully. In this tutorial, we will continue exploring different model structures in search of the best way to find the answers to our research questions. We will build on the Coding Club tutorials on [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/model-design/index.html" target="_blank"> how to design a model</a>, and on<a href="{{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
+__Finding answers to our research questions often requires statistical models. Designing models, choosing what variables to include, which data distribution to use are all worth thinking about carefully. In this tutorial, we will continue exploring different model structures in search of the best way to find the answers to our research questions. We will build on the Coding Club tutorials on [how to design a model]({{ site.baseurl }}/tutorials/model-design/index.html), and on [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
 
-__Statistical models can be fit in a variety of packages in `R` or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as [intro tutorial here](http://mc-stan.org/" target="_blank">`Stan`</a>. For an introduction to `Stan`, you can check out our <a href="{{ site.baseurl }}/tutorials/stan-intro/index.html).__
+__Statistical models can be fit in a variety of packages in `R` or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as [`Stan`](http://mc-stan.org/). For an introduction to `Stan`, you can check out our [intro tutorial here]({{ site.baseurl }}/tutorials/stan-intro/index.html).__
 
-<a name="rstanarm"></a>
 
 In this tutorial, we will learn about two packages, `rstanarm` and `brms` which allow us to fit `Stan` models using syntax similar to packages like `lme4`, `nlme` and `MCMCglmm`. We will use these packages to fit models that test how species richness has changed over time near [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).
+{: #rstanarm}
 
 ### Research question: How has plant species richness changed over time at Toolik Lake?
 
@@ -86,7 +79,7 @@ Now, let's think about the distribution of the data, specifically our response v
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the "hist" object. 
 
-![]({{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/richness_hist.png)
 
 __We are working with integers (similar to count data, species only come in whole numbers) and the data are right-skewed, that is because we have a few data points on the extreme right end, they are pulling the mean and median or our data to the right. For ecological data, this is quite common - across all of the sampling plots, we expect that they won't all have lots of different species within them.__
 
@@ -124,6 +117,7 @@ Just so that you know what the syntax looks like and if you have time to wait fo
 __For teaching purposes only, we will proceed with a model without random effects - that way you can see the outputs of the models as you are going through the tutorial. Note that we do not advise doing this when you are analysing your data for real - of course a model that takes into account the hierarchical structure of the data would be better.__
 
 ### Advantages and disadvantages of using `Stan`
+
 `Stan` models can take a long time to compile. One of their key advantage is that you have a lot of freedom to specify the priors (your prior knowledge and expectations of how a given parameter will behave) for your model parameters and you can really account for the complex structure your data might have. There is a time cost to this, as we've seen above. One way to approach this is to first make sure your code works on a small chunk of your data, and only afterwards, you can start running the code on the full data (and do other things while you wait for the models to compile).
 
 Now we can run our simplified model. First, let's check how many years of data we have:
@@ -142,11 +136,11 @@ stan_glm1 <- stan_glm(Richness ~ I(Year-2007),
                      chains = 4, cores = 4)
 ```
 
-If you find this code still takes a long time, you can change the `chains` argument to only two chains, but note that it's better to run models with more than two chains - then you have more room for comparison. If one or more of the four chains is behaving really differently from the rest, then the model might not have converged. What is model convergence? In brief, if a model hasn't converged, you can't trust the estimates it gives you. You can find more details in [ the model design tutorial here]({{ site.baseurl }}/tutorials/model-design/index.html).
+If you find this code still takes a long time, you can change the `chains` argument to only two chains, but note that it's better to run models with more than two chains - then you have more room for comparison. If one or more of the four chains is behaving really differently from the rest, then the model might not have converged. What is model convergence? In brief, if a model hasn't converged, you can't trust the estimates it gives you. You can find more details in [the model design tutorial here]({{ site.baseurl }}/tutorials/model-design/index.html).
 
-<a name="assess"></a>
 
 ## Assessing model convergence
+{: #assess}
 
 __One way to assess model convergence is by visually examining the trace plots. They should be fuzzy with no big gaps, breaks or gigantic spikes.__
 
@@ -154,7 +148,8 @@ __One way to assess model convergence is by visually examining the trace plots. 
 plot(stan_glm1, plotfun = "trace")
 ```
 
-![]({{ site.baseurl }}/img/stan2_traces.png" alt="Img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_traces.png)
+
 Here, the trace plots look fine.
 
 Next we can look at the summary output.
@@ -163,7 +158,7 @@ Next we can look at the summary output.
 summary(stan_glm1)
 ```
 
-![]({{ site.baseurl }}/img/stan2_summary.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_summary.png)
 
 __We can see that the effective sample size is alright (there is no hard cut threshold, but more than around 1000 is usually a good sign), another diagnostic metric, the `Rhat` value is also indicating convergence (an `Rhat` of 1 is a good sign, more than 1 could indicate trouble).__
 
@@ -176,7 +171,7 @@ pp_check(stan_glm1, plotfun = "stat", stat = "mean")
 pp_check(stan_glm1, plotfun = "dens_overlay")
 ```
 
-![]({{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
 
 __What do you think? How does the density distribution of the model predictions compare with that of the raw data?__
 
@@ -192,11 +187,11 @@ We can launch the app using the code below. That will open a window in our inter
 launch_shinystan(stan_glm1)
 ```
 
-![]({{ site.baseurl }}/img/shinystan.png" alt="Img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan.png)
 
 Have a go at exploring the various options - you'll probably spot some of the plots we've already made in `R`, but there are many others as well. Here, for example, if there were any divergent chains (i.e. a chain that is behaving in a very weird unexpected way), we would have seen red points. In our case, we don't have any divergent chains.
 
-![]({{ site.baseurl }}/img/shinystan2.png" alt="Img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan2.png)
 
 ### Back to our research question
 
@@ -217,11 +212,11 @@ To get the answer, we can plot the model predictions for our model as well as th
 
 __Looks like species richness is decreasing, but also, four years of data is not enough to really test temporal dynamics!__
 
-![]({{ site.baseurl }}/img/stan_pred.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan_pred.png)
 
-<a name="priors"></a>
 
 ## Priors
+{: #priors}
 
 Packages like `rstanarm` and `brms` allow us to fit `Stan` models using simple and quick code syntax. One danger though is that along the way, we might forget to think about our priors! In the code above, we have not specified any priors. In that case, the model uses the default `rstanarm` priors.
 
@@ -246,9 +241,9 @@ The default priors are `normal(0,10)` for the intercept and `normal(0, 2.5)` for
 
 If you would like to change the priors, you can add code, for example `prior = normal(0, 1), prior_intercept = normal(0, 5)` inside the `stan_glm()` function.
 
-<a name="ode"></a>
 
 ## Extract `Stan` code from an `rstanarm` model
+{: #ode}
 
 When using packages like `rstanarm` and `brms` which you will see in a bit, it's a good idea to actually look at the `Stan` code behind the model.
 
@@ -261,11 +256,11 @@ cat(stancode)
 
 You'll see a lot of code appear in the console - this is what `rstanarm` has "written" for you. Amidst the many letters, you can see that the overall structure is like the `Stan` models we wrote in [our intro `Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html) - first, we state the parameters for the data, the data gets transformed (scaled and centered), then we define our model and finally, we calculate the predictions in the generated quantities block.
 
-<a name="negbin"></a>
 
 ## Explore a model using a negative binomial distribution
+{: #negbin}
 
-Up until now, we've been using a `Poisson` distribution for our models, which is suitable for when we are working with discrete count data. The [Poisson distribution</a> assumes that the mean and variance are the same. In ecology and probably other disciplines too, the data might have variance greater than the mean. In this case, we call the data <a href="https://en.wikipedia.org/wiki/Overdispersion" taget="_blank">overdispersed](https://en.wikipedia.org/wiki/Poisson_distribution). The negative binomial distribution adjusts the variance independently from the mean and as such is more flexible than Poisson. The Poisson distribution is actually a type of a negative binomial distribution.
+Up until now, we've been using a `Poisson` distribution for our models, which is suitable for when we are working with discrete count data. The [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) assumes that the mean and variance are the same. In ecology and probably other disciplines too, the data might have variance greater than the mean. In this case, we call the data [overdispered](https://en.wikipedia.org/wiki/Overdispersion). The negative binomial distribution adjusts the variance independently from the mean and as such is more flexible than Poisson. The Poisson distribution is actually a type of a negative binomial distribution.
 
 __In `rstanarm`, it's easy to *update* a model using a different data distribution. In our case, we can try a negative binomial distribution.__
 
@@ -282,13 +277,13 @@ pp_check(stan_glm2, plotfun = "stat", stat = "mean")
 pp_check(stan_glm2, plotfun = "dens_overlay")
 ```
 
-![]({{ site.baseurl }}/img/stan2_density.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
 
 You can see that the model outputs are very similar - this is to be expected, because the Poisson distribution is actually a type of a negative binomial distribution. Once again, the model is underpredicting the frequency of low species richness values.
 
-<a name="brms"></a>
 
 ## Run a `Stan` model using the `brms` package
+{: #brms}
 
 `brms` is another package that serves a similar purpose to `rstanarm` - it allows you to run `Stan` models using simple code syntax. `brms` writes all Stan models from scratch and has to compile them, while `rstanarm` comes with precompiled code (so when we were running our `rstanarm` models earlier, you didn't see any messages about `C++` compiling, since that was already done in advance).
 
@@ -312,6 +307,7 @@ stancode(stan_glm_brms)
 ```
 
 ## Conclusion
+
 In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and `brms` packages which write the `Stan` code for us, so they can be seen as a gentler introduction to `Stan`. We looked at two different data distributions that are suitable for left-skewed discrete count data - `Poisson` and `negative binomial`. If you are keen to get back into `Stan` coding, we've showed how to extract the `Stan` code behind the `rstanarm` and `brms` models, so you can take that code and develop it further. You can check out our other [`Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html). to see how to write and run `Stan` code using the `rstan` package.
 
 ## Further resources
@@ -320,7 +316,7 @@ In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and
 
 [brms vignette](https://cran.r-project.org/web/packages/brms/brms.pdf)
 
-[How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich ](https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html)
+[How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich](https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html)
 
 [Stan website](http://mc-stan.org/)
 
@@ -333,65 +329,3 @@ In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and
 [Statistical Rethinking by R. McElreath](http://xcelab.net/rm/statistical-rethinking/)
 
 [Stan mailing list](https://groups.google.com/forum/#!forum/stan-users)
-
-<hr>
-<hr>
-
-__Check out [this page]({{ site.baseurl }}/workshop.html) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/PX3XHD2)</h3>
-
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>

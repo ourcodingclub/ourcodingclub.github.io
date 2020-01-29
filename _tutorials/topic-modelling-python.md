@@ -1,36 +1,26 @@
 ---
-layout: post
+layout: tutorial
 title: Topic Modelling in Python
 subtitle: Unsupervised Machine Learning to Find Tweet Topics
 date: 2018-12-10 10:00:00
 author: James
-meta: "Tutorials"
-tags: mix Python Advanced Modelling
+survey_link: https://www.surveymonkey.co.uk/r/7C5N3QV
 ---
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader-topic-modelling-python.png" alt="Img)
-</div>
 
 ### Tutorial aims:
 
-#### <a href="#introduction"> 1. Introduction and getting started</a>
+1. [Introduction and getting started](#introduction)
+2. [Exploring text datasets](#eda)
+3. [Extracting substrings with regular expressions](#who_what)
+4. [Finding keyword correlations in text data](#text_corr)
+5. [Introduction to topic modelling](#top_mod)
+6. [Cleaning text data](#clean)
+7. [Applying topic modelling](#apply)
+8. [Bonus exercises](#bonus)
 
-#### <a href="#eda"> 2. Exploring text datasets</a>
-
-#### <a href="#who_what"> 3. Extracting substrings with regular expressions</a>
-
-#### <a href="#text_corr"> 4. Finding keyword correlations in text data</a>
-
-#### <a href="#top_mod"> 5. Introduction to topic modelling</a>
-
-#### <a href="#clean"> 6. Cleaning text data</a>
-
-#### <a href="#apply"> 7. Applying topic modelling</a>
-
-#### <a href="#bonus"> 8. Bonus exercises</a>
-
-<a name="introduction"></a>
 # Introduction
+{: #introduction}
+
 In this tutorial we are going to be performing topic modelling on twitter data to find what people are tweeting about in relation to climate change. From a sample dataset we will clean the text data and explore what popular hashtags are being used, who is being tweeted at and retweeted, and finally we will use two unsupervised machine learning algorithms, specifically latent dirichlet allocation (LDA) and non-negative matrix factorisation (NMF), to explore the topics of the tweets in full.
 
 ---
@@ -48,9 +38,10 @@ The first thing we will do is to get you set up with the data.
 
 ### The data\* you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-topic-modelling-python). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-\* The original dataset was taken from <a href="https://data.world/crowdflower/sentiment-of-climate-change">the data.world website</a> but we have modified it slightly, so for this tutorial you should use the version on our Github.
+\* The original dataset was taken from [the data.world website](https://data.world/crowdflower/sentiment-of-climate-change) but we have modified it slightly, so for this tutorial you should use the version on our Github.
 
 Import these packages next. You aren't going to be able to complete this tutorial without them. You are also going to need the `nltk` package, which we will talk a little more about later in the tutorial.
+
 ```python
 # packages to store and manipulate data
 import pandas as pd
@@ -108,8 +99,8 @@ Have a quick look at your dataframe, it should look like this:
 
 Note that some of the web links have been replaced by [link], but some have not. This was in the dataset when we downloaded it initially and it will be in yours. This doesn't matter for this tutorial, but it always good to question what has been done to your dataset before you start working with it.
 
-<a name="eda"></a>
 # EDA - Time to start exploring our dataset
+{: #eda}
 
 Find out the shape of your dataset to find out how many tweets we have. You can use `df.shape` where `df` is your dataframe.
 
@@ -213,17 +204,16 @@ plt.yscale('log', nonposy='clip')
 plt.show()
 ```
 
-![]({{ site.baseurl }}/img/topic-modelling-python-tweet_distribution.png" alt="img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-tweet_distribution.png)
 
-
-<a name="who_what"></a>
 # @who? #what? - Extracting substrings with regular expressions
+{: #who_what}
 
 Next lets find who is being tweeting at the most, retweeted the most, and what are the most common hashtags.
 
 In the following section I am going to be using the python `re` package (which stands for Regular Expression), which an important package for text manipulation and complex enough to be the subject of its own tutorial. I am therefore going to skim over the details of this package and just leave you with some working code.
 
-If you would like to know more about the `re` package and regular expressions you can find a good tutorial <a href="https://www.datacamp.com/community/tutorials/python-regular-expression-tutorial">here on datacamp</a>.
+If you would like to know more about the `re` package and regular expressions you can find a good tutorial [here on datacamp](https://www.datacamp.com/community/tutorials/python-regular-expression-tutorial).
 
 As a quick overview the `re` package can be used to extract or replace certain patterns in string data in Python. You can use this package for anything from removing sensitive information like dates of birth and account numbers, to extracting all sentences that end in a :), to see what is making people happy.
 
@@ -310,8 +300,8 @@ Print the dataframe again to have a look at the new columns. Your dataframe shou
 </table>
 </center>
 
-<a name="text_corr"></a>
 # Keyword Correlations in Text
+{: #text_corr}
 
 So far we have extracted who was retweeted, who was mentioned and the hashtags into their own separate columns. Now lets look at these further. We want to know who is highly retweeted, who is highly mentioned and what popular hashtags are going round.
 
@@ -363,7 +353,7 @@ The first few rows of `hashtags_list_df` should look like this
 
 To see which hashtags were popular we will need to flatten out this dataframe. Currently each row contains a list of multiple values. The next block of code will make a new dataframe where we take all the hashtags in `hashtags_list_df` but give each its own row.
 
-We do this using a <a href="https://www.pythonforbeginners.com/basics/list-comprehensions-in-python">list comprehension</a>.
+We do this using a [list comprehension](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python).
 
 ```Python
 # create dataframe where each use of hashtag gets its own row
@@ -518,7 +508,7 @@ Print the `hashtag_vector_df` to see that the vectorisation has gone as expected
 
 Now satisfied we will drop the `popular_hashtags` column from the dataframe. We don't need it.
 
-`hashtag_matrix = hashtag_vector_df.drop('popular_hashtags', axis=1)``
+`hashtag_matrix = hashtag_vector_df.drop('popular_hashtags', axis=1)`
 
 In the next code block we will use the `pandas.DataFrame` inbuilt method to find the correlation between each column of the dataframe and thus the correlation between the different hashtags appearing in the same tweets.
 
@@ -537,7 +527,8 @@ sns.heatmap(corrleations,
     cbar_kws={'label':'correlation'})
 plt.show()
 ```
-![]({{ site.baseurl }}/img/topic-modelling-python-hashtag_correlation.png" alt="img" style="width: 900px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-hashtag_correlation.png)
 
 
 From the plot above we can see that there are fairly strong correlations between
@@ -550,8 +541,8 @@ We can also see a fairly strong negative correlation between
 
 What these really mean is up for interpretation and it won't be the focus of this tutorial.
 
-<a name="top_mod"></a>
 # Introduction to Topic Modelling
+{: #top_mod}
 
 What we have done so far with the hashtags has given us a bit more of an insight into the kind of things that people are tweeting about. We used our correlations to better understand the hashtag topics in the dataset (a kind of dimensionality reduction by looking only at the highly correlated ones). The correlation between **#FoxNews** and **#GlobalWarming** gives us more information as a pair than they do separately.
 
@@ -577,8 +568,8 @@ We can see that this seems to be a general topic about starfish, but the importa
 
 This has been a rapid introduction to topic modelling, in order to help our topic modelling algorithms along we will first need to clean up our data.
 
-<a name="clean"></a>
 # Cleaning Unstructured Text Data
+{: #clean}
 
 The most important thing we need to do to help our topic modelling algorithm is to pre-clean up the tweets. If you look back at the tweets you may notice that they are very untidy, with non-standard English, capitalisation, links, hashtags, @users and punctuation and emoticons everywhere. If we are going to be able to apply topic modelling we need to remove most of this and massage our data into a more standard form before finally turning it into vectors.
 
@@ -713,8 +704,8 @@ df['clean_tweet'] = df.tweet.apply(clean_tweet)
 </table></center>
 
 
-<a name="apply"></a>
 # Applying Topic Modelling
+{: #apply}
 
 Good news! We are almost there! Now that we have clean text we can use some standard Python tools to turn the text tweets into vectors and then build a model.
 
@@ -776,8 +767,6 @@ display_topics(model, tf_feature_names, no_top_words)
 ```
 
 Now we have some topics, which are just clusters of words, we can try to figure out what they really mean. Once again, this is a task of interpretation, and so I will leave this task to you.
-
-
 
 <center>Here is an example of a few topics I got from my model. <br>Note that your topics will not necessarily include these three.<table border="1" class="dataframe">
   <thead>
@@ -848,8 +837,8 @@ I found that my topics almost all had global warming or climate change at the to
 
 This result also may have come from the fact that tweets are very short and this particular method, LDA (which works very well for longer text documents), does not work well on shorter text documents like tweets. In the bonus section to follow I suggest replacing the LDA model with an NMF model and try creating a new set of topics. In my own experiments I found that NMF generated better topics from the tweets than LDA did, even without removing 'climate change' and 'global warming' from the tweets.
 
-<a name="bonus"></a>
 # Bonus
+{: #bonus}
 
 If you want to try out a different model you could use non-negative matrix factorisation (NMF). The work flow for this model will be almost exactly the same as with the LDA model we have just used, and the functions which we developed to plot the results will be the same as well. You can import the NMF model class by using `from sklearn.decomposition import NMF`.
 
@@ -870,52 +859,7 @@ Topic modelling is a really useful tool to explore text data and find the latent
 ### Tutorial outcomes:
 
 - You have learned how to explore text datasets by extracting keywords and finding correlations
-
 - You have been introduced to the `re` package and seen how it can be used to manipulate and clean text data
-
 - You have been introduced to topic modelling and the LDA algorithm
-
 - You have built you first topic model and visualised the results
 
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/7C5N3QV)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>

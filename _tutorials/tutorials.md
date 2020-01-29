@@ -117,7 +117,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
                   </li>
                     <li>
                       <a href="#forest_plots">
-![]({{ site.baseurl }}/img/portfolio/elephants_icon.png)
+						![]({{ site.baseurl }}/img/portfolio/elephants_icon.png)
                         <div class="overly">
                           <div class="position-center">
                             <center><h2>Plotting forest plot tree data</h2></center>

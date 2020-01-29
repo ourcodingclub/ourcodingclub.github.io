@@ -1,35 +1,24 @@
 ---
-layout: post
+layout: tutorial
 title: From distributions to linear models
 subtitle: Getting comfortable with the basics of statistics modelling
 date: 2017-02-28 08:00:00
 author: Gergana
 updated: 2019-12-09
 updater: Sandra
-meta: 
-tags: 
+survey_link: https://www.surveymonkey.co.uk/r/NNRS98G
 ---
-
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheaderlm.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims & Steps:
 
-#### <a href="#distributions"> 1. Get familiar with different data distributions</a>
-
-#### <a href="#design"> 2. Choosing your model structure </a>
-
-#### <a href="#linear"> 3. Practice linear models (and ANOVAs) </a>
-##### - Write and run the models
-##### - Understand the outputs
-##### - Verify the assumptions
-
-#### <a href="#generalised"> 4. Practice generalised linear models</a>
-
-#### <a href="#challenge"> 5. Challenge yourself!</a>
+1. [Get familiar with different data distributions](#distributions)
+2. [Choosing your model structure](#design)
+3. [Practice linear models (and ANOVAs)](#linear)
+	- Write and run the models
+	- Understand the outputs
+	- Verify the assumptions
+4. [Practice generalised linear models](#generalised)
+5. [Challenge yourself!](#challenge)
 
 Things get real in this tutorial! As you are setting out to answer your research questions, often you might want to know what the effect of X on Y is, how X changes with Y, etc. The answer to "What statistical analysis are you going to use?" will probably be a model of some sort. A model in its simplest form may look something like: 
 
@@ -39,63 +28,49 @@ A slightly more complicated model might look like: `skylark.m <- lm(abundance ~ 
 
 Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
 
-__Go to <a href = "https://github.com/ourcodingclub/CC-8-Modelling" target="_blank">the repository for this tutorial</a>, click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our <a href = "https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank"> Intro to Github for version control</a> tutorial.__
+__Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control](https://ourcodingclub.github.io/2017/02/27/git.html) tutorial.__
 
 
-<a name="distributions"></a>
 ### 1. Get familiar with different data distributions
+{: #distributions}
 
 Here is a brief summary of the data distributions you might encounter most often.
 
-##### __Gaussian__ - Continuous data (normal distribution and homoscedasticity assumed)
-##### __Poisson__ - Count abundance data (integer values, zero-inflated data, left-skewed data)
-##### __Binomial__ - Binary variables (TRUE/FALSE, 0/1, presence/absence data)
+- __Gaussian__ - Continuous data (normal distribution and homoscedasticity assumed)
+- __Poisson__ - Count abundance data (integer values, zero-inflated data, left-skewed data)
+- __Binomial__ - Binary variables (TRUE/FALSE, 0/1, presence/absence data)
 
 Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
 
-![]({{ site.baseurl }}/img/DL_intro_lm_which.png" alt="Choosing a model" style="width: 700px;)
-
-
-
-
-<a name="design"></a>
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_which.png)
 
 ### 2. Choosing your model structure
+{: #design}
 
 Another important aspect of modelling to consider is how many terms, i.e. explanatory variables, you want your model to include. It's a good idea to draft out your model structure _before_ you even open your R session. __Let your hypotheses guide you!__ Think about what it is you want to examine and what the potential confounding variables are, i.e. what else might influence your response variable, aside from the explanatory variable you are most interested in? Here is an example model structure from before:
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area)
 ```
-</section>
 
 Here we are chiefly interested in the effect of treatment: does skylark abundance vary between the different farm treatments? This is the research question we might have set out to answer, but we still need to acknowledge that these treatments are probably not the only thing out there influencing bird abundance. Based on our ecological understanding, we can select other variables we may want to control for. For example, skylark abundance will most likely be higher on larger farms, so we need to account for that. 
 
 But wait - surely bird abundance on farms also depends on where the species occur to begin with, and the location of the farms within the country might also have an effect. Thus, let's add `latitude + longitude` to the model. 
 
-<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code02" markdown="1"> 
-
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude)
 ```
-</section>
 
 Last, imagine your experimental design didn't go as planned: you meant to visit all farms three times to collect data, but some farms you managed to visit only twice. Ignoring this would weaken your final results - is abundance different / the same because the treatment has no / an effect, or because there were differences in study effort? To test that, you can include a `visits` term examining the effect of number of visits on abundance. 
 
-<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code03" markdown="1"> 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude + visits)
 ```
-</section>
 
 Some might say this model is very complex, and they would be right - there are a lot of terms in it! A simple model is usually prefered to a complex model, but __if you have strong reasons for including a term in your model, then it should be there__ (whether it ends up having an effect or not). Once you have carefully selected the variables whose effects you need to quantify or account for, you can move onto running your models.
 
 
-<div class="bs-callout-yellow" markdown="1">
+{% include callout.html content="
 
 #### Don't go over the top!
 
@@ -103,18 +78,13 @@ It is important to be aware of the multiple factors that may influence your resp
 
 Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
 
-</div>
-
-
-
-<a name="linear"></a>
+" %}
 
 ### 3. Some practice with linear models
+{: #linear}
 
 We will now explore a few different types of models. Create a new script and add in your details. We will start by working with a sample dataset about apple yield in relation to different factors. The dataset is part of the `agridat` package.
 
-<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code04" markdown="1"> 
 ```r
 install.packages("agridat")
 library(agridat)
@@ -124,12 +94,8 @@ apples <- agridat::archbold.apple
 head(apples)
 summary(apples)
 ```
-</section>
 
 Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our [data visualisation tutorial](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html)), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
-
-<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code05" markdown="1"> 
 
 ```r
 theme.clean <- function(){
@@ -148,12 +114,9 @@ theme.clean <- function(){
         legend.position = "right")
 }
 ```
-</section>
 
 __We can now make a boxplot to examine our data.__ We can check out the effect of spacing on apple yield. We can hypothesise that the closer apple trees are to other apple trees, the more they compete for resources, thus reducing their yield. Ideally, we would have sampled yield from many orchards where the trees were planted at different distances from one another - from the summary of the dataset you can see that there are only three `spacing` categories - 6, 10 and 14 m. It would be a bit of a stretch to count three numbers as a continuous variable, so let's make them a factor instead. This turns the previously numeric `spacing` variable into a 3-level categorical variable, with 6, 10 and 14 being the levels.
 
-<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code06" markdown="1"> 
 ```r
 apples$spacing2 <- as.factor(apples$spacing)
 
@@ -165,35 +128,29 @@ library(ggplot2)
     theme(axis.text.x = element_text(size = 12, angle = 0)) +
   labs(x = "Spacing (m)", y = "Yield (kg)"))
 ```
-</section>
 
 _Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._ 
 
-![]({{ site.baseurl }}/img/apples2.png" alt="Img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/apples2.png)
 
 From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the range in the data across the categories almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. __Let's run a model to explicitly test this.__
 
-<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code07" markdown="1"> 
 ```r
 apples.m <- lm(yield ~ spacing2, data = apples)
 summary(apples.m)
 ```
-</section>
 
 __Check out the summary output of our model:__
 
-![]({{ site.baseurl }}/img/DL_intro_lm_outputs1.png" alt="Model outputs" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs1.png)
 
 Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth. 
 
-But let's take a look at a few other things from the summary output. Notice how because `spacing2` is a factor, you get results for `spacing210` and `spacing214`. If you are looking for the `spacing26` category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. __A very important thing to understand is that the estimates for the other categories are presented <i> relative to </i> the reference level. So, for the 10-m spacing category, the estimated value from the model is not `35.9`, but `35.9 + 120.6 = 156.5`.__ A look at our boxplot will make this easy to verify. 
+But let's take a look at a few other things from the summary output. Notice how because `spacing2` is a factor, you get results for `spacing210` and `spacing214`. If you are looking for the `spacing26` category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. __A very important thing to understand is that the estimates for the other categories are presented _ relative to _ the reference level. So, for the 10-m spacing category, the estimated value from the model is not `35.9`, but `35.9 + 120.6 = 156.5`.__ A look at our boxplot will make this easy to verify. 
 
 You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. These values refer to how much of the variation in the `yield` variable is explained by our predictor `spacing2`. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. `R-squared` values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The `Adjusted R-squared` value takes into account how many terms your model has and how many data points are available in the response variable. 
 
 __So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye! 
-
-
 
 #### More practice: another model
 
@@ -201,8 +158,6 @@ Now that we've written a model and understood its output, let's analyse another 
 
 We will use the `ilri.sheep` dataset, also from the agridat package, to answer the question: _Is the weight of lambs at weaning a function of their age at weaning?_, with the hypothesis that lambs that are weaned later are also heavier. 
 
-<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code08" markdown="1">
 ```r
 sheep <- agridat::ilri.sheep   # load the data
 
@@ -215,10 +170,8 @@ sheep.m1 <- lm(weanwt ~ weanage, data = sheep)   # run the model
 summary(sheep.m1)                                # study the output
 
 ```
- </section>
  
-![]({{ site.baseurl }}/img/DL_intro_lm_outputs2.png" alt="Model outputs" style="width: 900px;)
-
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs2.png)
 
 Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
 
@@ -227,17 +180,14 @@ Then, the output gives us an estimate, which is the _slope_ of the relationship.
 
 So far, so good? Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
 
-<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code09" markdown="1"> 
 ```r
 sheep.m2 <- lm(weanwt ~ weanage*sex, data = sheep)
 summary(sheep.m2)
 ```
-</section>
 
 Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?
 
-![]({{ site.baseurl }}/img/DL_intro_lm_outputs3.png" alt="Model outputs" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs3.png)
 
 Let's write the equations. For a female, which happens to be the reference group in the model, it's fairly simple:
 
@@ -245,12 +195,10 @@ __Female weight = 3.66 + 0.06(age)__ : The weight at 100 days would be 3.66 + 0.
 
 For a male, it's a little more complicated as you need to add the differences in intercept and slopes due to the sex level being male:
 
-<b>Male weight = 3.66 + <i>[-2.52]</i> + 0.06(age) + <i>[0.03(age)]</i> </b> : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
+__Male weight = 3.66 + [-2.52] + 0.06(age) + [0.03(age)]__ : The weight at 100 days would be 3.66 - 2.52 + (0.06+0.03)(100) = 10.14 kg.
 
 It always makes a lot more sense when you can visualise the relationship, too:
 
-<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code10" markdown="1"> 
 ```r
 (sheep.p <- ggplot(sheep, aes(x = weanage, y = weanwt)) +
       geom_point(aes(colour = sex)) +                                # scatter plot, coloured by sex
@@ -260,13 +208,11 @@ It always makes a lot more sense when you can visualise the relationship, too:
       scale_fill_manual(values = c("#FFC125", "#36648B")) +
       theme.clean() )
 ```
-</section>
 
-![]({{ site.baseurl }}/img/DL_intro_lm_sheep.png" alt="Regression plot" style="width: 700px;)
-<center>Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly.</center>
+{% include figure.html url="img/DL_intro_lm_sheep.png" caption="Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly." %}
 
+{% include callout.html content="
 
-<div class="bs-callout-yellow" markdown="1">
 #### Model terminology, and the special case of the ANOVA
 
 Confused when hearing the terms linear regression, linear model, and ANOVA? Let's put an end to this: they're all fundamentally the same thing!
@@ -277,15 +223,11 @@ Now enters the ANOVA, which stands for Analysis of Variance. We usually talk abo
 
 So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and here is a [nice article](https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/) explaining the nitty gritty stuff). You can run the `anova` function on our linear model object `apples.m` and see how you get the same p-value:
 
-<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code11" markdown="1"> 
 ```r
 anova(apples.m)
 ```
-</section>
 
-</div>
-
+" %}
 
 #### Checking assumptions
 
@@ -297,8 +239,6 @@ In addition to checking whether this model makes sense from an ecological perspe
 
 3- are the observations independent?
 
-<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code12" markdown="1"> 
 ```r
 
 # Checking that the residuals are normally distributed
@@ -311,43 +251,34 @@ bartlett.test(apples$yield, apples$spacing2)
 bartlett.test(yield ~ spacing2, data = apples)  # Note that these two ways of writing the code give the same results
 # The null hypothesis of homoscedasticity is accepted
 ```
-</section>
 
 The assumptions of a linear model are met (we can imagine that the data points are independent - since we didn't collect the data, we can't really know). If your residuals are not normally distributed and/or the data are heteroscedastic (i.e. the variances are not equal), you can consider transforming your data using a logarithmic transformation or a square root transformation.
 
 We can examine the model fit further by looking at a few plots:
 
-<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code13" markdown="1"> 
 ```r
 plot(apples.m)  # you will have to press Enter in the command line to view the plots
 ```
-</section>
 
 This will produce a set of four plots: 
 
-##### - Residuals versus fitted values
-##### - a Q-Q plot of standardized residuals
-##### - a scale-location plot (square roots of standardized residuals versus fitted values) 
-##### - a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
+- Residuals versus fitted values
+- a Q-Q plot of standardized residuals
+- a scale-location plot (square roots of standardized residuals versus fitted values) 
+- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
 
 In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this [helpful page](https://data.library.virginia.edu/diagnostic-plots/) to get you started.
 
 
-
-<a name="generalised"></a>
 ### 4. Practicing generalised linear models
+{: #generalised}
 
 The model we used above was a __general__ linear model since it met all the assumptions for one (normal distribution, homoscedasticity, etc.) Quite often in ecology and environmental science that is not the case and then we use different data distributions. Here we will talk about a Poisson and a binomial distribution. To use them, we need to run __generalised__ linear models.
 
-
-
 #### A model with a Poisson distribution
 
-Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the <a href = "http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index.</a>
+Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the [Living Planet Index](http://www.livingplanetindex.org/home/index). 
 
-<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code14" markdown="1"> 
 ```r
 shag <- read.csv("shagLPI.csv", header = TRUE)
 
@@ -356,24 +287,18 @@ shag$year <- as.numeric(shag$year)  # transform year from character into numeric
 # Making a histogram to assess data distribution
 (shag.hist <- ggplot(shag, aes(pop)) + geom_histogram() + theme.clean())
 ```
-</section>
 
-![]({{ site.baseurl }}/img/poisson2.png" alt="histogram" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/poisson2.png)
 
 Our `pop` variable represents __count__ abundance data, i.e. integer values (whole European Shags!) so a Poisson distribution is appropriate here. Often count abundance data are zero-inflated and skewed towards the right. Here our data are not like that, but if they were, a Poisson distribution would still have been appropriate.
 
-<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code15" markdown="1"> 
 ```r
 shag.m <- glm(pop ~ year, family = poisson, data = shag)
 summary(shag.m)
 ```
-</section>
 
 From the summary of our model we can see that European Shag abundance varies significantly based on the predictor `year`. Let's visualise how European Shag abundance has changed through the years:
 
-<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code16" markdown="1"> 
 ```r
 (shag.p <- ggplot(shag, aes(x = year, y = pop)) +
     geom_point(colour = "#483D8B") +
@@ -382,20 +307,15 @@ From the summary of our model we can see that European Shag abundance varies sig
     theme.clean() +
     labs(x = " ", y = "European Shag abundance"))
 ```
-</section>
 
-![]({{ site.baseurl }}/img/shag.png" alt="Img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/modelling/shag.png)
 
 __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.__ Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.
-
-
 
 #### A model with a binomial distribution
 
 We will now work this the `Weevil_damage.csv` data that you can import from your project's directory. We can examine if damage to Scot's pine by weevils (a binary, TRUE/FALSE variable) varies based on the block in which the trees are located. You can imagine that different blocks represent different Scot's pine populations, and perhaps some of them will be particularly vulnerable to weevils? Because of the binary nature of the response variable (true or false), a binomial model is appropriate here.
 
-<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code17" markdown="1"> 
 ```r
 
 Weevil_damage <- read.csv("Weevil_damage.csv")
@@ -407,21 +327,16 @@ Weevil_damage$block <- as.factor(Weevil_damage$block)
 weevil.m <- glm(damage_T_F ~ block, family = binomial, data = Weevil_damage)
 summary(weevil.m)
 ```
-</section>
 
 __Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.__ The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in _Y_ for a change in 1 unit of X, because binomial models are a type of __logistic regression__ which relies on log odd ratios - but we won't get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it's not a linear relationship! And finally, you won't get a R squared value to assess the __goodness of fit__ of your model, but you can get at that by looking at the difference between the `Null deviance` (variability explained by a null model, e.g. `glm(damage_T_F ~ 1)`) and the `Residual deviance`, e.g. the amount of variability that remains after you've explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship. 
 
-
-
 __We have now covered the basics of modelling. Next, you can go through <a href = "https://ourcodingclub.github.io/2017/03/15/mixed-models.html" target="_blank">our tutorial on mixed effects models</a>, which  account for the structure and nestedness of data. You can also check out a couple of other tutorials on modelling to further your knowledge:__
 
-<a href = "http://data.princeton.edu/R/linearModels.html" target="_blank"> General and generalised linear models, by Germán Rodríguez. </a>
+- [General and generalised linear models, by Germán Rodríguez](http://data.princeton.edu/R/linearModels.html).
+- [Regression modelling in R, by Harvard University](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html).
 
-<a href = "http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html" target="_blank"> Regression modelling in R, by Harvard University. </a>
-
-
-<a name="challenge"></a>
 ### 5. Challenge yourself!
+{: #challenge}
 
 Now that you can write and understand linear regressions, why don't you have a go at modelling another dataset?
 
@@ -431,17 +346,11 @@ Using the `ToothGrowth` built-in dataset describing tooth growth in guinea pigs 
 ToothGrowth <- datasets::ToothGrowth
 ```
 
-1- Are higher doses of vitamin C beneficial for tooth growth?
+1. Are higher doses of vitamin C beneficial for tooth growth?
+2. Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
+3. What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
 
-2- Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
-
-3- What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
-
-<br>
-
-<details>
-   <summary markdown= "span"> Click this line to view a solution </summary>
-    <summary markdown= "block"> 
+{% include reveal.html button="Click this line to view a solution" content="
 
 First, we need to convert the `dose` variable into a categorical variable.
 
@@ -458,9 +367,7 @@ summary(tooth.m)
 The model is highly significant, and together, dose and method explain around 77% of the variation in tooth growth. Not bad! And to answer our questions:
 
 1. Higher doses of vitamin C promote tooth growth, but
-
 2. the effect of dose on growth depends on the administration method.
-
 3. A guinea pig given 1 mg a day as ascorbic acid would have a predicted tooth growth of:
 
 __13.23__ (growth for dose 0.5, orange juice) 
@@ -477,77 +384,5 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    theme.clean()
 ```
 
-![]({{ site.baseurl }}/img/DL_intro_lm_guineapigs.png" alt="boxplots" style="width: 600px;)
-
-
-
-</summary>   
- </details> <br>
- 
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-
-
-
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/NNRS98G)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
-
+" %}
 

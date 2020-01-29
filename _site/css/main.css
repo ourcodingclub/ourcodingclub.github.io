@@ -140,9 +140,7 @@ h1.callout, h2.callout, h3.callout, h4.callout, h5.callout, h6.callout { margin-
 
 .copy-button { webkit-transition: opacity .1s ease-in-out; -o-transition: opacity .1s ease-in-out; transition: opacity .1s ease-in-out; opacity: 0.75; margin: 5px; border: none; background-color: #3c3069; border-radius: 5px; color: #ffffff; float: right; width: 150px; padding: 5px 10px; font-size: 1em; }
 
-div.highlight:hover .copy-button, div.highlight .copy-button:focus { opacity: 1; }
-
-div.highlight .copy-button:hover { opacity: 1; }
+div.highlight:hover .copy-button:hover, div.highlight .copy-button:focus { opacity: 1; }
 
 /* syntax.css GitHub syntax highlighting styles Tango style obtained from https://github.com/richleland/pygments-css/blob/master/tango.css  */
 .highlight .hll { background-color: #ebebeb; }

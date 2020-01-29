@@ -4,22 +4,15 @@ author: "Gergana"
 date: "2017-04-25 08:00:00"
 meta: Tutorials
 subtitle: Writing clear, informative and easy to use code
-layout: post
-tags: intro_to_r, github, data_manip
+layout: tutorial
+survey_link: https://www.surveymonkey.co.uk/r/8YBXTMT
 ---
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheaderet.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims:
 
-#### <a href="#sections"> 1. Organising scripts into sections </a>
-
-#### <a href="#syntax"> 2. Following a coding syntax etiquette</a>
-
-#### <a href="#tidy"> 3. Tidying up old scripts and data frames</a>
+1. [Organising scripts into sections](#sections)
+2. [Following a coding syntax etiquette](#syntax)
+3. [Tidying up old scripts and data frames](#tidy)
 
 When analysing data in `R`, the lines of code can quickly pile up: hundreds of lines to scroll through, numerous objects whose names might make sense to you, but not to other people or future you. This tutorial offers tips on how to make your code easy to read and understand, for yourself and others who may want to read your code in the future. Following a coding etiquette, a set of "rules" you follow consistently throughout your work, will improve your `R` workflow and reduce the occurrence of annoying errors. 
 
@@ -27,19 +20,19 @@ The coding etiquette outlined in this tutorial is applicable to most analyses an
 
 __We recommend that you follow the tutorial by typing code from the examples into a blank script file to build your own example script file with perfect formatting and etiquette. After you have done that, use your knowledge of coding etiquette to improve the formatting of `bad_script.R`, which you can find in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette). Alternatively, feel free to edit some of your own scripts using the etiquette guidelines.__ 
 
-### You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository.](https://github.com/ourcodingclub/CC-Etiquette) Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
+### You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-Etiquette). Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
 
-Alternatively, you can fork [tutorial.](https://github.com/ourcodingclub/CC-etiquette" target="_blank">the repository</a> to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-etiquette) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
 
-<a name="sections"></a>
 
 ### 1. Organising scripts into sections
+{: #sections}
 
 As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section. 
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# ggplot of population frequency`. Then underneath that comment, you would write the code for making your plot using ggplot. RStudio has a neat feature whereby you can make your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# ggplot of population frequency ----`. To view your outline, click the button as shown below, you can then click an outline item and jump straight to it: no more scrolling!
 
-![]({{ site.baseurl }}/img/outline.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline.png)
 
 __NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio - if you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
@@ -75,14 +68,14 @@ library(readr)  # Manipulating data
 
 __You might have noticed that when you create a section using four or more `-` at the end of a comment line, a little arrow appears in the margin next to the comment. Clicking these arrows allows you to collapse the section, which is very useful when traversing a long script.__
 
-![]({{ site.baseurl }}/img/etiquette_outline.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/etiquette_outline.png)
 
 __You can also go to `Edit/Folding/Collapse all` to collapse all sections. This is the outline of your script and from here you can navigate to whichever section you need. `Expand all` displays all of the code you've written. Here is an example:__
 
-![]({{ site.baseurl }}/img/outline2.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline2.png)
 
 
-__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme.](https://ourcodingclub.github.io/2017/02/08/funandloops.html) Here is an example functions section:
+__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme](https://ourcodingclub.github.io/2017/02/08/funandloops.html). Here is an example functions section:
 
 ```r
 # Defining functions ----
@@ -158,7 +151,8 @@ LPI_biome_summ <- LPI2 %>%  # use of pipe operator
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![](https://ourcodingclub.github.io/img/Biome_pop.png" alt="Img" style="width: 950px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/Biome_pop.png)
+
 Figure 1. Abundance of species populations for each biome.
 
 __The outputs of your analysis__: Remember to keep your filepath sensible not only when loading data in, but also when you are outputting files (e.g. `.Rdata`, `.csv` files and any figures you want saved). `.csv` files are more transferable and can be used across multiple platforms, whereas `.Rdata` files are more compressed and are quicker to work with. Saving graphs as `.pdf` files is better practice, since `.pdf` files are vector based and don't decrease in quality when you zoom in or out. `.png` files, on the other hand, are easily inserted in text documents and presentations, so ideally you should save a `.pdf` and a `.png` file of your graph. It is also good practice to save image outputs in a subdirectory of your working directory, e.g. `img/`. Remember that you will have to create the folder `img` manually before saving plots to it:
@@ -183,10 +177,8 @@ dev.off()
 
 Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of [this data visualization tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html) for an example of how to do so. 
 
-<a name="syntax"></a>
-
-
 ### 2. Following a coding syntax etiquette
+{: #syntax}
 
 #### 2.1. Naming files and objects.
 
@@ -210,11 +202,11 @@ Long object names are annoying to type. More letters = higher chance you'll make
 
 Object, variable (e.g.`object$variable`) and function names should be lowercase. `MinPrecip_august` is confusing to remember, `min.precip.aug` is a bit long, but informative and easier to type.
 
-##### - __Variable names should be nouns.__ e.g. `abundance` `richness`
-##### - __Function names should be verbs.__ e.g. `calc.sp.richness`
-##### - __Use an underscore to separate words within a script file.__ e.g. `LPI_analysis_Apr_2017.R`
-##### - __The preferred form for object/variable names is all lower case letters and words separated with underscores__ e.g. (`object_name$variable_name`).
-##### - __For functions, all lower case letters and words separated by dots__ e.g. (`function.name`).
+- __Variable names should be nouns.__ e.g. `abundance` `richness`
+- __Function names should be verbs.__ e.g. `calc.sp.richness`
+- __Use an underscore to separate words within a script file.__ e.g. `LPI_analysis_Apr_2017.R`
+- __The preferred form for object/variable names is all lower case letters and words separated with underscores__ e.g. (`object_name$variable_name`).
+- __For functions, all lower case letters and words separated by dots__ e.g. (`function.name`).
 
 __This way it is clear what is an object and what is an external file. These are not strict rules - variable names like `variable_name` are also acceptable. The most important thing is to be consistent: choose one style of variable, object and file names and stick with it!__
 
@@ -344,7 +336,7 @@ __The official convention is to limit your code to 80 characters per line.__ Hav
 
 __How do you know what's 80 characters though? RStudio can place a handy line in your editor as a reminder! Go to `Tools/Global Options/Code/Display/Show Margin/80 characters`.__ Sometimes it might make more sense for your code to be a bit longer than 80 characters, but in general code is easier to read if there is no need for continuous scrolling left and right: around 100 characters should work alright.
 
-##### When using pipes from the `dplyr` package, keep the pipe operator `%>%` at the end of the line and continue your pipe on a new line.
+__When using pipes from the `dplyr` package, keep the pipe operator `%>%` at the end of the line and continue your pipe on a new line.__
 
 ```r
 # Just an example of what a pipe could look like, no need to run the code at this stage.
@@ -358,7 +350,7 @@ LPI_long <- LPI_long %>%
   ungroup(.)  # Remove any groupings you've greated in the pipe, not entirely necessary but it's better to be safe
 ```
 
-##### When using `ggplot2`, keep the `+` at the end of the line and continue adding on layers on a new line.
+__When using `ggplot2`, keep the `+` at the end of the line and continue adding on layers on a new line.__
 
 ```r
 # Just an example of what the code could look like, no need to run the code at this stage.
@@ -406,9 +398,9 @@ ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
 # The second version is much easier to read and there is no need to keep scrolling left and right.
 ```
 
-<a name="tidy"></a>
 
 ### 3. Tidying up old scripts and data frames
+{: #tidy}
 
 It's best to start following a sensible coding etiquette from the very beginning, but realistically we are often in a hurry: we want to code quickly and even if we know we are not following best practices, we still go ahead, because we are thinking of our short-term goals - getting it done, as opposed to the more long-term goals of having a sensible and reproducible record of our analysis. As we are writing this tutorial, we are just as guilty as everyone else of having messy scripts, missing spaces around `=`, etc. But it's important to try to be consistent with your coding and once you get into the habit of it, it hopefully won't seem like "one extra thing to do."
 
@@ -439,7 +431,7 @@ tidy_dir(path="whatever/your/path/is", recursive = TRUE)
 
 If, like us, you find yourself having to use a script from before you knew any better, you might have objects with really uninformative, unnecesarily hard to type names. There is an easy fix to that: just like in most text editors, you can `Find` and `Replace` words, in our case object names. You can type up the object whose name you want to change, then add the new one and replace either individual occurrences, or all of the occasions when the object name is mentioned. You can also select lines of code and only rename the object in that part of the code - careful that you have clicked on `In selection`, as otherwise the object name will be replaced in the entire script, despite you having selected only some of the lines.
 
-![]({{ site.baseurl }}/img/replace.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/replace.png)
 
 __If you want to rename your variable names, that's quickly done, too.__
 
@@ -477,67 +469,8 @@ devtools::install_github("ThinkRstat/littleboxes")
 # formatR messes up these boxes otherwise!
 ```
 
-![]({{ site.baseurl }}/img/boxes.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/etiquette/boxes.png)
 
 __Now that you have read through the tutorial, try to clean up `bad_script.R`, which can be found in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette), or tidy up one of your own scripts.__ 
 
 Our coding etiquette was developed with the help of [Hadley Whickham's R Style Guide](http://adv-r.had.co.nz/Style.html).
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/8YBXTMT)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
-
-

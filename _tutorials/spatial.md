@@ -1,45 +1,35 @@
 ---
-layout: post
+layout: tutorial 
 title: Intro to spatial analysis in R
 subtitle: Working with rasters and remote-sensing data
 date: 2019-03-26 10:00:00
 author: Maude Grenier
-meta: "Tutorials"
-tags: Intermediate data_manip data_vis
+survey_link: https://www.surveymonkey.com/r/8MJ8GRY
 ---
-
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheader_spatial.png" alt="Img)
-	</center>
-</div>
 
 ## Tutorial Aims:
 
-#### <a href="#section1"> 1. Explore raster data</a>
+1. [Explore raster data](#section1)
+2. [Visualise spectral bands](#section2)
+3. [Manipulate rasters: NDVI and KMN classification](#section3)
 
-#### <a href="#section2"> 2. Visualise spectral bands</a>
-
-#### <a href="#section3"> 3. Manipulate rasters: NDVI and KMN classification</a>
-
-
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 __In this tutorial, we are going to explore spatial analysis in `R` using satellite data of the Loch Tay area of Scotland. Satellite or remote-sensing data are increasingly used to answer ecological questions such as what are the characteristics of species’ habitats, can we predict the distribution of species and the spatial variability in species richness, and can we detect natural and man-made changes at scales ranging from a single valley to the entire world.__
 
 Around Loch Tay, for instance, remote-sensing data could be used to map different vegetation types, such as invasive species like rhododendron, and track changes over time. Alternatively, satellite data can be used to estimate forest cover for an area like Scotland and help policy makers set new targets and assess progress.
 
-`R` is a widely used open source programming language for data analysis and visualisation but it is also a powerful tool to explore spatial data. If you are not familiar with `R` or `Rstudio`, this introductory [tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html){:target="_blank"} and this [troubleshooting tutorial](https://ourcodingclub.github.io/2016/11/15/troubleshooting.html){:target="_blank"} are good starting points.
+`R` is a widely used open source programming language for data analysis and visualisation but it is also a powerful tool to explore spatial data. If you are not familiar with `R` or `Rstudio`, this introductory [tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) and this [troubleshooting tutorial](https://ourcodingclub.github.io/2016/11/15/troubleshooting.html) are good starting points.
 
-Working with spatial data can be complicated due to the many different file formats and large size they can have. To simplify this tutorial, we will use a Sentinel 2 satellite image collected on the 27th June 2018 and downloaded from the [Copernicus Hub](https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access){:target="_blank"}. This website provides free and open access to satellite data, but please note the files are very large and may take some time to download. The image used in this tutorial was cropped to reduced its size and corrected for atmospheric correction in [SNAP](http://step.esa.int/main/download/){:target="_blank"}, the free open source esa toolbox, and saved as a 'geoTIF' file (georeferenced image) to make it easier to import. Introductory tutorials for SNAP are availlable [here](http://step.esa.int/main/doc/tutorials/snap-tutorials/){:target="_blank"}.
+Working with spatial data can be complicated due to the many different file formats and large size they can have. To simplify this tutorial, we will use a Sentinel 2 satellite image collected on the 27th June 2018 and downloaded from the [Copernicus Hub](https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access). This website provides free and open access to satellite data, but please note the files are very large and may take some time to download. The image used in this tutorial was cropped to reduced its size and corrected for atmospheric correction in [SNAP](http://step.esa.int/main/download/), the free open source esa toolbox, and saved as a 'geoTIF' file (georeferenced image) to make it easier to import. Introductory tutorials for SNAP are availlable [here](http://step.esa.int/main/doc/tutorials/snap-tutorials/).
 
-Alternatively, for large scale analysis where downloading huge files is not an option, Google Earth Engine is a powerful tool providing an online code editor where users can work with a large selection of databases, whilst harnessing the power of the Google servers. You can find a Google Earth Engine intro tutorial [here](https://ourcodingclub.github.io/2018/11/26/earth-engine.html){:target="_blank"} if you're interested.
+Alternatively, for large scale analysis where downloading huge files is not an option, Google Earth Engine is a powerful tool providing an online code editor where users can work with a large selection of databases, whilst harnessing the power of the Google servers. You can find a Google Earth Engine intro tutorial [here](https://ourcodingclub.github.io/2018/11/26/earth-engine.html) if you're interested.
 
-Satellite data mostly consist of __reflectance data__, which can be defined as a measure of the intensity of the reflected sun radiation by the earth's surface. Reflectance is measured for __different wavelength of the electromagnetic spectrum__. The Sentinel 2 optical sensor measures reflectance at __13 wavelength bandwidths__, or bands for short. In satellite images, these data are stored in __rasters__, or a matrix data structure, where __each pixel stores the data for the 13 wavelengths__. Therefore, Sentinel 2 data contains several raster layers, one for each spectral band. More information on Sentinel 2 can be accessed [here](https://en.wikipedia.org/wiki/Sentinel-2){:target="_blank"}.
+Satellite data mostly consist of __reflectance data__, which can be defined as a measure of the intensity of the reflected sun radiation by the earth's surface. Reflectance is measured for __different wavelength of the electromagnetic spectrum__. The Sentinel 2 optical sensor measures reflectance at __13 wavelength bandwidths__, or bands for short. In satellite images, these data are stored in __rasters__, or a matrix data structure, where __each pixel stores the data for the 13 wavelengths__. Therefore, Sentinel 2 data contains several raster layers, one for each spectral band. More information on Sentinel 2 can be accessed [here](https://en.wikipedia.org/wiki/Sentinel-2).
 
-<a name="section1"></a>
 
 ## 1. Explore raster data
+{: #section1}
 
 Once you have unzipped the files you downloaded from the [repository](https://github.com/ourcodingclub/CC-spatial) on your computer, open `RStudio`, create a new script by clicking on `File/ New File/ R Script`. It is always a good idea the write a header to your script with your name, data and purpose such as `Intro to spatial analysis tutorial` as shown below. Then, set the working directory to the location of the unzipped files on your computer and load the following packages, installing them if necessary:
 
@@ -140,18 +130,15 @@ plot(b8)
 image(b8)
 
 ```
-![]({{ site.baseurl }}/img/2tayplots.png" alt="Img" style="width: 800px;)
 
-To __zoom in on the image__, after calling the function `zoom` and the band you wish to inspect, first plot the band, then
-__click twice on the plot__, once on two opposite corners of the area of interest in order to create a square. The zoomed in image will be of the standard `plot` function of the band, in the terrain colour palette, even when use in a different in a different plot.
-
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/2tayplots.png)
 
 ```r
 plot(b8)
 zoom(b8)    # run this line, then click twice on your plot to define a box
 ```
 
-![]({{ site.baseurl }}/img/zoom2.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/zoom2.png)
 
 __Alternatively, an extent can be cropped and plotted from the plot image using the same double click method described above and the code below. Zooming in allows you to visualise spatial data for specific areas you might be interested in.__
 
@@ -162,9 +149,8 @@ cropped_tay <- crop(b7, e)
 plot(cropped_tay)
 ```
 
-<a name="section2"></a>
-
 ## 2. Visualise spectral bands
+{: #section2}
 
 __The bands can be plotted with different colour palettes to improve visualisation, such as `viridis`, and saved using the code below.__
 
@@ -182,7 +168,7 @@ To view the plot without saving the image, you only need the second line:
 image(b8, col= viridis_pal(option="D")(10), main="Sentinel 2 image of Loch Tay")
 ```
 
-![]({{ site.baseurl }}/img/tayplot.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/tayplot.png)
 
 __A useful way to visualise the satellite data is to plot a red-green-blue plot of a multi-layered object for a more realistic rendition. The layers or bands represent different bandwidth in the visible electromagnetic spectrum (corresponding to red, blue and green) and combined, create a naturalistic colour rendition of the earth surface.__
 
@@ -196,7 +182,7 @@ plotRGB(tayRGB, axes = TRUE, stretch = "lin", main = "Sentinel RGB colour compos
 dev.off()
 ```
 
-![]({{ site.baseurl }}/img/RGB.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/RGB.png)
 
 __Another popular way to visualise remote sensing data is using a false colour composite (FCC), where the red, green, and blue bands have been replaced in order to accentuate vegetation.__
 
@@ -204,9 +190,9 @@ In a FCC, the red bands is replaced by the near infrared band (band 8 in Sentine
 
 ### Exercise: Create a FCC of the Loch Tay area using a raster stack.
 
-The package `rasterVis` provides a number of ways to enhance the visualisation and analysis of raster data, as can be seen on the package's website [here](https://oscarperpinan.github.io/rastervis/){:target="_blank"}. The function `levelplot` allows level and contour plots to be made of raster objects with elevation data, such as LIDAR and `plot3D` allows 3D mapping. We do not have elevation data from Sentinel 2, but the package's `gplot` function allows us to plot a uni or multivariate raster object using `ggplot2` like syntax. 
+The package `rasterVis` provides a number of ways to enhance the visualisation and analysis of raster data, as can be seen on the package's website [here](https://oscarperpinan.github.io/rastervis/). The function `levelplot` allows level and contour plots to be made of raster objects with elevation data, such as LIDAR and `plot3D` allows 3D mapping. We do not have elevation data from Sentinel 2, but the package's `gplot` function allows us to plot a uni or multivariate raster object using `ggplot2` like syntax. 
 
-For an introduction to the `ggplot2` package, check out our [tutorial here](https://ourcodingclub.github.io/2017/01/29/datavis.html){:target="_blank"} or you can find a cheatsheet [here](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf){:target="_blank"}.
+For an introduction to the `ggplot2` package, check out our [tutorial here](https://ourcodingclub.github.io/2017/01/29/datavis.html) or you can find a cheatsheet [here](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf).
 
 ```r
 gplot(b8) +
@@ -227,7 +213,7 @@ ggsave("ggtay.png", scale = 1.5, dpi = 300) 		# to save plot
 
 Note that here we saved the plot in a slightly different way - for plots creates using `ggplot2`, we can use the `ggsave` function and we define the specifics of the saved plot after we've created it, whereas earlier in the tutorial when we were using the `png()` function in combination with `dev.off()`, the plot characteristics are defined before we make the plot inside the `png()` function.
 
-![]({{ site.baseurl }}/img/ggtay.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/ggtay.png)
 
 __To visualise all the bands together, we can use `facet_wrap` in `gplot`. First, we will create a stack of all the bands, so just putting them all on top of each other, like layers in a cake.__
 
@@ -254,7 +240,7 @@ gplot(t) +
 ggsave("allbands.png", scale = 1.5, dpi = 300) # to save plot
 ```
 
-![]({{ site.baseurl }}/img/allbands.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands.png)
 
 __Alternatively, for a quick visualisation, the original file can be loaded as a raster brick and plotted using 'plot'.__
 
@@ -263,7 +249,7 @@ s_tay <- brick('data/taycrop.tif')
 plot(s_tay)
 ```
 
-![]({{ site.baseurl }}/img/allbands2.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands2.png)
 
 __Notice the difference in colour and range of legend between the different bands. Different earth surfaces reflect the solar radiation differently and each raster layer represents how much incident solar radiation is reflected at a particular wavelength bandwidth. Bands 6 to 9 are in the Near Infrared Range (NIR). Vegetation reflects more NIR than other wavelengths but water absorbs NIR, therefore the lighter areas with high reflectance values are likely to be vegetation and the dark blue, low reflectance value areas, likely to be water. Also note that the Sentinel 2 bands have 3 levels of spatial resolution, 10 m, 20 m, and 60 m (see summary below).__
 
@@ -276,11 +262,11 @@ __20 m resolution__
 __60 m resolution__
 band 1, band 9 and band 10
 
-<a name="section3"></a>
 
 ## 3. Manipulate rasters: NDVI and KMN classification
+{: #section3}
 
-__The [Normalised Difference Vegetation Index (NDVI)](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index){:target="_blank"} is a widely used vegetation index that quantifies vegetation presence, health or structure. It is calculated using the Near Infrared (NIR) and Red bandwith of the spectrum. Healthy vegetation reflects light strongly in the NIR part of the spectrum and absorbs light in red part of the visible spectrum for photosynthesis. A high ratio between light refected in the NIR part of the spectrum and light reflected in the red part of the spectrum would represent areas that potentially have healthy vegetation. It is worth noting that different plant species absorb light in the red part of the spectrum at different rates. The same plant will also absorb light in the red band differently depending on whether it is stressed or healthy, or the time of year. It is often used over large areas as an indication of land cover change.__
+__The [Normalised Difference Vegetation Index (NDVI)](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) is a widely used vegetation index that quantifies vegetation presence, health or structure. It is calculated using the Near Infrared (NIR) and Red bandwith of the spectrum. Healthy vegetation reflects light strongly in the NIR part of the spectrum and absorbs light in red part of the visible spectrum for photosynthesis. A high ratio between light refected in the NIR part of the spectrum and light reflected in the red part of the spectrum would represent areas that potentially have healthy vegetation. It is worth noting that different plant species absorb light in the red part of the spectrum at different rates. The same plant will also absorb light in the red band differently depending on whether it is stressed or healthy, or the time of year. It is often used over large areas as an indication of land cover change.__
 
 The NDVI ratio is calculated using (NIR - Red) / (NIR + Red). For example, a pixel with an NDVI of less than 0.2 is not likely to be dominated by vegetation, and an NDVI of 0.6 and above is likely to be dense vegetation. 
 
@@ -312,7 +298,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = 'Sentinel 2, Loch Tay-NDVI')
 dev.off()
 ```
 
-![]({{ site.baseurl }}/img/NDVI.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/NDVI.png)
 
 To find out the distribution of the pixel NDVI values, we can plot a histogram.
 
@@ -332,7 +318,7 @@ axis(side = 1, at = seq(-0.5,1, 0.05), labels = seq(-0.5,1, 0.05))
 dev.off()
 ```
 
-![]({{ site.baseurl }}/img/ndvihist.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvihist.png)
 
 #### So what does this mean?
 
@@ -353,7 +339,7 @@ plot(veg, main = 'Veg cover')
 dev.off()
 ```
 
-![]({{ site.baseurl }}/img/ndvimask.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvimask.png)
 
 We still have a high vegetation cover, which is to be expected in this part of Scotland.
 
@@ -428,7 +414,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = "NDVI")
 plot(knr, main = "Kmeans", col = viridis_pal(option = "D")(10))
 ```
 
-![]({{ site.baseurl }}/img/knr_ndvi.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/knr_ndvi.png)
 
 If we want to plot our classification alongside the RGB rendering of the raster, and save the two plots, we can use the code below:
 
@@ -440,7 +426,7 @@ plot(knr, main = "Kmeans", yaxt = 'n', col = viridis_pal(option = "D")(10))
 dev.off()
 ```
 
-![]({{ site.baseurl }}/img/rgb_kmeans.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/spatial/rgb_kmeans.png)
 
 A simple classification like this one is only to give an idea of land cover types. In the above example, we could deduce that cluster 8, in green, is water as it covers the Loch. We can also spot patterns in the vegetation cover in both the NDVI and `kmeans` cluster plots. We could deduce that the areas with the highest NDVI ratio are likely to be forest cover.
 
@@ -450,78 +436,10 @@ A simple classification like this one is only to give an idea of land cover type
 
 #### In our introduction to remote sensing spatial analysis, we have covered how to:
 
-__- Import a GeoTIFF file as a raster in R__
+- Import a GeoTIFF file as a raster in R.
+- Extract layers from a multi-layer raster objects and get the raster properties.
+- Explore raster visulaisation of single and mutil-layered object with rasterVis, ggplot and base R.
+- Explore raster manipulations by calculating and plotting the NDVI ratio of the pixels in our image.
+- Perform an unsupervised image classification using the kmeans algorithm to cluster the pixels in 10 clusters.
 
-__- Extract layers from a multi-layer raster objects and get the raster properties__
-
-__- Explore raster visulaisation of single and mutil-layered object with rasterVis, ggplot and base R__
-
-__- Explore raster manipulations by calculating and plotting the NDVI ratio of the pixels in our image__
-
-__- Perform an unsupervised image classification using the kmeans algorithm to cluster the pixels in 10 clusters.__
-
-
-### If you want to explore further, there are excellent resources availabe in [the Spatial Data Science with R by Robert J. Hijmans](http://rspatial.org/index.html){:target="_blank"}.
-
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/8MJ8GRY)</h3>
-
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
+### If you want to explore further, there are excellent resources availabe in [the Spatial Data Science with R by Robert J. Hijmans](http://rspatial.org/index.html).

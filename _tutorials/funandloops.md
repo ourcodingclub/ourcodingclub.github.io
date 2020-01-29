@@ -1,33 +1,21 @@
 ---
-layout: post
+layout: tutorial
 title: Intro to functional programming 
 subtitle: Saving yourself lots of copying and pasting
 date: 2017-02-08 08:00:00
 author: Gergana and John
-meta: "Tutorials"
-tags: datavis, data_manip
+survey_link: https://www.surveymonkey.co.uk/r/NRKM679
 ---
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheader_functions.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial aims:
 
-#### <a href="#introduction"> 1. What is functional programming</a>
+1. [What is functional programming](#introduction)
+2. [Building a simple function](#function)
+3. [Functions in loops](#loop)
+4. [Functions with `lapply`](#apply)
+5. [Conditional statements](#ifelse)
+6. [BONUS: Write a loop to plot multiple graphs](#bonus)
 
-#### <a href="#function"> 2. Building a simple function</a>
-
-#### <a href="#loop"> 3. Functions in loops</a>
-
-#### <a href="#apply"> 4. Functions with `lapply`</a>
-
-#### <a href="#ifelse"> 5. Conditional statements</a>
-
-#### <a href="#bonus"> 6. BONUS: Write a loop to plot multiple graphs</a>
-
-<a name="function"></a>
 
 ### All the resources for this tutorial, including some useful extra reading can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it.
 
@@ -38,19 +26,18 @@ setwd("PATH_TO_FOLDER")
 ```
 
 ### Writing functions
+{: #introduction}
 
-We've learned [how to make beautiful and informative graphs using `ggplot2`](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">how to import our data in RStudio</a>, <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank">format and manipulate them</a>, <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html" target="_blank">write scripts and Markdown reports</a>, and <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
+We've learned [how to import data in RStudio](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), [format and manipulate them](https://ourcodingclub.github.io/2017/01/16/piping.html), [write scripts and Markdown reports](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html), [how to make beautiful and informative graphs using `ggplot2`](https://ourcodingclub.github.io/2017/01/29/datavis.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
 
-You may find as you work away on your project however, that you want to repeat the same action multiple times. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually.  
+You may find as you work away on your project however, that you want to repeat the same action multiple times. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually. 
 
-In this workshop, we introduce the concept of functions and loops in `R` as a method to minimise the need to copy and paste code chunks, helping to make your code more efficient and readable and minimise the chance of making mistakes by manually retyping code. This tutorial also expands on how to use functions effectively in your code and gives a more formal introduction to __functional programming__ as a coding style. 
+In this workshop, we introduce the concept of functions and loops in R as a method to minimise the need to copy and paste code chunks, helping to make your code more efficient and readable and minimise the chance of making mistakes by manually retyping code. This tutorial also expands on how to use functions effectively in your code and gives a more formal introduction to __functional programming__ as a coding style. 
 
 __`R` is a functional programming language at its heart. When you run a command on some data, e.g. `sum(1, 2)`, sum is a function. Basically everything you do in `R` involves at least one function. Just as the base `R` language and other `R` packages contain functions, you can also write your own functions to perform various tasks using the same tools as package developers, and it's not as hard as it sounds.__
 
-
-<a name="function"></a>
-
 ## 2. Building a simple function 
+{: #function}
 
 Open a new `RStudio` session and create a new `R` script. If you haven't already done so, download the resources needed for this tutorial from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it. In your `R` script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
@@ -135,9 +122,8 @@ trees_bicuar$ba <- basal.area(dbh = trees_bicuar$diam)
 
 __Writing functions for simple operations like the example above is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.__
 
-<a name="loop"></a>
-
 ## 3. Functions in loops 
+{: #loop}
 
 We've seen how to write a function and how they can be used to create concise re-usable operations that can be applied multiple times in a script without having to copy and paste, but where functions really come into their own is when combined with looping procedures. Loops serve to run the same operation on a group of objects, further minimising the replication of code.
 
@@ -230,9 +216,9 @@ for( i in 1:length(trees_mlunguya_list) ){
 
 Note that this `for()` loop now contains a custom function (`ba.mean.year()`), which itself contains a custom function (`basal.area()`), demonstrating that there is really no limit to the complexity you can create with functional programming tools like loops and function calls. You can even have loops within loops, and loops in functions! 
 
-<a name="apply"></a>
 
 ## 4. Functions with `lapply()` family 
+{: #apply}
 
 __`for()` loops are very useful for quickly iterating over a list, but because R prefers to store everything as a new object with each loop iteration, loops can become quite slow if they are complex, or running many processes and many iterations. As an alternative `lapply()` and the `apply` family of functions more broadly can be used as an alternative to loops. `lapply()` runs operations on lists of items, similar to the `for()` loops above. To replicate the previous `for()` loop, where we calculated the mean basal area per year in `trees_mlunguya`, you can run:__
 
@@ -269,9 +255,8 @@ sapply(bicuar_height_list, mean, na.rm = TRUE)
 `sapply()` won't be able to simplify the output of every `lapply()` loop, especially if the output is complex, but for this example, where we only have a single named decimal number, sapply works well.
 
 
-<a name="ifelse"></a>
-
 ## 5. Conditional statements 
+{: #ifelse}
 
 Another useful functional programming technique is to use conditional statements to change how the code is run depending on whether certain conditions are met. This means that you can create more complex functions that can be applied in a wider range of situations. 
 
@@ -322,11 +307,11 @@ diam.summ(dbh = bicuar_trees$diam, mean = TRUE, median = FALSE)
 
 Also note that in this function definition the extra arguments have default values, e.g. `mean = TRUE`. This means that even if the user doesn't specify what the value of `mean` should be, e.g. `diam.summ(dbh = trees_bicuar$diam, median = TRUE, mean_ba = FALSE)`, R will default to the value of `mean = TRUE`, thus calculating the mean trunk diameter. 
 
-<a name="bonus"></a>
 
 ## 6. BONUS: Write a loop to plot multiple graphs
+{: #bonus}
 
-This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the <a href="http://www.livingplanetindex.org/" target="_blank" rel="noopener">Living Planet Index</a> for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
+This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the [Living Planet Index](http://www.livingplanetindex.org/) for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
 
 First, import the data:
 
@@ -365,7 +350,7 @@ vultureITCR <- filter(vulture, Country.list == c("Croatia", "Italy"))
           legend.position = c(0.9, 0.9)))               # Setting the position for the legend - 0 is left/bottom, 1 is top/right
 ```
 
-![]({{ site.baseurl }}/img/gg_scatter3.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/funandloops/gg_scatter3.png)
 
 Here we are using the `theme_bw()` theme but we are making lots of modifications to it. When we need to make lots of graphs, e.g. all the graphs for a given research project, we would ideally like to format them in a consistent way - same font size, same layout of the graph panel. That means that we will be repeating many lines of code, but instead of doing that, we can take all the changes we want to make to the `ggplot2` theme and combine them into a function of our own! As a reminder, to start writing a function, you first assign it to an object. Since we are making a personalised theme for `ggplot2`, here I've called my function `theme.my.own`. To tell R that you are writing a function, you use `function()` and then the commands that you want your function to include go between the `{}`.
 
@@ -449,7 +434,6 @@ Making the plots:
     labs(y = "Abundance\n", x = "", title = "Meadow pipit"))
 ```
 
-
 Now arrange all 4 plots in a panel using the `gridExtra` package and save the file
 
 ```r
@@ -458,7 +442,7 @@ ggsave(panel, file = "Pop_trend_panel.png", width = 10, height = 8)
 dev.off() # to close the image
 ```
 
-![]({{ site.baseurl }}/img/Pop_trend_panel.png" alt="Img" style="width: 1000px;)
+![]({{ site.baseurl }}/assets/img/tutorials/funandloops/Pop_trend_panel.png)
 
 That wasn't too bad, but you are still repeating lots of code, and here you have only 4 graphs to make - what if you had to make a graph like this for every species in the `LPI.UK` dataset? That would mean repeating the same code over 200 times. That will be very time consumming, and it's very easy to make mistakes when you are monotonously copying and pasting for hours.
 
@@ -494,81 +478,12 @@ The files will be saved in your working directory - to find out where that is, r
 ## Tutorial outcomes:
 
 - You can write a function
- 
 - You can write a `for()` loop
-
 - You understand that loops and functions can be nested to make complex workflows
- 
 - You can use `lapply()`/`sapply()` with and without anonymous functions to run loops
- 
 - You can use conditional `ifelse()` statements to make more complex functions
 
 
 ## Further reading
 
 [Advanced R by Hadley Whickham - Functional Programming](http://adv-r.had.co.nz/Functional-programming.html)
-
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/NRKM679)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
-
-
-

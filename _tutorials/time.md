@@ -4,30 +4,22 @@ author: "John"
 date: "2017-04-26 10:00:00"
 meta: Tutorials
 subtitle: "Modelling, forecasting and data formatting in R"
-layout: post
-tags: data_vis modelling
+layout: tutorial
+survey_link: https://www.surveymonkey.co.uk/r/26V3WTJ
 ---
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheader_time.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims:
 
-#### <a href="#format"> 1. Formatting time series data </a>
-
-#### <a href="#datavis"> 2. Visualising time series data</a>
-
-#### <a href="#stats"> 3. Statistically analysing time series data</a>
-
-#### <a href="#challenge"> 4. Challenge yourself with new data</a>
+1. [Formatting time series data](#format)
+2. [Visualising time series data](#datavis)
+3. [Statistically analysing time series data](#stats)
+4. [Challenge yourself with new data](#challenge)
 
 In this tutorial, we will explore and analyse time series data in `R`. Time series analysis is a powerful technique that can be used to understand the various temporal patterns in our data by decomposing data into different cyclic trends. Time series analysis can also be used to predict how levels of a variable will change in the future, taking into account what has happened in the past. By completing this workshop, you will learn not only how to do some simple time series analysis, but also how to prepare temporal data so that `R` understands that the data points occur in a distinct sequence, which is an art in itself.
 
 ### All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from [this github repository](https://github.com/ourcodingclub/CC-time-series). Before we start, clone and download the repo as a zipfile, then unzip it.
 
-Alternatively, you can fork [`git` and version control tutorial.](https://github.com/ourcodingclub/CC-time-series" target="_blank">the repository</a> to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-time-series) to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our [`git` and version control tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
 
 First up, open `RStudio`, make a new script by clicking `File/ New File/ R Script` and we are all set to learn about time series analysis!
 
@@ -53,9 +45,9 @@ monthly_milk <- read.csv("monthly_milk.csv")  # Milk production per cow per mont
 daily_milk <- read.csv("daily_milk.csv")  # Milk production per cow per milking
 ```
 
-<a name="format"></a>
 
 ## 1. Formatting time series data
+{: #format}
 
 The most common issue when using time series data in `R` is getting it into a format that is easily readable by `R` and any extra packages you are using. A common format for time series data puts the largest chunk of time first (e.g. year) and gets progressively smaller, like this:
 
@@ -223,7 +215,7 @@ Below is an expanded table of time codes which you can use for reference:
   </tr>
 </table>
 
-<a name="MARK"></a>
+{: #MARK}
 
 ### Correcting badly formatted date data
 
@@ -245,9 +237,9 @@ class(monthly_milk$good_date)
 
 Now we know how to transform data in to the `Date` class, and how to create `character` class data from `Date` data. 
 
-<a name="datavis"></a>
 
 ## 2. Visualising time series data
+{: #datavis}
 
 Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to correctly build axis labels and allow easy customisation of axis ticks:
 
@@ -260,11 +252,9 @@ Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-<center>
-![]({{ site.baseurl }}/img/monthly_milk_plot.png" alt="Img" style="width: 700px;)
-</center>
+![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
 
-Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [we have a workshop on that as well](https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">tutorial on making your own `ggplot2` theme</a>, and if you want to learn more about the basics of `ggplot2`, <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html)!
+Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [tutorial on making your own](https://ourcodingclub.github.io/2017/02/08/funandloops.html), and if you want to learn more about the basics of `ggplot2`, [we have a workshop on that as well](https://ourcodingclub.github.io/2017/01/29/datavis.html)!
 
 Play around with `date_labels`, replacing `"%Y"` with some other date marks from the table above (e.g. `%m-%Y`). `date_breaks` can also be customised to change the axis label frequency. Other options include `month`, `week` and `day` (e.g. `"5 weeks"`)
 
@@ -277,9 +267,9 @@ Plotting date and time data is done similarly using `scale_x_datetime()`:
 	theme_classic())
 ```
 
-<a name="stats"></a>
 
 ## 3. Statistical analysis of time series data
+{: #stats} 
 
 ### Decomposition
 
@@ -303,10 +293,7 @@ Firstly, it looks like there is a general upward trend: more milk is being produ
 
 `span` sets the number of points used to plot each local regression in the curve: the smaller the number, the more points are used and the more closely the curve will fit the original data.
 
-<center>
-![]({{ site.baseurl }}/img/monthly_milk_loess.png" alt="Img" style="width: 700px;)
-</center>
-
+![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_loess.png)
 
 Next, it looks like there are some peaks and troughs that occur regularly in each year. This is a "__seasonal__" pattern. We can investigate this pattern more by plotting each year as it's own line and comparing the different years:
 
@@ -325,9 +312,7 @@ year_pal <- sequential(color = "darkturquoise", percentage = 5, what = "value")
 	scale_color_manual(values = year_pal))
 ```
 
-<center>
-![]({{ site.baseurl }}/img/monthly_milk_month_trend.png" alt="Img" style="width: 700px;)
-</center>
+![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_month_trend.png)
 
 It's clear from the plot that while milk production is steadily getting higher, the same pattern occurs throughout each year, with a peak in May and a trough in November.
 
@@ -348,10 +333,7 @@ monthplot(monthly_milk_ts, choice = "seasonal")  # variation in milk production 
 seasonplot(monthly_milk_ts)
 ```
 
-<center>
-![]({{ site.baseurl }}/img/monthly_milk_4plot.png" alt="Img" style="width: 700px;)
-</center>
-
+![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_4plot.png)
 
 ### Forecasting
 
@@ -428,9 +410,7 @@ __Now that we have all the information for the forecasts, we are ready to make o
 	theme_classic())
 ```
 
-<center>
-![]({{ site.baseurl }}/img/monthly_milk_fc_all.png" alt="Img" style="width: 700px;)
-</center>
+![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_fc_all.png)
 
 You can also numerically compare the accuracy of different models to the data we excluded from the model (`monthly_milk_test`) using `accuracy()`:
 
@@ -488,65 +468,8 @@ milk_ets_zzz_fc_df %>%
 	select(Month, Point_Forecast)
 ```
 
-<a name="challenge"></a>
-
 
 ## 4. Coding challenge
+{: #challenge}
 
 Now that you have worked through the tutorial, use what you have learnt to make some model forecasts and plot some graphs to investigate temporal patterns for our data on CO2 concentrations on Mauna Loa, Hawaii. See if you can predict the CO2 concentration for June 2050. You can find the data in `co2_loa.csv` in the folder you downloaded from the [the GitHub repository for this tutorial](https://github.com/ourcodingclub/CC-time-series).
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/26V3WTJ)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>

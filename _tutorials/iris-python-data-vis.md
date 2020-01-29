@@ -1,45 +1,38 @@
 ---
-layout: post
+layout: tutorial
 title: Analysing Earth science and climate data with Iris
 subtitle: Manipulate multi-dimensional climate data from common file formats in Python
 date: 2018-10-31 00:00:00
 author: Declan Valters
-meta: "PythonIris"
-tags: python iris
+survey_link: https://www.surveymonkey.co.uk/r/VH6XDVZ
 ---
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader_iris.png" alt="Img)
-</div>
 
-_Material for this tutorial was adapted from the <a href="https://scitools.org.uk">SciTools</a> tutorial (SciTools is the group that maintain the Iris software.) It was adapted and modified under the GNU public licence v 3.0 for this OurCodingClub tutorial and we acknowledge appreciate the use of original source materials from SciTools - Thank you!_
+_Material for this tutorial was adapted from the [SciTools tutorial](https://scitools.org.uk">SciTools (SciTools is the group that maintain the Iris software.) It was adapted and modified under the GNU public licence v 3.0 for this OurCodingClub tutorial and we acknowledge appreciate the use of original source materials from SciTools - Thank you!_
 
 Welcome to this tutorial in the Python series about the Iris python package. Iris is a powerful tool used for manipulating multi-dimensional earth science data. Iris is really useful when you are dealing with data from sources such as weather and climate models, particularly when it is stored in common formats such as NetCDF (a common data file format used in the climate science community.) 
 
 Iris has data manipulation and visualisation features such as:
 
-##### - A visualisation interface based on matplotlib and cartopy
-##### - Unit conversion
-##### - Subsetting and extraction of data
-##### - Merge and concatenate
-##### - Aggregations and reductions (including min, max, mean and weighted averages)
-##### - Interpolation and regridding (including nearest-neighbor, linear and area-weighted)
+- A visualisation interface based on matplotlib and cartopy
+- Unit conversion
+- Subsetting and extraction of data
+- Merge and concatenate
+- Aggregations and reductions (including min, max, mean and weighted averages)
+- Interpolation and regridding (including nearest-neighbor, linear and area-weighted)
 
 If you need any of the above features and you find that you are **regularly writing your own custom functions in Python to do these things**, you may find that Iris already has these features availabe, and it can save you a lot of time in your work.
 
 ### Tutorial aims:
 
-#### <a href="#understanding">1. Understand what Iris is</a>
-
-#### <a href="#cube">2. Learn about the core Iris data structure: the Iris cube</a>
-
-#### <a href="#loading">3. Learn how to load data selectively from large datasets</a>
-
-#### <a href="#plotting">4. Learn how to manipulate and plot data with iris</a>
+1. [Understand what Iris is](#understanding)
+2. [Learn about the core Iris data structure: the Iris cube](#cube)
+3. [Learn how to load data selectively from large datasets](#loading)
+4. [Learn how to manipulate and plot data with iris](#plotting)
 
 
-<a name="understanding"></a>
 
 ## What is Iris?
+{: #understanding}}
 
 Iris was developed originally by the Met Office (UK) out of a need for dealing with the many file formats used in the weather, climate, and ocean sciences scientific community. Many users of Iris had previously had to write their own code from scratch to handle and manipulate these file-formats, such as NetCDF, GRIB, and other common (and not-so-common) formats, alternatively they had to use one of the many separately available packages for each type of file format. (Such as `python-netcdf4` for python, etc.). This resulted in a lot of duplicated effort from researchers re-writing what was effectively the same or very similar code. In addition, many operations on weather and climate data are essentially very similar, such as converting between different units, extracting subsets of the data, merging datasets, interpolating data, and so on. Iris was developed to bring together these operations and provide a file-format agnostic package to deal with these commonly used operations. 
 
@@ -59,12 +52,10 @@ print(np.__version__)
 
 This should print out the version numbers of `iris` and `numpy`, the two main requirements for this tutorial.
 
-If you do not have these two packages installed, see this guide on <a href="https://scitools.org.uk/iris/docs/latest/installing.html">installing iris</a>. (We assume you already have Python installed in your computing environmnet. 
-
-
-<a name="cube"></a>
+If you do not have these two packages installed, see this guide on [installigin iris](https://scitools.org.uk/iris/docs/latest/installing.html). (We assume you already have Python installed in your computing environmnet. 
 
 ## The Iris Cube
+{: #cube}
 
 **Learning outcome**: by the end of this section, you will be able to explain the capabilities and functionality of Iris cubes and coordinates.
 
@@ -72,47 +63,41 @@ The top level object in Iris is called a cube. A cube contains data and metadata
 
 Each cube has:
 
-##### - A data array (typically a NumPy array).
-##### - A "name", preferably a CF "standard name" to describe the phenomenon that the cube represents.
-##### - A collection of coordinates to describe each of the dimensions of the data array. These coordinates are split into two types:
-###### - Dimensioned coordinates are numeric, monotonic and represent a single dimension of the data array. There may be only one dimensioned coordinate per data dimension.
-###### - Auxilliary coordinates can be of any type, including discrete values such as strings, and may represent more than one data dimension.
+- A data array (typically a NumPy array).
+- A "name", preferably a CF "standard name" to describe the phenomenon that the cube represents.
+- A collection of coordinates to describe each of the dimensions of the data array. These coordinates are split into two types:
+	- Dimensioned coordinates are numeric, monotonic and represent a single dimension of the data array. There may be only one dimensioned coordinate per data dimension.
+	- Auxilliary coordinates can be of any type, including discrete values such as strings, and may represent more than one data dimension.
 
-A fuller explanation is available in the <a href="http://scitools.org.uk/iris/docs/latest/userguide/iris_cubes.html">Iris User Guide</a>.
-
+A fuller explanation is available in the [Iris User Guide](http://scitools.org.uk/iris/docs/latest/userguide/iris_cubes.html).
 
 Let's take a simple example to demonstrate the cube concept.
 
 Suppose we have a `(3, 2, 4)` NumPy array:
 
-![]({{ site.baseurl }}/img/iris_multi_array.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/iris-python-data-vis/iris_multi_array.png)
 
 Where dimensions 0, 1, and 2 have lengths 3, 2 and 4 respectively.
 
 The Iris cube to represent this data may consist of:
 
-##### - a standard name of "air_temperature" and units of "kelvin"
-
-##### - a data array of shape `(3, 2, 4)`
-
-##### - a coordinate, mapping to dimension 0, consisting of:
-###### - a standard name of "height" and units of "meters"
-###### - an array of length 3 representing the 3 height points
-     
-##### - a coordinate, mapping to dimension 1, consisting of:
-###### - a standard name of "latitude" and units of "degrees"
-###### - an array of length 2 representing the 2 latitude points
-###### - a coordinate system such that the latitude points could be fully located on the globe
-     
-##### - a coordinate, mapping to dimension 2, consisting of:
-###### - a standard name of "longitude" and units of "degrees"
-###### - an array of length 4 representing the 4 longitude points
-###### - a coordinate system such that the longitude points could be fully located on the globe
+- a standard name of "air_temperature" and units of "kelvin"
+- a data array of shape `(3, 2, 4)`
+- a coordinate, mapping to dimension 0, consisting of:
+	- a standard name of "height" and units of "meters"
+	- an array of length 3 representing the 3 height points
+- a coordinate, mapping to dimension 1, consisting of:
+	- a standard name of "latitude" and units of "degrees"
+	- an array of length 2 representing the 2 latitude points
+	- a coordinate system such that the latitude points could be fully located on the globe
+- a coordinate, mapping to dimension 2, consisting of:
+	- a standard name of "longitude" and units of "degrees"
+	- an array of length 4 representing the 4 longitude points
+	- a coordinate system such that the longitude points could be fully located on the globe
 
 Pictorially the cube has taken on more information than a simple array:
 
-![]({{ site.baseurl }}/img/iris_multi_array_to_cube.png" alt="Img" style="width: 500px;)
-
+![]({{ site.baseurl }}/assets/img/tutorials/iris-python-data-vis/iris_multi_array_to_cube.png)
 
 ### Working with a cube
 
@@ -144,7 +129,9 @@ We can create a single cube from the `load_cube` command. Iris also provides som
 cube = iris.load_cube(iris.sample_data_path('A1B_north_america.nc'))
 print(cube)
 ```
+
 Which should print:
+
 ```
 air_temperature / (K)               (time: 240; latitude: 37; longitude: 49)
      Dimension coordinates:
@@ -177,6 +164,7 @@ print(type(cube.data))
 ```
 
 Which should display:
+
 ```
 (240, 37, 49)
 3
@@ -338,9 +326,8 @@ GeogCS(6371229.0)
 
 ```
 
-<a name="loading"></a>
-
 ## Loading and saving data
+{: #loading}
 
 **Learning outcome**: by the end of this section, you will be able to use Iris to load datasets from disk as Iris cubes and save Iris cubes back to disk.
 
@@ -420,7 +407,7 @@ variables:
 
 ### Out-of-core Processing
 
-<a href="https://en.wikipedia.org/wiki/External_memory_algorithm">Out-of-core processing</a> is a technical term that describes being able to process datasets that are too large to fit in memory at once. In Iris, this functionality is referred to as **lazy data**. It means that you can use Iris to load, process and save datasets that are too large to fit in memory without running out of memory. This is achieved by loading only the dataset`s metadata and not the data array, unless this is specifically requested.
+[Out-of-core processing](https://en.wikipedia.org/wiki/External_memory_algorithm) is a technical term that describes being able to process datasets that are too large to fit in memory at once. In Iris, this functionality is referred to as **lazy data**. It means that you can use Iris to load, process and save datasets that are too large to fit in memory without running out of memory. This is achieved by loading only the dataset's metadata and not the data array, unless this is specifically requested.
 
 To determine whether your cube has lazy data:
 
@@ -430,11 +417,11 @@ cube = iris.load_cube(fname)
 print(cube.has_lazy_data())
 ```
 
-Iris tries to maintain lazy data as much as possible. We refer to the operation of loading a cube`s lazy data as 'realising' the cube's data. A cube's lazy data will only be loaded in a limited number of cases, including:
+Iris tries to maintain lazy data as much as possible. We refer to the operation of loading a cube's lazy data as 'realising' the cube's data. A cube's lazy data will only be loaded in a limited number of cases, including:
 
-##### - When the user directly requests the cube's data using `cube.data`,
-##### - When there is no lazy data processing algorithm available to perform the requested data processing, such as for peak finding, and
-##### - Where actual data values are necessary, such as for cube plotting.
+- When the user directly requests the cube's data using `cube.data`,
+- When there is no lazy data processing algorithm available to perform the requested data processing, such as for peak finding, and
+- Where actual data values are necessary, such as for cube plotting.
 
 ## Cube control and subsetting
 
@@ -592,7 +579,7 @@ air_potential_temperature / (K)     (grid_latitude: 204; grid_longitude: 187)
 
 We can use **`slices_over`** to return one subcube for each coordinate value in a specified coordinate. This helps us when trying to retrieve all the slices along a given cube dimension.
 
-For example, let's consider retrieving all the slices over the time dimension (i.e. each time step in its own cube with a scalar time coordinate) using ``slices`. As per the above example, to achieve this using `slices` we would have to specify all the cube's dimensions _except_ the time dimension.
+For example, let's consider retrieving all the slices over the time dimension (i.e. each time step in its own cube with a scalar time coordinate) using `slices`. As per the above example, to achieve this using `slices` we would have to specify all the cube's dimensions _except_ the time dimension.
 
 Let's take a look at `slices_over` providing this functionality:
 
@@ -615,15 +602,15 @@ air_potential_temperature / (K)     (time: 3; grid_latitude: 204; grid_longitude
 
 ### Discussion: Indexing and slicing
 
-##### - What are the similarities between indexing and slicing?
-##### - What are the differences?
-##### - Which cube slicing method would be easiest to use to return all subcubes along the realization dimension?
-##### - Which cube slicing method would be easiest to use to return all horizontal 2D slices in a 4D cube?
-##### - In what situations would indexing be the best way to subset a cube? What about slicing?
+- What are the similarities between indexing and slicing?
+- What are the differences?
+- Which cube slicing method would be easiest to use to return all subcubes along the realization dimension?
+- Which cube slicing method would be easiest to use to return all horizontal 2D slices in a 4D cube?
+- In what situations would indexing be the best way to subset a cube? What about slicing?
 
-<a name="plotting"></a>
 
 ## Data Processing and Visualisation
+{: #plotting}
 
 **Learning outcome**: by the end of this section, you will be able to use Iris to analyse and visualise weather and climate datasets.
 
@@ -631,9 +618,9 @@ air_potential_temperature / (K)     (time: 3; grid_latitude: 204; grid_longitude
 
 Iris comes with two plotting modules called `iris.plot` and `iris.quickplot` that wrap some of the common matplotlib plotting functions such that cubes can be passed as input rather than the usual NumPy arrays. The two modules are very similar, with the primary difference being that `quickplot` will add extra information to the axes, such as:
 
-##### - a colorbar,
-##### - labels for the x and y axes, and
-##### - a title where possible.
+- a colorbar,
+- labels for the x and y axes, and
+- a title where possible.
 
 
 ```python
@@ -817,7 +804,7 @@ unknown / (K)                       (time: 240; latitude: 37; longitude: 49)
           height: 1.5 m
 ```
 
-As we`ve just seen, we have the ability to update the cube's data directly. Whenever we do this though, we should be mindful of updating appropriate metadata on the cube:
+As we've just seen, we have the ability to update the cube's data directly. Whenever we do this though, we should be mindful of updating appropriate metadata on the cube:
 
 ```python
 e1_hot = e1.copy()
@@ -851,7 +838,7 @@ air temperatures greater than 280K / (K) (time: 240; latitude: 37; longitude: 49
 
 Many standard univariate aggregations exist in Iris. Aggregations allow one or more dimensions of a cube to be statistically collapsed for the purposes of statistical analysis of the cube's data. Iris uses the term "aggregators" to refer to the statistical operations that can be used for aggregation.
 
-A list of aggregators is available at http://scitools.org.uk/iris/docs/latest/iris/iris/analysis.html.
+A list of aggregators is available at [http://scitools.org.uk/iris/docs/latest/iris/iris/analysis.html].
 
 ```python
 fname = iris.sample_data_path('uk_hires.pp')
@@ -899,63 +886,9 @@ In this tutorial we have looked at how to use the Python package `iris`: an exte
 
 ### Tutorial outcomes:
 
-#### 1. You understand why Iris is a useful tool in the Python community for dealing with climate data.
-
-#### 2. You know how to use the basic load functions for Iris
-
-#### 3. You can create an Iris "cube" and understand the basics of the data structure
-
-#### 4. You can apply more complex constraints to loading data from cubes, such as time and variable constraints.
-
-#### 5. You understand the basics of cube slicing.
-
-#### 6. You can create simple plots using the iris plotting interface. (Which is an extension of the `matplotlib` library.)
-
-
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VH6XDVZ)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>:w
-
-
-
-
+1. You understand why Iris is a useful tool in the Python community for dealing with climate data.
+2. You know how to use the basic load functions for Iris
+3. You can create an Iris "cube" and understand the basics of the data structure
+4. You can apply more complex constraints to loading data from cubes, such as time and variable constraints.
+5. You understand the basics of cube slicing.
+6. You can create simple plots using the iris plotting interface. (Which is an extension of the `matplotlib` library.)

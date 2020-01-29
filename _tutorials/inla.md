@@ -1,52 +1,44 @@
 ---
-layout: post
+layout: tutorial
 title: Intro to modelling using INLA
 subtitle: Dealing with spatial autocorrelation in statistical models
 date: 2018-12-04 21:11:27
 author: Greg Albery
-meta: "Tutorials"
-tags: Modelling Advanced
+survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
 ---
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader_inla.png" alt="Img)
-        </div>
 	
 ### Tutorial Aims:
 
-#### <a href="#intro"> 1. Learn about `INLA` and why it's useful </a>
+1. [Learn about `INLA` and why it's useful](#intro)
+2. [Perform model selection in `INLA`](#selection)
+3. [Learn the components of an `INLA` model](#inla)
+4. [Set up a spatial analysis](#spatial)
+5. [Modify and specify spatial models](#spatial2)
+6. [Learn about spatiotemporal analyses](#spatialtemp)
 
-#### <a href="#selection"> 2. Perform model selection in `INLA` </a>
-
-#### <a href="#inla"> 3. Learn the components of an `INLA` model </a>
-
-#### <a href="#spatial"> 4. Set up a spatial analysis </a>
-
-#### <a href="#spatial2"> 5. Modify and specify spatial models </a>
-
-#### <a href="#spatialtemp"> 6. Learn about spatiotemporal analyses </a>
-
-<a name = "intro"></a>
-### All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.
+__All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.__
 
 ## 1. Learn about INLA and why it's useful
+{: #intro}
 
-Welcome to this tutorial on `INLA`, written by [@Gfalbery](https://www.researchgate.net/profile/Gregory_Albery" target="_blank">Greg Albery</a> off of the <a href="http://rumdeer.biology.ed.ac.uk" target="_blank">Pemberton Group</a>, Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is <a href="https://twitter.com/Gfalbery?lang=en-gb).
+Welcome to this tutorial on `INLA`, written by [Greg Albery](https://www.researchgate.net/profile/Gregory_Albery off of the [Pemberton Group](http://rumdeer.biology.ed.ac.uk), Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is [@Gfalbery](https://twitter.com/Gfalbery?lang=en-gb).
 
 __Spatial autocorrelation is a common problem in ecological studies. Googling it, you'll commonly come across this phrase, Tobler's first law of geography:__ 
-### "Everything is related to everything else, but near things are more related than distant things."
+
+> "Everything is related to everything else, but near things are more related than distant things."
 
 __This is true of objects both in space and in time, and is commonly true of both at once. However, spatial analysis is often hard, computationally intensive, and unintuitive. Adding in a temporal element is even more intimidating. `INLA` is a great way to deal with this. `INLA` stands for Integrated Nested Laplace Approximation, and we're about to learn more about what that means!__
 
 _TWO DISCLAIMERS:_
 
 1. This tutorial will centre around the beginner-level specifics of `INLA` models. It will rely on a working knowledge of GLMMs, model selection methods, etc., and won't include a huge amount of complexities about the inner workings of `INLA` itself. I'm not an expert on INLA, but I have a sturdy working knowledge of it, and I'm super enthusiastic about its use. I also believe that a load more systems could do with some more robust spatial and spatiotemporal analyses.
-
 2. Spatial analysis often seems scary. `INLA` and I are here to convince you that it should be less scary and more common. I'm a firm believer that spatial analysis can enrich your results and tell you stuff about your study system, rather than threatening the importance and interesting nature of your results.
 
 ### Recommended reading for later: 
-This GitHub repository from a paper about fisheries (quite complicated code but a great exhaustive example): https://github.com/GodinA/cjfas-bycatch-INLA-SPDE
-Pawley and McArdle, 2018: https://www.biorxiv.org/content/biorxiv/early/2018/08/06/385526.full.pdf
-Zuur et al., 2018: http://www.highstat.com/index.php/beginner-s-guide-to-regression-models-with-spatial-and-temporal-correlation
+
+- This GitHub repository from a paper about fisheries (quite complicated code but a great exhaustive example): https://github.com/GodinA/cjfas-bycatch-INLA-SPDE
+- Pawley and McArdle, 2018: https://www.biorxiv.org/content/biorxiv/early/2018/08/06/385526.full.pdf
+- Zuur et al., 2018: http://www.highstat.com/index.php/beginner-s-guide-to-regression-models-with-spatial-and-temporal-correlation
 
 ## Basics of `INLA`
 
@@ -89,6 +81,7 @@ __- Run a final non-spatial model.__
 __- Decide on a set of spatial dependence structures.__
 
 #### The data
+
 This tutorial is going to use a dataset working on a wild animal, trapped in a Scottish woodland. The experiment used a combination of individual anthelminthic treatment and nutritional supplementation to investigate how they impacted parasite intensity. 
 
 #### The research question
@@ -164,7 +157,7 @@ THEME <- theme(axis.text.x = element_text(size = 12,colour = "black"),
 
 Recall that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `samp_locations` after you've created the "samp_locations" object. 
 
-![]({{ site.baseurl }}/img/TrapLocations.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/TrapLocations.png)
 
 How often are different individuals trapped on different grids?
 
@@ -176,8 +169,8 @@ table(with(TestHosts, tapply(Grid, ID, function(x) length(unique(x)))))
 
 Not much moving around! Looks like individuals tend to stay on the same grid.
 
-<a name = "selection"></a>
 ## 2. Perform model selection in `INLA`
+{: #selection}
 
 Model selection is a method that reduces the amount of covariates that are included in the data to stop overfitting. This will increase the generality of your models, and is good practise!
 
@@ -224,11 +217,11 @@ This shows a load of significant effects: months, sex, treatment. Looks promisin
 
 __NB: There are no P values in `INLA`. Importance or significance of variables can be deduced by examining the overlap of their 2.5% and 97.5% posterior estimates with zero.__
 
-![]({{ site.baseurl }}/img/INLA1.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/INLA1.png)
 
 It's likely that this model is overloaded with explanatory variables. Let's carry out model selection to remove the covariates that are unimportant.
 
-This involves removing covariates one by one and seeing how this changes model fit according to the model's [AIC](https://en.wikipedia.org/wiki/Deviance_information_criterion" target="_blank">Deviance Information Criterion</a> (DIC, a Bayesian measure analogous to <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion)). If removing any number of covariates does not increase a model's DIC by a threshold number (I use 2 DIC) then the covariate with the lowest impact is removed. This process is repeated, using fewer and fewer covariates each time, until eventually you end up with a minimal model where removing any covariates increases the DIC by greater than the threshold value.
+This involves removing covariates one by one and seeing how this changes model fit according to the model's [Deviance Information Criterion](https://en.wikipedia.org/wiki/Deviance_information_criterion) (DIC, a Bayesian measure analogous to [the Akaike Information Criterion (AIC)](https://en.wikipedia.org/wiki/Akaike_information_criterion)). If removing any number of covariates does not increase a model's DIC by a threshold number (I use 2 DIC) then the covariate with the lowest impact is removed. This process is repeated, using fewer and fewer covariates each time, until eventually you end up with a minimal model where removing any covariates increases the DIC by greater than the threshold value.
 
 Instead of doing this manually, which takes time and a lot of code and is boring, I threw together a function (`INLAModelSel` in the `ggregplot` package) which will do it for us. 
 
@@ -272,31 +265,29 @@ summary(IM1)
 To examine the importance of spatial autocorrelation, we then look at the DIC of a series of competing models with different random effect structures. I have decided that, given the layout of my sampling locations, there are a few potential ways to code spatial autocorrelation in this dataset.
 
 __1. Spatial autocorrelation constant across the study period, and across the study area (spatial, 1 mesh).__
-
 __2. Spatial autocorrelation constant across the study area, varying across the study period (spatiotemporal, X meshes).__
-
 __3. Spatial autocorrelation varying within each grid to ignore spatial patterns between grids (spatial, 4 meshes).__
 
 We will make these models, compete them with each other, and investigate whether the inclusion of spatial random effects changes our fixed effect estimates (does including spatial variation change whether we think males have higher Parasite counts, for example?)
 
-<a name="inla"></a>
 ## 3. Learn the components of an `INLA` model
+{: #inla}
 
 The setup so far has involved using quite simple model formulae. The next step is where people often become frustrated, as it involves model setups which are more unique to INLA and hard to pick apart. 
 
 ### A bit about `INLA`
+
 `INLA` is computationally efficient because it uses a SPDE (Stochastic Partial Differentiation Equation) to estimate the spatial autocorrelation of the data. This involves using a "mesh" of discrete sampling locations which are interpolated to estimate a continuous process in space (see very helpful figure).
 
-![]({{ site.baseurl }}/img/INLADiagram.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/INLADiagram.png)
 
 So, you create a mesh using sampling locations and/or the borders of your study system.
 
 There are lots of variations on a mesh, which can be examined by plotting it. 
 
-<a name = "spatial"></a>
-	   
 ## 4. Set up a spatial analysis
-	   
+{: #spatial}
+
 ### Setting up a mesh
 
 ```r
@@ -318,11 +309,11 @@ points(Locations, col = "red", pch = 2)
 
 ```
 
-![]({{ site.baseurl }}/img/MeshA.jpg" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshA.jpg)
 
-![]({{ site.baseurl }}/img/MeshB.jpg" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshB.jpg)
 
-![]({{ site.baseurl }}/img/MeshC.jpg" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshC.jpg)
 
 There are several important aspects of a mesh. The triangle size (determined using a combination of max.edge and cutoff) determines how precisely the equations will be tailored by the data. Using smaller triangles increases precision but also exponentially increases computing power. Generally, the mesh function automatically creates a mesh like mesh A, where closer-together sampling locations produce smaller triangles. The sampling locations in this dataset are so evenly spaced that I had to jitter them to show this in mesh A. When exploring/setting up preliminary analyses, use a mesh like mesh B. for analyses to be reported in a paper, use a mesh like mesh C. Be careful of edges, and try to allow some space around your sampling area for INLA to estimate. The edge triangles can be bigger to reduce computing power.
 
@@ -372,9 +363,7 @@ StackHost <- inla.stack(
 The stack includes (in this order in my code)....
 
 1. The response variable (coded as "y")
-
 2. A vector of multiplication factors. This is generally a series of 1's (for the intercept, random effects, and fixed effects), followed by the spatial A matrix which you specified earlier.
-
 3. The effects. You need to separately specify the intercept, the random effects, the model matrix, and the spde. The thing to remember is that the components of part 2 of the stack (multiplication factors) are related to the components of part 3 (the effects). __Adding an effect necessitates adding another 1 to the multiplication factors (in the right place).__
 
 Adding a random effect? Whack it in the effects, add a 1 to the A vector. 
@@ -427,12 +416,13 @@ GOODSTACK <- inla.stack(
 
 ### Running the model
 
-So, we have everything set up to conduct a spatial analysis. All we need is to put it into the inla function and see what happens. Fortunately, once you specify the stack you can add it into the ```data =``` argument and then changing the formula will run whatever variation you need (as long as it only uses A, W, random and fixed effects that already exist in the stack).
+So, we have everything set up to conduct a spatial analysis. All we need is to put it into the inla function and see what happens. Fortunately, once you specify the stack you can add it into the `data =` argument and then changing the formula will run whatever variation you need (as long as it only uses A, W, random and fixed effects that already exist in the stack).
 
 So, for completeness let's try out three competing models: 
-only fixed effects, 
-fixed + ID random effects, 
-fixed + ID + SPDE random effects.
+
+* only fixed effects, 
+* fixed + ID random effects, 
+* fixed + ID + SPDE random effects.
 
 ```r
 f1 <- as.formula(paste0("y ~ -1 + Intercept + ", paste0(colnames(X), collapse = " + ")))
@@ -477,7 +467,7 @@ ggField(IM3, Mesh, Groups = 1) +
 # ignore the Groups part of the function for now. That'll come later.
 ```
 
-![]({{ site.baseurl }}/img/Field1.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Field1.png)
 
 At what range does autocorrelation fade in space? INLA models with a large kappa (inverse range) parameter change very quickly in space. Those with a large range and small kappa parameter have much longer, slower graidents.
 
@@ -494,7 +484,7 @@ Maxrange = 40
 
 INLARange(list(IM3), maxrange = Maxrange)
 ```
-![]({{ site.baseurl }}/img/Range1.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Range1.png)
 
 However, being able to visualise spatial patterns does not necessarily mean that spatial autocorrelation is affecting the model substantially, and range does not correspond to the importance of autocorrelation! In order to investigate that, we have to look at model fit. How does the DIC of these models compare?
 
@@ -510,14 +500,15 @@ This is quite hard to visualise, so: another function in the package!
 
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE"))
 ```
-![]({{ site.baseurl }}/img/DIC1.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC1.png)
 
 Seems like spatial autocorrelation doesn't affect these data the way we've coded it! Whoever carried out this study could keep going as they were and not worry any more about spatial autocorrelation. __Except we had some expectations that there might be other varieties of spatial autocorrelation at work here.__
 
 If I had had no more ###a priori### expectations for this study, I would stop here. Don't keep analysing different variables or combinations of variables until eventually you find a variety of spatial autocorrelation that affects your data. 
 
-<a name="spatial2"></a>
 ## 5. Modify and specify spatial `INLA` models
+{: #spatial2}
 
 ### Seasonal model
 
@@ -584,18 +575,18 @@ ggField(IM4, Mesh, Groups = NGroups) + # Notice the groups argument, using the n
   facet_wrap( ~ Group, labeller = labeller(Group = Labels), ncol = 3) # Doing this manually changes the facet labels
   
 ```
-![]({{ site.baseurl }}/img/Field2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Field2.png)
 
 ```r
 INLARange(SpatialHostList[3:4], maxrange = Maxrange, mesh = Mesh, ModelNames = c("Full", "Monthly"))
 ```
-![]({{ site.baseurl }}/img/Range2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Range2.png)
 
-<a name="spatialtemp"></a>
 
 ## 6. Learn about spatiotemporal analyses
+{: #spatialtemp}
 
-There is a faster way to split spatial fields into groups, using `repl` instead of splitting it into groups and connecting them via iid models. However, I'm showing you this method as it's a way into spatiotemporal models. In the above model, we have assumed that monthly spatial fields are totally unrelated to each other. However, we can use an ```exchangeable``` model to force a correlation between them, and to derive a rho correlation between the fields.
+There is a faster way to split spatial fields into groups, using `repl` instead of splitting it into groups and connecting them via iid models. However, I'm showing you this method as it's a way into spatiotemporal models. In the above model, we have assumed that monthly spatial fields are totally unrelated to each other. However, we can use an "exchangeable" model to force a correlation between them, and to derive a rho correlation between the fields.
 
 ```r
 f5 = as.formula(paste0("y ~ -1 + Intercept + ", paste0(colnames(X), collapse = " + "), 
@@ -623,18 +614,21 @@ NB: with Exchangeable, all fields are correlated to the same extent. If we used 
 
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3"))
 ```
-![]({{ site.baseurl }}/img/DIC3.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC3.png)
 
 ```r
 ggField(IM5, Mesh, Groups = NGroups) + # Notice the groups argument, using the number of unique months.
   scale_fill_brewer(palette = "Greens") 
 ```
-![]({{ site.baseurl }}/img/Field3.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Field3.png)
 
 ```r
 INLARange(SpatialHostList[3:5], maxrange = Maxrange, ModelNames = c("Full", "Monthly", "Monthly2"))
 ```
-![]({{ site.baseurl }}/img/Range3.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Range3.png)
 
 
 ### Within-grid model
@@ -700,7 +694,8 @@ __Has this fit the data better?__
 ```r
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
-![]({{ site.baseurl }}/img/DIC4.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC4.png)
 
 Nope!
 
@@ -714,7 +709,8 @@ ggField(I6, Mesh2, Groups = NGroup2)  +
   facet_wrap(~Group, labeller = labeller(Group = Labels2)) + scale_fill_brewer(palette = "Oranges") + 
   ggsave("Fields6.png", units = "mm", width = 120, height = 100, dpi = 300)
 ```
-![]({{ site.baseurl }}/img/Fields6.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Fields6.png)
 
 But the fields look cool!
 
@@ -725,77 +721,16 @@ The best-fitting model is SPDE 3 (model 5). This features different spatial fiel
 ```r
 Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
-![]({{ site.baseurl }}/img/FinalEffects.png" alt="Img" style="width: 500px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/inla/FinalEffects.png)
 
 
-# Added extras #
+# Added extras 
 
 1. Adding interactions: You can't have colons in the column names of the X matrix. Replace them with "_" using gsub or similar.
 
 2. You can add a boundary to your mesh using INLA to better represent your study system. Here's an example with the Isle of Rum system I work on, portraying the coastline:
 
-![]({{ site.baseurl }}/img/Rum.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/inla/Rum.png)
 
 3. You can also remove areas of the mesh where e.g. your organism can't live, using the barrier functions.
-
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VVGXKZG)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-

@@ -1,46 +1,40 @@
 ---
-layout: post
+layout: tutorial
 title: Intro to model design
 subtitle: Determining the best type of model to answer your question
 date: 2018-04-06 10:00:00
 author: Isla and Gergana
-meta: "Tutorials"
-tags: modelling data_manip data_vis
+survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 ---
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheaderdesign.png" alt="Img)
-	</center>
-</div>
 
 ### Tutorial Aims:
 
-#### <a href="#model"> 1. Learn what a statistical model is </a>
-#### <a href="#question"> 2. Come up with a research question </a>
-#### <a href="#thinking"> 3. Think about our data </a>
-#### <a href="#design"> 4. Think about our experimental design </a>
-#### <a href="#types"> 5. Turn a question into a model </a>
-#### <a href="#models"> 6. Learn about the different types of models </a>
-#### <a href="#linear"> 7. General linear models </a>
-#### <a href="#lme4"> 8. Hierarchical models using `lme4` </a>
-#### <a href="#lme4b"> 9. Random slopes versus random intercepts `lme4` </a>
-#### <a href="#MCMCglmm"> 10. Hierarchical models using `MCMCglmm` </a>
+1. [Learn what a statistical model is](#model)
+2. [Come up with a research question](#question)
+3. [Think about our data](#thinking)
+4. [Think about our experimental design](#design)
+5. [Turn a question into a model](#types)
+6. [Learn about the different types of models](#models)
+7. [General linear models](#linear)
+8. [Hierarchical models using `lme4`](#lme4)
+9. [Random slopes versus random intercepts `lme4`](#lme4b)
+10. [Hierarchical models using `MCMCglmm`](#MCMCglmm)
 
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 ## Introduction
 
 __Ecological data can throw up complex challenges for statistical models and designing the appropriate model to answer your research question can be one of the trickiest parts of ecological research (and research in other fields). Learning how to design statistical models can take time, but developing rigorous statistical approaches as early as possible will help you in your future research career. If you put the time in, soon you will realise that statistics aren't a total pain and continuous frustration, but something pretty fun that really engages your brain in diverse ways. So to start off, I like to put the computer coding aside, make myself a hot drink or get a fancy latte at a coffee shop, get out my pen or pencil and paper and put on my thinking cap.__
 
-<a name="model"></a>
 
 ## 1. Learn what a statistical model is
+{: #model}
 
 In order to answer research questions, we require statistical tests of the relationships in our data. In modern ecology and other fields, models are designed to fit the structure of data and to appropriately test the questions that we have as researchers. Thus, the first step to any data analysis is figuring out what your research question is. __Without a research question, there is no point in trying to conduct a statistical test. So let's pause here and figure out the research question for our tutorial today.__
 
-<a name="question"></a>
 
 ## 2. The research question
+{: #question}
 
 In this tutorial, we will work with part of the long-term plant cover dataset from the [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).  These data (remember the word data is plural, thus data are ... not data is ...!) are plant composition data collected over four years across five sites over time in Arctic tundra in Northern Alaska.  A simple question we might ask with these data is: how has the species richness changed in these plots over time?
 
@@ -74,9 +68,9 @@ When we ask how temperature influences plant species richness, we are looking to
 
 For now, this should be enough set-up for us to progress ahead with our models, but remember to __always start with the question first when conducting any research project and statistical analysis.__
 
-<a name="thinking"></a>
 
 ## 3. Thinking about our data
+{: #thinking}
 
 There are different statistical tests that we could use to conduct our analyses and what sort of statistical test we use depends on the question and the type of data that we have to test our research question.  Since we have already thought about our question for a bit, let's now think about our data.  What kind of data are we dealing with here?
 
@@ -215,7 +209,7 @@ To explore the data further, we can make a histogram of species richness.
 
 Note that putting your entire `ggplot` code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the `hist` object. 
 
-![]({{ site.baseurl }}/img/richness_hist.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/richness_hist.png)
 
 __There are some other things we should think about.  There are different types of numeric data here.  For example, the years are whole numbers: we can't have the year 2000.5.__
 
@@ -227,13 +221,14 @@ __The plant cover can be any value that is positive, it is therefore bounded at 
     theme_classic())
 ```
 
-![]({{ site.baseurl }}/img/cover_hist.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/cover_hist.png)
 
 __The plant cover data are skewed to the left, i.e., most of the records in the `Relative.Cover` column have small values. These distributions and characteristics of the data need to be taken into account when we design our model.__
 
-<a name="design"></a>
 
 ## 4. Thinking about our experimental design
+{: #design}
+
 In the Toolik dataset of plant cover, we have both spatial and temporal replication.  The spatial replication is on three different levels: there are multiple sites, which have multiple blocks within them and each block has eight plots. The temporal replication refers to the different years in which plant cover was recorded: four years.
 
 __What other types of issues might we need to consider?__
@@ -244,9 +239,9 @@ One of the assumptions of a model is that the data points are independent. In re
 ### Temporal autocorrelation  
 Similarly, it's possible that the data points in one year are not independent from those in the year before. For example, if a species was more abundant in the year 2000, that's going to influence it's abundance in 2001 as well.
 
-<a name="types"></a>
 
 ## 5. Turn a question into a model
+{: #types}
 
 __Let's go back to our original question:__
 
@@ -260,9 +255,9 @@ __In `R`, this turns into the code: `richness ~ time`.__
 
 __Richness is our dependent (predictor) variable and time is our independent variable ([ see here for more details](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
 
-<a name="models"></a>
 
 ## 6. Learn about the different types of models
+{: #models}
 
 Before we get back to our dataset that we are designing a model for, let's revisit some statistics basics.
 
@@ -280,9 +275,9 @@ __Here are some questions to consider.__
 
 ### Why does it matter which type of models we use?
 
-<a name="linear"></a>
 
 ## 7. General linear models
+{: #linear}
 
 Model without any random effects:
 
@@ -297,11 +292,11 @@ summary(plant_m)
 2. The data points are independent of one another.
 3. The relationship between the variables we are studying is actually linear.
 
-And there are many more - you can check out <a href="http://r-statistics.co/Assumptions-of-Linear-Regression.html" target ="_blank">this useful website</a> for the full list with examples and how to check if those are assumptions are met later.
+And there are many more - you can check out [this useful website](http://r-statistics.co/Assumptions-of-Linear-Regression.html) for the full list with examples and how to check if those are assumptions are met later.
 
 __Do you think the assumptions of a general linear model are met for our questions and data? Probably not!__
 
-__From the histograms, we can see that the data are not normally distributed, and furthermore, if we think about what the data are, they are integer counts (number of species), probably a bit skewed to the left, as most plots might not have a crazy amount of species. For these reasons, a Poisson distribution might be suitable, not a normal one. You can check out the <a href="https://ourcodingclub.github.io/2017/02/28/modelling.html" target ="_blank">Models and Distributions Coding Club tutorial</a> for more about different data distributions.__
+__From the histograms, we can see that the data are not normally distributed, and furthermore, if we think about what the data are, they are integer counts (number of species), probably a bit skewed to the left, as most plots might not have a crazy amount of species. For these reasons, a Poisson distribution might be suitable, not a normal one. You can check out the [Models and Distributions Coding Club tutorial](https://ourcodingclub.github.io/2017/02/28/modelling.html) for more about different data distributions.__
 
 __We know that because of how the experimental design was set up (remember the Russian doll of plots within blocks within sites), the data points are not independent from one another. If we don't account for the plot, block and site-level effects, we are completely ignoring the hierarchical structure of our data, which might then lead to wrong inferences based on the wrong model outputs.__
 
@@ -309,7 +304,7 @@ __We know that because of how the experimental design was set up (remember the R
 
 __Model convergence is whether or not the model has worked, whether it has estimated your response variable (and random effects, see below) - basically whether the underlying mathematics have worked or have "broken" in some way. When we fit more complicated models, then we are pushing the limits of the underlying mathematics and things can go wrong, so it is important to check that your model did indeed work and that the estimates that you are making do make sense in the context of your raw data and the question you are asking/hypotheses that you are testing.__
 
-__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club MCMCglmm tutorial ([model convergence in lme4](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">tutorial here</a>). For an advanced discussion of model convergence, check out <a href="https://rdrr.io/cran/lme4/man/convergence.html).__
+__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club [MCMCglmm tutorial](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html). For an advanced discussion of model convergence, check out [model convergence in lme4](ttps://rdrr.io/cran/lme4/man/convergence.html).__
 
 __For now, let's check the residual versus predicted plot for our linear model. By using the 'plot()' function, we can plot the residuals versus fitted values, a Q-Q plot of standardised residuals, a scale-location plot (square roots of standardiaed residuals versus fitted values) and a plot of residuals versus leverage that adds bands corresponding to Cook’s distances of 0.5 and 1. Looking at these plots can help you identify any outliers that have huge leverage and confirm that your model has indeed run e.g. you want the data points on the Q-Q plot to follow the one-to-one line.__
 
@@ -317,9 +312,8 @@ __For now, let's check the residual versus predicted plot for our linear model. 
 plot(plant_m)
 ```
 
-<a name="lme4"></a>
-
 ## 8. Hierarchical models using `lme4`
+{: #lme4}
 
 Now that we have explored the idea of a hierarchical model, let's see how our analysis changes if we do or do not incorporate elements of the experimental design to the hierarchy of our model.
 
@@ -371,9 +365,7 @@ save_plot(filename = "model_fe.png",
 
 Note how when we visualise our random effects, three different plots come up (use the arrow buttons in the "plots" window to scroll through the plots). The first two show the interaction effects. Here, we are only interested in the plot that shows us the random effects of site, i.e. the figure we see below:
 
-![]({{ site.baseurl }}/img/model_fe.png" alt="Img" style="width: 500px;)
-
-### For our second question, how does temperature influence species richness, we can design a similar model with one important difference: we will include `Year` as a random effect to account for temporal autocorrelation.
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
 
 ```r
 plant_m_temp <- lmer(Richness ~ Mean.Temp + (1|Site/Block/Plot) + (1|Year),
@@ -397,7 +389,7 @@ save_plot(filename = "model_temp_fe.png",
 
 Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year. 
 
-![]({{ site.baseurl }}/img/model_temp_fe.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
 
 #### Assumptions made:
 
@@ -411,9 +403,9 @@ Again, with the random effect terms, we can see the random effects of interactio
 1. We have not accounted for spatial autocorrelation in the data - whether more closely located plots are more likely to show similar responses than farther away plots.
 2. We have not accounted for temporal autocorrelation in the data - whether the influence of prior years of data are influencing the data in a given year.
 
-<a name="lme4b"></a>
 
 ## 9. Random slopes versus random intercepts `lme4`
+{: #lme4b}
 
 __We can now think about having random slopes and random intercepts. For our question, how does temperature influence species richness, we can allow each plot to have it's own relationship with temperature.__
 
@@ -451,7 +443,7 @@ save_plot(filename = "model_plant_fe.png",
           height = 14, width = 9)
 ```
 
-![]({{ site.baseurl }}/img/model_plant_fe.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
 
 To get a better idea of what the random slopes and intercepts are doing, we can visualise your model predictions. We will use the `ggeffects` package to calculate model predictions and plot them. First, we calculate the overall predictions for the relationship between species richness and temperature. Then, we calculate the predictions for each plot, thus visualising the among-plot variation. Note that the second graph has both freely varying slopes and intercepts (i.e., they're different for each plot).
 
@@ -465,7 +457,7 @@ save_plot(filename = "model_temp_richness_rs_ri.png",
           height = 9, width = 9)
 ```
 
-![]({{ site.baseurl }}/img/model_temp_richness_rs_ri.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness_rs_ri.png)
 
 #### An important note about honest graphs!
 
@@ -506,7 +498,7 @@ ggsave(pred_plot2, filename = "ri_rs_predictions.png",
 
 ```
 
-![]({{ site.baseurl }}/img/ri_rs_predictions.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions.png)
 
 __Just for the sake of really seeing the random intercepts and random slopes, here is a zoomed in version), but note that when preparing graphs for reports or publications, your axes should start at zero to properly visualise the magnitude of the shown relationship.__
 
@@ -519,11 +511,11 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
        height = 5, width = 5)
 ```
 
-![]({{ site.baseurl }}/img/ri_rs_predictions_zoom.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions_zoom.png)
 
-<a name="MCMCglmm"></a>
 
 ## 10. Hierarchical models using `MCMCglmm`
+{: #MCMCglmm}
 
 __Let's take our `lme4` model and explore what that model structure looks like in `MCMCglmm`. `MCMCglmm` fits Generalised Linear Mixed-effects Models using a Markov chain Monte Carlo approach under a Bayesian statistical framework.__
 
@@ -542,7 +534,7 @@ plant_mcmc <- MCMCglmm(Richness ~ I(Year - 2007), random = ~Site,
 
 But we have a different problem: the model doesn't converge.
 
-![]({{ site.baseurl }}/img/mcmc_error.png" alt="Img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_error.png)
 
 The `MCMC_dummy` warning message is just referring to the fact that the data, `toolik_plants`, has the characteristics of a `tibble`, a data format for objects that come out of a `dplyr` pipe. So that's not something to worry about now, the real problem is that the model can't converge when `Site` is a random effect. We might not have enough sites or enough variation in the data.
 
@@ -559,7 +551,7 @@ The model has ran, we have seen the many iterations roll down the screen, but wh
 summary(plant_mcmc)
 ```
 
-![]({{ site.baseurl }}/img/mcmc_results.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_results.png)
 
 The posterior mean (i.e., the slope) for the `Year` term is `-0.07` (remember that this is on the logarithmic scale, because we have used a Poisson distribution). So in general, based on this model, species richness has declined over time.
 
@@ -570,7 +562,7 @@ plot(plant_mcmc$VCV)
 plot(plant_mcmc$Sol)
 ```
 
-![]({{ site.baseurl }}/img/bad_traces.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/bad_traces.png)
 
 __Let's see what the `MCMCglmm` models are like when we estimate changes in the cover of one species - _Betula nana_, dwarf birch. We can also use a `Poisson` distribution here, as we can think about plant cover as proportion data, e.g., _Betula nana_ cover say 42% of our sample plot. There might be other suitable distributions like a beta binomial distribution, which we will explore in the sequel to this tutorial, coming to you soon!__
 
@@ -609,7 +601,7 @@ MCMCplot(betula_m$VCV)
 
 `Sol` refers to the fixed effects and `VCV` to the random effects, so we can see the effect sizes of the different variables we have added to our models. If the credible intervals overlap zero, then those effects are not significant, so we can see here that _Betula nana_ cover hasn't changed. `units` refers to the residual variance.
 
-![]({{ site.baseurl }}/img/mcmc_vis2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_vis2.png)
 
 #### Conclusions
 
@@ -619,69 +611,4 @@ Today we have learned that in order to design a statistical model, we first need
 
 If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
 
-__You can check out [the Stan hierarchical modelling tutorial here!](https://ourcodingclub.github.io/2018/04/30/stan-2.html)__
-
-<p></p>
-
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/PFJ7S2D)</h3>
-
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
+__You can check out [the Stan hierarchical modelling tutorial here](https://ourcodingclub.github.io/2018/04/30/stan-2.html)!__

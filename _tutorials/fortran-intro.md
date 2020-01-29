@@ -1,54 +1,44 @@
 ---
-layout: post
+layout: tutorial
 title: Introduction to Fortran
 subtitle: The basics of the Fortran programming language
 date: 2018-07-30 00:00:00
 author: Declan Valters
-meta: "FortranIntro"
-tags: fortran
+survey_link: https://www.surveymonkey.co.uk/r/VG5BK9T
 ---
-
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader_fortran.png" alt="Img)
-</div>
 
 ### Tutorial aims:
 
-#### <a href="#understanding"> 1. Understand what the Fortran progamming langauge is</a>
+1. [Understand what the Fortran progamming langauge is](#understanding)
+2. [Learn about a brief history of Fortran](#history)
+3. [Understand how Fortran differs to other programming languages](#feeling)
+4. [Learn some of the basic syntax of the Fortran language](#basics)
+5. [Learn how to compile a basic Fortran program](#compiling)
+6. [Learn how to compile, configure, and run a larger Fortran program](#structure)
 
-#### <a href="#history"> 2. Learn about a brief history of Fortran</a>
-
-#### <a href="#feeling"> 3. Understand how Fortran differs to other programming languages</a>
-
-#### <a href="basics"> 4. Learn some of the basic syntax of the Fortran language</a>
-
-#### <a href="compiling"> 5. Learn how to compile a basic Fortran program</a>
-
-#### <a href="structure"> 6. Learn how to compile, configure, and run a larger Fortran program</a>
-
-<a name="understanding"></a>
 
 ## What is Fortran?
+{: #understanding}
 
 `Fortran` is a computer programming language that is extensively used in numerical, scientific computing. While outwith the scientific community, `Fortran` has declined in popularity over the years, it still has a strong user base with scientific programmers, and is also used in organisations such as weather forecasters, financial trading, and in engineering simulations. `Fortran` programs can be highly optimised to run on high performance computers, and in general the language is suited to producing code where performance is important. 
 
 `Fortran` is a _compiled_ language, or more specifically it is compiled ahead-of-time. In other words, you must perform a special step called *compilation* of your written code before you are able to run it on a computer. This is where `Fortran` differs to *interpreted* languages such as `Python` and `R` which run through an interpreter which executes the instructions directly, but at the cost of compute speed.
 
-<a name="history"></a>
 
 ## A brief Fortran history
+{: #history}
 
 Fortran was originally named after the contraction of *Formula Translation*, highlighting `Fortran`'s origins as a language designed specifically for mathematical calculations. Fortran was developed in the early 1950s and the first ever `Fortran` program ran in 1954 - making `Fortran` fairly unusual among programming languages in that it predates the modern _transistor_ computer - the first Fortran program ran on the IBM 704 vacuum tube computer! `Fortran` has outlived several nation states since its conception, and still is in wide use today in a number of specialised scientific communities. Unfortunately `Fortran` is often referred to as an 'outdated' or 'legacy' programming language. I disagree with this description, as although `Fortran` has a long history, the language continues to be updated, new features are developed and added to the Fortran language standard, and there is still a strong community behind Fortran. The latest Fortran standard was released in 2018, bringing many new features and keeping `Fortran` a relevant, highly performant language for contemporary scientific computing challenges.
 
-<a name="feeling"></a>
 
 ## Getting a feel for Fortran
+{: #feeling}
 
 Perhaps you have previously used other programming languages, such as `Python`, `R`, or `MATLAB`, which have developed with easy to understand syntax in mind, and with a programming style that favours more rapid development time at the expense of computational performance. `Fortran` will seem different to these languages in many ways, but the principles of programming remain broadly the same, and some syntax is shared or similar to elements of other programming languages.
 
 We are going to start with a 'high-level' view of a very simple Fortran program. Don't worry about every piece of syntax and keyword at the minute - we're just going to look at the overall general structure.
 
-This program calculates the area of a triangle using <a href="https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/chap03/heron.html">Heron's formula</a>.
+This program calculates the area of a triangle using [Heron's formula](https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/chap03/heron.html).
 
 ```fortran
 ! ------------------------------------------------------
@@ -94,16 +84,15 @@ Begin the program! `Fortran` is quite a verbose language, in other words, we hav
 So here we are just telling `Fortran` that we wish to begin our program, and we can optionally give it a name. Skip down to the last line: notice how we also have an `END PROGRAM` statement. `Fortran` likes to keep things balanced and know exactly when you have ended sections of code. You will see the `END` statement used often to demarcate sections of the code such as loops, functions, and so on.
 
 #### Lines 6-17:
+
 The next section of the program is where we define the variables to be used in the program. In `Fortran` programs, you will almost always see these defined at the very top of the program, unlike in other languages where you can define them as you go along. `Fortran` likes to know at the start which variables it is dealing with. We will cover what the different types are in the next section. Note also how we have added comments to explain in more human-readable format what each variable does.
 
 The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and functions. (*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the `WRITE` function. We also terminate our program using the `END PROGRAM` statement.
 
 This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to _compile_ it, which is covered in a later section of the tutorial.
  
-
-<a name="basics"></a>
-
 ## Basics
+{: #basics}
 
 `Fortran` has a set of rules used to determine whether a program is valid and can be understood by the computer, a bit like a human language. The combination of keywords and characters that are used to form Fortran programs are usually referred to as the language's _syntax_. Using the above triangle program as a starting point, we will cover the very basic syntax of the Fortran language. 
 
@@ -255,9 +244,9 @@ That is the end of our triangle area program. There is a final `END PROGRAM` sta
 But how do we execute (run) the program? We will cover this in the next section.
 
 
-<a name="compiling"></a>
 
 ## Compilation
+{: #compiling}
 
 `Fortran` programs have an extra step required before you can run or 'execute' them. Once the program has been written and saved as a plain-text file, we must convert it into a format that the computer hardware can understand and process. This stage is called _compilation_ - we are compiling our program into a format suitable for the computer we wish to run it on. 
 
@@ -302,86 +291,29 @@ To run this (in Linux), type `./triangle`. The program should start running. You
 
 Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above.
 
-
-<a name="tasks"></a>
-
 ## Exercises
+{: #tasks}
 
 Now we know how to write, compile, and run a simple Fortran program, lets experiment with modifying and writing our own code.
 
 Everytime you modify the code, you will need to re-run the compilation step above.
 
-##### 1. Add a message to the screen when the program runs to remind users how to enter the data. (i.e. enter 3 values and press the return key.)  
-
-##### 2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagoreas Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
+1. Add a message to the screen when the program runs to remind users how to enter the data. (i.e. enter 3 values and press the return key.)  
+2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagoreas Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
 
 #### Independent coding
 
-##### 3. Write a program that converts the number of seconds (entered by the user) into hour, minutes, and seconds, and then prints these out to screen.
+3. Write a program that converts the number of seconds (entered by the user) into hour, minutes, and seconds, and then prints these out to screen.
+4. Write a program that will read in an integer value and check if it is less than, equal to, or greater than zero.
+5. Using the previous program, extend it so it reads in five integers and checks each one of them in turn.
+6. Write a program that will calculate the the third side of a triangle, given the two other sides. You could use the cosine rule: `C^2 = A^2 + B^2 - 2*A*B*cos(theta)`. Hint: The fortran function for cosine is COS(theta), where theta is the value stored as a variable.
 
-##### 4. Write a program that will read in an integer value and check if it is less than, equal to, or greater than zero.
-
-##### 5. Using the previous program, extend it so it reads in five integers and checks each one of them in turn.
-
-##### 6. Write a program that will calculate the the third side of a triangle, given the two other sides. You could use the cosine rule: `C^2 = A^2 + B^2 - 2*A*B*cos(theta)`. Hint: The fortran function for cosine is COS(theta), where theta is the value stored as a variable.
-
-
-# Summary
 
 ### Tutorial outcomes:
 
-#### 1. Understand what the Fortran programming language is and a little bit about its history.
-
-#### 2. Understand the basic structure of a Fortran program
-
-#### 3. Learn some of the basic Fortran syntax
-
-#### 4. Compile and run a Fortran program
-
-#### 5. Modify and write your own simple programs
-
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VG5BK9T)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
+1. Understand what the Fortran programming language is and a little bit about its history.
+2. Understand the basic structure of a Fortran program
+3. Learn some of the basic Fortran syntax
+4. Compile and run a Fortran program
+5. Modify and write your own simple programs
 

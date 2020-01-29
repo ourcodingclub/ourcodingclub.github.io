@@ -1,52 +1,35 @@
 ---
-layout: post
+layout: tutorial
 title: Basic data manipulation
 subtitle: Subset, modify and shape your data
 date: 2017-01-06
 updated: 2019-04-04
 author: Sandra
 updater: Sandra
-meta: "Tutorials"
-tags: data_manip intro_to_r 
+survey_link: 
 ---
-<div class="block"> 
-          <center>
-![]({{ site.baseurl }}/img/tutheader_DL_data_manip_1.png" alt="Img)
-          </center>
-        </div>
-        
+
 ### Tutorial aims:
 
-#### 1. Learn base R syntax for data manipulation
-
-##### <a href="#logic"> - logical operators for finer control
-##### <a href="#objects"> - creating and assigning objects
-##### <a href="#factors"> - specifying factors
-
-#### 2. Turn messy data into tidy data with `tidyr`
-
-#### 3. Use efficient tools from the `dplyr` package to manipulate data
-
-
+1. Learn base R syntax for data manipulation
+	- [logical operators for finer control](#logic)
+	- [creating and assigning objects](#objects)
+	- [specifying factors](#factors)
+2. Turn messy data into tidy data with `tidyr`
+3. Use efficient tools from the `dplyr` package to manipulate data
 
 ### Steps:
 
-#### <a href="#base"> Subset, extract and modify data with R base operators 
-
-#### <a href="#tidy"> What is tidy data, and how do we achieve it?
-
-#### <a href="#dplyr"> Explore the most common and useful functions of `dplyr` </a>
-
-##### <a href="#rename"> - `rename()`
-##### <a href="#filter"> - `filter()`and `select()`
-##### <a href="#mutate"> - `mutate()`
-##### <a href="#group_by"> - `group_by()`
-##### <a href="#summarise"> - `summarise()`
-##### <a href="#join"> - `join()`
-
-#### <a href="#challenge"> Challenge yourself!
-
-
+- [Subset, extract and modify data with R base operators](#base)
+- [What is tidy data, and how do we achieve it?](#tidy)
+- [Explore the most common and useful functions of `dplyr`](#dplyr)
+	- [`rename()`](#rename)
+	- [`filter()`and `select()`](#filter)
+	- [`mutate()`](#mutate)
+	- [`group_by()`](#group_by)
+	- [`summarise()`](#summarise)
+	- [`join()`](#join)
+- [Challenge yourself!](#challenge)
 
 Data come in all sorts of different shapes and formats, and what is useful or practical for one application is not necessarily so for another. R has specific requirements about the setup and the types of data that can be passed to functions, so one of the best skills in your coding toolbox is being able to play with your data like putty and give it any shape you need!
 

@@ -1,39 +1,35 @@
 ---
-layout: post
+layout: tutorial
 title: Intro to Python
 subtitle: Importing and exploring data with Python, writing good scientific code
 date: 2018-01-26 00:00:00
 author: Declan
-meta: "PythonBasics"
-tags: python
+survey_link: https://www.surveymonkey.co.uk/r/WVL5GXB
 ---
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader_python.png" alt="Img)
-</div>
 
 ### Tutorial aims:
 
-#### <a href="#understanding"> Understand why Python is so useful for scientific programming</a>
+[Understand why Python is so useful for scientific programming](#understanding)
 
-#### <a href="#installing"> 1. Installing Python and running a simple Python program</a>
+1. [Installing Python and running a simple Python program](#installing)
 
-#### <a href="#reading"> 2. Reading data from a file</a>
+2. [Reading data from a file](#reading)
 
-#### <a href="#feeling"> 3. Get a feel for how Python looks and feels</a>
+3. [Get a feel for how Python looks and feels](#feeling)
 
-#### <a href="#loading"> 4. Load data from a text file into memory</a>
+4. [Load data from a text file into memory](#loading)
 
-#### <a href="#basics"> 5. Learn about some basic Python data types and structures</a>
+5. [Learn about some basic Python data types and structures](#basics)
 
-#### <a href="#modules"> 6. Moving beyond the core Python language with modules</a>
+6. [Moving beyond the core Python language with modules](#modules)
 
-#### <a href="#pandas"> 7. A brief introduction to data analysis with the pandas package</a>
+7. [A brief introduction to data analysis with the pandas package](#pandas)
 
-#### <a href="#matplotlib"> 8. Plotting data with Matplotlib</a>
+8. [Plotting data with Matplotlib](#matplotlib)
 
-<a name="understanding"></a>
 
 ## Understanding why Python is so useful for scientific programming
+{: #understanding}
 
 You may have heard about the Python programming language before. It is often talked about as the next "up and coming" programming language, or described as being a new, "trendy" programming language that everyone should be learning, particularly scientists. I would argue that Python is no longer merely "up and coming", or even particularly new, but one of the most popular and useful programming languages you could invest time in learning. In fact, as of 2018, Python is (by certain measures) **the most widely used programming language in the world**. So if you are a scientist, researcher, or student doing any kind of data analysis, or numeric programming, then I think Python is worth investing some time in learning, even just the basics.
 
@@ -41,11 +37,11 @@ Python is a programming language, a tool used to make computers do useful things
 
 Python has grown hugely in popularity in recent years, by some measures it is *the* most popular programming language as of 2018. Consider the chart below, which is based on number of question views on StackOverflow:
 
-![]({{ site.baseurl }}/img/python_growth_major_languages.png" alt="Img" style="width: 1000px)
+![]({{ site.baseurl }}/img/python_growth_major_languages.png)
 
 You may also wish to have a look at this chart showing the growth of Python and other smaller, growing technologies (including R):
 
-![]({{ site.baseurl }}/img/python_growth_smaller_languages.png" alt="Img" style="width: 1000px)
+![]({{ site.baseurl }}/img/python_growth_smaller_languages.png)
 
 If you are interested in reading more about the growth of Python (and the background to the above charts), I highly recommend reading [this blog post from StackOverflow](https://stackoverflow.blog/2017/09/06/incredible-growth-python/).
 
@@ -110,9 +106,9 @@ If you are stuck with a problem in Python, online resources are so plentiful tha
 In the domain of science, the Scientific Python community is just as well established. You may have already heard of Python packages like `numpy` (Numerical Python), `scipy` (Scientific Python), as well as other tools like `pandas`, `matplotlib`, and many more. Many of these tools were developed by scientists to share something back to the Python community, and they have now grown and become almost _de facto_ standard tools within the scientific programming community. 
 
 
-<a name="installing"></a>
 
 ## Installing Python and running a simple Python program
+{: #installing}
 
 ### Installation
 
@@ -132,7 +128,7 @@ From here you have two main options for how to write your Python code during thi
 
 This method of writing Python code is most applicable to Mac and Linux users, as it requires access to a terminal program like Terminal.app, or the Gnome Terminal.
 
-The way Python programming normally works is that you write a script, save the script, then run the script. Python scripts can be written using any plain text editor, e.g. [TextEdit.app](https://atom.io" target="_blank">Atom</a>, <a href="http://www.pspad.com" target="_blank">PSPad</a>, <a href="https://www.vim.org" target="_blank">Vim</a>, or even simple programs like <a href="https://support.apple.com/en-gb/guide/textedit/welcome/mac)!
+The way Python programming normally works is that you write a script, save the script, then run the script. Python scripts can be written using any plain text editor, e.g. [Atom](https://atom.io), [PsPad](http://www.pspad.com), [Vim](https://www.vim.org), or even simple programs like [TextEdit.app](https://support.apple.com/en-gb/guide/textedit/welcome/mac)!
 
 To run the Python script, you then need to navigate to the folder where the Python script is saved, using the command line, and run it by typing this, assuming your Python script is called `myscript.py`:
 
@@ -142,18 +138,18 @@ python myscript.py
 
 Any output will be printed to the screen in the terminal or console you are running from.
 
-This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Windows command line users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/" target="_blank">Linux/Mac terminal users</a> and <a href="http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/).
+This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Linux/Mac terminal users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/) and [Windows command line users](http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/).
 
 
 #### Following the tutorial with Spyder or another IDE
 
 If you are not comfortable using the command line or terminal, or are on a Windows machine, we recommend using this method.
 
-Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as [Spyder documentation](https://spyder-ide.github.io/" target="_blank">Spyder</a> (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the <a href="https://pythonhosted.org/spyder/) for more info on how to use Spyder.
+Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as [Spyder](https://spyder-ide.github.io/) (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the [Spyder documentation](https://pythonhosted.org/spyder/) for more info on how to use Spyder.
 
 This diagram shows a basic Spyder session:
 
-![]({{ site.baseurl }}/img/spyder.png" alt="Img" style="width: 800px)
+![]({{ site.baseurl }}/img/spyder.png)
 
 The window on the left is a text editor where you can write your script, the window on the right is the console where the output of the script will be shown. The green play button will run the script through the console, giving you the output.
 
@@ -189,14 +185,14 @@ This short tutorial is based around exploring data from the School of GeoScience
 
 ## You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.
 
-Alternatively, you can fork [previous tutorial.](https://github.com/ourcodingclub/CC-python-intro" target="_blank">the repository</a> to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our <a href="https://ourcodingclub.github.io/2017/02/27/git.html)
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-intro) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
 
-You can have a look at all the data via the [Storm Eleanor](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data" target="_blank">link to the station webpage</a>, but for ease of use, we've provided the data file <a href="https://github.com/ourcodingclub/CC-python-intro" target="_blank">in the repo you just downloaded</a> (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from <a href="https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
+You can have a look at all the data via the [link to the station webpage](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 
 
-<a name="reading"></a>
 
 ## Reading data from a file
+{: #reading}
 
 We are going to start off simple, using the basic 'core' Python language features to explore the data, then later in the tutorial we'll look at some of the ways we can use modules and libraries to make dealing with data easier. Create a new Python script in your editor or IDE, and type in the following lines:
 
@@ -222,9 +218,9 @@ Note how when using `with` we do not have to worry about closing the file -- it 
 
 The second argument we provide to the `open()` function, `"r"`, tells the Python we want to open the file for *reading* from it. There are other arguments that we could have given such as `"w"` for writing to the file. [More details can be found in the Python documentation](https://docs.python.org/3/library/functions.html#open).
 
-<a name="feeling"></a>
 
 ### A note on code blocks in Python
+{: #feeling}
 
 All programming languages need a way of marking small units or subsections of code. For example, in a `for` loop, there needs to be a way to mark the start and end of the code to be executed within the loop. Some programming languages use terminating keywords to take care of this, Matlab and Fortran for example use the **end** keyword to signify the end of a particular code block. C-based languages often use the "curly braces" to open and close code blocks. E.g.:
 
@@ -239,10 +235,9 @@ Python uses neither braces nor "end" statements to mark the end of code blocks. 
 
 You may use either a tab or spaces (any number of spaces...) to indicate indentation. I prefer personally to use two spaces, as it's easy to type and keeps the code looking nice and compact, but it's up to your personal preference. The important thing is to **be consistent with your whitespace and indentation!**
 
-<a name="loading"></a>
-<a name="basics"></a>
-
 ### Loading a text file into memory and basic data structures
+{: #loading}
+{: #basics}
 
 We can load the data in from the file and print it to screen, but that probably isn't much practical use. How should we approach reading the data into variables that we can manipulate and perform calculations on? We can do this by assigning the values in the file to a basic Python data structure, the **list**. (We shall discover later that lists are not necessarily the best data struture for numerical data, but they are a good introduction when learning Python.)
 
@@ -313,16 +308,16 @@ with open("StormEleanor_2_3_Jan.csv", "r") as weatherfile:
 
 Note that we must first create an empty list to store our pressure data in. We also have to make sure to create it outside of the `with` block, in case we want to use it later on. In the for loop we do the following for every line:
 
-##### 1. Split the line up from one long string into a list of items in the row.
-##### 2. Extract the item at position 6. (The pressure reading)
-##### 3. Use the `append` method to add the current line's pressure value to our list of pressure data.
+1. Split the line up from one long string into a list of items in the row.
+2. Extract the item at position 6. (The pressure reading)
+3. Use the `append` method to add the current line's pressure value to our list of pressure data.
 
 We now have a data structure called `pressure_data` that contains all the air pressure measurements from the text file. But there are a couple of problems here. (Can you think what they might be?)
 
 Hint: Think about
 
-##### 1. The very first line in the original text file
-##### 2. The type of the data in the list...
+1. The very first line in the original text file
+2. The type of the data in the list...
 
 Yes, unfortunately, we have two problems: 1. The first text line in the original file (`Pair_avg`) has been read into the list, which is not good if we want to try and sum or average the list later, because it will contain a string as well as some numbers. 2. The items in the list are actually all still strings, not numbers! You can test this by adding two print statements to the end of the script:
 
@@ -384,13 +379,13 @@ The output should be:
 <class 'float'>
 ```
 
-<a name="modules"></a>
 
 ## Moving beyond the core Python language with modules
+{: #modules}
 
 This all seems a bit long-winded, doesn't it? Isn't Python meant to be quick and easy, I hear you cry? 
 
-Correct. Python's simple and hopefully intuitive syntax is nice, but the real strength of Python lies in its support for packages and libraries/modules that make your coding life easier.  
+Correct. Python's simple and hopefully intuitive syntax is nice, but the real strength of Python lies in its support for packages and libraries/modules that make your coding life easier.
 
 Python actually has built in support for reading text and csv files, using a module (or library) called...`csv`! So there is no need to do all of the above every time you want to read in a simple text file. But I hope it was useful introduction to the feel of Python syntax, and some of the basic language features -- they will come in handy later!
 
@@ -424,9 +419,9 @@ You will hear the following terms used a lot in the Python world (and other lang
 Packages and modules are ubiquitous in Python, and most scientific programming done with Python makes use of one or more packages that are installed separately to the standard Python installation. You can think of them as 'add-ons' to the basic Python language, much like libraries in R or other programming languages. `pandas` is a package that contains a whole bunch of useful functions and data structures for dealing with tables of data, time-series data, and other similar datasets.
 
 
-<a name="pandas"></a>
 
 ## A brief introduction to data analysis with Pandas
+{: #pandas}
 
 We are going to dive right in here and start using a Python package called `pandas`, which is widely used for data analysis. (The name comes from *panel data* rather than the cute black and white fluffy animals at Edinburgh Zoo.)
 
@@ -436,15 +431,15 @@ We are going to dive right in here and start using a Python package called `pand
 
 #### When to use `pandas`:
 
-##### Table-like columnar data
-##### Interfacing with databases (MySQL etc.)
-##### Multiple data-types in a single data file.
+- Table-like columnar data
+- Interfacing with databases (MySQL etc.)
+- Multiple data-types in a single data file.
 
 #### When not to use `pandas`:
 
-##### For really simple data files (a single column of values in a text file, for example, might be overkill).
-##### If you are dealing with large gridded datasets of a single data type. (Consider using `numpy`).
-##### If you are doing lots of matrix calculations, or other heavily mathematical operations on gridded data. (Consider using `numpy`).
+- For really simple data files (a single column of values in a text file, for example, might be overkill).
+- If you are dealing with large gridded datasets of a single data type. (Consider using `numpy`).
+- If you are doing lots of matrix calculations, or other heavily mathematical operations on gridded data. (Consider using `numpy`).
 
 Let's have a look at using `pandas` to load in our weather station data. Create a new script using your editor or IDE containing the following:
 
@@ -462,9 +457,9 @@ Let's break down the above to see what is happening. After we import `pandas`, w
 
 In this case, we are using the `read_csv` function to load a text based file (after all, a csv file is just a text file). We need to give the `read_csv` function three arguments: 
 
-##### 1. The *path and name* of the file ("StormEleanor_2_3_Jan.csv"). (This assumes you have downloaded the text file to the same folder you are writing your Python scripts.)
-##### 2. The *delimiter* used in this type of text file, or the character used to separate the values in the file. Since we are using a csv file (comma separated variable file), the delimiter is a comma (`','`). The delimiter must go inside quotation marks. 
-##### 3. The *header* argument, which tells pandas which row contains the column header names. Remember Python starts counting from zero, so we want to use row 0.  
+1. The *path and name* of the file ("StormEleanor_2_3_Jan.csv"). (This assumes you have downloaded the text file to the same folder you are writing your Python scripts.)
+2. The *delimiter* used in this type of text file, or the character used to separate the values in the file. Since we are using a csv file (comma separated variable file), the delimiter is a comma (`','`). The delimiter must go inside quotation marks. 
+3. The *header* argument, which tells pandas which row contains the column header names. Remember Python starts counting from zero, so we want to use row 0.
 
 Finally, note that we have assigned the result of the `read_csv` function call to a variable we have created called `data`. This variable is a `pandas` *dataframe*. (Try using `type(data)` to get Python to confirm this for you). We will have a look at the `pandas` dataframe type in a later tutorial, for now you can think of it as a more 'feature-rich' data structure than the `list` type we used in the previous example. 
 
@@ -495,9 +490,9 @@ print(pressure_data)
 
 Python should print out all the Air Pressure data, as well as a 'record' number on the left hand side, and at the end it prints out the name of the data variable and the data type.
 
-<a name="matplotlib"></a>
 
 ## Plotting data with matplotlib
+{: #matplotlib}
 
 Let's plot the data! We are going to use another package called `matplotlib`. `matplotlib` is a widely used plotting library that can be used to create a wide range of high-quality charts and graphs of scientific data. We're going to keep it simple in this introductory tutorial by plotting a simple line graph of the pressure data from the JCMB weather station.
 
@@ -528,7 +523,7 @@ The `plot` function will plot a line chart by default, and the first argument is
 
 Open the "pressure.png" file (it will be in the same folder) and you should see a simple line plot of the pressure data over the 2 days that Storm Eleanor passed over Edinburgh. It should look something like this:
 
-![]({{ site.baseurl }}/img/pressure.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/img/pressure.png)
 
 We can see how the pressure drops significantly as the storm passes over the weather station. However, the plot could be improved with some lables on the axes, and a title. To add them to the figure, change our script to include the following:
 
@@ -567,12 +562,12 @@ print(date_time_series)
 ```
 Let's break this down:
 
-##### 1. We add `datetime` to our import statements at the start of the script
-##### 2. We create an empty list to store our dates
-##### 3. We set the first date in the series, which is Midnight (00:00) on the 2nd January 2018. (Midnight is set by default if no hours/minutes are specified)
-##### 4. We set the end date for our date, which is 23:59 on the 3rd January 2018.
-##### 5. Set the timestep as a `timedelta` object. (Remember, the weather station data is recorded every minute.
-##### 6. Iterate by adding the time delta to the start time, and appending the new time step to the list, until we reach the final time.
+1. We add `datetime` to our import statements at the start of the script
+2. We create an empty list to store our dates
+3. We set the first date in the series, which is Midnight (00:00) on the 2nd January 2018. (Midnight is set by default if no hours/minutes are specified)
+4. We set the end date for our date, which is 23:59 on the 3rd January 2018.
+5. Set the timestep as a `timedelta` object. (Remember, the weather station data is recorded every minute.
+6. Iterate by adding the time delta to the start time, and appending the new time step to the list, until we reach the final time.
 
 Finally, we now have a new list of times that we can plot. When we call plt.plot() this time, we are going to supply *two* arguments: an x series (datetimes) and a y series (pressure). 
 
@@ -580,9 +575,8 @@ Add the above code into your script after the data loading lines, then run the s
 
 We can also add a few extra matplotlib functions to tidy up our plot:
 
-##### 7. (Optional) It will probably look nice if the x-labels are rotated slightly so that the times don't overlap. We can do this by setting the `rotation` argument in the `plt.xticks()` function.
-
-##### 8. To tidy up the axes, and scale them correctly, we can add a call to `plt.tight_layout()` just before we save the figure.
+7. (Optional) It will probably look nice if the x-labels are rotated slightly so that the times don't overlap. We can do this by setting the `rotation` argument in the `plt.xticks()` function.
+8. To tidy up the axes, and scale them correctly, we can add a call to `plt.tight_layout()` just before we save the figure.
 
 The final script should look now look like this:
 
@@ -617,7 +611,7 @@ Make sure the script is saved, and then run it. Open up the "pressure_final.png"
 
 The final figure should look like this:
 
-![]({{ site.baseurl }}/img/pressure_final.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/img/pressure_final.png)
 
 ## Summary
 
@@ -625,82 +619,9 @@ In this tutorial we have looked at why Python is popular for scientific programm
 
 ### Tutorial outcomes:
 
-#### 1. You have a feel for how widely used Python is, and why it is popular
-
-#### 2. You can run a simple test Python program on your computer
-
-#### 3. You can read in data from a text file using the core Python language
-
-#### 4. You can use modules and packages to streamline data reading and analysis
-
-#### 5. You can make simple figures with matplotlib
-
-#### 6. You have a feel for some of the basic syntax and data structures of Python
-
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="width: 100px"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/WVL5GXB)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
-
-
-
-
-
-
+1. You have a feel for how widely used Python is, and why it is popular
+2. You can run a simple test Python program on your computer
+3. You can read in data from a text file using the core Python language
+4. You can use modules and packages to streamline data reading and analysis
+5. You can make simple figures with matplotlib
+6. You have a feel for some of the basic syntax and data structures of Python

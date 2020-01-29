@@ -1,59 +1,44 @@
 ---
-layout: post
+layout: tutorial
 title: Python Crash Course
 subtitle: How to get started with Python
 date: 2018-11-05T12:00:00.000Z
 author: James
-meta: python-crash-course
-tags: intro_to_python
+survey_link: https://www.surveymonkey.co.uk/r/VN5XKPR
 ---
-
-<div class="block">
-  <center>
-![]({{ site.baseurl }}/img/tutheader_python_crash.png" alt="Img)
-</center>
-</div>
 
 # Tutorial Aims:
 
-#### 1. Learn how to install Python and start coding
-
-#### 2. Learn the basics of Python
-
-#### 3. Explore where you can go next on your Python journey
+1. Learn how to install Python and start coding
+2. Learn the basics of Python
+3. Explore where you can go next on your Python journey
 
 ----
+
 This tutorial is a whistle stop tour of Python, the aim is not to get you to be an expert by the end of it, but rather to lay the groundwork for you to start tackling your own Python challenges and to kick off your learning. After this tutorial I hope that you will understand the basics of python, know how and where you can write code, know where you can get more help when you are stuck and be enthused by the idea of learning more.
 
 ----
+
 # Steps:
 
-#### <a href="#why">1. Why learn Python</a>
-
-#### <a href="#installing">2. How to install Python with Anaconda</a>
-
-#### <a href="#spyder">3. Writing Python code in Spyder</a>
-
-#### <a href="#variables">4. Python basics - variables and printing</a>
-
-#### <a href="#operators">5. Python basics - simple maths and operators</a>
-
-#### <a href="#functions">6. Python basics - functions</a>
-
-#### <a href="#loops">7. Python basics - loops</a>
-
-#### <a href="#ifs">8. Python basics - if-else statements</a>
-
-#### <a href="finding_help_online">9. Finding help online</a>
-
-#### <a href="#next_steps">10. Next steps</a>
+1. [Why learn Python](#why)
+2. [How to install Python with Anaconda](#installing)
+3. [Writing Python code in Spyder](#spyder)
+4. [Variables and printing](#variables)
+5. [Simple maths and operators](#operators)
+6. [Functions](#functions)
+7. [Loops](#loops)
+8. [If-else statements](#ifs)
+9. [Finding help online](#finding_help_online)
+10. [Next steps](#next)
 
 ----
 
-<a name="why"></a>
 ## Why Python?
+{: #why}
 
-Python is one of the most used and most talked about programming languages that exist. It was designed to be easy to read and write from the moment it was designed. For this reason it is a great language to learn if you are new to coding. However python has many other benefits including
+Python is one of the most used and most talked about programming languages that exist. It was designed to be easy to read and write from the moment it was designed. For this reason it is a great language to learn if you are new to coding. However python has many other benefits including:
+
  - It is free and open source, you will never have to pay to use Python
  - It is widely used and has a large user base, therefore you will always be able to find help online
  - It is the most used language for machine learning and data science
@@ -63,9 +48,8 @@ Python is one of the most used and most talked about programming languages that 
 
 Hopefully you are convinced that python is a great tool to add to your repertoire.
 
-<a name="installing"></a>
-
 ## Installing Python with Anaconda
+{: #installing}
 
 So now we want to know how to install Python and get straight into writing some knarly Python code to rule the world.
 
@@ -77,19 +61,18 @@ Here is a great video to show you how to install Anaconda if you have not got it
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/Vt6loGK9Adc?rel=0&amp;start=49&end=140" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>
 
-<br />Congratulations! You have just installed Python! Lets make sure that everything is working now.
+__Congratulations! You have just installed Python! Lets make sure that everything is working now.__
 
 Open up a Command Prompt (terminal) and type `conda --version`. If everything has been installed successfully then after a moments pause your conda version number should be printed to your screen.
 
-<a name="spyder"></a>
-
 ## Writing Python in Spyder
+{: #spyder}
 
 Now we have Python installed it is time to launch Spyder. You can do this by launching the Anaconda Navigator from the start menu. When this starts up click on the Spyder application to open it up.
 
-![]({{ site.baseurl }}/img/python_crash_course-spyder_demo.gif" alt="img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-spyder_demo.gif)
 
-<br />Once you have launched Spyder you will see three main panels by default. You can edit the layout of these panels if you want but for this tutorial I will assume that you don't want to mess with that yet. On the left, the large panel is where you can write scripts. At the top of this panel you can see that there has been a script started for you called `temp.py`. If you wanted to you could write code into this script (similar to writing a MS Word document) and then save it to run later.
+Once you have launched Spyder you will see three main panels by default. You can edit the layout of these panels if you want but for this tutorial I will assume that you don't want to mess with that yet. On the left, the large panel is where you can write scripts. At the top of this panel you can see that there has been a script started for you called `temp.py`. If you wanted to you could write code into this script (similar to writing a MS Word document) and then save it to run later.
 
 A script in python is basically the same as a script in literature. A script for a play is written by the author to tell the actors what they should do and say and in what order. A script for a python program is written by the author to tell the computer what it should do and it what order.
 
@@ -97,13 +80,13 @@ So when you write commands into the python script on the left, it is just like w
 
 In the bottom right of the window you will see the console, and this is what we are going to focus on for this part of the tutorial. This is different to the script panel. **In the console**, whenever you **type a command and then press enter**, that command will be **run right away**, not stored for later like in the script. You can think of using the console as **similar to using a calculator**. Whenever you type something in it is run right away. You can see this in the demo below. First we tell the console what the variable `x` is; then we tell it to print `x` so that we can see it again. After this we tell it to print other products of `x`. Try typing these same lines of code into your own editor and see what happens.
 
-![]({{ site.baseurl }}/img/python_crash_course-console_demo.gif" alt="img" style="width: 900px;)
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-console_demo.gif)
 
-<br />Note that whilst writing lines of code into the console I made a mistake and the console showed me an error message. In this case all I needed to do is fix the error and run the correct line.
+Note that whilst writing lines of code into the console I made a mistake and the console showed me an error message. In this case all I needed to do is fix the error and run the correct line.
 
-<a name="variables"></a>
 
 ## Variables and Printing
+{: #variables}
 
 In Python one of the basic things we can do is set variables. A variable is just a store, or a shortcut to refer to something else. In the example above I assigned the number 5 to the variable x, `x=5`. After I assigned the variable x (once I told the console that x was 5) then I could print out x and the console knew that it should print out the number 5. In Python we don't need to stick to letters for variables names, just like in your old algebra classes. If we want to we could tell the console that `x=5`, `my_variable=0`, and `yesterday=999`. After we have done this and we ask the console to `print(yesterday + x)` it should tell us that this is simply 1004. Why don't you try having a go at this?
 
@@ -115,6 +98,7 @@ We can assign other things to variables as well. In Python the base types are in
 Don't be put off! We will go through what each of these mean in turn and see why they might be useful, they are all very useful. Before we do that, I want to introduce you to two functions in Python. Namely the `print` and the `type` function.
 
 #### The print function
+
 We have seen this before when we printed x. The way to use this function is `print(the thing to be printed)`. You can print any valid piece of information in Python. Try printing some numbers.
 
 #### The type function
@@ -171,24 +155,25 @@ We can access values in a dictionary by looking them up with their key. In the a
 
 ####  
 
-<a name="operators"></a>
 # Simple Maths and Operators
-All of the basic mathematical operators that you know and love, such as `+` and `-` are available in Python. In this section we are going to show and demo some of these operators.
-###### <a href="#operators_add">- Addition and subtraction (numbers and strings)</a>
-###### <a href="#operators_basic">- Other basic operators</a>
-###### <a href="#operators_compare">- Comparison operators</a>
-###### <a href="#operators_boolean">- Boolean operators (True/False logic)</a>
+{: #operators}
 
-<a name="operators_add"></a>
+All of the basic mathematical operators that you know and love, such as `+` and `-` are available in Python. In this section we are going to show and demo some of these operators.
+
+- [Addition and subtraction (numbers and strings)](#operators_add)
+- [Other basic operators](#operators_basic)
+- [Comparison operators](#operators_compare)
+- [Boolean operators (True/False logic)](#operators_boolean)
+
 ###### Addition and subtraction (numbers and strings)
+{: #operators_add}
 
 Python can be used essentially as a big calculator which can do all the calculations that you don't want to. It can multiply, divide, add, subtract etc etc.
 
 The first thing you need to know is that the basic operators such as `+` and `-` act slightly differently depending on the data types you are using them on. For example adding two integers will give you what you expect, typing `56 + 19` into the console would give `75`; but adding two strings will 'concatenate' them (stick them together) `'Hello' + 'World'` would give `'HelloWorld'`.
 
-Try adding some integers together and printing the result; then try the same with some strings and some floats.
-<br />
-eg:
+Try adding some integers together and printing the result; then try the same with some strings and some floats. E.g.:
+
 - what is `'winter' + 'coming'`?
 - what is `34 + 99`?
 - what is `5.14 + 17.87`?
@@ -199,8 +184,8 @@ DEBUGGING QUESTION: what is `4 + 2` and what is `'4' + '2'` and why are the answ
 
 Next you should try subtracting some integers and floats from each other and printing the results. Do you think you can subtract strings from each other?
 
-<a name="operators_basic"></a>
 ###### Other basic operators
+{: #operators_basic}
 
 Now you have the gist of how operators work why not have some fun by playing with these shiny new ones
 - `/` : divide : eg `20/4` (answer : 5)
@@ -210,10 +195,11 @@ Now you have the gist of how operators work why not have some fun by playing wit
 
 Try using each of these operators on integers, floats and strings. Not all of them will work on each data type and you will get some errors, but it is okay! To quote the famous mantra of silicon valley companies **'move fast, break things'** (not a good motto if you are an antiques dealer but great for learning Python)
 
-<a name="operators_compare"></a>
 ###### Comparison operators
+{: #operators_compare}
 
-In Python we can also do comparisons between variables, between numbers or between strings. With these operators you can check when a number is greater than another number (to check your data set for mistakes, like is age greater than zero `age > 0`) or when a string is equal to another string (to filter your data set, like to a certain species name `species_name=='lama glama'`). This can be done using the comparison operators
+In Python we can also do comparisons between variables, between numbers or between strings. With these operators you can check when a number is greater than another number (to check your data set for mistakes, like is age greater than zero `age > 0`) or when a string is equal to another string (to filter your data set, like to a certain species name `species_name=='lama glama'`). This can be done using the comparison operators:
+
 - `>`: greater than : eg `5 > 10` (answer : False)
 - `<`: less than : eg `-1 < 0`  (answer : True)
 - `>=`: greater than or equal to : eg `17 >= 17` (answer : True)
@@ -222,44 +208,44 @@ In Python we can also do comparisons between variables, between numbers or betwe
 
 Try doing some comparisons to make sure you understand how each of these work. Here is a list of things to try to get you started, but you don't have to stop there
 
-<a name="operators_boolean"></a>
 ###### Boolean operators (True/False logic)
+{: #operators_boolean}
 
 There is also a set of boolean operators in Python. They allow us to do operations on boolean variables. This can be perform certain logical tasks based on outcomes of other calculations.
 
-Take these lines of code for example, where we get the user to type in their name and then comment on it
+Take these lines of code for example, where we get the user to type in their name and then comment on it:
+
 - `&` : logical and : `True & True` (answer : True), `True & False` (answer : False)
 - `|` : logical or : `True | False` (answer : True), `False | False` (answer : False)
 - `!` : logical not : `! True` (answer : False), `! False` (answer : True)
 
 Can you guess, or get python to calculate, what `True | True` will be? How about `False & False`?
 
-
-
 Note: One of the really nice things about Python is how much it can read like plain English by using **Python Keywords**. In the above examples you could replace, `&` with `and`, replace `|` with `or`, and replace `!` with `not` and still get the same answers. Why not try rewriting the exampes above using the `and`, `or` and `not` keywords instead of the symbols. I'll start you off
 
-![]({{ site.baseurl }}/img/python_crash_course-boolean_logic.gif" alt="img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-boolean_logic.gif)
 
-<br />
-Using what you know so far can you solve Hamlet's dilemma below? What will the answer be if `to_be = True` or with `to_be = False
-`
+Using what you know so far can you solve Hamlet's dilemma below? What will the answer be if `to_be = True` or with `to_be = False`
+
 ```python
 to_be = True
 print(to_be or not to_be)
 ```
-<a name="loops"></a>
 # Loops
-In loops we write instructions that will be repeated a number of times in a row. We can use loops to repeat actions more efficiently.
-<center>
-![]({{ site.baseurl }}/img/python_crash_course-y_bird.gif" alt="img" style="width: 400px;)
-<br />https://giphy.com/gifs/simpsons-dippy-bird-drinking-l41lUJ1YoZB1lHVPG
-</center>
+{: #loops}
 
-<br />Lets say you have more important work to do than pressing 'y', lets say for example that we would like to find the mean of some data.
+In loops we write instructions that will be repeated a number of times in a row. We can use loops to repeat actions more efficiently.
+
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-y_bird.gif)
+
+Lets say you have more important work to do than pressing 'y', lets say for example that we would like to find the mean of some data.
+
 ```python
 precip = [2,7,1,9,0,2,4,5]
 ```
+
 If you were to do this manually with pen and paper you might decide to add them up in sequence. So you would take the first two numbers and add them (2+7=9) then add the next number to the current total (9+1=10), then add the next number in the list and so on until you have added all the numbers. At the end you would divide your sum by how many numbers you had (in this case 8). This is exactly the kind of situation we could use a loop for! Below is the python code to add up this list of numbers.
+
 ```python
 # this is the list of number we would like to find the mean of
 precip = [2,7,1,9,0,2,4,5]
@@ -281,15 +267,16 @@ Loops can be hard when you are new to coding and so it might take you a bit long
 - Try writing a loop to do the job of the drinking-bird above. Your loop should print the string `'y'` 10 times.
 - Try writing a loop to add a list of 3 stings together. For example, if adding up the list `["hot", "line", "bling"]` your loop should create the variable `total = "hot line bling"`.
 
-<a name="functions"></a>
 # Functions
-Functions are mini computing boxes that we write in Python. Functions take an input (we could call this x), do some computing with it, and output the result.
-<center>
-![]({{ site.baseurl }}/img/python_crash_course-function_diagram.png" alt="img" style="width: 300px;)
-image credit <br /> https://hackernoon.com/a-simple-introduction-to-one-way-functions-a2429d427546
-</center>
+{: #functions}
 
-<br />We have been using two functions already, the `print` function and the `type` function. The `print` function takes an input (we have used integers, floats and strings!) and copies its input to the console.
+Functions are mini computing boxes that we write in Python. Functions take an input (we could call this x), do some computing with it, and output the result.
+
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-function_diagram.png)
+
+image credit: https://hackernoon.com/a-simple-introduction-to-one-way-functions-a2429d427546
+
+We have been using two functions already, the `print` function and the `type` function. The `print` function takes an input (we have used integers, floats and strings!) and copies its input to the console.
 
 Functions in Python are great because they allow us to repeat things easily. Lets say you have some data you want to process, such as daily precipitation rates for a few different sites. We would like to know the mean of each of these samples.
 
@@ -325,10 +312,13 @@ def my_mean(x):
   # the rest of the variables here, like total, will be thrown away
   return mean_value
 ```
-Now that we have defined this function we can use it in the same way that we use the `print` function. We feed in an input and the function will do its job and return u the mean. To calculate the mean precipitation in Edinburgh we would use
+
+Now that we have defined this function we can use it in the same way that we use the `print` function. We feed in an input and the function will do its job and return u the mean. To calculate the mean precipitation in Edinburgh we would use:
+
 ```python
 mean_precipitation_edinburgh = my_mean(daily_precipitation_edinburgh)
 ```
+
 and we would get the answer 3.75
 
 - Try using this function to find the mean precipitation in Glasgow and Dundee
@@ -336,10 +326,9 @@ and we would get the answer 3.75
 Now that we have this function we could can use it again and again without having to rewrite the loop to calculate the mean, but only for lists of length 8.
 - This function will only work properly for lists which are 8 items long. Try modifying this function to calculate the mean of any list that is input. *Hint: you can find the length of a list x by using* `len(x)`
 
-
-
-<a name="ifs"></a>
 # if-else statements
+{: #ifs}
+
 If else statements are used in Python so that one script can be used to do different things based on some variable. We might want a script which motivates us to work hard and play hard. So that if today is a Friday it tells us to go home early but for the rest of the week days it encourages us to work hard.
 
 ```python
@@ -355,8 +344,9 @@ else:
   print("Hard work is a virtue! You can do it! I believe in you!")
 ```
 
-<a name="imports"></a>
 # Imports (packages)
+{: #imports}
+
 The final thing you should know at the beginning of you Python journey is about packages (add-ons). *You will hear people talk about 'packages', 'modules' and 'libraries' in Python but they pretty much refer to the same thing*. Packages are other pieces of code that we can use in Python once we import them. When you installed anaconda you also installed over 100 packages that we have not used yet! This may seem daunting, but don't worry, you won't need to learn them all, and the idea of packages can seem confusing at first.
 
 Imagine packages to be your friends with a range of different skills. When you need something done you can invite your friend over to do the work for you (they are selfless like that). Let me quickly introduce you to 3 friends who you should meet.
@@ -389,11 +379,11 @@ The numpy, scipy and matplotlib packages are very popular friends and I don't ha
 
 *Note: Another friend you might want to meet is pandas. If you would like to load data from excel sheets and manipulate it, then pandas is the person to invite.*
 
-<a name="finding_help_online"></a>
 # Finding help online
-One of the best things about Python is the Python community. There are millions of people using Python and so there are lots and lots of people trying to do similar things. This means that for almost any question you might have in python, like <a href="https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers">'how to I find the maximum value in a list of numbers'</a> or
-<a href="https://stackoverflow.com/questions/25805239/get-nth-element-of-a-list">'how to I find the nth item in a list'</a> there are good online discussions out there. For most Python users this is THE way to work. Why spend lots of time struggling to write code when the answer to your problem is just a google search away?
+{: #finding_help_online}
 
+One of the best things about Python is the Python community. There are millions of people using Python and so there are lots and lots of people trying to do similar things. This means that for almost any question you might have in python, like ['how to I find the maximum value in a list of numbers'](https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers) or
+['how to I find the nth item in a list'](https://stackoverflow.com/questions/25805239/get-nth-element-of-a-list) there are good online discussions out there. For most Python users this is THE way to work. Why spend lots of time struggling to write code when the answer to your problem is just a google search away?
 
 ##### Recipe for searching for code snippets
 
@@ -409,101 +399,45 @@ Lets go through an example. I have some data and I want to sort the values in th
 ```python
 my_data = [1,4,8,1,9,3,0,2,6,2,1,10]
 ```
+
 I could write a loop to do this for me and it would be good practice for my Python skills, buit this time I am in a hurry and I'd rather not reinvent the wheel. So I'll google it instead.
 
-<br />
-<center>
-![]({{ site.baseurl }}/img/python_crash_course-list_sort.gif" alt="img" style="width: 900px;)
-</center>
+![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-list_sort.gif)
 
-<br />The link to the answer I found is <a href="https://stackoverflow.com/questions/25374190/how-to-sort-integer-list-in-python-descending-order">here</a>.
-<br />As you can see I googled the question and had to go through two links to find a question that matched mine. I also had to redefine my question along the way to make it more specific to what I wanted. When I found a solution on stackoverflow I copied it and edited it before pasting it into my console.
+The link to the answer I found is [here](https://stackoverflow.com/questions/25374190/how-to-sort-integer-list-in-python-descending-order).
 
+As you can see I googled the question and had to go through two links to find a question that matched mine. I also had to redefine my question along the way to make it more specific to what I wanted. When I found a solution on stackoverflow I copied it and edited it before pasting it into my console.
 
 Searching for answers to your coding problems is a major part of writing code effectively. This is something that you should get used to. By searching online can you find ways to accomplish the following:
- - add the number 50 to the end of the list `my_data` without just typing it in manually
- - convert the string `'15'` to an integer
 
-<a name="next_steps"></a>
+- add the number 50 to the end of the list `my_data` without just typing it in manually
+- convert the string `'15'` to an integer
+
 # Learning more basic Python
+{: #next_steps}
+
 There are so many resources to learn Python out there, more than one person could hope to have even looked at. Therefore ! cannot give you a definitive best method to keep learning Python. However, here are some resources that I have come across that I have enjoyed.
 
 ##### Online interactive courses
+
 I think these are a really good way to get started both with Python if you are new to it, but also with Python packages that you have never explored before. The benefit of these are that they give you a lot of structure to your learning and they make sure you are getting a hang of the basics before you move on.
 
 These courses have material for you to read and/or watch and also interactive computing exercises. In the interactive exercises you fill in the blacks of some coding scripts and receive instant feedback on what you have written. There are a number of these out there but the two that I am personally acquainted with are
 
-- <a href="https://www.codecademy.com/learn/learn-python">codeacademy</a> - free articles and coding exercises. Paid for quizes and other extras
-- <a href="https://www.datacamp.com/tracks/skill">datacamp</a> - videos, articles and coding exercises. The first sections of each module are free but the more advanced stuff is paid
+- [code academy](https://www.codecademy.com/learn/learn-python) - free articles and coding exercises. Paid for quizes and other extras.
+- [datacamp](https://www.datacamp.com/tracks/skill) - videos, articles and coding exercises. The first sections of each module are free but the more advanced stuff is paid.
 
 ##### Blogs
-Such as <a href="https://ourcodingclub.github.io">ourcodingclub</a>! These are great resources to follow, especially if you find blogs of people who are working in the same field as you. They can introduce you to Python tools specific to your domain. If you know some Python already then these are good resources to take you from intermediate to advanced.
+
+Such as [ourcodingclub](https://ourcodingclub.github.io)! These are great resources to follow, especially if you find blogs of people who are working in the same field as you. They can introduce you to Python tools specific to your domain. If you know some Python already then these are good resources to take you from intermediate to advanced.
 
 ##### Books
+
 I have mixed views on books when it comes to coding. It is my own personal belief that the only way to learn how to code is to actually sit down and do it. However, a book can be a good synthesis of knowledge and they do have their place. One classic book is Numeric Recipes in Python but there are too many to mention here and new ones are coming out all the time.
 
 ##### Challenges
+
 There are some websites which are specifically devoted to hosting challenges for people to complete or to compete in. If you are the type of person who likes a good challenge to enhance your learning then these might be for you.
 
-- <a href="https://www.kaggle.com/">kaggle</a> - This is a platform which hosts machine learning competitions for learning, for kudos and even for prizes. If you are interested in diving in deeper into machine learning and data science then this is a nice hub.
-- <a href="https://projecteuler.net/">project euler</a>- This is a site which hosts a catalogue of coding challenges for you to complete. It is a really nice way to find challenges where you can apply what you have learned. There are different difficulties as well so you should be able to find a challenge no matter where you are on your Python path.
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/VN5XKPR)</h3>
-<br />
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br />
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br />
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
+- [kaggle](https://www.kaggle.com/) - This is a platform which hosts machine learning competitions for learning, for kudos and even for prizes. If you are interested in diving in deeper into machine learning and data science then this is a nice hub.
+- [project euler](https://projecteuler.net/) - This is a site which hosts a catalogue of coding challenges for you to complete. It is a really nice way to find challenges where you can apply what you have learned. There are different difficulties as well so you should be able to find a challenge no matter where you are on your Python path.

@@ -376,14 +376,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1em;
 }
 
-div.highlight:hover .copy-button, div.highlight .copy-button:focus {
+// Increase opacity on hover of code chunk
+div.highlight:hover .copy-button:hover, div.highlight .copy-button:focus {
     opacity: 1;
 }
-
-div.highlight .copy-button:hover {
-    opacity: 1;
-}
-
 
 // * {
 //   background: #000 !important;

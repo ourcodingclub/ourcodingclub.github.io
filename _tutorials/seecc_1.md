@@ -2,40 +2,28 @@
 title: "Working efficiently with large datasets"
 author: "Gergana, John, Francesca, Sandra and Isla"
 date: "2017-03-20 10:00:00"
-meta: Tutorials
 subtitle: Quantifying population change and visualising species occurrence
-layout: post
-tags: datavis data_manip 
+layout: tutorial
+survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
 ---
-
-<div class="block">
-	<center>
-![]({{ site.baseurl }}/img/tutheaderbigdata.png" alt="Img)
-	</center>
-</div>
-
 
 ### Tutorial Aims:
 
-#### <a href="#tidyr"> 1. Formatting and tidying data using `tidyr` </a>
-
-#### <a href="#dplyr"> 2. Efficiently manipulating data using `dplyr` </a>
-
-#### <a href="#loops_lapply"> 3. Automating data manipulation using `lapply()`, loops and pipes </a>
-
-#### <a href="#datavis"> 4. Automating data visualisation using `ggplot2` and `dplyr` </a>
-
-#### <a href="#Flickr"> 5. Species occurrence maps based on GBIF and Flickr data </a>
+1. [Formatting and tidying data using `tidyr`](#tidyr)
+2. [Efficiently manipulating data using `dplyr`](#dplyr)
+3. [Automating data manipulation using `lapply()`, loops and pipes](#loops_lapply)
+4. [Automating data visualisation using `ggplot2` and `dplyr`](#datavis)
+5. [Species occurrence maps based on GBIF and Flickr data](#Flickr)
 
 # Quantifying population change
 
-This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the [Flickr](http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Index Database</a>. We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from <a href="http://www.gbif.org/" target="_blank">the Global Biodiversity Information Facility</a> and <a href="http://www.flickr.com/). We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
+This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the [Living Planet Index Database](http://www.livingplanetindex.org/home/index). We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from [Global Biodiversity Information Facility](http://www.gbif.org/) and [Flickr](http://www.flickr.com/). We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
 
-![]({{ site.baseurl }}/img/tidyverse.png" alt="Img" style="width: 1100px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/tidyverse.png)
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial.](https://ourcodingclub.github.io/2017/02/27/git.html)
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
 
 Make a new script file using `File/ New File/ R Script` and we are all set to begin exploring how vertebrate populations are changing.
 
@@ -72,20 +60,20 @@ load("LPIdata_Feb2016.RData")
 load("puffin_GBIF.RData")
 ```
 
-<a name="tidyr"></a>
 
 ## 1. Formatting and tidying data using `tidyr`
+{: #tidyr}
 
 ### Reshaping data frames using `gather()`
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
-![]({{ site.baseurl }}/img/SAB_fig1.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig1.png)
 
 Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary,
 [tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
-![]({{ site.baseurl }}/img/SAB_fig2.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig2.png)
 
 This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc, R would be able to split the dataframe correctly, as each grouping factor has its own column.
 
@@ -147,9 +135,9 @@ LPI_long$country_list <- gsub(",", "", LPI_long$country_list, fixed = TRUE)
 LPI_long$biome <- gsub("/", "", LPI_long$biome, fixed = TRUE)
 ```
 
-<a name="dplyr"></a>
 
 ## 2. Efficiently manipulating data using `dplyr`
+{: #dplyr}
 
 Now that our dataset is *tidy* we can get it ready for our analysis. This data frame contains data from lots of different sources so to help answer our question of how populations have changed since 1970, we should create some new variables and filter out the unnecessary data.
 
@@ -195,11 +183,10 @@ LPI_biome_summ <- LPI_long %>%
 
 Check out the new data frame using `View(LPI_biome_summ)` to find out how many populations each biome has, as well as other summary information.
 
-<a name="lapply_loops"></a>
-
 ## 3. Automating data manipulation using `lapply()`, loops and pipes
+{: #lapply_loops}
 
-Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [piping](https://ourcodingclub.github.io/2017/02/08/funandloops.html" target="_blank">loops</a> and <a href="https://ourcodingclub.github.io/2017/01/16/piping.html), but for now, here is a brief summary.
+Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [loops](https://ourcodingclub.github.io/2017/02/08/funandloops.html) and [piping](https://ourcodingclub.github.io/2017/01/16/piping.html), but for now, here is a brief summary.
 
 The `apply()` function and it's variants (`lapply()`,`sapply()`, `tapply()`, `mapply()`) act as wrappers around other functions that you want to apply equally to items in an array (`apply()`), list (`lapply()`, `sapply()`), grouped vector (`tapply()`), or some other multivariate function (`mapply()`).
 
@@ -383,12 +370,14 @@ write.csv(LPI_models_pipes_mod, file="LPI_models_pipes.csv", )  # This takes a l
 
 Compare the `.RData` file with an equivalent `.csv` file. `.RData` files are much more compressed than `.csv` files, and load into R much more quickly. For the `.csv` here, we removed one column, so the final result might not be that different in terms of file size, but in general `.RData` files are smaller. They are also guaranteed to be in the right format, unlike a `.csv`, which can have problems with quotes (`""`), commas (`,`) and unfinished lines. One drawback however is that they can't be used with software other than `R`.
 
-<a name ="datavis"></a>
 
 ## 4. Automating data visualisation using `ggplot2` and `dplyr`
+{: #datavis}
+
 Now that we have quantified how the different populations in the LPI dataset have changed through time, it'd be great to visualise the results. First, we can explore how populations are changing in different biomes through histograms of slope estimates. We could filter the data for each biome, make a new data frame, make the histogram, save it, and repeat all of this many times, or we could get it done all in one go using `ggplot2` and pipes `%>%`. Here we'll save the plots as `.pdf` files, but you could use `.png` as well. We will also set a custom theme for `ggplot2` to use when making the histograms and choose a colour for the bins using `Rcolourpicker`.
 
 ### Making your own `ggplot2` theme
+
 If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up - you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution - create a customised theme that combines all the `theme()` elements you want, and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another, and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our histograms we won't need to use `legend.position`, but it's fine to keep it in the theme, in case any future graphs we apply it to do have the need for legends.
 
 ```r
@@ -411,6 +400,7 @@ theme_LPI <- function(){
 ```
 
 ### Picking colours using the `Rcolourpicker` addin
+
 Setting custom colours for your graphs can set them apart from all the rest (we all know what the default `ggplot2` colours look like!), make them prettier, and most importantly, give your work a consistent and logical colour scheme. Finding the codes, e.g. `colour = "#8B5A00"`, for your chosen colours, however, can be a bit tedious. Though one can always use Paint / Photoshop / google colour codes, there is a way to do this within RStudio thanks to the addin `colourpicker`. RStudio addins are installed the same way as packages, and you can access them by clicking on `Addins` in your RStudio menu. To install `colourpicker`, run the following code:
 
 ```r
@@ -419,17 +409,17 @@ install.packages("colourpicker")
 
 To find out what is the code for a colour you like, click on `Addins/Colour picker`.
 
-![]({{ site.baseurl }}/img/colourpicker.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker.png)
 
 When you click on `All R colours` you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour, same goes for `2`, `3` - you can add mode colours with the `+`, or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear - in this case, we just need the colour code, so we can copy that, and delete the rest.
 
-![]({{ site.baseurl }}/img/colourpicker2.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker2.png)
 
 ### Plotting histograms of population change in different biomes and saving them
 
-__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term). 
+__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
 
-#### You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code.__
+#### You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code.
 
 ```r
 biome.plots <- LPI_long %>%
@@ -447,9 +437,10 @@ biome.plots <- LPI_long %>%
 
 The histograms will be saved in your working directory. You can use `getwd()` to find out where that is, if you've forgotten. Check out the histograms - how does population change vary between the different biomes?
 
-![]({{ site.baseurl }}/img/hist_polar_seas.png" alt="Img" style="width: 400px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/hist_polar_seas.png)
 
 ### Ploting slope estimates for population change versus duration of monitoring and adding histograms along the margins
+
 Within RStudio, you can use addins, including `Rcolourpicker` that we discussed above, and `ggExtra` that we will use for our marginal histograms.
 
 Making our initial graph:
@@ -467,12 +458,13 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 
 Once you've installed the package by running `install.packages("ggExtra")`, you can select the `ggplot2` code, click on `ggplot2 Marginal Histograms` from the Addin menu and build your plot. Once you click `Done`, the code will be automatically added to your script.
 
-![]({{ site.baseurl }}/img/ggextra1.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra1.png)
 
-![]({{ site.baseurl }}/img/ggextra2.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra2.png)
 
 Here is the final graph - what do you think, how has biodiversity changed in the last ~40 years?
-![]({{ site.baseurl }}/img/popchangehist.png" alt="Img" style="width: 800px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/popchangehist.png)
 
 ## Visualising species occurrence
 
@@ -504,13 +496,13 @@ Then create the plot using `ggplot()`:
 
 We used a colour palette from `RColorBrewer` to colour the points (`Set1`). You can see all the colour palettes by running `display.brewer.all()` in R.
 
-![]({{ site.baseurl }}/img/puffinmap.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/puffinmap.png)
 
-<a name="Flickr"></a>
 
 ## 5. Species occurrence maps based on GBIF and Flickr data
+{: #Flickr}
 
-In this part of the tutorial, we will use two datasets, one from the Global Biodiversity Information Facility [Flickr](https://www.gbif.org" target="_blank">(GBIF)</a> and one from  <a href="https://www.flickr.com), to create species occurrence maps. 
+In this part of the tutorial, we will use two datasets, one from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org) and one from [Flickr](https://www.flickr.com), to create species occurrence maps. 
 
 __So called "big data" are being increasingly used in the life sciences because they provide a lot of information on large scales and very fine resolution. However, these datasets can be quite tricky to work with.
 Most of the time the data is in the form of presence-only records. Volunteers, or social media users, take a picture or record the presence of a particular species and they report the time of the sighting and its location. Therefore, what we have is thousands of points with temporal and spatial information attached to them.__
@@ -563,8 +555,7 @@ library(ggthemes)
     geom_point(alpha = 0.4, colour = "red")) 
 
 ```
-![]({{ site.baseurl }}/img/GBIFoccurr.png" alt="Img" style="width: 800px;)
-
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GBIFoccurr.png)
 
 ### Clean data from Flickr
 
@@ -589,7 +580,7 @@ coordinates(geopics) <- c("longitude", "latitude")    # make it spatial
 plot(geopics)                                         # plot it
 ```
 
-![]({{ site.baseurl }}/img/FlickrAll.png" alt="Img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrAll.png)
 
 The function `coordinates` sets spatial coordinates to create a Spatial object or retrieves spatial coordinates from a Spatial object.
 
@@ -618,7 +609,7 @@ library(rworldmap)
 data(countriesLow)
 plot(countriesLow, add = T)
 ```
-![]({{ site.baseurl }}/img/FlickrUK.png" alt="Img" style="width: 700px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrUK.png)
 
 There is one more problem we need to solve: some of the data points are not on the coast, which means that these pictures are probably not puffins. In order to delete them, we are going to use the UK coastline to select only the datapoints that are within 1 km of the coast and the ones that are on the sea. 
 The first step is to split the dataset into a marine and a terrestrial one. After that, we can select only the points that are on the coast from the terrestrial dataset. Finally, we will put the marine and coastal points together.
@@ -668,7 +659,7 @@ plot(flickr_terr)
 plot(flickr_mar)
 ```
 
-<center><img src = "{{ site.baseurl }}/img/FlickrTerr&Mar.png" alt = "Img" style = "width: 800px;"/></center>
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrTerr&Mar.png)
 
 Now we can select the coastal points from the terrestrial dataset. In order to calculate the distance of every point from the coastline, we need to transform our UK polygon shapefile into a line shapefile. Again, this operation is pretty straightforward in R.
 
@@ -690,7 +681,7 @@ Plot to check it worked.
 plot(flickr_coast)
 ```
 
-![]({{ site.baseurl }}/img/FlickrCoast.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast.png)
 
 Now we can put the marine and coastal datasets together and plot to check that it worked.
 
@@ -700,7 +691,7 @@ plot(UK_coast)
 points(flickr_correct, pch = 20, col = "steelblue")
 ```
 
-![]({{ site.baseurl }}/img/FlickrCoast2.png" alt="Img" style="width: 800px;)
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast2.png)
 
 ### Density maps
 
@@ -735,7 +726,8 @@ Now, we can build our map with `ggplot2`. If you want to know more about the way
 
 # This will take a while to plot!
 ```
-![]({{ site.baseurl }}/img/FlickrDensity.png" alt="Img" style="width: 800px;)
+
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrDensity.png)
 
 You can see from this plot that there are a few hotspots for watching puffins in the UK, such as the Farne Islands, Shetland and Flamborough Head.
 
@@ -747,72 +739,8 @@ Now try to build your own plot for the GBIF data. Remeber to:
 * use `fortify()` to make it readable by `ggplot2`
 * build your plot with `ggplot`
 
-__If you get stuck you can find the code in the script SEECC_script_final.R <a href="https://github.com/ourcodingclub/SEECC-workshop/SEECC_script_final.R" target="_blank">here/a>.__
+__If you get stuck you can find the code in the script SEECC_script_final.R [here](https://github.com/ourcodingclub/SEECC-workshop/SEECC_script_final.R).__
 
-__This tutorial was prepared for a workshop on quantifying biodiversity change at the Scottish Ecology, Environment and Conservation Conference on 3rd April in Aberdeen. If you want to learn more about our joint workshop with the Aberdeen Study Group, led by [Francesca's blog](https://francescamancini.github.io/" target="_blank">Francesca Mancini</a>, you can check out our blog posts on the <a href="https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards/" target="_blank">Team Shrub blog</a> and <a href="https://francescamancini.github.io/FirstSteps/). The workshop organisation and preparation of teaching materials were supported by the Global Environment & Society Academy Innovation Fund.__
+__This tutorial was prepared for a workshop on quantifying biodiversity change at the Scottish Ecology, Environment and Conservation Conference on 3rd April in Aberdeen. If you want to learn more about our joint workshop with the Aberdeen Study Group, led by [Francesca Mancini](https://francescamancini.github.io/), you can check out our blog posts on the [Team Shrub blog](https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards) and [Francesca's blog](https://francescamancini.github.io/FirstSteps/). The workshop organisation and preparation of teaching materials were supported by the Global Environment & Society Academy Innovation Fund.__
 
-![]({{ site.baseurl }}/img/GESA.jpg" alt="Img" style="width: 800px;)
-
-<hr>
-<hr>
-
-__Check out [this page](https://ourcodingclub.github.io/workshop/) to learn how you can get involved! We are very happy to have people use our tutorials and adapt them to their needs. We are also very keen to expand the content on the website, so feel free to get in touch if you'd like to write a tutorial!__
-
-![](https://licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Img" style="width: 100px;)
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/9L5ZFNK)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
-
-
-
-
+![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GESA.jpg)

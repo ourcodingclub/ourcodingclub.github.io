@@ -1,41 +1,34 @@
 ---
-layout: post
+layout: tutorial
 title: Efficient data synthesis and visualisation
 subtitle: A Coding Club workshop for the Oxford Zoology & Plant Sciences departments
 date: 2016-01-01 10:00:00
 author: Gergana
-meta: "Tutorials"
-tags: data_manip data_vis intermediate
+survey_link: https://www.surveymonkey.com/r/XD85MW5
 ---
 
-![]({{ site.baseurl }}/img/tutheader_synthesis.png" alt="Img)
+1. [Format and manipulate large datasets](#tidyverse)
+2. [Automate repetitive tasks using pipes and functions](#purrr)
+3. [Synthesise information from different databases](#synthesis)
+4. [Download occurrence data through `R`](#download)
+5. [Create beautiful and informative figure panels](#panels)
 
-<p></p>
-### Tutorial Aims:
 
-#### <a href="#tidyverse"> 1. Format and manipulate large datasets </a>
-#### <a href="#purrr"> 2. Automate repetitive tasks using pipes and functions </a>
-#### <a href="#synthesis"> 3. Synthesise information from different databases </a>
-#### <a href="#download"> 4. Download occurrence data through `R` </a>
-#### <a href="#panels"> 5. Create beautiful and informative figure panels </a>
-
-<p></p>
-
-<div class="bs-callout-blue" markdown="1">
+{% include callout.html content="
 
 __The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tidyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
 
-</div>
+" %}
 
 #### This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the [SalGo Population Ecology Team](https://sites.google.com/site/robresearchsite/).
 
 ### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-oxford). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-<a name="tidyverse"></a>
 
 ## 1. Format and manipulate large datasets
+{: #tidyverse}
 
-<b>Across the tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.</b>
+__Across the tutorial, we will focus on how to efficiently format, manipulate and visualise large datasets. We will use the `tidyr` and `dplyr` packages to clean up data frames and calculate new variables. We will use the `broom` and `purr` packages to make the modelling of thousands of population trends more efficient. We will use the `ggplot2` package to make graphs, maps of occurrence records, and to visualise ppulation trends and then we will arrange all of our graphs together using the `gridExtra` package.__
 
 We will be working with bird population data (abundance over time) from the [Living Planet Database](http://www.livingplanetindex.org/home/index), bird trait data from the [Elton Database](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1), and emu occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org/), all of which are publicly available datasets.
 
@@ -96,7 +89,7 @@ bird_traits <- read.csv("elton_birds.csv")
 
 We can check out what the data look like now, either by clicking on the objects name on the right in the list in your working environment, or by running `View(bird_pops)` in the console.
 
-![]({{ site.baseurl }}/img/ox_wide.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_wide.png)
 
 __The data are in a wide format (each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year) and the column names are capitalised. Whenever working with data from different sources, chances are each dataset will follow a different column naming system, which can get confusing later on, so in general it is best to pick whatever naming system works for you and apply that to all datasets before you start working with them.__
 
@@ -127,7 +120,7 @@ Because column names are coded in as characters, when we turned the column names
 bird_pops_long$year <- parse_number(bird_pops_long$year)
 ```
 
-![]({{ site.baseurl }}/img/ox_long.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_long.png)
 
 Check out the data frame again to make sure the years really look like years. As you're looking through, you might notice something else. We have many columns in the data frame, but there isn't a column with the species' name. We can make one super quickly, since there are already columns for the genus and the species.
 
@@ -195,13 +188,14 @@ aus_pops2 <- bird_pops_long %>%
   filter(str_detect(country.list, pattern = "Australia"))
 ```
 
-<div class="bs-callout-blue" markdown="1">
+
+{% include callout.html content="
 
 __Managing long scripts:__ Lines of code pile up quickly! There is an outline feature in `RStudio` that makes long scripts more organised and easier to navigate. You can make a subsection by writing out a comment and adding four or more characters after the text, e.g. `# Section 1 ----`. If you've included all of the comments from the tutorial in your own script, you should already have some sections.
 
-</div>
+" %}
 
-![]({{ site.baseurl }}/img/outline.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/outline.png)
 
 Now that we have our Australian bird population studies, we can learn more about the data by visualising the variation in study duration. Earlier on, we filtered to only include studies with more than five years of data, but it's still useful to know how many studies have six years of data, and how many have much more.
 
@@ -214,13 +208,13 @@ __An important note about graphs made using `ggplot2`: you'll notice that throug
     geom_histogram())
 ```
 
-![]({{ site.baseurl }}/img/hist1a.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1a.png)
 
 This graph just uses all the `ggplot2` default settings. It's fine if you just want to see the distribution and move on, but if you plan to save the graph and share it with other people, we can make it way better. The figure beautification journey!
 
-<b> When using `ggplot2`, you usually start your code with `ggplot(your_data, aes(x = independent_variable, y = dependent_variable))`, then you add the type of plot you want to make using `+ geom_boxplot()`, `+ geom_histogram()`, etc. `aes` stands for aesthetics, hinting to the fact that using `ggplot2` you can make aesthetically pleasing graphs - there are many `ggplot2` functions to help you clearly communicate your results, and we will now go through some of them.</b>
+__ When using `ggplot2`, you usually start your code with `ggplot(your_data, aes(x = independent_variable, y = dependent_variable))`, then you add the type of plot you want to make using `+ geom_boxplot()`, `+ geom_histogram()`, etc. `aes` stands for aesthetics, hinting to the fact that using `ggplot2` you can make aesthetically pleasing graphs - there are many `ggplot2` functions to help you clearly communicate your results, and we will now go through some of them.__
 
-<b>When we want to change the colour, shape or fill of a variable based on another variable, e.g. colour-code by species, we include `colour = species` inside the `aes()` function. When we want to set a specific colour, shape or fill, e.g. `colour = "black"`, we put that outside of the `aes()` function.</b>
+__When we want to change the colour, shape or fill of a variable based on another variable, e.g. colour-code by species, we include `colour = species` inside the `aes()` function. When we want to set a specific colour, shape or fill, e.g. `colour = "black"`, we put that outside of the `aes()` function.__
 
 ```r
 (duration_hist <- ggplot() +
@@ -236,7 +230,7 @@ This graph just uses all the `ggplot2` default settings. It's fine if you just w
     # the final line of code removes the empty blank space below the bars
 ```
 
-![]({{ site.baseurl }}/img/hist5.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist5.png)
 
 Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
@@ -262,7 +256,7 @@ summary(d1) # it's fine, you can ignore the warning message
 # thus there are missing "steps" along the geom_step path
 ```
 
-![]({{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist4.png)
 
 We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
 
@@ -294,7 +288,7 @@ We can also add a line for the mean duration across studies and add an annotatio
     # Have a go at changing the curve parameters to see what happens
 ```
 
-![]({{ site.baseurl }}/img/hist2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist2.png)
 
 We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
 
@@ -315,7 +309,7 @@ We are super close to a nice histogram - all we are missing is letting it "shine
   theme_clean())
 ```
 
-![]({{ site.baseurl }}/img/hist1.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1.png)
 
 There's our histogram! We can save it using `ggsave`. The units for the height and width are in inches. Unless you specify a different file path, the graph will go in your working directory. If you've forgotten where that is, you can easily find out by running `getwd()` in the console.
 
@@ -324,21 +318,21 @@ ggsave(duration_hist, filename = "hist1.png",
        height = 5, width = 6)
 ```
 
-<a name="purrr"></a>
 
 ## 2. Automate repetitive tasks using pipes and functions
+{: #purrr}
 
 We are now ready to model how each population has changed over time. There are 4331 populations, so with this one code chunk, we will run 4331 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
 __One specific thing to note is that when you add the `lm()` function in a pipe, you have to add `data = .`, which means use the outcome of the previous step in the pipe for the model.__
 
-<div class="bs-callout-blue" markdown="1">
+{% include callout.html content="
 
-__A piping tip:__ A useful way to familiriase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to e.g., the `do()` function, then up to the `tidy()` function and so on. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `do(mod = lm(scalepop ~ year, data = .))` and *not* the whole `do(mod = lm(scalepop ~ year, data = .)) %>%`.
+__A piping tip:__ A useful way to familiriase yourself with what the pipe does at each step is to 'break' the pipe and check out what the resulting object looks like if you've only ran the code up to e.g., the `do()` function, then up to the `tidy()` function and so on. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `do(mod = lm(scalepop ~ year, data = .))` and *not* the whole `do(mod = lm(scalepop ~ year, data = .)) %>%`.
 
 __Running pipes sequentially line by line also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
 
-</div>
+" %}
 
 ```r
 # Calculate population change for each forest population
@@ -368,7 +362,7 @@ head(aus_models)
 # Check out the model data frame
 ```
 
-![]({{ site.baseurl }}/img/model_df.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/model_df.png)
 
 __Next up, we will focus on automating iterative actions, for example when we want to create the same type of graph for different subsets of our data. In our case, we will make histograms of the population change experienced by birds across three different systems - marine, freshwater and terrestrial. When making multiple graphs at once, we have to specify the folder where they will be saved first.__
 
@@ -403,7 +397,7 @@ A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not N
 
 Check out your folder, you should see three graphs in there! You can use pipes to make way more than just three graphs at once, it just so happens that our grouping variable has only three levels, but if it had thirty levels, there would be thirty graphs in the folder.
 
-![]({{ site.baseurl }}/img/folder.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/folder.png)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -464,9 +458,8 @@ __We've learned about `map()`, but there are other `purrr` functions,too, and we
 walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 ```
 
-<a name="tidyverse"></a>
-
 ## 3. Synthesise information from different databases
+{: #tidyverse}
 
 __Answering research questions often requires combining data from different sources. For example, we've explored how bird abundance has changed over time across the monitored populations in Australia, but we don't know whether certain groups of species might be more likely to increase or decrease. To find out, we can integrate the population trend data with information on species traits, in this case species' diet preferences.__
 
@@ -495,7 +488,7 @@ bird_models_traits <- left_join(aus_models, bird_diet, by = "species.name") %>%
 head(bird_models_traits)
 ```
 
-![]({{ site.baseurl }}/img/joined.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/joined.png)
 
 __Now we can explore how bird population trends vary across different feeding strategies. The graphs below are all different ways to answer the same question. Have a ponder about which graph you like the most.__
 
@@ -510,7 +503,7 @@ __Now we can explore how bird population trends vary across different feeding st
 
 ```
 
-![]({{ site.baseurl }}/img/trends_diet1b.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet1b.png)
 
 To make the graph more informative, we can add a line for the overall mean population trend, and then we can easily compare how the diet-specific trends compare to the overall mean trend. We can also plot the mean trend per diet category and we can sort the graph so that it goes from declines to increases.
 
@@ -557,7 +550,7 @@ Finally, we can also use `geom_segment` to connect the points for the mean trend
   guides(colour = FALSE, fill = FALSE))
 ```
 
-![]({{ site.baseurl }}/img/trends_diet.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet.png)
 
 Like before, we can save the graph using `ggsave`.
 ```r
@@ -579,7 +572,7 @@ australia <- map_data("world", region = "Australia")
 bird_models_no_traits <- anti_join(aus_models, bird_diet, by = "species.name")
 ```
 
-For our map, we'll use a colour scheme from the `wesanderson` R package and we'll also jitter the points a bit so that there is less overlap. We'll also rename the diet categories just for the legend. We'll use the Mercator projection, which is not the best for global maps, but works fine for just Australia. The `coord_proj` function is very useful (it's from the `ggalt` package as it allows us to use a wide variety of projections. You can find the full list <a href="https://proj4.org/operations/projections/index.html" target="_blank">here, once you've found the one you want, you just need to copy the projection string for it and replace `+proj=merc` with the one you want.
+For our map, we'll use a colour scheme from the `wesanderson` R package and we'll also jitter the points a bit so that there is less overlap. We'll also rename the diet categories just for the legend. We'll use the Mercator projection, which is not the best for global maps, but works fine for just Australia. The `coord_proj` function is very useful (it's from the `ggalt` package as it allows us to use a wide variety of projections. You can find the [full list here](https://proj4.org/operations/projections/index.html), once you've found the one you want, you just need to copy the projection string for it and replace `+proj=merc` with the one you want.
 
 
 ```r
@@ -614,7 +607,7 @@ ggsave(map, filename = "map1.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/img/map1.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/map1.png)
 
 Knowing the sample size for each diet category is another useful bit of information, especially to support the spirit of open and transparent science. We can use `group_by()` and `tally()` to get the sample size numbers.
 
@@ -658,7 +651,7 @@ ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/img/diet_area2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_area2.png)
 
 __We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time! We can make a timeline of the individual studies to see what time periods are best represented.__
 
@@ -681,7 +674,7 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
 
 Well this looks untidy! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
 
-![]({{ site.baseurl }}/img/timeline3.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline3.png)
 
 ```r
 # Create a sorting variable
@@ -728,7 +721,7 @@ ggsave(timeline_aus, filename = "timeline.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/img/timeline2.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline2.png)
 
 __For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.__
 
@@ -773,11 +766,11 @@ ggsave(trends_mass, filename = "trends_mass.png",
        height = 5, width = 6)
 ```
 
-![]({{ site.baseurl }}/img/trends_mass2.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass2.png)
 
-<a name="download"></a>
 
 ## 4. Download occurrence data through `R`
+{: #download}
 
 __In this part of the tutorial, we will focus on one particular species, the emu (*Dromaius novaehollandiae*), where it has been recorded around the world, and where its populations are being monitored. We will use occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org/) which we will download in `R` using the `rgbif` package.__
 
@@ -861,7 +854,7 @@ ggsave(emu_map, filename = "emu_map.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/img/emu_map.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_map.png)
 
 Finally, we can also make a line graph that shows the raw abundance estimates over time for the emu population in South Australia - that'd look nice next to the map! Like we've all the previous figures, you can compare between the quick figure and the more customised one.
 
@@ -889,11 +882,11 @@ ggsave(emu_trend, filename = "emu_trend.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/img/emu_trend.png" alt="Img" style="width: 500px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_trend.png)
 
-<a name="panels"></a>
 
 ## 5. Create beautiful and informative figure panels
+{: #panels}
 
 __We've made lots of figures now, and in line with the general theme of synthesis, we can make a few panels that combine the different figures. We'll use the `gridExtra` package for the panels, and one useful feature is that we can customise the ratios between the areas the different plots take - the default is 1:1, but we might not always want that.__
 
@@ -934,7 +927,7 @@ emu_panel <- suppressWarnings(grid.arrange(emu_map, emu_trend,
 ggsave(emu_panel, filename = "emu_panel.png", height = 6, width = 14)
 ```
 
-![]({{ site.baseurl }}/img/emu_panel.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_panel.png)
 
 As a final panel, we can have a go at combining more figures and varying the layout a bit. Check out how the panel dimensions change as you run through the various options of the code chunks.
 
@@ -1016,7 +1009,7 @@ diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heigh
 ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
 ```
 
-![]({{ site.baseurl }}/img/diet_panel.png" alt="Img" style="width: 600px;)
+![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_panel.png)
 
 
 ## Challenges
@@ -1031,56 +1024,9 @@ Can you think of any data you can combine with some of the data from the tutoria
 
 To learn more about the power of pipes check out the [tidyverse website](http://dplyr.tidyverse.org/) and the [R for Data Science book](http://r4ds.had.co.nz/pipes.html).
 
-To learn more about `purrr` check out the [ R for Data Science book](http://purrr.tidyverse.org/reference/map2.html" target="_blank">tidyverse website</a> and the <a href="http://r4ds.had.co.nz/iteration.html).
+To learn more about `purrr` check out the [tidyverse website](http://purrr.tidyverse.org/reference/map2.html) and the [R for Data Science book](http://r4ds.had.co.nz/iteration.html).
 
 For more information on using functions, see the [R for Data Science book chapter here](http://r4ds.had.co.nz/functions.html).
 
 To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides [here](https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides).
 
-
-
-<hr>
-<hr>
-
-
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.com/r/XD85MW5)</h3>
-
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>

@@ -1,43 +1,38 @@
 ---
-layout: post
+layout: tutorial
 title: Numbers in Python with NumPy
 subtitle: How to Deal with Arrays of Numbers
 date: 2018-11-30 10:00:00
 author: Ed C
-meta: "Tutorials"
-tags: python
+survey_link: https://www.surveymonkey.co.uk/r/795PKMV
 ---
-<div class="block">
-![]({{ site.baseurl }}/img/tutheader-numpy.png" alt="Img)
-</div>
 
 ### Tutorial aims:
 
-#### <a href="introduction"> 1. What is NumPy?</a>
-
-#### <a href="basic"> 2. Basic manipulation NumPy arrays</a>
-
-#### <a href="mask"> 3. Masked arrays</a>
-
-#### <a href="io"> 4. Reading and writing data</a>
-
-#### <a href="cautions"> 5. Cautions when using NumPy arrays</a>
+1. [What is NumPy?](#introduction)
+2. [Basic manipulation NumPy arrays](#basic)
+3. [Masked arrays](#mask)
+4. [Reading and writing data](#io)
+5. [Cautions when using NumPy arrays](#cautions)
 
 
-<a name="introduction"></a>
 
 ## What is NumPy?
+{: #introduction}
 
 So what is NumPy? According to the official website, NumPy is the fundamental package for scientific computing with Python. One trade-off of using Python is its computing speed. On the other hand, C is known for its high speed. Hence, the developers came to the conclusion of writing a package of numerical functions which is written in C, but which you can run from Python. So, without having to learn C, you can use its power in Python.
 
 The biggest advantage of NumPy is its ability to handle numerical arrays. For example, if you have a list of values and you want to square each of them, the code in base Python will look like:
+
 ```python
 a = [1, 2, 3, 4, 5]
 b = []
 for i in a:
     b.append(a**2)
 ```
+
 and you will get `[1, 4, 9, 16, 25]` for `b`. Now, if you want to do the same with a 2-dimensional array, the base Python to do this is:
+
 ```python
 a = [[1, 2], [3, 4]]
 b = [[],[]]
@@ -45,29 +40,36 @@ for i in range(len(a)):
     for j in range(len(a[i])):
         b[i].append(a[i][j]**2)
 ```
+
 This would give you `b` equal to `[[1, 4], [9, 16]]`. To do the same with a 3D array you would need 3 nested loops and to do it in 4D would require 4 nested loops. However, with NumPy you can take the square of an array of any dimensions using the same line of code and no loops:
+
 ```python
 import numpy as np
 
 b = np.array(a)**2
 ```
+
 Using numpy is much faster than the base python version! It is faster to run, saving you on computing time, and faster to write, saving you time writing your code. All of this allows you to write and run code much faster, and therefore do more science in less time. Not only that, if your friend has a look at your code, they will read the code and understand you want a squared value of the array in an instant, without having to decipher what the for loop is trying to do.
 
 NumPy serves as the basis of most scientific packages in Python, including pandas, matplotlib, scipy, etc. Hence, it would be a good idea to explore the basics of data handling in Python with NumPy. This tutorial does not come with any pre-written files, but is a follow-along tutorial. So better start typing on your IDE or IPython.
 
-<a name="basic"></a>
-
 ## Basic manipulation numerical arrays
+{: #basic}
 
-### Importing the package.
+### Importing the package
+
 So let us get started. If you have the NumPy package installed, you should import it.
+
 ```python
 import numpy as np
 ```
+
 This is a standard import statement, which uses the syntax `import package as alias`. This allows us to call NumPy with `np`, instead of having to keep typing the whole word `numpy` each time we want to use one of the NumPy functions. The same syntax can be used with other modules such as `import pandas as pd`. It is very common to use the alias `np` for NumPy, but you can choose whatever alias you want.
 
 ### Creating NumPy arrays
+
 Creating arrays in NumPy is very easy. Below we create 3 different arrays. Try running these lines of code in Python.
+
 ```python
 a = np.full((5, 6), 10.0)
 b = np.ones((2, 2, 2))
@@ -191,9 +193,9 @@ print(e)
 e = np.arange(9.).reshape(3, 3)
 e[e>5] = 10.0
 ```
-<a name="mask"></a>
 
 ## Masked Arrays
+{: #mask}
 
 Suppose you have a time series with missing data, and want to perform the row sum.
 ```python
@@ -212,11 +214,11 @@ damage = np.array([1000., 100000., 110000, 10.])
 print(np.sum(np.ma.masked_where(magnitude<5.0, damage)))
 ```
 This should give you 210,000.
-There are numerous ways to mask your data for different purposes. All the available methods are listed in the <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.generic.html" target= "_blank"> numpy.ma documentation </a> on the web.
+There are numerous ways to mask your data for different purposes. All the available methods are listed in the [numpy.ma documentation](https://docs.scipy.org/doc/numpy/reference/maskedarray.generic.html) on the web.
 
-<a name="io"></a>
 
 ## Reading and writing data
+{: #io}
 
 Using standard .csv files, there are number of methods that let you read data file. While the shortest way is to use `np.genfromtxt()` function, my personal favourite is to use Pandas to read it and then convert it to pure NumPy arrays.
 ```python
@@ -250,11 +252,11 @@ temperature = open_dataset['temperature']
 ```
 There are also a number of packages available to allow you to open files of different formats as NumPy arrays (e.g. `netCDF4` for netCDF files).
 
-<a name="cautions"></a>
 
 ## Cautions when using NumPy
+{: #cautions}
 
-Some of you (with some experience in  Python) might have felt something is not quite right. The culprit might be the fact that we have been able change the values of the original arrays within loops, which is not the default behaviour of Python!
+Some of you (with some experience in Python) might have felt something is not quite right. The culprit might be the fact that we have been able change the values of the original arrays within loops, which is not the default behaviour of Python!
 
 Consider the following code:
 ```python
@@ -293,55 +295,8 @@ As a scientific computing tool, Python is a powerful tool, with NumPy at its hea
 
 ### Tutorial outcomes:
 
-#### 1. You know what NumPy is used for.
-
-#### 2. You manipulate and explore NumPy arrays using slicing
-
-#### 3. You can create simple masks on data to ignore some of the entries
-
-#### 4. You can read data to and write data in NumPy array format
-
-#### 5. You know that variables copied from NumPy objects might be different from other Python objects
-
-<hr>
-<hr>
-
-<h3>[&nbsp; We would love to hear your feedback, please fill out our survey!](https://www.surveymonkey.co.uk/r/795PKMV)</h3>
-<br>
-<h3>&nbsp; You can contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h3>
-<br>
-<h3>&nbsp; Related tutorials:</h3>
-{% for post in site.posts %}
-	{% if post.url != page.url %}
-  		{% for tag in post.tags %}
-    			{% if page.tags contains tag %}
-<h4><a style="margin:0 padding:0" href="{{ post.url }}">&nbsp; - {{ post.title }}</a></h4>
-  			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-<br>
-<h3>&nbsp; Subscribe to our mailing list:</h3>
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			[&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i>](https://twitter.com/our_codingclub)
-		</h3>
-	</li>
-</ul>
+1. You know what NumPy is used for.
+2. You manipulate and explore NumPy arrays using slicing
+3. You can create simple masks on data to ignore some of the entries
+4. You can read data to and write data in NumPy array format
+5. You know that variables copied from NumPy objects might be different from other Python objects
