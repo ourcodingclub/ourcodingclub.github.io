@@ -35,7 +35,7 @@ If you already know your way around statistical softwares like `Minitab` or `SPS
 Thanks for joining us on your learning journey. Like with any language, there is a learning curve (trust me, I'm learning German at the moment), but we will take it step by step, and in no time you will be coding your own analyses and graphs! 
 
 
-![]({{ site.baseurl }}/img/terminal_gui.png)
+![]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/terminal_gui.png)
 
 If you need any more convincing, why are we using R and not one of the many other statistical packages like MATLAB, Minitab, or even Microsoft Excel? Well, R is great because:
 

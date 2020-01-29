@@ -135,7 +135,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="">
         	</div>
         	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/maps_tutorial">
+            	<a href="{{ site.baseurl }}/tutorials/maps">
                 	<h2>Basic maps and spatial analysis</h2>
                 	<p>Using R as a GIS software tool to create informative maps</p>
             	</a>
@@ -157,7 +157,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="">
         	</div>
         	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/seecc.html#Flickr">
+            	<a href="{{ site.baseurl }}/tutorials/seecc_1/index.html#Flickr">
                 	<h2>Species occurrence and density maps</h2>
                 	<p>Using GBIF and Flickr data to visualise species occurrence</p>
             	</a>
@@ -168,7 +168,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="">
         	</div>
         	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/seecc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc_1">
                 	<h2>Working efficiently with large datasets</h2>
                 	<p>Quantifying population change and visualising species occurrence</p>
             	</a>
@@ -179,7 +179,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="">
         	</div>
         	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/tidyverse.html#tidyverse">
+            	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
                 	<h2>Visualisation workflows in the tidyverse</h2>
                 	<p>Working with many models & functional programming</p>
             	</a>
@@ -339,7 +339,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<img src="{{ site.baseurl }}/assets/img/hex/work4.jpg" alt="">
         	</div>
         	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/rmarkdown-1">
+            	<a href="{{ site.baseurl }}/tutorials/rmarkdown">
                 	<h2>Markdown</h2>
                 	<p>Using Markdown to save and share code</p>
             	</a>

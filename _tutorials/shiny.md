@@ -261,13 +261,13 @@ Notice how all of the inputs require an `inputId` and a `label` argument.
 
 Take this opportunity to preview your app by clicking _Run App_:
 
-![Img]({{ site.baseurl }}/img/Run_App_Screenshot.jpg)
+![Img]({{ site.baseurl }}/assets/img/tutorials/shiny/Run_App_Screenshot.jpg)
 
 or use the keyboard shortcut `Cmd + Opt + R` (Mac), `Ctrl + Alt + R` (Windows).
 
 When a Shiny app is running from RStudio, the console cannot be used. To stop the app, click the _Stop_ button in the top right of the console window or press the `Esc` key.
 
-![Img]({{ site.baseurl }}/img/Stop_Screenshot.jpg)
+![Img]({{ site.baseurl }}/assets/img/tutorials/shiny/Stop_Screenshot.jpg)
 
 ### Output
 
@@ -421,7 +421,7 @@ Go to [Github](http://www.github.com), sign in with your account details, create
 
 Remember to add a file called `README.md` using `Create new file` in your new app repository, where you can write a quick explanation of the content of your app. `.md` files can use markdown syntax to create headers, sections, links etc.. See our [tutorial on markdown and reproducible research]({{ site.baseurl }}/tutorials/rmarkdown/index.html) for more markdown tips:
 
-![]({{ site.baseurl }}/img/github_create_new_file.jpg)
+![]({{ site.baseurl }}/assets/img/tutorials/shiny/github_create_new_file.jpg)
 
 To send the app to another person, give them your Github username and the name of the app repo and ask them to run `runGithub()` in R, like this:
 
@@ -441,17 +441,17 @@ To learn more about Github, check out our [tutorial on Git and Github]({{ site.b
 
 You can also host Shiny apps on [www.shinyapps.io](https://www.shinyapps.io), a webhosting platform run by RStudio that is especially built for Shiny apps. Go to their website and sign up using whatever method you choose, then go to [www.shinyapps.io/admin/#/tokens](https://www.shinyapps.io/admin/#/tokens), click _Show secret_ and copy the `rsconnect` account info:
 
-![Img]({{ site.baseurl }}/img/shinyapps_io_token.jpg)
+![Img]({{ site.baseurl }}/assets/img/tutorials/shiny/shinyapps_io_token.jpg)
 
 Then open up an R session and run the copied material to link `shinyapps.io` with R Studio.
 
 To upload your app, open your `app.R` and click the publish button. Select a name for your app (__no spaces__) and click _Publish_. 
 
-![]({{ site.baseurl }}/img/rstudio_shiny_publish.jpg)
+![]({{ site.baseurl }}/assets/img/tutorials/shiny/rstudio_shiny_publish.jpg)
 
 The app can then be used by anyone with the URL for that app, which can be found by going to `shinyapps.io` and opening the app info from the dashboard:
 
-![]({{ site.baseurl }}/img/shinyapps_io_dash.jpg)
+![]({{ site.baseurl }}/assets/img/tutorials/shiny/shinyapps_io_dash.jpg)
 
 To embed an app that is hosted by `shinyapps.io`, in your own website you can put it in an `iframe`, replacing the URL with your own app URL and altering the style arguments to your own desire:
 

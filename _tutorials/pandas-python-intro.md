@@ -33,7 +33,7 @@ _If you have used R's dataframes before, or the `numpy` package in Python, you m
 
 Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html) we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the [StackOverflow](https://stackoverflow.com) question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
 
-![]({{ site.baseurl }}/img/python-pandas-growth.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-pandas-growth.png)
 
 These graphs of course should be taken with a pinch of salt, as there is no agreed way of absolutely determing programming langauge and library popularity, but they are interesting to think about nonetheless. 
 
@@ -617,7 +617,7 @@ plt.show()  # or plt.savefig("name.png")
 
 Run the script and have a look at the figure. It should look something like this:
 
-![]({{ site.baseurl }}/img/python-scatter.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-scatter.png)
 
 **IPython users**: the figure should render automatically after calling `plt.scatter(x, y)`.
 
@@ -686,7 +686,7 @@ plt.savefig("figure.png")
 Hopefully, you will have a figure that should look similar to this:
 
 
-![]({{ site.baseurl }}/img/python-linear-reg.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-linear-reg.png)
 
 I will leave it as an exercise for the reader to determine if they think this is a good fit or statistically significant...
 
@@ -737,7 +737,7 @@ plt.savefig("python-linear-reg-custom.png")
 
 It will produce a figure that looks like this:
 
-![]({{ site.baseurl }}/img/python-linear-reg-custom.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-linear-reg-custom.png)
 
 
 ## Bonus Matplotlib: plotting data onto maps with Cartopy
@@ -782,7 +782,7 @@ plt.scatter(dataframe['Longitude'],dataframe['Latitude'],
 plt.savefig("munros.png")
 ```
 
-![]({{ site.baseurl }}/img/python-munros.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-munros.png)
 
 Finally, there is one more bonus Matplotlib example plot I would like to share, create by PhD student James Warner at Exeter University. It shows precipitable water in the atmopshere over the year 2017, projected over the globe. He has even created an animation of it which can be viewed [on his Twitter account](https://twitter.com/MetmanJames/status/978659301337202693). This was all done using Python and some other Python libraries, including Matplotlib, Numpy, Cartopy, and a few others. It would take a long time to explain all of it, but hopefully it is some inspiration of the cool things you can do in Python with data visualisation. 
 
@@ -791,7 +791,7 @@ The Python code for this is actually not too complicated and he has shared it [h
 If you are feeling ambitious, try reproducing the images!
 
 
-![]({{ site.baseurl }}/img/python-global-water.png)
+![]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-global-water.png)
 
 ## Summary
 

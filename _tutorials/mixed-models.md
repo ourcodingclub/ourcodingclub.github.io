@@ -393,7 +393,7 @@ Now it's obvious that we have 24 samples (8 mountain ranges x 3 sites) and not j
 
 **To sum up:** for **nested random effects**, the factor appears **ONLY** within a particular level of another factor (each site belongs to a specific mountain range and only to that range); for **crossed effects**, a given factor appears in more than one level of another factor (dragons appearing within more than one mountain range). **Or you can just remember that if your random effects aren't nested, then they are crossed!**
 {% endcapture %}
-{% include callout.html content="
+{% include callout.html content=callout %}
 
 ### Our second mixed model
 {: #second}

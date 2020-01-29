@@ -40,7 +40,7 @@ Step 6. Save your completed template file as `index.md`.
 
 Step 7. Create a new repository on GitHub and upload `index.md` and your plots. Go to Settings, enable GitHub pages and you are done! Your tutorial is now live at the link thats shows up in the GitHub pages settings panel!
 
-![]({{ site.baseurl }}/img/CodingClub_logo2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/CodingClub_logo2.png)
 {: #demo}
 
 __We started Coding Club to help people at all career stages gain statistical and programming fluency, facilitating the collective advancement of ecology across institutions and borders. We use in-person workshops and online tutorials to equip participants not only with new skills, but also with the means to communicate these new skills broadly via online tutorials.__
@@ -48,7 +48,7 @@ __We started Coding Club to help people at all career stages gain statistical an
 __We would love to extend Coding Club beyond the University of Edinburgh and create a supportive community of people keen to get better at coding and statistics! With that in mind, we present you with a workshop on how to write and share tutorials!__
 
 
-![]({{ site.baseurl }}/img/74b26610-2027-11e7-841b-f91777fdfcdf.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/74b26610-2027-11e7-841b-f91777fdfcdf.png)
 
 There are similar initiatives already in place, which is very exciting! For this workshop, we are thrilled to be collaborating with the [Aberdeen Study Group](https://aberdeenstudygroup.github.io/studyGroup/), led by [Francesca Mancini](https://francescamancini.github.io/). The Aberdeen Study Group aims to foster a place where people can get together to work on their coding projects, help each other out and share their work, whilst also learning new skills. You can follow their adventures in coding and open science [on Twitter](https://twitter.com/abdnStudyGroup).
 
@@ -56,7 +56,7 @@ There are similar initiatives already in place, which is very exciting! For this
 
 There are many ways to run a coding workshop and different approaches might work better in different situations. Here is how we usually structure our workshops. The workshops take two hours and begin with a super short presentation or introductory talk about what we will be doing, what skills we will acquire and what they are useful for. We then direct workshop attendants to the link for the tutorial around which the workshop is focused. People usually open the tutorial on half of their screen and `RStudio` on the other half.
 
-![]({{ site.baseurl }}/img/workshop.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/workshop.png)
 
 At each workshop, we have a team of demonstrators who are there to answer questions and help out. We find that it works well to let people go through the tutorial at their own pace and we usually walk around and check whether things are going fine. Most of the tutorials have challenges at the end, for which people can work individually or in small teams. We bring cookies, popcorn and other treats, occasionally make bad R jokes and try our best to make the atmosphere light and positive. We don't require people to sign up and there are no obligations to attend all the workshops: people are free to attend whichever workshops are of interest to them. At the end of the workshops, we usually stay behind for a while in case people have any specific questions about their own coding projects.
 
@@ -79,7 +79,7 @@ We use the Atom text editor, which is a user-friendly text editor and easy on th
 
 __You can [download Atom here, if you wish.](https://atom.io/)__
 
-![]({{ site.baseurl }}/img/atom_rstudio.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/atom_rstudio.png)
 
 
 Our workflow tends to go like this:
@@ -107,7 +107,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
                 <ul id="portfolio-contant-active">
                     <li>
                       <a href="#polar_map">
-						![]({{ site.baseurl }}/img/portfolio/arctic_fox_icon.png)
+						![]({{ site.baseurl }}/assets/img/tutorials/tutorials/arctic_fox_icon.png)
                         <div class="overly">
                           <div class="position-center">
                             <center><h2>Mapping species occurrence records</h2></center>
@@ -118,7 +118,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
                   </li>
                     <li>
                       <a href="#forest_plots">
-						![]({{ site.baseurl }}/img/portfolio/elephants_icon.png)
+						![]({{ site.baseurl }}/assets/img/tutorials/tutorials/elephants_icon.png)
                         <div class="overly">
                           <div class="position-center">
                             <center><h2>Plotting forest plot tree data</h2></center>
@@ -129,7 +129,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
                   </li>
 		<li>
 		  <a href="#density_maps">
-![]({{ site.baseurl }}/img/portfolio/density_rs_icon.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/density_rs_icon.png)
 		   <div class="overly">
 		   <div class="position-center">
 		   <center><h2>Visualising species occurrence data</h2></center>
@@ -140,7 +140,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
 		</li>
 		<li>
 		  <a href="#temp_timeseries">
-![]({{ site.baseurl }}/img/portfolio/timesr_icon.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/timesr_icon.png)
 		     <div class="overly">
 		      <div class="position-center">
 		    <center><h2>Visualising temperature time series data</h2></center>
@@ -151,7 +151,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
 		</li>
 		<li>
 		  <a href="#plant_traits">
-![]({{ site.baseurl }}/img/portfolio/traits_icon.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/traits_icon.png)
 		   <div class="overly">
 		   <div class="position-center">
 		   <center><h2>Summarising plant trait data</h2></center>
@@ -162,7 +162,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
 		</li>
 	        <li>
 		  <a href="#sunflecks">
-![]({{ site.baseurl }}/img/portfolio/sunflecks_icon.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/sunflecks_icon.png)
 		   <div class="overly">
 		   <div class="position-center">
 		   <center><h2>Manipulating and visualising photosynthetic activity and assimilation</h2></center>
@@ -173,7 +173,7 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
 		</li>
                  <li>
 		  <a href="#movement">
-![]({{ site.baseurl }}/img/portfolio/movement_icon.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/movement_icon.png)
 		   <div class="overly">
 		   <div class="position-center">
 		   <center><h2>Analysis of spatial movement</h2></center>
@@ -223,7 +223,7 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 
 __The tutorial will take you through the steps of downloading red squirrel occurrences in the UK from the Global Biodiversity Information Facility (GBIF), adjusting spatial projections and plotting density maps with `ggplot2`.__
 
-![]({{ site.baseurl }}/img/density_rs.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/density_rs.png)
 
 You can download the `R` script that you can turn into a tutorial from this [Github repository](https://github.com/ourcodingclub/CC-EAB-tut-ideas). Click on Clone/Download Zip, download the files and unzip them. The script for this tutorial `density_maps.R` is in the `density_maps` folder.
 
@@ -258,7 +258,7 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 #### Dries Landuyt
 {: #sunflecks}
 
-![]({{ site.baseurl }}/img/PAR_assimilation.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/PAR_assimilation.png)
 
 __In this tutorial, we will learn to work with pipes `%>%` and other `dplyr` functions, as well as different plotting techniques using the `ggplot2` package, such as having two y axises and printing axis labels with characters like μ. We will apply our data maninpulation and data visualisation skills to explore the importance of sunflecks for carbon assimilation in an understorey herb based on a LI-COR dataset (leaf-level gas exchange measurements) with a temporal resolution of 5 seconds, gathered on a sunny day in June 2017.__
 
@@ -270,7 +270,7 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 #### By Stefano Masier
 {: #movement}
 
-![]({{ site.baseurl }}/img/autocorr1.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/autocorr1.png)
 
 __The aim of this tutorial is to visualize data from a series of geographical coordinates coming from monitoring the movement of mites. The goal is to handle a series of coordinates, plot the path itself and determine if there are points along the way that are autocorrelated.__
 
@@ -285,17 +285,17 @@ __Next we can publish our tutorial on GitHub, which will turn it into a website,
 
 __Go to the GitHub website, register if you don't already have an account (it's free) and click on `New Repository`.__
 
-![]({{ site.baseurl }}/img/new_repo_eab.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/new_repo_eab.png)
 
 Choose a name for your repository: that will form part of the link for your online tutorial so choose something short and informative. Add a brief description, click on `Initialize with a README.md` and then click on `Create repository`.
 
-![]({{ site.baseurl }}/img/new_repo_eab2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/new_repo_eab2.png)
 
 #### Now you can see your new repository. Click on `Upload files` and upload your filled in `Markdown` template. Make sure you save the file as `index.md` - that will make your tutorial the landing (home) page of the website. Upload any images you are using in your tutorial as well.
 
 You are two clicks away from having a website with your tutorial! Now click on `Settings` and scroll down to the `GitHub pages` section. We need to enable the `GitHub pages` feature, which turns our `index.md` file into a page, i.e. website. Change `Source` from `None` to `master` - the master branch of our repository. Click on `Save`.
 
-![]({{ site.baseurl }}/img/github_pages.png)
+![]({{ site.baseurl }}/assets/img/tutorials/tutorials/github_pages.png)
 
 #### Congratulations, your repository is now published as a website!
 

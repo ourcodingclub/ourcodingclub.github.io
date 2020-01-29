@@ -1,4 +1,4 @@
- --
+---
 layout: tutorial
 title: Data visualisation 2
 subtitle: Customising your figures

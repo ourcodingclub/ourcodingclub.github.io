@@ -44,7 +44,7 @@ Below is a hand-picked and categorised list of resources that we used when learn
 	</tr>
 	<tr>
 		<td>Sample chapters from Hadley Wickham’s ggplot2 book</td>
-		<td><a href="http://ggplot2.org/book/" target="_blank">ggplot2.org/book/</a></td>
+		<td><a href="https://ggplot2-book.org/" target="_blank">ggplot2-book.org/</a></td>
 	</tr>
 	<tr>
 		<td>R colour values</td>

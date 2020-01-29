@@ -358,7 +358,7 @@ That's cluttered! Can you really figure out what populations are doing? By addin
 
 Some useful arguments to include in `facet_wrap()`are `nrow = ` or `ncol = `, specifying the number of rows or columns, respectively. You can also see that we used `scales = "free_y"`, to allow different y axis values because of the wide range of abundance values in the data. You can use "fixed" when you want to constrain all axis values. 
 
-{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_facets/png{% endcapture %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_facets.png{% endcapture %}
 {% include figure.html url=link caption="Population change of Griffon vulture across the world, from the LPI dataset." %}
 
 _Note: some of these population trends do weird things, possibly because there are many sub-populations being monitored within a country (e.g. Italy), so in practice we probably would not fit a single regression line per country._ 

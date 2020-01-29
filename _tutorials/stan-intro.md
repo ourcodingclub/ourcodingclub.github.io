@@ -238,7 +238,7 @@ __We can get summary statistics for parameter estimates, and sampler diagnostics
 fit
 ```
 
-![]({{ site.baseurl }}/img/stan_summary.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_summary.png)
 
 __What does the model output show you?  How do you know your model has converged?  Can you see that text indicating that your C++ compiler has run?__
 
@@ -262,7 +262,7 @@ abline(lm1, col = 2, lty = 2, lw = 3)
 abline( mean(posterior$alpha), mean(posterior$beta), col = 6, lw = 2)
 ```
 
-![]({{ site.baseurl }}/img/sea_ice3.png) ![]({{ site.baseurl }}/img/sea_ice4.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice3.png) ![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice4.png)
 
 Figure 3. Change in sea ice extent in the Northern Hemisphere over time (comparing a `Stan` linear model fit and a general `lm` fit).
 
@@ -286,7 +286,7 @@ for (i in 1:500) {
 abline(mean(posterior$alpha), mean(posterior$beta), col = 6, lw = 2)
 ```
 
-![]({{ site.baseurl }}/img/sea_ice5.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice5.png)
 
 Figure 4. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits).
 
@@ -338,7 +338,7 @@ abline(mean(posterior2$alpha), mean(posterior2$beta), col = 3, lw = 2)
 abline(mean(posterior$alpha), mean(posterior$beta), col = 36, lw = 3)
 ```
 
-![]({{ site.baseurl }}/img/stan_fits.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_fits.png)
 
 Figure 5. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits).
 
@@ -363,7 +363,7 @@ plot(posterior$beta, type = "l")
 plot(posterior$sigma, type = "l")
 ```
 
-![]({{ site.baseurl }}/img/alpha_trace.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/alpha_trace.png)
 
 Figure 6. Trace plot for alpha, the intercept.
 
@@ -387,7 +387,7 @@ plot(posterior_bad$beta, type = "l")
 plot(posterior_bad$sigma, type = "l")
 ```
 
-![]({{ site.baseurl }}/img/bad_traces2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bad_traces2.png)
 
 Figure 7. Bad trace plot for alpha, the intercept.
 
@@ -409,7 +409,7 @@ plot(density(posterior$sigma), main = "Sigma")
 abline(v = lm_sigma, col = 4, lty = 2)
 ```
 
-![]({{ site.baseurl }}/img/stan_panel.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_panel.png)
 
 Figure 8. Density plot distributions from the `Stan` model fit compared with the estimates from the general `lm` fit.
 
@@ -438,7 +438,7 @@ While we can work with the posterior directly, `rstan` has a lot of useful funct
 traceplot(fit)
 ```
 
-![]({{ site.baseurl }}/img/stan_chains.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_chains.png)
 
 Figure 9. Trace plots of the different chains of the `Stan` model.
 
@@ -451,7 +451,7 @@ stan_dens(fit)
 stan_hist(fit)
 ```
 
-![]({{ site.baseurl }}/img/stan_density.png) ![]({{ site.baseurl }}/img/stan_histogram.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_density.png) ![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_histogram.png)
 
 Figure 10. Density plots and histograms of the posteriors for the intercept, slope and residual variance from the `Stan` model.
 
@@ -461,7 +461,7 @@ And we can generate plots which indicate the mean parameter estimates and any cr
 plot(fit, show_density = FALSE, ci_level = 0.5, outer_level = 0.95, fill_color = "salmon")
 ```
 
-![]({{ site.baseurl }}/img/stan_caterpillar.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_caterpillar.png)
 
 Figure 11. Parameter estimates from the `Stan` model.
 
@@ -528,7 +528,7 @@ Comparing density of `y` with densities of `y` over 200 posterior draws.
 ppc_dens_overlay(y, y_rep[1:200, ])
 ```
 
-![]({{ site.baseurl }}/img/bayes1.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes1.png)
 
 Figure 12. Comparing estimates across random posterior draws.
 
@@ -539,7 +539,7 @@ We can also use this to compare estimates of summary statistics.
 ```r
 ppc_stat(y = y, yrep = y_rep, stat = "mean")
 ```
-![]({{ site.baseurl }}/img/bayes2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png)
 
 Figure 13. Comparing estimates of summary statistics.
 
@@ -551,7 +551,7 @@ We can investigate mean posterior prediction per datapoint vs the observed value
 ppc_scatter_avg(y = y, yrep = y_rep)
 ```
 
-![]({{ site.baseurl }}/img/bayes2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png)
 
 Figure 14. Mean posterior prediction per datapoint vs the observed value for each datapoint.
 
@@ -570,7 +570,7 @@ color_scheme_view(c("blue", "gray", "green", "pink", "purple",
  "red","teal","yellow"))
 ```
 
-![]({{ site.baseurl }}/img/bayes_colours.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes_colours.png)
 
 And you can even mix them:
 

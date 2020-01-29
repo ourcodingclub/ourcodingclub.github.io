@@ -30,11 +30,11 @@ Python is a programming language, a tool used to make computers do useful things
 
 Python has grown hugely in popularity in recent years, by some measures it is *the* most popular programming language as of 2018. Consider the chart below, which is based on number of question views on StackOverflow:
 
-![]({{ site.baseurl }}/img/python_growth_major_languages.png)
+![]({{ site.baseurl }}/assets/img/tutorials/python-intro/python_growth_major_languages.png)
 
 You may also wish to have a look at this chart showing the growth of Python and other smaller, growing technologies (including R):
 
-![]({{ site.baseurl }}/img/python_growth_smaller_languages.png)
+![]({{ site.baseurl }}/assets/img/tutorials/python-intro/python_growth_smaller_languages.png)
 
 If you are interested in reading more about the growth of Python (and the background to the above charts), I highly recommend reading [this blog post from StackOverflow](https://stackoverflow.blog/2017/09/06/incredible-growth-python/).
 
@@ -142,7 +142,7 @@ Instead of using a text editor and the command line, you can write and run your 
 
 This diagram shows a basic Spyder session:
 
-![]({{ site.baseurl }}/img/spyder.png)
+![]({{ site.baseurl }}/assets/img/tutorials/python-intro/spyder.png)
 
 The window on the left is a text editor where you can write your script, the window on the right is the console where the output of the script will be shown. The green play button will run the script through the console, giving you the output.
 
@@ -516,7 +516,7 @@ The `plot` function will plot a line chart by default, and the first argument is
 
 Open the "pressure.png" file (it will be in the same folder) and you should see a simple line plot of the pressure data over the 2 days that Storm Eleanor passed over Edinburgh. It should look something like this:
 
-![]({{ site.baseurl }}/img/pressure.png)
+![]({{ site.baseurl }}/assets/img/tutorials/python-intro/pressure.png)
 
 We can see how the pressure drops significantly as the storm passes over the weather station. However, the plot could be improved with some lables on the axes, and a title. To add them to the figure, change our script to include the following:
 
@@ -604,7 +604,7 @@ Make sure the script is saved, and then run it. Open up the "pressure_final.png"
 
 The final figure should look like this:
 
-![]({{ site.baseurl }}/img/pressure_final.png)
+![]({{ site.baseurl }}/assets/img/tutorials/python-intro/pressure_final.png)
 
 ## Summary
 

@@ -24,13 +24,13 @@ __In this tutorial we will create a map showing the locations of vertebrate spec
 
 Here is an example map showing where the populations from the order Anseriformes were located, as well as how their populations have changed between 1950 and 2015. Looks like most of the populations have remained stable, with a slope around zero, three populations have increased and a few have decreased. Here, we have demonstrated how to do the analysis on the population level, with a focus on how all species within a given order are changing, but you can filter the dataset if there is a particular species you are interested in.
 
-![](img/anseriformes.png)
+![]({{ site.baseurl }}/assets/img/tutorials/popchange/anseriformes.png)
 
 Figure 1. _Anseriformes_ populations in Europe.
 
 Open RStudio and make a new script by clicking on `File/New File/R Script`. Usually we open RStudio on half of our screen and the tutorial on the other half, as that way it's easy to copy code across and google errors if they arise.
 
-![]({{ site.baseurl }}/img/workshop2.png)
+![]({{ site.baseurl }}/assets/img/tutorials/popchange/workshop2.png)
 
 Headers and comments outline why we are taking the various steps in our analyses. Future you, your supervisors or collaborators will all benefit from informative comments. 
 
@@ -159,7 +159,7 @@ ggsave(EU_pop, filename = "anseriformes.pdf", width = 10, height = 10)
 ggsave(EU_pop, filename = "anseriformes.png", width = 10, height = 10)
 ```
 
-![]({{ site.baseurl }}/img/anseriformes.png)
+![]({{ site.baseurl }}/assets/img/tutorials/popchange/anseriformes.png)
 
 Figure 1. _Anseriformes_ populations in Europe.
 

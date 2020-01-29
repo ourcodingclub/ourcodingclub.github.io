@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: tutorial
 title: Coding Club goes to Aberdeen and SEECC 2017!
 subtitle: The joys of collaboration
 date: 2017-09-13 21:11:27
