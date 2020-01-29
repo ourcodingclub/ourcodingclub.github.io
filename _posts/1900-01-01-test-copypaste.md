@@ -19,7 +19,7 @@ author: Sandra
 
 
 ### new attempt
-<div class="row-eq-height" style="height:100px;">
+<div class="row-eq-height">
 
   <div class="col-md-3" markdown="1">
   <img width="100px" src="{{ site.baseurl }}/img/DL/shield_stream1.png"/>
@@ -32,9 +32,11 @@ author: Sandra
 </div>
 
 
+
+
 ## and another
 
-<img width="50%" src="{{ site.baseurl }}/img/DL/shield_stream1.png"/>
+![](/img/DL/shield_stream1.png)<!-- .element height="80px" width="80px" -->
 ## This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
 
 
