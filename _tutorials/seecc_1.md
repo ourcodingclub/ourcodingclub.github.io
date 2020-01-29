@@ -23,7 +23,7 @@ This workshop will provide an overview of methods used to investigate an ecologi
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 Make a new script file using `File/ New File/ R Script` and we are all set to begin exploring how vertebrate populations are changing.
 
@@ -155,7 +155,7 @@ LPI_long_fl <- filter(LPI_long, is.finite(pop))
 
 Next, we want to only use populations that have more than 5 years of data to make sure our analysis has enough data to capture population change. We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different - imagine tiny fish whose abundance is in the millions, and large carnivores whose abundance is much smaller. Scaling also normalises the data, as later on we will be using linear models assuming a normal distribution. To only keep populations with more than 5 years of data and scale the population data, we can use pipes. 
 
-__Pipes (`%>%`) are a way of streamlining data manipulation - imagine all of your data coming in one end of the pipe, while they are in there, they are manipulated, summarised, etc., then the output (e.g. your new data frame or summary statistics) comes out the other end of the pipe. At each step of the pipe processing, you can tell the pipe what information to use - e.g. here we are using `.`, which just means "take the ouput of the previous step". For more information on data manipulation using pipes, you can check out our [data formatting and manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html).__
+__Pipes (`%>%`) are a way of streamlining data manipulation - imagine all of your data coming in one end of the pipe, while they are in there, they are manipulated, summarised, etc., then the output (e.g. your new data frame or summary statistics) comes out the other end of the pipe. At each step of the pipe processing, you can tell the pipe what information to use - e.g. here we are using `.`, which just means "take the ouput of the previous step". For more information on data manipulation using pipes, you can check out our [data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html).__
 
 ```r
 LPI_long <- LPI_long_fl %>%
@@ -186,7 +186,7 @@ Check out the new data frame using `View(LPI_biome_summ)` to find out how many p
 ## 3. Automating data manipulation using `lapply()`, loops and pipes
 {: #lapply_loops}
 
-Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [loops](https://ourcodingclub.github.io/2017/02/08/funandloops.html) and [piping](https://ourcodingclub.github.io/2017/01/16/piping.html), but for now, here is a brief summary.
+Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [loops]({{ site.baseurl }}/tutorials/funandloops/index.html) and [piping]({{ site.baseurl }}/tutorials/piping/index.html), but for now, here is a brief summary.
 
 The `apply()` function and it's variants (`lapply()`,`sapply()`, `tapply()`, `mapply()`) act as wrappers around other functions that you want to apply equally to items in an array (`apply()`), list (`lapply()`, `sapply()`), grouped vector (`tapply()`), or some other multivariate function (`mapply()`).
 

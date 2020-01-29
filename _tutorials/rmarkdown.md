@@ -37,7 +37,7 @@ All the resources for this tutorial, including some helpful cheatsheets can be d
 
 __Read through this tutorial and use the information you learn along the way to convert the tutorial R script (`RMarkdown_Tutorial.R`), which you can find in the repo, into a well commented, logically structured R Markdown (`.Rmd`) document. Afterwards, there are some challenge scripts that you can convert to `.Rmd` documents. If you want, you could also try converting one of your own R scripts.__
 
-__Haven't used R or RStudio before? No worries! Check out our [Intro to R and RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), then come back here to master RMarkdown!__
+__Haven't used R or RStudio before? No worries! Check out our [Intro to R and RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), then come back here to master RMarkdown!__
 
 ## Download R Markdown
 {: #download}

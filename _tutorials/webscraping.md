@@ -32,7 +32,7 @@ Web scraping refers to the action of extracting data from a web page using a com
 
 Open up a new R Script where you will be adding the code for this tutorial. All the resources for this tutorial, including some helpful cheatsheets, can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-12-Webscraping). Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the real path), or clicking `Session/ Set Working Directory/ Choose Directory` in the RStudio menu.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-12-Webscraping) to your own Github account and then add it as a new `RStudio` project by copying the HTTPS / SSH link. For more details on how to register on Github, download git, sync `RStudio` and `Github` and do version control, please check out our [previous tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-12-Webscraping) to your own Github account and then add it as a new `RStudio` project by copying the HTTPS / SSH link. For more details on how to register on Github, download git, sync `RStudio` and `Github` and do version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 ```r
 setwd("<PATH TO FOLDER>")
@@ -134,7 +134,7 @@ species_name <- species_line %>%
 species_name
 ```
 
-For more information on using pipes, [follow our data manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html).
+For more information on using pipes, [follow our data manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html).
 
 `gsub()` works in the following way:
 
@@ -372,7 +372,7 @@ Does your data frame look something like this?
 |Spheniscus magellanicus |Magellanic Penguin                                             |Near Threatened |2016-10-01 |
 |Spheniscus mendiculus   |Galapagos Penguin, Galápagos Penguin                           |Endangered      |2016-10-01 |
 
-Now that you have your data frame you can start analysing it. Try to make a bar chart showing how many penguin species are in each red list category [follow our data visualisation tutorial to learn how to do this with `ggplot2`](https://ourcodingclub.github.io/2017/01/29/datavis.html).
+Now that you have your data frame you can start analysing it. Try to make a bar chart showing how many penguin species are in each red list category [follow our data visualisation tutorial to learn how to do this with `ggplot2`]({{ site.baseurl }}/tutorials/datavis/index.html).
 
 A full `.R` script for this tutorial along with some helpful cheatsheets and data can be found in the [repository for this tutorial](https://github.com/ourcodingclub/CC-12-Webscraping).
 

@@ -304,7 +304,7 @@ _We are keen to incorporate different platforms and languages in our analyses, p
 
 Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow. You can find tutorials on how to create graphs in the Earth Engine on [the Developers website](https://developers.google.com/earth-engine/charts).
 
-_Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our [intro to `R`](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) tutorial here.
+_Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our [intro to `R`]({{ site.baseurl }}/tutorials/intro-to-r/index.html) tutorial here.
 
 ```r
 # Load libraries ----

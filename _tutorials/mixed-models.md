@@ -216,8 +216,7 @@ library(lme4)
 
 Let's talk a little about the difference between **fixed and random effects** first. It's important to not that this difference has little to do with the variables themselves, and a lot to do with your research question! In many cases, the same variable could be considered either a random or a fixed effect (and sometimes even both at the same time!) so always refer to your questions and hypotheses to construct your models accordingly.
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Should my variables be fixed or random effects?
 
 In broad terms, **fixed effects** are variables that we expect will have an effect on the dependent/response variable: they're what you call __explanatory__ variables in a standard linear regression. In our case, we are interested in making conclusions about how dragon body length impacts the dragon's test score. So body length is a fixed effect and test score is the dependent variable.
@@ -229,15 +228,15 @@ Additionally, the data for our random effect is just **a sample of all the possi
 ```r
 test <- 1 + 3
 ```
-" %} 
+{% endcapture %}
+{% include callout.html content=callout %}
+
 
 In our particular case, we are looking to control for the effects of mountain range. We haven't sampled all the mountain ranges in the world (we have eight) so our data are just a sample of all the existing mountain ranges. We are not really interested in the effect of each specific mountain range on the test score: we hope our model would also be generalisable to dragons from other mountain ranges! However, we know that the test scores from within the ranges might be correlated so we want to control for that.
 
 If we specifically chose eight particular mountain ranges *a priori* and we were interested in those ranges and wanted to make predictions about them, then mountain range would be fitted as a fixed effect. 
 
-
-{% include callout.html content="
-
+{% capture callout %}
 #### More about random effects
 
 Note that the golden rule is that you generally want your random effect to have **at least five levels**. So, for instance, if we wanted to control for the effects of dragon's sex on intelligence, we would fit sex (a two level factor: male or female) **as a fixed, not random, effect**.
@@ -245,12 +244,12 @@ Note that the golden rule is that you generally want your random effect to have 
 This is, put simply, because estimating variance on few data points is very imprecise. Mathematically you _could_, but you wouldn't have a lot of confidence in it. If you only have two or three levels, the model will struggle to partition the variance - it _will_ give you an output, but not necessarily one you can trust. 
 
 Finally, keep in mind that the name *random* doesn't have much to do with *mathematical randomness*. Yes, it's confusing. Just think about them as the *grouping* variables for now. Strictly speaking it's all about making our models representative of our questions **and getting better estimates**. Hopefully, our next few examples will help you make sense of how and why they're used.
-" %} 
+{% endcapture %}
+{% include callout.html content=callout %}
 
 **In the end, the big questions are:** *what are you trying to do? What are you trying to make predictions about? What is just variation (a.k.a "noise") that you need to control for?*
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Further reading for the keen: 
 {: #Further_Reading}
 
@@ -261,8 +260,8 @@ Finally, keep in mind that the name *random* doesn't have much to do with *mathe
 - [More on model complexity](https://dynamicecology.wordpress.com/2014/12/02/why-are-your-statistical-models-more-complex-these-days/)
 
 - Have a look at some of the fixed and random effects definitions gathered by Gelman in [this paper](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf) (you can also find them [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode/4702#4702) if you can't access the paper).
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 ### Let's fit our first mixed model
 {: #first}
@@ -296,8 +295,7 @@ We can see the variance for `mountainRange = 339.7`. Mountain ranges are clearly
 
 So the differences between mountain ranges explain ~60% of the variance that's "left over" *after* the variance explained by our fixed effects. 
 
-{% include callout.html content="
-
+{% capture callout %}
 #### More reading on random effects
 
 Still confused about interpreting random effects? These links have neat demonstrations and explanations:
@@ -307,8 +305,8 @@ Still confused about interpreting random effects? These links have neat demonstr
 [The Analysis Factor: Understanding random effects in mixed models](https://www.theanalysisfactor.com/understanding-random-effects-in-mixed-models/)
 
 [Bodo Winter: A very basic tutorial for performing linear mixed effect analyses](http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf)
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 As always, it's good practice to have a look at the plots to check our assumptions:
 
@@ -370,8 +368,7 @@ What about the crossed effects we mentioned earlier? If all the leaves have been
 
 Phew!
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Implicit *vs*. explicit nesting
 {: #implicit}
 
@@ -395,8 +392,8 @@ dragons <- within(dragons, sample <- factor(mountainRange:site))
 Now it's obvious that we have 24 samples (8 mountain ranges x 3 sites) and not just 3: our `sample` is a 24-level factor and we should use that instead of using `site` in our models: each site belongs to a specific mountain range.
 
 **To sum up:** for **nested random effects**, the factor appears **ONLY** within a particular level of another factor (each site belongs to a specific mountain range and only to that range); for **crossed effects**, a given factor appears in more than one level of another factor (dragons appearing within more than one mountain range). **Or you can just remember that if your random effects aren't nested, then they are crossed!**
-
-" %}
+{% endcapture %}
+{% include callout.html content="
 
 ### Our second mixed model
 {: #second}

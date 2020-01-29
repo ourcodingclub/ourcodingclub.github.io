@@ -46,7 +46,7 @@ install.packages("rsconnect")  # For publishing apps online
 install.packages("agridat")  # For the dataset in today's tutorial
 ```
 
-You can download the resources for this tutorial by heading to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny). You can click on `Clone / Download` and either download the zip file and extract the files, or fork the repository to your own Github account. [See our Git and Github tutorial for more info](https://ourcodingclub.github.io/2017/02/27/git.html).
+You can download the resources for this tutorial by heading to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny). You can click on `Clone / Download` and either download the zip file and extract the files, or fork the repository to your own Github account. [See our Git and Github tutorial for more info]({{ site.baseurl }}/tutorials/git/index.html).
 
 
 ## The Shiny app file structure
@@ -273,7 +273,7 @@ When a Shiny app is running from RStudio, the console cannot be used. To stop th
 
 A Shiny app without any outputs is useless. Outputs can be in the form of plots, tables, maps or text.
 
-As per our example app, we're going to be using `ggplot()` to create a histogram. For more information on creating plots in `ggplot2`, see our tutorials on [basic data visualisation](https://ourcodingclub.github.io/2017/01/29/datavis.html) and [customising ggplot graphs](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html). 
+As per our example app, we're going to be using `ggplot()` to create a histogram. For more information on creating plots in `ggplot2`, see our tutorials on [basic data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html) and [customising ggplot graphs]({{ site.baseurl }}/tutorials/data-vis-2/index.html). 
 
 Outputs are created by placing code in the curly brackets (`{}`) in the `server` object:
 
@@ -315,7 +315,7 @@ Next, we want to be able to change the colour of the histogram based on the valu
 
 Next, we want to select the number of bins in the histogram using the `sliderInput` called `bin`. Simply change `bins = 7` to `bins = input$bin`.
 
-Finally, to create a table output showing some summary statistics of the selected genotype, create a new output object called `output$table` and use `renderTable()` to create a table generated using dplyr `summarise()`. See our [tutorial on data manipulation](https://ourcodingclub.github.io/2017/01/16/piping.html#dplyr) for more information on dplyr. __Update server with the `output$table` information so it looks like the code below__:
+Finally, to create a table output showing some summary statistics of the selected genotype, create a new output object called `output$table` and use `renderTable()` to create a table generated using dplyr `summarise()`. See our [tutorial on data manipulation]({{ site.baseurl }}/tutorials/piping/index.html#dplyr) for more information on dplyr. __Update server with the `output$table` information so it looks like the code below__:
 
 ```r
 server <- function(input, output) {
@@ -419,7 +419,7 @@ If you want to quickly share the app over the internet we recommend using [Githu
 
 Go to [Github](http://www.github.com), sign in with your account details, create a repository and upload everything from your app folder, including any `Data` and `www` folders. 
 
-Remember to add a file called `README.md` using `Create new file` in your new app repository, where you can write a quick explanation of the content of your app. `.md` files can use markdown syntax to create headers, sections, links etc.. See our [tutorial on markdown and reproducible research](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html) for more markdown tips:
+Remember to add a file called `README.md` using `Create new file` in your new app repository, where you can write a quick explanation of the content of your app. `.md` files can use markdown syntax to create headers, sections, links etc.. See our [tutorial on markdown and reproducible research]({{ site.baseurl }}/tutorials/rmarkdown/index.html) for more markdown tips:
 
 ![]({{ site.baseurl }}/img/github_create_new_file.jpg)
 
@@ -435,7 +435,7 @@ Alternatively, if your recipient doesn't know how Github works, upload your app 
 runUrl("https://github.com/rstudio/shiny_example/archive/master.zip")
 ```
 
-To learn more about Github, check out our [tutorial on Git and Github](https://ourcodingclub.github.io/2017/02/27/git.html).
+To learn more about Github, check out our [tutorial on Git and Github]({{ site.baseurl }}/tutorials/git/index.html).
 
 #### As a shinyapps.io app
 

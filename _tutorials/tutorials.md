@@ -21,7 +21,7 @@ Each step is explained in detail as you start going through the workshop resourc
 
 __Part 1: Becoming familiar with the Coding Club model.__
 
-Step 1. Individually or in small groups, complete [a brief Coding Club tutorial](https://ourcodingclub.github.io/2017/11/11/popchange.html) about quantifying and mapping vertebrate population change in Europe.
+Step 1. Individually or in small groups, complete [a brief Coding Club tutorial]({{ site.baseurl }}/tutorials/popchange/index.html) about quantifying and mapping vertebrate population change in Europe.
 
 
 __Part 2: In small groups, create your own tutorial.__
@@ -62,10 +62,11 @@ At each workshop, we have a team of demonstrators who are there to answer questi
 
 ## Find out for yourself - complete a quick Coding Club tutorial
 
-#### To get a taste of the Coding Club experience, you can complete a [Coding Club tutorial on mapping vertebrate population change across Europe.](https://ourcodingclub.github.io/2017/11/11/popchange.html)
+#### To get a taste of the Coding Club experience, you can complete a [Coding Club tutorial on mapping vertebrate population change across Europe.]({{ site.baseurl }}/tutorials/popchange/index.html)
 
 
-{% include figure.html url="{{ site.baseurl }}/img/anseriformes.png" caption="Anseriformes populations in Europe." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/tutorials/anseriformes.png{% endcapture %}
+{% include figure.html url=link caption="Anseriformes populations in Europe." %}
 
 ## Write your own tutorial
 {: #tutorial}
@@ -197,7 +198,8 @@ __Open the file `tut_template.md` in Atom. The file includes instructions on how
 
 __The aims of this tutorial are to download species occurrence data from GBIF using the `rgbif` package and then plot the data. We will also learn how to create a map with a top-down view of the world, as the species we've chosen, Arctic fox, is found in the Northern hemisphere.__
 
-{% include figure.html url="{{ site.baseurl }}/img/fox_map2.png" caption="Arctic fox occurrences based on available data from the Global Biodiversity Information Facility (GBIF)" %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/tutorials/fox_map2.png{% endcapture %}
+{% include figure.html url=link caption="Arctic fox occurrences based on available data from the Global Biodiversity Information Facility (GBIF)" %}
 
 You can download the `R` script that you can turn into a tutorial from this [Github repository](https://github.com/ourcodingclub/CC-EAB-tut-ideas). Click on Clone/Download Zip, download the files and unzip them. The script is the `arctic_map.R` file in the `arctic_fox` folder.
 
@@ -208,7 +210,8 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 
 __This tutorial involves plotting tree inventory data from two permanent survey plots in a dry tropical savannah to see how spatial clustering of trees varies according to elephant activity. The tutorial covers the basics of using the `ggplot2` package, using multiple layered visualisation methods to show variation in tree abundance over space. In addition, the tutorial will touch on  simple skills in the immensely popular `dplyr` package to prepare datasets for use in data visualisation.__
 
-{% include figure.html url="{{ site.baseurl }}/img/no_elephant_plot.png" caption="The spatial clustering of trees in a plot with elephant activity (left) and without elephant activity (right). Elephants clearly have caused spatial clustering of trees." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/tutorials/no_elephant_plot.png{% endcapture %}
+{% include figure.html url=link caption="The spatial clustering of trees in a plot with elephant activity (left) and without elephant activity (right). Elephants clearly have caused spatial clustering of trees." %}
 
 You can download the `R` script that you can turn into a tutorial from this [Github repository](https://github.com/ourcodingclub/CC-EAB-tut-ideas). Click on Clone/Download Zip, download the files and unzip them. The data and script for this tutorial are in the `savanna_elephants` folder.
 
@@ -232,7 +235,8 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 
 __The aim of this tutorial is to produce a line graph or time series plot with mean daily temperature plus errors using `ggplot2` and similarly, to produce a second graph of daily temperature fluctuations using a smoother function. Finally, we will plot and save the two figures together using the `gridExtra` package.__
 
-{% include figure.html url="{{ site.baseurl }}/img/temp_fluctuations.png" caption="Daily temperature fluctuations in 2016." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/tutorials/temp_fluctuations.png{% endcapture %}
+{% include figure.html url=link caption="Daily temperature fluctuations in 2016." %}
 
 You can download the `R` script that you can turn into a tutorial from this [Github repository](https://github.com/ourcodingclub/CC-EAB-tut-ideas). Click on Clone/Download Zip, download the files and unzip them. The script for this tutorial `temp_time_series.R` is in the `temp_timeseries` folder.
 
@@ -241,7 +245,8 @@ You can download the `R` script that you can turn into a tutorial from this [Git
 #### By Anne Bjorkman
 {: #plant_traits}
 
-{% include figure.html url="{{ site.baseurl }}/img/traits.png" caption="Plant traits across different species." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/tutorials/traits.png{% endcapture %}
+{% include figure.html url=link caption="Plant traits across different species." %}
 
 __The aims of this tutorial are to create a trait-trait correlation plot using plant trait data in a wide format, then to convert this wide data format to long data format, to summarize the data (i.e., calculate a mean, max, min, range, and quantiles per trait and species) and finally to graph the raw and summarized data.__
 
@@ -304,7 +309,7 @@ __Are you keen to share some of your coding and statistics knowledge? We would l
 
 ### Useful resources
 
-You can also make a website with multiple pages, rather that having a single page (your `index.md` file). That's how we've made the [Coding Club website](https://ourcodingclub.github.io/) and the [Aberdeen Study Group website](https://aberdeenstudygroup.github.io/studyGroup/).
+You can also make a website with multiple pages, rather that having a single page (your `index.md` file). That's how we've made the [Coding Club website]({{ site.baseurl }}) and the [Aberdeen Study Group website](https://aberdeenstudygroup.github.io/studyGroup/).
 	
 __The Mozilla Science Lab has [a template](https://github.com/mozillascience/studyGroup) you can use for your website and [a guide on how to use it](https://mozillascience.github.io/study-group-orientation/index.html).__
 

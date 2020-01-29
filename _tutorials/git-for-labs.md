@@ -20,7 +20,7 @@ survey_link: https://www.surveymonkey.co.uk/r/2P9R58J
 
 Version control allows you to keep track of your work and helps you to easily explore what changes you have made, be it data, coding scripts, or manuscripts. You are probably already doing some type of version control, if you save multiple files, such as `Dissertation_script_25thFeb.R`, `Dissertation_script_26thFeb.R`, etc. This approach will leave you with tens, if not hundreds, of similar files, it makes it rather cumbersome to directly compare different versions, and is not easy to share among collaborators. What if by the time your supervisor/co-author has finished commenting on `Dissertation_script_26thFeb.R`, you are already on `Dissertation_script_27thFeb.R`? With version control software such as [Git](https://git-scm.com/), version control is much smoother and easier to implement. Using an online platform like [Github](https://github.com/) to store your files also means that you have an online back up of your work, so you won't need to panic when your laptop dies or your files mysteriously disappear.
 
-You can use git through the command line, or through RStudio and/or GitHub desktop. You can check out [our Intro to Github tutorial](https://ourcodingclub.github.io/2017/02/27/git.html) if you want to get a bit more practice with Github, but you don't need to have completed the first tutorial to tackle this one. We encourage you to look through the extra resources we have added at the end of the tutorial if you are keen to use the command line for your version control. But until then, here we will be syncing RStudio and Github, so you can start using version control in minutes.
+You can use git through the command line, or through RStudio and/or GitHub desktop. You can check out [our Intro to Github tutorial]({{ site.baseurl }}/tutorials/git/index.html) if you want to get a bit more practice with Github, but you don't need to have completed the first tutorial to tackle this one. We encourage you to look through the extra resources we have added at the end of the tutorial if you are keen to use the command line for your version control. But until then, here we will be syncing RStudio and Github, so you can start using version control in minutes.
 
 ### What are the benefits of using GitHub as a lab?
 
@@ -75,7 +75,7 @@ To make a repository, go to `Repositories/New repository` - choose a concise and
 
 ![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo.png)
 
-Click on `Initialise repo with a README.md file`. It's common practice for each repository to have a `README.md` file, which contains information about the project/lab group, what is the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, among which `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown) - you might have used Markdown before from within RStudio to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html)). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
+Click on `Initialise repo with a README.md file`. It's common practice for each repository to have a `README.md` file, which contains information about the project/lab group, what is the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, among which `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown) - you might have used Markdown before from within RStudio to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial]({{ site.baseurl }}/tutorials/rmarkdown/index.html)). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
 ![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo2.png)
 
@@ -245,7 +245,7 @@ __Organise your chunks in a logical order, so that your code flows nicely.__
 
 __As an example of a lab's coding etiquette, you can check out <a href="https://teamshrub.wordpress.com/">Team Shrub</a>'s <a href="https://github.com/ourcodingclub/TeamShrub-practice/blob/master/TeamShrub_Coding_Etiquette.Rmd">coding etiquette here.</a>__
 
-##### For more details you can check out our [Coding Etiquette tutorial](https://ourcodingclub.github.io/2017/04/25/etiquette.html).
+##### For more details you can check out our [Coding Etiquette tutorial]({{ site.baseurl }}/tutorials/etiquette/index.html).
 
 
 ### Learn to use RStudio and Github together

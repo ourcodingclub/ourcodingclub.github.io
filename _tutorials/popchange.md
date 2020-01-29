@@ -86,7 +86,7 @@ The [Living Planet Index Database](http://www.livingplanetindex.org/home/index) 
 
 Since we will be calculating population change, to get more reliable estimates, we can conduct the analysis only using populations which have at least 5 records. Populations with only a few records might show a strong directional population change that is actually just noise in the data collection. We can also scale population size so that the abundance of each species in each year is somewhere between 0 and 1. This helps when we are analysing many different populations whose numbers are very variable - e.g. some populations have 10-20 individuals, others have thousands.
 
-__Pipes, designated by the pipe operator `%>%`, are a way to streamline your analysis. Imagine your data going in one end of a pipe, then you transform it, do some analysis on it, and then whatever comes out the other end of the pipe gets saved in the object to which you are assigning the pipe.__ You can find a more detailed explanation of data manipulation using `dplyr` in our [data formatting and manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html).
+__Pipes, designated by the pipe operator `%>%`, are a way to streamline your analysis. Imagine your data going in one end of a pipe, then you transform it, do some analysis on it, and then whatever comes out the other end of the pipe gets saved in the object to which you are assigning the pipe.__ You can find a more detailed explanation of data manipulation using `dplyr` in our [data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html).
 
 ```r
 # Remove rows with no population information (population = NULL)
@@ -163,7 +163,7 @@ ggsave(EU_pop, filename = "anseriformes.png", width = 10, height = 10)
 
 Figure 1. _Anseriformes_ populations in Europe.
 
-Here we have created a map for _Anseriformes_, an order which includes many species of waterfowl, like the mallard and pochard. Curious to see how vertebrate populations across the whole LPI database have changed? You can check out our [tutorial on efficient ways to quantify population change](https://ourcodingclub.github.io/2017/03/20/seecc.html), where we compare how for-loops, `lapply()` functions and pipes compare when it comes to dealing with a lot of data.
+Here we have created a map for _Anseriformes_, an order which includes many species of waterfowl, like the mallard and pochard. Curious to see how vertebrate populations across the whole LPI database have changed? You can check out our [tutorial on efficient ways to quantify population change]({{ site.baseurl }}/tutorials/seecc/index.html), where we compare how for-loops, `lapply()` functions and pipes compare when it comes to dealing with a lot of data.
 
 ### We'd love to see the maps you've made so feel free to email them to us at ourcodingclub@gmail.com!
 

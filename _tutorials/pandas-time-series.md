@@ -25,7 +25,7 @@ To complete the tutorial, you will need a Python environment with a recent versi
 ## 0. What is a time series and how can pandas help?
 {: #intro}
 
-If you are not already familiar with [`pandas`](https://pandas.pydata.org/) then you may want to start with [our previous tutorial](https://ourcodingclub.github.io/2018/04/18/pandas-python-intro.html) but you should be okay if you understand the concept of a dataframe. It will also help if you are already familiar with the [`datetime` module](https://docs.python.org/3/library/datetime.html).
+If you are not already familiar with [`pandas`](https://pandas.pydata.org/) then you may want to start with [our previous tutorial]({{ site.baseurl }}/tutorials/pandas-python-intro/index.html) but you should be okay if you understand the concept of a dataframe. It will also help if you are already familiar with the [`datetime` module](https://docs.python.org/3/library/datetime.html).
 
 Quantitative work often involves working with time series data in various guises. A time series is an ordered sequence of data that typically represents how some quantity changes over time. Examples of such quantities could be high frequency measurements from a seismometer over a few days, to yearly temperature averages measured at a range of locations across a century, to population changes of different species, but we can use the same software tools to work with them!
 
@@ -43,9 +43,7 @@ import matplotlib.pyplot as plt
 
 This tutorial will use a heliophysics dataset as an example which contains a range of different measurements. The version of the dataset we will use is available as a raw text file and contains hourly measurements from the beginning of 1963 onwards. This type of file (often `.dat`, `.txt`, or `.csv`) is the least sophisticated and is not the right solution for larger datasets but is okay here (the file is around 150MB) - large/new datasets will often use formats like HDF or NetCDF. `pandas` contains a range of IO tools for different formats - [look here](https://pandas.pydata.org/pandas-docs/stable/io.html) when you want to read or write a dataset.
 
-
-{% include callout.html content="
-
+{% capture callout %}
 ## Please bear with us while we update this tutorial!
 
 In August 2019, NASA changed their data access protocol, so the ftp links and code below won't work. To access the data and proceed with the tutorial, we propose the following workaround:
@@ -53,8 +51,8 @@ In August 2019, NASA changed their data access protocol, so the ftp links and co
 1. Use the [http address instead](https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat) 
 2. Right-click to Save As `omni2_all_years.dat`
 3. Continue the tutorial!
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 __[IGNORE THIS BIT!]__
 

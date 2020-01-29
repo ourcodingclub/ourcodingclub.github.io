@@ -132,11 +132,11 @@ body { margin: 0; padding: 0; }
 
 h1.callout, h2.callout, h3.callout, h4.callout, h5.callout, h6.callout { margin-top: 0; }
 
-.reveal { background-color: #3c3069; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: block; font-size: 16px; border: none; }
+.reveal { background-color: #3c3069; color: white; padding: 15px 32px; text-align: center; text-decoration: none; font-size: 16px; border: none; white-space: nowrap; display: inline-block; margin: 10px; min-width: 20%; }
 
-.reveal-container { display: none; }
+.reveal-container { display: block; }
 
-.image figcaption { text-align: center; padding-top: 5px; }
+.figure { text-align: center; padding-top: 5px; }
 
 .copy-button { webkit-transition: opacity .1s ease-in-out; -o-transition: opacity .1s ease-in-out; transition: opacity .1s ease-in-out; opacity: 0.75; margin: 5px; border: none; background-color: #3c3069; border-radius: 5px; color: #ffffff; float: right; width: 150px; padding: 5px 10px; font-size: 1em; }
 

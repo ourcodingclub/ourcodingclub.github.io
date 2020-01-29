@@ -24,7 +24,7 @@ __This tutorial is based on work by [Max Farrell](http://farrell.research.mcgill
 ### 1. Learn about `Stan`
 {: #intro}
 
-__Bayesian modelling like any statistical modelling can require work to design the appropriate model for your research question and then to develop that model so that it meets the assumptions of your data and runs. You can check out the Coding Club tutorial on [https://ourcodingclub.github.io/2018/04/06/model-design.html](how to design a model), and [Bayesian Modelling in `MCMCglmm`](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html) for key background information on model design and Bayesian statistics.__
+__Bayesian modelling like any statistical modelling can require work to design the appropriate model for your research question and then to develop that model so that it meets the assumptions of your data and runs. You can check out the Coding Club tutorial on [{{ site.baseurl }}/tutorials/model-design/index.html](how to design a model), and [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
 
 __Statistical models can be fit in a variety of packages in `R` or other statistical languages. But sometimes the perfect model that you can design conceptually is very hard or impossible to implement in a package or programme that restricts the distributions and complexity that you can use. This is when you may want to move to a statistical programming language such as <a href="http://mc-stan.org/" target="_blanl">`Stan`</a>.__
 
@@ -80,7 +80,8 @@ To explore the answer to that question, first we can make a figure.
 plot(extent_north ~ year, pch = 20, data = seaice)
 ```
 
-{% include figure.html url="assets/img/tutorials/stan-intro/sea_ice1.png" caption="Figure 1. Change in sea ice extent in the Northern Hemisphere over time." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice1.png{% endcapture %}
+{% include figure.html url=link caption="Figure 1. Change in sea ice extent in the Northern Hemisphere over time." %}
 
 Now, let's run a general linear model using `lm()`.
 
@@ -95,7 +96,8 @@ We can add that model fit to our plot:
 abline(lm1, col = 2, lty = 2, lw = 3)
 ```
 
-{% include figure.html url="assets/img/tutorials/stan-intro/sea_ice2.png" caption="Figure 2. Change in sea ice extent in the Northern Hemisphere over time (plus linear model fit)." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice2.png{% endcapture %}
+{% include figure.html url=link caption="Figure 2. Change in sea ice extent in the Northern Hemisphere over time (plus linear model fit)." %}
 
 
 __Let's remember the equation for a linear model:__
@@ -346,7 +348,7 @@ __So what happened to the posterior predictions (your modelled relationship)? Do
 ### 6. Convergence Diagnostics
 {: #convergence}
 
-__Before we go on, we should check again the `Rhat` values, the effective sample size (`n_eff`), and the traceplots of our model parameters to make sure the model has converged and is reliable. To find out more about what effective sample sizes and trace plots, you can check out the tutorial on [Bayesian statistics using `MCMCglmm`](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html).__
+__Before we go on, we should check again the `Rhat` values, the effective sample size (`n_eff`), and the traceplots of our model parameters to make sure the model has converged and is reliable. To find out more about what effective sample sizes and trace plots, you can check out the tutorial on [Bayesian statistics using `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html).__
 
 `n_eff` is a crude measure of the effective sample size. You usually only need to worry is this number is less than 1/100th or 1/1000th of
 your number of iterations.
@@ -603,7 +605,7 @@ In the next Stan tutorial, we will build on the concept of a simple linear model
 
 ### Additional ways to run `Stan` models in `R`
 
-__Check out our [second `Stan` tutorial](https://ourcodingclub.github.io/2018/04/30/stan-2.html) to learn how to fit `Stan` models using model syntax similar to the style of other common modelling packages like `lme4` and `MCMCglmm`, as well as how to fit generalised linear models using `Poisson` and negative binomial distributions.__
+__Check out our [second `Stan` tutorial]({{ site.baseurl }}/tutorials/stan-2/index.html) to learn how to fit `Stan` models using model syntax similar to the style of other common modelling packages like `lme4` and `MCMCglmm`, as well as how to fit generalised linear models using `Poisson` and negative binomial distributions.__
 
 ### `Stan` References
 

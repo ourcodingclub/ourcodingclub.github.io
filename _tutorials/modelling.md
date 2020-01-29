@@ -26,9 +26,9 @@ Things get real in this tutorial! As you are setting out to answer your research
 
 A slightly more complicated model might look like: `skylark.m <- lm(abundance ~ treatment + farm.area, family = poisson, data = skylarks)`. Here you are modelling `abundance`, the response variable, as a function of `treatment` (e.g. a categorical variable describing different types of farms) AND of `farm.area` (i.e. the size of each farm where abundance data were collected), which are both your explanatory variables. The `family` argument refers to the _distribution_ of the data. In this case, `abundance` represents count, zero-inflated data (allows for zero-valued observations), for which a Poisson distribution is suitable (but more on this later). The `data` argument refers to the data frame in which all the variables are stored.
 
-Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
+Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
 
-__Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control](https://ourcodingclub.github.io/2017/02/27/git.html) tutorial.__
+__Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.__
 
 
 ### 1. Get familiar with different data distributions
@@ -70,15 +70,14 @@ skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude + visit
 Some might say this model is very complex, and they would be right - there are a lot of terms in it! A simple model is usually prefered to a complex model, but __if you have strong reasons for including a term in your model, then it should be there__ (whether it ends up having an effect or not). Once you have carefully selected the variables whose effects you need to quantify or account for, you can move onto running your models.
 
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Don't go over the top!
 
 It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting [here](https://statisticsbyjim.com/regression/overfitting-regression-models/). 
 
 Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 ### 3. Some practice with linear models
 {: #linear}
@@ -95,7 +94,7 @@ head(apples)
 summary(apples)
 ```
 
-Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our [data visualisation tutorial](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html)), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
+Check out the dataset. Before we run our model, it's a good idea to visualise the data just to get an idea of what to expect. First, we can define a `ggplot2` theme (as we've done in our [data visualisation tutorial]({{ site.baseurl }}/tutorials/data-vis-2/index.html)), which we will use throughout the tutorial. This creates nice-looking graphs with consistent formatting.
 
 ```r
 theme.clean <- function(){
@@ -209,10 +208,10 @@ It always makes a lot more sense when you can visualise the relationship, too:
       theme.clean() )
 ```
 
-{% include figure.html url="img/DL_intro_lm_sheep.png" caption="Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_sheep.png{% endcapture %}
+{% include figure.html url=link caption="Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly." %}
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Model terminology, and the special case of the ANOVA
 
 Confused when hearing the terms linear regression, linear model, and ANOVA? Let's put an end to this: they're all fundamentally the same thing!
@@ -226,8 +225,8 @@ So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and he
 ```r
 anova(apples.m)
 ```
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 #### Checking assumptions
 
@@ -330,7 +329,7 @@ summary(weevil.m)
 
 __Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.__ The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in _Y_ for a change in 1 unit of X, because binomial models are a type of __logistic regression__ which relies on log odd ratios - but we won't get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it's not a linear relationship! And finally, you won't get a R squared value to assess the __goodness of fit__ of your model, but you can get at that by looking at the difference between the `Null deviance` (variability explained by a null model, e.g. `glm(damage_T_F ~ 1)`) and the `Residual deviance`, e.g. the amount of variability that remains after you've explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship. 
 
-__We have now covered the basics of modelling. Next, you can go through <a href = "https://ourcodingclub.github.io/2017/03/15/mixed-models.html" target="_blank">our tutorial on mixed effects models</a>, which  account for the structure and nestedness of data. You can also check out a couple of other tutorials on modelling to further your knowledge:__
+__We have now covered the basics of modelling. Next, you can go through <a href = "{{ site.baseurl }}/tutorials/mixed-models/index.html" target="_blank">our tutorial on mixed effects models</a>, which  account for the structure and nestedness of data. You can also check out a couple of other tutorials on modelling to further your knowledge:__
 
 - [General and generalised linear models, by Germán Rodríguez](http://data.princeton.edu/R/linearModels.html).
 - [Regression modelling in R, by Harvard University](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html).
@@ -350,8 +349,7 @@ ToothGrowth <- datasets::ToothGrowth
 2. Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
 3. What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
 
-{% include reveal.html button="Click this line to view a solution" content="
-
+{% capture reveal %}
 First, we need to convert the `dose` variable into a categorical variable.
 
 ```r
@@ -383,6 +381,5 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    geom_boxplot(aes(colour = supp)) +
    theme.clean()
 ```
-
-" %}
-
+{% endcapture %}
+{% include reveal.html button="Click this line to view a solution" content=reveal %}

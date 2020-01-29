@@ -101,7 +101,7 @@ To make a repository, go to `Repositories/New repository` - choose a concise and
 
 ![]({{ site.baseurl }}/assets/img/tutorials/git/newrepo.png)
 
-__Click on `Initialise repo with a README.md file`__. It's common practice for each repository to have a `README.md` file, which contains information about the project, the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, including `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown). You might have used Markdown before from within `RStudio` to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
+__Click on `Initialise repo with a README.md file`__. It's common practice for each repository to have a `README.md` file, which contains information about the project, the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, including `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown). You might have used Markdown before from within `RStudio` to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial]({{ site.baseurl }}/tutorials/rmarkdown/index.html). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
 ![]({{ site.baseurl }}/assets/img/tutorials/git/newrepo2.png)
 
@@ -171,15 +171,14 @@ We can make a new `github-etiquette.md` file that outlines the rules that people
 
 Go to your lab's main repository, click on `Create new file` and add `github-etiquette.md` as a file name. Remember to include the file extension `.md` - otherwise GitHub won't know what's the file format.
 
-{% include callout.html content="
-
+{% capture callout %}
 #### A few GitHub rules:
 
 - Keep file paths short and sensible.
 - Don't use funky characters and spaces in your file names, these cause trouble because of differences in Mac/Windows systems.
 - Always __pull__ before you push in case someone has done any work since the last time you pulled - you wouldn't want anyone's work to get lost or to have to resolve many coding conflicts.
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 
 ## 3. Sync and interact with your repository through `RStudio`
@@ -195,13 +194,12 @@ Click `Clone or download` and copy the HTTPS link.
 
 Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the HTTPS link from the Github repository into the `Repository URL:` field. Select a folder on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Hiccups?
 
-We know that there might be problems with the newest updates of the Mac software and installing git and linking it with RStudio. The solutions appear to be very specific to the Mac version you have, so if the above steps didn't work, a good starting point is googling "rstudio can't find git mac **your version**" and trying out the suggested solutions.
-
-" %}
+We know that there might be problems with the newest updates of the Mac software and installing git and linking it with RStudio. The solutions appear to be very specific to the Mac version you have, so if the above steps didn't work, a good starting point is googling \"rstudio can't find git mac **your version**\" and trying out the suggested solutions.
+{% endcapture %}
+{% include callout.html content=callout %}
 
 #### Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 
@@ -400,15 +398,14 @@ git init
 
 Now the folder has been made into a Git repository, allowing you to track changes to files. Now, lets create a `README.md` file inside the repository and put some text in it, using whatever text editor you are comfortable with. Make sure to place this `README.md` file into the repository folder on your device so it can be found! 
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Creating a README from scratch
 
 Your computer probably comes with a text editor, such as Notepad for Windows or TextEdit for Mac. Open a new doc, type your information, and save it as `README.md` (with TextEdit, you might have to save it as .rf first, then change the extension in your Finder.) 
 
 If you want to do it from the comfort of RStudio, you can create a new RMarkdown file, and save it while changing the extension from `.Rmd` to `.md`. 
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 Now, to add the file to be tracked by the Git repository:
 

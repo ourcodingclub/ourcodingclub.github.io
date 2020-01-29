@@ -12,19 +12,12 @@ survey_link: https://www.surveymonkey.co.uk/r/WVL5GXB
 [Understand why Python is so useful for scientific programming](#understanding)
 
 1. [Installing Python and running a simple Python program](#installing)
-
 2. [Reading data from a file](#reading)
-
 3. [Get a feel for how Python looks and feels](#feeling)
-
 4. [Load data from a text file into memory](#loading)
-
 5. [Learn about some basic Python data types and structures](#basics)
-
 6. [Moving beyond the core Python language with modules](#modules)
-
 7. [A brief introduction to data analysis with the pandas package](#pandas)
-
 8. [Plotting data with Matplotlib](#matplotlib)
 
 
@@ -185,7 +178,7 @@ This short tutorial is based around exploring data from the School of GeoScience
 
 ## You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-intro) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-intro) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 You can have a look at all the data via the [link to the station webpage](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 

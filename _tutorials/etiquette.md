@@ -22,13 +22,13 @@ __We recommend that you follow the tutorial by typing code from the examples int
 
 ### You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-Etiquette). Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-etiquette) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-etiquette) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 
 ### 1. Organising scripts into sections
 {: #sections}
 
-As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section. 
+As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code: you could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section. 
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# ggplot of population frequency`. Then underneath that comment, you would write the code for making your plot using ggplot. RStudio has a neat feature whereby you can make your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# ggplot of population frequency ----`. To view your outline, click the button as shown below, you can then click an outline item and jump straight to it: no more scrolling!
 
@@ -75,7 +75,7 @@ __You can also go to `Edit/Folding/Collapse all` to collapse all sections. This 
 ![]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline2.png)
 
 
-__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme](https://ourcodingclub.github.io/2017/02/08/funandloops.html). Here is an example functions section:
+__Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme]({{ site.baseurl }}/tutorials/funandloops/index.html). Here is an example functions section:
 
 ```r
 # Defining functions ----
@@ -175,7 +175,7 @@ ggplot(LPI_biome_summ, aes(biome, color = biome, y = populations)) + geom_bar(st
 dev.off()
 ```
 
-Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of [this data visualization tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html) for an example of how to do so. 
+Note that you can also save the outputs of your analysis with the use of another package `ggsave`, and you can refer to the end of [this data visualization tutorial]({{ site.baseurl }}/tutorials/datavis/index.html) for an example of how to do so. 
 
 ### 2. Following a coding syntax etiquette
 {: #syntax}

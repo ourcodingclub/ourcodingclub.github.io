@@ -23,7 +23,7 @@
 
 	</head>
 	<body>
-    	<header class="header">
+		<header class="header">
 	<div class="navigation-bar">
 		<div id="navigation-container">
 			
@@ -141,7 +141,7 @@
 <ul>
   <li>R is free and open source, and always will be! Anybody can use the code and see exactly how it works.</li>
   <li>Because R is a programming language rather than a graphical interface, the user can easily save scripts as small text files for use in the future, or share them with collaborators.</li>
-  <li>R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you’re having. You can start with our <a href="https://ourcodingclub.github.io/links/" target="_blank" rel="noopener noreferrer">links page</a>!</li>
+  <li>R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you’re having. You can start with our <a href="/links/">links page</a>!</li>
 </ul>
 
 <h3 id="download">1. Download R and RStudio</h3>
@@ -164,7 +164,7 @@
 
   <p><strong>*A note about scripts (We love scripts!)</strong>: Remember that if you enter code directly into the console, it will <strong>not</strong> be saved by R: it runs and disappears (although you can access your last few operations by hitting the ‘up’ key on your keyboard). Instead, by typing your code into a script file, you are creating a reproducible record of your analysis. Writing your code in a script is similar to writing an essay in Word: it saves your progress and you can always pick up where you left off, or make some changes to it. (Remember to click <em>Save</em> (<code class="language-plaintext highlighter-rouge">Ctrl+S</code>) often, so that you actually save your script!)</p>
 
-  <p>When writing a script, it’s useful to add comments to describe what you are doing by inserting a hasthag <code class="language-plaintext highlighter-rouge">#</code> in front of a line of text. R will see anything that begins with <code class="language-plaintext highlighter-rouge">#</code>as text instead of code, so it will not try to run it, but the text will provide valuable information about the code for whoever is reading your script (including future you!). Like with any piece of writing, scripts benefit from structure and clarity: we will learn more about proper <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank" rel="noopener noreferrer">coding etiquette</a> in a later tutorial.</p>
+  <p>When writing a script, it’s useful to add comments to describe what you are doing by inserting a hasthag <code class="language-plaintext highlighter-rouge">#</code> in front of a line of text. R will see anything that begins with <code class="language-plaintext highlighter-rouge">#</code>as text instead of code, so it will not try to run it, but the text will provide valuable information about the code for whoever is reading your script (including future you!). Like with any piece of writing, scripts benefit from structure and clarity: we will learn more about proper <a href="https://ourcodingclub.github.io/tutorials/etiquette/index.html" target="_blank" rel="noopener noreferrer">coding etiquette</a> in a later tutorial.</p>
 
   <p><strong>**A quicker note about the workspace</strong>: The workspace will have everything you have used in a session floating around your computer memory. When you exit, R will ask you if you want to save the current workspace. You almost <a href="https://www.r-bloggers.com/using-r-dont-save-your-workspace/" target="_blank" rel="noopener noreferrer">never need to</a>, and it’s best to click no and start with a clear slate every time. (DO make sure you save your script though!!)</p>
 
@@ -182,7 +182,7 @@
 
 <p>To install a package, type <code class="language-plaintext highlighter-rouge">install.packages("package-name")</code>. You only need to install packages once, so in this case you can type directly in the console box, rather than saving the line in your script and re-installing the package every time.</p>
 
-<p>Once installed, you just need to load the packages using <code class="language-plaintext highlighter-rouge">library(package-name)</code>. Today we will be using the <a href="https://cran.r-project.org/web/packages/dplyr/index.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">dplyr</code> package</a> to provide extra commands for formatting and manipulating data. (You will learn more about the powerful features of <code class="language-plaintext highlighter-rouge">dplyr</code>in <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">a later tutorial</a>).</p>
+<p>Once installed, you just need to load the packages using <code class="language-plaintext highlighter-rouge">library(package-name)</code>. Today we will be using the <a href="https://cran.r-project.org/web/packages/dplyr/index.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">dplyr</code> package</a> to provide extra commands for formatting and manipulating data. (You will learn more about the powerful features of <code class="language-plaintext highlighter-rouge">dplyr</code>in <a href="/tutorials/piping/index.html">a later tutorial</a>).</p>
 
 <p>The next lines of code should define your <strong>working directory</strong>. This is a folder on your computer where R will look for data, save your plots, etc. To make your workflow easier, it is good practice to save everything related to one project in the same place, as it will save you a lot of time typing up computer paths or hunting for files that got saved R-knows-where. For instance, you could save your script and all the data for this tutorial in a folder called “Intro_to_R”. (It is good practice to avoid spaces in file names as it can sometimes confuse R.) For bigger projects, consider having a root folder with the name of the project (e.g. “My_PhD”) as your working directory, and other folders nested within to separate data, scripts, images, etc. (e.g. My_PhD/Chapter_1/data, My_PhD/Chapter_1/plots, My_PhD/Chapter_2/data, etc.)</p>
 
@@ -205,7 +205,7 @@
 
 <h3 id="you-can-find-all-the-files-needed-to-complete-this-tutorial-in-this-github-repository">You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</h3>
 
-<p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="https://ourcodingclub.github.io/2017/02/27/git.html" target="_blank" rel="noopener noreferrer">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
+<p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="/tutorials/git/index.html">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
 
 <p><img src="https://i.imgur.com/hfawsYe.png" alt=""></p>
 
@@ -277,7 +277,7 @@
 
 <p>If you type <code class="language-plaintext highlighter-rouge">a</code> (or however you named your count variables) in the console, what does it return? What does it mean? It should represent the number of distinct beetle species in the record.</p>
 
-<p><strong>Again, calculate species richness for the other taxa in the dataset.</strong> You’re probably noticing this is quite repetitive and using a lot of copying and pasting! That’s not particularly efficient - in <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">future tutorials</a> we will learn how to use more of <code class="language-plaintext highlighter-rouge">dplyr</code>’s functions and achieve the same result with way less code! You will be able to do everything you just did in ONE line (promise!).</p>
+<p><strong>Again, calculate species richness for the other taxa in the dataset.</strong> You’re probably noticing this is quite repetitive and using a lot of copying and pasting! That’s not particularly efficient - in <a href="/tutorials/piping/index.html">future tutorials</a> we will learn how to use more of <code class="language-plaintext highlighter-rouge">dplyr</code>’s functions and achieve the same result with way less code! You will be able to do everything you just did in ONE line (promise!).</p>
 
 <h3 id="vector">4. Create a vector and plot it</h3>
 
@@ -331,10 +331,10 @@
 </span><span class="c1"># The cex code increases the font size when greater than one (and decreases it when less than one). </span><span class="w">
 </span></code></pre></div></div>
 
-<figure class="image">
-  	<img src="/https://i.imgur.com/xxPfWa1.png" alt="">
-  <figcaption>Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</figcaption>
-</figure>
+<div class="figure">
+  <p><img src="https://i.imgur.com/xxPfWa1.png" alt="">
+  Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</p>
+</div>
 
 <h3 id="df">5. Create a data frame and plot it</h3>
 
@@ -392,9 +392,9 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 </span><span class="n">dev.off</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
 
-<p>In this tutorial, we found out how many species from a range of taxa have been recorded in Edinburgh. We hope you enjoyed your introduction to R and RStudio - the best is yet to come! Keen to make more graphs? Check out our <a href="https://ourcodingclub.github.io/2017/01/29/datavis.html" target="_blank" rel="noopener noreferrer">Data Visualisation tutorial!</a></p>
+<p>In this tutorial, we found out how many species from a range of taxa have been recorded in Edinburgh. We hope you enjoyed your introduction to R and RStudio - the best is yet to come! Keen to make more graphs? Check out our <a href="/tutorials/datavis/index.html">Data Visualisation tutorial!</a></p>
 
-<p>For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on <a href="https://ourcodingclub.github.io/2016/11/15/troubleshooting.html" target="_blank" rel="noopener noreferrer">troubleshooting and how to find help online</a>. Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our <a href="https://ourcodingclub.github.io/2017/01/16/piping.html" target="_blank" rel="noopener noreferrer">tidyr and dplyr tutorial</a>.</p>
+<p>For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on <a href="/tutorials/troubleshooting/index.html">troubleshooting and how to find help online</a>. Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our <a href="/tutorials/piping/index.html">tidyr and dplyr tutorial</a>.</p>
 
 <h3 id="tutorial-outcomes">Tutorial outcomes:</h3>
 
@@ -484,9 +484,8 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 <p>Don’t peek until you’ve tried! Here we suggest a solution; note that yours could be different and also work! The object names and the look of your plot will probably be different and that’s totally ok - as long as the values themselves are correct.</p>
 
-<p><button class="reveal" onclick="reveal()">Ready? Click this line to view the solution</button></p>
-
-<div class="reveal-container" id="reveal-container">
+<details class="reveal-container">
+  <summary class="reveal">Ready? Click this line to view the solution</summary>
 
   <div class="language-r highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="c1"># Calculate the mean wingspan for each bird species. The function to do that is simply: mean()</span><span class="w">
@@ -499,8 +498,8 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 </span><span class="n">wingspan</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">sparrow</span><span class="p">,</span><span class="w"> </span><span class="n">kingfisher</span><span class="p">,</span><span class="w"> </span><span class="n">eagle</span><span class="p">,</span><span class="w"> </span><span class="n">hummingbird</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Create a bird species vector (careful to match the order of the previous vector!)</span><span class="w">
-</span><span class="n">bird_sp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'sparrow'</span><span class="p">,</span><span class="w"> </span><span class="s1">'kingfisher'</span><span class="p">,</span><span class="w"> </span><span class="s1">'eagle'</span><span class="p">,</span><span class="w"> </span><span class="s1">'hummingbird'</span><span class="p">)</span><span class="w">
-</span><span class="c1"># notice how we put quotation marks around the names. It's because we're creating (character) values; writing sparrow without the '' would call the object we created in the code above, which would return the value 22!</span><span class="w">
+</span><span class="n">bird_sp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"sparrow"</span><span class="p">,</span><span class="w"> </span><span class="s2">"kingfisher"</span><span class="p">,</span><span class="w"> </span><span class="s2">"eagle"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hummingbird"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># notice how we put quotation marks around the names. It's because we're creating (character) values; writing sparrow without the "" would call the object we created in the code above, which would return the value 22!</span><span class="w">
 
 </span><span class="c1"># Bird species is currently in character form, but it should be a factor. Let's fix that:</span><span class="w">
 </span><span class="c1"># (To be honest it does not make any difference to the output here, but it would for some other types of plot. Take good habits early!)</span><span class="w">
@@ -514,18 +513,18 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 </span><span class="c1"># Plot the bar plot &amp; save it to file</span><span class="w">
 
-</span><span class="n">png</span><span class="p">(</span><span class="s1">'wingspan_plot.png'</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
+</span><span class="n">png</span><span class="p">(</span><span class="s2">"wingspan_plot.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">=</span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">=</span><span class="m">600</span><span class="p">)</span><span class="w">
 </span><span class="n">barplot</span><span class="p">(</span><span class="n">wings</span><span class="o">$</span><span class="n">wingspan</span><span class="p">,</span><span class="w"> </span><span class="n">names.arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wings</span><span class="o">$</span><span class="n">bird_sp</span><span class="p">,</span><span class="w">    </span><span class="c1"># notice how we call the bird_sp column instead of typing all the names</span><span class="w">
-        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Bird species'</span><span class="p">,</span><span class="w"> 
-        </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Average wingspan (cm)'</span><span class="p">,</span><span class="w">               </span><span class="c1"># adding axis titles</span><span class="w">
+        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Bird species"</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Average wingspan (cm)"</span><span class="p">,</span><span class="w">               </span><span class="c1"># adding axis titles</span><span class="w">
         </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w">                             </span><span class="c1"># setting the limits of the y axis to fit the eagle</span><span class="w">
-        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'gold'</span><span class="w">                                  </span><span class="c1"># changing the colour because why not!</span><span class="w">
+        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gold"</span><span class="w">                                  </span><span class="c1"># changing the colour because why not!</span><span class="w">
         </span><span class="p">)</span><span class="w">
 </span><span class="n">dev.off</span><span class="p">()</span><span class="w">
 
 </span></code></pre></div>  </div>
 
-</div>
+</details>
 
 <h3 id="glossary">Glossary:</h3>
 
@@ -535,11 +534,11 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
   <ul>
     <li>
-<strong>argument</strong>: an element of a function, either essential or optional, that informs or alters how the function works. For instance, it can be a file path where the function should import from or save to: <code class="language-plaintext highlighter-rouge">file = 'file-path'</code>. It can modify the colours in a plot: <code class="language-plaintext highlighter-rouge">col = 'blue'</code>. You can always find which arguments are taken by a function by typing <code class="language-plaintext highlighter-rouge">?function-name</code>into the command line.</li>
+<strong>argument</strong>: an element of a function, either essential or optional, that informs or alters how the function works. For instance, it can be a file path where the function should import from or save to: <code class="language-plaintext highlighter-rouge">file = "file-path"</code>. It can modify the colours in a plot: <code class="language-plaintext highlighter-rouge">col = "blue"</code>. You can always find which arguments are taken by a function by typing <code class="language-plaintext highlighter-rouge">?function-name</code>into the command line.</li>
     <li>
 <strong>class</strong>: the type of data contained in a variable: usually character (text/words), numeric (numbers), integer (whole numbers), or factor (grouping values, useful when you have multiple observations for sites or treatments in your data).</li>
     <li>
-<strong>command</strong>: a chunk of code that performs an action, typically contains one or more functions. You run a command by pressing ‘Run’ or using a keyboard shortcut like <code class="language-plaintext highlighter-rouge">Cmd+Enter</code>, <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code> or <code class="language-plaintext highlighter-rouge">Ctrl+R</code>
+<strong>command</strong>: a chunk of code that performs an action, typically contains one or more functions. You run a command by pressing “Run” or using a keyboard shortcut like <code class="language-plaintext highlighter-rouge">Cmd+Enter</code>, <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code> or <code class="language-plaintext highlighter-rouge">Ctrl+R</code>
 </li>
     <li>
 <strong>comment</strong>: a bit of text in a script that starts with a hashtag <code class="language-plaintext highlighter-rouge">#</code> and isn’t read as a command. Comments make your code readable to other people: use them to create sections in your script and to annotate each step of your analysis</li>
@@ -579,6 +578,182 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 	<br>
 	<h3>Related tutorials:</h3>
 	
+		
+  			
+		
+	
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
+		
+	
+		
+  			
 		
 	
 	<br>
@@ -624,7 +799,6 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 <!-- JS -->
 <script src="/scripts/owl.carousel.js"></script>
 <script src="/scripts/owl.carousel-init.js"></script>
-<script src="/scripts/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
 <script src="/scripts/codeselect.js"></script>
 

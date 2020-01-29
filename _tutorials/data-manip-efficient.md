@@ -89,11 +89,10 @@ See how we go from `trees` to `trees.summary` while running one single chunk of 
 __Important notes:__ Pipes only work on data frame objects, and functions outside the tidyverse often require that you specify the data source with a full stop dot `.`. But as we will see later, you can still do advanced things while keeping these limitations in mind!
 
 
-{% include callout.html content="
-
+{% capture callout %}
 __We're not lazy, but we love shortcuts!__ In RStudio, you can use `Ctrl + Shift + M` (or `Cmd + Shift + M` on a Mac) to create the `%>%` operator.
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 Let's use some more of our favourite `dplyr` functions in pipe chains. Can you guess what this does?
 
@@ -210,9 +209,7 @@ trees.genus <- trees.genus %>%   # overwriting our data frame
                                    Height == "20 to 25 meters" ~ "Tall")
                       )
 ```
-
-{% include callout.html content="
-
+{% capture callout %}
 __Reordering factors levels__
 
 We've seen how we can change the names of a factor's levels, but what if you want to change the order in which they display? R will always show them in alphabetical order, which is not very handy if you want them to appear in a more logical order. 
@@ -233,10 +230,10 @@ trees.genus$Height.cat <- factor(trees.genus$Height.cat,
 
 levels(trees.genus$Height.cat)  # a new order and new names for the levels
 ```
+{% endcapture %}
+{% include callout.html content=callout %}
 
-" %}
-
-Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have [two tutorials](https://ourcodingclub.github.io/tutorials/) dedicated to making pretty and informative plots with it. Install and load the package if you need to:
+Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have [two tutorials]({{ site.baseurl }}/tutorials/) dedicated to making pretty and informative plots with it. Install and load the package if you need to:
 
 ```r
 install.packages("ggplot2")
@@ -249,7 +246,7 @@ And let's build up a plot-producing factory chain!
 ### Advanced piping 
 {: #piping-graphs}
 
-Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but it's sometimes easier to write than a loop. (You can learn to write loops [here](https://ourcodingclub.github.io/2017/02/08/funandloops.html).)
+Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but it's sometimes easier to write than a loop. (You can learn to write loops [here]({{ site.baseurl }}/tutorials/funandloops/index.html).)
 
 First, we'll subset our dataset to just a few tree genera to keep things light. Pick your favourite five, or use those we have defined here! Then we'll map them to see how they are distributed. 
 
@@ -274,7 +271,7 @@ trees.five <- trees.genus %>%
 ![]({{ site.baseurl }}/img/DL_data-manip-2_treemap.jpeg)
 
 
-Don't worry too much about all the arguments in the `ggplot` code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the `aes()` call: we're telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We'll explain everything else in our [data visualisation](https://ourcodingclub.github.io/2017/01/29/datavis.html) tutorial. 
+Don't worry too much about all the arguments in the `ggplot` code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the `aes()` call: we're telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We'll explain everything else in our [data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html) tutorial. 
 
 Now, let's say we want to save a separate map for each genus (so 5 maps in total). You could filter the data frame five times for each individual genus, and copy and paste the plotting code five times too, but imagine we kept all 17 genera! This is where pipes and `dplyr` come to the rescue again. (If you're savvy with `ggplot2`, you'll know that facetting is often a better option, but sometimes you do want to save things as separate files.) The `do()` function allows us to use pretty much any R function within a pipe chain, provided that we supply the data as `data = .` where the function requires it.
 
@@ -312,9 +309,7 @@ You should get five different plots looking something like the one above.
 
 Phew! This could even be chained in one long call without creating the `tree.plots` object, but take a moment to explore this object: the plots are saved as _lists_ within the `plots` column that we created. The `do()` function allows to use a lot of external functions within `dplyr` pipe chains. However, it is sometimes tricky to use and is becoming deprecated. [This page](https://www.brodrigues.co/blog/2017-03-29-make-ggplot2-purrr/) shows an alternative solution using the `purr` package to save the files.
 
-
-{% include callout.html content="
-
+{% capture callout %}
 __Sticking things together with `paste()`__
 
 Did you notice how we used the `paste()` function to define the `filename=` argument of the last piece of code? (We did the same to define the titles that appear on the graphs.) It's a useful function that lets you combine text strings as well as outputs from functions or object names in the environment. Let's take apart that last piece of code here:
@@ -336,8 +331,8 @@ paste(getwd(), '/', 'map-', .$Genus, '.png', sep = '')
 - 'sep = ''': we want all the previous bits to be pasted together with nothing separating them
 
 So, in the end, the whole string could read something like: 'C:/Coding_Club/map-Acer.png'.
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 We hope you've learned new hacks that will simplify your code and make it more efficient! Let's see if you can use what we learned today to accomplish a last data task. 
 
@@ -352,8 +347,7 @@ The Craigmillar Castle team would like a summary of the different species found 
 3. Finally, they would like, _for each quadrant separately_, a bar plot showing counts of _Acer_ trees in the different age classes, ordered so they read from Young (lumping together juvenile and semi-mature trees), Middle Aged, and Mature.
 
 
-{% include reveal.html button="Click this line to see the solution!" content="
-
+{% capture reveal %}
 First of all, we need to create the four quadrants. This only requires simple maths and the use of mutate to create a new factor. 
 
 ```r
@@ -457,8 +451,8 @@ acer.plots$plots
 ```
 
 Well done for getting so far!
-
-" %}
+{% endcapture %}
+{% include reveal.html button="Click this line to see the solution!" content=reveal %}
 
 We hope this was useful. Let's look back at what you can now do, and as always, get in touch if there is more content you would like to see!
 

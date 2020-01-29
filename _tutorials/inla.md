@@ -46,7 +46,7 @@ _TWO DISCLAIMERS:_
 
 #### It uses the Integrated Nested Laplace Approximation, a deterministic Bayesian method.
 
-__Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on inferring the probability of a set of data given the determined parameters (involves setting a prior!). For more details, you can check out our [Intro to Bayesian Statistics tutorial](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html).
+__Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on inferring the probability of a set of data given the determined parameters (involves setting a prior!). For more details, you can check out our [Intro to Bayesian Statistics tutorial]({{ site.baseurl }}/tutorials/mcmcglmm/index.html).
 
 __Deterministic__ = comes up with the same results every time, contrasted with probabilistic (e.g. MCMC).
 

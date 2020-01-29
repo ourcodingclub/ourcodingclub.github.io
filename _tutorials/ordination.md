@@ -75,7 +75,7 @@ __In this tutorial, we only focus on unconstrained ordination or indirect gradie
 
 Ordination and classification (or clustering) are the two main classes of multivariate methods that community ecologists employ. To some degree, these two approaches are complementary. Classification, or putting samples into (perhaps hierarchical) classes, is often useful when one wishes to assign names to, or to map, ecological communities. However, given the continuous nature of communities, ordination can be considered a more natural approach. __Ordination aims at arranging samples or species continuously along gradients.__
 
-If you want to know how to do a classification, please check out our [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html).
+If you want to know how to do a classification, please check out our [Intro to data clustering]({{ site.baseurl }}/tutorials/data-clustering/index.html).
 
 # 2. Different ordination techniques
 {: #section2}
@@ -174,7 +174,7 @@ __Principal coordinates analysis (PCoA, also known as metric multidimensional sc
 
 ![]({{ site.baseurl }}/assets/img/tutorials/ordination/PCOAexample.gif)
 
-__The first step of a PCoA is the construction of a (dis)similarity matrix__. While PCA is based on Euclidean distances, PCoA can handle (dis)similarity matrices calculated from quantitative, semi-quantitative, qualitative, and mixed variables. As always, the choice of (dis)similarity measure is critical and must be suitable to the data in question. If you want to know more about distance measures, please check out our [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html#Distance). For abundance data, Bray-Curtis distance is often recommended. You can use Jaccard index for presence/absence data. When the distance metric is Euclidean, PCoA is equivalent to Principal Components Analysis. __Although PCoA is based on a (dis)similarity matrix, the solution can be found by eigenanalysis__. The interpretation of the results is the same as with PCA. 
+__The first step of a PCoA is the construction of a (dis)similarity matrix__. While PCA is based on Euclidean distances, PCoA can handle (dis)similarity matrices calculated from quantitative, semi-quantitative, qualitative, and mixed variables. As always, the choice of (dis)similarity measure is critical and must be suitable to the data in question. If you want to know more about distance measures, please check out our [Intro to data clustering]({{ site.baseurl }}/tutorials/data-clustering/index.html#Distance). For abundance data, Bray-Curtis distance is often recommended. You can use Jaccard index for presence/absence data. When the distance metric is Euclidean, PCoA is equivalent to Principal Components Analysis. __Although PCoA is based on a (dis)similarity matrix, the solution can be found by eigenanalysis__. The interpretation of the results is the same as with PCA. 
 
 ```r
 # First step is to calculate a distance matrix. 
@@ -378,7 +378,7 @@ __Congratulations! You´ve made it to the end of the tutorial! Now you can put y
 Perform an ordination analysis on the dune dataset (use `data(dune)` to import) provided by the vegan package. Interpret your results using the environmental variables from `dune.env`. 
 
 ## Challenge number 2
-If you already know how to do a classification analysis, you can also perform a classification on the dune data. Then combine the ordination and classification results as we did above. Please have a look at out tutorial [Intro to data clustering](https://ourcodingclub.github.io/2017/03/21/data-clustering.html), for more information on classification.
+If you already know how to do a classification analysis, you can also perform a classification on the dune data. Then combine the ordination and classification results as we did above. Please have a look at out tutorial [Intro to data clustering]({{ site.baseurl }}/tutorials/data-clustering/index.html), for more information on classification.
 
 
 ---------------------------

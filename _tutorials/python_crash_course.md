@@ -429,7 +429,7 @@ These courses have material for you to read and/or watch and also interactive co
 
 ##### Blogs
 
-Such as [ourcodingclub](https://ourcodingclub.github.io)! These are great resources to follow, especially if you find blogs of people who are working in the same field as you. They can introduce you to Python tools specific to your domain. If you know some Python already then these are good resources to take you from intermediate to advanced.
+Such as [ourcodingclub]({{ site.baseurl }})! These are great resources to follow, especially if you find blogs of people who are working in the same field as you. They can introduce you to Python tools specific to your domain. If you know some Python already then these are good resources to take you from intermediate to advanced.
 
 ##### Books
 

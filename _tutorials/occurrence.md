@@ -43,7 +43,7 @@ __Make a new script file using `File/ New File/ R Script` and we are all set to 
 
 #### Organise your script into sections
 
-As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
+As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# Load data`. Then, underneath that comment, you would write the code for importing your data in `R`. RStudio has a great feature allowing you to turn your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# Load data ----`. To view your outline, click on the button shown below. You can then click on an outline item and jump straight to it - no more scrolling!
 
@@ -153,7 +153,7 @@ __We specified that we want the `select` function from exactly the `dplyr` packa
 
 __Next, we will follow a few consecutive steps to format the population change data, exclude `NA` values and prepare the abundance data for analysis. Each step follows logically from the one before and we don't need to store intermediate objects along the way - we just need the final object. For this purpose, we can use pipes.__
 
-__Pipes (`%>%`) are a way of streamlining data manipulation. Imagine all of your data coming in one end of the pipe, while they are in there, they are manipulated, summarised, etc., then the output (e.g. your new data frame or summary statistics) comes out the other end of the pipe. At each step of the pipe processing, the pipe takes the output of the previous step and applies the function you've chosen. For more information on data manipulation using pipes, you can check out our [data manipulation tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html).
+__Pipes (`%>%`) are a way of streamlining data manipulation. Imagine all of your data coming in one end of the pipe, while they are in there, they are manipulated, summarised, etc., then the output (e.g. your new data frame or summary statistics) comes out the other end of the pipe. At each step of the pipe processing, the pipe takes the output of the previous step and applies the function you've chosen. For more information on data manipulation using pipes, you can check out our [data manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html).
 
 __The population change data are in a wide format: each row contains a population that has been monitored over time and towards the right of the data frame, there are a lot of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years. Now if you wanted to compare between groups, treatments, species, etc, R would be able to split the dataframe correctly, as each grouping factor has its own column.__
 
@@ -258,9 +258,10 @@ __When you want to change the colour, fill, shape or size of your points, bars o
 
 __When you want to specify particular colours, shapes or sizes, those are included *outside of the `aes()` code*, e.g. `geom_point(alpha = 0.5, size = 2, colour = "aquamarine3")`.__
 
-__Later on, if you are interested in learning how to use the `ggplot2` package to make many different types of graphs, you can check out [our tutorial introducing `ggplot2`](https://ourcodingclub.github.io/2017/01/29/datavis.html) and [our tutorial on further customisation and data visualisation](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html).__
+__Later on, if you are interested in learning how to use the `ggplot2` package to make many different types of graphs, you can check out [our tutorial introducing `ggplot2`]({{ site.baseurl }}/tutorials/datavis/index.html) and [our tutorial on further customisation and data visualisation]({{ site.baseurl }}/tutorials/data-vis-2/index.html).__
 
-{% include figure.html url="assets/img/tutorials/occurrence/beluga_map.png" caption="Figure 1. Map of all GBIF occurrences for the beluga whale." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_map.png{% endcapture %}
+{% include figure.html url=link caption="Figure 1. Map of all GBIF occurrences for the beluga whale." %}
 
 __Do you spot any beluga whales where there shouldn't be any? We can check what the `CleanCoordinates` function flags as potentially wrong records. The function performs a series of tests, e.g. are there any zeros among the longitude and latitude values, and then returns a summary dataframe of whether each occurrence record failed or passed each test (i.e. `FALSE` vs `TRUE`).__
 
@@ -315,7 +316,8 @@ __Now we can update our map by swapping the `beluga` object with the `beluga.cle
     geom_point(alpha = 0.5, size = 2, colour = "aquamarine3"))
 ```
 
-{% include figure.html url="assets/img/tutorials/occurrence/beluga_map_clean.png" caption="Figure 2. Map of GBIF occurrences for the beluga whale after filtering for records that passed the coordinate validity tests." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_map_clean.png{% endcapture %}
+{% include figure.html url=link caption="Figure 2. Map of GBIF occurrences for the beluga whale after filtering for records that passed the coordinate validity tests." %}
 
 Interestingly, some land points still appear. The tests did remove the obvious outliers, like the beluga record near Africa. We can manually exclude points we think are not real if we wish, e.g. the Greenland land point is fairly distinct and easy to remove.
 
@@ -450,7 +452,8 @@ getwd()
 ggsave(beluga.map.final, filename = "beluga_map_final.png", width = 10, height = 3)
 ```
 
-{% include figure.html url="assets/img/tutorials/occurrence/beluga_map_final.png" caption="Figure 3. Map of beluga occurrence and monitoring sites" %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_map_final.png{% endcapture %}
+{% include figure.html url=link caption="Figure 3. Map of beluga occurrence and monitoring sites" %}
 
 __Next, we will have a go at two other kinds of graphs, a line graph and a few scatterplots with linear model fits. We can use our custom `ggplot2` theme, `theme_marine`, so that all of our graphs have consistent formatting and we don't need to repeat the same code, e.g. to make the font a certain size, many times.__
 
@@ -517,11 +520,11 @@ beluga3 <- filter(beluga.pop, id == "1950" | id == "4557" | id == "4558")
     guides(shape = FALSE))
 ```
 
-You might have noticed that the process is a bit repetitive. We are performing the same action, but for different species. It's not that big of a deal for three populations, but imagine we had a thousand!  If that were the case, we could have used a loop that goes through each population and makes a graph, or we could have used a pipe, where we group by population id and then make the graphs and finally we could have used the `lapply()` function which applies a function, in our case making a graph, to e.g. each population. There are many options and if you would like to learn more on how to automate your analysis and data visualisation when doing the same thing for many places or species, you can check out [our tutorial comparing loops, pipes and `lapply()`](https://ourcodingclub.github.io/2017/03/20/seecc.html) and [our tutorial on using functions and loops](https://ourcodingclub.github.io/2017/02/08/funandloops.html).
+You might have noticed that the process is a bit repetitive. We are performing the same action, but for different species. It's not that big of a deal for three populations, but imagine we had a thousand!  If that were the case, we could have used a loop that goes through each population and makes a graph, or we could have used a pipe, where we group by population id and then make the graphs and finally we could have used the `lapply()` function which applies a function, in our case making a graph, to e.g. each population. There are many options and if you would like to learn more on how to automate your analysis and data visualisation when doing the same thing for many places or species, you can check out [our tutorial comparing loops, pipes and `lapply()`]({{ site.baseurl }}/tutorials/seecc/index.html) and [our tutorial on using functions and loops]({{ site.baseurl }}/tutorials/funandloops/index.html).
 
 #### Arrange all graphs in a panel with the `gridExtra` package
 
-The `grid.arrange` function from the `gridExtra` package creates panels of different graphs. You can check out our [data visualisation tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html#panel) to find out more about `grid.arrange`.
+The `grid.arrange` function from the `gridExtra` package creates panels of different graphs. You can check out our [data visualisation tutorial]({{ site.baseurl }}/tutorials/datavis/index.html#panel) to find out more about `grid.arrange`.
 
 ```r
 # Create panel of all graphs
@@ -534,5 +537,6 @@ beluga.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(0.9, 1.1))
 # Stitching it all together
 ```
 
-{% include figure.html url="assets/img/tutorials/occurrence/beluga_panel.png" caption="Figure 4. __a. Map of beluga occurrence and monitoring sites; b. occurrence records through time and population trends in c. Hudson Bay, d. Cook Inlet stock and e. St. Lawrence estuary.__ Note that in St. Lawrence estuary, beluga populations were monitored in three separate studies." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_panel.png{% endcapture %}
+{% include figure.html url=link caption="Figure 4. __a. Map of beluga occurrence and monitoring sites; b. occurrence records through time and population trends in c. Hudson Bay, d. Cook Inlet stock and e. St. Lawrence estuary.__ Note that in St. Lawrence estuary, beluga populations were monitored in three separate studies." %}
 

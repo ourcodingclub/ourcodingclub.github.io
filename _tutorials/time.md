@@ -19,7 +19,7 @@ In this tutorial, we will explore and analyse time series data in `R`. Time seri
 
 ### All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from [this github repository](https://github.com/ourcodingclub/CC-time-series). Before we start, clone and download the repo as a zipfile, then unzip it.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-time-series) to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our [`git` and version control tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-time-series) to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our [`git` and version control tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 First up, open `RStudio`, make a new script by clicking `File/ New File/ R Script` and we are all set to learn about time series analysis!
 
@@ -254,7 +254,7 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 
 ![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
 
-Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [tutorial on making your own](https://ourcodingclub.github.io/2017/02/08/funandloops.html), and if you want to learn more about the basics of `ggplot2`, [we have a workshop on that as well](https://ourcodingclub.github.io/2017/01/29/datavis.html)!
+Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [tutorial on making your own]({{ site.baseurl }}/tutorials/funandloops/index.html), and if you want to learn more about the basics of `ggplot2`, [we have a workshop on that as well]({{ site.baseurl }}/tutorials/datavis/index.html)!
 
 Play around with `date_labels`, replacing `"%Y"` with some other date marks from the table above (e.g. `%m-%Y`). `date_breaks` can also be customised to change the axis label frequency. Other options include `month`, `week` and `day` (e.g. `"5 weeks"`)
 
@@ -360,7 +360,7 @@ monthly_milk_model <- window(x = monthly_milk_ts, start = c(1962), end = c(1970)
 monthly_milk_test <- window(x = monthly_milk_ts, start = c(1970))
 ```
 
-Let's first compare model forecasts of different ETS models visually by extracting forecast data from `forecast` objects and plotting it using `ggplot()` against the test data. The code below is quite long and could be made more concise by using [pipes, or `apply()` functions](http://www.ourcodingclub.github.io/2017/01/16/piping.html) but writing it long-hand like this allows you to investigate all the intermediate objects for yourself so you understand how they are structured and what they show:
+Let's first compare model forecasts of different ETS models visually by extracting forecast data from `forecast` objects and plotting it using `ggplot()` against the test data. The code below is quite long and could be made more concise by using [pipes, or `apply()` functions]({{ site.baseurl }}/tutorials/piping/index.html) but writing it long-hand like this allows you to investigate all the intermediate objects for yourself so you understand how they are structured and what they show:
 
 ```r
 # Creating model objects of each type of ets model
@@ -456,7 +456,7 @@ Let's pick apart those statistics:
 By comparing the MAPE and MASE statistics of the four models in the `Test set` row, we can see that the `monthly_milk_ets_fc` and `monthly_milk_ets_zzz_fc` models have the lowest values. Looking at the graphs for this forecast and comparing it visually to the test data, we can see that this is the forecast which best matches the test data. So we can use that forecast to project into the future.
 
 ### Extracting values from a forecast
-Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I'm using functions from the [`dplyr` package, with pipes (`%>%`)](https://ourcodingclub.github.io/2017/01/16/piping.html), but you could use any other method of subsetting such as the `[]` square bracket method using base `R`:
+Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I'm using functions from the [`dplyr` package, with pipes (`%>%`)]({{ site.baseurl }}/tutorials/piping/index.html), but you could use any other method of subsetting such as the `[]` square bracket method using base `R`:
 
 ```r
 milk_ets_fc_df %>%

@@ -16,7 +16,7 @@ survey_link: https://www.surveymonkey.co.uk/r/B723DLF
 5. [Map cluster groups in geographic space](#Mapping)
 
 
-To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro do Github for version control](https://ourcodingclub.github.io/2017/02/27/git.html) tutorial. Alternatively you can download the repo as a zip file.__
+To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro do Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
 
 ### Get acquainted with data clustering
 {: #Introduction}
@@ -103,7 +103,7 @@ How does the chosen clustering method know which observations are more similar t
 
 Right now, what we need to do is use the data frames we have and create a presence and absence matrix with sites in the rows and species in the columns. As it is standard, `1` = species present in a site and `0` = the species absent in a site. No matter what distance metric you use, the pairwise distance matrix that will be used when clustering your data will always be constructed based on this table. Of course, if you have species abundance, than you'll be working with an abundance matrix.
 
-The way we are going to build such matrix is through a loop function. Loop functions are extremely useful used in many programming languages. If you want to learn more about them, you can check our tutorial on [how to use loops](https://ourcodingclub.github.io/2017/02/08/funandloops.html).
+The way we are going to build such matrix is through a loop function. Loop functions are extremely useful used in many programming languages. If you want to learn more about them, you can check our tutorial on [how to use loops]({{ site.baseurl }}/tutorials/funandloops/index.html).
 
 ```r
 # Making the species by site matrix (presence and abscence). We'll call it `commat`.
@@ -448,7 +448,7 @@ We mapped our sites using the `maps` package associated with R's basic `plot` fu
 
 __Try recreating the above map using the `ggmap` package, which offers more choices of map types and in general can make very pretty maps.__ 
 
-In previous versions of this workshop, we used the ggmap package [in our tutorial on spatial visualisation](https://ourcodingclub.github.io/2016/12/11/maps_tutorial.html), but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too! 
+In previous versions of this workshop, we used the ggmap package [in our tutorial on spatial visualisation]({{ site.baseurl }}/tutorials/maps/index.html), but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I’d still recommend having a look if you have specific need for Google Maps basemaps. In the spatial visualisation tutorial, we go through other resource in R to create maps, so that might be well worth a look too! 
 
 See below for an idea of the map you could create and if you are stuck, look at `ggmap_challenge.R` in the [repo for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering). 
 

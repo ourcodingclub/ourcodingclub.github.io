@@ -16,7 +16,7 @@ survey_links: https://www.surveymonkey.co.uk/r/6CQF3J7
 3. [Learn how to find help online](#help)
 4. [Practice by fixing errors in an example script](#practice)
 
-In [our first tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), we learned how to import data into `RStudio`, conduct a simple analysis (calculate species richness) and plot the results. Not bad for a first time! If you need reminding of some programming terms, take a quick look at our [glossary](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html#glossary).
+In [our first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), we learned how to import data into `RStudio`, conduct a simple analysis (calculate species richness) and plot the results. Not bad for a first time! If you need reminding of some programming terms, take a quick look at our [glossary]({{ site.baseurl }}/tutorials/intro-to-r/index.html#glossary).
 
 Programming comes with a learning curve and you will no doubt encounter many error messages while you familiarise yourself with the workings of R. But fear not! Today we will tackle some of the most common coding errors and help you avoid them. You might have seen some of these error messages already, but after completing this tutorial, we hope they won't appear too often on your RStudio screens.
 
@@ -35,7 +35,7 @@ Here we have compiled a list of mistakes we often make. Do you think we have for
 
 - __Your version of `R` or `RStudio` is too old (or too new)__. If you haven't updated `R` or `RStudio` in a while, you might not be able to use some of the new packages coming out - when you try installing the package, you will get an error message saying that the package is not compatible with your version of `RStudio`. This problem is quickly fixed by a visit to the [RStudio website](https://www.rstudio.com/products/rstudio/) or the [R website](https://cran.r-project.org/), from there you can get the most recent version. On the flip side, when you get the newest RStudio, packages that haven't been updated recently might not work, or your old code breaks. This occurs less often and in general, code is ever evolving and getting better and better, so it's good to keep up to date with the latest versions of both RStudio and R packages.
 
-- __Syntax errors__. The easiest mistakes to make! You've forgotten a comma, opened a bracket, but haven't closed it, added an extra character by mistake or something else `R` doesn't understand. Those are usually picked up by R and you will get error messages reminding you to proof-read your code and fix it. If you can't pinpoint the correct way to code what you need, there are many [places to find help](#help). Following a [Coding Etiquette](https://ourcodingclub.github.io/2017/04/25/etiquette.html) can help you keep these errors to a minimum.
+- __Syntax errors__. The easiest mistakes to make! You've forgotten a comma, opened a bracket, but haven't closed it, added an extra character by mistake or something else `R` doesn't understand. Those are usually picked up by R and you will get error messages reminding you to proof-read your code and fix it. If you can't pinpoint the correct way to code what you need, there are many [places to find help](#help). Following a [Coding Etiquette]({{ site.baseurl }}/tutorials/etiquette/index.html) can help you keep these errors to a minimum.
 
 - __You're trying to use a certain function and R doesn't recognise it__. First, it's worth checking whether you have installed and loaded the package the function comes from - running the code `?function-name`, e.g. `?filter` will display a help screen with information on how you use the function, as well as the package it comes from. 
 
@@ -47,15 +47,15 @@ If you are reading up on `R` online, or copying and modifying code, you might be
 
 - __Missing objects__. Running tests and plotting data are often hindered by R failing to find the object it's meant to analyse. When that happens, first check that your object names are correct: spelling mistakes (capital and lower case letters, wrong letters, etc.) can all make objects unrecognisable. In this code `e <- length(unique(FloweringPlants$taxonName))` I asked R to calculate species richness of flowering plants, but forgot that I called the object `Flowering.Plants` not `FloweringPlants`. Remember that when you refer to a certain variable from an object using the dollar sign, the object comes first, the variable second:`Flowering.Plants$taxonGroup`, not `taxonGroup$Flowering.Plants`.
 
-- __Data not in the right format__. This might not necessarily result in an error message, but might lead to graphs/results that are wrong. For example, in [our first tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) we created a data frame and plotted species richness. If we had chosen a data matrix instead, that plot would have looked very different (and wrong). We use matrices when the variables are all the same type (all text, all numerical) and of the same length (same number of rows). Data frames are for when we have multiple variables of different types and vectors are for a series of numbers of the same type. If your results/plots make you feel suspicious, it's good to go back to your data and check: did it import right into R, and is it in the right format? You can do this using `head()` for a preview, `str()` to check the class of each variable, and `summary()`.
+- __Data not in the right format__. This might not necessarily result in an error message, but might lead to graphs/results that are wrong. For example, in [our first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html) we created a data frame and plotted species richness. If we had chosen a data matrix instead, that plot would have looked very different (and wrong). We use matrices when the variables are all the same type (all text, all numerical) and of the same length (same number of rows). Data frames are for when we have multiple variables of different types and vectors are for a series of numbers of the same type. If your results/plots make you feel suspicious, it's good to go back to your data and check: did it import right into R, and is it in the right format? You can do this using `head()` for a preview, `str()` to check the class of each variable, and `summary()`.
 
 ![]({{ site.baseurl }}/img/wrong.png)
 
 Figure 1. An unfortunate looking barplot! The data were chosen to be a data matrix, but, because in matrices all variables are of the same type, R expects `taxa_f` - the names of the different taxa - to have a numerical value, and lumps all the species richness values together in the second bar. A data frame was definitely a better choice!
 
-- __Wrong data distribution used in models__. There are several reasons why models won't converge, including the use of inappropriate distribution type. Usually we choose between normal (gaussian), binomial, Poisson, or Quasipoisson distributions, which we will learn more about in [our workhops on modelling](https://ourcodingclub.github.io/2017/02/28/modelling.html).
+- __Wrong data distribution used in models__. There are several reasons why models won't converge, including the use of inappropriate distribution type. Usually we choose between normal (gaussian), binomial, Poisson, or Quasipoisson distributions, which we will learn more about in [our workhops on modelling]({{ site.baseurl }}/tutorials/modelling/index.html).
 
-- __R crashed!__ If you've overloaded `R`, it can make a dramatic exit (bomb image and all) or sometimes it stops responding and you have to terminate the session. That's why it's very important to save your scripts often, but it's better to save them as new files, e.g. `Edi_biodiv_16thNov.R`, instead of overwriting the same file. That way if you want to revert back to old code or use some part of it, it's easy to find it. This is the most basic type of version control. We can learn more about version control in [our `git` tutorial](https://ourcodingclub.github.io/2017/02/27/git.html)
+- __R crashed!__ If you've overloaded `R`, it can make a dramatic exit (bomb image and all) or sometimes it stops responding and you have to terminate the session. That's why it's very important to save your scripts often, but it's better to save them as new files, e.g. `Edi_biodiv_16thNov.R`, instead of overwriting the same file. That way if you want to revert back to old code or use some part of it, it's easy to find it. This is the most basic type of version control. We can learn more about version control in [our `git` tutorial]({{ site.baseurl }}/git/index.html)
 
 ![]({{ site.baseurl }}/img/bomb.png)
 
@@ -68,8 +68,7 @@ Figure 1. An unfortunate looking barplot! The data were chosen to be a data matr
 - __The cursor in the script file changed from `|` to `_` and now text gets overwritten when I type__. This happens when you accidentally press _Insert_ on your keyboard and as a result when you add new text, it gets written over. Press _Insert_ again to go back to normal.
 
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Cheat sheet! Here are some of the most common error messages you'll meet when you get started, and what they actually mean.
 {: #help}
 
@@ -81,9 +80,9 @@ __Error in `function-name()`: object 'object-name' not found__: R tells you that
 
 __Error: unexpected symbol in 'line-of-code'__ : Most likely you forgot (or had an extra!) comma, bracket or other punctuation sign somewhere. 
 
-__Cannot open file 'your-file-path': No such file or directory__: R cannot find the file you are trying to load, often because you forgot to specify your working directory (we learned how to do it in our [first tutorial](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html)), or because there is a mistake in your file path. (Hint: if you copied it from the Windows Explorer, you need to swap the backward slashes for forward slashes.) If you get __object 'your-file-path' not found__, then you probably forgot the quotation marks around the file path `read.csv(file = 'my-file-path/file.csv')`. 
-
-" %} 
+__Cannot open file 'your-file-path': No such file or directory__: R cannot find the file you are trying to load, often because you forgot to specify your working directory (we learned how to do it in our [first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), or because there is a mistake in your file path. (Hint: if you copied it from the Windows Explorer, you need to swap the backward slashes for forward slashes.) If you get __object 'your-file-path' not found__, then you probably forgot the quotation marks around the file path `read.csv(file = 'my-file-path/file.csv')`. 
+{% endcapture %}
+{% include callout.html content=callout %}
 
 ### 3. Learn how to find help
 
@@ -93,20 +92,18 @@ __For "how to ..." type queries, a search will often result in tutorials, and ev
 
 __R Help__ Of course, R has built-in documentation for all functions and packages. We already mentioned that you can type `help()` or `?function-name` (try `??function-name`for a broader search). The [RDocumentation website](https://www.rdocumentation.org/) contains much of the same in a slightly nicer format, with examples and more links. 
 
-We have also compiled a ["Useful links" list of helpful websites and tutorials](https://ourcodingclub.github.io/links/) where you can find additional help. 
+We have also compiled a ["Useful links" list of helpful websites and tutorials]({{ site.baseurl }}/links/) where you can find additional help. 
 
 __Of course, `R` won't always tell you if you are doing something wrong: sometimes your code is correct, but you are doing the wrong type of analysis for your data. Nevertheless, making sure you avoid easy-to-make mistakes is a great place to start - even the fanciest, super-advanced tests can be brought down by a single missing comma.__
 
-{% include callout.html content="
-
+{% capture callout %}
 #### A warning on warnings!
 
 Errors are not the only scary red text that will appear in the console. Often, you will run code and get a message saying something like 'There were 13 warnings, use `warnings()`to see them'. It could also be a specific warning telling you that R is ignoring `NA`s (missing) data in a plot, or that a function generated unexpected results such as `NaN` (not a number). 
 
 Warnings are not necessarily the end of the world, but you should see them as major red flags, and make sure you know what is going on before you pursue your analysis. Like error messages, a simple online search of the warning text will often put you on the right track. 
-
-" %}
-
+{% endcapture %}
+{% include callout.html content=callout %}
 
 ### 4. Practice! 
 {: #practice}
@@ -123,7 +120,7 @@ Practice truly is the best way to learn how to avoid errors in `R` - to get you 
 #### 3. If you can't figure out a solution yourself, you know where to find help
 
 
-Next up. we have a tutorial on [Coding Etiquette](https://ourcodingclub.github.io/2017/04/25/etiquette.html)! Developing code-writing routines and sticking to defined conventions is a good way to ensure uniform, mistake-free code that runs smoothly!
+Next up. we have a tutorial on [Coding Etiquette]({{ site.baseurl }}/tutorials/etiquette/index.html)! Developing code-writing routines and sticking to defined conventions is a good way to ensure uniform, mistake-free code that runs smoothly!
 
-Feeling ready to go one step further? Learn how to format and manipulate data in a tidy and efficient way with our [tidyr and dplyr tutorial](https://ourcodingclub.github.io/2017/01/16/piping.html)! Keen to make more graphs? Check out our [data visualisation tutorial](https://ourcodingclub.github.io/2017/01/29/datavis.html).
+Feeling ready to go one step further? Learn how to format and manipulate data in a tidy and efficient way with our [tidyr and dplyr tutorial]({{ site.baseurl }}/tutorials/piping/index.html)! Keen to make more graphs? Check out our [data visualisation tutorial]({{ site.baseurl }}/tutorials/datavis/index.html).
 

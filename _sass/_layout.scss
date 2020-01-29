@@ -345,16 +345,19 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 15px 32px;
 	text-align: center;
 	text-decoration: none;
-	display: block;
 	font-size: 16px;border: none;
+  	white-space:nowrap;
+    display:inline-block;
+    margin: 10px;
+    min-width: 20%;
 }
 
 .reveal-container {
-	display: none
+	display: block 
 }
 
 // Figure with caption
-.image figcaption {
+.figure {
 	text-align: center;
 	padding-top: 5px;
 }

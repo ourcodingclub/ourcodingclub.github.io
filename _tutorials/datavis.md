@@ -27,13 +27,14 @@ survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 ### 1. Good data visualisation and ggplot2 syntax
 {: #ggplot}
 
-We've learned [how to import our datasets in RStudio](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), and [format and manipulate them](https://ourcodingclub.github.io/2017/01/16/piping.html), and now it's time we talk about communicating the results of our analyses - data visualisation! When it comes to data visualisation, the package `ggplot2` by Hadley Wickham has won over many scientists' hearts. In this tutorial, we will learn how to make beautiful and informative graphs and how to arrange them in a panel. Before we tackle the `ggplot2` syntax, let's briefly cover what good graphs have in common.
+We've learned [how to import our datasets in RStudio]({{ site.baseurl }}/tutorials/intro-to-r/index.html), and [format and manipulate them]({{ site.baseurl }}/tutorials/piping/index.html), and now it's time we talk about communicating the results of our analyses - data visualisation! When it comes to data visualisation, the package `ggplot2` by Hadley Wickham has won over many scientists' hearts. In this tutorial, we will learn how to make beautiful and informative graphs and how to arrange them in a panel. Before we tackle the `ggplot2` syntax, let's briefly cover what good graphs have in common.
 
 ![]({{ site.baseurl }}/assets/img/tutorials/datavis/davis_10_steps.png)
 
 `ggplot2` is a great package to guide you through those steps. The `gg` in `ggplot2` stands for grammar of graphics. Writing the code for your graph is like constructing a sentence made up of different parts that logically follow from one another. In a more visual way, it means adding layers that take care of different elements of the plot. Your plotting workflow will therefore be something like creating an empty plot, adding a layer with your data points, then your measure of uncertainty, the axis labels, and so on.
 
-{% include figure.html url="assets/img/tutorials/datavis/DL_datavis1_layers.png" caption="Just like onions (and ogres!), graphs in ggplot2 have layers." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_layers.png{% endcapture %}
+{% include figure.html url=link caption="Just like onions (and ogres!), graphs in ggplot2 have layers." %}
 
 ### 2. Decide on the right type of plot
 {: #whichplot}
@@ -42,7 +43,8 @@ A very key part of making any data visualisation is making sure that it is appro
 
 You can start with our simple guide for common graph types, and visit [the R Graph Gallery](https://www.r-graph-gallery.com/), a fantastic resource for `ggplot2` code and inspiration!
 
-{% include figure.html url="assets/img/tutorials/datavis/DL_datavis1_layers.png" caption="Feeling inspired? Let's make these graphs!" %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_layers.png{% endcapture %}
+{% include figure.html url=link caption="Feeling inspired? Let's make these graphs!" %}
 
 ### 3. Making different plots with ggplot2
 {: #practice}
@@ -71,7 +73,7 @@ We will use data from the [Living Planet Index](http://www.livingplanetindex.org
 LPI <- read.csv("LPIdata_CC.csv")
 ```
 
-The data are in wide format - the different years are column names, when really they should be rows in the same column. We will reshape the data using the `gather()` function from the `tidyr` package, something we cover in our [basic data manipulation](https://ourcodingclub.github.io/2015/10/11/data-manip-intro.html).
+The data are in wide format - the different years are column names, when really they should be rows in the same column. We will reshape the data using the `gather()` function from the `tidyr` package, something we cover in our [basic data manipulation]({{ site.baseurl }}/tutorials/data-manip-intro/index.html).
 
 ```r
 # Reshape data into long form
@@ -110,7 +112,7 @@ vulture <- na.omit(vulture)
 ```
 
 #### Histograms to visualise data distribution
-{% #histogram}
+{: #histogram}
 
 We will do a quick comparison between base R graphics and `ggplot2` - of course both can make good graphs when used well, but here at Coding Club, we like working with `ggplot2` because of its powerful customisation abilities.
 
@@ -157,12 +159,12 @@ The default ggplot settings (right) are not ideal: there is lots of unnecessary 
 # We can see from the histogram that the data are very skewed - a typical distribution of count abundance data
 ```
 
-{% include figure.html url="assets/img/tutorials/datavis/gg_hist2.png" caption="Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?" %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/gg_hist2.png{% endcapture %}
+{% include figure.html url=link caption="Histogram of Griffon vulture abundance in populations included in the LPI dataset. Red line shows mean abundance. Isn't it a much better plot already?" %}
 
 __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.__
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Understanding `ggplot2`'s jargon
 
 Perhaps the trickiest bit when starting out with `ggplot2` is understanding what type of elements are responsible for the contents (data) versus the container (general look) of your plot. Let's de-mystify some of the common words you will encounter.
@@ -171,13 +173,13 @@ __geom__: a geometric object which defines the type of graph you are making. It 
 
 __aes__: short for __aesthetics__. Usually placed within a `geom_`, this is where you specify your data source and variables, AND the properties of the graph _which depend on those variables_. For instance, if you want all data points to be the same colour, you would define the `colour = ` argument _outside_ the `aes()` function; if you want the data points to be coloured by a factor's levels (e.g. by site or species), you specify the `colour = ` argument _inside_ the `aes()`. 
 
-__stat__: a stat layer applies some statistical transformation to the underlying data: for instance, `stat_smooth(method = "lm")` displays a linear regression line and confidence interval ribbon on top of a scatter plot (defined with `geom_point()`).
+__stat__: a stat layer applies some statistical transformation to the underlying data: for instance, `stat_smooth(method = 'lm')` displays a linear regression line and confidence interval ribbon on top of a scatter plot (defined with `geom_point()`).
 
-__theme__: a theme is made of a set of visual parameters that control the background, borders, grid lines, axes, text size, legend position, etc. You can use [pre-defined themes](https://ggplot2.tidyverse.org/reference/ggtheme.html), [create your own](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html#theme), or use a theme and overwrite only the elements you don't like. Examples of elements within themes are `axis.text`, `panel.grid`, `legend.title`, and so on. You define their properties with `elements_...()` functions: `element_blank()` would return something empty (ideal for removing background colour), while `element_text(size = ..., face = ..., angle = ...)` lets you control all kinds of text properties. 
+__theme__: a theme is made of a set of visual parameters that control the background, borders, grid lines, axes, text size, legend position, etc. You can use [pre-defined themes](https://ggplot2.tidyverse.org/reference/ggtheme.html), [create your own]({{ site.baseurl }}/tutorials/data-vis-2/index.html#theme), or use a theme and overwrite only the elements you don't like. Examples of elements within themes are `axis.text`, `panel.grid`, `legend.title`, and so on. You define their properties with `elements_...()` functions: `element_blank()` would return something empty (ideal for removing background colour), while `element_text(size = ..., face = ..., angle = ...)` lets you control all kinds of text properties. 
 
 Also useful to remember is that layers are added on top of each other as you progress into the code, which means that elements written later may hide or overwrite previous elements. 
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 ### Learning how to use colourpicker 
 {: #colourpicker}
@@ -237,18 +239,18 @@ __Hopefully by now we've convinced you of the perks of ggplot2, but again like w
           legend.position = c(0.9, 0.9)))                                 # Setting legend position - 0 is left/bottom, 1 is top/right
 ```
 
-{% include figure.html url="assets/img/tutorials/datavis/gg_scatter3.png" caption="Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/gg_scatter3.png{% endcapture %}
+{% include figure.html url=link caption="Population trends of Griffon vulture in Croatia and Italy. Data points represent raw data with a linear model fit and 95% confidence intervals. Abundance is measured in number of breeding individuals." %}
 
 
-{% include callout.html content="
-
+{% capture callout %}
 #### Good to know
 
 If your axis labels need to contain special characters or superscript, you can get `ggplot2` to plot that, too. It might require some googling regarding your specific case, but for example, this code `ylabs(expression(paste('Grain yield','  ','(ton.', ha^-1, ')', sep='')))` will create a y axis with a label reading Grain yield (ton. ha<sup>-1</sup>).
 
 To create additional space between an axis title and the axis itself, use `\n` when writing your title, and it will act as a line break.
-
-" %}
+{% endcapture %}
+{% include callout.html content=callout %}
 
 
 #### Boxplot to examine whether vulture abundance differs between Croatia and Italy
@@ -275,9 +277,8 @@ Box plots are very informative as they show the median and spread of your data, 
           legend.position = "none"))                                    # Removing legend - not needed with only 2 factors
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_boxplot2.png)
-
-{% include figure.html url="assets/img/tutorials/datavis/gg_boxplot2.png" caption="Griffon vulture abundance in Croatia and Italy." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/gg_boxplot2.png{% endcapture %}
+{% include figure.html url=link caption="Griffon vulture abundance in Croatia and Italy." %}
 
 
 #### Barplot to compare species richness of a few European countries
@@ -304,12 +305,11 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
           plot.margin = unit(c(1,1,1,1), units = , "cm")))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/datavis/gg_bar2.png)
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/gg_bar2.png{% endcapture %}
+{% include figure.html url=link caption="Species richness in five European countries (based on LPI data)." %}
 
-{% include figure.html url="assets/img/tutorials/datavis/gg_bar2.png" caption="Species richness in five European countries (based on LPI data)." %}
 
-
-You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to [create your own theme](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html) - you can now reuse this theme in all your ggplots!
+You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to [create your own theme]({{ site.baseurl }}/tutorials/data-vis-2/index.html) - you can now reuse this theme in all your ggplots!
 
 ### 4. Using facets and creating panels
 {: #panel}
@@ -358,7 +358,8 @@ That's cluttered! Can you really figure out what populations are doing? By addin
 
 Some useful arguments to include in `facet_wrap()`are `nrow = ` or `ncol = `, specifying the number of rows or columns, respectively. You can also see that we used `scales = "free_y"`, to allow different y axis values because of the wide range of abundance values in the data. You can use "fixed" when you want to constrain all axis values. 
 
-{% include figure.html url="assets/img/tutorials/datavis/DL_datavis1_facets/png" caption="Population change of Griffon vulture across the world, from the LPI dataset." %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_facets/png{% endcapture %}
+{% include figure.html url=link caption="Population change of Griffon vulture across the world, from the LPI dataset." %}
 
 _Note: some of these population trends do weird things, possibly because there are many sub-populations being monitored within a country (e.g. Italy), so in practice we probably would not fit a single regression line per country._ 
 
@@ -396,11 +397,10 @@ To get around the too stretched/too squished panel problems, we will save the fi
 ggsave(panel, file = "vulture_panel2.png", width = 5, height = 12) 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/datavis/vulture_panel2.png)
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/vulture_panel2.png{% endcapture %}
+{% include figure.html url=link caption="Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy." %}
 
-{% include figure.html url="assets/img/tutorials/datavis/vulture_panel2.png" caption="Examining Griffon vulture populations from the LPI dataset. (a) shows histogram of abundance data distribution, (b) shows a boxplot comparison of abundance in Croatia and Italy, and (c) shows population trends between 1970 and 2014 in Croatia and Italy." %}
-
-And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our [follow-up ggplot tutorial](https://ourcodingclub.github.io/2017/03/29/data-vis-2.html).
+And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our [follow-up ggplot tutorial]({{ site.baseurl }}/tutorials/data-vis-2/inde/index.html).
 
 ### 5. Challenge yourself!
 {: #challenge}
@@ -411,8 +411,7 @@ To practice making graphs, go back to the original LPI dataset that you imported
 
 2 - Using the same two species, filter the data to include only records from FIVE countries of your choice, and __make a boxplot__ to compare how the abundance of those two species varies between the five countries?
 
-{% include reveal.html button="Click this line to view an example" content="
-
+{% capture reveal %}
 ```r
 # I chose two Arctic animals
 arctic <- filter(LPI2, Common.Name %in% c('Reindeer / Caribou', 'Beluga whale'))
@@ -441,9 +440,9 @@ arctic <- filter(LPI2, Common.Name %in% c('Reindeer / Caribou', 'Beluga whale'))
 # Only have four countries so no subsetting; let's plot directly:
 (arctic.box <- ggplot(arctic, aes(x = Country.list, y = abundance)) +
    geom_boxplot() +
-   labs(x = "Country", y = "Abundance \n") +
+   labs(x = 'Country', y = 'Abundance \n') +
    theme_bw() +
-   facet_wrap(~Common.Name, scales = "free_y") +
+   facet_wrap(~Common.Name, scales = 'free_y') +
    theme(panel.grid = element_blank(),
          strip.background = element_blank(),
          strip.text = element_text(size = 12),
@@ -471,9 +470,8 @@ arctic <- filter(LPI2, Common.Name %in% c('Reindeer / Caribou', 'Beluga whale'))
 
 library(egg)
 
-ggarrange(arctic.scatter + labs(title = "Population change over time"), 
-          arctic.box + labs(title = "Population size across countries"))
+ggarrange(arctic.scatter + labs(title = 'Population change over time'), 
+          arctic.box + labs(title = 'Population size across countries'))
 ```
-
-" %}
-
+{% endcapture %}
+{% include reveal.html button="Click this line to view an example" content=reveal %}

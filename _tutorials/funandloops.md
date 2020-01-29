@@ -28,7 +28,7 @@ setwd("PATH_TO_FOLDER")
 ### Writing functions
 {: #introduction}
 
-We've learned [how to import data in RStudio](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html), [format and manipulate them](https://ourcodingclub.github.io/2017/01/16/piping.html), [write scripts and Markdown reports](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html), [how to make beautiful and informative graphs using `ggplot2`](https://ourcodingclub.github.io/2017/01/29/datavis.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
+We've learned [how to import data in RStudio]({{ site.baseurl }}/tutorials/intro-to-r/index.html), [format and manipulate them]({{ site.baseurl }}/tutorials/piping/index.html), [write scripts and Markdown reports]({{ site.baseurl }}/tutorials/rmarkdown/index.html), [how to make beautiful and informative graphs using `ggplot2`]({{ site.baseurl }}/tutorials/datavis/index.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
 
 You may find as you work away on your project however, that you want to repeat the same action multiple times. For example, you may want to multiple graphs which differ only in their data input. The temptation is to copy and paste the code multiple times in the script, changing the input dataset each time, but all this copying and pasting increases the chance that you will make a mistake, and it also means that if you want to change some shared element of those copied code chunks, you will have to change each chunk individually. 
 

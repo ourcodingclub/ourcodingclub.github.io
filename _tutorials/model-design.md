@@ -157,7 +157,7 @@ __Some plant categories are in as just `moss` and `lichen` and they might be dif
 
 You might wonder why people are recording vole poop. This relates to how the data were collected: each plot is 1m^2 and there are 100 points within it. When people survey the plots, they drop a pin from each point and then record everything that touches the pin, be it a plant, or vole poop!
 
-__The non-species records in the species column are a good opportunity for us to practice data manipulation ([you can check out our data manipulation tutorial here later](https://ourcodingclub.github.io/2017/01/16/piping.html)). We will filter out the records we don't need using the `filter` function from the `dplyr` package.__
+__The non-species records in the species column are a good opportunity for us to practice data manipulation ([you can check out our data manipulation tutorial here later]({{ site.baseurl }}/tutorials/piping/index.html)). We will filter out the records we don't need using the `filter` function from the `dplyr` package.__
 
 ```r
 # We use ! to say that we want to exclude
@@ -296,7 +296,7 @@ And there are many more - you can check out [this useful website](http://r-stati
 
 __Do you think the assumptions of a general linear model are met for our questions and data? Probably not!__
 
-__From the histograms, we can see that the data are not normally distributed, and furthermore, if we think about what the data are, they are integer counts (number of species), probably a bit skewed to the left, as most plots might not have a crazy amount of species. For these reasons, a Poisson distribution might be suitable, not a normal one. You can check out the [Models and Distributions Coding Club tutorial](https://ourcodingclub.github.io/2017/02/28/modelling.html) for more about different data distributions.__
+__From the histograms, we can see that the data are not normally distributed, and furthermore, if we think about what the data are, they are integer counts (number of species), probably a bit skewed to the left, as most plots might not have a crazy amount of species. For these reasons, a Poisson distribution might be suitable, not a normal one. You can check out the [Models and Distributions Coding Club tutorial]({{ site.baseurl }}/tutorials/modelling/index.html) for more about different data distributions.__
 
 __We know that because of how the experimental design was set up (remember the Russian doll of plots within blocks within sites), the data points are not independent from one another. If we don't account for the plot, block and site-level effects, we are completely ignoring the hierarchical structure of our data, which might then lead to wrong inferences based on the wrong model outputs.__
 
@@ -304,7 +304,7 @@ __We know that because of how the experimental design was set up (remember the R
 
 __Model convergence is whether or not the model has worked, whether it has estimated your response variable (and random effects, see below) - basically whether the underlying mathematics have worked or have "broken" in some way. When we fit more complicated models, then we are pushing the limits of the underlying mathematics and things can go wrong, so it is important to check that your model did indeed work and that the estimates that you are making do make sense in the context of your raw data and the question you are asking/hypotheses that you are testing.__
 
-__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club [MCMCglmm tutorial](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html). For an advanced discussion of model convergence, check out [model convergence in lme4](ttps://rdrr.io/cran/lme4/man/convergence.html).__
+__Checking model convergence can be done at different levels. With parametric models, good practice is to check the residual versus predicted plots. Using Bayesian approaches, there are a number of plots and statistics that can be assessed to determine model convergence. See below and in the Coding Club [MCMCglmm tutorial]({{ site.baseurl }}/tutorials/mcmcglmm/index.html). For an advanced discussion of model convergence, check out [model convergence in lme4](ttps://rdrr.io/cran/lme4/man/convergence.html).__
 
 __For now, let's check the residual versus predicted plot for our linear model. By using the 'plot()' function, we can plot the residuals versus fitted values, a Q-Q plot of standardised residuals, a scale-location plot (square roots of standardiaed residuals versus fitted values) and a plot of residuals versus leverage that adds bands corresponding to Cook’s distances of 0.5 and 1. Looking at these plots can help you identify any outliers that have huge leverage and confirm that your model has indeed run e.g. you want the data points on the Q-Q plot to follow the one-to-one line.__
 
@@ -519,7 +519,7 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
 
 __Let's take our `lme4` model and explore what that model structure looks like in `MCMCglmm`. `MCMCglmm` fits Generalised Linear Mixed-effects Models using a Markov chain Monte Carlo approach under a Bayesian statistical framework.__
 
-__To learn more about hierarchical models using `MCMCglmm`, you can check out our [tutorial here](https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html), which has more details on the different model structures you can have and also provides an explanation of what priors are and how to set them in `MCMCglmm`.__
+__To learn more about hierarchical models using `MCMCglmm`, you can check out our [tutorial here]({{ site.baseurl }}/tutorials/mcmcglmm/index.html), which has more details on the different model structures you can have and also provides an explanation of what priors are and how to set them in `MCMCglmm`.__
 
 For now, we can proceed knowing that just like in `lme4`, in `MCMCglmm`, we can add random and fixed effects to account for the structure of the data we are modelling. In `MCMCglmm`, there is greater flexibility in terms of specifying __priors__ - that is, you can give your model additional information that is then taken into account when the model runs. For example, there might be some lower and upper bound limit for our response variable - e.g. we probably won't find more than 1000 species in one small plant plot and zero is the lowest species richness can ever be.
 
@@ -566,7 +566,7 @@ plot(plant_mcmc$Sol)
 
 __Let's see what the `MCMCglmm` models are like when we estimate changes in the cover of one species - _Betula nana_, dwarf birch. We can also use a `Poisson` distribution here, as we can think about plant cover as proportion data, e.g., _Betula nana_ cover say 42% of our sample plot. There might be other suitable distributions like a beta binomial distribution, which we will explore in the sequel to this tutorial, coming to you soon!__
 
-__We have added code for parameter-expanded priors. You don't need to worry about the details of those, as in this tutorial we are thinking about the design of the model. These priors will improve model convergence and if you want to find out more about them, you can check out the <a href ="https://ourcodingclub.github.io/2018/01/22/mcmcglmm.html" target="_blank">`MCMCglmm` tutorial here</a>.__
+__We have added code for parameter-expanded priors. You don't need to worry about the details of those, as in this tutorial we are thinking about the design of the model. These priors will improve model convergence and if you want to find out more about them, you can check out the <a href ="{{ site.baseurl }}/tutorials/mcmcglmm/index.html" target="_blank">`MCMCglmm` tutorial here</a>.__
 
 ```r
 # Set weakly informative priors
@@ -611,4 +611,4 @@ Today we have learned that in order to design a statistical model, we first need
 
 If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
 
-__You can check out [the Stan hierarchical modelling tutorial here](https://ourcodingclub.github.io/2018/04/30/stan-2.html)!__
+__You can check out [the Stan hierarchical modelling tutorial here]({{ site.baseurl }}/tutorials/stan-2/index.html)!__

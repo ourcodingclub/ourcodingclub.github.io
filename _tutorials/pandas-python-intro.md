@@ -7,7 +7,7 @@ author: Declan V.
 survey_link: https://www.surveymonkey.co.uk/r/R6PJGKJ
 ---
 
-Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html), you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 
+Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html), you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 
 
 ### Tutorial aims:
 
@@ -31,7 +31,7 @@ Welcome to this tutorial about data analysis with Python and the Pandas library.
 
 _If you have used R's dataframes before, or the `numpy` package in Python, you may find some similarities in the Python `pandas` package. But if not, don't worry because this tutorial doesn't assume any knowledge of NumPy or R, only basic-level Python._
 
-Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html) we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the [StackOverflow](https://stackoverflow.com) question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
+Pandas is a hugely popular, and still growing, Python library used across a range of disciplines from environmental and climate science, through to social science, linguistics, biology, as well as a number of applications in industry such as data analytics, financial trading, and many others. In the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html) we had a look at how Python had grown rapidly in terms of users over the last decade or so, based on traffic to the [StackOverflow](https://stackoverflow.com) question and answer site. A similar graph has been produced showing the growth of Pandas compared to some other Python software libraries! (Based on StackOverflow question views per month).
 
 ![]({{ site.baseurl }}/img/python-pandas-growth.png)
 
@@ -64,7 +64,7 @@ Some more information on the three methods is described below:
 
 If you are attending the workshop 'live' on-site at Edinburgh University, the easiest way is to use the Spyder IDE (Integrated Development Environment) which is installed on the GeoSciences computers. It can also be installed on your laptop relatively easily. It is included in the [Anconda Python distibution which can be downloaded here](https://www.anaconda.com/download/). Be sure to download the Python 3 version!
 
-The basics of Spyder were covered in the [Introduction to Python tutorial](https://ourcodingclub.github.io/2018/01/26/python-intro.html).
+The basics of Spyder were covered in the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html).
 
 ### Text Editor with the Linux/Mac Terminal or Command-line
 
@@ -128,7 +128,7 @@ This short tutorial is mainly based around working with the basic Pandas command
 
 You can download the data from [this Github repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any Python scripts to that folder, so they can access the data easily.
 
-Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial](https://ourcodingclub.github.io/2017/02/27/git.html).
+Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 The original data came from a series of databases about the mountains of Scotland, which if you are interested further can be found here: [http://www.haroldstreet.org.uk/other/excel-csv-files/].
 

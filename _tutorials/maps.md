@@ -1,5 +1,5 @@
 ---
-layout: tutorials
+layout: tutorial
 title: Spatial Data and Maps
 subtitle: Using R as a GIS software tool and creating informative maps
 date: 2016-12-11T16:00:00.000Z
@@ -91,7 +91,7 @@ vulture <- read.csv("Gyps_rueppellii_GBIF.csv", sep = "\t")
 penguin <- read.csv("Spheniscus_dermersus_GBIF.csv", sep = "\t")
 ```
 
-Now onto cleaning up the data using `dplyr`. If you are keen to learn more about using the `dplyr` package, check out our [tutorial on data formatting and manipulation](https://ourcodingclub.github.io/2017/01/16/piping.html).
+Now onto cleaning up the data using `dplyr`. If you are keen to learn more about using the `dplyr` package, check out our [tutorial on data formatting and manipulation]({{ site.baseurl }}/tutorials/piping/index.html).
 
 ```r
 # Keep only the columns we need
