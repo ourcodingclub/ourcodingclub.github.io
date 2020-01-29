@@ -15,7 +15,7 @@ author: Sandra
 #### It works!
 
 
-<img align="left" width="100" height="100" src="{{ site.baseurl }}/img/DL/shield_stream1.png"> This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
+<img align="left" src="{{ site.baseurl }}/img/DL/shield_stream1.png" width="200"/> This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!
 
 
 ### other failed tests
