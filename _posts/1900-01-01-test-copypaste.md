@@ -19,7 +19,7 @@ author: Sandra
 
 
 ### new attempt
-<div class="row-eq-height">
+<div class="row-eq-height" style="height:100px;">
 
   <div class="col-md-3" markdown="1">
   <img width="100" src="{{ site.baseurl }}/img/DL/shield_stream1.png"/>
