@@ -35,8 +35,14 @@ author: Sandra
 
 
 ## and another
-<div class="block">
+<div class="container">
+<div class="col-md-2" markdown="1">
 <img src="{{ site.baseurl }}/img/DL/shield_stream1.png" width="96" height="96">
+</div>
+<div class="col-md-9" markdown="1">
+  <big>This tutorial is part of the [Stats from Scratch](https://ourcodingclub.github.io/course/stats-scratch.html) stream of our online course. Want to join? More info [here](https://ourcodingclub.github.io/course_home/)!</big>
+  </div>
+  
 </div>
 
 
