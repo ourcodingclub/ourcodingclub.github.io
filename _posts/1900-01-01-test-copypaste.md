@@ -22,7 +22,7 @@ author: Sandra
 <div class="row-eq-height" style="height:100px;">
 
   <div class="col-md-3" markdown="1">
-  <img width="100" src="{{ site.baseurl }}/img/DL/shield_stream1.png"/>
+  <img width="100px" src="{{ site.baseurl }}/img/DL/shield_stream1.png"/>
   </div>
   
   <div class="col-md-9" markdown="1">
