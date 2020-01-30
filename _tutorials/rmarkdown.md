@@ -188,77 +188,71 @@ __REMEMBER: R Markdown doesn't pay attention to anything you have loaded in othe
 
 ### More Code Chunk Instructions
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l"><b>Rule</b></th>
-    <th class="tg-yw4l"><b>Example</b><br>(default)</th>
-    <th class="tg-yw4l"><b>Function</b></th>
+    <th>Rule</th>
+    <th>Example<br>(default)</th>
+    <th>Function</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">eval</td>
-    <td class="tg-yw4l">eval=TRUE</td>
-    <td class="tg-yw4l">Is the code run and the results included in the output?</td>
-  </tr>
-    <tr>
-    <td class="tg-yw4l">include</td>
-    <td class="tg-yw4l">include=TRUE</td>
-    <td class="tg-yw4l">Are the code and the results included in the output?</td>
+    <td>eval</td>
+    <td>eval=TRUE</td>
+    <td>Is the code run and the results included in the output?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">echo</td>
-    <td class="tg-yw4l">echo=TRUE</td>
-    <td class="tg-yw4l">Is the code displayed alongside the results?</td>
+    <td>include</td>
+    <td>include=TRUE</td>
+    <td>Are the code and the results included in the output?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">warning</td>
-    <td class="tg-yw4l">warning=TRUE</td>
-    <td class="tg-yw4l">Are warning messages displayed?</td>
+    <td>echo</td>
+    <td>echo=TRUE</td>
+    <td>Is the code displayed alongside the results?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">error</td>
-    <td class="tg-yw4l">error=FALSE</td>
-    <td class="tg-yw4l">Are error messages displayed?</td>
+    <td>warning</td>
+    <td>warning=TRUE</td>
+    <td>Are warning messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">message</td>
-    <td class="tg-yw4l">message=TRUE</td>
-    <td class="tg-yw4l">Are messages displayed?</td>
+    <td>error</td>
+    <td>error=FALSE</td>
+    <td>Are error messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">tidy</td>
-    <td class="tg-yw4l">tidy=FALSE</td>
-    <td class="tg-yw4l">Is the code reformatted to make it look “tidy”?</td>
+    <td>message</td>
+    <td>message=TRUE</td>
+    <td>Are messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">results</td>
-    <td class="tg-yw4l">results="markup"</td>
-    <td class="tg-yw4l"><b> How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
+    <td>tidy</td>
+    <td>tidy=FALSE</td>
+    <td>Is the code reformatted to make it look “tidy”?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">cache</td>
-    <td class="tg-yw4l">cache=FALSE</td>
-    <td class="tg-yw4l">Are the results cached for future renders?</td>
+    <td>results</td>
+    <td>results="markup"</td>
+    <td><b> How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">comment</td>
-    <td class="tg-yw4l">comment="##"</td>
-    <td class="tg-yw4l">What character are comments prefaced with?</td>
+    <td>cache</td>
+    <td>cache=FALSE</td>
+    <td>Are the results cached for future renders?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.width, fig.height</td>
-    <td class="tg-yw4l">fig.width=7</td>
-    <td class="tg-yw4l">What width/height (in inches) are the plots?</td>
+    <td>comment</td>
+    <td>comment="##"</td>
+    <td>What character are comments prefaced with?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.align</td>
-    <td class="tg-yw4l">fig.align="left"</td>
-    <td class="tg-yw4l">"left" "right" "center"</td>
+    <td>fig.width, fig.height</td>
+    <td>fig.width=7</td>
+    <td>What width/height (in inches) are the plots?</td>
+  </tr>
+  <tr>
+    <td>fig.align</td>
+    <td>fig.align="left"</td>
+    <td>"left" "right" "center"</td>
   </tr>
 </table>
 
@@ -335,63 +329,51 @@ For example:
 
 will create something that looks like this:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l"><b>Plant</b></th>
-    <th class="tg-yw4l"><b>Temp.</b></th>
-    <th class="tg-yw4l"><b>Growth</b></th>
+    <th>Plant</th>
+    <th>Temp.</th>
+    <th>Growth</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">A</td>
-    <td class="tg-yw4l">20</td>
-    <td class="tg-yw4l">0.65</td>
+    <td>A</td>
+    <td>20</td>
+    <td>0.65</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">B</td>
-    <td class="tg-yw4l">20</td>
-    <td class="tg-yw4l">0.95</td>
+    <td>B</td>
+    <td>20</td>
+    <td>0.95</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">C</td>
-    <td class="tg-yw4l">20</td>
-    <td class="tg-yw4l">0.15</td>
+    <td>C</td>
+    <td>20</td>
+    <td>0.15</td>
   </tr>
 </table>
 
 The ``:-----:`` tells markdown that the line above should be treated as a header and the lines below should be treated as the body of the table. Text alignment of the columns is set by the position of ``:``:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-  <th class="tg-yw4l"><b>Syntax</b></th>
-  <th class="tg-yw4l"><b>Alignment</b></th>
+  <th>Syntax</th>
+  <th>Alignment</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">`:----:`</td>
-    <td class="tg-yw4l">Centre</td>
+    <td>`:----:`</td>
+    <td>Centre</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">`:-----`</td>
-    <td class="tg-yw4l">Left</td>
+    <td>`:-----`</td>
+    <td>Left</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">`-----:`</td>
-    <td class="tg-yw4l">Right</td>
+    <td>`-----:`</td>
+    <td>Right</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">`------`</td>
-    <td class="tg-yw4l">Auto</td>
+    <td>`------`</td>
+    <td>Auto</td>
   </tr>
 </table>
 
@@ -472,9 +454,7 @@ Note that when a `#` symbol is placed inside a code chunk it acts as a normal R 
 
 ![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Inline_eq_ex.png)
 
-The `$` symbols tell R markdown to use [LaTeX equation synta](http://reu.dimacs.rutgers.edu/Symbols.pdf).
-
- 
+The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
 
 ## Creating `.pdf` files in Rmarkdown
 {: #pdf}

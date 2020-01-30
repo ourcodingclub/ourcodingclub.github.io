@@ -143,53 +143,56 @@ sust_think_summ_wide <- sust_data %>%
 
 __Long Format:__
 
-<table style="text-align:center; margin:10px">
-<tr>
-<td colspan="4" style="border-bottom: 1px solid black"></td>
-</tr>
-<tr>
-<td></td>
-<td style="padding:0 15px 0 15px">gender</td>
-<td style="padding:0 15px 0 15px">sustainability_daily_think</td>
-<td style="padding:0 15px 0 15px">perc</td>
-</tr>
-<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr>
-<tr><td style="padding:0 15px 0 15px">1</td><td>Female</td><td>Never</td><td>1.575</td></tr>
-<tr><td style="padding:0 15px 0 15px">2</td><td>Female</td><td>Rarely</td><td>1.575</td></tr>
-<tr><td style="padding:0 15px 0 15px">3</td><td>Female</td><td>Sometimes</td><td>32.283</td></tr>
-<tr><td style="padding:0 15px 0 15px">4</td><td>Female</td><td>Often</td><td>51.181</td></tr>
-<tr><td style="padding:0 15px 0 15px">5</td><td>Female</td><td>All the time</td><td>13.386</td></tr>
-<tr><td style="padding:0 15px 0 15px">6</td><td>Male</td><td>Never</td><td>3.226</td></tr>
-<tr><td style="padding:0 15px 0 15px">7</td><td>Male</td><td>Rarely</td><td>6.452</td></tr>
-<tr><td style="padding:0 15px 0 15px">8</td><td>Male</td><td>Sometimes</td><td>32.258</td></tr>
-<tr><td style="padding:0 15px 0 15px">9</td><td>Male</td><td>Often</td><td>38.710</td></tr>
-<tr><td style="padding:0 15px 0 15px">10</td><td>Male</td><td>All the time</td><td>19.355</td></tr>
-<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr></table>
+<table>
+	<tr>
+		<th></th>
+		<th>gender</th>
+		<th>sustainability_daily_think</th>
+		<th>perc</th>
+	</tr>
+	<tr><td>1</td><td>Female</td><td>Never</td><td>1.575</td></tr>
+	<tr><td>2</td><td>Female</td><td>Rarely</td><td>1.575</td></tr>
+	<tr><td>3</td><td>Female</td><td>Sometimes</td><td>32.283</td></tr>
+	<tr><td>4</td><td>Female</td><td>Often</td><td>51.181</td></tr>
+	<tr><td>5</td><td>Female</td><td>All the time</td><td>13.386</td></tr>
+	<tr><td>6</td><td>Male</td><td>Never</td><td>3.226</td></tr>
+	<tr><td>7</td><td>Male</td><td>Rarely</td><td>6.452</td></tr>
+	<tr><td>8</td><td>Male</td><td>Sometimes</td><td>32.258</td></tr>
+	<tr><td>9</td><td>Male</td><td>Often</td><td>38.710</td></tr>
+	<tr><td>10</td><td>Male</td><td>All the time</td><td>19.355</td></tr>
+</table>
 
 __Wide Format:__
 
-<table style="text-align:center; margin:10px"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="padding:0 15px 0 15px">gender</td>
-<td style="padding:0 15px 0 15px">Never</td>
-<td style="padding:0 15px 0 15px">Rarely</td>
-<td style="padding:0 15px 0 15px">Sometimes</td>
-<td style="padding:0 15px 0 15px">Often</td>
-<td style="padding:0 15px 0 15px">All the time</td>
-</tr>
-<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="padding:0 15px 0 15px">Female</td>
-<td style="padding:0 15px 0 15px">1.575</td>
-<td style="padding:0 15px 0 15px">1.575</td>
-<td style="padding:0 15px 0 15px">32.283</td>
-<td style="padding:0 15px 0 15px">51.181</td>
-<td style="padding:0 15px 0 15px">13.386</td>
-</tr>
-<tr><td style="text-align:left">2</td><td>Male</td><td>3.226</td><td>6.452</td><td>32.258</td><td>38.710</td><td>19.355</td></tr>
-<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr></table>
+<table>
+	<tr>
+		<th></th>
+		<th>gender</th>
+		<th>Never</th>
+		<th>Rarely</th>
+		<th>Sometimes</th>
+		<th>Often</th>
+		<th>All the time</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>Female</td>
+		<td>1.575</td>
+		<td>1.575</td>
+		<td>32.283</td>
+		<td>51.181</td>
+		<td>13.386</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Male</td>
+		<td>3.226</td>
+		<td>6.452</td>
+		<td>32.258</td>
+		<td>38.710</td>
+		<td>19.355</td>
+	</tr>
+</table>
 
 In a long format, each column contains a unique variable (e.g. gender, percentage), whereas in a wide format, the percentage data is spread across five columns, where each column is a response type.
 

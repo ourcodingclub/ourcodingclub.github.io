@@ -79,67 +79,61 @@ class(monthly_milk$month_date)
 
 Data in the `Date` class in the conventional `YYYY-MM-DD` format are easier to use in `ggplot2` and various time series analysis packages. In the code above, `format =` tells `as.Date()` what form the original data is in. The symbols `%Y`, `%m`, `%d` etc. are codes understood by many programming languages to define date class data. Note that `as.Date()` requires a year, month, and day somewhere in the original data. So if the original data doesn't have one of those, you can add them manually using `paste()`. You will see an example of using `paste()` to add date information later on when we run some forecast models. Here is an expanded table of date codes, which you can use for reference:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-4w4l">Name</th>
-    <th class="tg-4w4l">Code</th>
-    <th class="tg-yw4l">Example</th>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Example</th>
   </tr>
   <tr>
-    <td class="tg-4w4l">Long year</td>
-    <td class="tg-4w4l">%Y</td>
-    <td class="tg-yw4l">2017</td>
+    <td>Long year</td>
+    <td>%Y</td>
+    <td>2017</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Short year</td>
-    <td class="tg-4w4l">%y</td>
-    <td class="tg-yw4l">17</td>
+    <td>Short year</td>
+    <td>%y</td>
+    <td>17</td>
   </tr>
  <tr>
-    <td class="tg-4w4l">Numeric month</td>
-    <td class="tg-4w4l">%m</td>
-    <td class="tg-yw4l">02</td>
+    <td>Numeric month</td>
+    <td>%m</td>
+    <td>02</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Abbreviated month</td>
-    <td class="tg-4w4l">%b</td>
-    <td class="tg-yw4l">Feb</td>
+    <td>Abbreviated month</td>
+    <td>%b</td>
+    <td>Feb</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Full month</td>
-    <td class="tg-4w4l">%B</td>
-    <td class="tg-yw4l">February</td>
+    <td>Full month</td>
+    <td>%B</td>
+    <td>February</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Day of the month</td>
-    <td class="tg-4w4l">%d</td>
-    <td class="tg-yw4l">25</td>
+    <td>Day of the month</td>
+    <td>%d</td>
+    <td>25</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Abbreviated weekday</td>
-    <td class="tg-4w4l">%a</td>
-    <td class="tg-yw4l">Sat</td>
+    <td>Abbreviated weekday</td>
+    <td>%a</td>
+    <td>Sat</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Full weekday</td>
-    <td class="tg-4w4l">%A</td>
-    <td class="tg-yw4l">Monday</td>
+    <td>Full weekday</td>
+    <td>%A</td>
+    <td>Monday</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Day of the week (1-7)</td>
-    <td class="tg-4w4l">%u</td>
-    <td class="tg-yw4l">6</td>
+    <td>Day of the week (1-7)</td>
+    <td>%u</td>
+    <td>6</td>
   </tr>
   <tr>
-    <td class="tg-4w4l">Day of the year</td>
-    <td class="tg-4w4l">%j</td>
-    <td class="tg-yw4l">56</td>
+    <td>Day of the year</td>
+    <td>%j</td>
+    <td>56</td>
   </tr>
 </table>
 
@@ -176,42 +170,36 @@ class(daily_milk$date_time_posix)
 
 Below is an expanded table of time codes which you can use for reference:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-4w4l">Name</th>
-    <th class="tg-4w4l">Code</th>
-    <th class="tg-yw4l">Example</th>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Example</th>
   </tr>
   <tr>
-    <th class="tg-4w4l">Hour (24 hour)</th>
-    <th class="tg-4w4l">%H</th>
-    <th class="tg-yw4l">18</th>
+    <td>Hour (24 hour)</td>
+    <td>%H</td>
+    <td>18</td>
   </tr>
   <tr>
-    <th class="tg-4w4l">Hour (12 hour)</th>
-    <th class="tg-4w4l">%I</th>
-    <th class="tg-yw4l">06</th>
+    <td>Hour (12 hour)</td>
+    <td>%I</td>
+    <td>06</td>
   </tr>
  <tr>
-    <th class="tg-4w4l">Minute</th>
-    <th class="tg-4w4l">%M</th>
-    <th class="tg-yw4l">30</th>
+    <td>Minute</td>
+    <td>%M</td>
+    <td>30</td>
   </tr>
  <tr>
-    <th class="tg-4w4l">AM/PM (only with %I)</th>
-    <th class="tg-4w4l">%p</th>
-    <th class="tg-yw4l">AM</th>
+    <td>AM/PM (only with %I)</td>
+    <td>%p</td>
+    <td>AM</td>
   </tr>
  <tr>
-    <th class="tg-4w4l">Second</th>
-    <th class="tg-4w4l">%S</th>
-    <th class="tg-yw4l">45</th>
+    <td>Second</td>
+    <td>%S</td>
+    <td>45</td>
   </tr>
 </table>
 

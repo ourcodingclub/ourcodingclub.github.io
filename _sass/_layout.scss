@@ -132,8 +132,7 @@ body {
 
 .content img {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 10px auto;
 	max-width: 70%;
 	max-height: 500px;
 }
@@ -254,7 +253,7 @@ body {
 // Carousels
 .owl-carousel-wrapper {
 	width: 60%;
-	margin: 0 auto;
+	margin: 10px auto;
 }
 
 .owl-carousel {
@@ -436,6 +435,42 @@ div.highlight:hover .copy-button:hover, div.highlight .copy-button:focus {
 .stream-container img {
 	display: inline-block;
 	width: 350px;
+}
+
+// Tables 
+
+table { 
+	border: 2px solid black;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid black;
+}
+
+table, th, td {
+	border-collapse: collapse;
+}
+
+th {
+	color: $white;
+	background-color: $headingColour;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+
+// Call to action
+.call-container {
+	background-color: $boxBackgroundColour;
+	text-align: center;
+	padding: 50px;
+	margin: 15px;
+}
+
+.call {
+	display: inline-block;
 }
 
 // * {

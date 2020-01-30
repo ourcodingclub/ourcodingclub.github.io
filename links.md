@@ -177,3 +177,5 @@ Below is a hand-picked and categorised list of resources that we used when learn
 		<td><a href="http://stackoverflow.com" target="_blank">stackoverflow.com</a></td>
 	</tr>
 </table>
+
+{% include call.html %}
