@@ -6,7 +6,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 
 ## Course overview
 
-Scientists in environmental fields increasingly need strong data manipulation, analysis, and visualisation skills, but are not always taught data science in their degrees. Our online course is made by ecologists, for ecologists, and focuses on giving you the skills you need for your studies or career. 
+__Scientists in environmental fields increasingly need strong data manipulation, analysis, and visualisation skills, but are not always taught data science in their degrees. Our online course is made by ecologists, for ecologists, and focuses on giving you the skills you need for your studies or career.__
 
 Depending on your chosen path, you will learn to use R to manipulate, graph and analyse ecological data, or build on your existing skills to create advanced data visualisations or master new analysis techniques such as mixed-effect modelling, ordination, etc. 
 
@@ -42,7 +42,7 @@ We have created three course streams catering to different programming interests
 
 2. Sign up
 
-We host everything on a GitHub platform and use open data from environmental organisations, so everything is free and openly accessible. We'll just ask you to create a username and password to access the course quizzes and challenge assessments, in order to track your progress.
+We host everything on the [GitHub platform](https://github.com) and use open data from environmental organisations, so everything is free and openly accessible. We'll just ask you to create a username and password to access the course quizzes and challenge assessments, in order to track your progress.
 
 3. Learn (and have fun!)
 
@@ -56,14 +56,21 @@ You will be able to choose from three case-study data challenges where you will 
 
 All done? We record all the individual tutorials and challenges you complete during the course. When you have completed everything you want, you can request and download your certificate.
 
-
 ## Our course streams
 
-The course currently includes three streams that cater to different interests and abilities. Please note that we offer a wider range of tutorials that are not yet part of the course but might be of interest.
-
-Here is an overview of the topics covered by our streams. You can click on the stream banners to learn more about each stream.
+The course currently includes three streams that cater to different interests and abilities. Please note that we offer [a wider range of tutorials]({{ site.baseurl }}/tutorials/) that are not yet part of the course but might be of interest.
 
 
-## Interested? Sign up to receive an alert when we launch
+Here is an overview of the topics covered by our streams. Again, you do not have to commit to a full, or a single stream. Some streams share contents, and you can always branch off if you want to follow up on a tutorial you liked!
 
-[Yes please](https://codingclub.shinyapps.io/pre-reg/)
+<div class="stream-container">
+	<a href="{{ site.baseurl }}/dl_course/stats-scratch/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream1.png"></a>
+	<a href="{{ site.baseurl }}/dl_course/wiz-viz/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream2.png"></a>
+	<a href="{{ site.baseurl }}/dl_course/mastering-modelling/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream3.png"></a>
+</div>
+
+
+![]({{ site.baseurl }}/assets/img/dl_course/streams_launch_white.png)
+
+{% capture link %}https://codingclub.shinyapps.io/pre-reg/{% endcapture %}
+{% include link-button.html url=link button="Sign up to receive an alert when we launch" %}
