@@ -34,16 +34,20 @@ setwd("PATH_TO_FOLDER")
 {: #why}
 
 ##### __Less clicking:__
-  - Most conventional GIS software use a Graphical User Interface (GUI) which makes them easier to fumble through when you don't know what you're doing, but point and click interfaces become very laborious when performing analyses for the _n_ th time or when you really know your way around the software. R uses a Command Line Interface, using text commands, so while there may be more of a learning curve to begin with, it's very efficient once you know what to do.
+
+Most conventional GIS software use a Graphical User Interface (GUI) which makes them easier to fumble through when you don't know what you're doing, but point and click interfaces become very laborious when performing analyses for the _n_ th time or when you really know your way around the software. R uses a Command Line Interface, using text commands, so while there may be more of a learning curve to begin with, it's very efficient once you know what to do.
 
 ##### __Reproducible analyses with new data:__
-  - Imagine you have a project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
+
+Imagine you have a project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
 
 ##### __It's free:__
-  - While ArcMap and SuperGIS cost money to use, R packages are free and probably always will be.
+
+While ArcMap and SuperGIS cost money to use, R packages are free and probably always will be.
 
 ##### __A range of GIS packages for different applications:__
-  - Using the R package system you can find the right GIS application for your project, and you can adapt and hack the packages already there to create something specific for your project.
+
+Using the R package system you can find the right GIS application for your project, and you can adapt and hack the packages already there to create something specific for your project.
 
 
 ## Downloading the relevant packages

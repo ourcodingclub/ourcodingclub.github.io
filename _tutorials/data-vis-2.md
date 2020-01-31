@@ -267,9 +267,7 @@ Another thing that we might sometimes want to change is the actual label of the 
 Let's cover some more of the `theme()` elements we've used in the examples above:
 
 - `legend.title` allows you to change the font size of the legend, or its formatting (e.g. bold). 
-
 - The `legend.position` can be defined with accepted positions such as `"bottom"`, but you can also do `legend.position = c(0.1, 0.8)`, which would bring the legend to the top left hand corner (corresponding to the x and y values on the graph). This is a neat trick in some cases, where you have lots of blank space within your plot itself and want to fine-tune the legend position.
-
 - Finally, we've used `legend.box.background = element_rect()` to create a light grey rectangle that surrounds the legend. If you don't want this, you can just remove that line of code. 
 
 To save a plot, we use the function `ggsave()` where you can specify the dimensions and resolution of your plot. You could also change the file ending with `.png` to `.pdf` to save your image as a PDF document. Note that this file will be saved into your working directory. (If you've forgotten where that is, you can find it by running the code `getwd()`.) 

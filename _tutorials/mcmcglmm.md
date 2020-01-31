@@ -36,14 +36,14 @@ I would also strongly recommend having a copy of the __[MCMCglmm course notes](h
 {: #metaanalysis}
 
 
-#### A meta-analysis is a statistical analysis of results from many individual studies on similar subjects. It provides a much more robust estimate than each individual study alone. It can also reveal patterns and trends across studies, as it allows them to be compared while controlling for sources of *non-independence* and *measurement error* inherent in individual studies.
+__A meta-analysis is a statistical analysis of results from many individual studies on similar subjects. It provides a much more robust estimate than each individual study alone. It can also reveal patterns and trends across studies, as it allows them to be compared while controlling for sources of *non-independence* and *measurement error* inherent in individual studies.__
 
 Comparing studies from different **locations** (e.g. latitude, elevation, hemisphere, climate zone), across **different species** (e.g. with different behaviours or life history traits) or **time periods** (e.g. when the study was done and how long it lasted) introduce sources of *non-independence* which need to be controlled for when estimating an average effect across all studies. 
 
 
 However, these sources of non-independence may be of interest to us; for example, perhaps in controlling for latitude, we also discover it explains a large proportion of the variance across studies in the response we are looking at. We can then say that latitude is a good predictor of this response. 
 
-#### As biologists, we are often looking for predictors (such as the locational differences, species, or time periods mentioned above) of how organisms respond to different treatments, or in environments etc. 
+__As biologists, we are often looking for predictors (such as the locational differences, species, or time periods mentioned above) of how organisms respond to different treatments, or in environments etc.__
 
 
 #### A meta-analysis is a great way to do this.
@@ -59,7 +59,7 @@ For now, let’s move on to the next step…
 {: #mcmcglmm}
 
 
-#### ````MCMCglmm```` fits _Generalised Linear Mixed-effects Models_ using a _Markov chain Monte Carlo_ approach under a _Bayesian statistical framework_. If some or all of those things make no sense to you, don’t worry – you can still use ````MCMCglmm```` without understanding all of this. 
+__`MCMCglmm` fits _Generalised Linear Mixed-effects Models_ using a _Markov chain Monte Carlo_ approach under a _Bayesian statistical framework_. If some or all of those things make no sense to you, don’t worry – you can still use `MCMCglmm` without understanding all of this.__
 
 Bayesian statistics sounds scary, but actually it’s more intuitive to understand (in my opinion) than frequentist statistics. 
 
@@ -86,7 +86,7 @@ Today we are going to focus on using ````MCMCglmm```` for __meta-analysis__. The
 {: #effects}
 
 
-#### In this section we are going to consider the difference between a fixed and random effects _meta-analysis_. This is different to considering the difference between fixed and random _effects_, although you may learn a little bit about the difference between these, too. As the ````glmm```` part of ````MCMCglmm```` would suggest, you can also use the package for _mixed-effects meta-analyses_.
+__In this section we are going to consider the difference between a fixed and random effects _meta-analysis_. This is different to considering the difference between fixed and random _effects_, although you may learn a little bit about the difference between these, too. As the ````glmm```` part of ````MCMCglmm```` would suggest, you can also use the package for _mixed-effects meta-analyses_.__
 
 There is no fundamental distinction between (what we call) fixed effects and random effects in a Bayesian analysis. The key is in understanding how each type of analysis deals with ___variance___. 
 
@@ -204,7 +204,7 @@ plot(randomtest$Sol)
 Here you can see the trace and density estimate for the intercept. The trace is like a time series of what your model did while it was running and can be used to assess mixing (or convergence), while the density is like a smoothed histogram of the estimates of the posterior distribution that the model produced for every iteration of the model.
 
 
-### To make sure your model has converged, the trace plot should look like a fuzzy caterpillar. It looks like the intercept has mixed well. 
+__To make sure your model has converged, the trace plot should look like a fuzzy caterpillar. It looks like the intercept has mixed well.__
 
 If you suspect too much autocorrelation there are a few things you can do.
 
@@ -239,7 +239,7 @@ You can find more information about this in Chapter 8 of the __[MCMCglmm course 
 {: #priors}
 
 
-#### The most difficult part of a Bayesian analysis to understand is how to fit __correct priors__. 
+__The most difficult part of a Bayesian analysis to understand is how to fit _correct priors_.__
 
 These are mathematical quantifications of our prior knowledge of what we think the mean and/or variance of a parameter might be. We fit a separate prior for each fixed and random effect, and for the residual.
 
@@ -276,7 +276,7 @@ __However, proceed with caution from this point on!__
 {: #parameter}
 
 
-#### Let’s run the model again, but this time we’ll use __parameter expanded priors__ for the random effects by including ````prior = prior1````. Each random effect is represented by a G, and the residual is represented by R. The parameter expansion refers to the fact that we have included a prior mean (````alpha.mu````) and (co)variance matrix (````alpha.V````) as well as ````V```` and ````nu````. For now, ````alpha.V```` is going to be 1000, but you can lean more about other variance structures in section 7 of this tutorial, and in the __[MCMCglmm course notes](https://cran.r-project.org/web/packages/MCMCglmm/vignettes/CourseNotes.pdf)__, too.
+Let’s run the model again, but this time we’ll use __parameter expanded priors__ for the random effects by including ````prior = prior1````. Each random effect is represented by a G, and the residual is represented by R. The parameter expansion refers to the fact that we have included a prior mean (````alpha.mu````) and (co)variance matrix (````alpha.V````) as well as ````V```` and ````nu````. For now, ````alpha.V```` is going to be 1000, but you can lean more about other variance structures in section 7 of this tutorial, and in the __[MCMCglmm course notes](https://cran.r-project.org/web/packages/MCMCglmm/vignettes/CourseNotes.pdf)__, too.
 
 
 ```r

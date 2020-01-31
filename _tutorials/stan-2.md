@@ -17,8 +17,7 @@ survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 6. [Run a model with a negative binomial distribution](#negbin)
 7. [Compare `rstanarm` and `brms`](#brms)
 
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
-
+__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 ## Introduction
 {: #model}
@@ -312,20 +311,12 @@ In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and
 
 ## Further resources
 
-[rstanarm vignette](https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf)
-
-[brms vignette](https://cran.r-project.org/web/packages/brms/brms.pdf)
-
-[How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich](https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html)
-
-[Stan website](http://mc-stan.org/)
-
-[Stan manual(v2.14)](https://github.com/stan-dev/stan/releases/download/v2.14.0/stan-reference-2.14.0.pdf)
-
-[Rstan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html)
-
-[STANCON 2017 Intro Course Materials](https://t.co/6d3omvBkrd)
-
-[Statistical Rethinking by R. McElreath](http://xcelab.net/rm/statistical-rethinking/)
-
-[Stan mailing list](https://groups.google.com/forum/#!forum/stan-users)
+* [rstanarm vignette](https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf)
+* [brms vignette](https://cran.r-project.org/web/packages/brms/brms.pdf)
+* [How to Use the rstanarm Package by Jonah Gabry and Ben Goodrich](https://cran.r-project.org/web/packages/rstanarm/vignettes/rstanarm.html)
+* [Stan website](http://mc-stan.org/)
+* [Stan manual(v2.14)](https://github.com/stan-dev/stan/releases/download/v2.14.0/stan-reference-2.14.0.pdf)
+* [Rstan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html)
+* [STANCON 2017 Intro Course Materials](https://t.co/6d3omvBkrd)
+* [Statistical Rethinking by R. McElreath](http://xcelab.net/rm/statistical-rethinking/)
+* [Stan mailing list](https://groups.google.com/forum/#!forum/stan-users)

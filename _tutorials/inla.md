@@ -40,7 +40,7 @@ _TWO DISCLAIMERS:_
 - Pawley and McArdle, 2018: https://www.biorxiv.org/content/biorxiv/early/2018/08/06/385526.full.pdf
 - Zuur et al., 2018: http://www.highstat.com/index.php/beginner-s-guide-to-regression-models-with-spatial-and-temporal-correlation
 
-## Basics of `INLA`
+### Basics of `INLA`
 
 `INLA` is an increasingly popular analysis package in R.
 

@@ -377,5 +377,5 @@ ggsave(forest_barplot, filename = "forest_barplot.png",
 
 __Now that we can see how much forest has been gained and lost in our protected areas of interest, we can go back to our original research question, how does forest change vary across protected areas, and we can see if we can spot any patterns - are there any types of protected areas that are more likely to loose forest?__
 
-### We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/tutorials)!
+We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/tutorials)!
 

@@ -20,16 +20,16 @@ survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 
 ### Steps:
 
-- [Subset, extract and modify data with R base operators](#base)
-- [What is tidy data, and how do we achieve it?](#tidy)
-- [Explore the most common and useful functions of `dplyr`](#dplyr)
+1. [Subset, extract and modify data with R base operators](#base)
+2. [What is tidy data, and how do we achieve it?](#tidy)
+3. [Explore the most common and useful functions of `dplyr`](#dplyr)
 	- [`rename()`](#rename)
 	- [`filter()`and `select()`](#filter)
 	- [`mutate()`](#mutate)
 	- [`group_by()`](#group_by)
 	- [`summarise()`](#summarise)
 	- [`join()`](#join)
-- [Challenge yourself!](#challenge)
+4. [Challenge yourself!](#challenge)
 
 Data come in all sorts of different shapes and formats, and what is useful or practical for one application is not necessarily so for another. R has specific requirements about the setup and the types of data that can be passed to functions, so one of the best skills in your coding toolbox is being able to play with your data like putty and give it any shape you need!
 
@@ -46,7 +46,7 @@ __Know all of this already?__ Fast forward to our [Efficient Data Manipulation t
 In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
 
-#### __Note : all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
+#### __Note: all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
 
 
 
@@ -59,7 +59,7 @@ In this tutorial, we will start by showing some ways to manipulate data using _b
 Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `EmpetrumElongation.csv` dataset that you have downloaded from the repository. 
 
 
-#### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__ 
+#### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hashtags `#` to comment and annotate your script).__ 
 
 This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
 

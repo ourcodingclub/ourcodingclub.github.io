@@ -17,7 +17,7 @@ survey_link: https://www.surveymonkey.co.uk/r/26V3WTJ
 
 In this tutorial, we will explore and analyse time series data in `R`. Time series analysis is a powerful technique that can be used to understand the various temporal patterns in our data by decomposing data into different cyclic trends. Time series analysis can also be used to predict how levels of a variable will change in the future, taking into account what has happened in the past. By completing this workshop, you will learn not only how to do some simple time series analysis, but also how to prepare temporal data so that `R` understands that the data points occur in a distinct sequence, which is an art in itself.
 
-### All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from [this github repository](https://github.com/ourcodingclub/CC-time-series). Before we start, clone and download the repo as a zipfile, then unzip it.
+__All the resources for this tutorial, including the data and some helpful cheatsheets can be downloaded from [this github repository](https://github.com/ourcodingclub/CC-time-series). Before we start, clone and download the repo as a zipfile, then unzip it.__
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-time-series) to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our [`git` and version control tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 

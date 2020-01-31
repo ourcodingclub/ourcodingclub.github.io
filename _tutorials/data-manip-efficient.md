@@ -319,15 +319,10 @@ paste(getwd(), '/', 'map-', .$Genus, '.png', sep = '')
 ```
 
 - `getwd()`: You are familiar with this call: try it in the console now! It writes the path to your working directory, i.e. the root folder where we want to save the plots.
-
 - '/': we want to add a slash after the directory folder and before writing the name of the plot
-
 - 'map-': a custom text bit that will be shared by all the plots. We're drawing maps after all!
-
 - '.$Genus': accesses the Genus name of the tree.plots object, so each plot will bear a different name according to the tree genus.
-
 - '.png': the file extension; we could also have chosen a pdf, jpg, etc.
-
 - 'sep = ''': we want all the previous bits to be pasted together with nothing separating them
 
 So, in the end, the whole string could read something like: 'C:/Coding_Club/map-Acer.png'.

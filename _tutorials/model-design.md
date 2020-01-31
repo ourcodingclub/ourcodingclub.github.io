@@ -263,18 +263,12 @@ Before we get back to our dataset that we are designing a model for, let's revis
 
 __Here are some questions to consider.__
 
-### What is the difference between a continuous and a categorical variable in a linear model?
-
-### How many variables can you have in a model?
-
-### Is it better to have one model with five variables or one model per variable? When do we choose variables?
-
-### What is a fixed effect? What is a random effect?
-
-### What is the most important result from a model output?
-
-### Why does it matter which type of models we use?
-
+* What is the difference between a continuous and a categorical variable in a linear model?
+* How many variables can you have in a model?
+* Is it better to have one model with five variables or one model per variable? When do we choose variables?
+* What is a fixed effect? What is a random effect?
+* What is the most important result from a model output?
+* Why does it matter which type of models we use?
 
 ## 7. General linear models
 {: #linear}
@@ -286,7 +280,7 @@ plant_m <- lm(Richness ~ I(Year-2007), data = toolik_plants)
 summary(plant_m)
 ```
 
-#### Assumptions made:
+__Assumptions made:__
 
 1. The data are normally distributed.
 2. The data points are independent of one another.
@@ -391,14 +385,14 @@ Again, with the random effect terms, we can see the random effects of interactio
 
 ![Effect size of random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
 
-#### Assumptions made:
+__Assumptions made:__
 
 1. The data are normally distributed.
 2. The data points are independent of one another.
 3. The relationship between the variables we are studying is actually linear.
 4. Plots represent the spatial replication and years represent the temporal replication in our data.
 
-#### Assumptions not accounted for:
+__Assumptions not accounted for:__
 
 1. We have not accounted for spatial autocorrelation in the data - whether more closely located plots are more likely to show similar responses than farther away plots.
 2. We have not accounted for temporal autocorrelation in the data - whether the influence of prior years of data are influencing the data in a given year.

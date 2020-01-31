@@ -38,6 +38,7 @@ library(dplyr)
 {: #section}
 
 ## Goals of ordination
+
 __Ordination is a collective term for multivariate techniques which summarize a multidimensional dataset in such a way that when it is projected onto a low dimensional space, any intrinsic pattern the data may possess becomes apparent upon visual inspection (Pielou, 1984).__ 
 
 In ecological terms: Ordination summarizes community data (such as species abundance data: samples by species) by producing a low-dimensional ordination space in which similar species and samples are plotted close together, and dissimilar species and samples are placed far apart.  Ideally and typically, dimensions of this low dimensional space will represent important and interpretable environmental gradients.

@@ -256,7 +256,6 @@ Finally, keep in mind that the name *random* doesn't have much to do with *mathe
 - [Is it a fixed or random effect?](https://dynamicecology.wordpress.com/2015/11/04/is-it-a-fixed-or-random-effect/) A useful way to think about fixed *vs*. random effects is in terms of partitioning the variation and estimating random effects with **partial pooling**. The description [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode) is the most accessible one I could find for now and you can find more opinions in the comments under the previous link too (search for *pooling* and *shrinkage* too if you are very keen).
 - [How many terms? On model complexity](https://dynamicecology.wordpress.com/2015/02/05/how-many-terms-in-your-model-before-statistical-machismo/)
 - [More on model complexity](https://dynamicecology.wordpress.com/2014/12/02/why-are-your-statistical-models-more-complex-these-days/)
-
 - Have a look at some of the fixed and random effects definitions gathered by Gelman in [this paper](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf) (you can also find them [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode/4702#4702) if you can't access the paper).
 {% endcapture %}
 {% include callout.html content=callout %}

@@ -24,9 +24,8 @@ __In this tutorial we will create a map showing the locations of vertebrate spec
 
 Here is an example map showing where the populations from the order Anseriformes were located, as well as how their populations have changed between 1950 and 2015. Looks like most of the populations have remained stable, with a slope around zero, three populations have increased and a few have decreased. Here, we have demonstrated how to do the analysis on the population level, with a focus on how all species within a given order are changing, but you can filter the dataset if there is a particular species you are interested in.
 
-![Map of Europe with Anseriforme population trends]({{ site.baseurl }}/assets/img/tutorials/popchange/anseriformes.png)
-
-Figure 1. _Anseriformes_ populations in Europe.
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/popchange/anseriformes.png{% endcapture %}
+{% include figure.html url=link caption="Figure 1. _Anseriformes_ populations in Europe." %}
 
 Open RStudio and make a new script by clicking on `File/New File/R Script`. Usually we open RStudio on half of our screen and the tutorial on the other half, as that way it's easy to copy code across and google errors if they arise.
 
@@ -160,8 +159,6 @@ ggsave(EU_pop, filename = "anseriformes.png", width = 10, height = 10)
 ```
 
 ![Map of Europe with Anseriforme population trends]({{ site.baseurl }}/assets/img/tutorials/popchange/anseriformes.png)
-
-Figure 1. _Anseriformes_ populations in Europe.
 
 Here we have created a map for _Anseriformes_, an order which includes many species of waterfowl, like the mallard and pochard. Curious to see how vertebrate populations across the whole LPI database have changed? You can check out our [tutorial on efficient ways to quantify population change]({{ site.baseurl }}/tutorials/seecc/index.html), where we compare how for-loops, `lapply()` functions and pipes compare when it comes to dealing with a lot of data.
 

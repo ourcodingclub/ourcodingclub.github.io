@@ -13,11 +13,9 @@ survey_link: https://www.surveymonkey.co.uk/r/VN5XKPR
 2. Learn the basics of Python
 3. Explore where you can go next on your Python journey
 
-----
 
 This tutorial is a whistle stop tour of Python, the aim is not to get you to be an expert by the end of it, but rather to lay the groundwork for you to start tackling your own Python challenges and to kick off your learning. After this tutorial I hope that you will understand the basics of python, know how and where you can write code, know where you can get more help when you are stuck and be enthused by the idea of learning more.
 
-----
 
 # Steps:
 

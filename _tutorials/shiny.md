@@ -411,7 +411,7 @@ For more information on the arguments that can be included in popular Shiny HTML
 ### Exporting a finished app
 {: #export}
 
-#### As a github repository
+#### As a Github repository
 
 It is easy to send a Shiny app to somebody else who also has RStudio. The easiest way is to send `app.R` alongside any data and other resources in a zip file to be unzipped by the recipient and run through R.
 

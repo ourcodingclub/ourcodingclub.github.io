@@ -59,7 +59,7 @@ library(rasterVis)
 
 __The `sp` package is central for spatial data analysis in R as it defines a set of classes to represent spatial data. Another important package for spatial analysis is the `raster` package.__
 
-#### A raster is a grid of equal size cells, or pixels in satellite images, and it is commonly used to represent spatially continuous data. The cells can have one or more values, or even no values for the variable of interest. In the trimmed multispectral image we will be using, each cell contains relfectance data for 12 spectral bands. 
+A raster is a grid of equal size cells, or pixels in satellite images, and it is commonly used to represent spatially continuous data. The cells can have one or more values, or even no values for the variable of interest. In the trimmed multispectral image we will be using, each cell contains relfectance data for 12 spectral bands. 
 
 The `raster` package has functions that allow the creation, reading, manipulation and saving of raster data. The package `rgdal` is used to read or save spatial data files and the package `raster` uses it behind the scenes.
 
@@ -430,7 +430,7 @@ dev.off()
 
 A simple classification like this one is only to give an idea of land cover types. In the above example, we could deduce that cluster 8, in green, is water as it covers the Loch. We can also spot patterns in the vegetation cover in both the NDVI and `kmeans` cluster plots. We could deduce that the areas with the highest NDVI ratio are likely to be forest cover.
 
-### Exercise: Using the NDVI, RGB and `kmeans` plot, can you deduce other land cover around the Loch Tay area?
+__Exercise: Using the NDVI, RGB and `kmeans` plot, can you deduce other land cover around the Loch Tay area?__
 
 ------------------------------------------------------------------------
 
@@ -442,4 +442,4 @@ A simple classification like this one is only to give an idea of land cover type
 - Explore raster manipulations by calculating and plotting the NDVI ratio of the pixels in our image.
 - Perform an unsupervised image classification using the kmeans algorithm to cluster the pixels in 10 clusters.
 
-### If you want to explore further, there are excellent resources availabe in [the Spatial Data Science with R by Robert J. Hijmans](http://rspatial.org/index.html).
+If you want to explore further, there are excellent resources availabe in [the Spatial Data Science with R by Robert J. Hijmans](http://rspatial.org/index.html).

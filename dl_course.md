@@ -37,24 +37,15 @@ Our course is designed to give you the data science skills you want and need. As
 ## How does the course work?
 
 1. Make up your own path
-
-We have created three course streams catering to different programming interests and abilities. You can decide to do a full stream, or handpick tutorials you want to do across different streams.
-
+	* We have created three course streams catering to different programming interests and abilities. You can decide to do a full stream, or handpick tutorials you want to do across different streams.
 2. Sign up
-
-We host everything on the [GitHub platform](https://github.com) and use open data from environmental organisations, so everything is free and openly accessible. We'll just ask you to create a username and password to access the course quizzes and challenge assessments, in order to track your progress.
-
+	* We host everything on the [GitHub platform](https://github.com) and use open data from environmental organisations, so everything is free and openly accessible. We'll just ask you to create a username and password to access the course quizzes and challenge assessments, in order to track your progress.
 3. Learn (and have fun!)
-
-Learn along our popular tutorials, updated and enriched with brand new content for the course! Each tutorial ends with a mini-challenge that will test your new skills (example solution provided), and a short quiz to record your successful completion of the tutorial.
-
+	* Learn along our popular tutorials, updated and enriched with brand new content for the course! Each tutorial ends with a mini-challenge that will test your new skills (example solution provided), and a short quiz to record your successful completion of the tutorial.
 4. Challenge yourself
-
-You will be able to choose from three case-study data challenges where you will get to creatively answer some questions about environmental issues, using real-life data and your new coding skills!
-
+	* You will be able to choose from three case-study data challenges where you will get to creatively answer some questions about environmental issues, using real-life data and your new coding skills!
 5. Get your certificate
-
-All done? We record all the individual tutorials and challenges you complete during the course. When you have completed everything you want, you can request and download your certificate.
+	* All done? We record all the individual tutorials and challenges you complete during the course. When you have completed everything you want, you can request and download your certificate.
 
 ## Our course streams
 

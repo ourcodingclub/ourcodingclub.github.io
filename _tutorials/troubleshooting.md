@@ -34,9 +34,7 @@ In addition to keeping a record of your code, scripts are also useful for detect
 Here we have compiled a list of mistakes we often make. Do you think we have forgotten an error message or problem you encounter often? Please let us know at ourcodingclub@gmail.com and we will add it to our list!
 
 - __Your version of `R` or `RStudio` is too old (or too new)__. If you haven't updated `R` or `RStudio` in a while, you might not be able to use some of the new packages coming out - when you try installing the package, you will get an error message saying that the package is not compatible with your version of `RStudio`. This problem is quickly fixed by a visit to the [RStudio website](https://www.rstudio.com/products/rstudio/) or the [R website](https://cran.r-project.org/), from there you can get the most recent version. On the flip side, when you get the newest RStudio, packages that haven't been updated recently might not work, or your old code breaks. This occurs less often and in general, code is ever evolving and getting better and better, so it's good to keep up to date with the latest versions of both RStudio and R packages.
-
 - __Syntax errors__. The easiest mistakes to make! You've forgotten a comma, opened a bracket, but haven't closed it, added an extra character by mistake or something else `R` doesn't understand. Those are usually picked up by R and you will get error messages reminding you to proof-read your code and fix it. If you can't pinpoint the correct way to code what you need, there are many [places to find help](#help). Following a [Coding Etiquette]({{ site.baseurl }}/tutorials/etiquette/index.html) can help you keep these errors to a minimum.
-
 - __You're trying to use a certain function and R doesn't recognise it__. First, it's worth checking whether you have installed and loaded the package the function comes from - running the code `?function-name`, e.g. `?filter` will display a help screen with information on how you use the function, as well as the package it comes from. 
 
 If you have loaded several similar packages from your library, they might contain different functions with the same name and your code might break if `R` is confused as to which one to use - running `package::function`, e.g. `dplyr::filter` will return information on the function in the console. Note that `R` will try to add `()` at the end of `dplyr::filter`. Delete them and run the code. 
@@ -44,9 +42,7 @@ If you have loaded several similar packages from your library, they might contai
 If you are reading up on `R` online, or copying and modifying code, you might be using a function from a new package without knowing. If it looks unfamiliar, googling its name with "r package" might reveal its origin. Sometimes packages depend on other packages to run. Often those get installed automatically when you install the package, but sometimes you get an error message asking you to install another package, easily solved by `install.packages("newpackage")`.
 
 - __Function breakdown and debugging__. If you are running self made functions or `for` loops, you might need to go through R's traceback/debug browser. You can find help on [RStudio's Debugging Support Page](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
-
 - __Missing objects__. Running tests and plotting data are often hindered by R failing to find the object it's meant to analyse. When that happens, first check that your object names are correct: spelling mistakes (capital and lower case letters, wrong letters, etc.) can all make objects unrecognisable. In this code `e <- length(unique(FloweringPlants$taxonName))` I asked R to calculate species richness of flowering plants, but forgot that I called the object `Flowering.Plants` not `FloweringPlants`. Remember that when you refer to a certain variable from an object using the dollar sign, the object comes first, the variable second:`Flowering.Plants$taxonGroup`, not `taxonGroup$Flowering.Plants`.
-
 - __Data not in the right format__. This might not necessarily result in an error message, but might lead to graphs/results that are wrong. For example, in [our first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html) we created a data frame and plotted species richness. If we had chosen a data matrix instead, that plot would have looked very different (and wrong). We use matrices when the variables are all the same type (all text, all numerical) and of the same length (same number of rows). Data frames are for when we have multiple variables of different types and vectors are for a series of numbers of the same type. If your results/plots make you feel suspicious, it's good to go back to your data and check: did it import right into R, and is it in the right format? You can do this using `head()` for a preview, `str()` to check the class of each variable, and `summary()`.
 
 ![Incorrect stacked bar chart]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/wrong.png)
@@ -54,16 +50,14 @@ If you are reading up on `R` online, or copying and modifying code, you might be
 Figure 1. An unfortunate looking barplot! The data were chosen to be a data matrix, but, because in matrices all variables are of the same type, R expects `taxa_f` - the names of the different taxa - to have a numerical value, and lumps all the species richness values together in the second bar. A data frame was definitely a better choice!
 
 - __Wrong data distribution used in models__. There are several reasons why models won't converge, including the use of inappropriate distribution type. Usually we choose between normal (gaussian), binomial, Poisson, or Quasipoisson distributions, which we will learn more about in [our workhops on modelling]({{ site.baseurl }}/tutorials/modelling/index.html).
-
 - __R crashed!__ If you've overloaded `R`, it can make a dramatic exit (bomb image and all) or sometimes it stops responding and you have to terminate the session. That's why it's very important to save your scripts often, but it's better to save them as new files, e.g. `Edi_biodiv_16thNov.R`, instead of overwriting the same file. That way if you want to revert back to old code or use some part of it, it's easy to find it. This is the most basic type of version control. We can learn more about version control in [our `git` tutorial]({{ site.baseurl }}/git/index.html)
 
 ![Aborted R Session error message]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/bomb.png)
 
 - __Aaaah! I enlarged my plot, and now it's full screen and I can't get back__! If you click on the little magnifying glass in the Plots window, it opens your plot in a new window that you can resize. Convenient! Less convenient is when you accidentally drag the window to the top of your screen and it goes full screen, blocking everything else. This is not an issue anymore with newer versions of R Studio, but if it ever happens, you can escape using the _backspace_ key on your keyboard - and hopefully you don't lose data in the process.
-
 - __I am stuck in a loop of pluses__! If the numbers of opening and closing brackets don't match up, `R` thinks there is more code coming. That is why, in the console, it is prompting you to add more code: every time you press enter, a new + appears. Press _Escape_ on your keyboard to get back to the normal `>` prompt in the console and check your code to find your error.
 
-![RStudio console prompt changed to "plus" symbols]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/pluses.png)
+![RStudio console prompt changed to "plus" syrbols]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/pluses.png)
 
 - __The cursor in the script file changed from `|` to `_` and now text gets overwritten when I type__. This happens when you accidentally press _Insert_ on your keyboard and as a result when you add new text, it gets written over. Press _Insert_ again to go back to normal.
 
@@ -113,12 +107,9 @@ Practice truly is the best way to learn how to avoid errors in `R` - to get you 
 
 ### Tutorial outcomes:
 
-#### 1. You know how `R` reports errors, both in script files and in the console
-
-#### 2. You can solve common mistakes in `R`
-
-#### 3. If you can't figure out a solution yourself, you know where to find help
-
+1. You know how `R` reports errors, both in script files and in the console
+2. You can solve common mistakes in `R`
+3. If you can't figure out a solution yourself, you know where to find help
 
 Next up. we have a tutorial on [Coding Etiquette]({{ site.baseurl }}/tutorials/etiquette/index.html)! Developing code-writing routines and sticking to defined conventions is a good way to ensure uniform, mistake-free code that runs smoothly!
 

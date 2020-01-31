@@ -235,13 +235,13 @@ plot <- ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
 
 Also, remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `plot` after you've created the "plot" object. 
 
-#### __Code chunks__
+#### Code chunks
 
 If your code is many, many lines (as it usually is!), it would be easier for you and everyone who might need to read and use it, to split it into different sections. To do that, add in four or more dashes after your comments - you will see a little arrow appear next to that line of code and you will be able to collapse and expand the code chunk based on your needs.
 
 __Organise your chunks in a logical order, so that your code flows nicely.__
 
-#### __Commenting guidelines__
+#### Commenting guidelines
 
 __As an example of a lab's coding etiquette, you can check out <a href="https://teamshrub.wordpress.com/">Team Shrub</a>'s <a href="https://github.com/ourcodingclub/TeamShrub-practice/blob/master/TeamShrub_Coding_Etiquette.Rmd">coding etiquette here.</a>__
 
@@ -286,7 +286,7 @@ __The data and instructions are available from [this repository](https://github.
 
 ### Challenges & collaborative coding
 
-#### Open the `Instructions.R` file and follow along - if you get stuck you can check out the `Answers.R` file. The file includes several challenges - split in small teams with each team tackling one challenge - once a team completes a challenge, they can commit, pull and push!
+Open the `Instructions.R` file and follow along - if you get stuck you can check out the `Answers.R` file. The file includes several challenges - split in small teams with each team tackling one challenge - once a team completes a challenge, they can commit, pull and push!
 
 __Notice that the `Instructions.R` file has different sections - you can click on `Edit/Folding/Collapse all` to see only heading titles and you can enable the outline feature as well to navigate easily to certain sections. Please run all code before the start of the challenges and then only work on your challenge, ignoring the rest!__
 
