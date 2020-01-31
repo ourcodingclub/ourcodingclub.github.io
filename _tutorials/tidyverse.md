@@ -15,7 +15,7 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 3. [Use pipes to make figures with large datasets](#pipes)
 4. [Download and map data from large datasets](#mapping)
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/bes_qe.png)
+![BES Quantitative Ecology Group logo]({{ site.baseurl }}/assets/img/tutorials/tidyverse/bes_qe.png)
 
 ## This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. [Check out the QE SIG website for more info](https://bes-qsig.github.io)!
 
@@ -33,7 +33,7 @@ R Markdown allows you to create documents that serve as a neat record of your an
 
 R Markdown uses [markdown syntax](http://www.markdowntutorial.com). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/md_script.png)
+![RMarkdown compile screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse/md_script.png)
 
 ## Download R Markdown
 
@@ -67,7 +67,7 @@ By default, the `title`, `author`, `date` and `output` format are printed at the
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/Knit_HTML_Screenshot.jpg)
+![RStudio Knit screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse/Knit_HTML_Screenshot.jpg)
 
  Not only does a preview appear in the `Viewer` window in RStudio, but it also saves a `.html` file to the same folder where you saved your `.Rmd` file.
 
@@ -157,81 +157,75 @@ __If you are keen, you can complete the rest of the workshop using an 'R Markdow
 
 You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/run_sel.png)
+![RStudio run current chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse/run_sel.png)
 
 ### Summary of code chunk instructions
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l"><b>Rule</b></th>
-    <th class="tg-yw4l"><b>Example</b><br>(default)</th>
-    <th class="tg-yw4l"><b>Function</b></th>
+    <th>Rule</th>
+    <th>Example<br>(default)</th>
+    <th>Function</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">eval</td>
-    <td class="tg-yw4l">eval=TRUE</td>
-    <td class="tg-yw4l">Is the code run and the results included in the output?</td>
+    <td>eval</td>
+    <td>eval=TRUE</td>
+    <td>Is the code run and the results included in the output?</td>
   </tr>
-    <tr>
-    <td class="tg-yw4l">include</td>
-    <td class="tg-yw4l">include=TRUE</td>
-    <td class="tg-yw4l">Are the code and the results included in the output?</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">echo</td>
-    <td class="tg-yw4l">echo=TRUE</td>
-    <td class="tg-yw4l">Is the code displayed alongside the results?</td>
+    <tr
+    <td>include</td>
+    <td>include=TRUE</td>
+    <td>Are the code and the results included in the output?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">warning</td>
-    <td class="tg-yw4l">warning=TRUE</td>
-    <td class="tg-yw4l">Are warning messages displayed?</td>
+    <td>echo</td>
+    <td>echo=TRUE</td>
+    <td>Is the code displayed alongside the results?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">error</td>
-    <td class="tg-yw4l">error=FALSE</td>
-    <td class="tg-yw4l">Are error messages displayed?</td>
+    <td>warning</td>
+    <td>warning=TRUE</td>
+    <td>Are warning messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">message</td>
-    <td class="tg-yw4l">message=TRUE</td>
-    <td class="tg-yw4l">Are messages displayed?</td>
+    <td>error</td>
+    <td>error=FALSE</td>
+    <td>Are error messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">tidy</td>
-    <td class="tg-yw4l">tidy=FALSE</td>
-    <td class="tg-yw4l">Is the code reformatted to make it look “tidy”?</td>
+    <td>message</td>
+    <td>message=TRUE</td>
+    <td>Are messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">results</td>
-    <td class="tg-yw4l">results="markup"</td>
-    <td class="tg-yw4l"><b> How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
+    <td>tidy</td>
+    <td>tidy=FALSE</td>
+    <td>Is the code reformatted to make it look “tidy”?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">cache</td>
-    <td class="tg-yw4l">cache=FALSE</td>
-    <td class="tg-yw4l">Are the results cached for future renders?</td>
+    <td>results</td>
+    <td>results="markup"</td>
+    <td><b> How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">comment</td>
-    <td class="tg-yw4l">comment="##"</td>
-    <td class="tg-yw4l">What character are comments prefaced with?</td>
+    <td>cache</td>
+    <td>cache=FALSE</td>
+    <td>Are the results cached for future renders?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.width, fig.height</td>
-    <td class="tg-yw4l">fig.width=7</td>
-    <td class="tg-yw4l">What width/height (in inches) are the plots?</td>
+    <td>comment</td>
+    <td>comment="##"</td>
+    <td>What character are comments prefaced with?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.align</td>
-    <td class="tg-yw4l">fig.align="left"</td>
-    <td class="tg-yw4l">"left" "right" "center"</td>
+    <td>fig.width, fig.height</td>
+    <td>fig.width=7</td>
+    <td>What width/height (in inches) are the plots?</td>
+  </tr>
+  <tr>
+    <td>fig.align</td>
+    <td>fig.align="left"</td>
+    <td>"left" "right" "center"</td>
   </tr>
 </table>
 
@@ -349,7 +343,7 @@ load("LPDdata_Feb2016.RData")
 head(LPDdata_Feb2016)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/wide.png)
+![Wide format table example]({{ site.baseurl }}/assets/img/tutorials/tidyverse/wide.png)
 
 At the moment, each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years.
 
@@ -386,7 +380,7 @@ LPD_long$biome <- gsub("/", "", LPD_long$biome, fixed = TRUE)
 head(LPD_long)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/long.png)
+![Long format example table]({{ site.baseurl }}/assets/img/tutorials/tidyverse/long.png)
 
 Now that our dataset is *tidy* we can get it ready for our analysis. We want to only use populations that have more than 5 years of data to make sure our analysis has enough data to capture population change. We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different - imagine tiny fish whose abundance is in the millions, and large carnivores whose abundance is much smaller. Scaling also normalises the data, as later on we will be using linear models assuming a normal distribution. To do all of this in one go, we can use pipes.
 
@@ -501,7 +495,7 @@ forest.panel <- grid.arrange(forest.hist, duration.forests, ncol = 2)
 ggsave(forest.panel, file = "forest_panel.png", height = 5, width = 10)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/forest_panel.png)
+![Panelled plot of population trends]({{ site.baseurl }}/assets/img/tutorials/tidyverse/forest_panel.png)
 
 We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 1785 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
@@ -561,7 +555,7 @@ __Now we can visualise the outputs of all our models and see how they vary based
 ggsave(density.slopes, filename = "slopes_duration.png", height = 6, width = 6)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/slopes_duration.png)
+![scatterplot duration vs. population trend with marginal density plots]({{ site.baseurl }}/assets/img/tutorials/tidyverse/slopes_duration.png)
 
 
 ### PART 2: Using pipes to make figures with large datasets
@@ -613,7 +607,7 @@ A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not N
 
 If you go check out your folder now, you should see four histograms, one per taxa:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/mamm.png)
+![Histogram of population change]({{ site.baseurl }}/assets/img/tutorials/tidyverse/mamm.png)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -756,7 +750,7 @@ We are working with thousands of records, so depending on your computer, making 
                size = 2, colour = "darkgreen"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/deer_map.png)
+![Global map of deer populations]({{ site.baseurl }}/assets/img/tutorials/tidyverse/deer_map.png)
 
 The map already looks fine, but we can customise it further to add more information. For example, we can add labels for the locations of some of the monitored populations and we can add plots of population change next to our map.
 
@@ -938,7 +932,7 @@ deer.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(1.2, 0.8))
 ggsave(deer.panel, filename = "deer_panel2.png", height = 10, width = 15)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse/deer_panel2.png)
+![Panelled deer population trends and map]({{ site.baseurl }}/assets/img/tutorials/tidyverse/deer_panel2.png)
 
 ## Challenges
 

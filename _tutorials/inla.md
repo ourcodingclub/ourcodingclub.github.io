@@ -157,7 +157,7 @@ THEME <- theme(axis.text.x = element_text(size = 12,colour = "black"),
 
 Recall that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `samp_locations` after you've created the "samp_locations" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/TrapLocations.png)
+![Grid map of point locations in space]({{ site.baseurl }}/assets/img/tutorials/inla/TrapLocations.png)
 
 How often are different individuals trapped on different grids?
 
@@ -217,7 +217,7 @@ This shows a load of significant effects: months, sex, treatment. Looks promisin
 
 __NB: There are no P values in `INLA`. Importance or significance of variables can be deduced by examining the overlap of their 2.5% and 97.5% posterior estimates with zero.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/INLA1.png)
+![Posterior estimates interval plot]({{ site.baseurl }}/assets/img/tutorials/inla/INLA1.png)
 
 It's likely that this model is overloaded with explanatory variables. Let's carry out model selection to remove the covariates that are unimportant.
 
@@ -279,7 +279,7 @@ The setup so far has involved using quite simple model formulae. The next step i
 
 `INLA` is computationally efficient because it uses a SPDE (Stochastic Partial Differentiation Equation) to estimate the spatial autocorrelation of the data. This involves using a "mesh" of discrete sampling locations which are interpolated to estimate a continuous process in space (see very helpful figure).
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/INLADiagram.png)
+![3D mesh visualisation]({{ site.baseurl }}/assets/img/tutorials/inla/INLADiagram.png)
 
 So, you create a mesh using sampling locations and/or the borders of your study system.
 
@@ -306,14 +306,13 @@ plot(MeshB)
 plot(MeshC)
 
 points(Locations, col = "red", pch = 2)
-
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshA.jpg)
+![Mesh A plot]({{ site.baseurl }}/assets/img/tutorials/inla/MeshA.jpg)
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshB.jpg)
+![Mesh B plot]({{ site.baseurl }}/assets/img/tutorials/inla/MeshB.jpg)
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/MeshC.jpg)
+![Mesh C plot]({{ site.baseurl }}/assets/img/tutorials/inla/MeshC.jpg)
 
 There are several important aspects of a mesh. The triangle size (determined using a combination of max.edge and cutoff) determines how precisely the equations will be tailored by the data. Using smaller triangles increases precision but also exponentially increases computing power. Generally, the mesh function automatically creates a mesh like mesh A, where closer-together sampling locations produce smaller triangles. The sampling locations in this dataset are so evenly spaced that I had to jitter them to show this in mesh A. When exploring/setting up preliminary analyses, use a mesh like mesh B. for analyses to be reported in a paper, use a mesh like mesh C. Be careful of edges, and try to allow some space around your sampling area for INLA to estimate. The edge triangles can be bigger to reduce computing power.
 
@@ -467,7 +466,7 @@ ggField(IM3, Mesh, Groups = 1) +
 # ignore the Groups part of the function for now. That'll come later.
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Field1.png)
+![Spatial field map]({{ site.baseurl }}/assets/img/tutorials/inla/Field1.png)
 
 At what range does autocorrelation fade in space? INLA models with a large kappa (inverse range) parameter change very quickly in space. Those with a large range and small kappa parameter have much longer, slower graidents.
 
@@ -484,7 +483,7 @@ Maxrange = 40
 
 INLARange(list(IM3), maxrange = Maxrange)
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Range1.png)
+![Spatial autocorrelation plot]({{ site.baseurl }}/assets/img/tutorials/inla/Range1.png)
 
 However, being able to visualise spatial patterns does not necessarily mean that spatial autocorrelation is affecting the model substantially, and range does not correspond to the importance of autocorrelation! In order to investigate that, we have to look at model fit. How does the DIC of these models compare?
 
@@ -501,7 +500,7 @@ This is quite hard to visualise, so: another function in the package!
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC1.png)
+![DIC comparison plot]({{ site.baseurl }}/assets/img/tutorials/inla/DIC1.png)
 
 Seems like spatial autocorrelation doesn't affect these data the way we've coded it! Whoever carried out this study could keep going as they were and not worry any more about spatial autocorrelation. __Except we had some expectations that there might be other varieties of spatial autocorrelation at work here.__
 
@@ -575,12 +574,12 @@ ggField(IM4, Mesh, Groups = NGroups) + # Notice the groups argument, using the n
   facet_wrap( ~ Group, labeller = labeller(Group = Labels), ncol = 3) # Doing this manually changes the facet labels
   
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Field2.png)
+![Facetted spatial field map by month]({{ site.baseurl }}/assets/img/tutorials/inla/Field2.png)
 
 ```r
 INLARange(SpatialHostList[3:4], maxrange = Maxrange, mesh = Mesh, ModelNames = c("Full", "Monthly"))
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Range2.png)
+![Comparison of spatial autocorrelation between models]({{ site.baseurl }}/assets/img/tutorials/inla/Range2.png)
 
 
 ## 6. Learn about spatiotemporal analyses
@@ -615,20 +614,20 @@ NB: with Exchangeable, all fields are correlated to the same extent. If we used 
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC3.png)
+![DIC comparison plot]({{ site.baseurl }}/assets/img/tutorials/inla/DIC3.png)
 
 ```r
 ggField(IM5, Mesh, Groups = NGroups) + # Notice the groups argument, using the number of unique months.
   scale_fill_brewer(palette = "Greens") 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Field3.png)
+![Facetted spatial field map by month]({{ site.baseurl }}/assets/img/tutorials/inla/Field3.png)
 
 ```r
 INLARange(SpatialHostList[3:5], maxrange = Maxrange, ModelNames = c("Full", "Monthly", "Monthly2"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Range3.png)
+![Spatial autocorrelation plot model comparison]({{ site.baseurl }}/assets/img/tutorials/inla/Range3.png)
 
 
 ### Within-grid model
@@ -695,7 +694,7 @@ __Has this fit the data better?__
 INLADICFig(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/DIC4.png)
+![DIC comparison plot]({{ site.baseurl }}/assets/img/tutorials/inla/DIC4.png)
 
 Nope!
 
@@ -710,7 +709,7 @@ ggField(I6, Mesh2, Groups = NGroup2)  +
   ggsave("Fields6.png", units = "mm", width = 120, height = 100, dpi = 300)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Fields6.png)
+![Facetted spatial field map by grid type]({{ site.baseurl }}/assets/img/tutorials/inla/Fields6.png)
 
 But the fields look cool!
 
@@ -722,15 +721,13 @@ The best-fitting model is SPDE 3 (model 5). This features different spatial fiel
 Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3", "GridSPDE"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/inla/FinalEffects.png)
+![Interval plot of effect sizes with all models]({{ site.baseurl }}/assets/img/tutorials/inla/FinalEffects.png)
 
 
 # Added extras 
 
 1. Adding interactions: You can't have colons in the column names of the X matrix. Replace them with "_" using gsub or similar.
-
 2. You can add a boundary to your mesh using INLA to better represent your study system. Here's an example with the Isle of Rum system I work on, portraying the coastline:
-
-![]({{ site.baseurl }}/assets/img/tutorials/inla/Rum.png)
-
 3. You can also remove areas of the mesh where e.g. your organism can't live, using the barrier functions.
+
+![Mesh boundary plot]({{ site.baseurl }}/assets/img/tutorials/inla/Rum.png)

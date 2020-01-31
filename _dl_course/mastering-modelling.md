@@ -36,7 +36,7 @@ You can track your progression and access the course quizzes in our course porta
 {% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
 {% include link-button.html url=link button="Launch Test Centre" %}
 
-![]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
+![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
 ## Challenge yourself
 

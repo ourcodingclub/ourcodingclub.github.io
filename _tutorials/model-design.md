@@ -209,7 +209,7 @@ To explore the data further, we can make a histogram of species richness.
 
 Note that putting your entire `ggplot` code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the `hist` object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/richness_hist.png)
+![Richness histogram]({{ site.baseurl }}/assets/img/tutorials/model-design/richness_hist.png)
 
 __There are some other things we should think about.  There are different types of numeric data here.  For example, the years are whole numbers: we can't have the year 2000.5.__
 
@@ -221,7 +221,7 @@ __The plant cover can be any value that is positive, it is therefore bounded at 
     theme_classic())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/cover_hist.png)
+![Relative cover histogram]({{ site.baseurl }}/assets/img/tutorials/model-design/cover_hist.png)
 
 __The plant cover data are skewed to the left, i.e., most of the records in the `Relative.Cover` column have small values. These distributions and characteristics of the data need to be taken into account when we design our model.__
 
@@ -365,7 +365,7 @@ save_plot(filename = "model_fe.png",
 
 Note how when we visualise our random effects, three different plots come up (use the arrow buttons in the "plots" window to scroll through the plots). The first two show the interaction effects. Here, we are only interested in the plot that shows us the random effects of site, i.e. the figure we see below:
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
+![Effect size of random effect of site]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
 
 ```r
 plant_m_temp <- lmer(Richness ~ Mean.Temp + (1|Site/Block/Plot) + (1|Year),
@@ -389,7 +389,7 @@ save_plot(filename = "model_temp_fe.png",
 
 Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
+![Effect size of random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
 
 #### Assumptions made:
 
@@ -443,7 +443,7 @@ save_plot(filename = "model_plant_fe.png",
           height = 14, width = 9)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
+![Effect size of mean temp.]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
 
 To get a better idea of what the random slopes and intercepts are doing, we can visualise your model predictions. We will use the `ggeffects` package to calculate model predictions and plot them. First, we calculate the overall predictions for the relationship between species richness and temperature. Then, we calculate the predictions for each plot, thus visualising the among-plot variation. Note that the second graph has both freely varying slopes and intercepts (i.e., they're different for each plot).
 
@@ -457,7 +457,7 @@ save_plot(filename = "model_temp_richness_rs_ri.png",
           height = 9, width = 9)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness_rs_ri.png)
+![Random slope model predicted values by plot]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness_rs_ri.png)
 
 #### An important note about honest graphs!
 
@@ -498,7 +498,7 @@ ggsave(pred_plot2, filename = "ri_rs_predictions.png",
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions.png)
+![ggplot2 random slope model predicted values]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions.png)
 
 __Just for the sake of really seeing the random intercepts and random slopes, here is a zoomed in version), but note that when preparing graphs for reports or publications, your axes should start at zero to properly visualise the magnitude of the shown relationship.__
 
@@ -511,7 +511,7 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
        height = 5, width = 5)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions_zoom.png)
+![ggplot2 random slope model predicted values]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions_zoom.png)
 
 
 ## 10. Hierarchical models using `MCMCglmm`
@@ -534,7 +534,7 @@ plant_mcmc <- MCMCglmm(Richness ~ I(Year - 2007), random = ~Site,
 
 But we have a different problem: the model doesn't converge.
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_error.png)
+![RStudio console model convergence error]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_error.png)
 
 The `MCMC_dummy` warning message is just referring to the fact that the data, `toolik_plants`, has the characteristics of a `tibble`, a data format for objects that come out of a `dplyr` pipe. So that's not something to worry about now, the real problem is that the model can't converge when `Site` is a random effect. We might not have enough sites or enough variation in the data.
 
@@ -551,7 +551,7 @@ The model has ran, we have seen the many iterations roll down the screen, but wh
 summary(plant_mcmc)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_results.png)
+![RStudio console output model summary]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_results.png)
 
 The posterior mean (i.e., the slope) for the `Year` term is `-0.07` (remember that this is on the logarithmic scale, because we have used a Poisson distribution). So in general, based on this model, species richness has declined over time.
 
@@ -562,7 +562,7 @@ plot(plant_mcmc$VCV)
 plot(plant_mcmc$Sol)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/bad_traces.png)
+![Panel of model outputs and posterior density distributions]({{ site.baseurl }}/assets/img/tutorials/model-design/bad_traces.png)
 
 __Let's see what the `MCMCglmm` models are like when we estimate changes in the cover of one species - _Betula nana_, dwarf birch. We can also use a `Poisson` distribution here, as we can think about plant cover as proportion data, e.g., _Betula nana_ cover say 42% of our sample plot. There might be other suitable distributions like a beta binomial distribution, which we will explore in the sequel to this tutorial, coming to you soon!__
 
@@ -601,7 +601,7 @@ MCMCplot(betula_m$VCV)
 
 `Sol` refers to the fixed effects and `VCV` to the random effects, so we can see the effect sizes of the different variables we have added to our models. If the credible intervals overlap zero, then those effects are not significant, so we can see here that _Betula nana_ cover hasn't changed. `units` refers to the residual variance.
 
-![]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_vis2.png)
+![Parameter estimate interval plot]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_vis2.png)
 
 #### Conclusions
 

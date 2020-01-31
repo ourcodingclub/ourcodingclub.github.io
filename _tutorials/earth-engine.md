@@ -50,7 +50,7 @@ For example, you can classify different land cover types, you can calculate and 
 
 _Take a moment to familiarise yourself with the layout of the Earth Engine editor - like when first starting to learn a new language, it can seem like a lot to take in at once! With your blank script, have a go at exploring the different tabs. Notice how if you draw polygons or drop points, they will appear in your script. You can go to the `Inspector` tab, click on a place in the map, and see what information is available for it. Here is an outline of what most of the tabs do:_
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/gee_layout.png)
+![Google Earth Engine webUI layout annotated]({{ site.baseurl }}/assets/img/tutorials/earth-engine/gee_layout.png)
 
 
 ## 4. Learn the basic principles of JavaScript
@@ -95,13 +95,13 @@ __How has forest cover changed in different national parks around the world?__
 
 To import the protected area dataset (polygons of the protected areas around the world from the World Database of Protected Areas), type `protected area` in the search tab and select the polygon version of the database (the other one is just points, i.e. the coordinates of one point within the protected areas, not their outline).
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/gee_import.png)
+![Earth Engine import data screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/gee_import.png)
 
 __Select `Import`.__
 
 Your imported dataset appears at the top of the script - it's currently called `table` which is not particularly informative, so you can rename that something else, e.g., `parks`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/new_script.png)
+![Earth Engine new script screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/new_script.png)
 
 __Remember to save your script and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
 
@@ -117,9 +117,9 @@ Map.addLayer(parks);
 
 __Go to the `Inspector` tab, click on a point somewhere on the map and check out the `features` of that point - the name of the protected area, its area, when it was established, etc.__
 
-#### Move around the world, find a national park and "inspect" it - can you find the name, area, etc. - all this information is under the `Inspector` tab.
+Move around the world, find a national park and "inspect" it - can you find the name, area, etc. - all this information is under the `Inspector` tab.
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/map_inspect.png)
+![Earth Engine Inspector layout screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/map_inspect.png)
 
 ### Import and explore a dataset in the GEE - forest cover change
 
@@ -127,7 +127,7 @@ Similarly to how you imported the protected area dataset, go to the search tab, 
 
 Take a look at the different types of information held within this dataset - that will help you familiarise yourself with what to expect from our analyses later on.
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/hansen_data.png)
+![Earth Engine data product information screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/hansen_data.png)
 
 __Call the object `gfc`, or whatever else you wish, but remember that if you call it something else, you have to change `gfc` to your new name in all the code coming up! Next up, we will again map our dataset.__
 
@@ -136,7 +136,7 @@ __Call the object `gfc`, or whatever else you wish, but remember that if you cal
 Map.addLayer(gfc);
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/map_hansen.png)
+![Earth Engine map output screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/map_hansen.png)
 
 Currently, we just have a black and red map - black for the places where there are no forests, and red from the places that do have forest cover. This is not terribly informative and over the course of the tutorial we will work on making this map better!
 
@@ -209,15 +209,15 @@ Map.addLayer(gain.updateMask(gain),
 
 Remember to click on `Run` so that you see your newly plotted maps. The forest layers might be easier to see if you either turn off the first two layers you plotted (the protected areas and the generic GFC layer), or you can keep the protected area layer on, but reduce the opacity by dragging the bar below that layer.
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/hansen_trio.png)
+![Maps example]({{ site.baseurl }}/assets/img/tutorials/earth-engine/hansen_trio.png)
 
 You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellow. You can find examples of those online, for example [this website](https://htmlcolorcodes.com).
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/colours_hex.png)
+![Hex colour picker screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/colours_hex.png)
 
 _You can also switch between map view and satellite view. If you zoom in enough and go to satellite view, you can actually start spotting some patterns, like forest loss along roads in the Amazon._
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/amazon_forest.png)
+![Amazon forest deforestation map]({{ site.baseurl }}/assets/img/tutorials/earth-engine/amazon_forest.png)
 
 ## 7. Calculate total forest cover gain and loss in specific locations
 {: #calculate}
@@ -293,7 +293,7 @@ Export.table.toDrive({
   description: 'NP_forest_gain'});
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/drive.png)
+![Save to Drive screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/drive.png)
 
 _Go check out your files in your Google Drive. Scroll all the way right to see the `sum` column, which shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
 
@@ -373,8 +373,9 @@ ggsave(forest_barplot, filename = "forest_barplot.png",
        height = 5, width = 7)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/earth-engine/forest_barplot.png)
+![Forest gain and loss bar plots]({{ site.baseurl }}/assets/img/tutorials/earth-engine/forest_barplot.png)
 
 __Now that we can see how much forest has been gained and lost in our protected areas of interest, we can go back to our original research question, how does forest change vary across protected areas, and we can see if we can spot any patterns - are there any types of protected areas that are more likely to loose forest?__
 
 ### We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/tutorials)!
+

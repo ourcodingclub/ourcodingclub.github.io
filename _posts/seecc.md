@@ -8,7 +8,7 @@ author: Gergana
 
 It’s been almost a year since we first started pondering the idea of a positive and supportive environment where we can all advance our skills in statistics and programming. We had a vision for a place where we can learn without the pressure of formal assessment, and with the ability to tailor our skills to our needs. For the last few months we have been organising weekly workshops and publishing the materials online on [our website]({{ site.baseurl }}), and we are so happy to see Coding Club go from a vision to a real initiative! I, along with Team Shrub alumni John and a great group of PhD students, among which Sandra and Haydn, have been leading workshops on topics such as [version control using Github]({{ site.baseurl }}/tutorials/git/index.html), [data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html), [efficient data manipulation]({{ site.baseurl }}/tutorials/piping/index.html), and [mixed effects modelling]({{ site.baseurl }}/tutorials/mixed-models/index.html). The workshops are open for everyone to attend, from undergraduates to academic staff, and we are thrilled to have shared our enthusiasm (and sometimes frustration) for coding with people from different disciplines, including ecology, environmental science, geography, and biology.
 
-![](https://teamshrub.files.wordpress.com/2017/04/codingclub_logo2.png)
+![Coding Club logo](https://teamshrub.files.wordpress.com/2017/04/codingclub_logo2.png)
 
 Inspired by the positive feedback from our workshops in Edinburgh, we were keen to make links with other people across Scotland that have undertaken similar statistics and programming initiatives. As I’m always curious to see how other people lead such workshops and wouldn’t want to miss a chance to learn something new, I attended the ["Data Archiving and Coding Workshop" at the BES Annual Meeting in Liverpool](https://adventurousandefficient.com/2017/01/06/my-bes-annual-meeting-highlights-2016/) last December. Great things happen at coding workshops, among which the start of exciting new collaborations! Sitting at my table was [Francesca Mancini](http://pure.abdn.ac.uk:8080/portal/en/persons/francesca-mancini(10db03c5-a457-47fe-8f6c-4c77b9834007).html), a PhD student from the University of Aberdeen, who was about to start [a coding study group](https://aberdeenstudygroup.github.io/studyGroup/) in her department. When I found out that this year’s [Scottish Ecology, Environment and Conservation Conference will take place in Aberdeen](https://teamshrub.wordpress.com/2017/04/09/team-shrub-at-seecc/), I immediately thought of Francesca, and thanks to great work and enthusiasm from her and our Coding Club team in Edinburgh, we organised Coding Club’s first joint workshop that took place just before the opening of the conference.
 
@@ -16,22 +16,22 @@ Inspired by the positive feedback from our workshops in Edinburgh, we were keen 
 
 With a room full of people keen to learn about efficient data manipulation and data visualisation, we set out to quantify population change based on the [Living Planet Index](http://www.livingplanetindex.org/) database, and visualise species occurrence data from the [Global Biodiversity Information Facility](http://www.gbif.org) and Flickr. I have been fascinated with the creative use of social media data for conservation research ever since I heard Francesca’s talk in Liverpool, and I, along with the rest of the workshop attendees, were very keen to learn how to make density maps and examine how they differ depending on the data source – GBIF or Flickr. On the Edinburgh side of the workshop, we couldn’t resist an opportunity to share our love for tidy data and efficient workflows when tackling large datasets, like the LPI.
 
-![](https://teamshrub.files.wordpress.com/2017/04/sab-6301.jpg)
+![Workshop in action photo](https://teamshrub.files.wordpress.com/2017/04/sab-6301.jpg)
 
 Although we are teaching at Coding Club, the workshops and preparation of the online tutorials have very much been a learning experience for us as well. Thanks to our interactions with the people who attend the Coding Club workshops, we are learning so many new things, and will continue to improve our work. Some of those improvements even happened “live” during the workshop, when my compulsive desire to put spaces around every plus sign got in the way of the code running smoothly!
 
-![](https://teamshrub.files.wordpress.com/2017/04/coding_club4.jpg)
+![Workshop in action photo](https://teamshrub.files.wordpress.com/2017/04/coding_club4.jpg)
 
 I find it so inspirational when people come together to learn, especially when the material they are learning is often seen as scary and hard (and the dramatic R error messages sure don’t help!). We were very happy to meet new people from Aberdeen and are hoping to continue developing this collaboration through future joint workshops in both Edinburgh and Aberdeen.
 
 Until then, you can find all of the materials from our workshop on the Coding Club website – ["Working efficiently with large datasets"]({{ site.baseurl }}/tutorials/seecc/index.html).
 
-![](https://teamshrub.files.wordpress.com/2017/04/sab-6305.jpg)
+![Coding Club team group photo](https://teamshrub.files.wordpress.com/2017/04/sab-6305.jpg)
 
 Shortly after our joint workshop in Aberdeen, we attended the [Impact Awards at the University of Edinburgh](https://www.eusa.ed.ac.uk/representation/impact_awards/), where Coding Club was shortlisted in the "Best Student-Staff Collaboration" category. After hearing about many wonderful initiatives improving student learning and experience at university, we left the ceremony with even more inspiration and drive to continue building the academic environment we dream of. We also left with a trophy, as Coding Club was the winner in its category!
 
-![](https://teamshrub.files.wordpress.com/2017/04/17760867_10155229103964380_8821578502146691528_o.jpg)
+![Coding Club team at awards](https://teamshrub.files.wordpress.com/2017/04/17760867_10155229103964380_8821578502146691528_o.jpg)
 
 It was great to reflect on our Coding Club journey so far, and now we are very much looking forward to our future workshops and ideas on how to develop quantitative skills among students and staff. Whenever our own code doesn’t run (very often), and we see the same error messages that scare away our workshop attendees, we find motivation in the encouraging feedback of students and staff – we deeply appreciate the support we have received so far, and will continue developing Coding Club with much enthusiasm!
 
-![](https://teamshrub.files.wordpress.com/2017/04/17547550_10155245248417848_537568815_o.jpg)
+![Coding Club team jumping photo](https://teamshrub.files.wordpress.com/2017/04/17547550_10155245248417848_537568815_o.jpg)

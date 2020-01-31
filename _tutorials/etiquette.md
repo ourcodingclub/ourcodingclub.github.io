@@ -32,7 +32,7 @@ As with any piece of writing, when writing an R script it really helps to have a
 
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# ggplot of population frequency`. Then underneath that comment, you would write the code for making your plot using ggplot. RStudio has a neat feature whereby you can make your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# ggplot of population frequency ----`. To view your outline, click the button as shown below, you can then click an outline item and jump straight to it: no more scrolling!
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline.png)
+![RStudio outline screenshot]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline.png)
 
 __NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio - if you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
@@ -68,11 +68,11 @@ library(readr)  # Manipulating data
 
 __You might have noticed that when you create a section using four or more `-` at the end of a comment line, a little arrow appears in the margin next to the comment. Clicking these arrows allows you to collapse the section, which is very useful when traversing a long script.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/etiquette_outline.png)
+![RStudio outline sections screenshot]({{ site.baseurl }}/assets/img/tutorials/etiquette/etiquette_outline.png)
 
 __You can also go to `Edit/Folding/Collapse all` to collapse all sections. This is the outline of your script and from here you can navigate to whichever section you need. `Expand all` displays all of the code you've written. Here is an example:__
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline2.png)
+![RStudio outline sections collapsed screenshot]({{ site.baseurl }}/assets/img/tutorials/etiquette/outline2.png)
 
 
 __Functions__: Are you using any functions written by you and/or others? Define them here. For example, functions to remove `NA` values, functions to [create your own `ggplot2` theme]({{ site.baseurl }}/tutorials/funandloops/index.html). Here is an example functions section:
@@ -151,9 +151,8 @@ LPI_biome_summ <- LPI2 %>%  # use of pipe operator
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/Biome_pop.png)
-
-Figure 1. Abundance of species populations for each biome.
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/etiquette/Biome_pop.png{% endcapture %}
+{% include figure.html url=link caption="Figure 1. Abundance of species populations for each biome." %}
 
 __The outputs of your analysis__: Remember to keep your filepath sensible not only when loading data in, but also when you are outputting files (e.g. `.Rdata`, `.csv` files and any figures you want saved). `.csv` files are more transferable and can be used across multiple platforms, whereas `.Rdata` files are more compressed and are quicker to work with. Saving graphs as `.pdf` files is better practice, since `.pdf` files are vector based and don't decrease in quality when you zoom in or out. `.png` files, on the other hand, are easily inserted in text documents and presentations, so ideally you should save a `.pdf` and a `.png` file of your graph. It is also good practice to save image outputs in a subdirectory of your working directory, e.g. `img/`. Remember that you will have to create the folder `img` manually before saving plots to it:
 
@@ -431,7 +430,7 @@ tidy_dir(path="whatever/your/path/is", recursive = TRUE)
 
 If, like us, you find yourself having to use a script from before you knew any better, you might have objects with really uninformative, unnecesarily hard to type names. There is an easy fix to that: just like in most text editors, you can `Find` and `Replace` words, in our case object names. You can type up the object whose name you want to change, then add the new one and replace either individual occurrences, or all of the occasions when the object name is mentioned. You can also select lines of code and only rename the object in that part of the code - careful that you have clicked on `In selection`, as otherwise the object name will be replaced in the entire script, despite you having selected only some of the lines.
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/replace.png)
+![RStudio search and replace screenshot]({{ site.baseurl }}/assets/img/tutorials/etiquette/replace.png)
 
 __If you want to rename your variable names, that's quickly done, too.__
 
@@ -469,7 +468,7 @@ devtools::install_github("ThinkRstat/littleboxes")
 # formatR messes up these boxes otherwise!
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/etiquette/boxes.png)
+![RStudio little boxes plugin menu screenshot]({{ site.baseurl }}/assets/img/tutorials/etiquette/boxes.png)
 
 __Now that you have read through the tutorial, try to clean up `bad_script.R`, which can be found in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette), or tidy up one of your own scripts.__ 
 

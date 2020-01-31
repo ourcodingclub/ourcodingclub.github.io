@@ -51,11 +51,11 @@ It might be necessary to restart Rstudio after installing the above packages.
 
 Assume that we want to create an R package that includes two functions. The first function will convert temperatures from degrees Fahrenheit to degrees Celsius, while the second function will convert temperatures from degrees Celsius to degrees Fahrenheit. The first thing we need to do is create a new folder somewhere on our computer that will hold the whole R package (there are other ways of doing this, but I am showing the way that I tend to use most often).
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage1.png)
+![Folder screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage1.png)
 
 The above shows the new folder 'SCC_R_package'. For now, this folder is empty. The first thing that we need to do is to create a new folder inside of 'SCC_R_package' called 'R'.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage2.png)
+![Folder screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage2.png)
 
 Inside this folder is where we will store the actual R scripts with the coded functions. Any number of '.R' files can be included in the folder, and each file can have any number of functions. You could, for example, give each function its own file, or just have one file with many R functions. For large projects, I find it easiest to group similar functions in the same R file. In our new R package, I will write both functions in the same file called 'temp_conversion.R', which has the code below.
 
@@ -73,7 +73,7 @@ C_to_F <- function(C_temp){
 
 That is the whole file for now; just nine lines of code.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage3.png)
+![Inside folder screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage3.png)
 
 The next thing that we need to do is create a new file called `DESCRIPTION` in the `SCC_R_package` directory (note, *not* in 'R', but just outside of it). This will be a plain text file with no extension, and it will hold some of the meta-data on the R package. For now, the whole file is just the following four lines of code, specifying the package name, type, title, and version number.
 
@@ -109,19 +109,19 @@ This is not a good stopping point for writing a package though, because we reall
 
 To get started on a proper R package complete with documentation, the best thing to do is to create a new R project. To do this in Rstudio, go to `File > New Project...`; the box below should pop up.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage4.png)
+![RStudio new project screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage4.png)
 
 Note that we could have started with a project right away, creating a new folder with the **New Directory** option. Instead, we will create the project in our **Existing Directory**, `SCC_R_package` by choosing the middle option. The following box should appear.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage5.png)
+![RStudio create project screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage5.png)
 
 The box above is asking for the local directory in which the project will be stored. Mine is shown above, but yours will be different depending on where `SCC_R_package` is stored. After clicking 'Create Project', you should be able to see the project inside the package directory.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage6.png)
+![Folder screenshot R package skeleton]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage6.png)
 
 The R project is shown above as `SCC_R_package.Rproj`. Note that there are a couple other new things in the directory above, including `.Rproj.user` and `.Rbuildignore`. These are hidden files, so you might not see these in your own directory unless you explicitly ask your computer to show hidden files. The folder `.Rproj.user` is not really important; it stores some more meta-data about the package development. The file `.Rbuildignore` is not important for now, but could be useful later; this is just a plain text file that tells R to ignore selected files or folders when building the package (e.g., if we wanted to include a folder for our own purposes that is not needed or wanted for building the package). The interface in RStudio should now look something like the below.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage7.png)
+![RStudio header material screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage7.png)
 
 The colours you use might vary, but you should see the 'SCC_R_package' in the upper right indicating the project name.
 
@@ -143,7 +143,7 @@ Note that the code below does the same thing as the code above.
 
 You should see a tab pop up somewhere in Rstudio that reads a markdown file with a helpful explanation of the `lm` function in R.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage8.png)
+![RStudio Help screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage8.png)
 
 You can make one of these helpful markdown files in Rstudio using the `roxygen2` package. To do this, we need to add to the functions written in the `temp_conversion.R` file. The code below shows a simple example.
 
@@ -186,7 +186,7 @@ roxygenise();      # Builds the help files
 
 Here is what our package directory looks like now.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage9.png)
+![Folder screenshot updated]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage9.png)
 
 Note that two things have been added. The first is a new directory called 'man', which holds the help files that we have written. The second is a plain text file `NAMESPACE`, which works with R to integrate them into the package correctly; you do not need to edit `NAMESPACE` manually, in fact, the file itself tells you not to edit it. Here are the entire contents of `NAMESPACE`.
 
@@ -199,7 +199,7 @@ export(F_to_C)
 
 Inside the 'man' folder, there are two new markdown documents, one for each function.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage10.png)
+![Folder screenshot man page files]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage10.png)
 
 Both are plain text files. Here are the contents of `F_to_C.Rd`.
 
@@ -235,7 +235,7 @@ We can load the package now and ask for help with `F_to_C`.
 
 RStudio will present the below in the 'Help' tab.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage11.png)
+![RStudio rendered help page screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage11.png)
 
 Now that we have the key functions and documentation, we can upload this to GitHub for the world to see and use. 
 
@@ -245,7 +245,7 @@ Now that we have the key functions and documentation, we can upload this to GitH
 
 Note that putting the R package on GitHub is not a requirement, but it is probably the easiest way to share your work. Before uploading the R package to GitHub, I will add one more folder to the repository. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage12.png)
+![Folder screenshot add folder]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage12.png)
 
 I use the arbitrarily named 'notebook' folder to hold various files that I want to be available to me in development, but not actually present in the R package. I can make the R package ignore this in build by adding a single line of code to the '.Rbuildignore' file mentioned earlier. Below are the entire contents of the '.Rbuildignore' file.
 
@@ -257,11 +257,11 @@ notebook*
 
 The lines `^.*\.Rproj$` and `^\.Rproj\.user$` were already added automatically by RStudio. My added line `notebook*` tells R to ignore anything that follows 'notebook' in the directory. This would include anything in the folder 'notebook' (e.g., 'notebook/file1.txt'), but also any folder or file that starts out with these characters (e.g., 'notebook2/file1.txt' or 'notebook_stuff.txt'). I will now add these notes and all the images I have used to this folder.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage13.png)
+![Folder screenshot inside notebook]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage13.png)
 
 With the notebook folder now added, I need to initialise a new GitHub repository (see [version control notes](https://stirlingcodingclub.github.io/version_control/vc_notes.html) for help). After doing this for Stirling Coding Club's organisation, here is what it looks like on GitHub.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage14.png)
+![Github screenshot R package repository]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage14.png)
 
 The R package is now live. Anyone can download it by using the `install_github` function in the `devtools` package. To do so, type the below into the RStudio console.
 
@@ -277,14 +277,6 @@ library(SCCTempConverter);
 F_to_C(30);
 ```
 
-```{r, echo = FALSE}
-F_to_C <- function(F_temp){
-    C_temp <- (F_temp - 32) * 5/9;
-    return(C_temp);
-}
-F_to_C(30);
-```
-
 That is it! We can share the [location of the R package](https://github.com/StirlingCodingClub/SCC_R_package) with colleagues who we think might make use of its R functions. If you want to you can stop here, but I will press on with a few more helpful tips and tricks in the next section.
 
 
@@ -295,7 +287,7 @@ That is it! We can share the [location of the R package](https://github.com/Stir
 
 The subdirectories (i.e., folders) that I have walked you through are not the only ones that are useful to include in an R package. Here, for example, is what the directory of the [GMSE R package](https://github.com/ConFooBio/gmse) looks like.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage15.png)
+![Folder screenshot more subfolders]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage15.png)
 
 There is a lot of extra stuff here, but the following are what each folder contains:
 
@@ -317,7 +309,7 @@ One more folder that could be useful but is not in the GMSE R package above is t
 
 We can build a source package (i.e., a zipped version of the R package) in Rstudio by selecting `Build > Build Source Package`. This will create a zipped package outside of the package directory, which would be what we would need to build if we wanted to submit our package to CRAN.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage16.png)
+![Folder screenshot package source]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage16.png)
 
 **Tagging a version**
 
@@ -330,15 +322,15 @@ git push -u origin v0.0.1.0
 
 Note that the BASH code above would create the tag 'v0.0.1.0' with the quoted message in the first line. In the second line, it would push the tag to GitHub. We can do the same thing in [GitKraken](https://www.gitkraken.com/) with a more friendly graphical user interface.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage17.png)
+![Git Kraken screenshot tree view]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage17.png)
 
 To tag any commit, right click on the commit and select 'Create tag here'. This allows you to name the commit, and the name will show up on the left hand side in GitKraken.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage18.png)
+![Git Kraken screenshot tree view zoom]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage18.png)
 
 See the 'SCCTempConverter.v0.0.1.0' tag on the left. To push this tag to GitHub, right click on this tag and select 'Push SCCTempConverter.v0.0.1.0 to origin'. We can now see that there is one release in the GitHub repository.
 
-![]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage19.png)
+![Github R package version screenshot]({{ site.baseurl }}/assets/img/tutorials/writing-r-package/rpackage19.png)
 
 If we click on this, we would see the version we tagged.
 

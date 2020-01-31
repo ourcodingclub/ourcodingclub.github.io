@@ -42,7 +42,7 @@ Here is a brief summary of the data distributions you might encounter most often
 
 Choosing the right statistical test for your analysis is an important step about which you should think carefully. It could be frustrating to spend tons of time running models, plotting their results and writing them up only to realise that all along you should have used e.g. a Poisson distribution instead of a Gaussian one.
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_which.png)
+![Data types and their associated distributions and tests table]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_which.png)
 
 ### 2. Choosing your model structure
 {: #design}
@@ -130,7 +130,7 @@ library(ggplot2)
 
 _Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._ 
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/apples2.png)
+![Boxplot of tree spacing vs. yield]({{ site.baseurl }}/assets/img/tutorials/modelling/apples2.png)
 
 From our boxplot, we can see that yield is pretty similar across the different spacing distances. Even though there is a trend towards higher yield at higher spacing, the range in the data across the categories almost completely overlap. From looking at this boxplot alone, one might think our hypothesis of higher yield at higher spacing is not supported. __Let's run a model to explicitly test this.__
 
@@ -141,7 +141,7 @@ summary(apples.m)
 
 __Check out the summary output of our model:__
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs1.png)
+![RStudio console output model summary]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs1.png)
 
 Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth. 
 
@@ -170,7 +170,7 @@ summary(sheep.m1)                                # study the output
 
 ```
  
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs2.png)
+![RStudio console model output summary]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs2.png)
 
 Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
 
@@ -186,7 +186,7 @@ summary(sheep.m2)
 
 Can you make sense of the output? Take a moment to examine yours and try to work it out. For instance, could you calculate the estimated weight of a female sheep at 100 days of weaning age? What about a male?
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs3.png)
+![RStudio console model summary output]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs3.png)
 
 Let's write the equations. For a female, which happens to be the reference group in the model, it's fairly simple:
 
@@ -287,7 +287,7 @@ shag$year <- as.numeric(shag$year)  # transform year from character into numeric
 (shag.hist <- ggplot(shag, aes(pop)) + geom_histogram() + theme.clean())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/poisson2.png)
+![Shag population histogram]({{ site.baseurl }}/assets/img/tutorials/modelling/poisson2.png)
 
 Our `pop` variable represents __count__ abundance data, i.e. integer values (whole European Shags!) so a Poisson distribution is appropriate here. Often count abundance data are zero-inflated and skewed towards the right. Here our data are not like that, but if they were, a Poisson distribution would still have been appropriate.
 
@@ -307,7 +307,7 @@ From the summary of our model we can see that European Shag abundance varies sig
     labs(x = " ", y = "European Shag abundance"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/modelling/shag.png)
+![Linear regression fit year vs. population]({{ site.baseurl }}/assets/img/tutorials/modelling/shag.png)
 
 __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.__ Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.
 

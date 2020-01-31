@@ -17,7 +17,7 @@ __All the files you need to complete this tutorial can be downloaded from [this 
 
 __In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up dataframes and calculate new variables. Then, we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands, if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis ([more info here](https://github.com/azizka/CoordinateCleaner)). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_panel.png)
+![Panel of Beluga occurrences, with population trends and GBIF occurrence time series frequency]({{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_panel.png)
 
 
 ### 1. Download, format and manipulate biodiversity data
@@ -48,7 +48,7 @@ As with any piece of writing, when writing an R script it really helps to have a
 The best way to split your script into sections is to use comments. You can define a comment by adding `#` to the start of any line and typing text after it, e.g. `# Load data`. Then, underneath that comment, you would write the code for importing your data in `R`. RStudio has a great feature allowing you to turn your sections into an outline, similar to that which you can find in `Microsoft Word`. To add a comment to the outline, type four `-` after your comment text, e.g. `# Load data ----`. To view your outline, click on the button shown below. You can then click on an outline item and jump straight to it - no more scrolling!
 
 
-![]({{ site.baseurl }}/assets/img/tutorials/occurrence/outline.png)
+![RStudio outline screenshot]({{ site.baseurl }}/assets/img/tutorials/occurrence/outline.png)
 
 __NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio. If you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
@@ -228,11 +228,11 @@ install.packages("colourpicker")
 
 To find out what the code for a colour you like is, click on `Addins/Colour picker`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/occurrence/colourpicker.png)
+![RStudio colourpicker menu screenshot]({{ site.baseurl }}/assets/img/tutorials/occurrence/colourpicker.png)
 
 When you click on `All R colours` you will see lots of different colours you can choose from. A good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour. The same goes for `2`, `3` - you can add mode colours with the `+` or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear. In this case, we just need the colour code so we can copy that and delete the rest.
 
-![]({{ site.baseurl }}/assets/img/tutorials/occurrence/colourpicker2.png)
+![RStudio colourpicker interface screenshot]({{ site.baseurl }}/assets/img/tutorials/occurrence/colourpicker2.png)
 
 __Now that we have our colours, we can make a map. A map is really like any other graph. In our `ggplot()` code, we have to specify a dataframe and then say what should be plotted on the x axis and on the y axis: in our case, the longitude and latitude of each occurrence record.__
 

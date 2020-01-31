@@ -109,7 +109,7 @@ ggthemr("light")  # Optional
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/machine-learning/iris_plot2.png)
+![Boxplot of species and petal width]({{ site.baseurl }}/assets/img/tutorials/machine-learning/iris_plot2.png)
 
 From the above plots we see a visual correlation between plant traits. We can also see that there is some clustering within species with traits varying greatly between the three iris species. Now that we know that there is a clear difference in structural traits between species we could ask the following question:
 

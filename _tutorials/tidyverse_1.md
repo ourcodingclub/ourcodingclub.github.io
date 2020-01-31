@@ -1065,77 +1065,71 @@ You can run an individual chunk of code at any time by placing your cursor insid
 
 ### Summary of  code chunk instructions
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l"><b>Rule</b></th>
-    <th class="tg-yw4l"><b>Example</b><br>(default)</th>
-    <th class="tg-yw4l"><b>Function</b></th>
+    <th>Rule</th>
+    <th>Example<br>(default)</th>
+    <th>Function</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">eval</td>
-    <td class="tg-yw4l">eval=TRUE</td>
-    <td class="tg-yw4l">Is the code run and the results included in the output?</td>
+    <td>eval</td>
+    <td>eval=TRUE</td>
+    <td>Is the code run and the results included in the output?</td>
   </tr>
-    <tr>
-    <td class="tg-yw4l">include</td>
-    <td class="tg-yw4l">include=TRUE</td>
-    <td class="tg-yw4l">Are the code and the results included in the output?</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">echo</td>
-    <td class="tg-yw4l">echo=TRUE</td>
-    <td class="tg-yw4l">Is the code displayed alongside the results?</td>
+    <tr
+    <td>include</td>
+    <td>include=TRUE</td>
+    <td>Are the code and the results included in the output?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">warning</td>
-    <td class="tg-yw4l">warning=TRUE</td>
-    <td class="tg-yw4l">Are warning messages displayed?</td>
+    <td>echo</td>
+    <td>echo=TRUE</td>
+    <td>Is the code displayed alongside the results?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">error</td>
-    <td class="tg-yw4l">error=FALSE</td>
-    <td class="tg-yw4l">Are error messages displayed?</td>
+    <td>warning</td>
+    <td>warning=TRUE</td>
+    <td>Are warning messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">message</td>
-    <td class="tg-yw4l">message=TRUE</td>
-    <td class="tg-yw4l">Are messages displayed?</td>
+    <td>error</td>
+    <td>error=FALSE</td>
+    <td>Are error messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">tidy</td>
-    <td class="tg-yw4l">tidy=FALSE</td>
-    <td class="tg-yw4l">Is the code reformatted to make it look “tidy”?</td>
+    <td>message</td>
+    <td>message=TRUE</td>
+    <td>Are messages displayed?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">results</td>
-    <td class="tg-yw4l">results="markup"</td>
-    <td class="tg-yw4l"><b> How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
+    <td>tidy</td>
+    <td>tidy=FALSE</td>
+    <td>Is the code reformatted to make it look “tidy”?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">cache</td>
-    <td class="tg-yw4l">cache=FALSE</td>
-    <td class="tg-yw4l">Are the results cached for future renders?</td>
+    <td>results</td>
+    <td>results="markup"</td>
+    <td><b>How are results treated? </b> <br> "hide" = no results <br>"asis" = results without formatting <br>"hold" = results only compiled at end of chunk (use if many commands act on one object)</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">comment</td>
-    <td class="tg-yw4l">comment="##"</td>
-    <td class="tg-yw4l">What character are comments prefaced with?</td>
+    <td>cache</td>
+    <td>cache=FALSE</td>
+    <td>Are the results cached for future renders?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.width, fig.height</td>
-    <td class="tg-yw4l">fig.width=7</td>
-    <td class="tg-yw4l">What width/height (in inches) are the plots?</td>
+    <td>comment</td>
+    <td>comment="##"</td>
+    <td>What character are comments prefaced with?</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">fig.align</td>
-    <td class="tg-yw4l">fig.align="left"</td>
-    <td class="tg-yw4l">"left" "right" "center"</td>
+    <td>fig.width, fig.height</td>
+    <td>fig.width=7</td>
+    <td>What width/height (in inches) are the plots?</td>
+  </tr>
+  <tr>
+    <td>fig.align</td>
+    <td>fig.align="left"</td>
+    <td>"left" "right" "center"</td>
   </tr>
 </table>
 
@@ -1194,96 +1188,90 @@ Traditionally, Git uses the command line to perform actions on local Git reposit
 
 ![Git commands flow diagram]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/git_cli_nmdm.png)
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l"><b>Command</b></th>
-    <th class="tg-yw4l"><b>Origin</b></th>
-    <th class="tg-yw4l"><b>Destination</b></th>
-    <th class="tg-yw4l"><b>Description</b></th>
+    <th>Command</th>
+    <th>Origin</th>
+    <th>Destination</th>
+    <th>Description</th>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git clone REPO_URL</code></td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Creates a local copy of a Github repo. The URL can be copied from Github.com by clicking the `Clone or Download` button.</td>
+    <td><code>git clone REPO_URL</code></td>
+    <td>Personal Github</td>
+    <td>Local</td>
+    <td>Creates a local copy of a Github repo. The URL can be copied from Github.com by clicking the `Clone or Download` button.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git add README.md</code></td>
-    <td class="tg-yw4l">Working Dir</td>
-    <td class="tg-yw4l">Staging Area</td>
-    <td class="tg-yw4l">Add "README.md" to staging area.</td>
+    <td><code>git add README.md</code></td>
+    <td>Working Dir</td>
+    <td>Staging Area</td>
+    <td>Add "README.md" to staging area.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git commit</code></td>
-    <td class="tg-yw4l">Staging Area</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Commits changes to files to the local repo.</td>
+    <td><code>git commit</code></td>
+    <td>Staging Area</td>
+    <td>Local</td>
+    <td>Commits changes to files to the local repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git commit -a</code></td>
-    <td class="tg-yw4l">Working Dir</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">adds and commits all file changes to the local repo.</td>
+    <td><code>git commit -a</code></td>
+    <td>Working Dir</td>
+    <td>Local</td>
+    <td>adds and commits all file changes to the local repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git pull</code></td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Retrieve any changes from a Github repo.</td>
+    <td><code>git pull</code></td>
+    <td>Personal Github</td>
+    <td>Local</td>
+    <td>Retrieve any changes from a Github repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git push</code></td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Sends commited file changes to Github repo.</td>
+    <td><code>git push</code></td>
+    <td>Local</td>
+    <td>Personal Github</td>
+    <td>Sends commited file changes to Github repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git merge</code></td>
-    <td class="tg-yw4l">Other branch</td>
-    <td class="tg-yw4l">Current branch</td>
-    <td class="tg-yw4l">Merge any changes in the named branch with the current branch.</td>
+    <td><code>git merge</code></td>
+    <td>Other branch</td>
+    <td>Current branch</td>
+    <td>Merge any changes in the named branch with the current branch.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git checkout -b patch1</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Create a branch called "patch1" from the current branch and switch to it.</td>
+    <td><code>git checkout -b patch1</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Create a branch called "patch1" from the current branch and switch to it.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git init</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Initialise a directory as a Git repo.</td>
+    <td><code>git init</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Initialise a directory as a Git repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git log</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Display the commit history for the current repo</td>
+    <td><code>git log</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Display the commit history for the current repo</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git status</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">See which files are staged/unstaged/changed</td>
+    <td><code>git status</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>See which files are staged/unstaged/changed</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git diff</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">See the difference between staged uncomitted changes and the most recent commit</td>
+    <td><code>git diff</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>See the difference between staged uncomitted changes and the most recent commit</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git stash</code></td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Save uncommitted changes in a temporary version and revert to the most recent commit</td>
+    <td><code>git stash</code></td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Save uncommitted changes in a temporary version and revert to the most recent commit</td>
   </tr>
 </table>
 

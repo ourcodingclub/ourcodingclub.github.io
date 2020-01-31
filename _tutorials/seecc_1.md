@@ -298,36 +298,30 @@ LPI_models_pipes <- LPI_long %>%
 
 We used the `system.time()` function to time how long each of these methods took on a 16GB 2.8GHz-i5 Macbook Pro so you can easily compare:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l">Method</th>
-    <th class="tg-yw4l">Total Elapsed Time (s)</th>
-    <th class="tg-yw4l">User Space Time (s)</th>
-    <th class="tg-yw4l">System Space Time (s)</th>
+    <th>Method</th>
+    <th>Total Elapsed Time (s)</th>
+    <th>User Space Time (s)</th>
+    <th>System Space Time (s)</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">loop</td>
-    <td class="tg-yw4l">180.453</td>
-    <td class="tg-yw4l">170.88</td>
-    <td class="tg-yw4l">7.514</td>
+    <td>loop</td>
+    <td>180.453</td>
+    <td>170.88</td>
+    <td>7.514</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">pipe</td>
-    <td class="tg-yw4l">30.941</td>
-    <td class="tg-yw4l">30.456</td>
-    <td class="tg-yw4l">0.333</td>
+    <td>pipe</td>
+    <td>30.941</td>
+    <td>30.456</td>
+    <td>0.333</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">lapply</td>
-    <td class="tg-yw4l">26.665</td>
-    <td class="tg-yw4l">26.172</td>
-    <td class="tg-yw4l">0.261</td>
+    <td>lapply</td>
+    <td>26.665</td>
+    <td>26.172</td>
+    <td>0.261</td>
   </tr>
 </table>
 

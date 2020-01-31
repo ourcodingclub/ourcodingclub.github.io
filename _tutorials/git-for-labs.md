@@ -16,7 +16,7 @@ survey_link: https://www.surveymonkey.co.uk/r/2P9R58J
 
 
 ### What is version control?
-{: #version{
+{: #version}
 
 Version control allows you to keep track of your work and helps you to easily explore what changes you have made, be it data, coding scripts, or manuscripts. You are probably already doing some type of version control, if you save multiple files, such as `Dissertation_script_25thFeb.R`, `Dissertation_script_26thFeb.R`, etc. This approach will leave you with tens, if not hundreds, of similar files, it makes it rather cumbersome to directly compare different versions, and is not easy to share among collaborators. What if by the time your supervisor/co-author has finished commenting on `Dissertation_script_26thFeb.R`, you are already on `Dissertation_script_27thFeb.R`? With version control software such as [Git](https://git-scm.com/), version control is much smoother and easier to implement. Using an online platform like [Github](https://github.com/) to store your files also means that you have an online back up of your work, so you won't need to panic when your laptop dies or your files mysteriously disappear.
 
@@ -46,7 +46,7 @@ __Each file on GitHub has a history, so instead of having many files like `Disse
 
 For example, here is the history for a script. Obviously it took me a while to calculate those model predictions!
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/filehistory.png)
+![Github commit history screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/filehistory.png)
 
 #### Get lab members to register on GitHub
 To get started with GitHub and version control, please get each lab member to register on the [Github website](https://github.com/) and download and install [Git](https://git-scm.com/downloads) for their operating system.
@@ -55,13 +55,13 @@ To get started with GitHub and version control, please get each lab member to re
 
 Once you are logged in with your personal account, you can [register an organisational GitHub account for the lab](https://github.com/organizations/new). The files you put on GitHub will be public (i.e. everyone can see them & suggest changes, but only the people with access to the account can directly edit and add/remove files). You can also have a private organisational account on GitHub, which means that only lab members can see the files. GitHub offers free private organisational accounts for educational purposes, and you can apply for one using [this link](https://education.github.com/discount_requests/new).
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/register.png)
+![Github register organisation screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/register.png)
 
 #### Add lab members as members of the lab's organisational GitHub account
 
 Once all lab members are registered on GitHub and you have set up the lab's organisational account, you can add lab members to the list of people who have access to the lab's account. You can then decide what sort of privileges you grant users. Users can either be members, i.e. they can see all other members, can be granted access to repositories, and can also create new teams and repositories, or they can be owners with full administrative rights to the organization and have complete access to all repositories and teams. After the admin has sent out invitations to lab members, they will receive an email notification with a link to accept them. You can use the `Members` tab to see members, add new ones, and change their rights.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/members.png)
+![Github invite organisation members screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/members.png)
 
 
 ### Organise your lab repository
@@ -73,15 +73,15 @@ GitHub uses repositories - you can think of a repository (_aka_ a repo) as a "ma
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wide audience. For now, we will focus on organising and using the lab's main repository that holds the files for all the lab's work. [Github now offers free private repositories as standard with up to three collaborators](https://blog.github.com/2019-01-07-new-year-new-github/), so you can choose whether you want your repository to be open to public viewing or not. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo.png)
+![Github create repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo.png)
 
 Click on `Initialise repo with a README.md file`. It's common practice for each repository to have a `README.md` file, which contains information about the project/lab group, what is the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, among which `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown) - you might have used Markdown before from within RStudio to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial]({{ site.baseurl }}/tutorials/rmarkdown/index.html)). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo2.png)
+![Github create repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newrepo2.png)
 
 You can directly edit your `README.md` file on Github by clicking on the file and then selecting `Edit this file`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/readme.png)
+![Github edit README.md screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/readme.png)
 
 #### Exercise 1: Write an informative README.md file
 
@@ -129,9 +129,9 @@ You might have noticed a file called `.gitignore` - in this file you specify whi
 
 Discuss among your lab what folders your repository will contain - some examples include: manuscripts, data, figures, scripts, scripts/users/personal_folder_your_name. To make a new folder, click on `Create new file` and add in the name of your new folder, e.g. `manuscripts/` before the file name, in this case a quick `README.md` file. When creating folders within your repo through GitHub's website, you always need to make at least one file associated with them, you can't just create an empty folder. Add a brief explanation of what the folder is for in the `README.md` file, scroll down and click on `Commit new file`. Add a quick message where it says `Create README.md file` in light grey text - we will cover GitHub etiquette later, but for now, when creating/editing files, it's always a good idea to change the default message to a more precise description of what was done and who did it. Stick with the default option of `Commit directly to master branch` - we will explain branches and pull requests at a later stage of the tutorial.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/folder.png)
+![Folder contents screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/folder.png)
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newfolder.png)
+![Github commit new file screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newfolder.png)
 
 #### Create a `github-workshop` folder within your main lab repo - this is where we will be working for the purposes of this workshop to practice using GitHub for version control and collaborative coding. 
 
@@ -255,7 +255,7 @@ We are now ready to start using our repository - first all lab members need to c
 
 __Click `Clone or download` and if you are on a Windows computer, copy the HTTPS link (that's the one that automatically appears in the box). If you have a Mac, click `Use SSH` and copy that link.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/clone.png)
+![Github clone repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/clone.png)
 
 Now open `RStudio`, click `File/ New Project/ Version control/ Git` and paste the link you copied from Github. Select a directory on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
@@ -263,7 +263,7 @@ On some Macs, `RStudio` will fail to find Git. To fix this open the terminal and
 
 Once the files have finished copying across, you will notice that a few things about your `RStudio` session have changed:
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/project2.png)
+![RStudio Git tab GUI layout screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/project2.png)
 
 __The working directory in the top left corner is set to your local copy of the lab's repository.__ You can load in data using `read.csv("data/your_file.csv")` - this would load a `.csv` file in a folder called `data` within your lab's repository - notice that there is no need to include the repository's name - by setting up a RStudio project, you are already within it. Similarly, when saving files, you can specify the folder where you want them saved without the repository's name.
 
@@ -278,7 +278,7 @@ __The data and instructions are available from [this repository](https://github.
 
  __Click on `Clone or download`, `Download ZIP` and download and unzip the files from [the repository](https://github.com/ourcodingclub/CC-12-git-for-labs). Copy the files and use your file explorer to navigate to your local copy of the lab's repository - paste the files there. Now go back to the RStudio project you set up in RStudio earlier. You can now see the files you added under the `Git` tab - you need to commit-pull-push and then the data and instructions will be up online.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/upload.png)
+![RStudio Git stage file]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/upload.png)
 
  __Tick both files - you will see an `A` appear (A is for added files, if the files were modified, it would have been M, and D is for deleted files). Now click on `Commit` and write an informative commit message - it's useful to say who you are and what you've done - e.g. `Gergana added the LPI data`. Click on `Commit` - there will be a bit of loading and then you'll get a message saying your files have been added. Click on `Pull` - someone might have been working in the repo and you want to make sure you have the most recent version before you push. Once you've pulled, click on `Push` - your files are now online!__
 
@@ -290,7 +290,7 @@ __The data and instructions are available from [this repository](https://github.
 
 __Notice that the `Instructions.R` file has different sections - you can click on `Edit/Folding/Collapse all` to see only heading titles and you can enable the outline feature as well to navigate easily to certain sections. Please run all code before the start of the challenges and then only work on your challenge, ignoring the rest!__
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/outline.png)
+![RStudio outline screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/outline.png)
 
 Go back to your repository on Github, where you can now see all of your files (your new plots included) online. You can click on the `Instructions.R` file which should now have been modified by several people - you can click on `History` to see what everyone has done.
 
@@ -316,92 +316,85 @@ If you accidentally push not what you intended, deleted many things (or everythi
 
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. [Prof Simon Mudd's Numeracy, Modelling and Data management guide](http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git), [The Software Carpentry Guide](https://swcarpentry.github.io/git-novice/), and this [guide from the British Ecological Society Version Control workshop](https://github.com/BES2016Workshop/version-control). We have also created a neat cheatsheet with some basic Git commands and how they fit into the git/github ecosystem. A couple of the commands require [`hub`](https://github.com/github/hub) a wrapper for Git that increases its functionality, but not having this won't prevent you using the other commands:
 
-![]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/git_cli.png)
+![RStudio git command flow diagram]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/git_cli.png)
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-baqh"><b>Command</b></th>
-    <th class="tg-baqh"><b>Is <code>hub</code> required?</b></th>
-    <th class="tg-baqh"><b>Origin</b></th>
-    <th class="tg-baqh"><b>Destination</b></th>
-    <th class="tg-baqh"><b>Description</b></th>
+    <th>Command</th>
+    <th>Is `hub` required?</th>
+    <th>Origin</th>
+    <th>Destination</th>
+    <th>Description</th>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git fork</code></td>
-    <td class="tg-baqh">Y</td>
-    <td class="tg-yw4l">Other Github</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Creates github repo in your personal account from a previously cloned github repo.</td>
+    <td>`git fork`</td>
+    <td>Y</td>
+    <td>Other Github</td>
+    <td>Personal Github</td>
+    <td>Creates github repo in your personal account from a previously cloned github repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git clone git@github.com:user/repo.git</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Creates a local copy of a github repo called "repo" owned by the user "user". This can be copied from github.com.</td>
+    <td>`git clone git@github.com:user/repo.git`</td>
+    <td>N</td>
+    <td>Personal Github</td>
+    <td>Local</td>
+    <td>Creates a local copy of a github repo called "repo" owned by the user "user". This can be copied from github.com.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git add README.md</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Working Dir</td>
-    <td class="tg-yw4l">Staging Area</td>
-    <td class="tg-yw4l">Add "README.md" to staging area.</td>
+    <td>`git add README.md`</td>
+    <td>N</td>
+    <td>Working Dir</td>
+    <td>Staging Area</td>
+    <td>Add "README.md" to staging area.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git commit -m "Message"</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Staging Area</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Commits changes to files to the local repo with the commit message "Message".</td>
+    <td>`git commit -m "Message"`</td>
+    <td>N</td>
+    <td>Staging Area</td>
+    <td>Local</td>
+    <td>Commits changes to files to the local repo with the commit message "Message".</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git commit -a -m "Message"</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Working Dir</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">adds and commits all file changes to the local repo with the commit message "Message".</td>
+    <td>`git commit -a -m "Message"`</td>
+    <td>N</td>
+    <td>Working Dir</td>
+    <td>Local</td>
+    <td>adds and commits all file changes to the local repo with the commit message "Message".</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git pull</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Retrieve any changes from a github repo.</td>
+    <td>`git pull`</td>
+    <td>N</td>
+    <td>Personal Github</td>
+    <td>Local</td>
+    <td>Retrieve any changes from a github repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git push</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Sends commited file changes to github repo.</td>
+    <td>`git push`</td>
+    <td>N</td>
+    <td>Local</td>
+    <td>Personal Github</td>
+    <td>Sends commited file changes to github repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git create</code></td>
-    <td class="tg-baqh">Y</td>
-    <td class="tg-yw4l">Local</td>
-    <td class="tg-yw4l">Personal Github</td>
-    <td class="tg-yw4l">Create a github repo with the same name as the local repo.</td>
+    <td>`git create`</td>
+    <td>Y</td>
+    <td>Local</td>
+    <td>Personal Github</td>
+    <td>Create a github repo with the same name as the local repo.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git merge</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Merge any changes in the named branch with the current branch.</td>
+    <td>`git merge`</td>
+    <td>N</td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Merge any changes in the named branch with the current branch.</td>
   </tr>
   <tr>
-    <td class="tg-yw4l"><code>git checkout -b patch1</code></td>
-    <td class="tg-baqh">N</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">NA</td>
-    <td class="tg-yw4l">Create a branch called "patch1" from the current branch and switch to it.</td>
+    <td>`git checkout -b patch1`</td>
+    <td>N</td>
+    <td>NA</td>
+    <td>NA</td>
+    <td>Create a branch called "patch1" from the current branch and switch to it.</td>
   </tr>
 </table>
 

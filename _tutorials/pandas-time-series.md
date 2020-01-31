@@ -20,8 +20,6 @@ To complete the tutorial, you will need a Python environment with a recent versi
 5. [Identifying periodicity and correlation](#periodicity)
 6. [Splitting and stacking cycles](#stacking)
 
-
-
 ## 0. What is a time series and how can pandas help?
 {: #intro}
 
@@ -192,7 +190,7 @@ This has quickly achieved four different plots:
 
 Now you can start to get a feel for the data. F10.7 and R look well correlated, each with 5 peaks evenly spaced over time. There is a lot of noise in all the measurements, and it is hard to see any relation with Dst. So what can we do to look deeper for trends and relationships?
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_raw-series.png)
+![Time series trend panel plot]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_raw-series.png)
 
 
 ## 4. Resampling, rolling calculations, and differencing
@@ -204,7 +202,7 @@ To reduce the noise in the data, we can smooth it. There are various ways to do 
 df[["F10.7", "R"]].resample("1y").median().plot(figsize=(15,4))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_resample.png)
+![Smoothed time series plot]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_resample.png)
 
 Here we have extracted a dataframe with the columns we are interested in with `df[["F10.7", "R"]]`, produced a year-based ["resampler" object](https://pandas.pydata.org/pandas-docs/stable/api.html#resampling), which is then reduced to the new yearly time series by taking medians over each year interval.
 
@@ -214,7 +212,7 @@ Here we have extracted a dataframe with the columns we are interested in with `d
 df[["F10.7", "R"]].rolling(24*365).median().plot(figsize=(15,4))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_roll.png)
+![Resampled smoothed time series]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_roll.png)
 
 Rolling calculations take the size of the window as the argument, whereas resampling takes a frequency specifier as the argument. NB: we can now see the appearance of some gaps in the F10.7 time series since by default no gaps are allowed within each window calculated - this behaviour can be changed with the `min_periods` argument.
 
@@ -226,7 +224,7 @@ Differencing is often a useful tool which can be part of time series algorithms.
 df[["F10.7", "R"]].resample("3y").median().diff().plot(subplots=True, figsize=(15,4))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_diff.png)
+![Smoothed and differenced trend time series plot]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_diff.png)
 
 The centres of the maximum and minimum of each period of the cycle can be defined by the maxima and minima of this curve.
 
@@ -239,7 +237,7 @@ We can see by eye that there is an approximately 10 year cycle in R and F10.7. A
 pd.plotting.autocorrelation_plot(df["R"].resample("1y").median())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_autocorr.png)
+![Autocorrelation vs lag plot]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_autocorr.png)
 
 This produces an autocorrelation plot: the correlation of a time series with itself at a range of lag times. We have applied it to the downsampled yearly time series which makes the calculation a lot quicker. Since the cadence of the time series is one year, the "Lag" axis is measured in years. The first peak (after a lag of 0) is around 11 years, meaning that the series correlates well with itself at a lag time of 11 years. This is the well-known solar activity cycle.
 
@@ -259,7 +257,7 @@ df["Dst_count"] = Dst_count
 df.plot(y=["R", "Dst_count"], figsize=(15,4));
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_stormcount.png)
+![Trend plot with Dst_count overlay]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_stormcount.png)
 
 It looks like there is a correlation between high sunspot numbers (the peaks of the solar cycle) and the occurrence rate of large storms. However, there is a lot more variation in this storm rate - lots of sunspots doesn't guarantee lots of storms, and storms can still occur when there are few sunspots.
 
@@ -312,7 +310,7 @@ for ax in axes:
     ax.grid()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_stackplot.png)
+![Decomposed trend]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_stackplot.png)
 
 This helps us to see how the cycles differ from each other: for example, the most recent cycle is consistently lower than the mean, both in the solar conditions and the rate of geomagnetic storms. By constructing the mean of the cycles, we are actually reinforcing the similar pattern over each cycle and reducing the effect of the random noise. This is the basis of a technique called [superposed epoch analysis](https://doi.org/10.1016/j.jastp.2006.01.007), which is useful for identifying periodicities and similarities between noisy time series.
 

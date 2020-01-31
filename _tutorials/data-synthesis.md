@@ -88,7 +88,7 @@ bird_traits <- read.csv("elton_birds.csv")
 
 We can check out what the data look like now, either by clicking on the objects name on the right in the list in your working environment, or by running `View(bird_pops)` in the console.
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_wide.png)
+![Wide format data table example]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_wide.png)
 
 __The data are in a wide format (each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year) and the column names are capitalised. Whenever working with data from different sources, chances are each dataset will follow a different column naming system, which can get confusing later on, so in general it is best to pick whatever naming system works for you and apply that to all datasets before you start working with them.__
 
@@ -119,7 +119,7 @@ Because column names are coded in as characters, when we turned the column names
 bird_pops_long$year <- parse_number(bird_pops_long$year)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_long.png)
+![Long format data table example]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_long.png)
 
 Check out the data frame again to make sure the years really look like years. As you're looking through, you might notice something else. We have many columns in the data frame, but there isn't a column with the species' name. We can make one super quickly, since there are already columns for the genus and the species.
 
@@ -193,7 +193,7 @@ __Managing long scripts:__ Lines of code pile up quickly! There is an outline fe
 {% endcapture %}
 {% include callout.html content=callout %}
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/outline.png)
+![RStudio GUI outline screenshot]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/outline.png)
 
 Now that we have our Australian bird population studies, we can learn more about the data by visualising the variation in study duration. Earlier on, we filtered to only include studies with more than five years of data, but it's still useful to know how many studies have six years of data, and how many have much more.
 
@@ -206,7 +206,7 @@ __An important note about graphs made using `ggplot2`: you'll notice that throug
     geom_histogram())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1a.png)
+![Histogram of population trend duration]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1a.png)
 
 This graph just uses all the `ggplot2` default settings. It's fine if you just want to see the distribution and move on, but if you plan to save the graph and share it with other people, we can make it way better. The figure beautification journey!
 
@@ -228,7 +228,7 @@ __When we want to change the colour, shape or fill of a variable based on anothe
     # the final line of code removes the empty blank space below the bars
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist5.png)
+![Coloured histogram]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist5.png)
 
 Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
@@ -254,7 +254,7 @@ summary(d1) # it's fine, you can ignore the warning message
 # thus there are missing "steps" along the geom_step path
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist4.png)
+![Histogram with outline]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist4.png)
 
 We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
 
@@ -286,7 +286,7 @@ We can also add a line for the mean duration across studies and add an annotatio
     # Have a go at changing the curve parameters to see what happens
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist2.png)
+![Histogram with mean line]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist2.png)
 
 We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
 
@@ -307,7 +307,7 @@ We are super close to a nice histogram - all we are missing is letting it "shine
   theme_clean())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1.png)
+![Histogram with theme]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/hist1.png)
 
 There's our histogram! We can save it using `ggsave`. The units for the height and width are in inches. Unless you specify a different file path, the graph will go in your working directory. If you've forgotten where that is, you can easily find out by running `getwd()` in the console.
 
@@ -359,7 +359,7 @@ head(aus_models)
 # Check out the model data frame
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/model_df.png)
+![Screenshot dataframe of model outputs]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/model_df.png)
 
 __Next up, we will focus on automating iterative actions, for example when we want to create the same type of graph for different subsets of our data. In our case, we will make histograms of the population change experienced by birds across three different systems - marine, freshwater and terrestrial. When making multiple graphs at once, we have to specify the folder where they will be saved first.__
 
@@ -394,7 +394,7 @@ A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not N
 
 Check out your folder, you should see three graphs in there! You can use pipes to make way more than just three graphs at once, it just so happens that our grouping variable has only three levels, but if it had thirty levels, there would be thirty graphs in the folder.
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/folder.png)
+![Folder screenshot]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/folder.png)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -485,7 +485,7 @@ bird_models_traits <- left_join(aus_models, bird_diet, by = "species.name") %>%
 head(bird_models_traits)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/joined.png)
+![Joined dataframe screenshot]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/joined.png)
 
 __Now we can explore how bird population trends vary across different feeding strategies. The graphs below are all different ways to answer the same question. Have a ponder about which graph you like the most.__
 
@@ -500,7 +500,7 @@ __Now we can explore how bird population trends vary across different feeding st
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet1b.png)
+![Scatter plot of diet vs. model estimate]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet1b.png)
 
 To make the graph more informative, we can add a line for the overall mean population trend, and then we can easily compare how the diet-specific trends compare to the overall mean trend. We can also plot the mean trend per diet category and we can sort the graph so that it goes from declines to increases.
 
@@ -547,7 +547,7 @@ Finally, we can also use `geom_segment` to connect the points for the mean trend
   guides(colour = FALSE, fill = FALSE))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet.png)
+![ggplot population trend by diet type]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet.png)
 
 Like before, we can save the graph using `ggsave`.
 ```r
@@ -604,7 +604,7 @@ ggsave(map, filename = "map1.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/map1.png)
+![Australia map of populations by diet]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/map1.png)
 
 Knowing the sample size for each diet category is another useful bit of information, especially to support the spirit of open and transparent science. We can use `group_by()` and `tally()` to get the sample size numbers.
 
@@ -648,7 +648,7 @@ ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_area2.png)
+![Area graph of diet]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_area2.png)
 
 __We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time! We can make a timeline of the individual studies to see what time periods are best represented.__
 
@@ -671,7 +671,7 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
 
 Well this looks untidy! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline3.png)
+![Untidy plot of population durations as bars]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline3.png)
 
 ```r
 # Create a sorting variable
@@ -718,7 +718,7 @@ ggsave(timeline_aus, filename = "timeline.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline2.png)
+![Tidy plot of population durations]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline2.png)
 
 __For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.__
 
@@ -763,7 +763,7 @@ ggsave(trends_mass, filename = "trends_mass.png",
        height = 5, width = 6)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass2.png)
+![Labelled plot of population change by mass]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass2.png)
 
 
 ## 4. Download occurrence data through `R`
@@ -851,7 +851,7 @@ ggsave(emu_map, filename = "emu_map.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_map.png)
+![Map of emus in Australia]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_map.png)
 
 Finally, we can also make a line graph that shows the raw abundance estimates over time for the emu population in South Australia - that'd look nice next to the map! Like we've all the previous figures, you can compare between the quick figure and the more customised one.
 
@@ -879,7 +879,7 @@ ggsave(emu_trend, filename = "emu_trend.png",
        height = 5, width = 8)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_trend.png)
+![Population trend for emus in pastoral zone]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_trend.png)
 
 
 ## 5. Create beautiful and informative figure panels
@@ -924,7 +924,7 @@ emu_panel <- suppressWarnings(grid.arrange(emu_map, emu_trend,
 ggsave(emu_panel, filename = "emu_panel.png", height = 6, width = 14)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_panel.png)
+![Combined map and plot]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/emu_panel.png)
 
 As a final panel, we can have a go at combining more figures and varying the layout a bit. Check out how the panel dimensions change as you run through the various options of the code chunks.
 
@@ -1006,7 +1006,7 @@ diet_panel_map <- suppressWarnings(grid.arrange(map, diet_panel, nrow = 2, heigh
 ggsave(diet_panel_map, filename = "diet_panel.png", height = 9, width = 10)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_panel.png)
+![3 part panel of map, population durations and trends by diet]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_panel.png)
 
 
 ## Challenges

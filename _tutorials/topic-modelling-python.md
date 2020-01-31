@@ -64,38 +64,32 @@ df = pd.read_csv('climate_tweets.csv')
 
 Have a quick look at your dataframe, it should look like this:
 
-<center>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+<table>
+    <tr>
       <th></th>
       <th>tweet</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>Global warming report urges governments to act|BRUSSELS, Belgium (AP) - The world faces increased hunger and .. [link]</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>Fighting poverty and global warming in Africa [link]</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>Carbon offsets: How a Vatican forest failed to reduce global warming [link]</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>Carbon offsets: How a Vatican forest failed to reduce global warming [link]</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>URUGUAY: Tools Needed for Those Most Vulnerable to Climate Change [link]</td>
     </tr>
-  </tbody>
 </table>
-</center>
 
 Note that some of the web links have been replaced by [link], but some have not. This was in the dataset when we downloaded it initially and it will be in yours. This doesn't matter for this tutorial, but it always good to question what has been done to your dataset before you start working with it.
 
@@ -167,21 +161,17 @@ df.groupby(['tweet']).size().reset_index(name='counts')\
 ```
 One of the top tweets will be this one
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+<table>
+    <tr>
       <th></th>
       <th>tweet</th>
       <th>counts</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>4555</th>
+      <td>4555</td>
       <td>Take Action @change: Help Protect Wildlife Habitat from Climate Change [link]</td>
       <td>14</td>
     </tr>
-  </tbody>
 </table>
 
 It is informative to see the top 10 tweets, but it may also be informative to see how the number-of-copies of each tweet are distributed. We do that with the following code block.
@@ -204,7 +194,7 @@ plt.yscale('log', nonposy='clip')
 plt.show()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-tweet_distribution.png)
+![Histogram of tweet frequency]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-tweet_distribution.png)
 
 # @who? #what? - Extracting substrings with regular expressions
 {: #who_what}
@@ -256,49 +246,43 @@ df['hashtags'] = df.tweet.apply(find_hashtags)
 ```
 Print the dataframe again to have a look at the new columns. Your dataframe should now look like this:
 
-<center>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tweet</th>
-      <th>retweeted</th>
-      <th>mentioned</th>
-      <th>hashtags</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>36</th>
-      <td>RT @virgiltexas: Hey Al Gore: see these tornadoes racing across Mississippi? So much for global "warming" #tornadocot #ocra #sgp #gop #ucot #tlot #p2 #tycot</td>
-      <td>[@virgiltexas]</td>
-      <td>[]</td>
-      <td>[#tornadocot, #ocra, #sgp, #gop, #ucot, #tlot, #p2, #tycot]</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>#justinbiebersucks and global warming is a farce</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[#justinbiebersucks]</td>
-    </tr>
-    <tr>
-       <th>297</th>
-       <td>Just briefed on global cooling &amp; volcanoes via @abc But I wonder ... if it gets to the stratosphere can it slow/improve global warming??</td>
-       <td>[]</td>
-       <td>[@abc]</td>
-       <td>[]</td>
-     </tr>
-     <tr>
-       <th>298</th>
-       <td>Climate Change-ing your Allergies [link]</td>
-       <td>[]</td>
-       <td>[]</td>
-       <td>[]</td>
-     </tr>
-  </tbody>
+<table>
+	<tr>
+		<th></th>
+		<th>tweet</th>
+		<th>retweeted</th>
+		<th>mentioned</th>
+		<th>hashtags</th>
+	</tr>
+	<tr>
+		<td>36</td>
+		<td>RT @virgiltexas: Hey Al Gore: see these tornadoes racing across Mississippi? So much for global "warming" #tornadocot #ocra #sgp #gop #ucot #tlot #p2 #tycot</td>
+		<td>[@virgiltexas]</td>
+		<td>[]</td>
+		<td>[#tornadocot, #ocra, #sgp, #gop, #ucot, #tlot, #p2, #tycot]</td>
+	</tr>
+	<tr>
+		<td>37</td>
+		<td>#justinbiebersucks and global warming is a farce</td>
+		<td>[]</td>
+		<td>[]</td>
+		<td>[#justinbiebersucks]</td>
+	</tr>
+	<tr>
+		<td>297</td>
+		<td>Just briefed on global cooling &amp; volcanoes via @abc But I wonder ... if it gets to the stratosphere can it slow/improve global warming??</td>
+		<td>[]</td>
+		<td>[@abc]</td>
+		<td>[]</td>
+	</tr>
+	<tr>
+		<td>298</td>
+		<td>Climate Change-ing your Allergies [link]</td>
+		<td>[]</td>
+		<td>[]</td>
+		<td>[]</td>
+	</tr>
 </table>
-</center>
 
 # Keyword Correlations in Text
 {: #text_corr}
@@ -317,39 +301,34 @@ hashtags_list_df = df.loc[
                        ),['hashtags']]
 ```
 
-<center>
-The first few rows of `hashtags_list_df` should look like this
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+The first few rows of `hashtags_list_df` should look like this:
+
+<table>
+    <tr>
       <th></th>
       <th>hashtags</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>12</th>
+      <td>12</td>
       <td>[#Climate, #population]</td>
     </tr>
     <tr>
-      <th>16</th>
+      <td>16</td>
       <td>[#EarthDay]</td>
     </tr>
     <tr>
-      <th>26</th>
+      <td>26</td>
       <td>[#ac]</td>
     </tr>
     <tr>
-      <th>31</th>
+      <td>31</td>
       <td>[#tcot]</td>
     </tr>
     <tr>
-      <th>36</th>
+      <td>36</td>
       <td>[#tornadocot, #ocra, #sgp, #gop, #ucot, #tlot, #p2, #tycot]</td>
     </tr>
-  </tbody>
 </table>
-</center>
 
 To see which hashtags were popular we will need to flatten out this dataframe. Currently each row contains a list of multiple values. The next block of code will make a new dataframe where we take all the hashtags in `hashtags_list_df` but give each its own row.
 
@@ -362,31 +341,27 @@ flattened_hashtags_df = pd.DataFrame(
     for hashtag in hashtags_list],
     columns=['hashtag'])
 ```
-<center>
-This new dataframe will look like this
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+
+This new dataframe will look like this:
+
+<table>
+	<tr>
       <th></th>
       <th>hashtag</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>#Climate</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>#population</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>#EarthDay</td>
     </tr>
-  </tbody>
 </table>
-</center>
 
 Now, as we did with the full tweets before, you should find the number of unique rows in this dataframe. Before this was the unique number of tweets, now the unique number of hashtags.
 
@@ -469,9 +444,8 @@ for hashtag in popular_hashtags_set:
 ```
 Print the `hashtag_vector_df` to see that the vectorisation has gone as expected. For each hashtag in the `popular_hashtags` column there should be a 1 in the corresponding `#hashtag` column. It should look something like this:
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+<table>
+	<tr>
       <th></th>
       <th>popular_hashtags</th>
       <th>#environment</th>
@@ -481,10 +455,8 @@ Print the `hashtag_vector_df` to see that the vectorisation has gone as expected
       <th>#Climate</th>
       <th>...</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>12</th>
+      <td>12</td>
       <td>[#Climate]</td>
       <td>0</td>
       <td>0</td>
@@ -494,7 +466,7 @@ Print the `hashtag_vector_df` to see that the vectorisation has gone as expected
       <td>...</td>
     </tr>
     <tr>
-      <th>16</th>
+      <td>16</td>
       <td>[#EarthDay]</td>
       <td>0</td>
       <td>1</td>
@@ -503,7 +475,6 @@ Print the `hashtag_vector_df` to see that the vectorisation has gone as expected
       <td>0</td>
       <td>...</td>
     </tr>
-  </tbody>
 </table>
 
 Now satisfied we will drop the `popular_hashtags` column from the dataframe. We don't need it.
@@ -528,15 +499,16 @@ sns.heatmap(corrleations,
 plt.show()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-hashtag_correlation.png)
+![Correlation matrix plot]({{ site.baseurl }}/assets/img/tutorials/topic-modelling-python/topic-modelling-python-hashtag_correlation.png)
 
 
-From the plot above we can see that there are fairly strong correlations between
+From the plot above we can see that there are fairly strong correlations between: 
+
 - **#SaveTerra** and **#SierraClub**
 - **#GloablWarming** and **#FoxNews**
 
 
-We can also see a fairly strong negative correlation between
+We can also see a fairly strong negative correlation between:
 - **#tcot** and **#climate**
 
 What these really mean is up for interpretation and it won't be the focus of this tutorial.
@@ -659,10 +631,10 @@ Use the cleaning function above to make a new column of cleaned tweets. Set `big
 df['clean_tweet'] = df.tweet.apply(clean_tweet)
 ```
 
-<center>Your new dataframe should look something like this
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+Your new dataframe should look something like this:
+
+<table>
+	<tr>
       <th></th>
       <th>tweet</th>
       <th>is_retweet</th>
@@ -671,10 +643,8 @@ df['clean_tweet'] = df.tweet.apply(clean_tweet)
       <th>hashtags</th>
       <th>clean_tweet</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>Carbon offsets: How a Vatican forest failed to reduce global warming [link]</td>
       <td>False</td>
       <td>[]</td>
@@ -683,7 +653,7 @@ df['clean_tweet'] = df.tweet.apply(clean_tweet)
       <td>carbon offset vatican forest fail reduc global warm</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>URUGUAY: Tools Needed for Those Most Vulnerable to Climate Change [link]</td>
       <td>False</td>
       <td>[]</td>
@@ -692,7 +662,7 @@ df['clean_tweet'] = df.tweet.apply(clean_tweet)
       <td>uruguay tool need vulner climat chang</td>
     </tr>
     <tr>
-      <th>5</th>
+      <td>5</td>
       <td>RT @sejorg: RT @JaymiHeimbuch: Ocean Saltiness Shows Global Warming Is Intensifying Our Water Cycle [link]</td>
       <td>True</td>
       <td>[@sejorg, @JaymiHeimbuch]</td>
@@ -700,8 +670,7 @@ df['clean_tweet'] = df.tweet.apply(clean_tweet)
       <td>[]</td>
       <td>ocean salti show global warm intensifi water cycl</td>
     </tr>
-  </tbody>
-</table></center>
+</table>
 
 
 # Applying Topic Modelling
@@ -768,9 +737,10 @@ display_topics(model, tf_feature_names, no_top_words)
 
 Now we have some topics, which are just clusters of words, we can try to figure out what they really mean. Once again, this is a task of interpretation, and so I will leave this task to you.
 
-<center>Here is an example of a few topics I got from my model. <br>Note that your topics will not necessarily include these three.<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
+Here is an example of a few topics I got from my model. Note that your topics will not necessarily include these three.
+
+<table>
+	<tr>
       <th></th>
       <th>Topic 3 words</th>
       <th>Topic 3 weights</th>
@@ -779,10 +749,8 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <th>Topic 5 words</th>
       <th>Topic 5 weights</th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>global</td>
       <td>473.1</td>
       <td>climat</td>
@@ -791,7 +759,7 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <td>783.0</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>warm</td>
       <td>450.7</td>
       <td>chang</td>
@@ -800,7 +768,7 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <td>764.7</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>believ</td>
       <td>101.3</td>
       <td>legisl</td>
@@ -809,7 +777,7 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <td>137.1</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>california</td>
       <td>87.1</td>
       <td>us</td>
@@ -818,7 +786,7 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <td>123.7</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>blame</td>
       <td>82.1</td>
       <td>via</td>
@@ -826,10 +794,7 @@ Now we have some topics, which are just clusters of words, we can try to figure 
       <td>al</td>
       <td>122.1</td>
     </tr>
-  </tbody>
-</table></center>
-
-
+	</table>
 
 #### Comment
 

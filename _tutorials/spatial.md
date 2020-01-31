@@ -131,14 +131,14 @@ image(b8)
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/2tayplots.png)
+![Raster plot of Loch Tay]({{ site.baseurl }}/assets/img/tutorials/spatial/2tayplots.png)
 
 ```r
 plot(b8)
 zoom(b8)    # run this line, then click twice on your plot to define a box
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/zoom2.png)
+![Zoomed raster plot of Loch Tay]({{ site.baseurl }}/assets/img/tutorials/spatial/zoom2.png)
 
 __Alternatively, an extent can be cropped and plotted from the plot image using the same double click method described above and the code below. Zooming in allows you to visualise spatial data for specific areas you might be interested in.__
 
@@ -168,7 +168,7 @@ To view the plot without saving the image, you only need the second line:
 image(b8, col= viridis_pal(option="D")(10), main="Sentinel 2 image of Loch Tay")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/tayplot.png)
+![Viridis raster plot of Loch Tay]({{ site.baseurl }}/assets/img/tutorials/spatial/tayplot.png)
 
 __A useful way to visualise the satellite data is to plot a red-green-blue plot of a multi-layered object for a more realistic rendition. The layers or bands represent different bandwidth in the visible electromagnetic spectrum (corresponding to red, blue and green) and combined, create a naturalistic colour rendition of the earth surface.__
 
@@ -182,7 +182,7 @@ plotRGB(tayRGB, axes = TRUE, stretch = "lin", main = "Sentinel RGB colour compos
 dev.off()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/RGB.png)
+![RGB stack raster plot of Loch Tay]({{ site.baseurl }}/assets/img/tutorials/spatial/RGB.png)
 
 __Another popular way to visualise remote sensing data is using a false colour composite (FCC), where the red, green, and blue bands have been replaced in order to accentuate vegetation.__
 
@@ -213,7 +213,7 @@ ggsave("ggtay.png", scale = 1.5, dpi = 300) 		# to save plot
 
 Note that here we saved the plot in a slightly different way - for plots creates using `ggplot2`, we can use the `ggsave` function and we define the specifics of the saved plot after we've created it, whereas earlier in the tutorial when we were using the `png()` function in combination with `dev.off()`, the plot characteristics are defined before we make the plot inside the `png()` function.
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/ggtay.png)
+![ggplot raster plot]({{ site.baseurl }}/assets/img/tutorials/spatial/ggtay.png)
 
 __To visualise all the bands together, we can use `facet_wrap` in `gplot`. First, we will create a stack of all the bands, so just putting them all on top of each other, like layers in a cake.__
 
@@ -240,7 +240,7 @@ gplot(t) +
 ggsave("allbands.png", scale = 1.5, dpi = 300) # to save plot
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands.png)
+![Facetted Loch Tay plot]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands.png)
 
 __Alternatively, for a quick visualisation, the original file can be loaded as a raster brick and plotted using 'plot'.__
 
@@ -249,7 +249,7 @@ s_tay <- brick('data/taycrop.tif')
 plot(s_tay)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands2.png)
+![Facetted Loch Tay plot]({{ site.baseurl }}/assets/img/tutorials/spatial/allbands2.png)
 
 __Notice the difference in colour and range of legend between the different bands. Different earth surfaces reflect the solar radiation differently and each raster layer represents how much incident solar radiation is reflected at a particular wavelength bandwidth. Bands 6 to 9 are in the Near Infrared Range (NIR). Vegetation reflects more NIR than other wavelengths but water absorbs NIR, therefore the lighter areas with high reflectance values are likely to be vegetation and the dark blue, low reflectance value areas, likely to be water. Also note that the Sentinel 2 bands have 3 levels of spatial resolution, 10 m, 20 m, and 60 m (see summary below).__
 
@@ -298,7 +298,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = 'Sentinel 2, Loch Tay-NDVI')
 dev.off()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/NDVI.png)
+![NDVI Loch Tay plot]({{ site.baseurl }}/assets/img/tutorials/spatial/NDVI.png)
 
 To find out the distribution of the pixel NDVI values, we can plot a histogram.
 
@@ -318,7 +318,7 @@ axis(side = 1, at = seq(-0.5,1, 0.05), labels = seq(-0.5,1, 0.05))
 dev.off()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvihist.png)
+![NDVI histogram]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvihist.png)
 
 #### So what does this mean?
 
@@ -339,7 +339,7 @@ plot(veg, main = 'Veg cover')
 dev.off()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvimask.png)
+![NDVI mask plot]({{ site.baseurl }}/assets/img/tutorials/spatial/ndvimask.png)
 
 We still have a high vegetation cover, which is to be expected in this part of Scotland.
 
@@ -414,7 +414,7 @@ plot(ndvi, col = rev(terrain.colors(10)), main = "NDVI")
 plot(knr, main = "Kmeans", col = viridis_pal(option = "D")(10))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/knr_ndvi.png)
+![Kmeans plot]({{ site.baseurl }}/assets/img/tutorials/spatial/knr_ndvi.png)
 
 If we want to plot our classification alongside the RGB rendering of the raster, and save the two plots, we can use the code below:
 
@@ -426,7 +426,7 @@ plot(knr, main = "Kmeans", yaxt = 'n', col = viridis_pal(option = "D")(10))
 dev.off()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/spatial/rgb_kmeans.png)
+![RGB Kmeans plot]({{ site.baseurl }}/assets/img/tutorials/spatial/rgb_kmeans.png)
 
 A simple classification like this one is only to give an idea of land cover types. In the above example, we could deduce that cluster 8, in green, is water as it covers the Loch. We can also spot patterns in the vegetation cover in both the NDVI and `kmeans` cluster plots. We could deduce that the areas with the highest NDVI ratio are likely to be forest cover.
 
