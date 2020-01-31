@@ -133,7 +133,7 @@
 
 <p>Thanks for joining us on your learning journey. Like with any language, there is a learning curve (trust me, I’m learning German at the moment), but we will take it step by step, and in no time you will be coding your own analyses and graphs!</p>
 
-<p><img src="/assets/img/tutorials/intro-to-r/terminal_gui.png" alt=""></p>
+<p><img src="/assets/img/tutorials/intro-to-r/terminal_gui.png" alt="R terminal and GUI screenshot examples"></p>
 
 <p>If you need any more convincing, why are we using R and not one of the many other statistical packages like MATLAB, Minitab, or even Microsoft Excel? Well, R is great because:</p>
 
@@ -155,7 +155,7 @@
 
 <h3 id="open-rstudio-click-on-filenew-filer-script">Open RStudio. Click on <em>File/New File/R script</em>.</h3>
 
-<p><img src="https://i.imgur.com/yutV805.png" alt=""></p>
+<p><img src="/assets/img/tutorials/intro-to-r/rstudio_panels.png" alt="RStudio panel layout annotated"></p>
 
 <p>You will now see a window like the one above. You <em>can</em> type code directly into the <strong>console</strong> on the lower left (doesn’t mean that you <em>should</em>*!). Pressing enter at the end of the line runs the code (try typing <code class="language-plaintext highlighter-rouge">2 + 2</code> and running it now). You can (should!) also write your code in the <strong>script</strong> file in the top left window. To run a line of code from your script, press <code class="language-plaintext highlighter-rouge">Ctrl+R</code> on Windows or <code class="language-plaintext highlighter-rouge">Cmd+Enter</code> on a Mac. On newer Windows computers, the default shortcut is <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code>. The <strong>environment window</strong> gives you an overview of your current <strong>workspace**</strong>. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded.</p>
 
@@ -206,11 +206,11 @@
 
 <p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="/tutorials/git/index.html">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
 
-<p><img src="https://i.imgur.com/hfawsYe.png" alt=""></p>
+<p><img src="/assets/img/tutorials/intro-to-r/github_clone.png" alt="Github clone repo screenshot"></p>
 
 <p>Now that you have the data saved on your computer, let’s import it! In RStudio, you can either click on the <em>Import dataset</em> button and navigate to where you have saved your file, or use the <code class="language-plaintext highlighter-rouge">read.csv()</code> command. If you use the button, a window will pop up previewing your data. Make sure that next to <em>Heading</em> you have selected <em>Yes</em> (this tells R to treat the first row of your data as the column names) and click <em>Import</em>. In the console, you will see the code for your import, which includes the file path - it’s a good idea to copy this code into your script, so that for future reference you know where your dataset came from.</p>
 
-<p><img src="https://i.imgur.com/1htdMJy.png" alt=""></p>
+<p><img src="/assets/img/tutorials/intro-to-r/rstudio_import.png" alt="RStudio GUI import dataset screenshot"></p>
 
 <p>R works best with <code class="language-plaintext highlighter-rouge">.csv</code> (comma separated values) files. If you entered your data in Excel, you would need to click on <em>Save as</em> and select <code class="language-plaintext highlighter-rouge">csv</code> as the file extension. When entering data in Excel, don’t put any spaces in your row names, as they will confuse R later (e.g. go for something like <code class="language-plaintext highlighter-rouge">height_meters</code> rather than <code class="language-plaintext highlighter-rouge">height (m)</code>. Some computers save <code class="language-plaintext highlighter-rouge">.csv</code> files with semicolons <code class="language-plaintext highlighter-rouge">;</code>, not commas <code class="language-plaintext highlighter-rouge">,</code> as the separators. This usually happens when English is not the first or only language on your computer. If your files are separated by semicolons, use <code class="language-plaintext highlighter-rouge">read.csv2</code> instead of <code class="language-plaintext highlighter-rouge">read.csv</code>, or alternatively use the argument “sep” (for separator) in the <code class="language-plaintext highlighter-rouge">read.csv</code>function: <code class="language-plaintext highlighter-rouge">r.csv("your-file-path", sep = ";")</code>.</p>
 
@@ -320,7 +320,7 @@
 
 <p>We also want to save our plot. To do this, click <em>Export</em> in the Plots window. If you don’t change the directory, the file will be saved in your working directory. You can adjust the dimensions to get the bar chart to look how you like it, and you should also add in a meaningful file name - <code class="language-plaintext highlighter-rouge">Rplot01.png</code> won’t be helpful when you try to find the file later.</p>
 
-<p><img src="https://i.imgur.com/NHQRlHq.png" alt=""></p>
+<p><img src="/assets/img/tutorials/intro-to-r/rstudio_export_plot.png" alt="RStudio export plot screenshot"></p>
 
 <p>You can also save your file by wrapping the code in the <code class="language-plaintext highlighter-rouge">png()</code> and <code class="language-plaintext highlighter-rouge">dev.off()</code> functions, which respectively open and shut down the plotting device.</p>
 
@@ -331,7 +331,7 @@
 </span></code></pre></div></div>
 
 <div class="figure">
-  <p><img src="https://i.imgur.com/xxPfWa1.png" alt="Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.">
+  <p><img src="/assets/img/tutorials/intro-to-r/species_barplot.png" alt="Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.">
   Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</p>
 </div>
 

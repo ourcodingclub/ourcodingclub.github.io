@@ -268,7 +268,7 @@ trees.five <- trees.genus %>%
 )
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-manip-efficient/DL_data-manip-2_treemap.jpeg)
+![Scatter plot of tree height coloured by genus over space]({{ site.baseurl }}/assets/img/tutorials/data-manip-efficient/DL_data-manip-2_treemap.jpeg)
 
 
 Don't worry too much about all the arguments in the `ggplot` code, they are there to make the graph prettier. The interesting bits are the x and y axis, and the other two parameters we put in the `aes()` call: we're telling the plot to colour the dots according to genus, and to make them bigger or smaller according to our tree height factor. We'll explain everything else in our [data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html) tutorial. 
@@ -303,7 +303,7 @@ tree.plots %>%              # the saving call within the do function
       ggsave(.$plots, filename = paste(getwd(), "/", "map-", .$Genus, ".png", sep = ""), device = "png", height = 12, width = 16, units = "cm"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-manip-efficient/DL_data-manip-2_treemaps.png)
+![Facetted scatter plot map of tree height by genus]({{ site.baseurl }}/assets/img/tutorials/data-manip-efficient/DL_data-manip-2_treemaps.png)
 
 You should get five different plots looking something like the one above.
 

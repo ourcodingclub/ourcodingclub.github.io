@@ -238,7 +238,7 @@ __We can get summary statistics for parameter estimates, and sampler diagnostics
 fit
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_summary.png)
+![RStudio console output of fit object]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_summary.png)
 
 __What does the model output show you?  How do you know your model has converged?  Can you see that text indicating that your C++ compiler has run?__
 
@@ -262,7 +262,7 @@ abline(lm1, col = 2, lty = 2, lw = 3)
 abline( mean(posterior$alpha), mean(posterior$beta), col = 6, lw = 2)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice3.png) ![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice4.png)
+![Posterior estimates vs lm output]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice3.png) ![Posterior estimates vs lm output]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice4.png)
 
 Figure 3. Change in sea ice extent in the Northern Hemisphere over time (comparing a `Stan` linear model fit and a general `lm` fit).
 
@@ -286,9 +286,10 @@ for (i in 1:500) {
 abline(mean(posterior$alpha), mean(posterior$beta), col = 6, lw = 2)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice5.png)
-
-Figure 4. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits).
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice5.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 4. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits)." %}
 
 ### 5. Changing our priors
 {: #priors}
@@ -338,9 +339,10 @@ abline(mean(posterior2$alpha), mean(posterior2$beta), col = 3, lw = 2)
 abline(mean(posterior$alpha), mean(posterior$beta), col = 36, lw = 3)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_fits.png)
-
-Figure 5. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits).
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_fits.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 5. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits)." %}
 
 __So what happened to the posterior predictions (your modelled relationship)? Does the model fit the data better or not? Why did the model fit change? What did we actually change about our model by making very narrow prior distributions? Try changing the priors to some different numbers yourself and see what happens! This is a common issue in Bayesian modelling, if your prior distributions are very narrow and yet don't fit your understanding of the system or the distribution of your data, you could run models that do not meaningfully explain variation in your data. However, that isn't to say that you shouldn't choose somewhat informative priors, you do want to use previous analyses and understanding of your study system inform your model priors and design. You just need to think carefully about each modelling decision you make!__
 
@@ -363,9 +365,10 @@ plot(posterior$beta, type = "l")
 plot(posterior$sigma, type = "l")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/alpha_trace.png)
-
-Figure 6. Trace plot for alpha, the intercept.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/alpha_trace.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 6. Trace plot for alpha, the intercept." %}
 
 For simpler models, convergence is usually not a problem unless you have a bug in your code, or run your sampler for too few iterations.
 
@@ -387,10 +390,10 @@ plot(posterior_bad$beta, type = "l")
 plot(posterior_bad$sigma, type = "l")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bad_traces2.png)
-
-Figure 7. Bad trace plot for alpha, the intercept.
-
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/bad_traces2.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 7. Bad trace plot for alpha, the intercept." %}
 
 #### Parameter summaries
 
@@ -409,9 +412,10 @@ plot(density(posterior$sigma), main = "Sigma")
 abline(v = lm_sigma, col = 4, lty = 2)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_panel.png)
-
-Figure 8. Density plot distributions from the `Stan` model fit compared with the estimates from the general `lm` fit.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_panel.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 8. Density plot distributions from the `Stan` model fit compared with the estimates from the general `lm` fit." %}
 
 From the posterior we can directly calculate the probability of any parameter being over or under a certain value of interest.
 
@@ -438,9 +442,10 @@ While we can work with the posterior directly, `rstan` has a lot of useful funct
 traceplot(fit)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_chains.png)
-
-Figure 9. Trace plots of the different chains of the `Stan` model.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_chains.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 9. Trace plots of the different chains of the `Stan` model." %}
 
 This is a wrapper for the `stan_trace()` function, which is much better than our previous plot because it allows us to compare the chains.
 
@@ -451,9 +456,12 @@ stan_dens(fit)
 stan_hist(fit)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_density.png) ![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_histogram.png)
+![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_density.png) 
 
-Figure 10. Density plots and histograms of the posteriors for the intercept, slope and residual variance from the `Stan` model.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_histogram.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 10. Density plots and histograms of the posteriors for the intercept, slope and residual variance from the `Stan` model." %}
 
 And we can generate plots which indicate the mean parameter estimates and any credible intervals we may be interested in. Note that the 95% credible intervals for the `beta` and `sigma` parameters are very small, thus you only see the dots. Depending on the variance in your own data, when you do your own analyses, you might see smaller or larger credible intervals.
 
@@ -461,9 +469,10 @@ And we can generate plots which indicate the mean parameter estimates and any cr
 plot(fit, show_density = FALSE, ci_level = 0.5, outer_level = 0.95, fill_color = "salmon")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_caterpillar.png)
-
-Figure 11. Parameter estimates from the `Stan` model.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_caterpillar.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 11. Parameter estimates from the `Stan` model." %}
 
 #### Posterior Predictive Checks
 
@@ -528,9 +537,10 @@ Comparing density of `y` with densities of `y` over 200 posterior draws.
 ppc_dens_overlay(y, y_rep[1:200, ])
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes1.png)
-
-Figure 12. Comparing estimates across random posterior draws.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes1.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 12. Comparing estimates across random posterior draws." %}
 
 Here we see data (dark blue) fit well with our posterior predictions.
 
@@ -539,9 +549,11 @@ We can also use this to compare estimates of summary statistics.
 ```r
 ppc_stat(y = y, yrep = y_rep, stat = "mean")
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png)
 
-Figure 13. Comparing estimates of summary statistics.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 13. Comparing estimates of summary statistics." %}
 
 We can change the function passed to the `stat` function, and even write our own!
 
@@ -551,9 +563,10 @@ We can investigate mean posterior prediction per datapoint vs the observed value
 ppc_scatter_avg(y = y, yrep = y_rep)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png)
-
-Figure 14. Mean posterior prediction per datapoint vs the observed value for each datapoint.
+{% capture link %}
+{{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png
+{% endcapture %}
+{% include figure.html url=link caption="Figure 14. Mean posterior prediction per datapoint vs the observed value for each datapoint." %}
 
 ##### `bayesplot` options
 
@@ -570,7 +583,7 @@ color_scheme_view(c("blue", "gray", "green", "pink", "purple",
  "red","teal","yellow"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes_colours.png)
+![Coloure scheme examples]({{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes_colours.png)
 
 And you can even mix them:
 

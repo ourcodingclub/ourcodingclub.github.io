@@ -198,7 +198,7 @@ In a long format, each column contains a unique variable (e.g. gender, percentag
 
 And now for the code to create the plot. First, let's have a look at what we are aiming for:
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/diverging_bar_likert.png)
+![Diverging stacked bar chart with Likert scale]({{ site.baseurl }}/assets/img/tutorials/qualitative/diverging_bar_likert.png)
 
 This type of plot is called a diverging stacked bar chart. "Stacked" means that each bar is further split into sub-categories, in this case each bar is a gender and each sub-bar is the percentage of that gender giving a particular response. "Diverging" means that the bar is straddled over the zero line. Formatting the bar chart in this way allows us to make a visual distinction between negative responses (i.e. Never, Rarely), positive responses (i.e. Often, All the time) and neutral responses (i.e. Sometimes).
 
@@ -296,7 +296,7 @@ Then create the plot:
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/stacked_bar_qual.png)
+![Stackd bar plot of gender and sustainable energy behaviour]({{ site.baseurl }}/assets/img/tutorials/qualitative/stacked_bar_qual.png)
 
 
 ### Bubble plot
@@ -319,7 +319,7 @@ Then to create the bubble plot, simply adjust the size of points according to th
 	theme_classic())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/bubble_chart_qual.png)
+![Bubble plot of age vs. sustainable thoughts]({{ site.baseurl }}/assets/img/tutorials/qualitative/bubble_chart_qual.png)
 
 ## 3. Mining text responses and comments for keywords 
 {: #text-mining}
@@ -368,7 +368,7 @@ Now it is easy to plot the occurrences of each word, and colour by gender (`fill
 	theme_classic())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/comment_gender_qual.png)
+![Comment occurence by gender]({{ site.baseurl }}/assets/img/tutorials/qualitative/comment_gender_qual.png)
 
 ### Comments from a single question
 
@@ -398,7 +398,7 @@ tidy_energy_often_comment_summ <- tidy_energy_often_comment %>%
 	theme_classic())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/word_bar_qual.png)
+![Most common words barplot]({{ site.baseurl }}/assets/img/tutorials/qualitative/word_bar_qual.png)
 
 ### Wordclouds
 
@@ -409,7 +409,7 @@ tidy_energy_often_comment %>%
 	with(wordcloud(words = energy_action_comment_word, freq = n, max.words = 100))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/qualitative/wordcloud_qual.png)
+![Word cloud of sustainability buzz words]({{ site.baseurl }}/assets/img/tutorials/qualitative/wordcloud_qual.png)
 
 For more on text mining using `tidytext`, you can check out [the Gitbook website](https://www.tidytextmining.com).
 

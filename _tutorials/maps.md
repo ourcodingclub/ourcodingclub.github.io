@@ -68,15 +68,15 @@ In previous versions of this workshop, we used the [`ggmap` package](https://git
 
 The easiest way to think about map data is to first imagine a graph displaying whatever data you want, but where the x and y axes denote spatial coordinates such as longitude and latitude instead of a variable:
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/Trout_Europe_Plot.jpeg)
+![Plot of trout occurrence]({{ site.baseurl }}/assets/img/tutorials/maps/Trout_Europe_Plot.jpeg)
 
 Then it's a simple case of adding a background map to your image to place the data points in the real world. In this case, the map was pulled from data provided by the `maps` package:
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/Trout_Europe_Map.jpeg)
+![Map of trout occurrence in Europe]({{ site.baseurl }}/assets/img/tutorials/maps/Trout_Europe_Map.jpeg)
 
 That was a simple example, maps can incorporate more complex elements like polygons and lines, each with their own values:
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/map_FEOW_annot.png)
+![Map of trout occurrence with polygons and annotations]({{ site.baseurl }}/assets/img/tutorials/maps/map_FEOW_annot.png)
 
 
 ## Creating a map using `ggplot2` and `rworldmap`
@@ -133,7 +133,7 @@ Now we can make a preliminary plot to make sure the data looks right. Remember, 
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/bird_prelim_ggplot.jpeg)
+![ggplot penguin distribution]({{ site.baseurl }}/assets/img/tutorials/maps/bird_prelim_ggplot.jpeg)
 
 If you squint, you might be able to see the southern African cape, with lots of penguins on it. It looks like some of the penguin populations might be from zoos in U.S cities, but we only want to plot natural populations, so let's remove those entries by removing records with a longitude less than -50:
 
@@ -149,7 +149,7 @@ Plot it again:
     geom_point())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/bird_crop_ggplot.png)
+![ggplot penguin distribution map coordinates]({{ site.baseurl }}/assets/img/tutorials/maps/bird_crop_ggplot.png)
 
 Now we can add some simple country outline data from the `rworldmap` package, which has data of country boundaries at various resolutions.
 
@@ -190,7 +190,7 @@ You can plot `world` by simply adding it to your ggplot2 call using `geom_polygo
 	guides(colour=guide_legend(title="Species")))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/map_world_penguins.png)
+![World map of penguin distribution]({{ site.baseurl }}/assets/img/tutorials/maps/map_world_penguins.png)
 
 You can also subset the contents of `world`, to only plot a particular country or set of countries. Say we wanted to only plot the distribution of vultures and penguins in southern Africa, in the countries of South Africa, Namibia, Botswana, Zimbabwe. We can subset the column `world@data$ADMIN` to only include those country names:
 
@@ -223,7 +223,7 @@ Then define the x and y axis limits in `ggplot()` using `xlim()` and `ylim()` wi
 	guides(colour=guide_legend(title="Species")))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/map_saf_penguins.png)
+![South Africa map of penguins]({{ site.baseurl }}/assets/img/tutorials/maps/map_saf_penguins.png)
 
 ## Using shapefiles
 {: #shp}
@@ -261,7 +261,7 @@ Check that the data is displaying correctly using `ggplot()` like in the previou
     geom_point(alpha = 0.5))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/trout_prelim.png)
+![Plot of trout distribution]({{ site.baseurl }}/assets/img/tutorials/maps/trout_prelim.png)
 
 
 We can roughly see the outline of Scandinavia and maybe the Northern Mediterranean if you squint.
@@ -302,7 +302,7 @@ Then we can plot the map tiles with the data using `geom_polygon()`:
 	coord_quickmap())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/trout_map_country.png)
+![Europe map of trout distribution]({{ site.baseurl }}/assets/img/tutorials/maps/trout_map_country.png)
 
 The country outlines work well, but to tell us more about the habitat the Brown Trout lives in we can also plot the ecoregions data on the map.
 
@@ -326,7 +326,7 @@ shpdata_FEOW <- spTransform(shpdata_FEOW, CRS("+proj=longlat +datum=WGS84"))
 
 At this point I wouldn't recommend plotting `shpdata_FEOW`, it's a pretty big file, but so you can get an idea of what it looks like:
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/ecoregions_global_map.png)
+![Global ecoregions map]({{ site.baseurl }}/assets/img/tutorials/maps/ecoregions_global_map.png)
 
 The shapefile contains ecoregions for the entire world, but we only want to plot the ecoregions where the brown trout is found. `shpdata_FEOW` is a SpatialPolygonsDataFrame, so we can use the same method as before to crop the object to the extent of a bounding box, using `intersect():`
 
@@ -340,7 +340,7 @@ Plot `shpdata_FEOW_clip` to see that `intersect()` has cropped out polygons that
 plot(shpdata_FEOW_clip)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/ecoregions_clipped_map.png)
+![Europe ecoregions]({{ site.baseurl }}/assets/img/tutorials/maps/ecoregions_clipped_map.png)
 
 Then we need to restructure the object into a data frame ready for plotting. the dataframe needs to contain the id for each polygon, in this case the name of the ecoregion it is from. explore the contents of `shpdata_feow_clip`, using `str`. Remember that `@` accesses slots within the `shpdata_FEOW` spatial object:
 
@@ -372,7 +372,7 @@ Now, plot the map, point data and shapefile together. The ecoregion polygons can
 	coord_quickmap())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/map_feow.png)
+![Trout map Europ with ecoregions]({{ site.baseurl }}/assets/img/tutorials/maps/map_feow.png)
 
 The super useful thing about plotting maps with `ggplot()` is that you can add other elements to the plot using normal `ggplot2` syntax. Imagine that we want to indicate a potential area for a trout re-introduction program. Finland and Estonia have hardly any trout, but would probably have the right conditions according to the ecoregions:
 
@@ -428,7 +428,7 @@ Adding a north arrow. Currently the default `north` command from the `ggsn` pack
 north2(map_FEOW_scale, x = 0.3, y = 0.85, scale = 0.1, symbol = 1)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/maps/map_FEOW_annot.png)
+![Trout Europe map ecoregions with annotations]({{ site.baseurl }}/assets/img/tutorials/maps/map_FEOW_annot.png)
 
 There are lots of ways to visualise and analyse spatial data in R. This workshop touched on a few of them, focussing on workflows involving `ggplot2`, but it is recommended to explore more online resources for your specific needs.
 

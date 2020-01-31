@@ -252,12 +252,12 @@ That was a lot, but now you'll be able to adapt these little chunks of code to m
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead of time and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig1.png)
+![Wide format data collection example table]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig1.png)
 
 Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary, 
 [tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig2.png)
+![Long format tidy dataframe example]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig2.png)
 
 This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc., R would be able to split the dataframe correctly, as each grouping factor has its own column. 
 
@@ -595,7 +595,7 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
 
 So there you are! Did your plots look something like this? 
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/dragons-spice.jpeg)
+![Facetted Dragon boxplots]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/dragons-spice.jpeg)
 
 __It looks like jalapeños are proper dragon fuel, but turmeric not so much!__
 {% endcapture %}

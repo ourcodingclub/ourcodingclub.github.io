@@ -240,7 +240,7 @@ Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
+![Time series line plot of milk production]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
 
 Using `theme_classic()` produces a plot that is a little more aesthetically pleasing than the default options. If you want to learn more about customising themes and building your own, look at our [tutorial on making your own]({{ site.baseurl }}/tutorials/funandloops/index.html), and if you want to learn more about the basics of `ggplot2`, [we have a workshop on that as well]({{ site.baseurl }}/tutorials/datavis/index.html)!
 
@@ -281,7 +281,7 @@ Firstly, it looks like there is a general upward trend: more milk is being produ
 
 `span` sets the number of points used to plot each local regression in the curve: the smaller the number, the more points are used and the more closely the curve will fit the original data.
 
-![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_loess.png)
+![Loess fit on line plot]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_loess.png)
 
 Next, it looks like there are some peaks and troughs that occur regularly in each year. This is a "__seasonal__" pattern. We can investigate this pattern more by plotting each year as it's own line and comparing the different years:
 
@@ -300,7 +300,7 @@ year_pal <- sequential(color = "darkturquoise", percentage = 5, what = "value")
 	scale_color_manual(values = year_pal))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_month_trend.png)
+![Monthly trend decomposition]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_month_trend.png)
 
 It's clear from the plot that while milk production is steadily getting higher, the same pattern occurs throughout each year, with a peak in May and a trough in November.
 
@@ -321,7 +321,7 @@ monthplot(monthly_milk_ts, choice = "seasonal")  # variation in milk production 
 seasonplot(monthly_milk_ts)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_4plot.png)
+![Panelled trend decomposition]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_4plot.png)
 
 ### Forecasting
 
@@ -398,7 +398,7 @@ __Now that we have all the information for the forecasts, we are ready to make o
 	theme_classic())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_fc_all.png)
+![ggplot2 multiple forecasts]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_fc_all.png)
 
 You can also numerically compare the accuracy of different models to the data we excluded from the model (`monthly_milk_test`) using `accuracy()`:
 

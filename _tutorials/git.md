@@ -91,7 +91,7 @@ Each file on GitHub has a history, so instead of having many files like `Dissert
 
 For example, here is the history for a repo with an R script inside it, as viewed on Github. Obviously it took me a while to calculate those model predictions!
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/filehistory.png)
+![Github commit history screenshot]({{ site.baseurl }}/assets/img/tutorials/git/filehistory.png)
 
 
 ## 2. Create your own repository and project folder structure
@@ -99,15 +99,15 @@ For example, here is the history for a repo with an R script inside it, as viewe
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wider audience. For now, we will focus on organising and using your main repository that holds the files for all your work. With a free GitHub account, you can use public or private respositories. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/newrepo.png)
+![Github create new repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git/newrepo.png)
 
 __Click on `Initialise repo with a README.md file`__. It's common practice for each repository to have a `README.md` file, which contains information about the project, the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, including `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown). You might have used Markdown before from within `RStudio` to create neatly organised reports of your code and its outputs (you can also check out our [Markdown tutorial]({{ site.baseurl }}/tutorials/rmarkdown/index.html). You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/newrepo2.png)
+![Github create new repository]({{ site.baseurl }}/assets/img/tutorials/git/newrepo2.png)
 
 You can directly edit your `README.md` file on Github by clicking on the file and then selecting `Edit this file`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/readme.png)
+![Github edit file screenshot]({{ site.baseurl }}/assets/img/tutorials/git/readme.png)
 
 
 #### Exercise 1: Write an informative README.md file
@@ -157,7 +157,7 @@ Go to `Create new file` and write a `.gitignore` file within your main repositor
 
 Discuss among your lab what folders your repository will contain - some examples include: manuscripts, data, figures, scripts, scripts/users/personal_folder_your_name. To make a new folder, click on `Create new file` and add in the name of your new folder, e.g. `manuscripts/` before the file name, in this case a quick `README.md` file. When creating folders within your repo through GitHub's website, you always need to make at least one file associated with them, you can't just create an empty folder. Add a brief explanation of what the folder is for in the `README.md` file, scroll down and click on `Commit new file`. Add a quick message where it says `Create README.md file` in light grey text - we will cover GitHub etiquette later, but for now, when creating/editing files, it's always a good idea to change the default message to a more precise description of what was done and who did it. Stick with the default option of `Commit directly to master branch` - we will explain branches and pull requests at a later stage of the tutorial.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/newfolder.png)
+![Github new folder screenshot]({{ site.baseurl }}/assets/img/tutorials/git/newfolder.png)
 
 
 ### GitHub etiquette
@@ -190,7 +190,7 @@ The "commit-pull-push" workflow can be embedded within `RStudio` using "Projects
 
 Click `Clone or download` and copy the HTTPS link.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/repo_clone.png)
+![Github clone repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git/repo_clone.png)
 
 Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the HTTPS link from the Github repository into the `Repository URL:` field. Select a folder on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
@@ -204,13 +204,13 @@ We know that there might be problems with the newest updates of the Mac software
 #### Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/git_tab.png)
+![RStudio Git tab screenshot]({{ site.baseurl }}/assets/img/tutorials/git/git_tab.png)
 
 You are now ready to start making changes and documenting them through Github!  __Note that you can't push empty folders.__
 
 You can open some of the files you made online earlier - for example if you click on your `README.md` file, it will open in `RStudio` and you can make changes. Add some more text just for the sake of exemplifying how version control works. Save the file in the same location (i.e., your repository). 
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/readme_edit.png)
+![RStudio Git staging area screenshot]({{ site.baseurl }}/assets/img/tutorials/git/readme_edit.png)
 
 If you click on the `Git` tab you will see that now your `README.md` file is listed there. Add a tick next to it. Now it has an `M` - this means you have modified the file. If there's an `A`, that's an added file, and a `D` is a deleted file.
 
@@ -218,13 +218,13 @@ If you select the `README.md` file and click on `Diff`, you will see the changes
 
 Click on `Commit` and add in your `commit message` - aim to be concise and informative - what did you do? Once you have clicked on `Commit`, you will get a message about what changes you have made.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/commit_window.png)
+![RStudio Git commit interface screenshot]({{ site.baseurl }}/assets/img/tutorials/git/commit_window.png)
 
 __If you are making your first ever commit, clicking on `Commit` may result in an error message - git will tell you that you need to configure your username and email. This is easily done, and you only need to do it once, afterwards you can commit-pull-push at your convenience!__
 
 In the top right corner of the RStudio screen, click on `More/Shell`. __NOTE: If using a Windows PC, DO NOT use the Shell through RStudio. Instead, find the Git Bash application on your computer and use the command line from it.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/shell.png)
+![RStudio terminal screenshot]({{ site.baseurl }}/assets/img/tutorials/git/shell.png)
 
 ### Copy the following code:
 
@@ -240,17 +240,17 @@ git config --global user.name "Your GitHub Username"
 
 You will see a message saying that your branch is now one commit ahead of the `origin/master` branch - that is the branch that is on Github - we now need to let Github know about the changes we have made.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/git4.png)
+![RStudio Git branch status screenshot]({{ site.baseurl }}/assets/img/tutorials/git/git4.png)
 
 We can't repeat it enough: __always `Pull` before you `Push`.__ `Pull` means that you are retrieving the most recent version of the Github repository onto your local branch - this command is especially useful if several people are working within the same repository - imagine there was a second script examining soil pH along this elevation gradient, and your collaborator was working on it the same time as you - you wouldn't want to "overwrite" their work and cause trouble. In this case, you are the only one working on these files, but it's still good to develop the practice of pulling before you push. Once you've pulled, you'll see a message that you are already up to date, you can now push! Click on `Push`, wait for the loading to be over and then click on `Close` - that was it, you have successfully pushed your work to Github!
 
 Go back to your repository on Github, where you can now see all of your updated files online.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/updated_repo.png)
+![Github repository updated screenshot]({{ site.baseurl }}/assets/img/tutorials/git/updated_repo.png)
 
 Click on your script file and then on `History` - this is where you can see the different versions of your script - obviously in real life situations you will make many changes as your work progresses - here we just have two. Thanks to Github and version control, you don't need to save hundreds of almost identical files (e.g. `Dissertation_script_25thFeb.R`, `Dissertation_script_26thFeb.R`) - you have one file and by clicking on the different commits, you can see what it looked like at different points in time.
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/repo_history.png)
+![Github commit history screenshot]({{ site.baseurl }}/assets/img/tutorials/git/repo_history.png)
 
 __You are now ready to add your scripts, plots, data files, etc. to your new project directory and follow the same workflow as outlined above - stage your files, commit, pull, push.__
 
@@ -274,7 +274,7 @@ Using these "undo" commands can be daunting, so make sure you read up on the dif
 
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. [Prof Simon Mudd's Numeracy, Modelling and Data management guide](http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git), [The Software Carpentry guide](https://swcarpentry.github.io/git-novice/), and this [guide from the British Ecological Society Version Control workshop](https://github.com/BES2016Workshop/version-control). For more generic command line tools, look at this [general cheat sheet](https://www.git-tower.com/blog/command-line-cheat-sheet) and this [cheat sheet for mac users](https://github.com/0nn0/terminal-mac-cheatsheet). We have also created a table and flow diagram with some basic Git commands and how they fit into the Git/Github workflow. Orange lines refer to the core workflow, the blue lines describe extra functions and the green lines deal with branches:
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/git_cli_nmdm.png)
+![Git command flow diagram]({{ site.baseurl }}/assets/img/tutorials/git/git_cli_nmdm.png)
 
 <table>
   <tr>
@@ -367,7 +367,7 @@ Below is a quick exercise so you can familiarise yourself with these command lin
 
 1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/rstudio_new_terminal.png)
+![RStudio new terminal menu item screenshot]({{ site.baseurl }}/assets/img/tutorials/git/rstudio_new_terminal.png)
 
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git.
@@ -431,5 +431,5 @@ Now you can continue editing files, adding changes (`git add <FILE>`), committin
 
 This tutorial was developed as part of the collaboration between Coding Club and the NERC E3 Doctoral Training Programme. To learn more about the E3 DTP, check out  [the programme's website](http://e3dtp.geos.ed.ac.uk/).
 
-![]({{ site.baseurl }}/assets/img/tutorials/git/dtp_for_cc.jpg)
+![NERC E3 DTP logo]({{ site.baseurl }}/assets/img/tutorials/git/dtp_for_cc.jpg)
 	

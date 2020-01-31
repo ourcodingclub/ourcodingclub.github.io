@@ -98,7 +98,7 @@ This is the common way of making a histogram, when you have one observation per 
    )
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histwrong2.png)
+![Basic ggplot2 bar plot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histwrong2.png)
 
 That looks a bit better, but it still seems to have far too many species. That's because plots from each land are being grouped together. We can separate them by introducing a colour code, and make a stacked bar plot like this:
 
@@ -109,7 +109,7 @@ That looks a bit better, but it still seems to have far too many species. That's
 # Remember that any aesthetics that are a function of your data (like fill here) need to be INSIDE the aes() brackets.
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histwrong3.png)
+![Stacked bar plot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histwrong3.png)
 
 And if we want to make the columns to appear side by side rather than being stacked, you add `position = "dodge"` to the `geom`'s arguments. 
 
@@ -130,7 +130,7 @@ Note how our figure __only shows plot numbers 2, 4, and 6.__ If you want the axi
     scale_y_continuous(limits = c(0, 50)))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbase2.png)
+![Dodged barplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbase2.png)
 
 
 ### Add titles, subtitles, captions and axis labels 
@@ -149,7 +149,7 @@ Now it's time for us to add more information to our graphs, for example, the plo
          x = "\n Plot number", y = "Number of species \n"))     # \n adds space before x and after y axis text
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut1a.png)
+![Dodged barplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut1a.png)
 
 
 {% capture callout %}
@@ -176,7 +176,7 @@ __Note:__ if we wanted to specify different options for the x and y axis, we cou
           plot.title = element_text(size = 14, hjust = 0.5, face = "bold")))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut1b.png)
+![Dodged histogram with title]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut1b.png)
 
 
 
@@ -201,7 +201,7 @@ To remove the grid lines, we add the code `panel.grid = element_blank()` within 
           plot.title = element_text(size = 14, hjust = 0.5, face = "bold")))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut2.png)
+![Dodged histogram with centred title]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut2.png)
 
 
 ## Fix the legend and customise the colours 
@@ -388,7 +388,7 @@ We first can plot the basic boxplot, without all the extra beautification we've 
   geom_boxplot())
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbase.png)
+![Basic ggplot2 boxplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbase.png)
 
 This does a much nicer job of showing which plots are the most species rich. With the beautifying customisations we've just learnt, we can make the plot much prettier! 
 
@@ -417,7 +417,7 @@ ggsave("magical-sp-rich-boxplot1.png", width = 7, height = 5, dpi = 300)
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut1.png)
+![Good looking ggplot2 boxplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut1.png)
 
 {% capture callout %}
 #### Box, bar, dot...?
@@ -490,7 +490,7 @@ yearly_counts$land <- factor(yearly_counts$land,
 	
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut2.png)
+![ggplot2 boxplot with repoisitioned legend]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut2.png)
 
 If we wanted to reorder the y axis of plot numbers, such that the boxplot for plot 6 comes before 1, then 2, 3, 4, 5, we can use the same principle. Again, from this point on, `ggplot` will always plot "6" before the rest. 
 
@@ -521,7 +521,7 @@ yearly_counts$plot <- factor(yearly_counts$plot,
           legend.box.background = element_rect(color = "grey", size = 0.3)))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut3.png)
+![Boxplot reordered x axis]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut3.png)
 
 
 ## 4. Plot regression lines onto your plots
@@ -556,7 +556,7 @@ We can see pretty clear trends over time, and so we can try to plot a simple str
   stat_smooth(method = "lm"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod2.png)
+![ggplot2 scatterplot with regression line]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod2.png)
 
 However, perhaps this isn't what we really want, because you can see the relationship isn't linear. An alternative would be to use a different smoothing equation. Let's try a quadratic fit - something slightly more complicated to produce than the standard fits provided by R. Thankfully, `ggplot2` lets us customise to pretty much any type of fit we want, as we can add in an equation to tell it what to plot. There are also several different base fits available. You can check out some [here](http://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/).
 
@@ -568,7 +568,7 @@ However, perhaps this isn't what we really want, because you can see the relatio
   stat_smooth(method = "lm", formula = y ~ x + I(x^2)))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod3.png)
+![Quadratic regression fit]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod3.png)
 
 
 {% capture callout %}
@@ -661,7 +661,7 @@ You can try out the effects of the theme by replacing all the code starting with
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod3.png)
+![Prettified regression line]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod3.png)
 
 
 ## 6. Challenge yourself!

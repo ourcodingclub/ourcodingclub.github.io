@@ -35,7 +35,7 @@ If you already know your way around statistical softwares like `Minitab` or `SPS
 Thanks for joining us on your learning journey. Like with any language, there is a learning curve (trust me, I'm learning German at the moment), but we will take it step by step, and in no time you will be coding your own analyses and graphs! 
 
 
-![]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/terminal_gui.png)
+![R terminal and GUI screenshot examples]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/terminal_gui.png)
 
 If you need any more convincing, why are we using R and not one of the many other statistical packages like MATLAB, Minitab, or even Microsoft Excel? Well, R is great because:
 
@@ -58,7 +58,7 @@ If you are using a Mac, in addition to R and RStudio, you need to download XQuar
 
 ### Open RStudio. Click on _File/New File/R script_. 
 
-![](https://i.imgur.com/yutV805.png)
+![RStudio panel layout annotated]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/rstudio_panels.png)
 
 You will now see a window like the one above. You _can_ type code directly into the __console__ on the lower left (doesn't mean that you _should_\*!). Pressing enter at the end of the line runs the code (try typing `2 + 2` and running it now). You can (should!) also write your code in the __script__ file in the top left window. To run a line of code from your script, press `Ctrl+R` on Windows or `Cmd+Enter` on a Mac. On newer Windows computers, the default shortcut is `Ctrl+Enter`. The __environment window__ gives you an overview of your current __workspace\*\*__. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded. 
 
@@ -114,12 +114,12 @@ Practice is the best way to learn any new language, so let's jump straight in an
 
 __Follow the link, click on "Download Zip", and save and unzip the folder somewhere on your computer. (Never heard of Github? Don't worry, we will cover it in a [later tutorial]({{ site.baseurl }}/tutorials/git/index.html). For now, it's simply the website where you can download our course material from.)__
 
-![](https://i.imgur.com/hfawsYe.png)
+![Github clone repo screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/github_clone.png)
 
 Now that you have the data saved on your computer, let's import it! In RStudio, you can either click on the _Import dataset_ button and navigate to where you have saved your file, or use the `read.csv()` command. If you use the button, a window will pop up previewing your data. Make sure that next to _Heading_ you have selected _Yes_ (this tells R to treat the first row of your data as the column names) and click _Import_. In the console, you will see the code for your import, which includes the file path - it's a good idea to copy this code into your script, so that for future reference you know where your dataset came from. 
 
 
-![](https://i.imgur.com/1htdMJy.png)
+![RStudio GUI import dataset screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/rstudio_import.png)
 
 
 R works best with `.csv` (comma separated values) files. If you entered your data in Excel, you would need to click on _Save as_ and select `csv` as the file extension. When entering data in Excel, don't put any spaces in your row names, as they will confuse R later (e.g. go for something like `height_meters` rather than `height (m)`. Some computers save `.csv` files with semicolons `;`, not commas `,` as the separators. This usually happens when English is not the first or only language on your computer. If your files are separated by semicolons, use `read.csv2` instead of `read.csv`, or alternatively use the argument "sep" (for separator) in the `read.csv`function: `r.csv("your-file-path", sep = ";")`. 
@@ -247,7 +247,7 @@ help(par)         # For help with plotting in general
 
 We also want to save our plot. To do this, click _Export_ in the Plots window. If you don't change the directory, the file will be saved in your working directory. You can adjust the dimensions to get the bar chart to look how you like it, and you should also add in a meaningful file name - `Rplot01.png` won't be helpful when you try to find the file later.
 
-![](https://i.imgur.com/NHQRlHq.png)
+![RStudio export plot screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/rstudio_export_plot.png)
 
 You can also save your file by wrapping the code in the `png()` and `dev.off()` functions, which respectively open and shut down the plotting device.
 
@@ -258,7 +258,7 @@ dev.off()
 # The cex code increases the font size when greater than one (and decreases it when less than one). 
 ```
 
-{% capture link %}https://i.imgur.com/xxPfWa1.png{% endcapture %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/intro-to-r/species_barplot.png{% endcapture %}
 {% include figure.html url=link caption="Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016." %}
 
 ### 5. Create a data frame and plot it

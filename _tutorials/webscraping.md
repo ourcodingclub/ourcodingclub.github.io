@@ -56,15 +56,15 @@ The simplest way to download a web page is to save it as a `.html` file to your 
 
 ### Microsoft Windows - Internet Explorer
 
-![]({{ site.baseurl }}/assets/img/tutorials/webscraping/Explorer_Save.png)
+![Internet Explorer save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Explorer_Save.png)
 
 ### Microsoft Windows - Google Chrome
 
-![]({{ site.baseurl }}/assets/img/tutorials/webscraping/Chrome_Save.png)
+![Google Chrome save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Chrome_Save.png)
 
 ### MacOS - Safari
 
-![]({{ site.baseurl }}/assets/img/tutorials/webscraping/Safari_Save.png)
+![Safari save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Safari_Save.png)
 
 Download the IUCN Red List information for _Aptenogytes forsteri_ (Emperor Penguin) from [http://www.iucnredlist.org/details/22697752/0] using the above method, saving the file to your working directory.
 

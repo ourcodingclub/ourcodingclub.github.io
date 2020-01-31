@@ -70,7 +70,7 @@ Open up a Command Prompt (terminal) and type `conda --version`. If everything ha
 
 Now we have Python installed it is time to launch Spyder. You can do this by launching the Anaconda Navigator from the start menu. When this starts up click on the Spyder application to open it up.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-spyder_demo.gif)
+![Windows Python Anaconda Spyder launch GIF]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-spyder_demo.gif)
 
 Once you have launched Spyder you will see three main panels by default. You can edit the layout of these panels if you want but for this tutorial I will assume that you don't want to mess with that yet. On the left, the large panel is where you can write scripts. At the top of this panel you can see that there has been a script started for you called `temp.py`. If you wanted to you could write code into this script (similar to writing a MS Word document) and then save it to run later.
 
@@ -80,7 +80,7 @@ So when you write commands into the python script on the left, it is just like w
 
 In the bottom right of the window you will see the console, and this is what we are going to focus on for this part of the tutorial. This is different to the script panel. **In the console**, whenever you **type a command and then press enter**, that command will be **run right away**, not stored for later like in the script. You can think of using the console as **similar to using a calculator**. Whenever you type something in it is run right away. You can see this in the demo below. First we tell the console what the variable `x` is; then we tell it to print `x` so that we can see it again. After this we tell it to print other products of `x`. Try typing these same lines of code into your own editor and see what happens.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-console_demo.gif)
+![Spyder console GIF]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-console_demo.gif)
 
 Note that whilst writing lines of code into the console I made a mistake and the console showed me an error message. In this case all I needed to do is fix the error and run the correct line.
 
@@ -153,8 +153,6 @@ We can access values in a dictionary by looking them up with their key. In the a
 
 - Now make your own dictionary of your own favourite movie quotes. Try storing the movie quotes as strings, lists, integers or floats and then print them.
 
-####  
-
 # Simple Maths and Operators
 {: #operators}
 
@@ -221,9 +219,9 @@ Take these lines of code for example, where we get the user to type in their nam
 
 Can you guess, or get python to calculate, what `True | True` will be? How about `False & False`?
 
-Note: One of the really nice things about Python is how much it can read like plain English by using **Python Keywords**. In the above examples you could replace, `&` with `and`, replace `|` with `or`, and replace `!` with `not` and still get the same answers. Why not try rewriting the exampes above using the `and`, `or` and `not` keywords instead of the symbols. I'll start you off
+Note: One of the really nice things about Python is how much it can read like plain English by using **Python Keywords**. In the above examples you could replace, `&` with `and`, replace `|` with `or`, and replace `!` with `not` and still get the same answers. Why not try rewriting the exampes above using the `and`, `or` and `not` keywords instead of the symbols. I'll start you off.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-boolean_logic.gif)
+![Spyder console GIF]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-boolean_logic.gif)
 
 Using what you know so far can you solve Hamlet's dilemma below? What will the answer be if `to_be = True` or with `to_be = False`
 
@@ -236,7 +234,7 @@ print(to_be or not to_be)
 
 In loops we write instructions that will be repeated a number of times in a row. We can use loops to repeat actions more efficiently.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-y_bird.gif)
+![Loop Simpsons GIF]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-y_bird.gif)
 
 Lets say you have more important work to do than pressing 'y', lets say for example that we would like to find the mean of some data.
 
@@ -272,7 +270,7 @@ Loops can be hard when you are new to coding and so it might take you a bit long
 
 Functions are mini computing boxes that we write in Python. Functions take an input (we could call this x), do some computing with it, and output the result.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-function_diagram.png)
+![Function schematic diagram]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-function_diagram.png)
 
 image credit: https://hackernoon.com/a-simple-introduction-to-one-way-functions-a2429d427546
 
@@ -402,7 +400,7 @@ my_data = [1,4,8,1,9,3,0,2,6,2,1,10]
 
 I could write a loop to do this for me and it would be good practice for my Python skills, buit this time I am in a hurry and I'd rather not reinvent the wheel. So I'll google it instead.
 
-![]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-list_sort.gif)
+![Google Python question GIF]({{ site.baseurl }}/assets/img/tutorials/python_crash_course/python_crash_course-list_sort.gif)
 
 The link to the answer I found is [here](https://stackoverflow.com/questions/25374190/how-to-sort-integer-list-in-python-descending-order).
 

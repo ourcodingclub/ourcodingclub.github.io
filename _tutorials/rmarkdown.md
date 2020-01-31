@@ -86,7 +86,7 @@ By default, the `title`, `author`, `date` and `output` format are printed at the
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
-![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Knit_HTML_Screenshot.jpg)
+![RStudio Knit HTML screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Knit_HTML_Screenshot.jpg)
 
 By default, RStudio opens a separate preview window to display the output of your .Rmd file. If you want the output to be displayed in the `Viewer` window in `RStudio` (the same window where you would see plotted figures / packages / file paths), select “View in Pane” from the drop down menu that appears when you click on the `Knit` button in the taskbar, or in the `Settings gear icon` drop down menu next to the `Knit` button. 
 
@@ -110,7 +110,7 @@ __Have a go at grabbing some code from the example R script and inserting it int
 
 You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
 
-![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/run_sel.png)
+![RStudio run current chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/run_sel.png)
 
 
 ### More on Code Chunks
@@ -452,7 +452,7 @@ Note that when a `#` symbol is placed inside a code chunk it acts as a normal R 
 
 `$A = \pi \times r^{2}$`
 
-![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Inline_eq_ex.png)
+![Rendered equation example]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Inline_eq_ex.png)
 
 The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
 
@@ -589,11 +589,11 @@ html_notebook: default
 
 To output to `.nb.html`, first make sure all your code chunks have been run:
 
-![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Notebook_Run.jpg)
+![RStudio run notebook screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Notebook_Run.jpg)
 
 then click _Preview_:
 
-![]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Notebook_Preview.jpg)
+![RStudio preview notebook screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Notebook_Preview.jpg)
 
 Notice that with R Notebooks you can still output to `.html` or `.pdf`, the same as a `.Rmd` file.
 

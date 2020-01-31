@@ -63,13 +63,13 @@ varespec %>%
 ```
 The plot you've made should look like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/ordexample.png)
+![Basic NMDS plot]({{ site.baseurl }}/assets/img/tutorials/ordination/ordexample.png)
 
 It is now a lot easier to interpret your data. Can you see which samples have a similar species composition?
 
 __In this tutorial, we only focus on unconstrained ordination or indirect gradient analysis.__ This ordination goes in two steps. First, we will perfom an ordination on a species abundance matrix. Then we will use environmental data (samples by environmental variables) to interpret the gradients that were uncovered by the ordination. The final result will look like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/ordexample2.png)
+![NMDS plot with fitted arrows]({{ site.baseurl }}/assets/img/tutorials/ordination/ordexample2.png)
 
 ## Ordination vs. classification
 
@@ -91,7 +91,7 @@ __In this section you will learn more about how and when to use the three main (
 
 PCA uses a rotation of the original axes to derive new axes, which maximize the variance in the data set. In 2D, this looks as follows:
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/PCAexample.png)
+![PCA diagram]({{ site.baseurl }}/assets/img/tutorials/ordination/PCAexample.png)
 
 Computationally, __PCA is an eigenanalysis__. The most important consequences of this are:
 
@@ -135,7 +135,7 @@ plot(PCA, display = "species", type = "text")
 
 Try to display both species and sites with points. This should look like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/PCAresult.png)
+![PCA simple plot]({{ site.baseurl }}/assets/img/tutorials/ordination/PCAresult.png)
 
 ```r
 # You can extract the species and site scores on the new PC for further analyses:
@@ -148,7 +148,7 @@ biplot(PCA, choices = c(1,2), type = c("text", "points"), xlim = c(-5,10)) # bip
 biplot(PCA, choices = c(1,3), type = c("text","points")) # biplot of axis 1 vs 3
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/biplotresult.png)
+![PCA with variable arrow fits]({{ site.baseurl }}/assets/img/tutorials/ordination/biplotresult.png)
 
 ```r
 # Check out the help file how to pimp your biplot further:
@@ -163,7 +163,7 @@ library(ggbiplot)
 
 In contrast to some of the other ordination techniques, species are represented by arrows. This implies that the abundance of the species is continuously increasing in the direction of the arrow, and decreasing in the opposite direction. Thus PCA is a linear method. PCA is extremely useful when we expect species to be linearly (or even monotonically) related to each other. Unfortunately, we rarely encounter such a situation in nature. It is much more likely that species have a unimodal species response curve: 
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/Unimodalresp.png)
+![Example of species abundances over an environmental gradient]({{ site.baseurl }}/assets/img/tutorials/ordination/Unimodalresp.png)
 
 Unfortunately, __this linear assumption causes PCA to suffer from a serious problem, the horseshoe or arch effect__, which makes it unsuitable for most ecological datasets. The PCA solution is often distorted into a horseshoe/arch shape (with the toe either up or down) if beta diversity is moderate to high. The horseshoe can appear even if there is an important secondary gradient. Can you detect a horseshoe shape in the biplot?
 
@@ -172,7 +172,7 @@ Unfortunately, __this linear assumption causes PCA to suffer from a serious prob
 
 __Principal coordinates analysis (PCoA, also known as metric multidimensional scaling) attempts to represent the distances between samples in a low-dimensional, Euclidean space. In particular, it maximizes the linear correlation between the distances in the distance matrix, and the distances in a space of low dimension (typically, 2 or 3 axes are selected). The PCoA algorithm is analogous to rotating the multidimensional object such that the distances (lines) in the shadow are maximally correlated with the distances (connections) in the object:__
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/PCOAexample.gif)
+![PCOA diagram]({{ site.baseurl }}/assets/img/tutorials/ordination/PCOAexample.gif)
 
 __The first step of a PCoA is the construction of a (dis)similarity matrix__. While PCA is based on Euclidean distances, PCoA can handle (dis)similarity matrices calculated from quantitative, semi-quantitative, qualitative, and mixed variables. As always, the choice of (dis)similarity measure is critical and must be suitable to the data in question. If you want to know more about distance measures, please check out our [Intro to data clustering]({{ site.baseurl }}/tutorials/data-clustering/index.html#Distance). For abundance data, Bray-Curtis distance is often recommended. You can use Jaccard index for presence/absence data. When the distance metric is Euclidean, PCoA is equivalent to Principal Components Analysis. __Although PCoA is based on a (dis)similarity matrix, the solution can be found by eigenanalysis__. The interpretation of the results is the same as with PCA. 
 
@@ -205,7 +205,7 @@ biplot.pcoa(PCOA)
 biplot.pcoa(PCOA, varespec)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/PCOA.png)
+![PCOA plot with species fits]({{ site.baseurl }}/assets/img/tutorials/ordination/PCOA.png)
 
 ```r
 # Extract the plot scores from first two PCoA axes (if you need them):
@@ -241,7 +241,7 @@ Axes are not ordered in NMDS. `metaMDS()` in `vegan` automatically rotates the f
 
 A plot of stress (a measure of goodness-of-fit) vs. dimensionality can be used to assess the proper choice of dimensions. The stress values themselves can be used as an indicator. Stress values `>0.2` are generally poor and potentially uninterpretable, whereas values `<0.1` are good and `<0.05` are excellent, leaving little danger of misinterpretation. Stress values between `0.1` and `0.2` are useable but some of the distances will be misleading. Finding the inflexion point can instruct the selection of a minimum number of dimensions.
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSstress.PNG)
+![Example NMDS stressplot]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSstress.PNG)
 
 __Methodology of NMDS:__
 
@@ -269,7 +269,7 @@ NMDS.scree <- function(x) { #where x is the name of the data frame variable
 NMDS.scree(dist)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSscree.png)
+![NMDS scree plot]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSscree.png)
 
 On this graph, we don´t see a data point for 1 dimension. Do you know what happened? Tip: Run a NMDS (with the function `metaNMDS()` with one dimension to find out what's wrong. Then adapt the function above to fix this problem.
 
@@ -300,7 +300,7 @@ Let's check the results of NMDS1 with a stressplot
 stressplot(NMDS1)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSstressplot.png)
+![NMDS stress plot]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSstressplot.png)
 
 There is a good non-metric fit between observed dissimilarities (in our distance matrix) and the distances in ordination space. Also the stress of our final result was ok (do you know how much the stress is?). So we can go further and plot the results:
 
@@ -324,7 +324,7 @@ orditorp(NMDS3, display = "sites", cex = 1.1, air = 0.01)
 
 
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSbiplot.png)
+![NMDS plot with species and sites]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSbiplot.png)
 
 # 3. Interpretation of the results
 {: #section3}
@@ -345,7 +345,7 @@ plot(NMDS3, type = "t", display = "sites")
 plot(ef, p.max = 0.05)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSenvfit.png)
+![NMDS with environmental fit arrows]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDSenvfit.png)
 
 It´s easy as that. Next, let's say that the we have two groups of samples. This could be the result of a classification or just two predefined groups (e.g. old versus young forests or two treatments). Now, we want to see the two groups on the ordination plot. Here is how you do it:
 
@@ -367,7 +367,7 @@ orditorp(NMDS3, display = "sites", col = c(rep("red",12),
   rep("blue", 12)), air = 0.01, cex = 1.25)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDScluster.png)
+![NMDS with convex hulls]({{ site.baseurl }}/assets/img/tutorials/ordination/NMDScluster.png)
 
 __Congratulations! You´ve made it to the end of the tutorial! Now you can put your new knowledge into practice with a couple of challenges.__
 

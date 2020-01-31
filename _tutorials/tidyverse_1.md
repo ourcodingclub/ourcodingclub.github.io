@@ -16,7 +16,7 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 
 __All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Ghent). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/CodingClub_logo2.png)
+![Coding Club logo]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/CodingClub_logo2.png)
 
 __We started Coding Club to help people at all career stages gain statistical and programming fluency, facilitating the collective advancement of ecology across institutions and borders. We use in-person workshops and online tutorials to equip participants not only with new skills, but also with the means to communicate these new skills broadly via online tutorials.__
 
@@ -27,7 +27,7 @@ There are similar initiatives already in place, including in Ghent University, U
 ## How does a Coding Club workshop work?
 There are many ways to run a coding workshop and different approaches might work better in different situations. Here is how we usually structure our workshops. The workshops take two hours and begin with a super short presentation or introductory talk about what we will be doing, what skills we will acquire and what they are useful for. We then direct workshop attendants to the link for the tutorial around which the workshop is focused. People usually open the tutorial on half of their screen and `RStudio` on the other half.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/workshop.png)
+![Coding Club Desktop diagram]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/workshop.png)
 
 At each workshop, we have a team of demonstrators who are there to answer questions and help out. We find that it works well to let people go through the tutorial at their own pace and we usually walk around and check whether things are going fine. Most of the tutorials have challenges at the end, for which people can work individually or in small teams. We bring cookies, popcorn and other treats, occasionally make bad R jokes and try our best to make the atmosphere light and positive. We don't require people to sign up and there are no obligations to attend all the workshops: people are free to attend whichever workshops are of interest to them. At the end of the workshops, we usually stay behind for a while in case people have any specific questions about their own coding projects.
 
@@ -84,17 +84,17 @@ __Next we can publish our tutorial on GitHub, which will turn it into a website,
 
 __Go to the [GitHub website](https://github.com), register if you don't already have an account (it's free) and click on `New Repository`.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/new_repo_eab.png)
+![Github new repository]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/new_repo_eab.png)
 
 Choose a name for your repository: that will form part of the link for your online tutorial so choose something short and informative. Add a brief description, click on `Initialize with a README.md` and then click on `Create repository`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/new_repo_eab2.png)
+![Github naming repository screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/new_repo_eab2.png)
 
 Now you can see your new repository. Click on `Upload files` and upload your filled in `Markdown` template and the graph you saved. Make sure you save the file as `index.md` - that will make your tutorial the landing (home) page of the website. Upload any images you are using in your tutorial as well.
 
 You are two clicks away from having a website with your tutorial! Now click on `Settings` and scroll down to the `GitHub pages` section. We need to enable the `GitHub pages` feature, which turns our `index.md` file into a page, i.e. website. Change `Source` from `None` to `master` - the master branch of our repository. Click on `Save`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/github_pages.png)
+![Github change branch to master]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/github_pages.png)
 
 __Your repository is now published as a website!__
 
@@ -132,7 +132,7 @@ __Each file on GitHub has a history, so instead of having many files like `Disse
 
 For example, here is the history for a script. You can see it took me a while to calculate those model predictions!
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/filehistory.png)
+![Github commit history]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/filehistory.png)
 
 You can embed this workflow within `RStudio` using projects and enabling version control for them - we will be doing that shortly in the tutorial. You can use `git` through the command line, or through `RStudio` and/or GitHub desktop.
 
@@ -148,15 +148,15 @@ GitHub uses repositories - you can think of a repository (_aka_ a repo) as a "ma
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wide audience.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/newrepo.png)
+![Github create new repository]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/newrepo.png)
 
 Click on `Initialise repo with a README.md file`. It's common practice for each repository to have a `README.md` file, which contains information about the project/lab group, what is the purpose of the repository, as well as any comments on licensing and data sources. Github understands several text formats, among which `.txt` and `.md`. `.md` stands for a file written in [Markdown](https://en.wikipedia.org/wiki/Markdown) - you might have used Markdown before from within `RStudio` to create reports of your code and its outputs. You can also use Markdown to write plain text files, for example the file you are reading now was written in Markdown.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/newrepo2.png)
+![Github create folder]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/newrepo2.png)
 
 You can directly edit your `README.md` file on Github by clicking on the file and then selecting `Edit this file`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/readme.png)
+![Github edit file]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/readme.png)
 
 #### Exercise 1: Write an informative README.md file
 You can now write the `README.md` file for your repository. To make headings and subheadings, put hashtags before a line of text - the more hashtags, the smaller the heading will appear. You can make lists using `-` and numbers `1, 2, 3, etc.`.
@@ -196,7 +196,7 @@ We are now ready to start using your repository - first you need to create a loc
 
 __Click `Clone or download` and copy the HTTPS link (that's the one that automatically appears in the box).__
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/clone.png)
+![Github clone repository]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/clone.png)
 
 Now open `RStudio`, click `File/ New Project/ Version control/ Git` and paste the link you copied from Github. Select a directory on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
@@ -216,7 +216,7 @@ and follow any instructions in the terminal window, you may need to enter your M
 
 Once the files have finished copying across, you will notice that a few things about your `RStudio` session have changed:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/project2.png)
+![RStudio GUI screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/project2.png)
 
 __The working directory in the top left corner is set to your local copy of the repository.__ You can load in data using `read.csv("data/your_file.csv")` - this would load a `.csv` file in a folder called `data` within your lab's repository - notice that there is no need to include the repository's name - by setting up a RStudio project, you are already within it. Similarly, when saving files, you can specify the folder where you want them saved without the repository's name.
 
@@ -227,7 +227,7 @@ __All the files that were in the repository online are now on your computer as w
 #### Tell RStudio who you are on GitHub
 In the top right corner of the RStudio screen, click on `More/Shell`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/shell.png)
+![Github terminal tab]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/shell.png)
 
 __Copy the following code:__
 
@@ -344,7 +344,7 @@ load("LPDdata_Feb2016.RData")
 head(LPDdata_Feb2016)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/wide.png)
+![RStudio wide format data view screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/wide.png)
 
 At the moment, each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years.
 
@@ -381,7 +381,7 @@ LPD_long$biome <- gsub("/", "", LPD_long$biome, fixed = TRUE)
 head(LPD_long)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/long.png)
+![RStudio long format data view]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/long.png)
 
 Now that our dataset is *tidy* we can get it ready for our analysis. We want to only use populations that have more than 5 years of data to make sure our analysis has enough data to capture population change. We should also scale the population data, because since the data come from many species, the units and magnitude of the data are very different - imagine tiny fish whose abundance is in the millions, and large carnivores whose abundance is much smaller. Scaling also normalises the data, as later on we will be using linear models assuming a normal distribution. To do all of this in one go, we can use pipes. 
 
@@ -496,7 +496,7 @@ forest.panel <- grid.arrange(forest.hist, duration.forests, ncol = 2)
 ggsave(forest.panel, file = "forest_panel.png", height = 5, width = 10)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/forest_panel.png)
+![ggplot data distribution]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/forest_panel.png)
 
 We are now ready to model how each population has changed over time. There are 1785 populations, so with this one code chunk, we will run 1785 models and tidy up their outputs. You can read through the line-by-line comments to get a feel for what each line of code is doing.
 
@@ -553,7 +553,7 @@ __Now we can visualise the outputs of all our models and see how they vary based
 ggsave(density.slopes, filename = "slopes_duration.png", height = 6, width = 6)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/slopes_duration.png)
+![Population change and duration of study with marginal density plots]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/slopes_duration.png)
 
 ### PART 2: Using pipes to make figures with large datasets
 How to print plots of population change for multiple taxa
@@ -602,7 +602,7 @@ A warning message pops up: `Error: Results 1, 2, 3, 4 must be data frames, not N
 
 If you go check out your folder now, you should see four histograms, one per taxa:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/mamm.png)
+![Histogram of population change]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/mamm.png)
 
 Another way to make all those histograms in one go is by creating a function for it. In general, whenever you find yourself copying and pasting lots of code only to change the object name, you're probably in a position to swap all the code with a function - you can then apply the function using the `purrr` package.
 
@@ -741,7 +741,7 @@ We are working with thousands of records, so depending on your computer, making 
                size = 2, colour = "darkgreen"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/deer_map.png)
+![Global map of deer population]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/deer_map.png)
 
 The map already looks fine, but we can customise it further to add more information. For example, we can add labels for the locations of some of the monitored populations and we can add plots of population change next to our map. 
 
@@ -923,7 +923,7 @@ deer.panel <- grid.arrange(row1, row2, nrow = 2, heights = c(1.2, 0.8))
 ggsave(deer.panel, filename = "deer_panel2.png", height = 10, width = 15)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/deer_panel2.png)
+![Panel annotated map deer population with population trends]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/deer_panel2.png)
 
 ## A challenge for later if you are keen
 
@@ -940,7 +940,7 @@ R Markdown allows you to create documents that serve as a neat record of your an
 
 R Markdown uses [markdown syntax](https://daringfireball.net/projects/markdown/). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to other file types like `.html` or `.pdf`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/md_script.png)
+![RMarkdown script screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/md_script.png)
 
 ## Download R Markdown
 To get R Markdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from [CRAN](https://cran.r-project.org/web/packages/rmarkdown/index.html) by running the following commands in R or RStudio:
@@ -971,7 +971,7 @@ By default, the `title`, `author`, `date` and `output` format are printed at the
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/Knit_HTML_Screenshot.jpg)
+![RStudio Knit HTML screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/Knit_HTML_Screenshot.jpg)
 
  Not only does a preview appear in the `Viewer` window in RStudio, but it also saves a `.html` file to the same folder where you saved your `.Rmd` file.
 
@@ -1061,7 +1061,7 @@ __Now you can start copying across the code from your tidyverse script and inser
 
 You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/run_sel.png)
+![RStudio run current chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/run_sel.png)
 
 ### Summary of  code chunk instructions
 
@@ -1192,7 +1192,7 @@ To learn more about the `tidyverse` in general, check out Charlotte Wickham's sl
 ### Git in the command line
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. [Prof Simon Mudd's Numeracy, Modelling and Data management guide](http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git), [The Software Carpentry guide](https://swcarpentry.github.io/git-novice/), and this [guide from the British Ecological Society Version Control workshop](https://github.com/BES2016Workshop/version-control). For more generic command line tools, look at this [general cheat sheet](https://www.git-tower.com/blog/command-line-cheat-sheet) and this [cheat-sheet for mac users](https://github.com/0nn0/terminal-mac-cheatsheet). We have also created a table and flow diagram with some basic Git commands and how they fit into the Git/Github workflow. Orange lines refer to the core workflow, the blue lines describe extra functions and the green lines deal with branches:
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/git_cli_nmdm.png)
+![Git commands flow diagram]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/git_cli_nmdm.png)
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -1291,7 +1291,7 @@ Below is a quick exercise so you can familiarise yourself with these command lin
 
 1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/rstudio_new_terminal.png)
+![RStudio new terminal menu item screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/rstudio_new_terminal.png)
 
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git.

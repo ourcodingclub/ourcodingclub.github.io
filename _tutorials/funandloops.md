@@ -350,7 +350,7 @@ vultureITCR <- filter(vulture, Country.list == c("Croatia", "Italy"))
           legend.position = c(0.9, 0.9)))               # Setting the position for the legend - 0 is left/bottom, 1 is top/right
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/funandloops/gg_scatter3.png)
+![Scatterplot with linear regression fits by group]({{ site.baseurl }}/assets/img/tutorials/funandloops/gg_scatter3.png)
 
 Here we are using the `theme_bw()` theme but we are making lots of modifications to it. When we need to make lots of graphs, e.g. all the graphs for a given research project, we would ideally like to format them in a consistent way - same font size, same layout of the graph panel. That means that we will be repeating many lines of code, but instead of doing that, we can take all the changes we want to make to the `ggplot2` theme and combine them into a function of our own! As a reminder, to start writing a function, you first assign it to an object. Since we are making a personalised theme for `ggplot2`, here I've called my function `theme.my.own`. To tell R that you are writing a function, you use `function()` and then the commands that you want your function to include go between the `{}`.
 
@@ -442,7 +442,7 @@ ggsave(panel, file = "Pop_trend_panel.png", width = 10, height = 8)
 dev.off() # to close the image
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/funandloops/Pop_trend_panel.png)
+![ggplot2 panel population trend plot]({{ site.baseurl }}/assets/img/tutorials/funandloops/Pop_trend_panel.png)
 
 That wasn't too bad, but you are still repeating lots of code, and here you have only 4 graphs to make - what if you had to make a graph like this for every species in the `LPI.UK` dataset? That would mean repeating the same code over 200 times. That will be very time consumming, and it's very easy to make mistakes when you are monotonously copying and pasting for hours.
 

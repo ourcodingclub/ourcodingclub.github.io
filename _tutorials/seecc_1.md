@@ -19,7 +19,7 @@ survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
 
 This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the [Living Planet Index Database](http://www.livingplanetindex.org/home/index). We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from [Global Biodiversity Information Facility](http://www.gbif.org/) and [Flickr](http://www.flickr.com/). We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/tidyverse.png)
+![Tidyverse workflow diagram]({{ site.baseurl }}/assets/img/tutorials/seecc_1/tidyverse.png)
 
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
@@ -68,12 +68,12 @@ load("puffin_GBIF.RData")
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig1.png)
+![Wide format data collection example table]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig1.png)
 
 Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary,
 [tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig2.png)
+![Long format dataframe example table]({{ site.baseurl }}/assets/img/tutorials/seecc_1/SAB_fig2.png)
 
 This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc, R would be able to split the dataframe correctly, as each grouping factor has its own column.
 
@@ -194,33 +194,26 @@ Loops are used for iterative purposes - through loops you are telling R to do so
 
 Pipes (`%>%`), as you found out above, are a way of streamlining the data manipulation process. Within the pipe you can group by categories of your choice, so for example we can calculate the LPI for different biomes or countries, and then save the plots.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-f8uf{font-size:100%;font-family:Arial, Helvetica, sans-serif !important;;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-yw4l">Method</th>
-    <th class="tg-yw4l">Pros</th>
-    <th class="tg-yw4l">Cons</th>
+    <th>Method</th>
+    <th>Pros</th>
+    <th>Cons</th>
   </tr>
   <tr>
-    <td class="tg-yw4l">lapply()</td>
-    <td class="tg-yw4l">Quicker than loops, slightly quicker than pipes</td>
-    <td class="tg-f8uf">More lines of code than pipes</td>
+    <td>lapply()</td>
+    <td>Quicker than loops, slightly quicker than pipes</td>
+    <td>More lines of code than pipes</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">loop</td>
-    <td class="tg-yw4l">Easy to understand and follow, used in other programming languages as well</td>
-    <td class="tg-yw4l">Slow, memory-intense and code-heavy</td>
+    <td>loop</td>
+    <td>Easy to understand and follow, used in other programming languages as well</td>
+    <td>Slow, memory-intense and code-heavy</td>
   </tr>
   <tr>
-    <td class="tg-yw4l">pipe</td>
-    <td class="tg-yw4l">Quicker than loops, efficient coding with fewer lines</td>
-    <td class="tg-yw4l">The code can take a bit of fiddling around till it's right</td>
+    <td>pipe</td>
+    <td>Quicker than loops, efficient coding with fewer lines</td>
+    <td>The code can take a bit of fiddling around till it's right</td>
   </tr>
 </table>
 
@@ -409,11 +402,11 @@ install.packages("colourpicker")
 
 To find out what is the code for a colour you like, click on `Addins/Colour picker`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker.png)
+![RStudio colourpicker menu screenshot]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker.png)
 
 When you click on `All R colours` you will see lots of different colours you can choose from - a good colour scheme makes your graph stand out, but of course, don't go crazy with the colours. When you click on `1`, and then on a certain colour, you fill up `1` with that colour, same goes for `2`, `3` - you can add mode colours with the `+`, or delete them by clicking the bin. Once you've made your pick, click `Done`. You will see a line of code `c("#8B5A00", "#CD8500")` appear - in this case, we just need the colour code, so we can copy that, and delete the rest.
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker2.png)
+![RStudio colourpicker interface screenshot]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker2.png)
 
 ### Plotting histograms of population change in different biomes and saving them
 
@@ -437,7 +430,7 @@ biome.plots <- LPI_long %>%
 
 The histograms will be saved in your working directory. You can use `getwd()` to find out where that is, if you've forgotten. Check out the histograms - how does population change vary between the different biomes?
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/hist_polar_seas.png)
+![Histogram of population change]({{ site.baseurl }}/assets/img/tutorials/seecc_1/hist_polar_seas.png)
 
 ### Ploting slope estimates for population change versus duration of monitoring and adding histograms along the margins
 
@@ -458,13 +451,13 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 
 Once you've installed the package by running `install.packages("ggExtra")`, you can select the `ggplot2` code, click on `ggplot2 Marginal Histograms` from the Addin menu and build your plot. Once you click `Done`, the code will be automatically added to your script.
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra1.png)
+![RStudio ggplot marginal plots menu screenshot]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra1.png)
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra2.png)
+![RStudio ggplot marginal plots interface screenshot]({{ site.baseurl }}/assets/img/tutorials/seecc_1/ggextra2.png)
 
 Here is the final graph - what do you think, how has biodiversity changed in the last ~40 years?
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/popchangehist.png)
+![ggplot marginal histograms]({{ site.baseurl }}/assets/img/tutorials/seecc_1/popchangehist.png)
 
 ## Visualising species occurrence
 
@@ -496,7 +489,7 @@ Then create the plot using `ggplot()`:
 
 We used a colour palette from `RColorBrewer` to colour the points (`Set1`). You can see all the colour palettes by running `display.brewer.all()` in R.
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/puffinmap.png)
+![World map of species distributions]({{ site.baseurl }}/assets/img/tutorials/seecc_1/puffinmap.png)
 
 
 ## 5. Species occurrence maps based on GBIF and Flickr data
@@ -555,7 +548,7 @@ library(ggthemes)
     geom_point(alpha = 0.4, colour = "red")) 
 
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GBIFoccurr.png)
+![UK map of species distribution]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GBIFoccurr.png)
 
 ### Clean data from Flickr
 
@@ -580,7 +573,7 @@ coordinates(geopics) <- c("longitude", "latitude")    # make it spatial
 plot(geopics)                                         # plot it
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrAll.png)
+![Plot of species distribution with outlier]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrAll.png)
 
 The function `coordinates` sets spatial coordinates to create a Spatial object or retrieves spatial coordinates from a Spatial object.
 
@@ -609,7 +602,7 @@ library(rworldmap)
 data(countriesLow)
 plot(countriesLow, add = T)
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrUK.png)
+![Map of species distribution in UK]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrUK.png)
 
 There is one more problem we need to solve: some of the data points are not on the coast, which means that these pictures are probably not puffins. In order to delete them, we are going to use the UK coastline to select only the datapoints that are within 1 km of the coast and the ones that are on the sea. 
 The first step is to split the dataset into a marine and a terrestrial one. After that, we can select only the points that are on the coast from the terrestrial dataset. Finally, we will put the marine and coastal points together.
@@ -659,7 +652,7 @@ plot(flickr_terr)
 plot(flickr_mar)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrTerr&Mar.png)
+![Plot of UK species around coast]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrTerr&Mar.png)
 
 Now we can select the coastal points from the terrestrial dataset. In order to calculate the distance of every point from the coastline, we need to transform our UK polygon shapefile into a line shapefile. Again, this operation is pretty straightforward in R.
 
@@ -681,7 +674,7 @@ Plot to check it worked.
 plot(flickr_coast)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast.png)
+![Plto of UK species coastal only]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast.png)
 
 Now we can put the marine and coastal datasets together and plot to check that it worked.
 
@@ -691,7 +684,7 @@ plot(UK_coast)
 points(flickr_correct, pch = 20, col = "steelblue")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast2.png)
+![Map of UK species around coast]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast2.png)
 
 ### Density maps
 
@@ -727,7 +720,7 @@ Now, we can build our map with `ggplot2`. If you want to know more about the way
 # This will take a while to plot!
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrDensity.png)
+![Facetted density plot by year]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrDensity.png)
 
 You can see from this plot that there are a few hotspots for watching puffins in the UK, such as the Farne Islands, Shetland and Flamborough Head.
 
@@ -743,4 +736,4 @@ __If you get stuck you can find the code in the script SEECC_script_final.R [her
 
 __This tutorial was prepared for a workshop on quantifying biodiversity change at the Scottish Ecology, Environment and Conservation Conference on 3rd April in Aberdeen. If you want to learn more about our joint workshop with the Aberdeen Study Group, led by [Francesca Mancini](https://francescamancini.github.io/), you can check out our blog posts on the [Team Shrub blog](https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards) and [Francesca's blog](https://francescamancini.github.io/FirstSteps/). The workshop organisation and preparation of teaching materials were supported by the Global Environment & Society Academy Innovation Fund.__
 
-![]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GESA.jpg)
+![UoE Global Environment & Society Academy logo]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GESA.jpg)
