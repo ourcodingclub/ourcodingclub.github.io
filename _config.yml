@@ -63,3 +63,9 @@ collections:
     tutorials:
         output: true
         permalink: /tutorials/:path/
+    dl_course:
+        output: true
+        permalink: /dl_course/:path/
+    posts:
+        output: true
+        permalink: /posts/:path/

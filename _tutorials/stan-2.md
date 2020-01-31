@@ -79,7 +79,7 @@ Now, let's think about the distribution of the data, specifically our response v
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the "hist" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/richness_hist.png)
+![Species richness histogram]({{ site.baseurl }}/assets/img/tutorials/stan-2/richness_hist.png)
 
 __We are working with integers (similar to count data, species only come in whole numbers) and the data are right-skewed, that is because we have a few data points on the extreme right end, they are pulling the mean and median or our data to the right. For ecological data, this is quite common - across all of the sampling plots, we expect that they won't all have lots of different species within them.__
 
@@ -148,7 +148,7 @@ __One way to assess model convergence is by visually examining the trace plots. 
 plot(stan_glm1, plotfun = "trace")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_traces.png)
+![Trace plot]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_traces.png)
 
 Here, the trace plots look fine.
 
@@ -158,7 +158,7 @@ Next we can look at the summary output.
 summary(stan_glm1)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_summary.png)
+![Stan GLM console output]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_summary.png)
 
 __We can see that the effective sample size is alright (there is no hard cut threshold, but more than around 1000 is usually a good sign), another diagnostic metric, the `Rhat` value is also indicating convergence (an `Rhat` of 1 is a good sign, more than 1 could indicate trouble).__
 
@@ -171,7 +171,7 @@ pp_check(stan_glm1, plotfun = "stat", stat = "mean")
 pp_check(stan_glm1, plotfun = "dens_overlay")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
+![Posterior prediction density distribution]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
 
 __What do you think? How does the density distribution of the model predictions compare with that of the raw data?__
 
@@ -187,11 +187,11 @@ We can launch the app using the code below. That will open a window in our inter
 launch_shinystan(stan_glm1)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan.png)
+![ShinyStan screenshot]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan.png)
 
 Have a go at exploring the various options - you'll probably spot some of the plots we've already made in `R`, but there are many others as well. Here, for example, if there were any divergent chains (i.e. a chain that is behaving in a very weird unexpected way), we would have seen red points. In our case, we don't have any divergent chains.
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan2.png)
+![ShinyStan example output]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan2.png)
 
 ### Back to our research question
 
@@ -212,7 +212,7 @@ To get the answer, we can plot the model predictions for our model as well as th
 
 __Looks like species richness is decreasing, but also, four years of data is not enough to really test temporal dynamics!__
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan_pred.png)
+![Stan ggplot2 prediction output]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan_pred.png)
 
 
 ## Priors
@@ -277,7 +277,7 @@ pp_check(stan_glm2, plotfun = "stat", stat = "mean")
 pp_check(stan_glm2, plotfun = "dens_overlay")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
+![Stan posterior prediction density distribution]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan2_density.png)
 
 You can see that the model outputs are very similar - this is to be expected, because the Poisson distribution is actually a type of a negative binomial distribution. Once again, the model is underpredicting the frequency of low species richness values.
 

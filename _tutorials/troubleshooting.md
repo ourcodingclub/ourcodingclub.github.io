@@ -26,7 +26,7 @@ Programming comes with a learning curve and you will no doubt encounter many err
 
 In addition to keeping a record of your code, scripts are also useful for detecting simple coding errors before you've even run the code. If `RStudio` picks up on a character missing, a command that doesn't make sense due to spelling errors or similar, a little red _x_ appears next to that line of code. Scanning your code for _x_'s before running it is always a good idea and it's very convenient since you know exactly on which line you made a mistake. The other way `R` reports errors is through messages in the console, which appear after you run code that is not quite right. Although the error messages look scary (the red font and words like "fatal" sure give them a bad reputation), they are actually the second best option to no errors at all: `R` has identified there is a problem and from the message, you can figure out what it is and solve it!
 
-![]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/xandm.png)
+![RStudio GUI error and code linter warning, annotated]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/xandm.png)
 
 ### 2. Get familiar with common errors and solutions
 {: #errors}
@@ -49,7 +49,7 @@ If you are reading up on `R` online, or copying and modifying code, you might be
 
 - __Data not in the right format__. This might not necessarily result in an error message, but might lead to graphs/results that are wrong. For example, in [our first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html) we created a data frame and plotted species richness. If we had chosen a data matrix instead, that plot would have looked very different (and wrong). We use matrices when the variables are all the same type (all text, all numerical) and of the same length (same number of rows). Data frames are for when we have multiple variables of different types and vectors are for a series of numbers of the same type. If your results/plots make you feel suspicious, it's good to go back to your data and check: did it import right into R, and is it in the right format? You can do this using `head()` for a preview, `str()` to check the class of each variable, and `summary()`.
 
-![]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/wrong.png)
+![Incorrect stacked bar chart]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/wrong.png)
 
 Figure 1. An unfortunate looking barplot! The data were chosen to be a data matrix, but, because in matrices all variables are of the same type, R expects `taxa_f` - the names of the different taxa - to have a numerical value, and lumps all the species richness values together in the second bar. A data frame was definitely a better choice!
 
@@ -57,13 +57,13 @@ Figure 1. An unfortunate looking barplot! The data were chosen to be a data matr
 
 - __R crashed!__ If you've overloaded `R`, it can make a dramatic exit (bomb image and all) or sometimes it stops responding and you have to terminate the session. That's why it's very important to save your scripts often, but it's better to save them as new files, e.g. `Edi_biodiv_16thNov.R`, instead of overwriting the same file. That way if you want to revert back to old code or use some part of it, it's easy to find it. This is the most basic type of version control. We can learn more about version control in [our `git` tutorial]({{ site.baseurl }}/git/index.html)
 
-![]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/bomb.png)
+![Aborted R Session error message]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/bomb.png)
 
 - __Aaaah! I enlarged my plot, and now it's full screen and I can't get back__! If you click on the little magnifying glass in the Plots window, it opens your plot in a new window that you can resize. Convenient! Less convenient is when you accidentally drag the window to the top of your screen and it goes full screen, blocking everything else. This is not an issue anymore with newer versions of R Studio, but if it ever happens, you can escape using the _backspace_ key on your keyboard - and hopefully you don't lose data in the process.
 
 - __I am stuck in a loop of pluses__! If the numbers of opening and closing brackets don't match up, `R` thinks there is more code coming. That is why, in the console, it is prompting you to add more code: every time you press enter, a new + appears. Press _Escape_ on your keyboard to get back to the normal `>` prompt in the console and check your code to find your error.
 
-![]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/pluses.png)
+![RStudio console prompt changed to "plus" symbols]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/pluses.png)
 
 - __The cursor in the script file changed from `|` to `_` and now text gets overwritten when I type__. This happens when you accidentally press _Insert_ on your keyboard and as a result when you add new text, it gets written over. Press _Insert_ again to go back to normal.
 

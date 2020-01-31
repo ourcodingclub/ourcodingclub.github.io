@@ -10,13 +10,13 @@ We would love to extend Coding Club beyond the University of Edinburgh and creat
 
 We would be thrilled to have people from anywhere in the world use our tutorials! If you would like to organise a Coding Club workshop, please get in touch at ourcodingclub@gmail.com and we can share our advice and experience and answer any questions you might have. The workshop can take whatever format you consider suitable: people can get together and collectively go through a given tutorial, or you can lead a workshop for your lab group or department.
 
-![]({{ site.baseurl }}/assets/img/involve/desk.png)
+![Workshop conversation photo]({{ site.baseurl }}/assets/img/involve/desk.png)
 
 ## How does a Coding Club workshop work?
 
 There are many ways to run a coding workshop and different approaches might work better in different situations. Here is how we usually structure our workshops. The workshops take two hours and begin with a short presentation or introductory talk about what we will be doing, what skills we will acquire and what they are useful for. We then direct workshop attendants to the link for the tutorial around which the workshop is focused. People usually open the tutorial on half of their screen and RStudio (or some other IDE depending on the workshop) on the other half of their screen.
 
-![]({{ site.baseurl }}/assets/img/involve/workshop.png)
+![Workshop desktop schematic]({{ site.baseurl }}/assets/img/involve/workshop.png)
 
 At each workshop, we have a team of demonstrators who are there to answer questions and help out. We find that it works well to let people go through the tutorial at their own pace and we usually walk around and check whether things are going well. Most of the tutorials have challenges at the end, for which we tend to split into small groups. We bring cookies, popcorn and other treats, occasionally make bad R jokes and try our best to make the atmosphere light and positive. We don't require people to sign up and there are no obligations to attend all the workshops: people can show up and leave whenever suits them, and they are free to attend whichever workshops are of interest to them. At the end of the workshops, we usually stay behind for a while in case people have any specific questions about their own coding projects.
 
@@ -24,7 +24,7 @@ We welcome people with all levels of R knowledge to our workshops. It's impressi
 
 We advertise our tutorials through posters, emails and Twitter. We are happy to share the templates for our posters if you would like to customise them when organising a workshop at your home institution.
 
-![]({{ site.baseurl }}/assets/img/involve/poster.png)
+![Coding Club poster]({{ site.baseurl }}/assets/img/involve/poster.png)
 
 ## Contribute a tutorial
 

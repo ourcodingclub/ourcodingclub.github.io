@@ -70,7 +70,7 @@ Here is an overview of the topics covered by our streams. Again, you do not have
 </div>
 
 
-![]({{ site.baseurl }}/assets/img/dl_course/streams_launch_white.png)
+![DL course content flow diagram]({{ site.baseurl }}/assets/img/dl_course/streams_launch_white.png)
 
 {% capture link %}https://codingclub.shinyapps.io/pre-reg/{% endcapture %}
 {% include link-button.html url=link button="Sign up to receive an alert when we launch" %}

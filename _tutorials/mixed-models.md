@@ -72,7 +72,7 @@ You don't need to worry about the distribution of your **explanatory** variables
 hist(dragons$testScore)  # seems close to a normal distribution - good!
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-1.png)
+![Histogram of Dragon test score]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-1.png)
 
 It is good practice to **standardise** your explanatory variables before proceeding so that they have a mean of zero ("centering") and standard deviation of one ("scaling"). It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes. You can use `scale()` to do that:
 
@@ -109,7 +109,7 @@ library(ggplot2)  # load the package
 
 Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `prelim_plot` after you've created the "prelim_plot" object. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-2.png)
+![Scatter plot of bodyLength vs. testScore]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-2.png)
 
 Okay, so both from the linear model and from the plot, it seems like bigger dragons do better in our intelligence test. That seems a bit odd: size shouldn't really affect the test scores.
 
@@ -124,7 +124,7 @@ plot(basic.lm, which = 1)  # not perfect...
 ## the bigger the sample size, the less of a trend you'd expect to see
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-3.png)
+![Diagnostic plot of residuals vs fitted values]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-3.png)
 
 Have a quick look at the qqplot too: points should ideally fall onto the diagonal dashed line:
 
@@ -132,7 +132,7 @@ Have a quick look at the qqplot too: points should ideally fall onto the diagona
 plot(basic.lm, which = 2)  # a bit off at the extremes, but that's often the case; again doesn't look too bad
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-4.png)
+![QQ plot]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-4.png)
 
 However, what about observation independence? Are our data independent?
 
@@ -144,7 +144,7 @@ Have a look at the data to see if above is true:
 boxplot(testScore ~ mountainRange, data = dragons)  # certainly looks like something is going on here
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-5.png)
+![Boxplot of testScore vs. mountainRange]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-5.png)
 
 We could also plot it and colour points by mountain range:
 
@@ -155,7 +155,7 @@ We could also plot it and colour points by mountain range:
   theme(legend.position = "none"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-6.png)
+![ggplot2 scatter bodyLength vs. testScore]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-6.png)
 
 From the above plots, it looks like our mountain ranges vary both in the dragon body length __AND__ in their test scores. This confirms that our observations from within each of the ranges **aren't independent**. We can't ignore that: as we're starting to see, it could lead to a completely erroneous conclusion. 
 
@@ -176,7 +176,7 @@ Lets have a quick look at the data split by mountain range.  We use the `facet_w
   ylab("test score"))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-7.png)
+![ggplot2 facetted scatter length vs. testScore by mountainRange]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-7.png)
 
 That's eight analyses. Oh wait, we also have different sites in each mountain range, which similarly to mountain ranges aren't independent... So we could run an analysis for each site in each range separately.
 
@@ -254,9 +254,7 @@ Finally, keep in mind that the name *random* doesn't have much to do with *mathe
 {: #Further_Reading}
 
 - [Is it a fixed or random effect?](https://dynamicecology.wordpress.com/2015/11/04/is-it-a-fixed-or-random-effect/) A useful way to think about fixed *vs*. random effects is in terms of partitioning the variation and estimating random effects with **partial pooling**. The description [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode) is the most accessible one I could find for now and you can find more opinions in the comments under the previous link too (search for *pooling* and *shrinkage* too if you are very keen).
-
 - [How many terms? On model complexity](https://dynamicecology.wordpress.com/2015/02/05/how-many-terms-in-your-model-before-statistical-machismo/)
-
 - [More on model complexity](https://dynamicecology.wordpress.com/2014/12/02/why-are-your-statistical-models-more-complex-these-days/)
 
 - Have a look at some of the fixed and random effects definitions gathered by Gelman in [this paper](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf) (you can also find them [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode/4702#4702) if you can't access the paper).
@@ -283,7 +281,7 @@ Once we account for the mountain ranges, it's obvious that dragon body length do
 
 Take a look at the summary output: notice how the __model estimate__ is smaller than its associated error? That means that the effect, or slope, cannot be distinguised from zero.
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-output1.png)
+![Summary of lmer console output, annotated]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-output1.png)
 
 Keep in mind that the random effect of the mountain range is **meant to capture all the influences of mountain ranges on dragon test scores** - whether we observed those influences explicitly or not, whether those influences are big or small *etc*. It could be many, many teeny-tiny influences that, when combined, affect the test scores and that's what we are hoping to control for.
 
@@ -314,7 +312,7 @@ As always, it's good practice to have a look at the plots to check our assumptio
 plot(mixed.lmer)  # looks alright, no patterns evident
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-8.png)
+![lmer fitted values versus residuals diagnostic plot]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-8.png)
 
 and `qqplot`:
 
@@ -323,7 +321,7 @@ qqnorm(resid(mixed.lmer))
 qqline(resid(mixed.lmer))  # points fall nicely onto the line - good!
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-9.png)
+![lmer QQ plot]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-9.png)
 
 #### Types of random effects
 {: #types}
@@ -405,7 +403,7 @@ mixed.WRONG <- lmer(testScore ~ bodyLength2 + (1|mountainRange) + (1|site), data
 summary(mixed.WRONG)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-output-wrong.png)
+![lmer console output incorrect grouping of observations, annotated]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-output-wrong.png)
 
 But we can go ahead and fit a new model, one that takes into account both the differences between the mountain ranges, as well as the differences between the sites within those mountain ranges by using our `sample` variable.
 
@@ -441,7 +439,7 @@ Let's plot this again - visualising what's going on is always helpful. You shoul
 )
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-10.png)
+![ggplot2 facetted scatter with groups of testScore vs. bodyLength by mountainRange]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-10.png)
 
 ### Introducing random slopes
 {: #ranslopes}
@@ -474,7 +472,7 @@ Let's see that with a quick plot (we'll plot predictions in more detail in the n
 )
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-ranslopes.png)
+![ggplot2 facetted scatter with groups of testScore vs. bodyLength by mountainRange with random slopes]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-ranslopes.png)
 
 **Well done for getting here!** You have now fitted random-intercept and random-slopes, random-intercept mixed models and you know how to account for hierarchical and crossed random effects. You saw that failing to account for the correlation in data might lead to misleading results - it seemed that body length affected the test score until we accounted for the variation coming from mountain ranges. We can see now that body length doesn't influence the test scores - great! We can pick smaller dragons for any future training - smaller ones should be more manageable! 
 
@@ -510,7 +508,7 @@ pred.mm <- ggpredict(mixed.lmer2, terms = c("bodyLength2"))  # this gives overal
 )
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-ggpredict1.jpeg)
+![ggplot2 lmer model predictions]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-ggpredict1.jpeg)
 
 What if you want to visualise how the relationships vary according to different levels of random effects? You can specify `type = "re"` (for "random effects") in the `ggpredict()` function, and add the random effect name to the `terms` argument. 
 
@@ -523,7 +521,7 @@ ggpredict(mixed.lmer2, terms = c("bodyLength2", "mountainRange"), type = "re") %
    theme_minimal()
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-ggpredict2.jpeg)
+![ggpredict model predictions random intercepts]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mixed-models-ggpredict2.jpeg)
 
 You can clearly see the random intercepts and fixed slopes from this graph. When assessing the quality of your model, it's always a good idea to look at the raw data, the summary output, and the predictions all together to make sure you understand what is going on (and that you have specified the model correctly). 
 
@@ -540,7 +538,7 @@ summary(mixed.ranslope)
 
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/sjplot.png)
+![sjplot random effects interval plot]({{ site.baseurl }}/assets/img/tutorials/mixed-models/sjplot.png)
 
 **Careful here!** The values you see are **NOT** *actual* values, but rather the *difference* between the general intercept or slope value found in your model summary and the estimate for this *specific level* of random effect. For instance, the relationship for dragons in the Maritime mountain range would have a slope of `(-2.91 + 0.67) = -2.24` and an intercept of `(20.77 + 51.43) = 72.20`. 
 
@@ -568,7 +566,7 @@ stargazer(mixed.lmer2, type = "text",
           digit.separator = "")
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-tab.png)
+![stargazer formatted lmer model output]({{ site.baseurl }}/assets/img/tutorials/mixed-models/mm-tab.png)
 
 #### Further processing
 {: #processing}

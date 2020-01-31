@@ -111,13 +111,13 @@ __We are very keen to expand our team! We are looking for people interested in [
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop.png" alt="workshop">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop.png" alt="Workshop photo">
 		</div>
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/word_cloud.png" alt="word cloud">
+			<img src="{{ site.baseurl }}/assets/img/index/word_cloud.png" alt="Word cloud">
 		</div>
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/hex_diagram.png" alt="word cloud">
+			<img src="{{ site.baseurl }}/assets/img/index/hex_diagram.png" alt="Coding Club values diagram">
 		</div>
 	</div>
 </div>
@@ -126,28 +126,28 @@ __We are very keen to expand our team! We are looking for people interested in [
 
 Coding Club was jumpstarted with support from an [Innovation Initiative Grant](http://www.ed.ac.uk/development-alumni/iig) from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We are now taking Coding Club further with the help of a [Principal's Teaching Award Scheme grant](http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club). We are working together with the [NERC E3 Doctoral Training Partnership](http://e3dtp.geos.ed.ac.uk/) which supports two of our team members (Gergana and John).
 
-![]({{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg)
-![]({{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg)
-![]({{ site.baseurl }}/assets/img/index/GESA.jpg)
-![]({{ site.baseurl }}/assets/img/index/iad.png)
+![UoE Innovation Initiative Grant logo]({{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg)
+![E3 DTP NERC logo]({{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg)
+![UoE Global Environment & Society Academy logo]({{ site.baseurl }}/assets/img/index/GESA.jpg)
+![UoE IAD logo]({{ site.baseurl }}/assets/img/index/iad.png)
 
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
 		<div class="owl-carousel-quote">
 			<p>"Having people believe in me motivated me to keep developing my skills in programming and statistics, despite all the error messages. Now it's my turn to do the believing - I believe in Coding Club and all its members, and I know that together we can learn to code and use the right type of statistics!"</p>
-			<img src="{{ site.baseurl }}/assets/img/quotes/gergana.jpg" alt="gergana">
+			<img src="{{ site.baseurl }}/assets/img/quotes/gergana.jpg" alt="Gergana">
 			<p>Gergana Daskalova</p>
 			<p>Coding Club leader</p>
 		</div>
 		<div class="owl-carousel-quote">
 			<p>"The tutors are keen and engaging; their enthusiasm rubs off on all of us. The step-by-step tutorials are useful for going back over things once the session is over. The peer-led nature of the classes is a forgiving, non-threatening atmosphere to ask questions and make mistakes."</p> 
-			<img src="{{ site.baseurl }}/assets/img/quotes/joe.jpg" alt="joe">
+			<img src="{{ site.baseurl }}/assets/img/quotes/joe.jpg" alt="Joe">
 			<p>Joe Boyle</p>
 			<p>Honours Student</p>
 		</div>
 		<div class="owl-carousel-quote">
 			<p>"Getting quite into R now... started to see how it's satisfying when you crack the code!"</p> 
-			<img src="{{ site.baseurl }}/assets/img/quotes/el.jpg" alt="el">
+			<img src="{{ site.baseurl }}/assets/img/quotes/el.jpg" alt="El">
 			<p>Eleanor Walker</p>
 			<p>Honours Student</p>
 		</div>

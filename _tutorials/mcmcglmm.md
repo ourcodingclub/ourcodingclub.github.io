@@ -76,7 +76,7 @@ Furthermore, with __Bayesian statistics__, we include prior probabilities in our
 Take a look at this schematic of Bayes' theorem. The output of a ````MCMCglmm```` model is a __posterior distribution__, which is a combination of your data, your prior knowledge, and the __[likelihood](https://www.youtube.com/watch?v=XepXtl9YKwc)__ function.
 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc1Bayes.PNG)
+![Annotated Bayes' theorem]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc1Bayes.PNG)
 
 More info on __GLMMs__ in __[this paper](https://www.sciencedirect.com/science/article/pii/S0169534709000196)__ . MCMC is a bit more complicated to explain. Most simply put, it's an algorithm which can draw random samples from a posterior distribution so that we can explore its characteristics. If you would like to understand a bit more about how __[Markov chain](https://theclevermachine.wordpress.com/2012/09/24/a-brief-introduction-to-markov-chains/)__ __[Monte Carlo](https://theclevermachine.wordpress.com/2012/09/22/monte-carlo-approximations/)__ algorithms work, check out these links, and __[this one](http://twiecki.github.io/blog/2015/11/10/mcmc-sampling/)__. 
 
@@ -90,7 +90,7 @@ Today we are going to focus on using ````MCMCglmm```` for __meta-analysis__. The
 
 There is no fundamental distinction between (what we call) fixed effects and random effects in a Bayesian analysis. The key is in understanding how each type of analysis deals with ___variance___. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc2fixed.png)
+![Model slopes density distribution fixed and random effects]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc2fixed.png)
 
 In these funnel plots, each data point represents a response (slope of change in timing of arrival of birds at their breeding grounds in days/year) from a previously published study. We use 1/SE as a measure of precision. Data points estimated with high standard error will have low precision, and gather towards the bottom of the plot. Vice versa with those estimated with low standard error. Thus, points with low standard error (high precision) should funnel in around the true effect size.
 
@@ -138,7 +138,7 @@ Before we start, let’s plot the data. A __funnel plot__ is typically used to v
 plot(migrationtime$Slope, I(1/migrationtime$SE)) # this makes the funnel plot of slope (rate of change in days/year) and precision (1/SE)
 
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/funnel.png)
+![Funnel plot of model slope density distribution]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/funnel.png)
 
 You can see here that the data seem to funnel in around zero, and that both positive and negative values are well represented, i.e. this study does not suffer from __publication bias__.
 Let’s look at the plot again, with a more zoomed in view. 
@@ -147,7 +147,7 @@ Let’s look at the plot again, with a more zoomed in view.
 plot(migrationtime$Slope, I(1/migrationtime$SE), xlim = c(-2,2), ylim = c(0, 60))
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/funnel_zoom.png)
+![Zoomed funnel plot of model slope density distribution]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/funnel_zoom.png)
 
 Now, we can see in more detail that the true value seems to funnel in just left of zero, and there is quite a lot of variation around this. __Understanding how the data look is a good place to start.__
 
@@ -169,7 +169,7 @@ Your effective sample size should be quite high __(I usually aim for 1000-2000)_
 
 We can accept that a __fixed effect__ is significant when the credible intervals __do not span zero__, this is because if the posterior distribution spans zero, we cannot be confident __that it is not zero__. While a `pMCMC` value _is_ reported, it's better to pay more attention to the credible intervals. Ideally your posterior distribution will also be narrow indicating that that parameter value is known precisely. Here's an example of a poorly and a well estimated posterior distribution. The red line represents the posterior mean in both cases. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/Image 6.PNG)
+![Example of poorly- and well-estimated model histograms]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/Image 6.PNG)
 
 With __random effects__, we estimate the variance. As variance cannot be zero or negative, we accept that a random effect is significant when the distribution of the variance is not pushed up against zero. To check this, we can plot the histogram of each posterior distribution.
 
@@ -187,7 +187,7 @@ hist(mcmc(randomtest$VCV)[,"Species"])
 par(mfrow=c(1,1)) # Reset the plot panel back to single plots
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/histograms.png)
+![Histograms of random effects]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/histograms.png)
 
 Here we can see that the distribution of variance for Location and Species is pressed right up against zero. For a random effect to be significant, we want the tails to be well removed from zero.
 
@@ -199,7 +199,7 @@ Now let’s check for model convergence. We do this separately for both fixed an
 plot(randomtest$Sol)
 
 ```
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sol.png)
+![Trace plot and density estimate of intercept for simple Bayesian model]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sol.png)
 
 Here you can see the trace and density estimate for the intercept. The trace is like a time series of what your model did while it was running and can be used to assess mixing (or convergence), while the density is like a smoothed histogram of the estimates of the posterior distribution that the model produced for every iteration of the model.
 
@@ -227,7 +227,7 @@ Let’s do the same thing now, but for the variances of the random effects. Depe
 plot(randomtest$VCV)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomtest_traces.png)
+![Panel plots for multi factor model, trace and density distributions]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomtest_traces.png)
 
 It looks like some of the variances of the random effects haven’t mixed very well at all. The effective sample size is also very small. Maybe we could improve this by increasing the number of iterations, but because the chain seems to be stuck around zero, it looks like ___we’ll need to use a stronger prior___ than the default.
 
@@ -246,7 +246,7 @@ These are mathematical quantifications of our prior knowledge of what we think t
 We can thus use priors to inform the model which shape we think the posterior distribution will take.
 In the schematic below, you can see we use our prior beliefs to “drag” the distribution of our likely parameter values towards the left. 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc4priorposterior.png)
+![Schematic density distribution of prior belief, posterior belief, and evidence]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc4priorposterior.png)
 
 It’s very difficult to understand how the prior interacts with the distribution of the data and the likelihood function to give the posterior distribution. That’s why we need complex algorithms like MCMC. However, it’s very difficult to be confident that you have done this correctly, and a key reason why Bayesian statistics can be confusing.
 
@@ -257,14 +257,14 @@ In MCMCglmm, each prior follows a similar formula and whether it is strongly or 
 
 Be careful when you read that a prior is __uninformative__; there is no such thing as a completely uninformative prior, but explaining why is beyond what's necessary for this tutorial.
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc5priorstrength.png)
+![Comparison of strong and weak priors and their effect on posterior distribution]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc5priorstrength.png)
 
 With ````MCMCglmm````, the default prior assumes a normal posterior distribution with very large variance for the fixed effects and a flat improper (weakly informative) prior. For the variances of the random effects, inverse-Wishart priors are implemented. An inverse-Wishart prior contains your variance matrix _V_, and your degree of believe parameter, ````nu````. 
 
 Below you can see what an inverse Wishart prior looks like in graphical terms. You can see that ````nu```` can vary in its strength and level of information. Imagine what each level of ````nu```` might do to your data - we might expect that when ````nu```` is low, it will be less informative, except for the lowest values of your distribution, which it might drag leftwards slightly.
 
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc6nu.PNG)
+![Graphical visualisation of Wishart prior]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/mcmc6nu.PNG)
 
 The more complicated your models become, the more likely it is that you will eventually get an error message, or as we have just seen, that your models will not mix from the beginning. In this case we should use __parameter expanded priors__ of our own. The use of parameter expansion means the priors are no longer inverse-Wishart but scaled-F (don't worry if you don't understand this!). This is not neceassrily a bad thing, as parameter expanded priors are less easy to specify incorrectly than inverse-Wishart priors. 
 
@@ -304,7 +304,7 @@ The effective sample sizes are much bigger now! This is a good sign.
 plot(randomprior$VCV)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomprior_traces.png)
+![Panelled random prior traceplots and density distributions]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomprior_traces.png)
 
 The models look to have mixed much better too. This is also good. 
 
@@ -329,9 +329,9 @@ randomerror2 <- MCMCglmm(Slope ~ 1, random = ~Species + Location + Study + idh(S
 plot(randomerror2$VCV)
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randonerror_traces.png)
+![Random error traceplots]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randonerror_traces.png)
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomerror_traces2.png)
+![Random error traceplots]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/randomerror_traces2.png)
 
 If you check the summary now, you can see that now we’ve included measurement error, our estimates are much more conserved. Studies with higher standard error have been given lower statistical weight.
 
@@ -344,7 +344,7 @@ plot(migrationtime$Slope, I(1/migrationtime$SE))
 points(xsim, I(1/migrationtime$SE), col = "red") # here you can plot the data from both your simulated and real datasets and compare them
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sim_funnel1.png)
+![Funnel plot]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sim_funnel1.png)
 
 This seems to fit reasonably well, although the simulated data are perhaps skewed a bit too much towards the left. 
 
@@ -375,7 +375,7 @@ plot(migrationtime$Slope, I(1/migrationtime$SE))
 points(xsim, I(1/migrationtime$SE), col = "red") # here you can plot the data from both your simulated and real datasets and compare them
 ```
 
-![]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sim_funnel2.png)
+![Funnel plot]({{ site.baseurl }}/assets/img/tutorials/mcmcglmm/sim_funnel2.png)
 
 These parameters seem to be a better fit for our data. 
 
