@@ -101,7 +101,7 @@
 		
 	</p>
 	<hr>
-	<h3 id="tutorial-aims">Tutorial aims:</h3>
+	<h1 id="tutorial-aims">Tutorial aims:</h1>
 
 <ol>
   <li>Understand what are R and R Studio</li>
@@ -111,7 +111,7 @@
   <li>Make a simple plot</li>
 </ol>
 
-<h3 id="steps">Steps:</h3>
+<h1 id="steps">Steps:</h1>
 
 <ol>
   <li><a href="#download">Download R and RStudio</a></li>
@@ -125,7 +125,7 @@
 
 <p>In our first tutorial we will begin to explore “R” as a tool to analyse and visualise data.</p>
 
-<p><strong>What is R?</strong></p>
+<h1 id="what-is-r">What is R?</h1>
 
 <p>R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the “S” programming language. (Next time you need a fun fact, you can say “Did you know that S came before R?”) R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there’s hardly anything you <em>can’t</em> do in R.</p>
 
@@ -143,7 +143,7 @@
   <li>R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you’re having. You can start with our <a href="/links/">links page</a>!</li>
 </ul>
 
-<h3 id="download">1. Download R and RStudio</h3>
+<h1 id="download">1. Download R and RStudio</h1>
 
 <p>As we said before, R itself does not have a graphical interface, but most people interact with R through graphical platforms that provide extra functionality. We will be using a program called <strong>RStudio</strong> as a graphical front-end to R, so that we can access our scripts and data, find help, and preview plots and outputs all in one place.</p>
 
@@ -153,7 +153,7 @@
 
 <p>If you are using a Mac, in addition to R and RStudio, you need to download XQuartz (<a href="https://www.xquartz.org/" target="_blank" rel="noopener noreferrer">available here</a>).</p>
 
-<h3 id="open-rstudio-click-on-filenew-filer-script">Open RStudio. Click on <em>File/New File/R script</em>.</h3>
+<p><strong>Open RStudio. Click on <em>“File/New File/R script”</em>.</strong></p>
 
 <p><img src="/assets/img/tutorials/intro-to-r/rstudio_panels.png" alt="RStudio panel layout annotated"></p>
 
@@ -169,7 +169,8 @@
 
 </div>
 
-<h3 id="begin-to-write-in-your-script">Begin to write in your script</h3>
+<h2 id="begin-to-write-in-your-script">Begin to write in your script</h2>
+
 <p>For now, start by recording who is writing, the date, and the main goal - in our case, determining how many species from different taxa have been recorded in Edinburgh. Here’s an example, which you can copy, paste and edit into your new script:</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Coding Club Workshop 1 - R Basics</span><span class="w">
@@ -198,11 +199,11 @@
 
 <p><strong>Watch out!</strong> Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (<code class="language-plaintext highlighter-rouge">"C:\folder\data"</code>), but the filepath you enter into R should use <strong>forward slashes</strong> (<code class="language-plaintext highlighter-rouge">"C:/folder/data"</code>).</p>
 
-<h3 id="import">2. Import and check data</h3>
+<h1 id="import">2. Import and check data</h1>
 
 <p>Practice is the best way to learn any new language, so let’s jump straight in and do some of our own statistical analysis using a publicly available dataset of occurrence records for many animal, plant and fungi species. We downloaded the records for 2000-2016 (from the <a href="https://data.nbn.org.uk/" target="_blank" rel="noopener noreferrer"> NBN Gateway </a>) and saved them as <code class="language-plaintext highlighter-rouge">edidiv.csv</code>. First, you will need to download the data.</p>
 
-<h3 id="you-can-find-all-the-files-needed-to-complete-this-tutorial-in-this-github-repository">You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</h3>
+<p><strong>You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</strong></p>
 
 <p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="/tutorials/git/index.html">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
 
@@ -252,7 +253,7 @@
 </span><span class="n">summary</span><span class="p">(</span><span class="n">edidiv</span><span class="o">$</span><span class="n">taxonGroup</span><span class="p">)</span><span class="w">  </span><span class="c1"># Gives you a summary of that particular variable (column) in your dataset</span><span class="w">
 </span></code></pre></div></div>
 
-<h3 id="richness">3. Calculate species richness</h3>
+<h1 id="richness">3. Calculate species richness</h1>
 
 <p><strong>Our <code class="language-plaintext highlighter-rouge">edidiv</code> object has occurrence records of various species collected in Edinburgh from 2000 to 2016. To explore Edinburgh’s biodiversity, we will create a graph showing how many species were recorded in each taxonomic group.</strong> You could calculate species richness in Excel, but that has several disadvantages, especially when working with large datasets like ours - you have no record of what you clicked on, how you sorted the data and what you copied/deleted - mistakes can slip by without you noticing. In R, on the other hand, you have your script, so you can go back and check all the steps in your analysis.</p>
 
@@ -278,7 +279,7 @@
 
 <p><strong>Again, calculate species richness for the other taxa in the dataset.</strong> You’re probably noticing this is quite repetitive and using a lot of copying and pasting! That’s not particularly efficient - in <a href="/tutorials/piping/index.html">future tutorials</a> we will learn how to use more of <code class="language-plaintext highlighter-rouge">dplyr</code>’s functions and achieve the same result with way less code! You will be able to do everything you just did in ONE line (promise!).</p>
 
-<h3 id="vector">4. Create a vector and plot it</h3>
+<h1 id="vector">4. Create a vector and plot it</h1>
 
 <p>Now that we have species richness for each taxon, we can combine all those values in a <strong>vector</strong>. A vector is another type of R object that stores values. As opposed to a data frame, which has two dimensions (rows and columns), a vector only has one. When you call a column of a data frame like we did earlier with <code class="language-plaintext highlighter-rouge">edidiv$taxonGroup</code>, you are essentially producing a vector - but you can also create them from scratch.</p>
 
@@ -335,7 +336,7 @@
   Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016.</p>
 </div>
 
-<h3 id="df">5. Create a data frame and plot it</h3>
+<h1 id="df">5. Create a dataframe and plot it</h1>
 
 <p>In the last section we created vectors, i.e. a series of values, each with a label. This object type is suitable when dealing with just one set of values. Often, however, you will have more than one variable and have multiple data types - e.g. some continuous, some categorical. In those cases, we use data frame objects. <strong>Data frames are tables of values: they have a two-dimensional structure with rows and columns, where each column can have a different data type.</strong> For instance, a column called “Wingspan” would have numeric values measured on different birds (21.3, 182.1, 25.1, 8.9), and a column “Species” would have character values of with the names of the species (“House sparrow”, “Golden eagle”, “Eurasian kingfisher”, “Ruby-throated hummingbird”) Another possible data format is a matrix - a matrix can have several rows of data as well (e.g. you can combine vectors into a matrix), but the variables must be all of the same type. For instance they are all numerical and are the same length in terms of the number of rows.</p>
 
@@ -395,7 +396,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 <p>For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on <a href="/tutorials/troubleshooting/index.html">troubleshooting and how to find help online</a>. Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our <a href="/tutorials/piping/index.html">tidyr and dplyr tutorial</a>.</p>
 
-<h3 id="tutorial-outcomes">Tutorial outcomes:</h3>
+<h1 id="tutorial-outcomes">Tutorial outcomes:</h1>
 
 <ol>
   <li>You are familiar with the RStudio interface</li>
@@ -405,7 +406,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
   <li>You can make simple figures</li>
 </ol>
 
-<h3 id="challenge">Challenge yourself!</h3>
+<h1 id="challenge">Challenge yourself!</h1>
 
 <p>Still with us? Well done! If you’re completely new to R, don’t worry if you don’t grasp quite everything just yet. Go over the sections you found difficult with a fresh eye later, or check our resources to get up to speed with certain concepts.</p>
 
@@ -468,7 +469,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
   </tr>
 </table>
 
-<h4 id="solution">Solution</h4>
+<h2 id="solution">Solution</h2>
 
 <p>Don’t peek until you’ve tried! Here we suggest a solution; note that yours could be different and also work! The object names and the look of your plot will probably be different and that’s totally ok - as long as the values themselves are correct.</p>
 
@@ -518,7 +519,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 </details>
 
-<h3 id="glossary">Glossary:</h3>
+<h2 id="glossary">Glossary:</h2>
 
 <div class="callout" style="">
 

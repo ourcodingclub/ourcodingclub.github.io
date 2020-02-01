@@ -7,20 +7,19 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/S9R5G2T
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. Isolate and retrieve data from a `html` web page
 2. Automate the download of multiple web pages using `R`
 3. Understand how web scraping can speed up the harvesting of online data
 
-### Steps:
+# Steps:
 
 1. [Download the relevant packages](#download)
 2. [Download a `.html` web page](#data)
 3. [Import a `.html` file into `R`](#import)
-4. [Locate useful data using `grep`](#locate)
-5. [Filter html data with `gsub` and regular expressions](#isolate)
-6. [Import multiple web pages with `mapply`](#multiple)
+4. [Locate and filter HTML using `grep` and `gsub`](#locate)
+5. [Import multiple web pages with `mapply`](#multiple)
 
 ## Why not just copy and paste?
 
@@ -38,7 +37,7 @@ Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC
 setwd("<PATH TO FOLDER>")
 ```
 
-## Download the relevant packages
+# 1. Download the relevant packages
 {: #download}
 
 ```r
@@ -49,26 +48,26 @@ library(rvest)
 library(dplyr)
 ```
 
-## Download a `.html` web page
+# 2. Download a `.html` web page
 {: #data}
 
 The simplest way to download a web page is to save it as a `.html` file to your working directory. This can be accomplished in most browsers by clicking _`File -> Save as...`_ and saving the file type to `Webpage, HTML Only` or something similar. Here are some examples for different browser Operating System combinations:
 
-### Microsoft Windows - Internet Explorer
+__Microsoft Windows - Internet Explorer__
 
 ![Internet Explorer save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Explorer_Save.png)
 
-### Microsoft Windows - Google Chrome
+__Microsoft Windows - Google Chrome__
 
 ![Google Chrome save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Chrome_Save.png)
 
-### MacOS - Safari
+__MacOS - Safari__
 
 ![Safari save page screenshot]({{ site.baseurl }}/assets/img/tutorials/webscraping/Safari_Save.png)
 
 Download the IUCN Red List information for _Aptenogytes forsteri_ (Emperor Penguin) from [http://www.iucnredlist.org/details/22697752/0] using the above method, saving the file to your working directory.
 
-## Importing `.html` into R
+# 3. Importing `.html` into R
 {: #import}
 
 The file can be imported into R as a vector using the following code:
@@ -80,7 +79,7 @@ Penguin_html <- readLines("Aptenodytes forsteri (Emperor Penguin).html")
 Each string in the vector is one line of the original `.html` file.
 
 
-## Locating useful information using `grep()` and isolating it using `gsub`
+# 4. Locating useful information using `grep()` and isolating it using `gsub`
 {: #locate}
 
 In this example we are going to build a data frame of different species of penguin and gather data on their IUCN status and when the assessment was made so we will have a data frame that looks something like this:
@@ -202,7 +201,7 @@ We can create the start of our data frame by concatenating the vectors:
 iucn <- data.frame(species_name, common_name, red_cat, date_assess)
 ```
 
-## Importing multiple web pages
+# 5. Importing multiple web pages
 {: #multiple}
 
 The above example only used one file, but the real power of web scraping comes from being able to repeat these actions over a number of web pages to build up a larger dataset.

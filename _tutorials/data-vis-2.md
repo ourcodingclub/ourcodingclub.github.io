@@ -9,7 +9,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/X7VHQ6S
 ---
 
-### Tutorial aims & steps:
+# Tutorial aims & steps:
 
 1. [Customise histograms in `ggplot2`](#hist)
 	- [Add titles, subtitles, captions and axis labels](#labs)
@@ -23,7 +23,7 @@ survey_link: https://www.surveymonkey.co.uk/r/X7VHQ6S
 
 Following from our first tutorial on [data visualisation using `ggplot2`]({{ site.baseurl }}/tutorials/datavis/index.html), we are now back for more `ggplot2` practice and customisation. Since no two figures are ever the same, the ability to customise your figures is key. __The ultimate aim of this tutorial is to help you to make your figures even more beautiful and informative!__ 
 
-### Downloading data 
+## Downloading data 
 
 We will use made-up data consisting of the abundance and height of different plant species occurring in two magic lands: Hogsmeade and Narnia. 
 
@@ -63,7 +63,7 @@ str(magic_veg)
 ```
 
 
-## 1. Customise histograms in `ggplot2`
+# 1. Customise histograms in `ggplot2`
 {: #hist}
 
 We'll start by revisiting some of the types of plots we can make with `ggplot2`. Let us first calculate how many species there are in each plot. 
@@ -133,7 +133,7 @@ Note how our figure __only shows plot numbers 2, 4, and 6.__ If you want the axi
 ![Dodged barplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbase2.png)
 
 
-### Add titles, subtitles, captions and axis labels 
+## 1a. Add titles, subtitles, captions and axis labels 
 {: #labs}
 
 Now it's time for us to add more information to our graphs, for example, the plot title, subtitle, caption and axis labels. This might not be so useful in this case, but here's some guidance just in case you do require this in your own work. 
@@ -153,7 +153,7 @@ Now it's time for us to add more information to our graphs, for example, the plo
 
 
 {% capture callout %}
-#### Control _everything_!
+## Control _everything_!
 
 You can also add in `theme()` elements to your plot, which let you customise even more aspects! We already introduced theme elements in our [previous tutorial]({{ site.baseurl }}/tutorials/datavis/index.html). Here, we're showing you how to change the font sizes of the axis label (axis text), axis title and plot title. Other things you can play around with are:
 
@@ -180,7 +180,7 @@ __Note:__ if we wanted to specify different options for the x and y axis, we cou
 
 
 
-### Change the plot background 
+## 1b. Change the plot background 
 {: #panel}
 
 All our graphs at the moment still have a grey background, and honestly, we're not a fan of it. It also has both major and minor grid lines for both the y and x axes, which we might want to remove to have a clear plain white background for the plot. Adding `theme_bw()` to our plot removes the grey background and replaces it with a white one. There are various other themes built into RStudio, but we personally think this is the cleanest one. 
@@ -204,7 +204,7 @@ To remove the grid lines, we add the code `panel.grid = element_blank()` within 
 ![Dodged histogram with centred title]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/histbeaut2.png)
 
 
-## Fix the legend and customise the colours 
+## 1c. Fix the legend and customise the colours 
 {: #legend}
 
 We will use the `scale_...()` functions to customise both the color code AND the legend at once. 
@@ -212,7 +212,7 @@ We will use the `scale_...()` functions to customise both the color code AND the
 The `scale_fill_manual(values = c("your-colour-1", "your-colour-2", ...))` function lets you decide on custom colour values for solid elements (bars, boxplots, ribbons, etc.), and its counterpart `scale_colour_manual()` works exactly the same for line elements (points in a scatter plot, regression lines, box or column outlines, etc.). You need to make sure you put in as many colours as there are factor levels in your data.
 
 {% capture callout %}
-#### Need inspiration for your colours?
+## Need inspiration for your colours?
 
 You can define colours using R's [built-in colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or by specifying their [Hex codes](https://www.color-hex.com/). The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our [previous tutorial]({{ site.baseurl }}/datavis_update/index.html#practice) for instructions on how to install it.
 {% endcapture %}
@@ -283,7 +283,7 @@ ggsave("magical-sp-rich-hist.png", width = 7, height = 5, dpi = 300)
 {% include figure.html url=link caption="Congratulations, you've made a beautiful graph!" %}
 
 
-## 3. Create your own colour palette
+## 2. Create your own colour palette
 {: #palette}
 
 When you have several factor levels and need to come up with a pretty, clear, and contrasting colour scheme, it is always a good idea to look online for inspiration. Some great websites we use are [Colour Brewer](http://colorbrewer2.org/) or [coolors](https://coolors.co/). Colour Brewer even allows you to specify colourblind-safe palettes, which you definitely should want! 
@@ -363,7 +363,7 @@ You can learn [more about these functions here](https://ggplot2.tidyverse.org/re
 {% endcapture %}
 {% include callout.html content=callout %}
 
-## 4. Customise boxplots in `ggplot2`
+# 3. Customise boxplots in `ggplot2`
 {: #boxplot}
 
 We could also plot the data using boxplots. Boxplots sometimes look better than bar plots, as they make more efficient use of space than bars and can reflect uncertainty in nice ways. 
@@ -418,7 +418,7 @@ ggsave("magical-sp-rich-boxplot1.png", width = 7, height = 5, dpi = 300)
 ![Good looking ggplot2 boxplot]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut1.png)
 
 {% capture callout %}
-#### Box, bar, dot...?
+## Box, bar, dot...?
 
 Bar plots are very commonly used to show differences or ranking among groups. A problem with them, especially if used without a measure of uncertainty (e.g. error bars), is that what they display is a range of values __starting from 0__. If the variable you are plotting can reasonably have values of zero, then that's fine, but often it's improbable. For instance, we wouldn't imagine that our lands of magic could be completely devoid of any life form and therefore have a species richness of zero. Same holds true if you're comparing body weight, plant height, and a great majority of ecological variables! 
 
@@ -451,10 +451,10 @@ summary <- species_counts %>%  group_by(land) %>% summarise(mean = mean(Species_
 ``` 
  
 Boxplots, just like dot plots, give a more accurate idea of the range of values in your data: but remember that the thicker line in the box represents the median, not the mean!
+
 {% endcapture %}
 {% include callout.html content=callout %}
-
-### Reordering factors
+## Reordering factors
 
 Remember how we learnt to recode and reorder factors in our [advanced data manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-advanced/index.html#factors)? We often want to do this so that we can __plot values in a specific order__.
 
@@ -522,7 +522,7 @@ yearly_counts$plot <- factor(yearly_counts$plot,
 ![Boxplot reordered x axis]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/boxbeaut3.png)
 
 
-## 4. Plot regression lines onto your plots
+# 4. Plot regression lines onto your plots
 {: #regression}
 
 We are now going to look at another aspect of the data: the plant heights, and how they might have changed over time. First, we need to do a little bit of data manipulation to extract just the heights:
@@ -570,7 +570,7 @@ However, perhaps this isn't what we really want, because you can see the relatio
 
 
 {% capture callout %}
-#### What about fancier stats?
+## What about fancier stats?
 
 Some of you might have picked up on the fact that our data are nested (species within plots within magic lands) and come from different years: therefore, a mixed-effects modelling approach might be better here. For an introduction to linear mixed effects modelling, [check out our tutorial]({{ site.baseurl }}/tutorials/mixed-models/index.html), where we show how to plot the model predictions.
 {% endcapture %}
@@ -579,7 +579,7 @@ Some of you might have picked up on the fact that our data are nested (species w
 For now, take some time to explore the different `ggplot2` fits! For instance, `method = "loess"` gives a smoothed curve.
 
 
-## 5. Creating your own ggplot theme
+# 5. Creating your own ggplot theme
 {: #theme}
 
 You might have noticed that the lines starting with `theme()` quickly pile up. We've been adjusting the font size of the axes and the labels, the position of the title, the background colour of the plot, etc. And then we've been copying and pasting those many lines of codes on all of our graphs, which really increases the length of our script, and makes our code less readable.
@@ -662,7 +662,7 @@ You can try out the effects of the theme by replacing all the code starting with
 ![Prettified regression line]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/mixmod3.png)
 
 
-## 6. Challenge yourself!
+# 6. Challenge yourself!
 {: #challenge}
 
 If you are keen for more practice, try this challenge! We'll give you percentage of species that are endemic for our extended range of magical lands, and you will have to plot the __species richness__ as a bar plot, coloured not by land this time, but with a shade representing the __% of endemism__. ( _Hint_: we mention this in one of our info boxes.) 

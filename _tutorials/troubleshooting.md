@@ -9,7 +9,7 @@ updater: Sandra
 survey_links: https://www.surveymonkey.co.uk/r/6CQF3J7
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [Learn how to pick up on errors in R](#id)
 2. [Get familiar with common errors and solutions](#errors)
@@ -21,14 +21,14 @@ In [our first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), we 
 Programming comes with a learning curve and you will no doubt encounter many error messages while you familiarise yourself with the workings of R. But fear not! Today we will tackle some of the most common coding errors and help you avoid them. You might have seen some of these error messages already, but after completing this tutorial, we hope they won't appear too often on your RStudio screens.
 
 
-### 1. Learn how to pick up on errors in R
+# 1. Learn how to pick up on errors in R
 {: #id}
 
 In addition to keeping a record of your code, scripts are also useful for detecting simple coding errors before you've even run the code. If `RStudio` picks up on a character missing, a command that doesn't make sense due to spelling errors or similar, a little red _x_ appears next to that line of code. Scanning your code for _x_'s before running it is always a good idea and it's very convenient since you know exactly on which line you made a mistake. The other way `R` reports errors is through messages in the console, which appear after you run code that is not quite right. Although the error messages look scary (the red font and words like "fatal" sure give them a bad reputation), they are actually the second best option to no errors at all: `R` has identified there is a problem and from the message, you can figure out what it is and solve it!
 
 ![RStudio GUI error and code linter warning, annotated]({{ site.baseurl }}/assets/img/tutorials/troubleshooting/xandm.png)
 
-### 2. Get familiar with common errors and solutions
+# 2. Get familiar with common errors and solutions
 {: #errors}
 
 Here we have compiled a list of mistakes we often make. Do you think we have forgotten an error message or problem you encounter often? Please let us know at ourcodingclub@gmail.com and we will add it to our list!
@@ -63,22 +63,20 @@ Figure 1. An unfortunate looking barplot! The data were chosen to be a data matr
 
 
 {% capture callout %}
-#### Cheat sheet! Here are some of the most common error messages you'll meet when you get started, and what they actually mean.
+## Cheat sheet! 
 {: #help}
 
-__Error in `function-name(...)`: could not find function 'function-name'__ : This probably means that you are trying to use a function from a package you have not loaded. Type `??function-name` (or look it up online) to find out which package it comes from, and make sure the package is loaded using `library(package-name)`. Which leads us to...
+__Here are some of the most common error messages you'll meet when you get started, and what they actually mean:__
 
-__Error in `library(package-name)`: there is no package called 'package-name'.__ : Did you install the package? Packages need to be installed once, using `install.packages('packag-name')`, after which they can be loaded with the `library()` command. 
-
-__Error in `function-name()`: object 'object-name' not found__: R tells you that it cannot find an object that should be in your environment. First, make sure that you have an object with this name in your Environment panel. It could be just a typo, for instance you defined the object as `birds_nests` yet you try to plot it calling `Bird_nests`. (And yes, R is also case-sensitive!) Or it could be that you haven't actually run the code which creates this object yet! 
-
-__Error: unexpected symbol in 'line-of-code'__ : Most likely you forgot (or had an extra!) comma, bracket or other punctuation sign somewhere. 
-
-__Cannot open file 'your-file-path': No such file or directory__: R cannot find the file you are trying to load, often because you forgot to specify your working directory (we learned how to do it in our [first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), or because there is a mistake in your file path. (Hint: if you copied it from the Windows Explorer, you need to swap the backward slashes for forward slashes.) If you get __object 'your-file-path' not found__, then you probably forgot the quotation marks around the file path `read.csv(file = 'my-file-path/file.csv')`. 
+- __Error in `function-name(...)`: could not find function 'function-name'__ : This probably means that you are trying to use a function from a package you have not loaded. Type `??function-name` (or look it up online) to find out which package it comes from, and make sure the package is loaded using `library(package-name)`. Which leads us to...
+- __Error in `library(package-name)`: there is no package called 'package-name'.__ : Did you install the package? Packages need to be installed once, using `install.packages('packag-name')`, after which they can be loaded with the `library()` command. 
+- __Error in `function-name()`: object 'object-name' not found__: R tells you that it cannot find an object that should be in your environment. First, make sure that you have an object with this name in your Environment panel. It could be just a typo, for instance you defined the object as `birds_nests` yet you try to plot it calling `Bird_nests`. (And yes, R is also case-sensitive!) Or it could be that you haven't actually run the code which creates this object yet! 
+- __Error: unexpected symbol in 'line-of-code'__ : Most likely you forgot (or had an extra!) comma, bracket or other punctuation sign somewhere. 
+- __Cannot open file 'your-file-path': No such file or directory__: R cannot find the file you are trying to load, often because you forgot to specify your working directory (we learned how to do it in our [first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), or because there is a mistake in your file path. (Hint: if you copied it from the Windows Explorer, you need to swap the backward slashes for forward slashes.) If you get __object 'your-file-path' not found__, then you probably forgot the quotation marks around the file path `read.csv(file = 'my-file-path/file.csv')`. 
 {% endcapture %}
 {% include callout.html content=callout %}
 
-### 3. Learn how to find help
+# 3. Learn how to find help
 
 __An online search for the error message (along with "R" and the function or package name) is always a good start__. Chances are someone has already encountered that error and has asked about it online. If the error message is very long, try paraphrasing based on what you think the problem might be (and delete references to your specific objects and file names). There are several really useful online forums and websites where people ask for and receive help, such as [Stackoverflow](http://stackoverflow.com) and [Rbloggers](https://www.r-bloggers.com/).
 
@@ -91,7 +89,7 @@ We have also compiled a ["Useful links" list of helpful websites and tutorials](
 __Of course, `R` won't always tell you if you are doing something wrong: sometimes your code is correct, but you are doing the wrong type of analysis for your data. Nevertheless, making sure you avoid easy-to-make mistakes is a great place to start - even the fanciest, super-advanced tests can be brought down by a single missing comma.__
 
 {% capture callout %}
-#### A warning on warnings!
+## A warning on warnings!
 
 Errors are not the only scary red text that will appear in the console. Often, you will run code and get a message saying something like 'There were 13 warnings, use `warnings()`to see them'. It could also be a specific warning telling you that R is ignoring `NA`s (missing) data in a plot, or that a function generated unexpected results such as `NaN` (not a number). 
 
@@ -99,13 +97,13 @@ Warnings are not necessarily the end of the world, but you should see them as ma
 {% endcapture %}
 {% include callout.html content=callout %}
 
-### 4. Practice! 
+# 4. Practice! 
 {: #practice}
 
 Practice truly is the best way to learn how to avoid errors in `R` - to get you started, we have written a purposefully wrong script - you can download the file from this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics). There you will find the data `edidiv.csv`, as well as the wrong (`CC_2_RBasics_Wrong_Script.R`) and right script. Can you fix all the mistakes?
 
 
-### Tutorial outcomes:
+# Tutorial outcomes:
 
 1. You know how `R` reports errors, both in script files and in the console
 2. You can solve common mistakes in `R`

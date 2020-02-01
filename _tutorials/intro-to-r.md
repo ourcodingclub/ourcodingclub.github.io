@@ -6,7 +6,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. Understand what are R and R Studio
 2. Develop the good habit of working with scripts
@@ -14,7 +14,7 @@ survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
 4. Learn to manipulate R objects like vectors and data frames
 5. Make a simple plot
 
-### Steps:
+# Steps:
 
 1. [Download R and RStudio](#download)
 2. [Import and check data](#import)
@@ -26,14 +26,13 @@ survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
 
 In our first tutorial we will begin to explore "R" as a tool to analyse and visualise data.
 
-__What is R?__
+# What is R?
 
 R is a statistical programming language that has rapidly gained popularity in many scientific fields. It was developed by Ross Ihaka and Robert Gentleman as an open source implementation of the "S" programming language. (Next time you need a fun fact, you can say "Did you know that S came before R?") R is also the name of the software that uses this language for statistical computing. With a huge online support community and dedicated packages that provide extra functionality for virtually any application and field of study, there's hardly anything you _can't_ do in R. 
 
 If you already know your way around statistical softwares like `Minitab` or `SPSS`, the main difference is that `R` has no __graphical user interface__, which means there are no buttons to click and no dropdown menus. `R` can be run entirely by typing commands into a text interface (welcome to the Matrix!). This may seem a little daunting, but it also means a whole lot more flexibility, as you are not relying on a pre-determined toolkit for your analyses.
 
 Thanks for joining us on your learning journey. Like with any language, there is a learning curve (trust me, I'm learning German at the moment), but we will take it step by step, and in no time you will be coding your own analyses and graphs! 
-
 
 ![R terminal and GUI screenshot examples]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/terminal_gui.png)
 
@@ -44,7 +43,7 @@ If you need any more convincing, why are we using R and not one of the many othe
 - R has a very active and helpful online community - normally a quick search is all it takes to find that somebody has already solved the problem you're having. You can start with our [links page]({{ site.baseurl }}/links/)!
 
 
-### 1. Download R and RStudio
+# 1. Download R and RStudio
 {: #download}
 
 As we said before, R itself does not have a graphical interface, but most people interact with R through graphical platforms that provide extra functionality. We will be using a program called __RStudio__ as a graphical front-end to R, so that we can access our scripts and data, find help, and preview plots and outputs all in one place.
@@ -56,7 +55,7 @@ Then, download RStudio from [the RStudio website](https://www.rstudio.com/produc
 If you are using a Mac, in addition to R and RStudio, you need to download XQuartz ([available here](https://www.xquartz.org/)).
 
 
-### Open RStudio. Click on _File/New File/R script_. 
+__Open RStudio. Click on _"File/New File/R script"_.__
 
 ![RStudio panel layout annotated]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/rstudio_panels.png)
 
@@ -71,7 +70,8 @@ __\*\*A quicker note about the workspace__: The workspace will have everything y
 {% endcapture %}
 {% include callout.html content=callout %}
 
-### Begin to write in your script
+## Begin to write in your script
+
 For now, start by recording who is writing, the date, and the main goal - in our case, determining how many species from different taxa have been recorded in Edinburgh. Here's an example, which you can copy, paste and edit into your new script:
 
 
@@ -104,13 +104,13 @@ setwd("C:/User/CC-1-RBasics-master")
 __Watch out!__ Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (`"C:\folder\data"`), but the filepath you enter into R should use __forward slashes__ (`"C:/folder/data"`). 
 
 
-### 2. Import and check data
+# 2. Import and check data
 {: #import}
 
 Practice is the best way to learn any new language, so let's jump straight in and do some of our own statistical analysis using a publicly available dataset of occurrence records for many animal, plant and fungi species. We downloaded the records for 2000-2016 (from the [ NBN Gateway ](https://data.nbn.org.uk/)) and saved them as `edidiv.csv`. First, you will need to download the data.
 
 
-### You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics). 
+__You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics).__
 
 __Follow the link, click on "Download Zip", and save and unzip the folder somewhere on your computer. (Never heard of Github? Don't worry, we will cover it in a [later tutorial]({{ site.baseurl }}/tutorials/git/index.html). For now, it's simply the website where you can download our course material from.)__
 
@@ -170,7 +170,7 @@ summary(edidiv$taxonGroup)  # Gives you a summary of that particular variable (c
 ```
 
 
-### 3. Calculate species richness
+# 3. Calculate species richness
 {: #richness}
 
 __Our `edidiv` object has occurrence records of various species collected in Edinburgh from 2000 to 2016. To explore Edinburgh's biodiversity, we will create a graph showing how many species were recorded in each taxonomic group.__ You could calculate species richness in Excel, but that has several disadvantages, especially when working with large datasets like ours - you have no record of what you clicked on, how you sorted the data and what you copied/deleted - mistakes can slip by without you noticing. In R, on the other hand, you have your script, so you can go back and check all the steps in your analysis.
@@ -201,7 +201,7 @@ __Again, calculate species richness for the other taxa in the dataset.__ You're 
 
 
 
-### 4. Create a vector and plot it
+# 4. Create a vector and plot it
 {: #vector}
 
 Now that we have species richness for each taxon, we can combine all those values in a __vector__. A vector is another type of R object that stores values. As opposed to a data frame, which has two dimensions (rows and columns), a vector only has one. When you call a column of a data frame like we did earlier with `edidiv$taxonGroup`, you are essentially producing a vector - but you can also create them from scratch.
@@ -261,7 +261,7 @@ dev.off()
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/intro-to-r/species_barplot.png{% endcapture %}
 {% include figure.html url=link caption="Figure 1. Species richness of several taxa in Edinburgh. Records are based on data from the NBN Gateway during the period 2000-2016." %}
 
-### 5. Create a data frame and plot it
+# 5. Create a dataframe and plot it
 {: #df}
 
 In the last section we created vectors, i.e. a series of values, each with a label. This object type is suitable when dealing with just one set of values. Often, however, you will have more than one variable and have multiple data types - e.g. some continuous, some categorical. In those cases, we use data frame objects. __Data frames are tables of values: they have a two-dimensional structure with rows and columns, where each column can have a different data type.__ For instance, a column called "Wingspan" would have numeric values measured on different birds (21.3, 182.1, 25.1, 8.9), and a column "Species" would have character values of with the names of the species ("House sparrow", "Golden eagle", "Eurasian kingfisher", "Ruby-throated hummingbird") Another possible data format is a matrix - a matrix can have several rows of data as well (e.g. you can combine vectors into a matrix), but the variables must be all of the same type. For instance they are all numerical and are the same length in terms of the number of rows.
@@ -326,7 +326,7 @@ In this tutorial, we found out how many species from a range of taxa have been r
 
 For common problems in R and how to solve them, as well as places where you can find help, check out our second tutorial on [troubleshooting and how to find help online]({{ site.baseurl }}/tutorials/troubleshooting/index.html). Feeling ready to go one step furher? Learn how to format and manipulate data in a tidy and efficient way with our [tidyr and dplyr tutorial]({{ site.baseurl }}/tutorials/piping/index.html).
 
-### Tutorial outcomes:
+# Tutorial outcomes:
 
 1. You are familiar with the RStudio interface
 2. You can create and annotate a script file
@@ -335,7 +335,7 @@ For common problems in R and how to solve them, as well as places where you can 
 5. You can make simple figures
 
 
-### Challenge yourself!
+# Challenge yourself!
 {: #challenge}
 
 Still with us? Well done! If you're completely new to R, don't worry if you don't grasp quite everything just yet. Go over the sections you found difficult with a fresh eye later, or check our resources to get up to speed with certain concepts. 
@@ -399,7 +399,7 @@ Here are (fictional) values of the wingspan (in cm) measured on four different s
   </tr>
 </table>
 
-#### Solution
+## Solution
 
 Don't peek until you've tried! Here we suggest a solution; note that yours could be different and also work! The object names and the look of your plot will probably be different and that's totally ok - as long as the values themselves are correct.
 
@@ -448,7 +448,7 @@ And the final plot would look something like this:
 {% endcapture %}
 {% include reveal.html button="Ready? Click this line to view the solution" content=reveal %}
 
-### Glossary:
+## Glossary:
 {: #glossary}
 
 {% capture callout %}

@@ -9,12 +9,12 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 ---
 
-### Tutorial aims and steps:
+# Tutorial aims and steps:
 
 1. [Get familiar with the `ggplot2` syntax](#ggplot)
 2. [Decide on the right type of plot](#whichplot)
 3. [Practice making different plots with `ggplot2`](#practice)
-	- [Histograms](#histograms)
+	- [Histograms](#histogram)
 	- [Scatter plots](#scatter)
 	- [Box plots](#boxplot)
 	- [Bar plots](#barplot)
@@ -24,7 +24,7 @@ survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 
 Аll the files you need to complete this tutorial can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-4-Datavis). Clone and download the repo as a zip file, then unzip it.
 
-### 1. Good data visualisation and ggplot2 syntax
+# 1. Good data visualisation and ggplot2 syntax
 {: #ggplot}
 
 We've learned [how to import our datasets in RStudio]({{ site.baseurl }}/tutorials/intro-to-r/index.html), and [format and manipulate them]({{ site.baseurl }}/tutorials/piping/index.html), and now it's time we talk about communicating the results of our analyses - data visualisation! When it comes to data visualisation, the package `ggplot2` by Hadley Wickham has won over many scientists' hearts. In this tutorial, we will learn how to make beautiful and informative graphs and how to arrange them in a panel. Before we tackle the `ggplot2` syntax, let's briefly cover what good graphs have in common.
@@ -92,17 +92,17 @@ We've learned [how to import our datasets in RStudio]({{ site.baseurl }}/tutoria
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_layers.png{% endcapture %}
 {% include figure.html url=link caption="Just like onions (and ogres!), graphs in ggplot2 have layers." %}
 
-### 2. Decide on the right type of plot
+# 2. Decide on the right type of plot
 {: #whichplot}
 
 A very key part of making any data visualisation is making sure that it is appropriate to your data type (e.g. discrete vs continuous), and fits your purpose, i.e. what you are trying to communicate! 
 
 You can start with our simple guide for common graph types, and visit [the R Graph Gallery](https://www.r-graph-gallery.com/), a fantastic resource for `ggplot2` code and inspiration!
 
-{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_layers.png{% endcapture %}
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_which_plot.png{% endcapture %}
 {% include figure.html url=link caption="Feeling inspired? Let's make these graphs!" %}
 
-### 3. Making different plots with ggplot2
+# 3. Making different plots with ggplot2
 {: #practice}
 
 Open RStudio, select `File/New File/R script` and start writing your script with the help of this tutorial.
@@ -167,7 +167,7 @@ head(vulture)
 vulture <- na.omit(vulture)
 ```
 
-#### Histograms to visualise data distribution
+## 3a. Histograms to visualise data distribution
 {: #histogram}
 
 We will do a quick comparison between base R graphics and `ggplot2` - of course both can make good graphs when used well, but here at Coding Club, we like working with `ggplot2` because of its powerful customisation abilities.
@@ -221,7 +221,7 @@ The default ggplot settings (right) are not ideal: there is lots of unnecessary 
 __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.__
 
 {% capture callout %}
-#### Understanding `ggplot2`'s jargon
+## Understanding `ggplot2`'s jargon
 
 Perhaps the trickiest bit when starting out with `ggplot2` is understanding what type of elements are responsible for the contents (data) versus the container (general look) of your plot. Let's de-mystify some of the common words you will encounter.
 
@@ -236,8 +236,7 @@ __theme__: a theme is made of a set of visual parameters that control the backgr
 Also useful to remember is that layers are added on top of each other as you progress into the code, which means that elements written later may hide or overwrite previous elements. 
 {% endcapture %}
 {% include callout.html content=callout %}
-
-### Learning how to use colourpicker 
+## Learning how to use colourpicker 
 {: #colourpicker}
 
 In the code above, you can see a colour code `colour = "#8B5A00"` - each colour you can dream of has a code, called a "hex code", a combination of letters and numbers. You can get the codes for different colours online, from Paint, Photoshop or similar programs, or even from RStudio, which is very convenient! There is an RStudio `Colourpicker` addin which was a game changer for us - to install it, run the following code:
@@ -254,7 +253,7 @@ When you click on `All R colours` you will see lots of different colours you can
 
 ![RStudio GUI Colour Picker interface]({{ site.baseurl }}/assets/img/tutorials/datavis/colourpicker2.png)
 
-#### Scatter plot to examine population change over time
+## 3b. Scatter plot to examine population change over time
 {: #scatter}
 
 Let's say we are interested in how the Griffon vulture populations have changed between 1970 and 2017 in Croatia and in Italy.
@@ -300,7 +299,7 @@ __Hopefully by now we've convinced you of the perks of ggplot2, but again like w
 
 
 {% capture callout %}
-#### Good to know
+## Good to know
 
 If your axis labels need to contain special characters or superscript, you can get `ggplot2` to plot that, too. It might require some googling regarding your specific case, but for example, this code `ylabs(expression(paste('Grain yield','  ','(ton.', ha^-1, ')', sep='')))` will create a y axis with a label reading Grain yield (ton. ha<sup>-1</sup>).
 
@@ -309,7 +308,7 @@ To create additional space between an axis title and the axis itself, use `\n` w
 {% include callout.html content=callout %}
 
 
-#### Boxplot to examine whether vulture abundance differs between Croatia and Italy
+## 3c. Boxplot to examine whether vulture abundance differs between Croatia and Italy
 {: #boxplot}
 
 Box plots are very informative as they show the median and spread of your data, and allow you to quickly compare values among groups. If some boxes don't overlap with one another, you probably have significant differences, and it's worth to investigate further with statistical tests. 
@@ -337,7 +336,7 @@ Box plots are very informative as they show the median and spread of your data, 
 {% include figure.html url=link caption="Griffon vulture abundance in Croatia and Italy." %}
 
 
-#### Barplot to compare species richness of a few European countries
+## 3d. Barplot to compare species richness of a few European countries
 {: #barplot}
 
 We are now going to calculate how many species are found in the LPI dataset for some European countries, and plot the species richness.
@@ -367,7 +366,7 @@ richness <- LPI2 %>% filter (Country.list %in% c("United Kingdom", "Germany", "F
 
 You might be picking up on the fact that we are repeating a lot of the same code - same font size, same margins, etc. Less repetition makes for tidier code and it's important to have consistent formatting across graphs for the same project, so please check out our follow-up tutorial to [create your own theme]({{ site.baseurl }}/tutorials/data-vis-2/index.html) - you can now reuse this theme in all your ggplots!
 
-### 4. Using facets and creating panels
+# 4. Using facets and creating panels
 {: #panel}
 
 Sometimes, displaying all the data on one graph makes it too cluttered. If we wanted to examine the population change of vultures across all the countries, rather than Italy and Croatia, we would have 10 populations on the same graph:
@@ -458,7 +457,7 @@ ggsave(panel, file = "vulture_panel2.png", width = 5, height = 12)
 
 And there you go, you can now make all sorts of plots and start customising them with `ggplot2`! To discover more of `ggplot2`'s plotting power, check out our [follow-up ggplot tutorial]({{ site.baseurl }}/tutorials/data-vis-2/inde/index.html).
 
-### 5. Challenge yourself!
+# 5. Challenge yourself!
 {: #challenge}
 
 To practice making graphs, go back to the original LPI dataset that you imported at the beginning of the tutorial. Now, can you:

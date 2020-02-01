@@ -7,12 +7,12 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/PC9RT6R
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [Downloading Shiny](#download)
 2. [Getting familiar with the Shiny app file structure](#structure)
 3. [Getting familiar with the Shiny app.R layout](#layout)
-4. [Creating a Shiny app](#create)
+4. [Creating a Shiny app](#syntax)
 5. [Exporting a finished app](#export)
 6. [Challenge yourself to write an app](#challenge)
 
@@ -27,7 +27,7 @@ Have a look at these extra examples if you want to see what other Shiny apps can
 - [A gallery of basic Shiny apps](http://shiny.rstudio.com/gallery/)
 - [A complex app visualising carbon emissions in real time](https://johngodlee.shinyapps.io/carbon_emissions/)
 
-### What are Shiny Apps useful for?
+## What are Shiny Apps useful for?
 
 - Interactive data visualisation for presentations and websites
 - Sharing results with collaborators
@@ -35,7 +35,7 @@ Have a look at these extra examples if you want to see what other Shiny apps can
 - Bridging the gap between R users and non-R users
 
 
-### Downloading Shiny and tutorial resources
+# 1. Downloading Shiny and tutorial resources
 {: #download}
 
 To get Shiny in RStudio, the first thing you need is the `shiny` package, by running the code below in RStudio:
@@ -49,7 +49,7 @@ install.packages("agridat")  # For the dataset in today's tutorial
 You can download the resources for this tutorial by heading to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny). You can click on `Clone / Download` and either download the zip file and extract the files, or fork the repository to your own Github account. [See our Git and Github tutorial for more info]({{ site.baseurl }}/tutorials/git/index.html).
 
 
-## The Shiny app file structure
+# 2. The Shiny app file structure
 {: #structure}
 
 Next, select _File/ New File/ Shiny Web App..._, give the application a descriptive name (__no spaces__) and change the application type to "_Single File (app.R)_", save the app in an appropriate directory and click _Create_.
@@ -74,7 +74,7 @@ Test_App
 ```
 
 
-## app.R layout
+# 3. app.R layout
 {: #layout}
 
 Now that the folder structure is set up, head back to RStudio to start building `app.R`. A basic `app.R` consists of these five parts:
@@ -140,14 +140,14 @@ __Delete any example code generated automatically when you created `app.R` and c
  shinyApp(ui = ui, server = server)
  ```
 
-### Layout of a Shiny App
+## Layout of a Shiny App
 
 Shiny apps are structured using panels, which are laid out in different arrangements. Panels can contain text, widgets, plots, tables, maps, images, etc.
 
 [Here is a good set of examples on how the panel layout can be changed](https://shiny.rstudio.com/articles/layout-guide.html). The most basic layout uses `fluidRow()` and `column()` to manually create grids of a given size. `fluidRow()` allows a lot of customisation, but is more fiddly. In this tutorial, we will be using `sidebarLayout()`, which creates a large panel and a smaller inset side panel.
 
 
-## Creating a Shiny App - Basic Syntax
+# 4. Creating a Shiny App - Basic Syntax
 {: #syntax}
 
 To illustrate how to code a Shiny app, we will emulate a simple app that I wrote to explore some data on the productivity of Barley genotypes.
@@ -194,7 +194,7 @@ shinyApp(ui = ui, server = server)
 
 `mainPanel()` indicates that we want a larger main panel. Main panels often contain the output of the app, whether it is a table, map, plot or something else.
 
-### Input widgets
+## Input widgets
 
 Now that we have our basic structure we can start to fill it with inputs and outputs.
 
@@ -235,7 +235,7 @@ Let's break down `selectInput()` to understand what is going on:
 
 You can look into the arguments presented by the other input widgets by using the help function `?`. For example, by running the code `?textInput` in the R console.
 
-#### More Input Widgets
+## More Input Widgets
 
 There are plenty of pre-made widgets in Shiny. Here is a selection, each with the minimum number of arguments needed when running the app, though many more can be added:
 
@@ -257,7 +257,7 @@ sliderInput(inputId = "slider", label = "slider", value = 5, min = 1, max = 100)
 
 Notice how all of the inputs require an `inputId` and a `label` argument.
 
-### Running a Shiny App
+## Running a Shiny App
 
 Take this opportunity to preview your app by clicking _Run App_:
 
@@ -269,7 +269,7 @@ When a Shiny app is running from RStudio, the console cannot be used. To stop th
 
 ![RStudio GUI run app cancel screenshot]({{ site.baseurl }}/assets/img/tutorials/shiny/Stop_Screenshot.jpg)
 
-### Output
+## Output
 
 A Shiny app without any outputs is useless. Outputs can be in the form of plots, tables, maps or text.
 
@@ -292,7 +292,7 @@ __Look at the code above for a couple of minutes to understand what is going on,
 
 Basically, we are creating an object called `output$plot` and using `renderPlot()` to wrap a `ggplot()` command.
 
-### Reactive output
+## Reactive output
 
 The histogram is great, but not particularly interactive. We need to link our input widgets to our output object.
 
@@ -336,7 +336,7 @@ summarise("Mean" = mean(yield),
 }
 ```
 
-### Displaying output
+## Displaying output
 
 To make the outputs appear on your app in the `mainPanel`, __they need to be added to the `ui` object inside `mainPanel()` like so__:
 
@@ -366,9 +366,9 @@ ui <-
 
 __Take this chance to preview your app again by clicking `Run` in RStudio.__
 
-### Additional elements
+## Additional elements
 
-#### HTML
+### HTML
 
 To make your app look more pretty, you can add HTML tags like in a normal HTML webpage. Below is a table of basic HTML tags, their Shiny equivalent and a description of what they do:
 
@@ -408,10 +408,10 @@ __Add the code above to your Shiny app in `mainPanel()` and see what happens!__
 For more information on the arguments that can be included in popular Shiny HTML tags, RStudio have a nice wiki at [[https://shiny.rstudio.com/articles/tag-glossary.html]].
 
 
-### Exporting a finished app
+# 5. Exporting a finished app
 {: #export}
 
-#### As a Github repository
+## As a Github repository
 
 It is easy to send a Shiny app to somebody else who also has RStudio. The easiest way is to send `app.R` alongside any data and other resources in a zip file to be unzipped by the recipient and run through R.
 
@@ -437,7 +437,7 @@ runUrl("https://github.com/rstudio/shiny_example/archive/master.zip")
 
 To learn more about Github, check out our [tutorial on Git and Github]({{ site.baseurl }}/tutorials/git/index.html).
 
-#### As a shinyapps.io app
+## As a shinyapps.io app
 
 You can also host Shiny apps on [www.shinyapps.io](https://www.shinyapps.io), a webhosting platform run by RStudio that is especially built for Shiny apps. Go to their website and sign up using whatever method you choose, then go to [www.shinyapps.io/admin/#/tokens](https://www.shinyapps.io/admin/#/tokens), click _Show secret_ and copy the `rsconnect` account info:
 
@@ -460,7 +460,7 @@ To embed an app that is hosted by `shinyapps.io`, in your own website you can pu
 ```
 
 
-### Challenge yourself to emulate a Shiny app
+# 6. Challenge yourself to emulate a Shiny app
 {: #challenge}
 
 Now that you have the skills to create a Shiny app, try to re-create one of the apps in the links below and then publish it to your `shinyapps.io` profile. The data for these apps, as well as the code for the apps in case you get stuck, can be found in [the repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny) in the `Challenge Apps` folder.

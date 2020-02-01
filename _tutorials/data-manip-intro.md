@@ -9,7 +9,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. Learn base R syntax for data manipulation
 	- [logical operators for finer control](#logic)
@@ -18,7 +18,7 @@ survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 2. Turn messy data into tidy data with `tidyr`
 3. Use efficient tools from the `dplyr` package to manipulate data
 
-### Steps:
+# Steps:
 
 1. [Subset, extract and modify data with R base operators](#base)
 2. [What is tidy data, and how do we achieve it?](#tidy)
@@ -45,21 +45,16 @@ __Know all of this already?__ Fast forward to our [Efficient Data Manipulation t
 
 In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
+__Note: all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
 
-#### __Note: all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
-
-
-
-
-
-### Subset, extract and modify data with R operators
+# 1. Subset, extract and modify data with R operators
 {: #base}
 
 
 Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `EmpetrumElongation.csv` dataset that you have downloaded from the repository. 
 
 
-#### __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hashtags `#` to comment and annotate your script).__ 
+__Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hashtags `#` to comment and annotate your script).__ 
 
 This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
 
@@ -106,7 +101,7 @@ elongation[elongation$Indiv == 603, ]
 There's a lot to unpack here! We're saying: "Take this dataframe (`elongation`), subset it (`[ , ]`) so as to keep the rows (writing the expression on the left-hand of the comma) for which the value in the column Indiv (`$Indiv`) is exactly (`==`) 603". __Note__: The logical expression works here because the Indiv column contains numeric values: to access data that is of character or factor type, you would use quotation marks: `elongation$Indiv == "six-hundred-and-three"`.
 
 {% capture callout %}
-#### Operators for logical operations
+## Operators for logical operations
 {: #logic}
 
 Here are some of the most commonly used operators to manipulate data. When you use them to create a subsetting condition, R will evaluate the expression, and return only the observations for which the condition is met.
@@ -172,7 +167,7 @@ And finally, let's say you need to modify some values or factor levels, or want 
 
 
 {% capture callout %}
-#### Creating and overwriting objects
+## Creating and overwriting objects
 
 Remember how we've been using the arrow `<-` to create new objects? This is a special convention in R that allows you to pick whichever name you want and assign it to an object (vector, list, data frame...). 
 
@@ -246,8 +241,7 @@ levels(elong2$zone) <- c("A", "B", "C", "D", "E", "F")   # you can overwrite the
 That was a lot, but now you'll be able to adapt these little chunks of code to manipulate your own data. The next sections will hopefully make things even easier, as they'll teach you more intuitive functions to accomplish the same things.
 
 
-
-### What is tidy data, and how do we achieve it? 
+# 2. What is tidy data, and how do we achieve it? 
 {: #tidy}
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead of time and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
@@ -306,7 +300,7 @@ From looking at the boxplot, there is a fairly big overlap between the annual gr
 
 
 
-### Explore the most common and useful functions of `dplyr`
+# 3. Explore the most common and useful functions of `dplyr`
 {: #dplyr}
 
 The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object (so you can drop those `$` signs!). Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. First, install and load the package.
@@ -317,7 +311,7 @@ install.packages("dplyr")  # install the package
 library(dplyr)              # load the package
 ```
 
-#### 1. `rename()` variables
+## 3a. `rename()` variables
 {: #rename}
 
 This lets you change the name(s) of a column or columns. The first argument is the data frame, the second (and third, etc.) takes the form __New name = Old name__. 
@@ -331,7 +325,7 @@ names(elongation_long) <- c("zone", "indiv", "year", "length")
 
 ```
 
-#### 2. `filter()` rows and `select()`columns
+## 3b. `filter()` rows and `select()`columns
 {: #filter}
 
 These are some of the most routine functions that let you reduce your data frame to just the rows and columns you need. The `filter()` function works great for subsetting rows with logical operations. The `select()` function lets you specify which columns to keep. __Note: the `select()` function often clashes with functions of the same name in other packages, and for that reason it is recommended to always use the notation `dplyr::select()` when calling it.__
@@ -390,7 +384,7 @@ elong_no.zone <- dplyr::select(elongation_long, Year = year, Shrub.ID = indiv, G
 
 ```
 
-#### 3. `mutate()` your dataset by creating new columns
+## 3c. `mutate()` your dataset by creating new columns
 {: #mutate}
 
 Something we have not yet touched on is how to create a new column. This is useful when you want to perform an operation on multiple columns, or perhaps reclassify a factor. The `mutate()` function does just that, and also lets you define the name of the column. Here let's use our old wide-format object `elongation` and create a column representing total growth for the period 2007-2012:
@@ -406,7 +400,7 @@ elong_total <- mutate(elongation, total.growth = X2007 + X2008 + X2009 + X2010 +
 Now, let's see how we could accomplish the same thing on our long-format data `elongation_long` by using two functions that pair extremely well together: `group_by()` and `summarise()`.
 
 
-#### 4. `group_by()` certain factors to perform operations on chunks of data
+## 3d. `group_by()` certain factors to perform operations on chunks of data
 {: #group}
 
 The most important thing to understand about this function is that you don't see any visible change to your data frame. It creates an internal grouping structure, which means that every subsequent function you run on it will use these groups, and not the whole dataset, as an input. It's very useful when you want to compute summary statistics for different sites, treatments, species, etc.
@@ -422,7 +416,7 @@ elong_grouped <- group_by(elongation_long, indiv)   # grouping our dataset by in
  Compare `elong_grouped` and `elongation_long` : they should look exactly the same. But now, let's use `summarise()` to calculate total growth of each individual over the years.
 
 
-#### 5. `summarise()` data with a range of summary statistics
+## 3e. `summarise()` data with a range of summary statistics
 {: #summarise}
 
 This function will always aggregate your original data frame, i.e. the output data frame will be shorter than the input. Here, let's contrast summing growth increments over the study period on the original dataset vs our new __grouped__ dataset.
@@ -447,7 +441,7 @@ summary3 <- summarise(elong_grouped, total.growth = sum(length),
 Less amazing is that we lose all the other columns not specified at the grouping stage or in a summary operation. For instance, we lost the column year because there are 5 years for each individual, and we're summarising to get one single growth value per individual. Always create a new object for summarised data, so that your full dataset doesn't go away! You can always merge back some information at a later stage, like we will see now.
 
 
-#### 6. `..._join()` datasets based on shared attributes
+## 6. `..._join()` datasets based on shared attributes
 {: #join}
 
 Sometimes you have multiple data files concerning a same project: one for measurements taken at various sites, others with climate data at these sites, and perhaps some metadata about your experiment. Depending on your analytical needs, it may be very useful to have all the information in one table. This is where merging, or joining, datasets comes in handy.
@@ -492,7 +486,7 @@ Are these differences statistically significant? We'll find out how to test this
 But for now, don't you think it's enough for one tutorial? Congratulations for powering through and getting this far! If you want to test your knowledge, try your hand at the data manipulation challenge below. 
 
 
-### Challenge yourself!
+# Challenge yourself!
 {: #challenge}
 
 Let's see if you can apply some of the functions we have learned today in a different context. In the repository, you will find the file `dragons.csv`, which gives the length (in cm) of the fire plumes breathed by dragons of different species when fed different spices. 
@@ -601,7 +595,7 @@ __It looks like jalapeños are proper dragon fuel, but turmeric not so much!__
 {% endcapture %}
 {% include reveal.html button="Click to see the solution" content=answers %}
 
-### Tutorial Outcomes:
+# Tutorial Outcomes:
 
 1. You can use `$`and `[]` operators to subset elements of data frames in the classic R notation
 2. You understand the format required for analyses in R, and can use the package `tidyr` to achieve it.

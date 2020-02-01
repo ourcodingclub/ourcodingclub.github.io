@@ -7,7 +7,7 @@ author: Gergana and John
 survey_link: https://www.surveymonkey.co.uk/r/NRKM679
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [What is functional programming](#introduction)
 2. [Building a simple function](#function)
@@ -17,7 +17,7 @@ survey_link: https://www.surveymonkey.co.uk/r/NRKM679
 6. [BONUS: Write a loop to plot multiple graphs](#bonus)
 
 
-### All the resources for this tutorial, including some useful extra reading can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it.
+__All the resources for this tutorial, including some useful extra reading can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it.__
 
 Next, open up a new R Script, preferably in RStudio, where you will write the code for this tutorial. Set the folder you just downloaded as your working directory by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
 
@@ -25,7 +25,7 @@ Next, open up a new R Script, preferably in RStudio, where you will write the co
 setwd("PATH_TO_FOLDER")
 ```
 
-### Writing functions
+# 1. Writing functions
 {: #introduction}
 
 We've learned [how to import data in RStudio]({{ site.baseurl }}/tutorials/intro-to-r/index.html), [format and manipulate them]({{ site.baseurl }}/tutorials/piping/index.html), [write scripts and Markdown reports]({{ site.baseurl }}/tutorials/rmarkdown/index.html), [how to make beautiful and informative graphs using `ggplot2`]({{ site.baseurl }}/tutorials/datavis/index.html), meaning that you have all the basic tools to perform data simple data analysis using R. 
@@ -36,7 +36,7 @@ In this workshop, we introduce the concept of functions and loops in R as a meth
 
 __`R` is a functional programming language at its heart. When you run a command on some data, e.g. `sum(1, 2)`, sum is a function. Basically everything you do in `R` involves at least one function. Just as the base `R` language and other `R` packages contain functions, you can also write your own functions to perform various tasks using the same tools as package developers, and it's not as hard as it sounds.__
 
-## 2. Building a simple function 
+# 2. Building a simple function 
 {: #function}
 
 Open a new `RStudio` session and create a new `R` script. If you haven't already done so, download the resources needed for this tutorial from [this Github repository](https://github.com/ourcodingclub/CC-5-fun-and-loop). Clone and download the repo as a zipfile, then unzip it. In your `R` script, set the working directory to the repository you just downloaded by running the code below (replacing `PATH_TO_FOLDER` with the location of the folder on your computer, e.g. `~/Downloads/CC-5-fun-and-loop`):
@@ -122,7 +122,7 @@ trees_bicuar$ba <- basal.area(dbh = trees_bicuar$diam)
 
 __Writing functions for simple operations like the example above is useful if you want to perform the same operation multiple times throughout a script and don't want to copy and paste the same code (e.g. `(pi*(dbh)^2)/40000`) multiple times, this reduces the chances that you will make a typo when copying and pasting.__
 
-## 3. Functions in loops 
+# 3. Functions in loops 
 {: #loop}
 
 We've seen how to write a function and how they can be used to create concise re-usable operations that can be applied multiple times in a script without having to copy and paste, but where functions really come into their own is when combined with looping procedures. Loops serve to run the same operation on a group of objects, further minimising the replication of code.
@@ -217,7 +217,7 @@ for( i in 1:length(trees_mlunguya_list) ){
 Note that this `for()` loop now contains a custom function (`ba.mean.year()`), which itself contains a custom function (`basal.area()`), demonstrating that there is really no limit to the complexity you can create with functional programming tools like loops and function calls. You can even have loops within loops, and loops in functions! 
 
 
-## 4. Functions with `lapply()` family 
+# 4. Functions with `lapply()` family 
 {: #apply}
 
 __`for()` loops are very useful for quickly iterating over a list, but because R prefers to store everything as a new object with each loop iteration, loops can become quite slow if they are complex, or running many processes and many iterations. As an alternative `lapply()` and the `apply` family of functions more broadly can be used as an alternative to loops. `lapply()` runs operations on lists of items, similar to the `for()` loops above. To replicate the previous `for()` loop, where we calculated the mean basal area per year in `trees_mlunguya`, you can run:__
@@ -255,7 +255,7 @@ sapply(bicuar_height_list, mean, na.rm = TRUE)
 `sapply()` won't be able to simplify the output of every `lapply()` loop, especially if the output is complex, but for this example, where we only have a single named decimal number, sapply works well.
 
 
-## 5. Conditional statements 
+# 5. Conditional statements 
 {: #ifelse}
 
 Another useful functional programming technique is to use conditional statements to change how the code is run depending on whether certain conditions are met. This means that you can create more complex functions that can be applied in a wider range of situations. 
@@ -308,7 +308,7 @@ diam.summ(dbh = bicuar_trees$diam, mean = TRUE, median = FALSE)
 Also note that in this function definition the extra arguments have default values, e.g. `mean = TRUE`. This means that even if the user doesn't specify what the value of `mean` should be, e.g. `diam.summ(dbh = trees_bicuar$diam, median = TRUE, mean_ba = FALSE)`, R will default to the value of `mean = TRUE`, thus calculating the mean trunk diameter. 
 
 
-## 6. BONUS: Write a loop to plot multiple graphs
+# 6. BONUS: Write a loop to plot multiple graphs
 {: #bonus}
 
 This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the [Living Planet Index](http://www.livingplanetindex.org/) for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
@@ -475,7 +475,7 @@ for (i in 1:length(Sp_list)) {                                    # For every it
 The files will be saved in your working directory - to find out where that is, run the code `getwd()`. 
 
 
-## Tutorial outcomes:
+# Tutorial outcomes:
 
 - You can write a function
 - You can write a `for()` loop
@@ -484,6 +484,6 @@ The files will be saved in your working directory - to find out where that is, r
 - You can use conditional `ifelse()` statements to make more complex functions
 
 
-## Further reading
+# Further reading
 
 [Advanced R by Hadley Whickham - Functional Programming](http://adv-r.had.co.nz/Functional-programming.html)

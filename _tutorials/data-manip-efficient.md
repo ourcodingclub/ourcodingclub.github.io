@@ -9,13 +9,13 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. Chain together multiple lines of codes with pipes `%>%`
 2. Use `dplyr` to its full potential
 3. Automate advanced tasks like plotting without writing a loop
 
-### Steps:
+# Steps:
 
 1. [An introduction to pipes](#pipes)
 2. [Discover more functions of `dplyr`](#dplyr)
@@ -35,7 +35,7 @@ We are working with a subset of a larger dataset of [trees within the City of Ed
 
 __Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hasthags `#` to comment and annotate your script).__
 
-### An introduction to pipes
+# 1. An introduction to pipes
 {: #pipes}
 
 The pipe operator `%>%` is a funny little thing that serves as a channel for the output of a command to be passed to another function seamlessly, i.e., without creating intermediary objects. It really makes your code flow, and avoids repetition. Let's first import the data, and then we'll see what pipes are all about.
@@ -108,11 +108,12 @@ Here we are first subsetting the data frame to only three species, and counting 
 Neat, uh? Now let's play around with other functions that `dplyr` has to offer.
 
 
-### More functions of `dplyr`
+# 2. More functions of `dplyr`
 {: #dplyr}
 
 An extension of the core `dplyr` functions is `summarise_all()`: you may have guessed, it will run a summary function of your choice over ALL the columns. Not meaningful here, but could be if all values were numeric, for instance. 
 
+## 2a. `summarise_all()` - quickly generate a summary dataframe
 {: #filter}
 
 ```r 
@@ -125,7 +126,7 @@ As only two of the columns had numeric values over which a mean could be calcula
 Now let's move on to a truly exciting function that not so many people know about.
 
 
-#### 2. `case_when()` - a favourite for re-classifying values or factors
+## 2b. `case_when()` - a favourite for re-classifying values or factors
 {: #case}
 
 But first, it seems poor form to introduce this function without also introducing the simpler function upon which it builds, `ifelse()`. You give `ifelse()` a conditional statement which it will evaluate, and the values it should return when this statement is true or false. Let's do a very simple example to begin with:
@@ -151,7 +152,7 @@ case_when(vector2 == "What am I?" ~ "I am the walrus",
 
 But enough singing, and let's see how we can use those functions in real life to reclassify our variables.
 
-### Changing factor levels or create categorical variables 
+# 3. Changing factor levels or create categorical variables 
 {: #factors}
 
 The use of `mutate()` together with `case_when()` is a great way to change the names of factor levels, or create a new variable based on existing ones. We see from the `LatinName` columns that there are many tree species belonging to some genera, like birches (Betula), or willows (Salix), for example. We may want to create a `Genus` column using `mutate()` that will hold that information.
@@ -243,7 +244,7 @@ library(ggplot2)
 And let's build up a plot-producing factory chain!
 
 
-### Advanced piping 
+# 4. Advanced piping 
 {: #piping-graphs}
 
 Earlier in the tutorial, we used pipes to gradually transform our dataframes by adding new columns or transforming the variables they contain. But sometimes you may want to use the really neat grouping functionalities of `dplyr` with non native `dplyr` functions, for instance to run series of models or produce plots. It can be tricky, but it's sometimes easier to write than a loop. (You can learn to write loops [here]({{ site.baseurl }}/tutorials/funandloops/index.html).)
@@ -332,7 +333,7 @@ So, in the end, the whole string could read something like: 'C:/Coding_Club/map-
 We hope you've learned new hacks that will simplify your code and make it more efficient! Let's see if you can use what we learned today to accomplish a last data task. 
 
 
-### Challenge yourself!
+# 5. Challenge yourself!
 {: #challenge}
 
 The Craigmillar Castle team would like a summary of the different species found within its grounds, but broken down in four quadrants (NE, NW, SE, SW). You can start from the `trees.genus` object created earlier.
@@ -453,7 +454,7 @@ Well done for getting so far!
 
 We hope this was useful. Let's look back at what you can now do, and as always, get in touch if there is more content you would like to see!
 
-### Tutorial Outcomes:
+# Tutorial Outcomes:
 
 1. You can streamline your code using pipes
 2. You know how to reclassify values or recode factors using logical statements

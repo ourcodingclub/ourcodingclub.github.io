@@ -7,7 +7,7 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/VMRWSKQ
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn how to format survey data, coding responses, data types etc.](#format)
 2. [Practise visualising ordinal data, count data, likert scales](#visualise)
@@ -62,7 +62,7 @@ This example dataset is formatted to purposely resemble the sort of thing you mi
 
 The object `sust_lookup` is a table which connects the name of each column in the dataframe to the corresponding question that was asked in the survey. Replacing the raw questions with shorter column names makes it much easier to write code, and with the lookup table we can add the actual question title back in when we are creating plots. 
 
-## 1. Formatting qualitative data
+# 1. Formatting qualitative data
 {: #format}
 
 
@@ -103,7 +103,7 @@ Imagine we want to ask the question "Does the number of sustainable energy-relat
 sust_data$energy_action_n <- nchar(as.character(sust_data$energy_action))
 ```
 
-## 2. Visualising qualitative data
+# 2. Visualising qualitative data
 {: #visualise}
 
 
@@ -111,7 +111,7 @@ Now that we formatted our data for analysis we can visualise the data to identif
 
 Let's start with the Likert scales. We can create bar charts to visualise the number of responses to a question which fit into each of the ordinal categories. The correct form for the bar chart will depend on the type of question that was asked, and the wording of the various responses. For example, if potential responses were presented as "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree", you could assume that the neutral or zero answer is in the middle, with Disagree being negative and Agree being positive. On the other hand, if the answers were presented as "Never", "Rarely", "Sometimes", "Often", "All the time", the neutral or zero answer would be Never, with all other answers being positive. For the first example, we could use a "diverging stacked bar chart", and for the latter we would just use a standard "stacked bar chart".
 
-### Diverging stacked bar chart
+## Diverging stacked bar chart
 
 Let's first make a diverging stacked bar chart of responses to the question: "How often during a normal day do you think about the sustainability of your actions?". Investigating how gender affects the response. You can see from the lookup table (`sust_lookup`) that the responses to this question are stored in the column called `sustainability_daily_think`.
 
@@ -267,7 +267,7 @@ There are two `geom_bar()` arguments - one for the positive responses and one fo
 Of course, there are other options to display this sort of data. You could use a pie chart, or just a basic table showing the number of responses by group, but the diverging bar chart effectively compares groups of respondees, or even answers to different questions, if you group by question instead of gender.
 
 
-### Basic stacked bar chart
+## Basic stacked bar chart
 
 To make a conventional stacked bar chart, we will use the question on "How many of these energy related sustainable actions do you perform?", the responses to which are found in `sust_data$energy_action`.
 
@@ -299,7 +299,7 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 ![Stackd bar plot of gender and sustainable energy behaviour]({{ site.baseurl }}/assets/img/tutorials/qualitative/stacked_bar_qual.png)
 
 
-### Bubble plot
+## Bubble plot
 
 If we want to compare correlations between two categories of data, we can use a bubble plot. For example, is there a pattern between age of respondent and how often they think about sustainable activities? The data from this survey doesn't contain actual age values, only age ranges (e.g. 18-20, 21-29 etc.). 
 
@@ -321,7 +321,7 @@ Then to create the bubble plot, simply adjust the size of points according to th
 
 ![Bubble plot of age vs. sustainable thoughts]({{ site.baseurl }}/assets/img/tutorials/qualitative/bubble_chart_qual.png)
 
-## 3. Mining text responses and comments for keywords 
+# 3. Mining text responses and comments for keywords 
 {: #text-mining}
 
 
@@ -333,7 +333,7 @@ sust_data$energy_action_comment
 
 We can mine the comments for keywords to build up a more complete picture of what our respondents were thinking about when they did the survey and whether that varies by gender. To make the comments easier to work with, we should make the data "tidy" by splitting each comment so that each row has a single word only. 
 
-### Comments from all the questions 
+## Comments from all the questions 
 
 The following pipe collects all the comment columns along with the gender and id columns (`dplyr::select()`), then gathers those comment columns together into a single column (`gather()`), then transforms the comments column from a factor into a character class (`mutate()`). Note that we are using `dplyr::select()` instead of just `select()` - this is because often we have other packages loaded that might also have a `select()` function within them, so we want to explicitly state that we want to use the `select()` function from the `dplyr` package.
 
@@ -370,7 +370,7 @@ Now it is easy to plot the occurrences of each word, and colour by gender (`fill
 
 ![Comment occurence by gender]({{ site.baseurl }}/assets/img/tutorials/qualitative/comment_gender_qual.png)
 
-### Comments from a single question
+## Comments from a single question
 
 We might also want to investigate a single question's comments in more detail. For example, the `energy_action_comment` column. First repeat the action of converting to character format (`mutate()`), then split the column so each row is one word (`unnest_tokens()`), then remove boring words (`antijoin()`), and count the frequency of each word:
 
@@ -400,7 +400,7 @@ tidy_energy_often_comment_summ <- tidy_energy_often_comment %>%
 
 ![Most common words barplot]({{ site.baseurl }}/assets/img/tutorials/qualitative/word_bar_qual.png)
 
-### Wordclouds
+## Wordclouds
 
 To effectively plot more words and their frequencies, you could also create a word cloud:
 
@@ -414,12 +414,12 @@ tidy_energy_often_comment %>%
 For more on text mining using `tidytext`, you can check out [the Gitbook website](https://www.tidytextmining.com).
 
 
-## 4. Analyse qualitative data
+# 4. Analyse qualitative data
 {: #analyse}
 
 Due to the way survey data are usually formatted, with lot of counts and factors, the assumptions of conventional parametric statistical analysis are often violated, so we can branch out from our usual linear models! Below are a few examples of how to test various hypotheses using our survey data. 
 
-### Chi-squared
+## Chi-squared
 
 To test if there is a statistically significant correlation between gender and how often sustainable tasks are though about, we can use a chi-squared test of independence.
 
@@ -430,7 +430,7 @@ gender_think_chi
 
 The output of the `gender_think_chi` object can be used to interpret the outcome of the chi-squared test, with a lower p-value indicating a greater probability that the two variables are dependent on each other. In this case, `p = 0.01518`, which is lower than the conventional threshold of `0.05`, meaning we can reject the null hypothesis that gender does not correlate with the frequency at which people think about sustainable tasks.
 
-### Poisson regression
+## Poisson regression
 
 For a more in depth analysis, we might hypothesise that gender causes the difference in the number of energy related sustainable actions performed. This is in contrast to the Chi-squared test which merely suggests a non-directional correlative tendency between the two variables. As the number of actions performed is count data, we can use a `Poisson regression`, which is a type of a generalised linear model: 
 
@@ -441,7 +441,7 @@ summary(energy_action_pois)
 
 In this case it seems like there actually isn't much effect of gender on number of actions performed, with a very low z-value of `0.343` and a non-significant p-value (`0.732`). This means we cann accept the null hypothesis that gender does not affect the number of sustainable energy actions performed. 
 
-### Multi-variate Poisson regression
+## Multi-variate Poisson regression
 
 Going deeper, we might hypothesise that gender and age interact to determine the amount of sustainable food related actions. For example, maybe the difference between genders becomes more accentuated as age increases. Including age in our model might help to make the model fit better and explain more variance. This effect can be included in a generalised linear model as an "interaction term". In the code below `gender * age` defines the interaction between those two explanatory variables:
 
@@ -452,7 +452,7 @@ summary(energy_action_pois_int)
 
 We don't find support for our hypothesis that gender differences increase with age, as the effect size for the interaction term is very small.
 
-### Conclusion
+## Conclusion
 
 __In this tutorial, we learned how to visualise qualitative data using different types of plots, as well as how to analyse the data to test different hypotheses, hopefully getting you one step closer to unwrapping your data presents!__
 
