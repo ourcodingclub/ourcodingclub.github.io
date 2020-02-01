@@ -705,5 +705,8 @@ And you're all set to go! For an additional challenge, try ordering the bars so 
             plot.title = element_text(size = 14))           # reducing size of main title
 )
 ```
+
+![]({{ site.baseurl }}/assets/img/tutorials/data-vis-2/DL_datavis2_endemism.png)
+
 {% endcapture %}
 {% include reveal.html button="Click this line to view a solution" content=reveal %}

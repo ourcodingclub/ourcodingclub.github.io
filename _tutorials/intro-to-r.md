@@ -440,6 +440,11 @@ barplot(wings$wingspan, names.arg = wings$bird_sp,    # notice how we call the b
 dev.off()
 
 ```
+
+And the final plot would look something like this:
+
+![Bird wingspan plot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/intro_challenge_wingspan.jpeg)
+
 {% endcapture %}
 {% include reveal.html button="Ready? Click this line to view the solution" content=reveal %}
 

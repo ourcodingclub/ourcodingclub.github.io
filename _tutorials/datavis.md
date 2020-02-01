@@ -529,5 +529,9 @@ library(egg)
 ggarrange(arctic.scatter + labs(title = 'Population change over time'), 
           arctic.box + labs(title = 'Population size across countries'))
 ```
+
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/datavis/DL_datavis1_arcticpops.png{% endcapture %}
+{% include figure.html url=link caption="Population trends and abundance of two Arctic species across their range according to the LPI dataset." %}
+
 {% endcapture %}
 {% include reveal.html button="Click this line to view an example" content=reveal %}

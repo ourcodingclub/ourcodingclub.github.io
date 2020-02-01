@@ -445,6 +445,8 @@ acer.plots <- acer %>%
 acer.plots$plots
 ```
 
+![Acer plot output]({{ site.baseurl }}/assets/img/tutorials/data-manip-efficient/DL_data-manip-2_challenge.png)
+
 Well done for getting so far!
 {% endcapture %}
 {% include reveal.html button="Click this line to see the solution!" content=reveal %}

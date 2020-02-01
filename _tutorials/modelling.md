@@ -381,5 +381,8 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    geom_boxplot(aes(colour = supp)) +
    theme.clean()
 ```
+
+![Boxplots]({{ site.baseurl }}/img/DL_intro_lm_guineapigs.png)
+
 {% endcapture %}
 {% include reveal.html button="Click this line to view a solution" content=reveal %}
