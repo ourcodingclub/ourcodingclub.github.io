@@ -14,7 +14,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	<div class="tutcont">
         	<a href="{{ site.baseurl }}/tutorials/intro-to-r">
         		<div class="tuthex">
-            		<img src="{{ site.baseurl }}/assets/img/hex/work1.jpg" alt="">
+            		<img src="{{ site.baseurl }}/assets/img/hex/work1.jpg" alt="Intro to R hex logo">
         		</div>
         		<div class="tutdesc">
                 		<h2>Introduction to R: Part 1</h2>
@@ -24,7 +24,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/intro_2.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/intro_2.png" alt="Troubleshooting hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/troubleshooting">
@@ -35,7 +35,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/funl.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/funl.jpg" alt="Functions and loops hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/funandloops">
@@ -49,7 +49,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work2.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work2.jpg" alt="Intro to data manipulation hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/data-manip-intro">
@@ -60,7 +60,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work3.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work3.jpg" alt="Efficient data manipulation hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/data-manip-efficient">
@@ -71,7 +71,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work9.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work9.png" alt="Webscraping hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/webscraping">
@@ -85,7 +85,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work6.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work6.jpg" alt="Data visualisation 1 hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/datavis">
@@ -96,7 +96,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/ggplot2.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/ggplot2.png" alt="Data visualisation 2 hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/data-vis-2">
@@ -107,7 +107,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/hex_qual.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/hex_qual.png" alt="Visualising qualitative data hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/qualitative">
@@ -118,7 +118,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work5.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work5.jpg" alt="Shiny hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/shiny">
@@ -132,7 +132,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="Basic maps hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/maps">
@@ -143,7 +143,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/spatial_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/spatial_logo.png" alt="Raster analysis hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/spatial">
@@ -154,7 +154,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="Flickr species occurrence hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/seecc_1/index.html#Flickr">
@@ -165,7 +165,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="Population change hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/seecc_1">
@@ -176,7 +176,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="Tidyverse workflow hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
@@ -187,7 +187,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/popchange2.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/popchange2.png" alt="Population change maps hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/popchange">
@@ -198,7 +198,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/occur_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/occur_icon.png" alt="Species occurrence hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/occurrence">
@@ -212,7 +212,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/lmicon.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/lmicon.jpg" alt="Linear models hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/modelling">
@@ -223,7 +223,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="Model design hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/model-design">
@@ -234,7 +234,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/mix_mod.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/mix_mod.png" alt="Mixed models hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/mixed-models">
@@ -245,7 +245,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/meta_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/meta_icon.png" alt="MCMCglmm hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/mcmcglmm">
@@ -256,7 +256,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/stan_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/stan_icon.png" alt="Stan intro hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/stan-intro">
@@ -267,7 +267,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/stan2_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/stan2_icon.png" alt="GLM Stan hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/stan-2">
@@ -278,7 +278,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/inla_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/inla_logo.png" alt="INLA hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/inla">
@@ -289,7 +289,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/oridnation_icon.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/oridnation_icon.png" alt="Ordination hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/ordination">
@@ -300,7 +300,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work10.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work10.png" alt="Time series hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/time">
@@ -311,7 +311,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/machine_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/machine_logo.png" alt="Machine learning hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/machine-learning">
@@ -322,7 +322,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/clustericon.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/clustericon.jpg" alt="Data clustering hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/data-clustering">
@@ -336,7 +336,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work4.jpg" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work4.jpg" alt="Markdown hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/rmarkdown">
@@ -347,7 +347,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work7.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work7.png" alt="Git hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/git">
@@ -358,7 +358,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/git_lab.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/git_lab.png" alt="Git for labs hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/git-for-labs">
@@ -369,7 +369,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/sharing.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/sharing.png" alt="Creating tutorials hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/tutorials">
@@ -378,12 +378,34 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	</a>
         	</div>
     	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="" alt="Coding etiquette hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/etiquette">
+                	<h2>Following a coding etiquette</h2>
+                	<p>Make your code portable and widely readable</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="" alt="R package hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/writing-r-package">
+                	<h2>Creating an R package</h2>
+                	<p>Collect functions into a portable reproducible package</p>
+            	</a>
+        	</div>
+    	</div>
 	</div>
 	<h3>Google Earth Engine</h3>
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/gee_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/gee_logo.png" alt="Earth Engine hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/earth-engine">
@@ -397,7 +419,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="Python crash course hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/python_crash_course">
@@ -408,7 +430,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work11.png" alt="Python intro hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/python-intro">
@@ -419,7 +441,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/numpy_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/numpy_logo.png" alt="NumPy hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/numpy">
@@ -430,7 +452,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/python_pandas.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/python_pandas.png" alt="Pandas hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/pandas-python-intro">
@@ -441,7 +463,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/iris_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/iris_logo.png" alt="Iris hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/iris-python-data-vis">
@@ -452,7 +474,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/timeseries_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/timeseries_logo.png" alt="Pandas time series hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/pandas-time-series">
@@ -463,7 +485,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/topic-modelling-python.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/topic-modelling-python.png" alt="Python topic modelling hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/topic-modelling-python">
@@ -477,7 +499,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/fortran_logo.png" alt="">
+            	<img src="{{ site.baseurl }}/assets/img/hex/fortran_logo.png" alt="Fortran hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/fortran-intro">
