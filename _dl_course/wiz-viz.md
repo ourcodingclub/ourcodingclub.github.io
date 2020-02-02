@@ -10,7 +10,7 @@ This stream is aimed at scientists who are looking to improve and expand their d
 
 We will first teach you to format your datasets in the most efficient way for plotting and the basics of the `ggplot2` package. Then, we'll move way beyond basic and learn to customise all the elements of a graph, create our own palettes and themes, and use panels to declutter graphs. We will use different types of data, from model predictions to geographical data, and work towards presenting them in an engaging and informative way. Finally, we'll explore the Markdown language for professional and reproducible reporting of codes and results, and have fun with interactive web apps!
 
-## As part of this course stream, we suggest you do the following tutorials:
+# As part of this course stream, we suggest you do the following tutorials:
 
 * [Efficient data manipulation: Streamline your code]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html)
 * [Data visualisation I: beautiful and informative graphs]({{ site.baseurl }}/tutorials/datavis/index.html)
@@ -19,7 +19,7 @@ We will first teach you to format your datasets in the most efficient way for pl
 * [Professional reporting with Markdown]({{ site.baseurl }}/tutorials/rmarkdown-1/index.html) 
 * [Intro to Shiny: interactive web apps]({{ site.baseurl }}/tutorials/shiny/index.html) 
 
-## Getting started
+# Getting started
 
 We hope you enjoy doing the course! There is no time limit for completion, so you can take it at your own pace. Each tutorial might take you between one and three hours to complete, and your completion will be recorded once you take the quiz at the end.
 
@@ -34,7 +34,7 @@ You can track your progression and access the course quizzes in our course porta
 
 ![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
-## Challenge yourself
+# Challenge yourself
 
 Have you completed all the tutorials you wanted to? Feel you're ready for some real-life applications? We encourage you to test your skills and take the challenge associated to this stream.
 

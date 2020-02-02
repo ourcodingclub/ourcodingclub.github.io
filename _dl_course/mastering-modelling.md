@@ -5,7 +5,7 @@ subtitle: "Advanced data manipulation and analysis for complex ecological datase
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
-## Stream overview
+# Stream overview
 
 Ecological data are messy... We study a range of organisms and processes through varied study designs like long-term monitoring and factorial experiments, and most of the time usual statistical assumptions don't hold because the data we collect are not independent. 
 
@@ -13,7 +13,7 @@ But fear not, environmental scientist! This course stream is designed to give th
 
 We assume you have a good understanding of the different objects in R and can manipulate them, for instance for plotting or inclusion in linear models. Need a refresher? Take a look at the tutorials in our [Stats from Scratch]({{ site.baseurl }}/dl_course/stats-scratch/index.html) or [Wiz of Data Vis]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course streams.
 
-## As part of this course stream, we suggest you do the following tutorials:
+# As part of this course stream, we suggest you do the following tutorials:
 
 * [Efficient data manipulation: Streamline your code]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html)
 * [Intro to functional programming: loops & custom functions]({{ site.baseurl }}/tutorials/funandloops/index.html) 
@@ -23,7 +23,7 @@ We assume you have a good understanding of the different objects in R and can ma
 * [Intro to Bayesian inference with MCMCglmm]({{ site.baseurl }}/tutorials/mcmcglmm/index.html)
 * [Generalised mixed-effects models in Stan]({{ site.baseurl }}/tutorials/stan-2/index.html)
 
-## Getting started
+# Getting started
 
 We hope you enjoy doing the course! There is no time limit for completion, so you can take it at your own pace. Each tutorial might take you between one and three hours to complete, and your completion will be recorded once you take the quiz at the end.
 
@@ -38,7 +38,7 @@ You can track your progression and access the course quizzes in our course porta
 
 ![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
-## Challenge yourself
+# Challenge yourself
 
 Have you completed all the tutorials you wanted to? Feel you're ready for some real-life applications? We encourage you to test your skills and take the challenge associated to this stream.
 

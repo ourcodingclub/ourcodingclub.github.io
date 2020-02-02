@@ -5,7 +5,7 @@ title: "Data visualisation challenge: Native woodlands"
 
 This challenge will require the use of data manipulation, plotting and mapping skills, and is the culmination of the [WIZ OF DATA VIS]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge.
 
-## Challenge outline and objectives
+# Challenge outline and objectives
 
 While Scotland is best known for its endless rolling heather hills, it used to be covered in wide swathes of forest. Less than 20% of Scotland is now afforested, and only 4% of the territory consists of native woodlands ([Woodland Trust](https://www.woodlandtrust.org.uk/about-us/where-we-work/scotland/), [Scottish Natural Heritage](https://www.nature.scot/professional-advice/land-and-sea-management/managing-land/forests-and-woodlands/woodland-expansion-across-scotland)). 
 
@@ -13,13 +13,13 @@ The Scottish government has included woodland expansion goals in its Climate Cha
 
 You have been asked to provide a report on the extent and structure of some high-priority conservation habitats in national nature reserves (NNR) of Scotland. For selected woodland types, you are required to prepare maps of their distribution in the Cairngorms, the Glen Affric, and the Trossachs nature reserve areas. You have also been tasked to calculate their respective extent within the reserve boundaries, and some basic biodiversity indices.
 
-## Data overview 
+# Data overview 
 
 You will use the following datasets, available from the [Challenge repository](https://github.com/ourcodingclub/CC_course_challenge2) on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.
 
 __NOTE:__ The data files have been saved as RDS objects because of their relatively large size. You can easily read a RDS file in R using the [`readRDS()` function](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS).
 
-### Native Woodland Survey of Scotland__
+## Native Woodland Survey of Scotland__
  
 * __NWSS.RDS__: a shapefile of all woodland patches in Scotland. The most important variables in the dataset are:
 	* __DOM_HABITA__: the main habitat type for the polygon. We will only retain some habitats of interest.
@@ -35,7 +35,7 @@ Original data link [here](http://data-forestry.opendata.arcgis.com/datasets/fead
 
 Original data link [here](http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6).
 
-### National Nature Reserves
+## National Nature Reserves
 
 * __ SNH_national_reserves.RDS__: a shapefile containing the outlines of Scotland's [NNRs](https://www.nnr.scot/). The most important variables in the dataset are:
 
@@ -51,11 +51,11 @@ The spatial objects have been saved using the [sf package](https://r-spatial.git
 
 You will not have to do any complex spatial analysis for this, but the instructions will point you in the right direction when functions specific to the _sf_ package might be needed. More [hints](#hints) can be found at the bottom of the page.
 
-## Specific tasks 
+# Specific tasks 
 
 Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.
 
-### 1. Clean the data
+## 1. Clean the data
 
 You will need to clean and filter the data to the sites and woodland types of interest. __Specifically, you should:__ 
 
@@ -77,7 +77,7 @@ _NB: There are 6 more NNRs within the Cairngorms National Park, but these three 
 
 __HINT:__ Once you have filtered both datasets to only keep the regions and habitats of interest, the best way forward is to create __one object__ that combines the two: i.e. only keep the habitats of interest _that are found within_ the regions of interest. You may need some indepent research to figure it out, but only one function from the _sf_ package is required to achieve this. To get you started, know that all _sf_ functions begin with _"st_"_, and this type of spatial operation is called an _intersection_...
 
-### 2. Map the areas of interest 
+## 2. Map the areas of interest 
 
 Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric) showing the geographical distribution of the priority habitats. __Specifically, you should:__ 
 
@@ -87,7 +87,7 @@ Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric
 
 __HINT:__ Producing a map is not very different than producing any other plot. The _sf_ package integrates almost seamlessly with _ggplot2_, so you can use all your favourite ways of selecting colours based on factor levels, adding text and legends, etc. The only difference is that the _sf_ objects are called in your plot through _geom_sf_. 
 
-### 3. Calculate the proportion of land (in %) covered by each habitat in the three areas.
+## 3. Calculate the proportion of land (in %) covered by each habitat in the three areas.
 
 The total NNR area is found in the cell SITE_HA, and the habitat polygon size is contained in the cell HECTARES. _(Note that there are more than one polygon per habitat type! Think about grouping observations first.)_
 
@@ -100,7 +100,7 @@ __Be prepared to answer the questions:__
 * What type of graph did you create?
 * What proportion of Glen Affric is covered in pinewoods?
 
-### 4. Calculate the species richness and evenness of the three areas.
+## 4. Calculate the species richness and evenness of the three areas.
 
 __Species richness__ simply corresponds to the number of different species in each area. _(Tip: all the species information can be found in __species_structure.RDS__.)_ 
 
@@ -118,20 +118,20 @@ __Be ready to answer the questions:__
 * Which area has the most species?
 * Which area has the lowest evenness?
 
-## How to get started 
+# How to get started 
 
 Download the [challenge repository](https://github.com/ourcodingclub/CC_course_challenge2), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
 
-##  Finished? Take the test! 
+# Finished? Take the test! 
 
 Once you have a fully working script and have completed the specific tasks, take the test. 
 
 {% capture link %} INSERT LINK {% endcapture %}
 {% include link-button.html url=link button="Coming soon" %}
 
-## Help & hints 
+# Help & hints 
 {: #hints}
 
 Here is a list of tutorials that might help you complete this challenge: 
@@ -140,7 +140,7 @@ Here is a list of tutorials that might help you complete this challenge:
 * [Data visualisation 2]({{ site.baseurl }}/tutorials/data-vis-2/index.html)
 * [Efficient data manipulation]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html)
 
-###  Need a hint? Just click on a question to expand. 
+##  Need a hint? Just click on a question to expand. 
 
 {% capture reveal %}
 First, make sure that you have filtered both datasets to only keep the 6 habitats and 3 NNRs required. You can do this with the `filter` function from `dplyr`. 
@@ -167,7 +167,7 @@ We have a tutorial that shows exactly how to create a [custom colour palette]({{
  
 We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!
 
-## Acknowledgements 
+# Acknowledgements 
 
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follows: 
 
