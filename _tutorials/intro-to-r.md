@@ -4,6 +4,7 @@ title: Getting started with R and RStudio
 updated: 2019-03-28
 author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
+banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
 # Tutorial aims:
@@ -68,7 +69,7 @@ When writing a script, it's useful to add comments to describe what you are doin
 
 __\*\*A quicker note about the workspace__: The workspace will have everything you have used in a session floating around your computer memory. When you exit, R will ask you if you want to save the current workspace. You almost [never need to](https://www.r-bloggers.com/using-r-dont-save-your-workspace/), and it's best to click no and start with a clear slate every time. (DO make sure you save your script though!!)
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ## Begin to write in your script
 
@@ -103,18 +104,21 @@ setwd("C:/User/CC-1-RBasics-master")
 
 __Watch out!__ Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (`"C:\folder\data"`), but the filepath you enter into R should use __forward slashes__ (`"C:/folder/data"`). 
 
-
 # 2. Import and check data
 {: #import}
 
 Practice is the best way to learn any new language, so let's jump straight in and do some of our own statistical analysis using a publicly available dataset of occurrence records for many animal, plant and fungi species. We downloaded the records for 2000-2016 (from the [ NBN Gateway ](https://data.nbn.org.uk/)) and saved them as `edidiv.csv`. First, you will need to download the data.
 
 
-__You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics).__
+{% capture callout %}
+Follow the link, click on "Download Zip", and save and unzip the folder somewhere on your computer. (Never heard of Github? Don't worry, we will cover it in a [later tutorial]({{ site.baseurl }}/tutorials/git/index.html). For now, it's simply the website where you can download our course material from.)
 
-__Follow the link, click on "Download Zip", and save and unzip the folder somewhere on your computer. (Never heard of Github? Don't worry, we will cover it in a [later tutorial]({{ site.baseurl }}/tutorials/git/index.html). For now, it's simply the website where you can download our course material from.)__
+You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics).
 
 ![Github clone repo screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/github_clone.png)
+{% endcapture %}
+{% include callout.html colour='alert' content=callout %}
+
 
 Now that you have the data saved on your computer, let's import it! In RStudio, you can either click on the _Import dataset_ button and navigate to where you have saved your file, or use the `read.csv()` command. If you use the button, a window will pop up previewing your data. Make sure that next to _Heading_ you have selected _Yes_ (this tells R to treat the first row of your data as the column names) and click _Import_. In the console, you will see the code for your import, which includes the file path - it's a good idea to copy this code into your script, so that for future reference you know where your dataset came from. 
 
@@ -135,7 +139,7 @@ __A note about objects__: R is an object-based language - this means that the da
 
 When you import your data into R, it will most likely become an object called a data frame. A data frame is like a table, or spreadsheet - it has rows and columns with the different variables and observations you have loaded. But more on that later!
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html colour='callout' content=callout %}
 
 
 A really important step is to check that your data was imported without any mistakes. It's good practice to always run this code and check the output in the console - do you see any missing values, do the numbers/names make sense? If you go straight into analysis, you risk later finding out that R didn't read your data correctly and having to re-do it, or worse, analysing wrong data without noticing. To preview more than just the few first lines, you can also click on the object in your Environment panel, and it will show up as a spreadsheet in a new tab next to your open script. Large files may not display entirely, so keep in mind you could be missing rows or columns. 
@@ -270,7 +274,7 @@ In the last section we created vectors, i.e. a series of values, each with a lab
 __A note on good housekeeping__:
 ALWAYS keep a copy of your raw data as you first collected it. The beauty of manipulating a file in an R script is that the modifications live _on the script_, not in the data. For Photoshop-savvy people, it's like adding layers to an image: you're not altering the original photo, just creating new things on top of it. That said, if you wrote a long piece of code to tidy up a large dataset and get it ready to analyse, you may not want to re-run the whole script every time you need to access the clean data. It's therefore a good idea to save your shiny new object as a _new_ csv file that you can load, ready-to-go, with just one command. We will now create a data frame with our species richness data, and then save it using `write.csv()`.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 We will use the `data.frame()` function, but first we will create an object that contains the names of all the taxa (one column) and another object with all the values for the species richness of each taxon (another column).
 
@@ -469,4 +473,4 @@ To recap, here are a few important terms we learned in this lesson:
 - __working directory__: the folder on your computer linked to your current R session, where you import data from and save files to. You set it at the beginning of your session with the `setwd()` function.
 - __workspace__: this is your virtual working environment, which contains all the functions of the packages you have loaded, the data you have imported, the objects you have created, and so on. It's usually best to start a work session with a clear workspace.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}

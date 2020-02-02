@@ -162,7 +162,7 @@ You can also add in `theme()` elements to your plot, which let you customise eve
 
 __Note:__ if we wanted to specify different options for the x and y axis, we could use `axis.text.x` or `axis.title.x` and `axis.text.y` or `axis.title.y` and specify separate characteristics for each axis. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ```r
 (hist <- ggplot(species_counts, aes(x = plot, y = Species_number, fill = land)) +
@@ -216,7 +216,7 @@ The `scale_fill_manual(values = c("your-colour-1", "your-colour-2", ...))` funct
 
 You can define colours using R's [built-in colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or by specifying their [Hex codes](https://www.color-hex.com/). The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our [previous tutorial]({{ site.baseurl }}/datavis_update/index.html#practice) for instructions on how to install it.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 Also, notice how the name of our legend is now currently "land": the title of that column in our dataframe `species_counts`. It is not very informative and not capitalized. We can change it to "Land of Magic," by specifying `name = "Land of Magic"` in our function `scale_fill_manual()`. In some cases, we might not want to have a title for the legend at all, which you can do by specifying in `scale_fill_manual`, `name = NULL`. 
 
@@ -361,7 +361,7 @@ So far we've used `scale_colour_manual()` and `scale_fill_manual()` to define cu
 
 You can learn [more about these functions here](https://ggplot2.tidyverse.org/reference/scale_gradient.html); basically, you just have to set your `low = ` and `high = ` colour values and the function will do the rest for you. We love it!
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 # 3. Customise boxplots in `ggplot2`
 {: #boxplot}
@@ -453,7 +453,7 @@ summary <- species_counts %>%  group_by(land) %>% summarise(mean = mean(Species_
 Boxplots, just like dot plots, give a more accurate idea of the range of values in your data: but remember that the thicker line in the box represents the median, not the mean!
 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 ## Reordering factors
 
 Remember how we learnt to recode and reorder factors in our [advanced data manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-advanced/index.html#factors)? We often want to do this so that we can __plot values in a specific order__.
@@ -574,7 +574,7 @@ However, perhaps this isn't what we really want, because you can see the relatio
 
 Some of you might have picked up on the fact that our data are nested (species within plots within magic lands) and come from different years: therefore, a mixed-effects modelling approach might be better here. For an introduction to linear mixed effects modelling, [check out our tutorial]({{ site.baseurl }}/tutorials/mixed-models/index.html), where we show how to plot the model predictions.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 For now, take some time to explore the different `ggplot2` fits! For instance, `method = "loess"` gives a smoothed curve.
 

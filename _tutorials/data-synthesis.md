@@ -17,7 +17,7 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 {% capture callout %}
 __The goal of this tutorial is to advance skills in working efficiently with data from different sources, in particular in synthesising information, formatting datasets for analyses and visualising the results. It's an exciting world full of data out there, but putting it all together can eat up lots of time. There are many tasks that can be automated and done in a more efficient way - `tidyverse` to the rescue! As with most things in `R`, there are different ways to achieve the same tasks. Here, we will focus on ways using packages from the `tidyverse` collection and a few extras, which together can streamline data synthesis and visualisation!__
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 #### This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the [SalGo Population Ecology Team](https://sites.google.com/site/robresearchsite/).
 
@@ -191,7 +191,7 @@ aus_pops2 <- bird_pops_long %>%
 {% capture callout %}
 __Managing long scripts:__ Lines of code pile up quickly! There is an outline feature in `RStudio` that makes long scripts more organised and easier to navigate. You can make a subsection by writing out a comment and adding four or more characters after the text, e.g. `# Section 1 ----`. If you've included all of the comments from the tutorial in your own script, you should already have some sections.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ![RStudio GUI outline screenshot]({{ site.baseurl }}/assets/img/tutorials/data-synthesis/outline.png)
 
@@ -329,7 +329,7 @@ __A piping tip:__ A useful way to familiriase yourself with what the pipe does a
 
 __Running pipes sequentially line by line also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ```r
 # Calculate population change for each forest population

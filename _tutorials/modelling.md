@@ -77,7 +77,7 @@ It is important to be aware of the multiple factors that may influence your resp
 
 Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 # 3. Some practice with linear models
 {: #linear}
@@ -226,7 +226,7 @@ So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and he
 anova(apples.m)
 ```
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ## Checking assumptions
 

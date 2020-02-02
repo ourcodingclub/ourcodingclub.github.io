@@ -51,7 +51,7 @@ In August 2019, NASA changed their data access protocol, so the ftp links and co
 2. Right-click to Save As `omni2_all_years.dat`
 3. Continue the tutorial!
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='alert' %}
 
 __[IGNORE THIS BIT!]__
 

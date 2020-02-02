@@ -230,7 +230,7 @@ Additionally, the data for our random effect is just **a sample of all the possi
 test <- 1 + 3
 ```
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 
 In our particular case, we are looking to control for the effects of mountain range. We haven't sampled all the mountain ranges in the world (we have eight) so our data are just a sample of all the existing mountain ranges. We are not really interested in the effect of each specific mountain range on the test score: we hope our model would also be generalisable to dragons from other mountain ranges! However, we know that the test scores from within the ranges might be correlated so we want to control for that.
@@ -246,7 +246,7 @@ This is, put simply, because estimating variance on few data points is very impr
 
 Finally, keep in mind that the name *random* doesn't have much to do with *mathematical randomness*. Yes, it's confusing. Just think about them as the *grouping* variables for now. Strictly speaking it's all about making our models representative of our questions **and getting better estimates**. Hopefully, our next few examples will help you make sense of how and why they're used.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 **In the end, the big questions are:** *what are you trying to do? What are you trying to make predictions about? What is just variation (a.k.a "noise") that you need to control for?*
 
@@ -259,7 +259,7 @@ Finally, keep in mind that the name *random* doesn't have much to do with *mathe
 - [More on model complexity](https://dynamicecology.wordpress.com/2014/12/02/why-are-your-statistical-models-more-complex-these-days/)
 - Have a look at some of the fixed and random effects definitions gathered by Gelman in [this paper](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf) (you can also find them [here](http://stats.stackexchange.com/questions/4700/what-is-the-difference-between-fixed-effect-random-effect-and-mixed-effect-mode/4702#4702) if you can't access the paper).
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ## Let's fit our first mixed model
 {: #first}
@@ -304,7 +304,7 @@ Still confused about interpreting random effects? These links have neat demonstr
 
 [Bodo Winter: A very basic tutorial for performing linear mixed effect analyses](http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf)
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 As always, it's good practice to have a look at the plots to check our assumptions:
 
@@ -391,7 +391,7 @@ Now it's obvious that we have 24 samples (8 mountain ranges x 3 sites) and not j
 
 **To sum up:** for **nested random effects**, the factor appears **ONLY** within a particular level of another factor (each site belongs to a specific mountain range and only to that range); for **crossed effects**, a given factor appears in more than one level of another factor (dragons appearing within more than one mountain range). **Or you can just remember that if your random effects aren't nested, then they are crossed!**
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ## Our second mixed model
 {: #second}

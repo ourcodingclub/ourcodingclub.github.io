@@ -92,7 +92,7 @@ __Important notes:__ Pipes only work on data frame objects, and functions outsid
 {% capture callout %}
 __We're not lazy, but we love shortcuts!__ In RStudio, you can use `Ctrl + Shift + M` (or `Cmd + Shift + M` on a Mac) to create the `%>%` operator.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 Let's use some more of our favourite `dplyr` functions in pipe chains. Can you guess what this does?
 
@@ -232,7 +232,7 @@ trees.genus$Height.cat <- factor(trees.genus$Height.cat,
 levels(trees.genus$Height.cat)  # a new order and new names for the levels
 ```
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 Are you now itching to make graphs too? We've kept to base R plotting in our intro tutorials, but we are big fans of `ggplot2` and that's what we'll be using in the next section while we learn to make graphs as outputs of a pipe chain. If you haven't used `ggplot2` before, don't worry, we won't go far with it today. We have [two tutorials]({{ site.baseurl }}/tutorials/) dedicated to making pretty and informative plots with it. Install and load the package if you need to:
 
@@ -328,7 +328,7 @@ paste(getwd(), '/', 'map-', .$Genus, '.png', sep = '')
 
 So, in the end, the whole string could read something like: 'C:/Coding_Club/map-Acer.png'.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 We hope you've learned new hacks that will simplify your code and make it more efficient! Let's see if you can use what we learned today to accomplish a last data task. 
 

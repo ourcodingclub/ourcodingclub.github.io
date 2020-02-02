@@ -41,7 +41,7 @@ __Haven't used R before, or need a refresher?__ No worries! Check out our [Intro
 
 __Know all of this already?__ Fast forward to our [Efficient Data Manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html) for more advanced `dplyr` fun. 
 {% endcapture %}
-{% include callout.html content=callout %} 
+{% include callout.html content=callout colour='callout' %}
 
 In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
@@ -122,7 +122,7 @@ Here are some of the most commonly used operators to manipulate data. When you u
 
 `!`: NOT operator, to specify things that should be omitted
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 
 Let's see them in action!
@@ -161,7 +161,7 @@ __`rep()`__ to create repetitions of elements. E.g. `rep(c(1,2), 3)` will give `
 
 You can mix and match! What would `rep(seq(0, 30, 10), 4)`give?
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 And finally, let's say you need to modify some values or factor levels, or want to create a new column? Now that you know how to access parts of a dataframe, you can do all of that. You only need an extra tool: the assign arrow `<-` to overwrite data.
 
@@ -175,7 +175,7 @@ Something to keep in mind is that __if you use a name again in a same session, i
 
 As you will now see, we can also make use of the arrow `<-` to overwrite specific values or range of values we need to change. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 ```r
 ## CHANGING VARIABLE NAMES AND VALUES IN A DATA FRAME
@@ -361,7 +361,7 @@ The first creates a duplicate of our object, because R recognises the name as an
 
 It takes time and practice to get used to these conventions, but just keep an eye out for [error messages]({{ site.baseurl }}/tutorials/troubleshooting/index.html) and you'll get there.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 Now that we know how to subset rows, let's do the same with columns!
 
@@ -501,7 +501,7 @@ __However__, you find out that your field assistant was a bit careless during da
 2. There was a calibration error with the measuring device for the tabasco trial, but only for the Hungarian Horntail species. All measurements are 30 cm higher than they should be.
 3. The lengths are given in centimeters, but really it would make sense to convert them to meters.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 __Now let's see what you can do!__
 

@@ -235,7 +235,7 @@ __theme__: a theme is made of a set of visual parameters that control the backgr
 
 Also useful to remember is that layers are added on top of each other as you progress into the code, which means that elements written later may hide or overwrite previous elements. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 ## Learning how to use colourpicker 
 {: #colourpicker}
 
@@ -305,7 +305,7 @@ If your axis labels need to contain special characters or superscript, you can g
 
 To create additional space between an axis title and the axis itself, use `\n` when writing your title, and it will act as a line break.
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 
 ## 3c. Boxplot to examine whether vulture abundance differs between Croatia and Italy

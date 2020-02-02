@@ -1,3 +1,4 @@
-<div markdown="1" class="callout" style="{% if include.colour %} background-color: {{ include.colour }}{% endif %}">
+<div markdown="1" class="callout {% if include.colour == alert %}alert{% elsif include.colour == important %}important{% endif %}">
 	{{ include.content }}
 </div>
+

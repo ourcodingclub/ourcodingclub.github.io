@@ -111,9 +111,13 @@ body {
 .banner h1, .banner h3 {
 	text-align: center;
 	padding: 0px 30px;
-	color: $bannerImageColour;
 	text-transform: uppercase;
+	color: $bannerImageColour;
 }
+
+.banner > .nobanner{
+	color: $headingColour;
+ }
 
 .banner h1 {
 	font-weight: 600;
@@ -371,8 +375,18 @@ body {
 .callout {
     padding: 5px 20px;
     border-radius: 10px;
-    background-color: $calloutBackgroundColour;
+    background-color: $calloutColour;
 }
+
+.important {
+    background-color: $importantColour;
+}
+
+.alert {
+    background-color: $alertColour;
+    color: $white;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
     &.callout {

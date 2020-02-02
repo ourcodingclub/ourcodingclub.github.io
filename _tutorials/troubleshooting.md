@@ -74,7 +74,7 @@ __Here are some of the most common error messages you'll meet when you get start
 - __Error: unexpected symbol in 'line-of-code'__ : Most likely you forgot (or had an extra!) comma, bracket or other punctuation sign somewhere. 
 - __Cannot open file 'your-file-path': No such file or directory__: R cannot find the file you are trying to load, often because you forgot to specify your working directory (we learned how to do it in our [first tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), or because there is a mistake in your file path. (Hint: if you copied it from the Windows Explorer, you need to swap the backward slashes for forward slashes.) If you get __object 'your-file-path' not found__, then you probably forgot the quotation marks around the file path `read.csv(file = 'my-file-path/file.csv')`. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 # 3. Learn how to find help
 
@@ -95,7 +95,7 @@ Errors are not the only scary red text that will appear in the console. Often, y
 
 Warnings are not necessarily the end of the world, but you should see them as major red flags, and make sure you know what is going on before you pursue your analysis. Like error messages, a simple online search of the warning text will often put you on the right track. 
 {% endcapture %}
-{% include callout.html content=callout %}
+{% include callout.html content=callout colour='callout' %}
 
 # 4. Practice! 
 {: #practice}

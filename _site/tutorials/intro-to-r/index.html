@@ -78,10 +78,10 @@
 </header>
 
 			
-	<div class="banner">
+	<div class="banner" style="background-image: url(/../assets/img/banner/slider-bg-pale.jpg)">
 	
 		
-			<h1 style="color: #383743">Getting started with R and RStudio</h1>
+			<h1>Getting started with R and RStudio</h1>
 			
 		
 	
@@ -159,7 +159,7 @@
 
 <p>You will now see a window like the one above. You <em>can</em> type code directly into the <strong>console</strong> on the lower left (doesn’t mean that you <em>should</em>*!). Pressing enter at the end of the line runs the code (try typing <code class="language-plaintext highlighter-rouge">2 + 2</code> and running it now). You can (should!) also write your code in the <strong>script</strong> file in the top left window. To run a line of code from your script, press <code class="language-plaintext highlighter-rouge">Ctrl+R</code> on Windows or <code class="language-plaintext highlighter-rouge">Cmd+Enter</code> on a Mac. On newer Windows computers, the default shortcut is <code class="language-plaintext highlighter-rouge">Ctrl+Enter</code>. The <strong>environment window</strong> gives you an overview of your current <strong>workspace**</strong>. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded.</p>
 
-<div class="callout" style="">
+<div class="callout ">
 
   <p><strong>*A note about scripts (We love scripts!)</strong>: Remember that if you enter code directly into the console, it will <strong>not</strong> be saved by R: it runs and disappears (although you can access your last few operations by hitting the ‘up’ key on your keyboard). Instead, by typing your code into a script file, you are creating a reproducible record of your analysis. Writing your code in a script is similar to writing an essay in Word: it saves your progress and you can always pick up where you left off, or make some changes to it. (Remember to click <em>Save</em> (<code class="language-plaintext highlighter-rouge">Ctrl+S</code>) often, so that you actually save your script!)</p>
 
@@ -203,11 +203,15 @@
 
 <p>Practice is the best way to learn any new language, so let’s jump straight in and do some of our own statistical analysis using a publicly available dataset of occurrence records for many animal, plant and fungi species. We downloaded the records for 2000-2016 (from the <a href="https://data.nbn.org.uk/" target="_blank" rel="noopener noreferrer"> NBN Gateway </a>) and saved them as <code class="language-plaintext highlighter-rouge">edidiv.csv</code>. First, you will need to download the data.</p>
 
-<p><strong>You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</strong></p>
+<div class="callout ">
 
-<p><strong>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="/tutorials/git/index.html">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</strong></p>
+  <p>Follow the link, click on “Download Zip”, and save and unzip the folder somewhere on your computer. (Never heard of Github? Don’t worry, we will cover it in a <a href="/tutorials/git/index.html">later tutorial</a>. For now, it’s simply the website where you can download our course material from.)</p>
 
-<p><img src="/assets/img/tutorials/intro-to-r/github_clone.png" alt="Github clone repo screenshot"></p>
+  <p>You can find all the files needed to complete this tutorial in this <a href="https://github.com/ourcodingclub/CC-1-RBasics" target="_blank" rel="noopener noreferrer">Github repository</a>.</p>
+
+  <p><img src="/assets/img/tutorials/intro-to-r/github_clone.png" alt="Github clone repo screenshot"></p>
+
+</div>
 
 <p>Now that you have the data saved on your computer, let’s import it! In RStudio, you can either click on the <em>Import dataset</em> button and navigate to where you have saved your file, or use the <code class="language-plaintext highlighter-rouge">read.csv()</code> command. If you use the button, a window will pop up previewing your data. Make sure that next to <em>Heading</em> you have selected <em>Yes</em> (this tells R to treat the first row of your data as the column names) and click <em>Import</em>. In the console, you will see the code for your import, which includes the file path - it’s a good idea to copy this code into your script, so that for future reference you know where your dataset came from.</p>
 
@@ -220,7 +224,7 @@
 
 <p>Remember to save your script once in a while! If you haven’t saved it already, why not save it in the same directory as the rest of the tutorial file, and give it a meaningful name.</p>
 
-<div class="callout" style="">
+<div class="callout ">
 
   <p><strong>A note about objects</strong>: R is an object-based language - this means that the data you import, and any values you create later, are stored in objects that you name. The arrow <code class="language-plaintext highlighter-rouge">&lt;-</code> in the code above is how you assign objects. Here, we assigned our csv file to the object <code class="language-plaintext highlighter-rouge">edidiv</code>. We could just as easily have called it <code class="language-plaintext highlighter-rouge">mydata</code> or <code class="language-plaintext highlighter-rouge">hello</code> or <code class="language-plaintext highlighter-rouge">biodiversity_recorded_around_Edinburgh_Scotland</code>, but it’s best to choose a unique, informative, and short name. In the top right window of RStudio, you can see the names of any objects currently loaded into R. See your <code class="language-plaintext highlighter-rouge">edidiv</code> object?</p>
 
@@ -340,7 +344,7 @@
 
 <p>In the last section we created vectors, i.e. a series of values, each with a label. This object type is suitable when dealing with just one set of values. Often, however, you will have more than one variable and have multiple data types - e.g. some continuous, some categorical. In those cases, we use data frame objects. <strong>Data frames are tables of values: they have a two-dimensional structure with rows and columns, where each column can have a different data type.</strong> For instance, a column called “Wingspan” would have numeric values measured on different birds (21.3, 182.1, 25.1, 8.9), and a column “Species” would have character values of with the names of the species (“House sparrow”, “Golden eagle”, “Eurasian kingfisher”, “Ruby-throated hummingbird”) Another possible data format is a matrix - a matrix can have several rows of data as well (e.g. you can combine vectors into a matrix), but the variables must be all of the same type. For instance they are all numerical and are the same length in terms of the number of rows.</p>
 
-<div class="callout" style="">
+<div class="callout ">
 
   <p><strong>A note on good housekeeping</strong>:
 ALWAYS keep a copy of your raw data as you first collected it. The beauty of manipulating a file in an R script is that the modifications live <em>on the script</em>, not in the data. For Photoshop-savvy people, it’s like adding layers to an image: you’re not altering the original photo, just creating new things on top of it. That said, if you wrote a long piece of code to tidy up a large dataset and get it ready to analyse, you may not want to re-run the whole script every time you need to access the clean data. It’s therefore a good idea to save your shiny new object as a <em>new</em> csv file that you can load, ready-to-go, with just one command. We will now create a data frame with our species richness data, and then save it using <code class="language-plaintext highlighter-rouge">write.csv()</code>.</p>
@@ -521,7 +525,7 @@ ALWAYS keep a copy of your raw data as you first collected it. The beauty of man
 
 <h2 id="glossary">Glossary:</h2>
 
-<div class="callout" style="">
+<div class="callout ">
 
   <p>To recap, here are a few important terms we learned in this lesson:</p>
 

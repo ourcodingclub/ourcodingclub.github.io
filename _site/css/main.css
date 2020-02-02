@@ -66,7 +66,9 @@ body { margin: 0; padding: 0; }
 
 .banner { display: flex; flex-direction: column; align-items: center; justify-content: center; background-position: cover; background-size: cover; background-repeat: no-repeat; width: 100%; height: 200px; }
 
-.banner h1, .banner h3 { text-align: center; padding: 0px 30px; color: #ebebeb; text-transform: uppercase; }
+.banner h1, .banner h3 { text-align: center; padding: 0px 30px; text-transform: uppercase; color: #ebebeb; }
+
+.banner > .nobanner { color: #383743; }
 
 .banner h1 { font-weight: 600; }
 
@@ -149,6 +151,10 @@ body { margin: 0; padding: 0; }
 .values-desc { font-size: 8pt; }
 
 .callout { padding: 5px 20px; border-radius: 10px; background-color: #66d2ff; }
+
+.important { background-color: #ffd633; }
+
+.alert { background-color: #ff3333; color: #ffffff; }
 
 h1.callout, h2.callout, h3.callout, h4.callout, h5.callout, h6.callout { margin-top: 0; }
 
