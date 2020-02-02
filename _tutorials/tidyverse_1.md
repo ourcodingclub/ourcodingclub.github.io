@@ -14,7 +14,10 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 3. [Analyse and visualise data using the tidyverse](#tidyverse)
 4. [Create a reproducible report using Markdown](#markdown)
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Ghent). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Ghent). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 ![Coding Club logo]({{ site.baseurl }}/assets/img/tutorials/tidyverse_1/CodingClub_logo2.png)
 

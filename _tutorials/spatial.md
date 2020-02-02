@@ -13,7 +13,10 @@ survey_link: https://www.surveymonkey.com/r/8MJ8GRY
 2. [Visualise spectral bands](#section2)
 3. [Manipulate rasters: NDVI and KMN classification](#section3)
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 __In this tutorial, we are going to explore spatial analysis in `R` using satellite data of the Loch Tay area of Scotland. Satellite or remote-sensing data are increasingly used to answer ecological questions such as what are the characteristics of species’ habitats, can we predict the distribution of species and the spatial variability in species richness, and can we detect natural and man-made changes at scales ranging from a single valley to the entire world.__
 
@@ -84,7 +87,7 @@ In the output, we get details of the image such as the number of bands, dimensio
 > resolution  : 9.217891e-05, 9.217891e-05  (x, y)
 > extent      : -4.320218, -4.242051, 56.45366, 56.50039  (xmin, xmax, ymin, ymax)
 > coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-> data source : C:\Users\maude\Desktop\sentinel2\Taycrop.tif
+> data source : C:/Users/maude/Desktop/sentinel2/Taycrop.tif
 > names       : Taycrop
 
 ```

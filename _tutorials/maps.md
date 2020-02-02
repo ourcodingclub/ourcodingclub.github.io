@@ -21,7 +21,10 @@ survey_link: https://www.surveymonkey.co.uk/r/NMD3N5K
 4. [Creating a map using `ggplot2` and `rworldmap`](#create_map)
 5. [Using shapefiles](#shp)
 
+{% capture callout %}
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-6-Maps). Clone and download the repo as a zipfile, then unzip it.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 Next, open up a new R Script where you will add the code for your maps. Set the folder you just downloaded as your working directory by running the code below, replacing `PATH_TO_FOLDER` with the location of the downloaded folder on your computer, e.g. `~/Downloads/CC-6-Maps-master`:
 

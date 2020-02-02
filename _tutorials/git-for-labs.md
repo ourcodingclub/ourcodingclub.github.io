@@ -7,67 +7,64 @@ author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/2P9R58J
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Set up a lab GitHub organisational account](#version)
 2. [Organise your lab repository](#organise)
 3. [Develop a coding & GitHub etiquette](#etiquette)
 4. [Learn to use RStudio and Github together](#github)
+5. [Use Git on the command line](#command_line)
 
 
-### What is version control?
+# 1. What is version control?
 {: #version}
 
 Version control allows you to keep track of your work and helps you to easily explore what changes you have made, be it data, coding scripts, or manuscripts. You are probably already doing some type of version control, if you save multiple files, such as `Dissertation_script_25thFeb.R`, `Dissertation_script_26thFeb.R`, etc. This approach will leave you with tens, if not hundreds, of similar files, it makes it rather cumbersome to directly compare different versions, and is not easy to share among collaborators. What if by the time your supervisor/co-author has finished commenting on `Dissertation_script_26thFeb.R`, you are already on `Dissertation_script_27thFeb.R`? With version control software such as [Git](https://git-scm.com/), version control is much smoother and easier to implement. Using an online platform like [Github](https://github.com/) to store your files also means that you have an online back up of your work, so you won't need to panic when your laptop dies or your files mysteriously disappear.
 
 You can use git through the command line, or through RStudio and/or GitHub desktop. You can check out [our Intro to Github tutorial]({{ site.baseurl }}/tutorials/git/index.html) if you want to get a bit more practice with Github, but you don't need to have completed the first tutorial to tackle this one. We encourage you to look through the extra resources we have added at the end of the tutorial if you are keen to use the command line for your version control. But until then, here we will be syncing RStudio and Github, so you can start using version control in minutes.
 
-### What are the benefits of using GitHub as a lab?
+## What are the benefits of using GitHub as a lab?
 
 Having a GitHub repo for your lab makes it easy to keep track of collaborative and personal projects - all files necessary for certain analyses can be held together and people can add in their code, graphs, etc. as the projects develop. Each file on GitHub has a history, making it easy to explore the changes that occurred to it at different time points. You can review other people's code, add comments on certain lines or the overall document, and suggest changes. For collaborative projects, GitHub allows you to assign tasks to different users, making it clear who is responsible for which part of the analysis. You can also ask certain users to review your code. Overall, GitHub presents a great opportunity to have an online back up copy of your work, whilst also doing version control, and it can also make it easier to discuss code, as well as write and edit code collaboratively.
 
-### How does GitHub work?
+## How does GitHub work?
 
-#### The members of the organisational's account repository each have a local copy (i.e. on their computer) of all the files in the repository. The GitHub workflow can be summaried by commit-pull-push.
+The members of the organisational's account repository each have a local copy (i.e. on their computer) of all the files in the repository. The GitHub workflow can be summaried by commit-pull-push.
 
+1. Commit
+	* Once you've saved your files, you need to commit them - this means they are ready to go up on GitHub (the online copy of the repository).
+2. Pull
+	* Now you need to pull, i.e. make sure you are completely up to date with the online version of the files - other people could have been working on them even if you haven't.
+3. Push
+	* Once you are up to date, you can push your changes - at this point in time your local copy and the online copy of the files will be the same.
 
-### Commit
-__Once you've saved your files, you need to commit them - this means they are ready to go up on GitHub (the online copy of the repository).__
-
-
-### Pull
-__Now you need to pull, i.e. make sure you are completely up to date with the online version of the files - other people could have been working on them even if you haven't.__
-
-
-### Push
-__Once you are up to date, you can push your changes - at this point in time your local copy and the online copy of the files will be the same.__
-
-__Each file on GitHub has a history, so instead of having many files like `Dissertation_1st_May.R`, `Dissertation_2nd_May.R`, you can have only one and by exploring its history, you can see what it looked at different points in time.__
+Each file on GitHub has a history, so instead of having many files like `Dissertation_1st_May.R`, `Dissertation_2nd_May.R`, you can have only one and by exploring its history, you can see what it looked at different points in time.
 
 For example, here is the history for a script. Obviously it took me a while to calculate those model predictions!
 
 ![Github commit history screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/filehistory.png)
 
-#### Get lab members to register on GitHub
+## Get lab members to register on GitHub
+
 To get started with GitHub and version control, please get each lab member to register on the [Github website](https://github.com/) and download and install [Git](https://git-scm.com/downloads) for their operating system.
 
-#### Register an organisational GitHub account for the lab
+## Register an organisational GitHub account for the lab
 
 Once you are logged in with your personal account, you can [register an organisational GitHub account for the lab](https://github.com/organizations/new). The files you put on GitHub will be public (i.e. everyone can see them & suggest changes, but only the people with access to the account can directly edit and add/remove files). You can also have a private organisational account on GitHub, which means that only lab members can see the files. GitHub offers free private organisational accounts for educational purposes, and you can apply for one using [this link](https://education.github.com/discount_requests/new).
 
 ![Github register organisation screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/register.png)
 
-#### Add lab members as members of the lab's organisational GitHub account
+## Add lab members as members of the lab's organisational GitHub account
 
 Once all lab members are registered on GitHub and you have set up the lab's organisational account, you can add lab members to the list of people who have access to the lab's account. You can then decide what sort of privileges you grant users. Users can either be members, i.e. they can see all other members, can be granted access to repositories, and can also create new teams and repositories, or they can be owners with full administrative rights to the organization and have complete access to all repositories and teams. After the admin has sent out invitations to lab members, they will receive an email notification with a link to accept them. You can use the `Members` tab to see members, add new ones, and change their rights.
 
 ![Github invite organisation members screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/members.png)
 
 
-### Organise your lab repository
+# 2. Organise your lab repository
 {: #organise}
 
-#### What is a repository?
+## What is a repository?
 
 GitHub uses repositories - you can think of a repository (_aka_ a repo) as a "master folder" - a repository can have folders within it, or be just separate files. In any case, a repository is what holds all of the files associated with a certain project, or in this case a certain lab's work.
 
@@ -83,7 +80,7 @@ You can directly edit your `README.md` file on Github by clicking on the file an
 
 ![Github edit README.md screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/readme.png)
 
-#### Exercise 1: Write an informative README.md file
+## Exercise 1: Write an informative README.md file
 
 You can now write the `README.md` file for your lab's repository. To make headings and subheadings, put hashtags before a line of text - the more hashtags, the smaller the heading will appear. You can make lists using `-` and numbers `1, 2, 3, etc.`. __You can discuss the information you want to include among your lab members - here are some things you might want to consider:__
 
@@ -97,8 +94,7 @@ You can now write the `README.md` file for your lab's repository. To make headin
 - Will there be personal folders? Can other people look in them?
 ```
 
-
-#### Exercise 2: Writing a `.gitignore` file
+## Exercise 2: Writing a `.gitignore` file
 
 You might have noticed a file called `.gitignore` - in this file you specify which files you want Git to ignore when users make changes and add files. Examples include temporary Word, Excel and Powerpoint files, `.Rproj` files, `.Rhist` files etc. Go to `Create new file` and write a `.gitignore` file within the main repository for the lab (not any of the folders within it). You need to call the file `.gitignore` and then add the types of files that Git should ignore on separate lines. You can make this specific to your lab's needs, but as a start, you can copy over this code:
 
@@ -125,7 +121,7 @@ You might have noticed a file called `.gitignore` - in this file you specify whi
 ```
 
 
-#### Exercise 3: Create folders
+## Exercise 3: Create folders
 
 Discuss among your lab what folders your repository will contain - some examples include: manuscripts, data, figures, scripts, scripts/users/personal_folder_your_name. To make a new folder, click on `Create new file` and add in the name of your new folder, e.g. `manuscripts/` before the file name, in this case a quick `README.md` file. When creating folders within your repo through GitHub's website, you always need to make at least one file associated with them, you can't just create an empty folder. Add a brief explanation of what the folder is for in the `README.md` file, scroll down and click on `Commit new file`. Add a quick message where it says `Create README.md file` in light grey text - we will cover GitHub etiquette later, but for now, when creating/editing files, it's always a good idea to change the default message to a more precise description of what was done and who did it. Stick with the default option of `Commit directly to master branch` - we will explain branches and pull requests at a later stage of the tutorial.
 
@@ -133,16 +129,16 @@ Discuss among your lab what folders your repository will contain - some examples
 
 ![Github commit new file screenshot]({{ site.baseurl }}/assets/img/tutorials/git-for-labs/newfolder.png)
 
-#### Create a `github-workshop` folder within your main lab repo - this is where we will be working for the purposes of this workshop to practice using GitHub for version control and collaborative coding. 
+Create a `github-workshop` folder within your main lab repo - this is where we will be working for the purposes of this workshop to practice using GitHub for version control and collaborative coding. 
 
 Once all lab members are synced with GitHub through `RStudio`, everyone can make folders and add files using their `File Explorer` and once they have gone through commit-pull-push, all the added folders/files will be up on GitHub, too. __Note that you can't push empty folders.__
 
-### GitHub etiquette
+# 3. GitHub etiquette
 {: #etiquette}
 
 It's a good idea to define some rules on how to use the lab's repository before we start working within it - for example what GitHub and coding etiquette should lab members be following? We can make a new `github-etiquette.md` file that outlines the rules lab members agree on.
 
-#### Exercise 4: Write a `github-etiquette.md` file
+## Exercise 4: Write a `github-etiquette.md` file
 
 Go to your lab's main repository, click on `Create new file` and add `github-etiquette.md` as a file name. Remember to include the file extension `.md` - otherwise GitHub won't know what's the file format.
 
@@ -158,11 +154,11 @@ Always pull before you push in case someone has done any work since the last tim
 ```
 
 
-### Coding etiquette
+## Coding etiquette
 
 Similarly to a GitHub etiquette, it's useful to agree upon a set of coding etiquette rules that lab members strive to follow, so that the code within the repo is organised and easy to use.
 
-#### Exercise 5: Write a `coding-etiquette.md` file
+## Exercise 5: Write a `coding-etiquette.md` file
 
 Discuss what to include in your coding etiquette file among lab members and write the file - here are some ideas:
 
@@ -170,7 +166,10 @@ __Is there a certain script format you all could use - e.g. what are the section
 
 __What syntax etiquette will lab members aim to follow?__
 
-#### "There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
+{% capture callout %}
+"There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
+{% endcapture %}
+{% include callout.html content=callout colour=callout %}
 
 __Script file names should be meaningful and end in `.R`, e.g.:__
 
@@ -202,9 +201,9 @@ __The official convention is to limit your code to 80 characters per line.__ Hav
 
 __How do you know what's 80 characters though? RStudio can place a handy line in your editor as a reminder! Go to `Tools/Global Options/Code/Display/Show Margin/80 characters`.__ Sometimes it might make more sense for your code to be a bit longer than 80 characters, but in general code is easier to read if there is no need for continuous scrolling left and right.
 
-#### When using pipes, keep the piping operator `%>%` at the end of the line and continue your pipe on a new line.
+When using pipes, keep the piping operator `%>%` at the end of the line and continue your pipe on a new line.
 
-#### When using `ggplot2`, keep the `+` at the end of the line and continue adding on layers on a new line.
+When using `ggplot2`, keep the `+` at the end of the line and continue adding on layers on a new line.
 
 Here is a before and after of a `ggplot2` figure code:
 
@@ -235,20 +234,20 @@ plot <- ggplot()+geom_hline(yintercept=0,linetype="dotted",colour="darkgrey")+
 
 Also, remember that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `plot` after you've created the "plot" object. 
 
-#### Code chunks
+## Code chunks
 
 If your code is many, many lines (as it usually is!), it would be easier for you and everyone who might need to read and use it, to split it into different sections. To do that, add in four or more dashes after your comments - you will see a little arrow appear next to that line of code and you will be able to collapse and expand the code chunk based on your needs.
 
 __Organise your chunks in a logical order, so that your code flows nicely.__
 
-#### Commenting guidelines
+## Commenting guidelines
 
 __As an example of a lab's coding etiquette, you can check out <a href="https://teamshrub.wordpress.com/">Team Shrub</a>'s <a href="https://github.com/ourcodingclub/TeamShrub-practice/blob/master/TeamShrub_Coding_Etiquette.Rmd">coding etiquette here.</a>__
 
-##### For more details you can check out our [Coding Etiquette tutorial]({{ site.baseurl }}/tutorials/etiquette/index.html).
+For more details you can check out our [Coding Etiquette tutorial]({{ site.baseurl }}/tutorials/etiquette/index.html).
 
 
-### Learn to use RStudio and Github together
+# 4. Learn to use RStudio and Github together
 {: #github}
 
 We are now ready to start using our repository - first all lab members need to create a local (i.e. on their computers) copy of the repository and create an RStudio project for the lab's repo.
@@ -271,7 +270,8 @@ __There is a `Git` tab in the top right panel of RStudio.__ We will be doing our
 
 __All the files that were in the repository online are now on your computer as well.__
 
-### GitHub in action
+## GitHub in action
+
 __We will practice using GitHub as a lab by analysing data from the <a href="http://www.livingplanetindex.org/home/index">Living Planet Index.</a>__
 
 __The data and instructions are available from [this repository](https://github.com/ourcodingclub/CC-12-git-for-labs). To get us all started, it would be easier if one person from the lab downloads the data and instructions and then uploads them to our new `github-practice` folder within the lab's GitHub repository. Once that's done, all the other lab members can pull and then everyone will have the files.__
@@ -284,7 +284,7 @@ __The data and instructions are available from [this repository](https://github.
 
  __Everyone else should go to the `RStudio` session where they have the lab's GitHub repo project open. Click on `Pull` in the `Git` tab in the top right corner - you are now up to date and have the files necessary to complete the coding challenges ahead!__
 
-### Challenges & collaborative coding
+## Challenges & collaborative coding
 
 Open the `Instructions.R` file and follow along - if you get stuck you can check out the `Answers.R` file. The file includes several challenges - split in small teams with each team tackling one challenge - once a team completes a challenge, they can commit, pull and push!
 
@@ -296,22 +296,21 @@ Go back to your repository on Github, where you can now see all of your files (y
 
 Happy coding!
 
-### Potential problems
+## Potential problems
 
 Sometimes you will see error messages as you try to commit-pull-push. Usually the error message identifies the problem and which file it's associated with, if the message is more obscure, googling it is a good step towards solving the problem. Here are some potential problems that might arise:
 
 
-#### Code conflicts
+### Code conflicts
 
 While you were working on a certain part of a script, someone else was working on it, too. When you go through commit-pull-push, GitHub will make you decide which version you want to keep. This is called a code conflict, and you can't proceed until you've resolved it. You will see arrows looking like `>>>>>>>>>` around the two versions of the code - delete the version of the code you don't want to keep, as well as the arrows, and your conflict should disappear.
 
-
-#### Pushing the wrong files
+### Pushing the wrong files
 
 If you accidentally push not what you intended, deleted many things (or everything!) and then pushed empty folders, you can revert your commit. You can keep reverting until you reach the point in time when everything was okay.
 
 
-### Git in the command line
+# 5. Git in the command line
 {: #command_line}
 
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. [Prof Simon Mudd's Numeracy, Modelling and Data management guide](http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git), [The Software Carpentry Guide](https://swcarpentry.github.io/git-novice/), and this [guide from the British Ecological Society Version Control workshop](https://github.com/BES2016Workshop/version-control). We have also created a neat cheatsheet with some basic Git commands and how they fit into the git/github ecosystem. A couple of the commands require [`hub`](https://github.com/github/hub) a wrapper for Git that increases its functionality, but not having this won't prevent you using the other commands:

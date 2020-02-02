@@ -22,7 +22,10 @@ survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 5. [Challenge yourself!](#challenge)
 
 
+{% capture callout %}
 Аll the files you need to complete this tutorial can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-4-Datavis). Clone and download the repo as a zip file, then unzip it.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Good data visualisation and ggplot2 syntax
 {: #ggplot}

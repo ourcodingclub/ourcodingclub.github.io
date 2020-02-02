@@ -18,9 +18,14 @@ This workshop will explore qualitative data, the sort of data you might collect 
 
 Firstly, we will learn how to format data from surveys and interviews effectively so that it can be easily used in analysis later. Then we will explore ways to visualise these data graphically. Finally, we will run some simple statistical analyses to answer some hypotheses.
 
-Note: all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Qualit). Please download the repo as a zip file, then unzip it before starting the tutorial.
+{% capture callout %}
+ll the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Qualit). Please download the repo as a zip file, then unzip it before starting the tutorial.
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-Qualit) to your own GitHub account and then add it as a new `RStudio` project by copying the `HTTPS/SSH` link. For more details on how to register on GitHub, download `git`, sync `RStudio` and GitHub and use version control, please check out our [`git` and RStudio tutorial]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
+
+
 
 ## Getting Started
 

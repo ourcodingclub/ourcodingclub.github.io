@@ -16,7 +16,10 @@ survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
 5. [Modify and specify spatial models](#spatial2)
 6. [Learn about spatiotemporal analyses](#spatialtemp)
 
-__All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.__
+{% capture callout %}
+All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Learn about INLA and why it's useful
 {: #intro}

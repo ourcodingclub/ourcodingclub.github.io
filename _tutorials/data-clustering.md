@@ -16,7 +16,10 @@ survey_link: https://www.surveymonkey.co.uk/r/B723DLF
 5. [Map cluster groups in geographic space](#Mapping)
 
 
-To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro do Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
+{% capture callout %}
+To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Get acquainted with data clustering
 {: #Introduction}

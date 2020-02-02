@@ -8,5 +8,5 @@ author: Sandra
 
 <meta http-equiv="Refresh" content="0; url={{ site.baseurl }}/tutorials/data-manip-intro/index.html" />
 
-### This page has moved! Find the updated tutorial [here]({{ site.baseurl }}/tutorials/data-manip-intro/index.html).
+# This page has moved! Find the updated tutorial [here]({{ site.baseurl }}/tutorials/data-manip-intro/index.html).
 

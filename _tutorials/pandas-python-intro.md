@@ -125,9 +125,12 @@ Run the script and note the output. My script prints `'0.22.0'`, but you may be 
 
 This short tutorial is mainly based around working with the basic Pandas commands and data structures, but we also use some data about Scottish mountains, provided in the form of a `.csv` file (`scottish_hills.csv`).
 
+{% capture callout %}
 You can download the data from [this Github repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any Python scripts to that folder, so they can access the data easily.
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-pandas-matplotlib) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 The original data came from a series of databases about the mountains of Scotland, which if you are interested further can be found here: [http://www.haroldstreet.org.uk/other/excel-csv-files/].
 

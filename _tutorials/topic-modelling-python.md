@@ -34,7 +34,10 @@ Twitter is a fantastic source of data for a social scientist, with over 8,000 tw
 
 The first thing we will do is to get you set up with the data.
 
-__The data\* you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-topic-modelling-python). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+The data you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-topic-modelling-python). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 The original dataset was taken from [the data.world website](https://data.world/crowdflower/sentiment-of-climate-change) but we have modified it slightly, so for this tutorial you should use the version on our Github.
 

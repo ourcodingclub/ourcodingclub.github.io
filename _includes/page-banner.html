@@ -1,15 +1,8 @@
-<div class="banner" {% if page.banner %} style="background-image: url({{ site.baseurl }}/{{ page.banner }})" {% endif %}>
+<div class="banner" {% if page.banner %}style="background-image: url({{ site.baseurl }}/{{ page.banner }})"{% else %}style="background-image: url({{ site.baseurl }}/assets/img/banner/slider-bg-pale.jpg)"{% endif %}>
 	{% if page.title %}
-		{% if page.banner %}
-			<h1>{{ page.title }}</h1>
-			{% if page.subtitle %}
-				<h3>{{ page.subtitle }}</h3>
-			{% endif %}
-		{% else %}
-			<h1 class="nobanner">{{ page.title }}</h1>
-			{% if page.subtitle %}
-				<h3 class="nobanner">{{ page.subtitle }}</h3>
-			{% endif %}
+		<h1>{{ page.title }}</h1>
+		{% if page.subtitle %}
+			<h3>{{ page.subtitle }}</h3>
 		{% endif %}
 	{% endif %}
 </div>

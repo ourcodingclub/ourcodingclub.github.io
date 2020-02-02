@@ -21,7 +21,10 @@ __This tutorial was developed for the British Ecological Society Quantitative Ec
 
 You can follow the BES QE SIG on [Twitter](https://twitter.com/BES_QE_SIG), too.	
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Liverpool). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Liverpool). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 
 # 1. Create a reproducible report using Markdown

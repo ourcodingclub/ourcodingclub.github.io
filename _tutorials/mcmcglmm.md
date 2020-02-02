@@ -9,7 +9,10 @@ survey_link: https://www.surveymonkey.co.uk/r/V537CQ5
 
 This tutorial is aimed at people who are new to meta-analysis and using the `MCMCglmm` package written by [Dr. Jarrod Hadfield](https://www.youtube.com/watch?v=XepXtl9YKwc), to help you become comfortable with using the package, and learn some of the ways you can analyse your data. It isn’t designed to teach you about hardcore Bayesian statistics or mixed modelling, but rather to highlight the differences between MCMCglmm and other statistical approaches you may have used before, and overcome some of the problems you may encounter as a new user. 
 
-You'll find the resources for the tutorial __[in this repository](https://github.com/ourcodingclub/CC-MCMCglmm-MA). Click on `Clone/Download/Download Zip` and then unzip the folder.
+{% capture callout %}
+You'll find the resources for the tutorial __[in this repository](https://github.com/ourcodingclub/CC-MCMCglmm-MA). Click on `Clone/Download/Download Zip` and then unzip the folder.__
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 Don't worry if you leave this tutorial feeling like you haven't grasped key concepts. It will probably take practice and time to get to grips with all of this!
 

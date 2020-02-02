@@ -7,24 +7,24 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/F5PDDHV
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. Understand what RMarkdown is and why you should use it
 2. Learn how to construct an RMarkdown file
 3. Export an RMarkdown file into many file formats
 
-### Steps:
+# Steps:
 
 1. [What is RMarkdown](#what)
 2. [Download RMarkdown](#download)
 3. [Create an RMarkdown (`.Rmd`) file](#create)
-4. [Identify the different parts of a `.Rmd` file](#identify)
+4. [YAML header material](#identify)
 5. [Insert code from an R script into a `.Rmd` file](#insert)
 6. [Create a `.pdf` file from your `.Rmd` file](#pdf)
 7. [`R` Notebooks (the future of reproducible code? Maybe?)](#notebook)
 
 
-## What is R Markdown?
+# 1. What is R Markdown?
 {: #what}
 
 R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis, otherwise nobody can be certain that you analysed your data properly. You might choose to create an RMarkdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. RMarkdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook.
@@ -33,13 +33,16 @@ RMarkdown uses [Markdown syntax](https://daringfireball.net/projects/markdown/).
 
 To see what RMarkdown is capable of, have a look at this [undergraduate dissertation](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/UnderGrad_Dissertation_Rmd.pdf), which gives a concise log of their statistical analysis, or the [completed demo RMarkdown file](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/RMarkdown_Tutorial_Demo_Rmd.Rmd) for this tutorial.
 
+{% capture callout %}
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/CC-2-RMarkdown). __Clone and download the repo as a zip file, then unzip it.__
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 __Read through this tutorial and use the information you learn along the way to convert the tutorial R script (`RMarkdown_Tutorial.R`), which you can find in the repo, into a well commented, logically structured R Markdown (`.Rmd`) document. Afterwards, there are some challenge scripts that you can convert to `.Rmd` documents. If you want, you could also try converting one of your own R scripts.__
 
 __Haven't used R or RStudio before? No worries! Check out our [Intro to R and RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), then come back here to master RMarkdown!__
 
-## Download R Markdown
+# 2. Download R Markdown
 {: #download}
 
 To get RMarkdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from [CRAN](https://cran.r-project.org/web/packages/rmarkdown/index.html) by running the following commands in R or RStudio:
@@ -49,7 +52,7 @@ install.packages("rmarkdown")
 library(rmarkdown)
 ```
 
-## Create an RMarkdown file
+# 3. Create an RMarkdown file
 {: #create}
 
 To create a new RMarkdown file (`.Rmd`), select `File -> New File -> R Markdown...`_ in `RStudio`, then choose the file type you want to create. For now we will focus on a `.html` `Document`, which can be easily converted to other file types later.
@@ -63,10 +66,9 @@ Now open the `RMarkdown_Tutorial.R` practice script from the repository you down
 If you have any of your own `R` scripts that you would like to make into an R Markdown document, you can also use those! 
 
 
-## The different parts of an R Markdown file
+# 4. The YAML Header
 {: #identify}
 
-### The YAML Header
 
 At the top of any RMarkdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.html` options](http://rmarkdown.rstudio.com/html_document_format.html) and [here for `.pdf` options](http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document. Have a flick through quickly to familiarise yourself with the sorts of things you can alter by adding an option to the `YAML` header. 
 
@@ -93,7 +95,7 @@ By default, RStudio opens a separate preview window to display the output of you
 A preview appears, and a `.html` file is also saved to the same folder where you saved your `.Rmd` file.
 
 
-### Code Chunks
+# 5. Code Chunks
 {: #insert}
 
 Below the `YAML` header is the space where you will write your code, accompanying explanation and any outputs. Code that is included in your `.Rmd` document should be enclosed by three backwards apostrophes ```` ``` ```` (grave accents!). These are known as code chunks and look like this:
@@ -150,7 +152,7 @@ library(dplyr)
 ```
 ````
 
-### Hiding code chunks
+## Hiding code chunks
 
 If you don't want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include `echo = FALSE` in the code chunk instructions. 
 
@@ -183,10 +185,13 @@ library(dplyr)
 ```
 ````
 
-__REMEMBER: R Markdown doesn't pay attention to anything you have loaded in other R scripts, you MUST load all objects and packages in the R Markdown script.__
+{% capture callout %}
+REMEMBER: R Markdown doesn't pay attention to anything you have loaded in other R scripts, you MUST load all objects and packages in the R Markdown script.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 
-### More Code Chunk Instructions
+## More Code Chunk Instructions
 
 <table>
   <tr>
@@ -456,7 +461,7 @@ Note that when a `#` symbol is placed inside a code chunk it acts as a normal R 
 
 The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
 
-## Creating `.pdf` files in Rmarkdown
+# 6. Creating `.pdf` files in Rmarkdown
 {: #pdf}
 
 Creating `.pdf` documents for printing in A4 requires a bit more fiddling around. RStudio uses another document compiling system called [LaTeX](https://www.latex-project.org/) to make `.pdf` documents.
@@ -563,7 +568,7 @@ At this point, if you haven't been following through already, have a go at conve
 Remember that a good R markdown document should provide a reproducible log of your code, properly commented, with subtitles, comments and code relevant output so the reader knows what is going on.
 
 
-## `R` Notebooks
+# 7. `R` Notebooks
 {: #notebook}
 
 RMarkdown outputs to a non-interactive file format like `.html` or `.pdf`. When presenting your code, this means you have to make a choice, do you want interactive but messy looking code (`.Rmd`) or non-interactive but neat looking code (`.html`, `.pdf`)? R notebooks provide a file format that combines the interactivity of a `.Rmd` file with the attractiveness of `.html` output. 

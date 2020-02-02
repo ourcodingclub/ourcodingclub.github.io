@@ -17,7 +17,10 @@ survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 6. [Run a model with a negative binomial distribution](#negbin)
 7. [Compare `rstanarm` and `brms`](#brms)
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Introduction
 {: #model}

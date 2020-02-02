@@ -170,9 +170,12 @@ Hopefully, regardless of what method you use, you should see "Hello, World!" pri
 
 This short tutorial is based around exploring data from the School of GeoSciences weather station, which is located on top of the James Clark Maxwell Building at the University of Edinburgh.
 
-__You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.__
+{% capture callout %}
+You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.__
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-intro) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 You can have a look at all the data via the [link to the station webpage](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 

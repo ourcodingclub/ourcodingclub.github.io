@@ -20,7 +20,10 @@ The coding etiquette outlined in this tutorial is applicable to most analyses an
 
 __We recommend that you follow the tutorial by typing code from the examples into a blank script file to build your own example script file with perfect formatting and etiquette. After you have done that, use your knowledge of coding etiquette to improve the formatting of `bad_script.R`, which you can find in [the github repository for this tutorial](https://github.com/ourcodingclub/CC-etiquette). Alternatively, feel free to edit some of your own scripts using the etiquette guidelines.__ 
 
-### You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-Etiquette). Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
+{% capture callout %}
+You can download all the resources for the tutorial, including some helpful cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-Etiquette). Clone and download the repo as a zipfile, then unzip it so it appears as a folder.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-etiquette) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 

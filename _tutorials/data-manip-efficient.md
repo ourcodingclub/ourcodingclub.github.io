@@ -27,7 +27,10 @@ survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 
 Welcome to our second tutorial on data manipulation! In our (anything but) __basic tutorial__, we learned to subset and modify data to suit most of our coding needs, and to use a tidy data format. Today we dig deeper into the wonderful world of `dplyr` with one of our favourite feature, the pipe operator `%>%`. We also explore some extra `dplyr` functions and give some tips to recode and reclassify values.
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-data-manip-2). Clone and download the repo as a zip file, then unzip it.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-data-manip-2). Clone and download the repo as a zip file, then unzip it.
+{% endcapture %}
+{% include callout.html content=callout colour=important %}
 
 We are working with a subset of a larger dataset of [trees within the City of Edinburgh](https://data.edinburghcouncilmaps.info/datasets/4dfc8f18a40346009b9fc32cbee34039_39)\*. We subsetted this large dataset (over 50 thousand trees!) to the [Special Landscape Area](https://data.edinburghcouncilmaps.info/datasets/33969ec66f9b46cf9617c40c023bb89e_35) around Craigmillar Castle. Our __Spatial analysis tutorials__ could teach you how to do this yourself, but for now the file is all ready for you to use and is named `trees.csv`.
 

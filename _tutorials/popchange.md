@@ -13,8 +13,10 @@ survey_link: https://www.surveymonkey.co.uk/r/NYVBNF8
 2. [Calculate population change](#calc) 
 3. [Make a map of vertebrate population change in Europe](#map)
 
-
+{% capture callout %}
 All the files needed to complete this tutorial can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-EAB). Click on `Clone or Download/Download ZIP` and then unzip the files.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 __This is a short tutorial we used as an example of our work at the ["Transferring quantitative skills among ecologists"]({{ site.baseurl }}/tutorials/tutorials/index.html) workshop we led at the Ecology Across Borders 2018 Conference in Ghent, Belgium.__
 

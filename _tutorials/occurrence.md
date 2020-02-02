@@ -13,7 +13,10 @@ survey_link: https://www.surveymonkey.com/r/JYDDZ8F
 2. [Clean species occurrence data](#clean)
 3. [Visualise & customise species occurrence and population trends](#datavis)
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-occurrence). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-occurrence). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 __In this tutorial, we will focus on how to efficiently format, manipulate and visualise large species occurrence and population trend datasets. We will use the `tidyr` and `dplyr` packages to clean up dataframes and calculate new variables. Then, we will do a further clean up of species occurrence data using the `CleanCoordinates` function from the `CoordinateCleaner` package. Species occurrence records often include thousands, if not millions of latitude and longitude points, but are they all valid points? Sometimes the latitude and longitude values are reversed, there are unwanted zeros, or terrestrial species are seen out at sea and marine species very inland! The `CoordinateCleaner` package, developed by Alexander Zizka, flags potentially erroneous coordinates so that you can decide whether or not to include them in your analysis ([more info here](https://github.com/azizka/CoordinateCleaner)). Finally, we will use the `ggplot2` package to make simple maps of occurrence records, visualise a few trends in time and then we will arrange all of our graphs together using the `gridExtra` package.__
 

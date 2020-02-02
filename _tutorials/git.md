@@ -7,7 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/NXNHYYX
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Get familiar with version control, git and GitHub](#version)
 2. [Create your own repository and project folder structure](#github2)
@@ -15,7 +15,7 @@ survey_link: https://www.surveymonkey.co.uk/r/NXNHYYX
 4. [Sync and interact with your repository through the command line](#github4)
 
 
-## 1. Get familiar with version control, Git and GitHub
+# 1. Get familiar with version control, Git and GitHub
 {: #version}
 
 ## What is version control?
@@ -66,7 +66,6 @@ The files you put on GitHub will be public (i.e. everyone can see them & suggest
 
 
 ## How does version control work?
-{: #github}
 
 ### What is a repository?
 
@@ -78,14 +77,12 @@ You will have a local copy (on your computer) and an online copy (on GitHub) of 
 
 The GitHub workflow can be summarised by the "commit-pull-push" mantra.
 
-#### Commit
-Once you've saved your files, you need to commit them - this means the changes you have made to files in your repo will be saved as a version of the repo, and your changes are now ready to go up on GitHub (the online copy of the repository).
-
-#### Pull
-Now, before you send your changes to Github, you need to pull, i.e. make sure you are completely up to date with the latest version of the online version of the files - other people could have been working on them even if you haven't.
-
-#### Push
-Once you are up to date, you can push your changes - at this point in time your local copy and the online copy of the files will be the same.
+1. Commit
+	* Once you've saved your files, you need to commit them - this means the changes you have made to files in your repo will be saved as a version of the repo, and your changes are now ready to go up on GitHub (the online copy of the repository).
+2. Pull
+	* Now, before you send your changes to Github, you need to pull, i.e. make sure you are completely up to date with the latest version of the online version of the files - other people could have been working on them even if you haven't.
+3. Push
+	* Once you are up to date, you can push your changes - at this point in time your local copy and the online copy of the files will be the same.
 
 Each file on GitHub has a history, so instead of having many files like `Dissertation_1st_May.R`, `Dissertation_2nd_May.R`, you can have only one and by exploring its history, you can see what it looked at different points in time.
 
@@ -94,7 +91,7 @@ For example, here is the history for a repo with an R script inside it, as viewe
 ![Github commit history screenshot]({{ site.baseurl }}/assets/img/tutorials/git/filehistory.png)
 
 
-## 2. Create your own repository and project folder structure
+# 2. Create your own repository and project folder structure
 {: #github}
 
 To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wider audience. For now, we will focus on organising and using your main repository that holds the files for all your work. With a free GitHub account, you can use public or private respositories. 
@@ -110,7 +107,7 @@ You can directly edit your `README.md` file on Github by clicking on the file an
 ![Github edit file screenshot]({{ site.baseurl }}/assets/img/tutorials/git/readme.png)
 
 
-#### Exercise 1: Write an informative README.md file
+## Exercise 1: Write an informative README.md file
 
 You can now write the `README.md` file for your repository. To make headings and subheadings, put hashtags before a line of text - the more hashtags, the smaller the heading will appear. You can make lists using `-` and numbers `1, 2, 3, etc.`. __You can discuss the information you want to include among your lab members - here are some things you might want to consider:__
 
@@ -126,7 +123,8 @@ You can now write the `README.md` file for your repository. To make headings and
 ```
 
 
-#### Exercise 2: Writing a `.gitignore` file
+## Exercise 2: Writing a `.gitignore` file
+
 Repositories often have a file called `.gitignore` and we are about to make one shortly. In this file you specify which files you want Git to ignore when users make changes and add files. Examples include temporary Word, Excel and Powerpoint files, `.Rproj` files, `.Rhist` files, etc. Some files you might want to only have on your local repository (i.e. on your computer), but not online as they might be too big to store online. 
 
 Go to `Create new file` and write a `.gitignore` file within your main repository (not within any folders). You need to call the file `.gitignore` and then add the types of files that Git should ignore on separate lines. You can make this specific to your needs, but as a start, you can copy over this code:
@@ -153,26 +151,25 @@ Go to `Create new file` and write a `.gitignore` file within your main repositor
 #*README_files/
 ```
 
-#### Exercise 3: Create folders
+## Exercise 3: Create folders
 
 Discuss among your lab what folders your repository will contain - some examples include: manuscripts, data, figures, scripts, scripts/users/personal_folder_your_name. To make a new folder, click on `Create new file` and add in the name of your new folder, e.g. `manuscripts/` before the file name, in this case a quick `README.md` file. When creating folders within your repo through GitHub's website, you always need to make at least one file associated with them, you can't just create an empty folder. Add a brief explanation of what the folder is for in the `README.md` file, scroll down and click on `Commit new file`. Add a quick message where it says `Create README.md file` in light grey text - we will cover GitHub etiquette later, but for now, when creating/editing files, it's always a good idea to change the default message to a more precise description of what was done and who did it. Stick with the default option of `Commit directly to master branch` - we will explain branches and pull requests at a later stage of the tutorial.
 
 ![Github new folder screenshot]({{ site.baseurl }}/assets/img/tutorials/git/newfolder.png)
 
 
-### GitHub etiquette
-{: #etiquette}
+## GitHub etiquette
 
 If you'll be sharing the repository with collaborators and even for your own benefit, it's a good idea to define some rules on how to use the repository before we start working within it - for example what GitHub and coding etiquette should people be following? Is there a prefered folder structure, file naming system?
 
 We can make a new `github-etiquette.md` file that outlines the rules that people with access to your repository should follow.
 
-#### Exercise 4: Write a `github-etiquette.md` file
+## Exercise 4: Write a `github-etiquette.md` file
 
 Go to your lab's main repository, click on `Create new file` and add `github-etiquette.md` as a file name. Remember to include the file extension `.md` - otherwise GitHub won't know what's the file format.
 
 {% capture callout %}
-#### A few GitHub rules:
+## A few GitHub rules:
 
 - Keep file paths short and sensible.
 - Don't use funky characters and spaces in your file names, these cause trouble because of differences in Mac/Windows systems.
@@ -181,12 +178,12 @@ Go to your lab's main repository, click on `Create new file` and add `github-eti
 {% include callout.html content=callout colour='callout' %}
 
 
-## 3. Sync and interact with your repository through `RStudio`
+# 3. Sync and interact with your repository through `RStudio`
 {: #github3}
 
 The "commit-pull-push" workflow can be embedded within `RStudio` using "Projects" and enabling version control for them - we will be doing that shortly in the tutorial.
 
-#### Log into your Github account and navigate to the repository you created earlier
+__Log into your Github account and navigate to the repository you created earlier__
 
 Click `Clone or download` and copy the HTTPS link.
 
@@ -195,13 +192,13 @@ Click `Clone or download` and copy the HTTPS link.
 Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the HTTPS link from the Github repository into the `Repository URL:` field. Select a folder on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
 {% capture callout %}
-#### Hiccups?
+## Hiccups?
 
 We know that there might be problems with the newest updates of the Mac software and installing git and linking it with RStudio. The solutions appear to be very specific to the Mac version you have, so if the above steps didn't work, a good starting point is googling \"rstudio can't find git mac **your version**\" and trying out the suggested solutions.
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
-#### Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
+Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 
 
 ![RStudio Git tab screenshot]({{ site.baseurl }}/assets/img/tutorials/git/git_tab.png)
@@ -236,7 +233,7 @@ git config --global user.name "Your GitHub Username"
 # Add your username and click Enter
 ```
 
-### If it worked fine, there will be no messages, you can close the shell window and do your commit again, this time it will work!
+If it worked fine, there will be no messages, you can close the shell window and do your commit again, this time it will work!
 
 You will see a message saying that your branch is now one commit ahead of the `origin/master` branch - that is the branch that is on Github - we now need to let Github know about the changes we have made.
 
@@ -254,23 +251,23 @@ Click on your script file and then on `History` - this is where you can see the 
 
 __You are now ready to add your scripts, plots, data files, etc. to your new project directory and follow the same workflow as outlined above - stage your files, commit, pull, push.__
 
-### Potential problems
+## Potential problems
 
 Sometimes you will see error messages as you try to commit-pull-push. Usually the error message identifies the problem and which file it's associated with, if the message is more obscure, googling it is a good step towards solving the problem. Here are some potential problems that might arise:
 
-#### Code conflicts
+### Code conflicts
 
 While you were working on a certain part of a script, someone else was working on it, too. When you go through commit-pull-push, GitHub will make you decide which version you want to keep. This is called a code conflict, and you can't proceed until you've resolved it. You will see arrows looking like `>>>>>>>>>` around the two versions of the code - delete the version of the code you don't want to keep, as well as the arrows, and your conflict should disappear.
 
-#### Pushing the wrong files
+### Pushing the wrong files
+
 If you accidentally push what you didn't intend to, deleted many things (or everything!) and then pushed empty folders, you can revert your commit. You can keep reverting until you reach the point in time when everything was okay. This is an easy way out if you're the only person working in the repository - __be aware that if there are other people that have committed to the repository, reverting will also undo all of their work, as reverting refers to the repository as a whole, not just your own work in it.__
 
 Using these "undo" commands can be daunting, so make sure you read up on the different commands before you attempt anything that may delete work permanently: [here's a starter](https://www.atlassian.com/git/tutorials/undoing-changes/git-revert). It's a good idea to regularly back up your repository to an external hard drive _juuuust_ in case!  
 
 
-## 4. Sync and interact with your repository through the command line
+# 4. Sync and interact with your repository through the command line
 {: #github4}
-{: #command_line}
 
 Traditionally, Git uses the command line to perform actions on local Git repositories. In this tutorial we ignored the command line but it is necessary if you want more control over Git. There are several excellent introductory guides on version control using Git, e.g. [Prof Simon Mudd's Numeracy, Modelling and Data management guide](http://simon-m-mudd.github.io/NMDM_book/#_version_control_with_git), [The Software Carpentry guide](https://swcarpentry.github.io/git-novice/), and this [guide from the British Ecological Society Version Control workshop](https://github.com/BES2016Workshop/version-control). For more generic command line tools, look at this [general cheat sheet](https://www.git-tower.com/blog/command-line-cheat-sheet) and this [cheat sheet for mac users](https://github.com/0nn0/terminal-mac-cheatsheet). We have also created a table and flow diagram with some basic Git commands and how they fit into the Git/Github workflow. Orange lines refer to the core workflow, the blue lines describe extra functions and the green lines deal with branches:
 
@@ -366,11 +363,10 @@ Traditionally, Git uses the command line to perform actions on local Git reposit
 Below is a quick exercise so you can familiarise yourself with these command line tools. There are a few ways to use interact with Git using the terminal:
 
 1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
-
-![RStudio new terminal menu item screenshot]({{ site.baseurl }}/assets/img/tutorials/git/rstudio_new_terminal.png)
-
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git.
+
+![RStudio new terminal menu item screenshot]({{ site.baseurl }}/assets/img/tutorials/git/rstudio_new_terminal.png)
 
 Once you have opened a terminal using one of the above methods, start by creating a folder somewhere on your local system called `git_test`, using the `mkdir` (make directory) command by typing the following into the terminal and hitting "Enter":
 
@@ -393,7 +389,7 @@ git init
 Now the folder has been made into a Git repository, allowing you to track changes to files. Now, lets create a `README.md` file inside the repository and put some text in it, using whatever text editor you are comfortable with. Make sure to place this `README.md` file into the repository folder on your device so it can be found! 
 
 {% capture callout %}
-#### Creating a README from scratch
+## Creating a README from scratch
 
 Your computer probably comes with a text editor, such as Notepad for Windows or TextEdit for Mac. Open a new doc, type your information, and save it as `README.md` (with TextEdit, you might have to save it as .rf first, then change the extension in your Finder.) 
 

@@ -28,8 +28,10 @@ A slightly more complicated model might look like: `skylark.m <- lm(abundance ~ 
 
 Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
 
-__Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.__
-
+{% capture callout %}
+Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Get familiar with different data distributions
 {: #distributions}

@@ -20,7 +20,10 @@ survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 9. [Random slopes versus random intercepts `lme4`](#lme4b)
 10. [Hierarchical models using `MCMCglmm`](#MCMCglmm)
 
-__All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # Introduction
 

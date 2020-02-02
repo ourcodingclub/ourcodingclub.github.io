@@ -21,9 +21,13 @@ This workshop will provide an overview of methods used to investigate an ecologi
 
 ![Tidyverse workflow diagram]({{ site.baseurl }}/assets/img/tutorials/seecc_1/tidyverse.png)
 
+{% capture callout %}
 All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
+
 
 Make a new script file using `File/ New File/ R Script` and we are all set to begin exploring how vertebrate populations are changing.
 

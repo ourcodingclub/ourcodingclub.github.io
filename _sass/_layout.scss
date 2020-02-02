@@ -115,10 +115,6 @@ body {
 	color: $bannerImageColour;
 }
 
-.banner > .nobanner{
-	color: $headingColour;
- }
-
 .banner h1 {
 	font-weight: 600;
 }
@@ -387,6 +383,23 @@ body {
     color: $white;
 }
 
+.alertbox, .importantbox {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50px;
+	height: 30px;
+	color: black;
+	margin: 5px 0;
+}
+
+.alertbox {
+	background-color: #ffcccc;
+}
+
+.alertbox p {
+	margin: 0 auto;
+	text-align: center;
+}
 
 h1, h2, h3, h4, h5, h6 {
     &.callout {

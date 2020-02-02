@@ -19,11 +19,14 @@ survey_link: https://www.surveymonkey.co.uk/r/VKMZHD3
 8. [Export results - summary tables](#export)
 9. [Further analysis and visualisation in R - the best of both worlds!](#R)
 
-__All the files you need to complete this tutorial will be generated and exported from the GEE during the course of the tutorial.__
+{% capture callout %}
+All the files you need to complete this tutorial will be generated and exported from the GEE during the course of the tutorial.
 
-__[Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free.__
+[Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free.
 
-__Say what you'll be using the GEE for - for research, education, etc. It might take a few hours or a day or so for your registration to be approved.__
+Say what you'll be using the GEE for - for research, education, etc. It might take a few hours or a day or so for your registration to be approved.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Learn what the Google Earth Engine is
 {: #intro}

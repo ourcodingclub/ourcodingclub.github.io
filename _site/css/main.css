@@ -68,8 +68,6 @@ body { margin: 0; padding: 0; }
 
 .banner h1, .banner h3 { text-align: center; padding: 0px 30px; text-transform: uppercase; color: #ebebeb; }
 
-.banner > .nobanner { color: #383743; }
-
 .banner h1 { font-weight: 600; }
 
 .banner h3 { font-weight: 400; }
@@ -155,6 +153,12 @@ body { margin: 0; padding: 0; }
 .important { background-color: #ffd633; }
 
 .alert { background-color: #ff3333; color: #ffffff; }
+
+.alertbox, .importantbox { border: 1px solid black; border-radius: 5px; width: 50px; height: 30px; color: black; margin: 5px 0; }
+
+.alertbox { background-color: #ffcccc; }
+
+.alertbox p { margin: 0 auto; text-align: center; }
 
 h1.callout, h2.callout, h3.callout, h4.callout, h5.callout, h6.callout { margin-top: 0; }
 

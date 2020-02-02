@@ -19,9 +19,12 @@ __The goal of this tutorial is to advance skills in working efficiently with dat
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
-#### This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the [SalGo Population Ecology Team](https://sites.google.com/site/robresearchsite/).
+__This tutorial was developed for the Coding Club workshop at the University of Oxford with the support of the [SalGo Population Ecology Team](https://sites.google.com/site/robresearchsite/).__
 
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-oxford). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-oxford). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 
 ## 1. Format and manipulate large datasets

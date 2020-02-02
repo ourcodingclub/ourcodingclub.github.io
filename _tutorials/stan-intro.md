@@ -16,7 +16,10 @@ survey_link: https://www.surveymonkey.co.uk/r/P39ZP2G
 5. [Specify priors in `Stan`](#priors)
 6. [Assess convergence diagnostics](#convergence)
 
+{% capture callout %}
 All the files you need to complete this tutorial can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-Stan-intro). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 __This tutorial is based on work by [Max Farrell](http://farrell.research.mcgill.ca) - you can find Max's original tutorial [here](https://github.com/maxfarrell/qcbs_stan_workshop/blob/master/QCBS_stan.Rmd) which includes an explanation about how `Stan` works using simulated data, as well as information about model verification and comparison.__
 

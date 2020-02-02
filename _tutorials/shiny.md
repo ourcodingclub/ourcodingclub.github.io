@@ -46,7 +46,11 @@ install.packages("rsconnect")  # For publishing apps online
 install.packages("agridat")  # For the dataset in today's tutorial
 ```
 
+{% capture callout %}
 You can download the resources for this tutorial by heading to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny). You can click on `Clone / Download` and either download the zip file and extract the files, or fork the repository to your own Github account. [See our Git and Github tutorial for more info]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
+
 
 
 # 2. The Shiny app file structure

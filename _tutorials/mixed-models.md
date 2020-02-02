@@ -16,7 +16,10 @@ If you are familiar with linear models, aware of their shortcomings and happy wi
 
 Similarly, you will find quite a bit of explanatory text: you might choose to just skim it for now and go through the "coding bits" of the tutorial. But it will be here to help you along when you start using mixed models with your own data and you need a bit more context.
 
+{% capture callout %}
 To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-Linear-mixed-models), click on `Clone/Download/Download ZIP` to download the files and then unzip the folder. Alternatively, fork the repository to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro to Github for Version Control tutorial]({{ site.baseurl }}/tutorials/git/index.html).__ 
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 Alternatively, you can grab the **R script** [here](http://gkhajduk.d.pr/FG8/2bCpZQuj) and the **data** from [here](http://gkhajduk.d.pr/9GPn/3nbbPoK6). I might update this tutorial in the future and if I do, the latest version will be [on my website](https://gkhajduk.github.io/2017-03-09-mixed-models/).
 

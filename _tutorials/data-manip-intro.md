@@ -45,7 +45,10 @@ __Know all of this already?__ Fast forward to our [Efficient Data Manipulation t
 
 In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
 
-__Note: all the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.__
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
 
 # 1. Subset, extract and modify data with R operators
 {: #base}

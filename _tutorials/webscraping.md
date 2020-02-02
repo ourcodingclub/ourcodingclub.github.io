@@ -29,9 +29,13 @@ Web scraping refers to the action of extracting data from a web page using a com
 
 ## Getting started
 
+{% capture callout %}
 Open up a new R Script where you will be adding the code for this tutorial. All the resources for this tutorial, including some helpful cheatsheets, can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-12-Webscraping). Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the real path), or clicking `Session/ Set Working Directory/ Choose Directory` in the RStudio menu.
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-12-Webscraping) to your own Github account and then add it as a new `RStudio` project by copying the HTTPS / SSH link. For more details on how to register on Github, download git, sync `RStudio` and `Github` and do version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
+
 
 ```r
 setwd("<PATH TO FOLDER>")
