@@ -8,7 +8,7 @@ layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/26V3WTJ
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Formatting time series data](#format)
 2. [Visualising time series data](#datavis)
@@ -46,7 +46,7 @@ daily_milk <- read.csv("daily_milk.csv")  # Milk production per cow per milking
 ```
 
 
-## 1. Formatting time series data
+# 1. Formatting time series data
 {: #format}
 
 The most common issue when using time series data in `R` is getting it into a format that is easily readable by `R` and any extra packages you are using. A common format for time series data puts the largest chunk of time first (e.g. year) and gets progressively smaller, like this:
@@ -144,7 +144,7 @@ format(monthly_milk$month_date, format = "%Y-%B-%u")
 class(format(monthly_milk$month_date, format = "%Y-%B-%u"))  # class is no longer `Date`
 ```
 
-### Dates and times
+## Dates and times
 
 Sometimes, both the date and time of observation are important. The best way to format time information is to append it after the date in the same column like this:
 
@@ -203,9 +203,7 @@ Below is an expanded table of time codes which you can use for reference:
   </tr>
 </table>
 
-{: #MARK}
-
-### Correcting badly formatted date data
+## Correcting badly formatted date data
 
 If your data are not already nicely formatted, not to worry, it's easy to transform it back into a useable format using `format()`, before you transform it to `Date` class. First, let's create some badly formatted date data to look similar to `01/Dec/1975-1`, the day of the month, abbreviated month, year and day of the week:
 
@@ -226,7 +224,7 @@ class(monthly_milk$good_date)
 Now we know how to transform data in to the `Date` class, and how to create `character` class data from `Date` data. 
 
 
-## 2. Visualising time series data
+# 2. Visualising time series data
 {: #datavis}
 
 Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to correctly build axis labels and allow easy customisation of axis ticks:
@@ -256,10 +254,10 @@ Plotting date and time data is done similarly using `scale_x_datetime()`:
 ```
 
 
-## 3. Statistical analysis of time series data
+# 3. Statistical analysis of time series data
 {: #stats} 
 
-### Decomposition
+## Decomposition
 
 Time series data can contain multiple patterns acting at different temporal scales. The process of isolating each of these patterns is known as decomposition. Have a look at a simple plot of `monthly_milk` like the one we saw earlier:
 
@@ -323,7 +321,7 @@ seasonplot(monthly_milk_ts)
 
 ![Panelled trend decomposition]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_4plot.png)
 
-### Forecasting
+## Forecasting
 
 Often time series data are used to predict what might happen in the future, given the patterns seen in the data. This is known as forecasting. There are many methods used to forecast time series data, and they vary widely in complexity, but this should serve as a brief introduction to the most commonly used methods.
 
@@ -443,7 +441,8 @@ Let's pick apart those statistics:
 
 By comparing the MAPE and MASE statistics of the four models in the `Test set` row, we can see that the `monthly_milk_ets_fc` and `monthly_milk_ets_zzz_fc` models have the lowest values. Looking at the graphs for this forecast and comparing it visually to the test data, we can see that this is the forecast which best matches the test data. So we can use that forecast to project into the future.
 
-### Extracting values from a forecast
+## Extracting values from a forecast
+
 Now that we have identified the best forecast model(s), we can use these models to find out what milk production will be like in the year 1975! Use the code below to extract a predicted value for a given year from our forecasts. This is as simple as subsetting the forecast data frame to extract the correct value. I'm using functions from the [`dplyr` package, with pipes (`%>%`)]({{ site.baseurl }}/tutorials/piping/index.html), but you could use any other method of subsetting such as the `[]` square bracket method using base `R`:
 
 ```r
@@ -456,8 +455,7 @@ milk_ets_zzz_fc_df %>%
 	select(Month, Point_Forecast)
 ```
 
-
-## 4. Coding challenge
+# 4. Coding challenge
 {: #challenge}
 
 Now that you have worked through the tutorial, use what you have learnt to make some model forecasts and plot some graphs to investigate temporal patterns for our data on CO2 concentrations on Mauna Loa, Hawaii. See if you can predict the CO2 concentration for June 2050. You can find the data in `co2_loa.csv` in the folder you downloaded from the [the GitHub repository for this tutorial](https://github.com/ourcodingclub/CC-time-series).

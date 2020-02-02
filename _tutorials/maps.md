@@ -30,27 +30,19 @@ setwd("PATH_TO_FOLDER")
 ```
 
 
-## Why use R for spatial data?
+# 1. Why use R for spatial data?
 {: #why}
 
-##### __Less clicking:__
+* __Less clicking:__
+	* Most conventional GIS software use a Graphical User Interface (GUI) which makes them easier to fumble through when you don't know what you're doing, but point and click interfaces become very laborious when performing analyses for the _n_ th time or when you really know your way around the software. R uses a Command Line Interface, using text commands, so while there may be more of a learning curve to begin with, it's very efficient once you know what to do.
+* __Reproducible analyses with new data:__
+	* Imagine you have a project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
+* __It's free:__
+	* While ArcMap and SuperGIS cost money to use, R packages are free and probably always will be.
+* __A range of GIS packages for different applications:__
+	* Using the R package system you can find the right GIS application for your project, and you can adapt and hack the packages already there to create something specific for your project.
 
-Most conventional GIS software use a Graphical User Interface (GUI) which makes them easier to fumble through when you don't know what you're doing, but point and click interfaces become very laborious when performing analyses for the _n_ th time or when you really know your way around the software. R uses a Command Line Interface, using text commands, so while there may be more of a learning curve to begin with, it's very efficient once you know what to do.
-
-##### __Reproducible analyses with new data:__
-
-Imagine you have a project where you are given new data every week, which you want to compare using maps. Using a GUI, you would have to repeat your analyses step by step, every time the data came in, being careful to maintain formatting between maps. Using the command line in R, you only have to plug in the new data to the script and the maps will look the same every time.
-
-##### __It's free:__
-
-While ArcMap and SuperGIS cost money to use, R packages are free and probably always will be.
-
-##### __A range of GIS packages for different applications:__
-
-Using the R package system you can find the right GIS application for your project, and you can adapt and hack the packages already there to create something specific for your project.
-
-
-## Downloading the relevant packages
+# 2. Downloading the relevant packages
 {: #download}
 
 Load the following packages into R by running the following lines of code in your R script. Remember if you haven't installed the packages first, you will have to use `install.packages("PACKAGE_NAME")` first:
@@ -67,7 +59,7 @@ library(rworldmap)  # getMap()
 In previous versions of this workshop, we used the [`ggmap` package](https://github.com/dkahle/ggmap) for grabbing background map tiles from Google Maps and other sources, but this package has become difficult to use, especially since Google now requires a non-free API key to download their map tiles. There are lots of other resources online for ggmap and I'd still recommend having a look if you have specific need for Google Maps basemaps. For now however, we will focus on other R packages. 
 
 
-## Getting your head around map data
+# 3. Getting your head around map data
 {: #map_data}
 
 The easiest way to think about map data is to first imagine a graph displaying whatever data you want, but where the x and y axes denote spatial coordinates such as longitude and latitude instead of a variable:
@@ -83,7 +75,7 @@ That was a simple example, maps can incorporate more complex elements like polyg
 ![Map of trout occurrence with polygons and annotations]({{ site.baseurl }}/assets/img/tutorials/maps/map_FEOW_annot.png)
 
 
-## Creating a map using `ggplot2` and `rworldmap`
+# 4. Creating a map using `ggplot2` and `rworldmap`
 {: #create_map}
 
 In this part of the workshop we are going to create a map showing occurrence records of two species of bird. Rueppell's Vulture (_Gyps rueppellii_) feeds on large mammalian carrion and the African Penguin (_Spheniscus demersus_) feeds on small marine fish. It's likely that their distributions have distinct spatial patterns, we shall see! We will use species occurence data from the [Global Biodiversity Information Facility (GBIF)](http://www.gbif.org/), which can be found in [the repository](https://github.com/ourcodingclub/CC-6-Maps) for this tutorial, which you should download if you haven't done so already.
@@ -229,7 +221,7 @@ Then define the x and y axis limits in `ggplot()` using `xlim()` and `ylim()` wi
 
 ![South Africa map of penguins]({{ site.baseurl }}/assets/img/tutorials/maps/map_saf_penguins.png)
 
-## Using shapefiles
+# 5. Using shapefiles
 {: #shp}
 
 Shapefiles are a data format developed by [ESRI](http://www.esri.com) used to hold information on spatial objects. They are pretty ubiquitous and can be used by a lot of GIS packages Shapefiles can hold polygon, line or point data. Despite the name, a shapefile consists of a few different files:

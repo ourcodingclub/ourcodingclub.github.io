@@ -9,7 +9,7 @@ survey_link: https://www.surveymonkey.co.uk/r/R6PJGKJ
 
 Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html), you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [Understand what Pandas is](#understanding)
 2. [Ways of running Python and Pandas](#following)
@@ -23,8 +23,7 @@ Welcome to this tutorial about data analysis with Python and the Pandas library.
 10. [Be inspired to experiment further with Matplotlib!](#inspiration)
 
 
-
-## What is Pandas?
+# 1. What is Pandas?
 {: #understanding}
 
 `pandas` is a package commonly used to deal with data analysis. It simplifies the loading of data from external sources such as text files and databases, as well as providing ways of analysing and manipulating data once it is loaded into your computer. The features provided in `pandas` automate and simplify a lot of the common tasks that would take many lines of code to write in the basic Python langauge.
@@ -51,7 +50,7 @@ Some other important points to note about Pandas are:
 
 You can read more about the Pandas package at the [Pandas project website](https://pandas.pydata.org/).
 
-## Ways of running Python with Pandas
+# 2. Ways of running Python with Pandas
 {: #following}
 
 Here we briefly discuss the different ways you can folow this tutorial. There are lots of different ways to run Python programs, and I don't want to prescribe any one way as being the 'best'. Users of RStudio and Matlab may find that the **Spyder** programming environment most closely matches the feel of RStudio and Matlab, with a window for editing scripts and an 'interactive' mode that can be used along side. For a more minimalist approach, you may prefer to write their scripts/programs in a text editor such as Notepadd++ (Windows), vim, emacs, or other popular editors. (But do *not* use Windows Notepad!). Personally this is how I like to work with Python as it frees you from the distractions of an IDE like Spyder, and reduces the number of problems that can arise from the Spyder program being set-up incorrectly.
@@ -60,13 +59,13 @@ Finally there is IPython, which lets you type in Python commands line-by-line, s
 
 Some more information on the three methods is described below:
 
-### Spyder
+## Spyder
 
 If you are attending the workshop 'live' on-site at Edinburgh University, the easiest way is to use the Spyder IDE (Integrated Development Environment) which is installed on the GeoSciences computers. It can also be installed on your laptop relatively easily. It is included in the [Anconda Python distibution which can be downloaded here](https://www.anaconda.com/download/). Be sure to download the Python 3 version!
 
 The basics of Spyder were covered in the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html).
 
-### Text Editor with the Linux/Mac Terminal or Command-line
+## Text Editor with the Linux/Mac Terminal or Command-line
 
 You can follow this tutorial by writing scripts saved as `.py` files and then running the script from the terminal or command line with the `python` command. e.g.
 
@@ -76,7 +75,7 @@ python myscript.py
 
 (Although it looks simple, this way can quite tricky to set up with Windows, it is probably easiest on Linux or Mac.)
 
-### Interactively with IPython
+## Interactively with IPython
 
 IPython is an 'interactive' Python interpreter. It lets you type in Python commands line-by-line, and then immediately execute them. It's a very useful way of quickly testing and exploring Python commands, because you don't have to interact directly with the command line or run the entire script. Spyder has an IPython console built in to it (on the right hand panel), or it can be started **in Linux/Mac** from the command line by running:
 
@@ -98,7 +97,7 @@ IPython users: When you see a print function used in this tutorial, e.g. `print(
 On **Windows** you will find IPython in the start menu if it has been installed.
 
 
-### Conventions when using Pandas
+## Conventions when using Pandas
 
 All the examples in this tutorial assume you have installed the Python library `pandas`, either through installing a scientific Python distribution such as Anaconda, or by installing it using a package-manager, such as `conda` or `pip`. To use any of the features of Pandas, you will need to have an `import` statement at the top of your script like so:
 
@@ -122,7 +121,7 @@ print(pd.__version__)
 
 Run the script and note the output. My script prints `'0.22.0'`, but you may be on a slighty newer/older version of Pandas, which is OK for this introductory tutorial.
 
-### Files for this tutorial
+## Files for this tutorial
 
 This short tutorial is mainly based around working with the basic Pandas commands and data structures, but we also use some data about Scottish mountains, provided in the form of a `.csv` file (`scottish_hills.csv`).
 
@@ -134,7 +133,7 @@ The original data came from a series of databases about the mountains of Scotlan
 
 _As a side note, and some interesting trivia, the dataset we are using was originally compiled in **1891** by Sir Hugh Munro. He compiled a list of all the mountains in Scotland above 3000 feet (914m if you prefer the metric system). The table has been revised since with more accurate heights and coordinates._
 
-## Understand the basic Pandas data structures
+# 3. Understand the basic Pandas data structures
 {: #datastructures}
 
 Pandas has two core data structures used to store data: The _Series_ and the _DataFrame_. 
@@ -174,13 +173,13 @@ array([ 4.6,  2.1, -4. ,  3. ])
 
 For a lot of applications, a plain old _Series_ is probably not a lot of use, but it is the core component of the Pandas workhorse, the _DataFrame_, so it's useful to know about.
 
-### DataFrames
+## DataFrames
 
 The DataFrame represents tabular data, a bit like a spreadsheet. DataFrames are organised into colums (each of which is a _Series_), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. (They are similar in many ways to R's `data.frame`.)
 
 We can create a DataFrame in Pandas from a Python dictionary, or by loading in a text file containing tabular data. First we are going to look at how to create one from a dictionary.
 
-#### A refresher on the Dictionary data type
+## A refresher on the Dictionary data type
 
 Dictionaries are a core Python data structure that contain a set of `key:value` pairs. If you imagine having a written language dictionary, say for English-Hungarian, and you wanted to know the Hungarian word for "spaceship", you would look-up the English word (the dictionary `key` in Python) and the dictionary would give you the Hungarian translation (the dictionary `value` in Python). So the "key-value pair" would be `'spaceship': 'űrhajó'`. 
 
@@ -231,7 +230,7 @@ Enclosed in a print function, i.e. `print(scottish_hills['Braeriach']`, this wou
 (1296, 57.078628, -3.728024)
 ```
 
-### Back to DataFrames...
+## Back to DataFrames...
 
 If we didn't have any real data to play with from an external file, we could manually create a DataFrame from a Python dictionary. Using the `scottish_hills` dictionary above, we can load it into a Pandas DataFrame with this syntax:
 
@@ -305,7 +304,7 @@ Run the modified script. You should now get output that looks like this:
 
 Note how the dictionary keys have become column headers running along the top, and as with the Series, an index number has been automatically generated. The columns are also in the order we specified.
 
-## Learn how to access data from a Pandas DataFrame
+# 4. Learn how to access data from a Pandas DataFrame
 {: #accessing}
 
 Pandas DataFrames have many useful methods that can be used to inspect the data and manipulate it. We are going to have a look at just a few of them.
@@ -425,9 +424,7 @@ Name: Height, dtype: int64
 ```
 **Experiment with modifying your script (or interactively if using IPython) to access different elements of your DataFrame**
 
-
-
-## Learn how to filter data in a Pandas DataFrame
+# 5. Learn how to filter data in a Pandas DataFrame
 {: #filtering}
 
 We can also apply conditions to the data we are inspecting, such as to filter our data.
@@ -488,7 +485,7 @@ Run the script again, the output should now be:
 4  Sgòr an Lochain Uaine    1258  57.057999  -3.725416  Cairngorm
 ```
 
-## Learn how to read data from a file using Pandas
+# 6. Learn how to read data from a file using Pandas
 {: #sorting}
 
 So far we have only created data in Python itself, but Pandas has built in tools for reading data from a variety of external data formats, including Excel spreadsheets, raw text and `.csv` files. It can also interface with databases such as MySQL, but we are not going to cover databases in this tutorial.
@@ -503,7 +500,6 @@ import pandas as pd
 dataframe = pd.read_csv("scottish_hills.csv")
 print(dataframe.head(10))
 ```
-
 
 Run the script, and you should get the following output:
 
@@ -545,14 +541,14 @@ Run the script with these extra lines, and have a look at the output:
 
 We now have our hills sorted by height. Note how we've used the `by=['Height']` argument to specify that we want to sort by height, and then the `ascending=False` argument to get the heights sorted in descending order, from highest to lowest.
 
-## Understand the basics of the Matplotlib plotting package
+# 7. Understand the basics of the Matplotlib plotting package
 {: #matplotlib}
 
 `matplotlib` is a Python package used for data plotting and visualisation. It is a useful complement to Pandas, and like Pandas, is a very feature-rich library which can produce a large variety of plots, charts, maps, and other visualisations. It would be impossible to cover the entirety of Matplotlib in one tutorial, so this section is really to give you a flavour of the capabilities of Matplotlib, and to cover some of the basics, as well as a couple of more interesting 'advanced' features. 
 
 If you have a bit of basic Python knowledge already, the common route to learning Matplotib is to find examples of plots similar to ones you are trying to create and walk through them, trying to reproduce them with your own data perhaps. A great starting point is the [Matplotlib gallery of examples](https://matplotlib.org/gallery.html). I recommend this because in practice it is difficult to cover each and every plot type, as the needs of scientists differ considerably depending on the type of data they are working with or the message they are trying to convey in their visualisation. You might also find it useful to refer to the [Matplotlib official documentation](https://matplotlib.org/api/pyplot_api.html) as you go along.
 
-### Matplotlib conventions
+## Matplotlib conventions
 
 Like Pandas, Matplotlib has a few conventions that you will see in the examples, and in resources on other websites such as StackOverflow. Typically, if we are going to work on some plotting, we would import `matplotlib` like this:
 
@@ -562,7 +558,7 @@ import matplotlib.pyplot as plt
 
 And thereafter, we could access the most commonly used features of Matplotlib with `plt` as shorthand. Note that this `import` statement is at the _submodule_ level. We are not importing the full `matplotlib` module, but a subset of it called `pyplot`. Pyplot contains the most useful features of Matplotlib with an interface that makes interactive-style plotting easier. Submodule imports have the form `import module.submodule` and you will see them used in other Python libraries too sometimes. 
 
-### Matplotlib basics
+## Matplotlib basics
 
 We're going to use the Scottish hill data from the Pandas section of the tutorial, so if you need to set this up again, the script should look like this to begin with:
 
@@ -622,7 +618,7 @@ Run the script and have a look at the figure. It should look something like this
 **IPython users**: the figure should render automatically after calling `plt.scatter(x, y)`.
 
 
-## Learn how to bring together other Python libraries with Matplotlib
+# 8. Learn how to bring together other Python libraries with Matplotlib
 {: #stats}
 
 Now we are going to do some basic statistics so we can plot a line of linear regression on our chart. I'm a software engineer, not a statistician, so this will be pretty basic...
@@ -693,7 +689,7 @@ I will leave it as an exercise for the reader to determine if they think this is
 (Hint: you have some extra information in the `stats` object - `stats.rvalue` and `stats.pvalue`.)
 
 
-## Learn how to customise Matplotlib plots further
+# 9. Learn how to customise Matplotlib plots further
 {: #customise}
 
 Matplotlib figures are highly customisable, and there are so many options it is usually best to consult the [documentation first](https://matplotlib.org/tutorials/index.html). In addition, the [Matplotlib official pyplot tutorial is quite useful](https://matplotlib.org/users/pyplot_tutorial.html). To get started on Matplotlib plot customisation, here is an extended version of the above which sets the font sizes, axes lables, linewidths, and marker types:
@@ -740,7 +736,7 @@ It will produce a figure that looks like this:
 ![Scatter plot with cross point style]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-linear-reg-custom.png)
 
 
-## Bonus Matplotlib: plotting data onto maps with Cartopy
+# 10. Bonus Matplotlib: plotting data onto maps with Cartopy
 {: #inspiration}
 
 The best way to learn Matplotlib I believe is to learn from examples. I'm going to leave you with two examples that use an extra Python package called `cartopy`, unfortunately, Cartopy is not installed (yet) on the University of Edinburgh's lab computers, so you will have to try this at home or on your own laptops later. We won't go through this step-by-step in the tutorial, it is more of an example of how you could take things further in your own time.
@@ -793,11 +789,11 @@ If you are feeling ambitious, try reproducing the images!
 
 ![Global projection of precipitable water, 2017]({{ site.baseurl }}/assets/img/tutorials/pandas-python-intro/python-global-water.png)
 
-## Summary
+# Summary
 
 In this tutorial we have covered the various ways in which we can use Pandas, Matplotlib, and a few other Python libraries to start doing data analysis.
 
-### Tutorial outcomes:
+# Tutorial outcomes
 
 1. Understood what the Pandas library does
 2. Understood the basic Pandas data structures and how to manipulate them.

@@ -24,15 +24,16 @@ This tutorial is a whistle stop tour of Python, the aim is not to get you to be 
 3. [Writing Python code in Spyder](#spyder)
 4. [Variables and printing](#variables)
 5. [Simple maths and operators](#operators)
-6. [Functions](#functions)
 7. [Loops](#loops)
+6. [Functions](#functions)
 8. [If-else statements](#ifs)
-9. [Finding help online](#finding_help_online)
-10. [Next steps](#next)
+9. [Imports (packages)](#imports)
+10. [Finding help online](#finding_help_online)
+11. [Next steps](#next)
 
 ----
 
-## Why Python?
+# 1. Why Python?
 {: #why}
 
 Python is one of the most used and most talked about programming languages that exist. It was designed to be easy to read and write from the moment it was designed. For this reason it is a great language to learn if you are new to coding. However python has many other benefits including:
@@ -46,7 +47,7 @@ Python is one of the most used and most talked about programming languages that 
 
 Hopefully you are convinced that python is a great tool to add to your repertoire.
 
-## Installing Python with Anaconda
+# 2. Installing Python with Anaconda
 {: #installing}
 
 So now we want to know how to install Python and get straight into writing some knarly Python code to rule the world.
@@ -63,7 +64,7 @@ __Congratulations! You have just installed Python! Lets make sure that everythin
 
 Open up a Command Prompt (terminal) and type `conda --version`. If everything has been installed successfully then after a moments pause your conda version number should be printed to your screen.
 
-## Writing Python in Spyder
+# 3. Writing Python in Spyder
 {: #spyder}
 
 Now we have Python installed it is time to launch Spyder. You can do this by launching the Anaconda Navigator from the start menu. When this starts up click on the Spyder application to open it up.
@@ -83,7 +84,7 @@ In the bottom right of the window you will see the console, and this is what we 
 Note that whilst writing lines of code into the console I made a mistake and the console showed me an error message. In this case all I needed to do is fix the error and run the correct line.
 
 
-## Variables and Printing
+# 4. Variables and Printing
 {: #variables}
 
 In Python one of the basic things we can do is set variables. A variable is just a store, or a shortcut to refer to something else. In the example above I assigned the number 5 to the variable x, `x=5`. After I assigned the variable x (once I told the console that x was 5) then I could print out x and the console knew that it should print out the number 5. In Python we don't need to stick to letters for variables names, just like in your old algebra classes. If we want to we could tell the console that `x=5`, `my_variable=0`, and `yesterday=999`. After we have done this and we ask the console to `print(yesterday + x)` it should tell us that this is simply 1004. Why don't you try having a go at this?
@@ -95,11 +96,12 @@ In Python one of the basic things we can do is set variables. A variable is just
 We can assign other things to variables as well. In Python the base types are integers, floating-point numbers, strings, booleans, lists and dictionaries.
 Don't be put off! We will go through what each of these mean in turn and see why they might be useful, they are all very useful. Before we do that, I want to introduce you to two functions in Python. Namely the `print` and the `type` function.
 
-#### The print function
+## The `print` function
 
 We have seen this before when we printed x. The way to use this function is `print(the thing to be printed)`. You can print any valid piece of information in Python. Try printing some numbers.
 
-#### The type function
+## The `type` function
+
 You use this function to find out the type of any variable in Python. For example try entering the following into your console.
 ```python
 x=5
@@ -107,7 +109,8 @@ print(type(x))
 ```
 Based on what is printed here can you tell what type of variable x is? Try it again with `x=5.0` and see if you get a different answer.
 
-#### Integers
+## Integers
+
 Integers are just whole numbers, you probably learned to count them as a kid. We can set variables equal to integers by doing the following.
 ```python
 x = 5
@@ -116,21 +119,21 @@ year=2018
 ```
 Make up some variable names, like `x`, `y` or `ABBA` and give them integers values. Then print the type of these variables to make sure that they really are integers.
 
-#### Floating-point numbers
+## Floating-point numbers
 Floating-point numbers are just numbers which have a point `.`, ie they are expressed as a decimal. _(Quick note that python was developed in american english and so decimals use a point instead of a comma eg $\frac{2}{5}=0.4$)_. Try making up some variable names give them floating point number (`float`) values. For example you might say `glass_fullness = 0.5`, or the more pessimistic of you might say `glass_emptyness = 0.5`. Then print the type of these variables to make sure that they are floats.
 
-#### Strings
+## Strings
 In Python strings are often used to store text variables. For example I might want to know that `coding_club_rating = 'Great'` or that `best_song = "Dancing Queen"`. Note that in python it does not matter whether we use single quotes `''` or double quotes `""` around some characters to make this into a string. **Anything which is between single or double quotes is a string**. Another more practical use might be to store the date as a string `date = '17-10-2018'` or to store the name of a species we are looking at `species = "killer whale"`. Try making up some variable names and give them string values. Afterwards print their types.
 
-#### Lists
+## Lists
 In Python anything which is surrounded by square brackets `[]` and comma spaced is a list. You can insert anything into a list including other lists, and the entries don't have to be the same type. We could make a list of numbers by assigning `these_numbers = [2, 78, 1, 0, 12]`, or dates by assigning `these_dates = ['12-08-1987', '02-05-1852', '25-12-1999']`, or of ages of trees by assigning `tree_ages = [1, 4.5, 1000, 19.7, 'older than time itself']`
 
 Is it important that your lists have commas between each item, and that they start and end with square brackets.
 
-##### Booleans
+## Booleans
 A Boolean variable is a variable that is either `True` or `False`. Having variables like this is useful in Python as it gives us a lot of flexibility. For example we might want to right some code which checks whether it is Friday and if so it tells us to go home early. In this code we could store the variable `is_it_friday = True` and then use this later.
 
-#### Dictionaries
+## Dictionaries
 (*note dictionaries are a little harder to grasp than the rest of the material here, so feel free to skip this part and come back when you are ready*)
 Dictionaries are a more specialised data type in Python. They are a little bit like a list, but each item in the list (each __value__) is given a name (a __key__). In a normal dictionaries you will find a list of definitions, where each definition has a __key__ (ie the word you look up).
 
@@ -151,7 +154,7 @@ We can access values in a dictionary by looking them up with their key. In the a
 
 - Now make your own dictionary of your own favourite movie quotes. Try storing the movie quotes as strings, lists, integers or floats and then print them.
 
-# Simple Maths and Operators
+# 5. Simple Maths and Operators
 {: #operators}
 
 All of the basic mathematical operators that you know and love, such as `+` and `-` are available in Python. In this section we are going to show and demo some of these operators.
@@ -161,7 +164,7 @@ All of the basic mathematical operators that you know and love, such as `+` and 
 - [Comparison operators](#operators_compare)
 - [Boolean operators (True/False logic)](#operators_boolean)
 
-###### Addition and subtraction (numbers and strings)
+## 5a. Addition and subtraction (numbers and strings)
 {: #operators_add}
 
 Python can be used essentially as a big calculator which can do all the calculations that you don't want to. It can multiply, divide, add, subtract etc etc.
@@ -180,7 +183,7 @@ DEBUGGING QUESTION: what is `4 + 2` and what is `'4' + '2'` and why are the answ
 
 Next you should try subtracting some integers and floats from each other and printing the results. Do you think you can subtract strings from each other?
 
-###### Other basic operators
+## 5b. Other basic operators
 {: #operators_basic}
 
 Now you have the gist of how operators work why not have some fun by playing with these shiny new ones
@@ -191,7 +194,7 @@ Now you have the gist of how operators work why not have some fun by playing wit
 
 Try using each of these operators on integers, floats and strings. Not all of them will work on each data type and you will get some errors, but it is okay! To quote the famous mantra of silicon valley companies **'move fast, break things'** (not a good motto if you are an antiques dealer but great for learning Python)
 
-###### Comparison operators
+## 5c. Comparison operators
 {: #operators_compare}
 
 In Python we can also do comparisons between variables, between numbers or between strings. With these operators you can check when a number is greater than another number (to check your data set for mistakes, like is age greater than zero `age > 0`) or when a string is equal to another string (to filter your data set, like to a certain species name `species_name=='lama glama'`). This can be done using the comparison operators:
@@ -204,7 +207,7 @@ In Python we can also do comparisons between variables, between numbers or betwe
 
 Try doing some comparisons to make sure you understand how each of these work. Here is a list of things to try to get you started, but you don't have to stop there
 
-###### Boolean operators (True/False logic)
+## 5d. Boolean operators (True/False logic)
 {: #operators_boolean}
 
 There is also a set of boolean operators in Python. They allow us to do operations on boolean variables. This can be perform certain logical tasks based on outcomes of other calculations.
@@ -227,7 +230,8 @@ Using what you know so far can you solve Hamlet's dilemma below? What will the a
 to_be = True
 print(to_be or not to_be)
 ```
-# Loops
+
+# 6. Loops
 {: #loops}
 
 In loops we write instructions that will be repeated a number of times in a row. We can use loops to repeat actions more efficiently.
@@ -263,7 +267,7 @@ Loops can be hard when you are new to coding and so it might take you a bit long
 - Try writing a loop to do the job of the drinking-bird above. Your loop should print the string `'y'` 10 times.
 - Try writing a loop to add a list of 3 stings together. For example, if adding up the list `["hot", "line", "bling"]` your loop should create the variable `total = "hot line bling"`.
 
-# Functions
+# 7. Functions
 {: #functions}
 
 Functions are mini computing boxes that we write in Python. Functions take an input (we could call this x), do some computing with it, and output the result.
@@ -322,7 +326,7 @@ and we would get the answer 3.75
 Now that we have this function we could can use it again and again without having to rewrite the loop to calculate the mean, but only for lists of length 8.
 - This function will only work properly for lists which are 8 items long. Try modifying this function to calculate the mean of any list that is input. *Hint: you can find the length of a list x by using* `len(x)`
 
-# if-else statements
+# 8. if-else statements
 {: #ifs}
 
 If else statements are used in Python so that one script can be used to do different things based on some variable. We might want a script which motivates us to work hard and play hard. So that if today is a Friday it tells us to go home early but for the rest of the week days it encourages us to work hard.
@@ -340,7 +344,7 @@ else:
   print("Hard work is a virtue! You can do it! I believe in you!")
 ```
 
-# Imports (packages)
+# 9. Imports (packages)
 {: #imports}
 
 The final thing you should know at the beginning of you Python journey is about packages (add-ons). *You will hear people talk about 'packages', 'modules' and 'libraries' in Python but they pretty much refer to the same thing*. Packages are other pieces of code that we can use in Python once we import them. When you installed anaconda you also installed over 100 packages that we have not used yet! This may seem daunting, but don't worry, you won't need to learn them all, and the idea of packages can seem confusing at first.
@@ -375,13 +379,13 @@ The numpy, scipy and matplotlib packages are very popular friends and I don't ha
 
 *Note: Another friend you might want to meet is pandas. If you would like to load data from excel sheets and manipulate it, then pandas is the person to invite.*
 
-# Finding help online
+# 10. Finding help online
 {: #finding_help_online}
 
 One of the best things about Python is the Python community. There are millions of people using Python and so there are lots and lots of people trying to do similar things. This means that for almost any question you might have in python, like ['how to I find the maximum value in a list of numbers'](https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers) or
 ['how to I find the nth item in a list'](https://stackoverflow.com/questions/25805239/get-nth-element-of-a-list) there are good online discussions out there. For most Python users this is THE way to work. Why spend lots of time struggling to write code when the answer to your problem is just a google search away?
 
-##### Recipe for searching for code snippets
+## Recipe for searching for code snippets
 
 1. figure out what you are trying to do and boil it down to a short sentence
 2. go to google and type *your sentence + 'python'*
@@ -409,12 +413,12 @@ Searching for answers to your coding problems is a major part of writing code ef
 - add the number 50 to the end of the list `my_data` without just typing it in manually
 - convert the string `'15'` to an integer
 
-# Learning more basic Python
+# 11. Learning more basic Python
 {: #next_steps}
 
 There are so many resources to learn Python out there, more than one person could hope to have even looked at. Therefore ! cannot give you a definitive best method to keep learning Python. However, here are some resources that I have come across that I have enjoyed.
 
-##### Online interactive courses
+## Online interactive courses
 
 I think these are a really good way to get started both with Python if you are new to it, but also with Python packages that you have never explored before. The benefit of these are that they give you a lot of structure to your learning and they make sure you are getting a hang of the basics before you move on.
 
@@ -423,15 +427,15 @@ These courses have material for you to read and/or watch and also interactive co
 - [code academy](https://www.codecademy.com/learn/learn-python) - free articles and coding exercises. Paid for quizes and other extras.
 - [datacamp](https://www.datacamp.com/tracks/skill) - videos, articles and coding exercises. The first sections of each module are free but the more advanced stuff is paid.
 
-##### Blogs
+## Blogs
 
 Such as [ourcodingclub]({{ site.baseurl }})! These are great resources to follow, especially if you find blogs of people who are working in the same field as you. They can introduce you to Python tools specific to your domain. If you know some Python already then these are good resources to take you from intermediate to advanced.
 
-##### Books
+## Books
 
 I have mixed views on books when it comes to coding. It is my own personal belief that the only way to learn how to code is to actually sit down and do it. However, a book can be a good synthesis of knowledge and they do have their place. One classic book is Numeric Recipes in Python but there are too many to mention here and new ones are coming out all the time.
 
-##### Challenges
+## Challenges
 
 There are some websites which are specifically devoted to hosting challenges for people to complete or to compete in. If you are the type of person who likes a good challenge to enhance your learning then these might be for you.
 

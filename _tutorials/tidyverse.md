@@ -8,7 +8,7 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 ---
 
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Create a reproducible report using Markdown](#markdown)
 2. [Learn about the `tidyverse`](#tidyverse)
@@ -17,17 +17,17 @@ survey_link: https://www.surveymonkey.com/r/XD85MW5
 
 ![BES Quantitative Ecology Group logo]({{ site.baseurl }}/assets/img/tutorials/tidyverse/bes_qe.png)
 
-## This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. [Check out the QE SIG website for more info](https://bes-qsig.github.io)!
+__This tutorial was developed for the British Ecological Society Quantitative Ecology Special Interest Group Advanced R workshop. [Check out the QE SIG website for more info](https://bes-qsig.github.io)!__
 
 You can follow the BES QE SIG on [Twitter](https://twitter.com/BES_QE_SIG), too.	
 
 __All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Liverpool). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 
-## 1. Create a reproducible report using Markdown
+# 1. Create a reproducible report using Markdown
 {: #markdown}
 
-### What is R Markdown?
+## What is R Markdown?
 
 R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis. You might choose to create an R markdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. R Markdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook. Your report can also be what you base your future methods and results sections in your manuscripts, thesis chapters, etc.
 
@@ -46,9 +46,9 @@ library(rmarkdown)
 
 ## The different parts of an R Markdown file
 
-## To make your Markdown file - go to `File/New File/RMarkdown`.
+To make your Markdown file - go to `File/New File/RMarkdown`.
 
-### The YAML Header
+__The YAML Header__
 
 At the top of any R Markdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.html` options](http://rmarkdown.rstudio.com/html_document_format.html) and [here for `.pdf` options](http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document.
 
@@ -71,12 +71,12 @@ Now that we have our first piece of content, we can test the `.Rmd` file by comp
 
  Not only does a preview appear in the `Viewer` window in RStudio, but it also saves a `.html` file to the same folder where you saved your `.Rmd` file.
 
-### Code Chunks
+## Code Chunks
 {: #insert}
 
 __Have a read through the text below to learn a bit more about how Markdown works and then you can start compiling the rest of your `.md` file.__
 
-#### The setup chunk
+### The setup chunk
 
 __This code chunk appears in `.md` files in R by default, it won't appear in your html or pdf document, it just sets up the document.__
 
@@ -86,7 +86,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ````
 
-#### The rest of the code chunks
+### The rest of the code chunks
 
 This is where you can add your own code, accompanying explanation and any outputs. Code that is included in your `.Rmd` document should be enclosed by three backwards apostrophes ```` ``` ```` (grave accents!). These are known as code chunks and look like this (no need to copy this, just an example):
 
@@ -135,7 +135,7 @@ library(dplyr)
 ````
 
 
-#### Hiding code chunks
+### Hiding code chunks
 
 If you don't want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include `echo = FALSE` in the code chunk instructions.
 
@@ -159,7 +159,7 @@ You can run an individual chunk of code at any time by placing your cursor insid
 
 ![RStudio run current chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/tidyverse/run_sel.png)
 
-### Summary of code chunk instructions
+## Summary of code chunk instructions
 
 <table>
   <tr>
@@ -229,7 +229,8 @@ You can run an individual chunk of code at any time by placing your cursor insid
   </tr>
 </table>
 
-## Inserting Figures
+## Inserting figures
+
 By default, RMarkdown will place graphs by maximising their height, while keeping them within the margins of the page and maintaining aspect ratio. If you have a particularly tall figure, this can mean a really huge graph. To manually set the figure dimensions, you can insert an instruction into the curly braces:
 
 ````
@@ -268,13 +269,12 @@ pander(richness_abund)  # Create the table
 __Now that you have started your 'Markdown' document, you can use that when completing the next part of the tutorial, i.e., inserting the code that follows into code chunks and then generating a report at the end of this tutorial.__
 
 
-## Analyse and visualise data using the `tidyverse`
+# 2. Analyse and visualise data using the `tidyverse`
 {: #tidyverse}
 
-### Learning Objectives
+__Learning Objectives__
 
-### PART 1: Intro to the `tidyverse`
-#### How to analyse population change of forest vertebrates
+PART 1: Intro to the `tidyverse` - How to analyse population change of forest vertebrates
 
 1. How to write a custom `ggplot2` function
 2. How to use `gather()` and `spread()` from the `tidyr` package
@@ -331,7 +331,7 @@ theme_LPD <- function(){
 }
 ```
 
-#### Load population trend data
+## Load population trend data
 
 __The data are in a `.RData` format, as those are quicker to use, since `.Rdata` files are more compressed. Of course, a drawback is that `.RData` files can only be used within R, whereas `.csv` files are more transferable.__
 
@@ -558,7 +558,7 @@ ggsave(density.slopes, filename = "slopes_duration.png", height = 6, width = 6)
 ![scatterplot duration vs. population trend with marginal density plots]({{ site.baseurl }}/assets/img/tutorials/tidyverse/slopes_duration.png)
 
 
-### PART 2: Using pipes to make figures with large datasets
+# 3. Using pipes to make figures with large datasets
 {: #pipes}
 
 How to print plots of population change for multiple taxa
@@ -670,9 +670,10 @@ walk2(paste0(path2, names(taxa.slopes), ".pdf"), taxa.plots, ggsave)
 ```
 
 
-### PART 3: Downloading and mapping data from large datasets
-#### Map the distribution of a forest vertebrate species and the location of monitored populations
+# 4. Downloading and mapping data from large datasets
 {: #mapping}
+
+__Map the distribution of a forest vertebrate species and the location of monitored populations__
 
 13. How to download GBIF records
 14. How to map occurence data and populations
@@ -934,7 +935,7 @@ ggsave(deer.panel, filename = "deer_panel2.png", height = 10, width = 15)
 
 ![Panelled deer population trends and map]({{ site.baseurl }}/assets/img/tutorials/tidyverse/deer_panel2.png)
 
-## Challenges
+# Challenge
 
 __Take what you have learned about pipes and make a map of the five most well-sampled populations in the LPD database (the ones with the most replicate populations) and colour code the points by the population trend (derived from the models we did) and the size by the duration of the time series. You can try incorporating a handwritten function to make the map and using purr to implement that function, or you can go straight into `ggplot2`.__
 
@@ -943,15 +944,14 @@ __Pick a country and species of your choice. Download the GBIF records for that 
 __Use another projection for the map - the default is Mercator, but that's not the best way to represent the world. Hint - you can still use `ggplot2` - look up the `proj4` package and how to combine it with `ggplot2`.__ 
 
 
-## Extra resources
+# Extra resources
 
-You can find more info on `pander` [here](https://cran.r-project.org/web/packages/pander/pander.pdf).
-
-To learn more about the power of pipes check out:
-[the tidyverse website](http://dplyr.tidyverse.org) and [the R for Data Science book](http://r4ds.had.co.nz/pipes.html).
-
-To learn more about `purrr` check out the [tidyverse website](http://purrr.tidyverse.org/reference/map2.html) and the [R for Data Science book](http://r4ds.had.co.nz/iteration.html).
-
-For more information on functional programming see the [R for Data Science book chapter here](http://r4ds.had.co.nz/functions.html).
-
-To learn more about the `tidyverse` in general, check out Charlotte Wickham's slides [here](https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides).
+* You can find more info on `pander` [here](https://cran.r-project.org/web/packages/pander/pander.pdf).
+* To learn more about the power of pipes check out: 
+	* [the tidyverse website](http://dplyr.tidyverse.org)
+	* [the R for Data Science book](http://r4ds.had.co.nz/pipes.html).
+* To learn more about `purrr` check out:
+	* [the tidyverse website](http://purrr.tidyverse.org/reference/map2.html)
+	* [the R for Data Science book](http://r4ds.had.co.nz/iteration.html).
+* For more information on functional programming see the [R for Data Science book chapter here](http://r4ds.had.co.nz/functions.html).
+* To learn more about the `tidyverse` in general, check out [Charlotte Wickham's slides](https://github.com/cwickham/data-science-in-tidyverse/tree/master/slides).

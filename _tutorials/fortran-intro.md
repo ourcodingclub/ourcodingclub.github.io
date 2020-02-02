@@ -7,7 +7,7 @@ author: Declan Valters
 survey_link: https://www.surveymonkey.co.uk/r/VG5BK9T
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [Understand what the Fortran progamming langauge is](#understanding)
 2. [Learn about a brief history of Fortran](#history)
@@ -17,7 +17,7 @@ survey_link: https://www.surveymonkey.co.uk/r/VG5BK9T
 6. [Learn how to compile, configure, and run a larger Fortran program](#structure)
 
 
-## What is Fortran?
+# 1. What is Fortran?
 {: #understanding}
 
 `Fortran` is a computer programming language that is extensively used in numerical, scientific computing. While outwith the scientific community, `Fortran` has declined in popularity over the years, it still has a strong user base with scientific programmers, and is also used in organisations such as weather forecasters, financial trading, and in engineering simulations. `Fortran` programs can be highly optimised to run on high performance computers, and in general the language is suited to producing code where performance is important. 
@@ -25,7 +25,7 @@ survey_link: https://www.surveymonkey.co.uk/r/VG5BK9T
 `Fortran` is a _compiled_ language, or more specifically it is compiled ahead-of-time. In other words, you must perform a special step called *compilation* of your written code before you are able to run it on a computer. This is where `Fortran` differs to *interpreted* languages such as `Python` and `R` which run through an interpreter which executes the instructions directly, but at the cost of compute speed.
 
 
-## A brief Fortran history
+# 2. A brief Fortran history
 {: #history}
 
 Fortran was originally named after the contraction of *Formula Translation*, highlighting `Fortran`'s origins as a language designed specifically for mathematical calculations. Fortran was developed in the early 1950s and the first ever `Fortran` program ran in 1954 - making `Fortran` fairly unusual among programming languages in that it predates the modern _transistor_ computer - the first Fortran program ran on the IBM 704 vacuum tube computer! `Fortran` has outlived several nation states since its conception, and still is in wide use today in a number of specialised scientific communities. Unfortunately `Fortran` is often referred to as an 'outdated' or 'legacy' programming language. I disagree with this description, as although `Fortran` has a long history, the language continues to be updated, new features are developed and added to the Fortran language standard, and there is still a strong community behind Fortran. The latest Fortran standard was released in 2018, bringing many new features and keeping `Fortran` a relevant, highly performant language for contemporary scientific computing challenges.
@@ -73,17 +73,17 @@ PROGRAM  HeronFormula
 END PROGRAM  HeronFormula
 ```
 
-#### Lines 1-3:
+__Lines 1-3:__
 
 The first three lines are comment lines - you will hopefully find a lot of these in `Fortran` programs you are given, and in the ones you write yourself. Comment lines are just notes or explanations that help the programmer and the user. They are never executed by the computer and you can write whatever you like within any line marked as a comment. In `Fortran` this is the exclamation mark (!). Any line beginning with an exclamtion mark will be ignored by the computer when the program runs. Comments help the user to understand more complicated bits of code by providing a more human-readable explanation, or perhaps giving an example of how to use the code.
 
-#### Line 5: 
+__Line 5:__
 
 Begin the program! `Fortran` is quite a verbose language, in other words, we have to be quite explicit in telling it what we are about to do (Contrast with `Python` and `R` which are said to be more dynamic or intuitive languages and meaning can often be inferred.)
 
 So here we are just telling `Fortran` that we wish to begin our program, and we can optionally give it a name. Skip down to the last line: notice how we also have an `END PROGRAM` statement. `Fortran` likes to keep things balanced and know exactly when you have ended sections of code. You will see the `END` statement used often to demarcate sections of the code such as loops, functions, and so on.
 
-#### Lines 6-17:
+__Lines 6-17:__
 
 The next section of the program is where we define the variables to be used in the program. In `Fortran` programs, you will almost always see these defined at the very top of the program, unlike in other languages where you can define them as you go along. `Fortran` likes to know at the start which variables it is dealing with. We will cover what the different types are in the next section. Note also how we have added comments to explain in more human-readable format what each variable does.
 
@@ -91,12 +91,12 @@ The remaining bit of the program is the actual bit where the area of the triangl
 
 This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to _compile_ it, which is covered in a later section of the tutorial.
  
-## Basics
+# 4. Basics
 {: #basics}
 
 `Fortran` has a set of rules used to determine whether a program is valid and can be understood by the computer, a bit like a human language. The combination of keywords and characters that are used to form Fortran programs are usually referred to as the language's _syntax_. Using the above triangle program as a starting point, we will cover the very basic syntax of the Fortran language. 
 
-### Program structure
+## Program structure
 
 `Fortran` programs begin with the `PROGRAM` keyword, followed, optionally, by a name for the program. The end of the program should also be marked by `END PROGRAM`.
 
@@ -110,7 +110,7 @@ END PROGRAM MyProgram
 
 Within the `PROGRAM` statements, your `Fortran` program can define functions, declare variables to be used in these functions, just like in other programming languages such as `R` or `Python`. Within these statements, this is where the calculations on data are performed in the program. 
 
-### Defining variables
+## Defining variables
 
 Variables represent data or values used in your program. A variable can represent a single value, like the expression `x = 3`, or a variable can refer to a larger structure for holding data, such as a table or a list of values. Variables can also be used to store non-numeric values such as text, letters, and words, for example. 
 
@@ -151,7 +151,7 @@ Variable names may be made up of standard latin-alphabet characters, underscores
 
 By convention, you will often see Fortran keywords written in `UPPERCASE`, though this is not a requirement. For example, `REAL`, `INTEGER`, `IF`, `ELSE`, `PROGRAM`, and so on. You can chose to use either uppercase or lowercase, but it is good practice to be consistent in their use, for readability.
 
-### Displaying messages and values
+## Displaying messages and values
 
 When you are running a `Fortran` program, the easiest way to see the results of the calculation or other outputs are to print them to the terminal, command line, or console. (These are all terms used interchangeably to refer to the same thing - the window where commands can be entered and text is printed out to screen.)
 
@@ -159,7 +159,7 @@ You also need a way of inputting data to the program. This can also be done (for
 
 `Fortran` has two useful functions that will get you started in reading-in and displaying data and messages to the screen: the `READ` function and the `WRITE` function.
 
-#### `READ`
+### `READ` & `WRITE`
 
 The `READ` function tells the fortran program to record the values you enter via the keyboard and store them in variables that you define in your program. In our example triangle program we use `READ` like this:
 
@@ -179,11 +179,11 @@ WRITE(*,*) a, b, c
 
 Would print out the values assigned to a, b, and c.
 
-### Mathematical operations
+## Mathematical operations
 
 Fortran is designed primarily for numerical calculations, and it has many built-in functions for mathematical operations. In the example triangle-area program, we use the basic functions: `+, -, *, /` for addition, subtraction, multiplication, and division. There is one other that we use in the above example, `SQRT()`, which finds the square root of a number. 
 
-### Logical expressions
+## Logical expressions
 
 Logical expressions are statements like "If A and B are `TRUE`, then do C", or "If value X is less than 10, then divide X by Y". They are ways of controlling the behaviour of a program based on comparisons or truth-values (`LOGICAL` types in `Fortran`.) 
 
@@ -204,7 +204,7 @@ The `.AND.` operator checks to see if both expressions either side are true or f
 
 The outcome of these two lines (`TRUE`/`FALSE`) will depend on the inputs you give the program when it runs, which we will come to soon.
 
-### Making decisions in a program
+## Making decisions in a program
 
 All but the most trivial programs will have to make decisions depending on the type of data input or the results of a calculation. We can refer to this as the program flow or program logic. It is a bit like the logical decisions we make in everyday life:
 
@@ -225,19 +225,19 @@ Let's look at the final section of the triangle-area program:
    END IF
 ```
 
-#### The IF and THEN statements
+### The `IF` and `THEN` statements
 
 Fortran uses these two keywords to make logical decisions within a program. To do something based on a condition being met, the `IF [CONDITION(S)...] THEN` construct is used. The condition part that follows the IF statement may be a single LOGICAL variable, or a logical expression itself (such as in our example). The `THEN` keyword marks the start of the code that will be executed if the condition is true. 
 
-#### The ELSE statement
+### The `ELSE` statement
 
 The `ELSE` statement is optional, but useful if you have an action you want to perform if the condition is false. If this optional section is not provided, the program will simply move on to the next section of code without taking further action. We use an `ELSE` statement here to print an error message if our inputs indicate we are not dealing with a triangle. 
 
-#### Ending the IF block
+### Ending the `IF` block
 
 You must remember to mark the end of the `IF...THEN...ELSE` block with an `END IF` statement.
 
-#### Wrapping it up
+### Wrapping it up
 
 That is the end of our triangle area program. There is a final `END PROGRAM` statement to mark the end of the program, telling Fortran that we have done. 
 
@@ -245,7 +245,7 @@ But how do we execute (run) the program? We will cover this in the next section.
 
 
 
-## Compilation
+# 5. Compilation
 {: #compiling}
 
 `Fortran` programs have an extra step required before you can run or 'execute' them. Once the program has been written and saved as a plain-text file, we must convert it into a format that the computer hardware can understand and process. This stage is called _compilation_ - we are compiling our program into a format suitable for the computer we wish to run it on. 
@@ -256,13 +256,13 @@ If you have come from a background in using langauges such as `R`, `Python`, or 
 
 We are going to learn in this section how to compile our sample program.
 
-### Example: Compiling the triangle program
+## Example: Compiling the triangle program
 
 To compile our program, make sure you have saved the sample triangle-area program from earlier in the tutorial. Save it as `triangle.f90`.
 
 You will need to be running Linux for this particular example. (It is possible to compile Fortran on Windows and MacOS as well, but the command names may be slightly different). If you are on Windows but have access to a Linux server via your institution it is advised to use that for the next part.
 
-##### 1. Open a command-line/terminal session. In the prompt, check that you have the `gfortran` compiler program available by typing `gfortran --version`. Hopefully this will return the version number if it is installed. (If not, you will get an error message)
+1. Open a command-line/terminal session. In the prompt, check that you have the `gfortran` compiler program available by typing `gfortran --version`. Hopefully this will return the version number if it is installed. (If not, you will get an error message)
 
 ```
 [dvalters@baltic01 Programming-tutorials]$ gfortran --version
@@ -275,7 +275,7 @@ under the terms of the GNU General Public License.
 For more information about these matters, see the file named COPYING
 ```
 
-##### 2. In the same directory as you saved the .f90 file, run the following command
+2. In the same directory as you saved the .f90 file, run the following command
 
 ```
 gfortran triangle.f90 -o triangle
@@ -285,14 +285,14 @@ This tells gfortran (a fortran compiler, commonly found on Linux operating sytem
 
 When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` progrom executable.
 
-##### 3. Run the program
+3. Run the program
 
 To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Herron's Formula. 
 
 Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above.
 
-## Exercises
-{: #tasks}
+# 6. Exercises
+{: #structure}
 
 Now we know how to write, compile, and run a simple Fortran program, lets experiment with modifying and writing our own code.
 
@@ -301,7 +301,7 @@ Everytime you modify the code, you will need to re-run the compilation step abov
 1. Add a message to the screen when the program runs to remind users how to enter the data. (i.e. enter 3 values and press the return key.)  
 2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagoreas Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
 
-#### Independent coding
+## Independent coding
 
 3. Write a program that converts the number of seconds (entered by the user) into hour, minutes, and seconds, and then prints these out to screen.
 4. Write a program that will read in an integer value and check if it is less than, equal to, or greater than zero.
@@ -309,7 +309,7 @@ Everytime you modify the code, you will need to re-run the compilation step abov
 6. Write a program that will calculate the the third side of a triangle, given the two other sides. You could use the cosine rule: `C^2 = A^2 + B^2 - 2*A*B*cos(theta)`. Hint: The fortran function for cosine is COS(theta), where theta is the value stored as a variable.
 
 
-### Tutorial outcomes:
+# Tutorial outcomes:
 
 1. Understand what the Fortran programming language is and a little bit about its history.
 2. Understand the basic structure of a Fortran program

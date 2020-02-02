@@ -7,7 +7,7 @@ author: Gergana and Maxwell Farrell
 survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn about generalised models in `Stan`](#model)
 2. [Use the `rstanarm` package to run a `Poisson` model](#rstanarm)
@@ -19,7 +19,7 @@ survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 
 __All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-Stan-2). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-## Introduction
+# 1. Introduction
 {: #model}
 
 __Finding answers to our research questions often requires statistical models. Designing models, choosing what variables to include, which data distribution to use are all worth thinking about carefully. In this tutorial, we will continue exploring different model structures in search of the best way to find the answers to our research questions. We will build on the Coding Club tutorials on [how to design a model]({{ site.baseurl }}/tutorials/model-design/index.html), and on [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
@@ -28,11 +28,13 @@ __Statistical models can be fit in a variety of packages in `R` or other statist
 
 
 In this tutorial, we will learn about two packages, `rstanarm` and `brms` which allow us to fit `Stan` models using syntax similar to packages like `lme4`, `nlme` and `MCMCglmm`. We will use these packages to fit models that test how species richness has changed over time near [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).
+
+# 2. [Use the `rstanarm` package to run a `Poisson` model
 {: #rstanarm}
 
-### Research question: How has plant species richness changed over time at Toolik Lake?
+__Research question: How has plant species richness changed over time at Toolik Lake?__
 
-### Hypothesis: Plant species richness has increased over time at Toolik Lake.
+__Hypothesis: Plant species richness has increased over time at Toolik Lake.__
 
 We can start with loading the libraries we will need and the data we will use. If you don't have some of these packages installed, you can install them using `install.packages("package-name")`.
 
@@ -115,7 +117,7 @@ Just so that you know what the syntax looks like and if you have time to wait fo
 
 __For teaching purposes only, we will proceed with a model without random effects - that way you can see the outputs of the models as you are going through the tutorial. Note that we do not advise doing this when you are analysing your data for real - of course a model that takes into account the hierarchical structure of the data would be better.__
 
-### Advantages and disadvantages of using `Stan`
+## Advantages and disadvantages of using `Stan`
 
 `Stan` models can take a long time to compile. One of their key advantage is that you have a lot of freedom to specify the priors (your prior knowledge and expectations of how a given parameter will behave) for your model parameters and you can really account for the complex structure your data might have. There is a time cost to this, as we've seen above. One way to approach this is to first make sure your code works on a small chunk of your data, and only afterwards, you can start running the code on the full data (and do other things while you wait for the models to compile).
 
@@ -138,7 +140,7 @@ stan_glm1 <- stan_glm(Richness ~ I(Year-2007),
 If you find this code still takes a long time, you can change the `chains` argument to only two chains, but note that it's better to run models with more than two chains - then you have more room for comparison. If one or more of the four chains is behaving really differently from the rest, then the model might not have converged. What is model convergence? In brief, if a model hasn't converged, you can't trust the estimates it gives you. You can find more details in [the model design tutorial here]({{ site.baseurl }}/tutorials/model-design/index.html).
 
 
-## Assessing model convergence
+# 3. Assessing model convergence
 {: #assess}
 
 __One way to assess model convergence is by visually examining the trace plots. They should be fuzzy with no big gaps, breaks or gigantic spikes.__
@@ -192,7 +194,7 @@ Have a go at exploring the various options - you'll probably spot some of the pl
 
 ![ShinyStan example output]({{ site.baseurl }}/assets/img/tutorials/stan-2/shinystan2.png)
 
-### Back to our research question
+Back to our research question:
 
 __How has species richness changed over those four years near Toolik lake?__
 
@@ -214,7 +216,7 @@ __Looks like species richness is decreasing, but also, four years of data is not
 ![Stan ggplot2 prediction output]({{ site.baseurl }}/assets/img/tutorials/stan-2/stan_pred.png)
 
 
-## Priors
+# 4. Priors
 {: #priors}
 
 Packages like `rstanarm` and `brms` allow us to fit `Stan` models using simple and quick code syntax. One danger though is that along the way, we might forget to think about our priors! In the code above, we have not specified any priors. In that case, the model uses the default `rstanarm` priors.
@@ -241,8 +243,8 @@ The default priors are `normal(0,10)` for the intercept and `normal(0, 2.5)` for
 If you would like to change the priors, you can add code, for example `prior = normal(0, 1), prior_intercept = normal(0, 5)` inside the `stan_glm()` function.
 
 
-## Extract `Stan` code from an `rstanarm` model
-{: #ode}
+# 5. Extract `Stan` code from an `rstanarm` model
+{: #code}
 
 When using packages like `rstanarm` and `brms` which you will see in a bit, it's a good idea to actually look at the `Stan` code behind the model.
 
@@ -256,7 +258,7 @@ cat(stancode)
 You'll see a lot of code appear in the console - this is what `rstanarm` has "written" for you. Amidst the many letters, you can see that the overall structure is like the `Stan` models we wrote in [our intro `Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html) - first, we state the parameters for the data, the data gets transformed (scaled and centered), then we define our model and finally, we calculate the predictions in the generated quantities block.
 
 
-## Explore a model using a negative binomial distribution
+# 6. Explore a model using a negative binomial distribution
 {: #negbin}
 
 Up until now, we've been using a `Poisson` distribution for our models, which is suitable for when we are working with discrete count data. The [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) assumes that the mean and variance are the same. In ecology and probably other disciplines too, the data might have variance greater than the mean. In this case, we call the data [overdispered](https://en.wikipedia.org/wiki/Overdispersion). The negative binomial distribution adjusts the variance independently from the mean and as such is more flexible than Poisson. The Poisson distribution is actually a type of a negative binomial distribution.
@@ -281,7 +283,7 @@ pp_check(stan_glm2, plotfun = "dens_overlay")
 You can see that the model outputs are very similar - this is to be expected, because the Poisson distribution is actually a type of a negative binomial distribution. Once again, the model is underpredicting the frequency of low species richness values.
 
 
-## Run a `Stan` model using the `brms` package
+# 7. Run a `Stan` model using the `brms` package
 {: #brms}
 
 `brms` is another package that serves a similar purpose to `rstanarm` - it allows you to run `Stan` models using simple code syntax. `brms` writes all Stan models from scratch and has to compile them, while `rstanarm` comes with precompiled code (so when we were running our `rstanarm` models earlier, you didn't see any messages about `C++` compiling, since that was already done in advance).
@@ -305,11 +307,11 @@ stancode(stan_glm_brms)
 
 ```
 
-## Conclusion
+# Conclusion
 
 In this tutorial we learned to fit `Stan` models in `R` using the `rstanarm` and `brms` packages which write the `Stan` code for us, so they can be seen as a gentler introduction to `Stan`. We looked at two different data distributions that are suitable for left-skewed discrete count data - `Poisson` and `negative binomial`. If you are keen to get back into `Stan` coding, we've showed how to extract the `Stan` code behind the `rstanarm` and `brms` models, so you can take that code and develop it further. You can check out our other [`Stan` tutorial]({{ site.baseurl }}/tutorials/stan-intro/index.html). to see how to write and run `Stan` code using the `rstan` package.
 
-## Further resources
+# Further resources
 
 * [rstanarm vignette](https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf)
 * [brms vignette](https://cran.r-project.org/web/packages/brms/brms.pdf)

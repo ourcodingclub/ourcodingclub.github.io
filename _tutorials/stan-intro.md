@@ -7,21 +7,21 @@ author: Max Farrell & Isla Myers-Smith
 survey_link: https://www.surveymonkey.co.uk/r/P39ZP2G
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn about `Stan`](#intro)
 2. [Prepare a dataset for modelling](#data)
 3. [Write a programme in `Stan`](#stan)
 4. [Run a `Stan` programme](#run)
 5. [Specify priors in `Stan`](#priors)
-6. [Assess convergence diagnostics](#priors)
+6. [Assess convergence diagnostics](#convergence)
 
 All the files you need to complete this tutorial can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-Stan-intro). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
 __This tutorial is based on work by [Max Farrell](http://farrell.research.mcgill.ca) - you can find Max's original tutorial [here](https://github.com/maxfarrell/qcbs_stan_workshop/blob/master/QCBS_stan.Rmd) which includes an explanation about how `Stan` works using simulated data, as well as information about model verification and comparison.__
 
 
-### 1. Learn about `Stan`
+# 1. Learn about `Stan`
 {: #intro}
 
 __Bayesian modelling like any statistical modelling can require work to design the appropriate model for your research question and then to develop that model so that it meets the assumptions of your data and runs. You can check out the Coding Club tutorial on [{{ site.baseurl }}/tutorials/model-design/index.html](how to design a model), and [Bayesian Modelling in `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html) for key background information on model design and Bayesian statistics.__
@@ -45,7 +45,7 @@ Once you have a sense of your data and what question you want to answer with you
 
 It's also good practice to simulate data to make sure your model is doing what you think it's doing, as a further way to test your model!
 
-### 2. Data
+# 2. Data
 {: #data}
 
 __First, let's find a dataset where we can fit a simple linear model. [The National Snow and Ice Data Center](https://nsidc.org/) provides loads of public data that you can download and explore. One of the most prominent climate change impacts on planet earth is the decline in annual sea ice extent in the Northern Hemisphere. Let's explore how sea ice extent is changing over time using a linear model in Stan.__
@@ -72,7 +72,7 @@ colnames(seaice) <- c("year", "extent_north", "extent_south")
 
 __What research question can we ask with these data? How about the following:__
 
-### _Research Question:_ Is sea ice extent declining in the Northern Hemisphere over time?
+_Research Question:_ Is sea ice extent declining in the Northern Hemisphere over time?
 
 To explore the answer to that question, first we can make a figure.
 
@@ -108,7 +108,7 @@ In `Stan` you need to specify the equation that you are trying to model, so thin
 
 We have the answer to our question perhaps, but the point of this tutorial is to explore using the programming language `Stan`, so now let's try writing the same model in Stan.
 
-### Preparing the data
+## Preparing the data
 
 Let's rename the variables and index the years from 1 to 39. One critical thing about Bayesian models is that you have to describe the variation in your data with informative distributions. Thus, you want to make sure that your data do conform to those distributions and that they will work with your model. In this case, we really want to know is sea ice changing from the start of our dataset to the end of our dataset, not specifically the years 1979 to 2017 which are really far from the year 0. We don't need our model to estimate what sea ice was like in the year 500, or 600, just over the duration of our dataset. So we set up our year data to index from 1 to 30 years.
 
@@ -139,7 +139,7 @@ __Now let's turn that into a dataframe for inputting into a `Stan` model. Data p
 stan_data <- list(N = N, x = x, y = y)
 ```
 
-#### Libraries
+## Libraries
 
 Please make sure the following libraries are installed (these are the libraries for this and the next `Stan` tutorial). `rstan` is the most important, and requires a little extra if you dont have a C++ compiler.
 
@@ -151,7 +151,7 @@ library(gdata)
 library(bayesplot)
 ```
 
-### 3. Our first `Stan` program
+# 3. Our first `Stan` program
 {: #stan}
 
 __We're going to start by writing a linear model in the language `Stan`. This can be written in your R script, or saved seprately as a `.stan` file and called into `R`.__
@@ -159,9 +159,7 @@ __We're going to start by writing a linear model in the language `Stan`. This ca
 __A `Stan` program has three required "blocks":__
 
 1. **"data"** block: where you declare the data types, their dimensions, any restrictions (i.e. upper = or lower = , which act as checks for `Stan`), and their names. Any names you give to your `Stan` program will also be the names used in other blocks.
-
 2. **"parameters"** block: This is where you indicate the parameters you want to model, their dimensions, restrictions, and name. For a linear regression, we will want to model the intercept, any slopes, and the standard deviation of the errors around the regression line.
-
 3. **"model"** block: This is where you include any sampling statements, including the "likelihood" (model) you are using. The model block is where you indicate any prior distributions you want to include for your parameters. If no prior is defined, `Stan` uses default priors with the specifications `uniform(-infinity, +infinity)`. You can restrict priors using upper or lower when declaring the parameters (i.e. `lower = 0`> to make sure a parameter is positive). You can find more information about prior specification [here](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations).
 
 __Sampling is indicated by the `~` symbol, and `Stan` already includes many common distributions as vectorized functions. You can check out [the manual](http://mc-stan.org/users/documentation/) for a comprehensive list and more information on the optional blocks you could include in your `Stan` model.__
@@ -215,7 +213,7 @@ stan_model1 <- "stan_model1.stan"
 __Here we are implicitly using `uniform(-infinity, +infinity)` priors for our parameters. These are also known as "flat" priors. Weakly informative priors (e.g. `normal(0, 10)` are more restricted than flat priors. You can find more information about prior specification [here](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations).__
 
 
-### 4. Running our `Stan` model
+# 4. Running our `Stan` model
 {: #run}
 
 __Stan programs are complied to `C++` before being used. This means that the C++ code needs to be run before R can use the model. For this you must have a `C++` compiler installed (see [this wiki if you don't have one already](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)). You can use your model many times per session once you compile it, but you must re-compile when you start a new `R` session. There are many `C++` compilers and they are often different across systems. If your model spits out a bunch of errors (unintelligible junk), don't worry. As long as your model can be used with the `stan()` function, it compiled correctly. If we want to use a previously written `.stan` file, we use the `file` argument in the `stan_model()` function.__
@@ -228,7 +226,7 @@ We fit our model by using the `stan()` function, and providing it with the model
 fit <- stan(file = stan_model1, data = stan_data, warmup = 500, iter = 1000, chains = 4, cores = 2, thin = 1)
 ```
 
-### Accessing the contents of a `stanfit` object
+## Accessing the contents of a `stanfit` object
 
 __Results from `stan()` are saved as a `stanfit` object (S4 class). You can find more details in the `Stan` vignette: [https://cran.r-project.org/web/packages/rstan/vignettes/stanfit-objects.html].__
 
@@ -289,7 +287,7 @@ abline(mean(posterior$alpha), mean(posterior$beta), col = 6, lw = 2)
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/sea_ice5.png{% endcapture %}
 {% include figure.html url=link caption="Figure 4. Change in sea ice extent in the Northern Hemisphere over time (`Stan` linear model fits)." %}
 
-### 5. Changing our priors
+# 5. Changing our priors
 {: #priors}
 
 __Let's try again, but now with more informative priors for the relationship between sea ice and time. We're going to use normal priors with small standard deviations. If we were to use normal priors with very large standard deviations (say 1000, or 10,000), they would act very similarly to uniform priors.__
@@ -343,7 +341,7 @@ abline(mean(posterior$alpha), mean(posterior$beta), col = 36, lw = 3)
 __So what happened to the posterior predictions (your modelled relationship)? Does the model fit the data better or not? Why did the model fit change? What did we actually change about our model by making very narrow prior distributions? Try changing the priors to some different numbers yourself and see what happens! This is a common issue in Bayesian modelling, if your prior distributions are very narrow and yet don't fit your understanding of the system or the distribution of your data, you could run models that do not meaningfully explain variation in your data. However, that isn't to say that you shouldn't choose somewhat informative priors, you do want to use previous analyses and understanding of your study system inform your model priors and design. You just need to think carefully about each modelling decision you make!__
 
 
-### 6. Convergence Diagnostics
+# 6. Convergence Diagnostics
 {: #convergence}
 
 __Before we go on, we should check again the `Rhat` values, the effective sample size (`n_eff`), and the traceplots of our model parameters to make sure the model has converged and is reliable. To find out more about what effective sample sizes and trace plots, you can check out the tutorial on [Bayesian statistics using `MCMCglmm`]({{ site.baseurl }}/tutorials/mcmcglmm/index.html).__
@@ -366,7 +364,7 @@ plot(posterior$sigma, type = "l")
 
 For simpler models, convergence is usually not a problem unless you have a bug in your code, or run your sampler for too few iterations.
 
-#### Poor convergence
+## Poor convergence
 
 Try running a model for only 50 iterations and check the traceplots.
 
@@ -387,7 +385,7 @@ plot(posterior_bad$sigma, type = "l")
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/bad_traces2.png{% endcapture %}
 {% include figure.html url=link caption="Figure 7. Bad trace plot for alpha, the intercept." %}
 
-#### Parameter summaries
+## Parameter summaries
 
 We can also get summaries of the parameters through the posterior directly. Let's also plot the non-Bayesian linear model values to make sure our model is doing what we think it is...
 
@@ -424,7 +422,7 @@ sum(posterior$beta>0.2)/length(posterior$beta)
 ```
 
 
-#### Diagnostic plots in `rstan`
+## Diagnostic plots in `rstan`
 
 While we can work with the posterior directly, `rstan` has a lot of useful functions built-in.
 
@@ -458,7 +456,7 @@ plot(fit, show_density = FALSE, ci_level = 0.5, outer_level = 0.95, fill_color =
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/stan_caterpillar.png{% endcapture %}
 {% include figure.html url=link caption="Figure 11. Parameter estimates from the `Stan` model." %}
 
-#### Posterior Predictive Checks
+## Posterior Predictive Checks
 
 For prediction and as another form of model diagnostic, `Stan` can use random number generators to generate predicted values for each data point, at each iteration. This way we can generate predictions that also represent the uncertainties in our model and our data generation process. We generate these using the Generated Quantities block. This block can be used to get any other information we want about the posterior, or make predictions for new data.
 
@@ -502,7 +500,7 @@ Note that vectorization is not supported in the GQ (generated quantities) block,
 fit3 <- stan(stan_model2_GQ, data = stan_data, iter = 1000, chains = 4, cores = 2, thin = 1)
 ```
 
-#### Extracting the `y_rep` values from posterior.
+## Extracting the `y_rep` values from posterior.
 
 There are many options for dealing with `y_rep` values.
 
@@ -546,7 +544,7 @@ ppc_scatter_avg(y = y, yrep = y_rep)
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/stan-intro/bayes2.png{% endcapture %}
 {% include figure.html url=link caption="Figure 14. Mean posterior prediction per datapoint vs the observed value for each datapoint." %}
 
-##### `bayesplot` options
+## `bayesplot` options
 
 Here is a list of currently available plots (`bayesplot 1.2`):
 
@@ -574,31 +572,27 @@ You can set color schemes with:
 color_scheme_set("blue")
 ```
 
-
-### Back to our research question
-
-
 So now you have learned how to run a linear model in `Stan` and to check the model convergence. But what is the answer to our research question?
 
-#### _Research Question:_ Is sea ice extent declining in the Northern Hemisphere over time?
+_Research Question:_ Is sea ice extent declining in the Northern Hemisphere over time?
 
 What do your `Stan` model results indicate?
 
 How would you write up these results? What is the key information to report from a Stan model? Effect sizes, credible intervals, sample sizes, what else?  Check out some Stan models in the ecological literature to see how those Bayesian models are reported.
 
-#### Now as an added challenge, can you go back and test a second research question:
+Now as an added challenge, can you go back and test a second research question:
 
-#### _Research Question:_ Is sea ice extent declining in the Southern Hemisphere over time?
+_Research Question:_ Is sea ice extent declining in the Southern Hemisphere over time?
 
 Is the same pattern happening in the Antarctic as in the Arctic?  Fit a `Stan` model to find out!  
 
 In the next Stan tutorial, we will build on the concept of a simple linear model in Stan to learn about more complex modelling structures including different distributions and random effects. And in a future tutorial, we will introduce the concept of a mixture model where two different distributions are modelled at the same time - a great way to deal with zero inflation in your proportion or count data!
 
-### Additional ways to run `Stan` models in `R`
+## Additional ways to run `Stan` models in `R`
 
 __Check out our [second `Stan` tutorial]({{ site.baseurl }}/tutorials/stan-2/index.html) to learn how to fit `Stan` models using model syntax similar to the style of other common modelling packages like `lme4` and `MCMCglmm`, as well as how to fit generalised linear models using `Poisson` and negative binomial distributions.__
 
-### `Stan` References
+## `Stan` References
 
 __Stan is a run by a small, but dedicated group of developers. If you are new to Stan, you can join the mailing list. It's a great resource for understanding and diagnosing problems with Stan, and by posting problems you encounter you are helping yourself, and giving back to the community.__
 

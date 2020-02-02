@@ -18,7 +18,7 @@ survey_link: https://www.surveymonkey.co.uk/r/B723DLF
 
 To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro do Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
 
-### Get acquainted with data clustering
+# 1. Get acquainted with data clustering
 {: #Introduction}
 
 __Hierarchical data clustering allows you to explore your data and look for discontinuities (e.g. gaps in your data), gradients and meaningful ecological units (e.g. groups or subgroups of species). It is a great way to start looking for patterns in ecological data (e.g. abundance, frequency, occurrence), and is one of the most used analytical methods in ecology. Your research questions are the limit. Hierarchical clustering offers insight into how your biodiversity data are organized and can help you to disentangle different patterns and the scales at which they can be observed. For example, you could use data clustering to understand algae distribution along a ocean depth gradient, or look at the distribution of bats along an elevation gradient, or study how fish communities are distributed along water basins and see if rapid streams and waterfalls are limiting their dispersal, or even determine which are the main biogeographic realms in the world.__
@@ -29,19 +29,20 @@ You can then build your next set of research questions based on the answers you 
 
 __To answer these questions, you can construct a dataset which consists of tree species occurrence records for a multitude of sites in the Neotropics and perform a series of hierarchical clustering analyses.__
 
-### Hierarchical agglomerative data clustering
+## Hierarchical agglomerative data clustering
 
 Hierarchical agglomerative data clustering is one part of the broader category of "data clustering".
 
-#### Data clustering methods:
+Data clustering methods:
 
 - __Sequential and simultaneous__ - refers to how the clustering is conducted. If it's through an algorithm that is repeated till all data have been clustered, it's sequential. If the algorithm clusters all your data together at the same time, it's simultaneous.
 - __Agglomerative and divisive__ - refers to how your data are being grouped. Agglomerative is a bottom up approach, meaning that the clustering will begin by putting similar observations together, gradually forming subgroups till all your observations are included. Divisive is the exact opposite, your set of observations will be considered as whole group and the algorithm will divide your data into progressively smaller chunks till each observation forms a sub-group on its own.
 - __Monothetic and polythetic__ -  refers to the amount of descriptors being employed to cluster your data into subgroups. If it uses just one descriptor on every step, it's monothetic; if it uses more than one, it's polythetic.
 - __Hierarchical and non-hierarchical__ - hierarchical means that your groups will be organized in ranks according to how similar they are. You'll have sub-groups forming larger groups till all your observations are included in your cluster. Non-hierarchical clustering methods do not include that option.
+
 __In sum, hierarchical agglomerative clustering methods group your observations in increasingly large subgroups till all observations are included. The subgroups formed by the clustering are ordered in ranks according to their level of similarity.__
 
-### Create a new R script file and start working your way through the tutorial
+## Create a new R script file and start working your way through the tutorial
 
 We find having the tutorial on half of your screen, and RStudio on the other half, useful for following along and seeing what the results of each code chunk are. For today's session, we'll be working with four different packages. Please install them and load their libraries:
 
@@ -93,7 +94,7 @@ dim(sppxsites)
 
 Please note that you only have two columns in here - `SppID` and `AreaID`.The number of rows is the number of occurrence records in our dataset - 42015.
 
-### Making a presence/absence matrix through a loop
+## Making a presence/absence matrix through a loop
 
 How does the chosen clustering method know which observations are more similar to one another than others? Simple. You will provide it with a pairwise distance matrix. This is a quadratic (number of rows is equal to the number of columns) matrix containing the distance values taken for each pair of sites in the dataset. There are different ways of calculating these pairwise distances and the most suitable method for you will largely depend on the kind of data you are working with.
 
@@ -134,8 +135,7 @@ dim(spp_commat_trim)
 # We removed 275 species from our dataset. We'll check if this makes much of a difference later on.
 ```
 
-## The Clustering Begins
-### Distance Metrics
+# 2. Distance Metrics
 {: #Distance}
 
 To learn which distance measures are available to us, check out:
@@ -165,24 +165,22 @@ euclidian_dist <- vegdist(spp_commat_trim, method="euclidean")
 
 Distance metrics are a very broad topic that deserves a tutorial on it's own and we only covered a tiny portion of it. You should definitely explore this topic more when clustering your own data. There is one more thing we need to know before we start clustering - linkage-methods.
 
-### Linkage Methods
+# 3. Linkage Methods
 {: #Linkage}
 
 The linkage method is the criterion that will determine how your observations will be grouped together. Here, we'll discuss the most commonly used linkage methods in ecology:
 
-- __[Single-linkage method (single dendogram)](#single-den)__
-- __[Single-linkage method (concensus dendogram)](#concensus-den)__
-- __[Complete-linkage method](#complete-link)__
-- __[Clustering using Ward's minimum variance](#ward)__
-- __[Average linkage](#average-link)__
+- [Single-linkage method (single dendogram)](#single-den)
+- [Single-linkage method (concensus dendogram)](#concensus-den)
+- [Complete-linkage method](#complete-link)
+- [Clustering using Ward's minimum variance](#ward)
+- [Average linkage](#average-link)
 
 Run this code to check out the linkage methods that are available to us:
 
 ```r
 help(hclust)
 ```
-
-## Making our first clusters and learning more about linkage methods.
 
 The function we'll be using today `recluster.cons` uses the Simpson's distance metric by default and that is what we will be using in this tutorial. The `recluster.dist` function makes the pairwise distance table for you, all you have to do is select the distance metric you want.
 
@@ -281,7 +279,7 @@ plot(bol_upgma_trim_cons, direction = "downwards", cex=0.5)
 
 Removing "uniques" in this particular analysis didn't change our dendogram. This is a good thing: it means that we can keep work with the most complete form of the dataset without having to worry about bias. However, depending on the analysis you'll do afterwards, it is advisable to remove these species anyway, just to be on the safe side.
 
-# Bootstrap and support values for subgroups
+## Bootstrap and support values for subgroups
 
 __Bootstrapping is one of the main ways of calculating support values for the subgroups we have got in our dendogram. It is usually used to test significance through randomisation procedures. However, since hierarchical clustering analysis do not work with significance, here bootstrapping assesses whether you'll get the same subgroups in a dendogram even if you resample the species occurring in each site (with replacement - meaning you can repeat species and even not include some species at all. Bootstrap values range from 0 to 100 and express the proportion of times a certain subgroup was recovered during the resampling. The bigger the number, the stronger the subgroup.__
 
@@ -296,7 +294,7 @@ recluster.plot(bol_upgma_cons, bol_upgma_trim_boot, direction = "downwards")
 
 There are some high values for a few of the groups in here, but if you set the `boot` value to a higher number (100 - 1000), the support values you found will go down.
 
-# Creating a grouping variable
+# 4. Creating a grouping variable
 {: #Grouping}
 
 It would be interesting to visualise the spatial distribution of the groups you found in your cluster. To do that, you need to create a vector linking the plant observations to the cluster they belong to. We have to make R acknowledge the existence of polytomies in our dendograms. Polytomies are the nodes that lead to more than two nodes/tips and/or groups (pretty much what we got when using the simple linkage method, remember?).
@@ -333,7 +331,7 @@ When doing this, it is standard procedure to cut a dendogram into subgroups at t
 
 __We will cut our dendogram `bol_singlelink_cons` at one of the deepest levels possible (towards the base of the dendogram). That will give us four subgroups to work with. By looking at the phytogeographic domain, it seems that we've got a group which is mainly Amazonic (group1), a small group which is partially amazonic and savannic (group2), a group which is composed mainly of savannas (group3) and a group which seems to be Andean (group 4).__
 
-## Plotting our cluster groups on a map
+# 5. Plotting our cluster groups on a map
 {: #Mapping}
 
 On the first line (the one with the `findMRCA` function), you'll have to cite the names of the tips at the "beginning" and "end" of your subgroups. You'll notice that I've written some site codes in here. These are the names I've got on my cluster, but this will probably change from one computer to the other, so you'll need to open the `bol_singlelink_cons` object on figtree and look for the necessary tip names yourself. My guess is that most of you will get the same tips I have placed here, but don't worry if your dendogram looks different from the one in here. Simply change the names on the code and you'll be fine.
@@ -456,7 +454,7 @@ When I look at the map we've made, I can't help but to think that we should look
 
 __With the help of the code above, create a vector containing these two groups (lowland and subtropical vegetation), map the sites according to these new categories, and check if elevation and temperature could be behind the observed patterns.__ If you get stuck, you can find the code to complete the challenge [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering).
 
-## Summary
+# Summary
 
 In this tutorial we explored hierarchical agglomerative clustering methods, distance metrics, and linkage methods. We also made a vector of cluster (subgroups) memberships and used that to assess how our sites are positioned in geographic space. This is an awesome start and you should be proud of it! I hope you have enjoyed it as much as I did.
 

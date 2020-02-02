@@ -8,14 +8,14 @@ survey_link: https://www.surveymonkey.co.uk/r/77YWPQL
 ---
 
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [What is about machine learning](#intro)
 2. [Train your algorithm](#train)
 3. [Assess your model](#test)
 
 
-## What is Machine Learning?
+# 1. What is Machine Learning?
 {: #intro}
 
 __Today machine learning is everywhere. From the content delivered to you on your Facebook newsfeed to the spam emails being filtered out of your emails, we live in an increasingly data driven society.__
@@ -26,7 +26,7 @@ __"A computer program is said to learn from experience E with respect to some cl
 
 __In simple terms, machine Learning is the science of developing and making use of specialised statistical learning algorithms that produce a predictive model based on information gathered from input data.__ This is closely related to computational statistics and therefore is far from any wizardry, rather it is based on established methodologies that also come with their flaws. It is therefore important to understand the implications of using off-the-shelf machine learning algorithms when building predictive models to aid knowledge discovery and decision making.
 
-### The k-nearest neighbours algorithm (`K-nn`)
+## The k-nearest neighbours algorithm (`K-nn`)
 
 __In this tutorial you will be introduced to a simple and well-established supervised classification algorithm, which we will implement in `R`.__
 
@@ -40,7 +40,7 @@ __In this tutorial you will be introduced to a simple and well-established super
 
 `K-nn` is an example of a supervised learning method, which means we need to first feed it data so it is able to make a classification based on that data (this is called the training phase). Upon training the algorithm on the data we provided, we can test our model on an unseen dataset (where we know what class each observation belongs to), and can then see how successful our model is at predicting the existing classes. This process of first building or selecting a classifier, training it and subsequently testing it is very widespread across the machine learning field and is what you will be doing today. 
 
-### Under the hood
+## Under the hood
 
 `K-nn` is a non-parametric technique that stores all available cases and classifies new cases based on a similiarty measure (distance function). Therefore when classifying an unseen dataset using a trained `K-nn` algorithm, it looks through the training data and finds the **k** training examples that are closest to the new example. It then assigns a class label to the new example based on a majority vote between those **k** training examples. This means if **k** is equal to 1, the class label will be assigned based on the nearest neighbour. However if K is equal to 3, the algorithm will select the three closest data points to each case and classify it based on a majority vote based on the classes that those three adjacent points hold. 
 
@@ -72,7 +72,7 @@ devtools::install_github('cttobin/ggthemr')
 library(ggthemr)
 ```
 
-### Loading our data
+## Loading our data
 
 For this tutorial we will be using the built-in Iris Machine Learning dataset. In order to start learning something from our data, it is first important that we familiarise ourselves with it first.
 
@@ -86,7 +86,7 @@ str(iris.data)
 
 From this we can see that this dataset contains 150 observations describing plant structural traits such as Sepal Length and Petal Width of the Iris genus across three different species.
 
-### Data visualisation
+## Data visualisation
 
 We can also visualise our data to understand whether there are any apparent trends. Often exploring our data this way will yield an even better understanding of any underlying relationships we may want to explore further using Machine Learning algorithms such as the k-nn. 
 
@@ -113,10 +113,10 @@ Note that putting your entire ggplot code in brackets () creates the graph and t
 
 From the above plots we see a visual correlation between plant traits. We can also see that there is some clustering within species with traits varying greatly between the three iris species. Now that we know that there is a clear difference in structural traits between species we could ask the following question:
 
-## Train your algorithm
+# 2. Train your algorithm
 {: #train}
 
-### Could we predict what species iris plants belong to based on structural trait data alone?
+## Could we predict what species iris plants belong to based on structural trait data alone?
 
 The goal of this tutorial will be to answer this question by building a predictive model and assessing its performance. To do so we will take a random sample of our data which we will use as training data, and another sample which will be used to test our model. These final predictions can then be compared to our original data so we can assess our results and see how accurate our model is. 
 
@@ -183,7 +183,7 @@ Note that we also select a value for **k**, which in this case is **3**. By chos
 iris.knn <- knn(train = iris.training, test = iris.test, cl = irisTraining.labels, k = 3)
 ```
 
-## Assess your model
+# 3. Assess your model
 {: #test}
 
 Next, we need to evaluate the performance of our model. To do this we want to find out if the classes our algorithm predicts based on the training data accurately predict the species classes in our original iris dataset. For this we compare the original class labels to the predictions made by our algorithm.
@@ -244,7 +244,7 @@ Overall we can see that our algorithm was able to almost predict all species cla
 
 Finally now that your model is trained you could go ahead and try to implement your algorithm on the entire iris dataset to see how effective it is! 
 
-### Summary and Next steps
+# Summary
 
 In this tutorial we have now covered the following:
 

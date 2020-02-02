@@ -10,7 +10,7 @@ In this tutorial we will do some basic exploratory visualisation and analysis of
 
 To complete the tutorial, you will need a Python environment with a recent version of `pandas` (I used v0.23.4). I strongly recommend using Jupyter for this kind of work - [you can read more about Jupyter here](https://www.dataquest.io/blog/jupyter-notebook-tutorial/).
 
-### Tutorial aims:
+# Tutorial aims:
 
 0. [What is a time series and how can pandas help?](#intro)
 1. [Loading data into a pandas dataframe](#loading)
@@ -20,7 +20,7 @@ To complete the tutorial, you will need a Python environment with a recent versi
 5. [Identifying periodicity and correlation](#periodicity)
 6. [Splitting and stacking cycles](#stacking)
 
-## 0. What is a time series and how can pandas help?
+# 0. What is a time series and how can pandas help?
 {: #intro}
 
 If you are not already familiar with [`pandas`](https://pandas.pydata.org/) then you may want to start with [our previous tutorial]({{ site.baseurl }}/tutorials/pandas-python-intro/index.html) but you should be okay if you understand the concept of a dataframe. It will also help if you are already familiar with the [`datetime` module](https://docs.python.org/3/library/datetime.html).
@@ -42,6 +42,7 @@ import matplotlib.pyplot as plt
 This tutorial will use a heliophysics dataset as an example which contains a range of different measurements. The version of the dataset we will use is available as a raw text file and contains hourly measurements from the beginning of 1963 onwards. This type of file (often `.dat`, `.txt`, or `.csv`) is the least sophisticated and is not the right solution for larger datasets but is okay here (the file is around 150MB) - large/new datasets will often use formats like HDF or NetCDF. `pandas` contains a range of IO tools for different formats - [look here](https://pandas.pydata.org/pandas-docs/stable/io.html) when you want to read or write a dataset.
 
 {% capture callout %}
+
 ## Please bear with us while we update this tutorial!
 
 In August 2019, NASA changed their data access protocol, so the ftp links and code below won't work. To access the data and proceed with the tutorial, we propose the following workaround:
@@ -103,7 +104,7 @@ We specify that columns are delimited by white space, the columns we want to ext
 ```
 
 
-## 2. Creating a datetime index
+# 2. Creating a datetime index
 {: #timeindex}
 
 Now we have the data loaded, we want to fix it a bit to make it more useful. First we will change the index from its current state as a sequence of integers to the more functional [`pandas.DatetimeIndex`](https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DatetimeIndex.html) which is based on Python `datetime` objects,.
@@ -169,7 +170,7 @@ print("{} hours/day * {} days/year * {} years = {} hours".format(h, d , y, h*d*y
 print("%d hours/day * %d days/year * %d years = %d hours"%(h, d , y, h*d*y))
 ```
 
-## 3. Plotting dataframe contents
+# 3. Plotting dataframe contents
 {: #plotting}
 
 The data should now be in an "analysis-ready" format and we should start inspecting it. Let's start by using the `.plot()` method. Try each of the following and compare what you get:
@@ -193,7 +194,7 @@ Now you can start to get a feel for the data. F10.7 and R look well correlated, 
 ![Time series trend panel plot]({{ site.baseurl }}/assets/img/tutorials/pandas-time-series/pandas-time-series_raw-series.png)
 
 
-## 4. Resampling, rolling calculations, and differencing
+# 4. Resampling, rolling calculations, and differencing
 {: #resampling}
 
 To reduce the noise in the data, we can smooth it. There are various ways to do this and so there is a choice to be made about the method to use and the degree of smoothing required. `pandas` offers a convenient way to reduce the data cadence by resampling with the [`.resample()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.resample.html) method:
@@ -228,7 +229,7 @@ df[["F10.7", "R"]].resample("3y").median().diff().plot(subplots=True, figsize=(1
 
 The centres of the maximum and minimum of each period of the cycle can be defined by the maxima and minima of this curve.
 
-## 5. Identifying periodicity and correlation
+# 5. Identifying periodicity and correlation
 {: #periodicity}
 
 We can see by eye that there is an approximately 10 year cycle in R and F10.7. A handy high level tool to identify this periodicity is [`pandas.plotting.autocorrelation_plot()`](https://pandas.pydata.org/pandas-docs/stable/visualization.html#autocorrelation-plot):
@@ -262,7 +263,7 @@ df.plot(y=["R", "Dst_count"], figsize=(15,4));
 It looks like there is a correlation between high sunspot numbers (the peaks of the solar cycle) and the occurrence rate of large storms. However, there is a lot more variation in this storm rate - lots of sunspots doesn't guarantee lots of storms, and storms can still occur when there are few sunspots.
 
 
-## 6. Splitting and stacking cycles
+# 6. Splitting and stacking cycles
 {: #stacking}
 
 Let's split the time series up into its constituent cycles and stack them together. This requires some more complex work with `pandas` and `matplotlib`. At this point we will also downsample to a daily rate, which makes the plot a bit clearer and quicker to generate.
@@ -315,13 +316,13 @@ for ax in axes:
 This helps us to see how the cycles differ from each other: for example, the most recent cycle is consistently lower than the mean, both in the solar conditions and the rate of geomagnetic storms. By constructing the mean of the cycles, we are actually reinforcing the similar pattern over each cycle and reducing the effect of the random noise. This is the basis of a technique called [superposed epoch analysis](https://doi.org/10.1016/j.jastp.2006.01.007), which is useful for identifying periodicities and similarities between noisy time series.
 
 
-## Summary
+# Summary
 
 We have explored how we can do some first steps in investigating time series using the power of `pandas`. We have shown how methods can be stringed along to perform complex operations on a dataframe in a single line and results plotted easily.
 
 [See here](https://science.nasa.gov/science-news/news-articles/solar-minimum-is-coming) if you would like to know a bit more about solar activity and the upcoming solar minimum!
 
-### Tutorial outcomes
+# Tutorial outcomes
 
 - Know how to create dataframes with datetime indexes
 - Know where to look to figure out how to do things with pandas

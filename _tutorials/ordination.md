@@ -7,11 +7,15 @@ author: Koenraad
 survey_link: https://www.surveymonkey.co.uk/r/VYLPZ29
 ---
 
-### Tutorial Aims
+# Tutorial Aims
 
 1. [Get familiar with ordination](#section1)
 2. [Learn about the different ordination techniques](#section2)
+	* [Principle Component Analysis (PCA)](#section4)
+	* [Principal Coordinate Analysis (PCoA)](#section5)
+	* [Non-metric Multidimensional Scaling (NMDS)](#section6)
 3. [Interpret ordination results](#section3)
+4. [Challenge](#section7)
 
 __In this tutorial, we will learn to use ordination to explore patterns in multivariate ecological datasets. We will mainly use the `vegan` package to introduce you to three (unconstrained) ordination techniques: Principal Component Analysis (PCA), Principal Coordinate Analysis (PCoA) and Non-metric Multidimensional Scaling (NMDS).__
 
@@ -87,8 +91,8 @@ __In this section you will learn more about how and when to use the three main (
 - [Principal Coordinate Analysis (PCoA)](#section5)
 - [Non-metric Multidimensional Scaling (NMDS)](#section6)
 
-## Principal Component Analysis (PCA)
-{: #section4}
+## 2a. Principal Component Analysis (PCA)
+{: #section3}
 
 PCA uses a rotation of the original axes to derive new axes, which maximize the variance in the data set. In 2D, this looks as follows:
 
@@ -97,17 +101,11 @@ PCA uses a rotation of the original axes to derive new axes, which maximize the 
 Computationally, __PCA is an eigenanalysis__. The most important consequences of this are:
 
 - There is a unique solution to the eigenanalysis.
-
 - The axes (also called principal components or PC) are orthogonal to each other (and thus independent).
-
 - Each PC is associated with an eigenvalue. The sum of the eigenvalues will equal the sum of the variance of all variables in the data set. The eigenvalues represent the variance extracted by each PC, and are often expressed as a percentage of the sum of all eigenvalues (i.e. total variance). The relative eigenvalues thus tell how much variation that a PC is able to 'explain'.
-
 - Axes are ranked by their eigenvalues. Thus, the first axis has the highest eigenvalue and thus explains the most variance, the second axis has the second highest eigenvalue, etc.
-
 - There are a potentially large number of axes (usually, the number of samples minus one, or the number of species minus one, whichever is less) so there is no need to specify the dimensionality in advance. However, the number of dimensions worth interpreting is usually very low.
-
 - Species and samples are ordinated simultaneously, and can hence both be represented on the same ordination diagram (if this is done, it is termed a biplot)
-
 - The variable loadings of the original variables on the PCA's may be understood as how much each variable 'contributed' to building a PC. The absolute value of the loadings should be considered as the signs are arbitrary.
 
 __In most applications of PCA, variables are often measured in different units. For example, PCA of environmental data may include pH, soil moisture content, soil nitrogen, temperature and so on. For such data, the data must be standardized to zero mean and unit variance. For ordination of ecological communities, however, all species are measured in the same units, and the data do not need to be standardized.__
@@ -168,7 +166,7 @@ In contrast to some of the other ordination techniques, species are represented 
 
 Unfortunately, __this linear assumption causes PCA to suffer from a serious problem, the horseshoe or arch effect__, which makes it unsuitable for most ecological datasets. The PCA solution is often distorted into a horseshoe/arch shape (with the toe either up or down) if beta diversity is moderate to high. The horseshoe can appear even if there is an important secondary gradient. Can you detect a horseshoe shape in the biplot?
 
-### Principal Coordinate Analysis (PCoA)
+## 2b. Principal Coordinate Analysis (PCoA)
 {: #section5}
 
 __Principal coordinates analysis (PCoA, also known as metric multidimensional scaling) attempts to represent the distances between samples in a low-dimensional, Euclidean space. In particular, it maximizes the linear correlation between the distances in the distance matrix, and the distances in a space of low dimension (typically, 2 or 3 axes are selected). The PCoA algorithm is analogous to rotating the multidimensional object such that the distances (lines) in the shadow are maximally correlated with the distances (connections) in the object:__
@@ -223,7 +221,7 @@ par(mfrow = c(1, 1))
 
 __PCoA suffers from a number of flaws, in particular the arch effect (see PCA for more information). These flaws stem, in part, from the fact that PCoA maximizes a linear correlation. Non-metric Multidimensional Scaling (NMDS) rectifies this by maximizing the rank order correlation.__
 
-## Non-metric Multidimensional Scaling (NMDS)
+## 2c. Non-metric Multidimensional Scaling (NMDS)
 {: #section6}
 
 __NMDS attempts to represent the pairwise dissimilarity between objects in a low-dimensional space. Any dissimilarity coefficient or distance measure may be used to build the distance matrix used as input. __NMDS is a rank-based approach__.__ This means that the original distance data is substituted with ranks. Thus, rather than object A being 2.1 units distant from object B and 4.4 units distant from object C, object C is the "first" most distant from object A while object C is the "second" most distant. While information about the magnitude of distances is lost, rank-based methods are generally more robust to data which do not have an identifiable distribution.
@@ -246,11 +244,11 @@ A plot of stress (a measure of goodness-of-fit) vs. dimensionality can be used t
 
 __Methodology of NMDS:__
 
-- __Step 1:__ Perform NMDS with 1 to 10 dimensions
-- __Step 2:__ Check the stress vs dimension plot
-- __Step 3:__ Choose optimal number of dimensions
-- __Step 4:__ Perform final NMDS with that number of dimensions
-- __Step 5:__ Check for convergent solution and final stress
+- Step 1: Perform NMDS with 1 to 10 dimensions
+- Step 2: Check the stress vs dimension plot
+- Step 3: Choose optimal number of dimensions
+- Step 4: Perform final NMDS with that number of dimensions
+- Step 5: Check for convergent solution and final stress
 
 ```r
 # First step is to calculate a distance matrix. See PCOA for more information about the distance measures
@@ -373,7 +371,7 @@ orditorp(NMDS3, display = "sites", col = c(rep("red",12),
 __Congratulations! You´ve made it to the end of the tutorial! Now you can put your new knowledge into practice with a couple of challenges.__
 
 # 4. Your turn
-{: #section4}
+{: #section7}
 
 ## Challenge number 1
 Perform an ordination analysis on the dune dataset (use `data(dune)` to import) provided by the vegan package. Interpret your results using the environmental variables from `dune.env`. 
@@ -381,11 +379,7 @@ Perform an ordination analysis on the dune dataset (use `data(dune)` to import) 
 ## Challenge number 2
 If you already know how to do a classification analysis, you can also perform a classification on the dune data. Then combine the ordination and classification results as we did above. Please have a look at out tutorial [Intro to data clustering]({{ site.baseurl }}/tutorials/data-clustering/index.html), for more information on classification.
 
-
----------------------------
-
-
-__This is the end of the tutorial. In this tutorial we learned:__
+# Tutorial outcomes 
 
 - about the different (unconstrained) ordination techniques
 - how to perform an ordination analysis in vegan and ape

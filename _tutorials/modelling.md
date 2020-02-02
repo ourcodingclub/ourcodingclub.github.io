@@ -9,7 +9,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/NNRS98G
 ---
 
-### Tutorial Aims & Steps:
+# Tutorial Aims & Steps:
 
 1. [Get familiar with different data distributions](#distributions)
 2. [Choosing your model structure](#design)
@@ -31,7 +31,7 @@ Are your data all nicely formatted and ready for analysis? You can check out our
 __Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.__
 
 
-### 1. Get familiar with different data distributions
+# 1. Get familiar with different data distributions
 {: #distributions}
 
 Here is a brief summary of the data distributions you might encounter most often.
@@ -44,7 +44,7 @@ Choosing the right statistical test for your analysis is an important step about
 
 ![Data types and their associated distributions and tests table]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_which.png)
 
-### 2. Choosing your model structure
+# 2. Choosing your model structure
 {: #design}
 
 Another important aspect of modelling to consider is how many terms, i.e. explanatory variables, you want your model to include. It's a good idea to draft out your model structure _before_ you even open your R session. __Let your hypotheses guide you!__ Think about what it is you want to examine and what the potential confounding variables are, i.e. what else might influence your response variable, aside from the explanatory variable you are most interested in? Here is an example model structure from before:
@@ -71,7 +71,7 @@ Some might say this model is very complex, and they would be right - there are a
 
 
 {% capture callout %}
-#### Don't go over the top!
+## Don't go over the top!
 
 It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting [here](https://statisticsbyjim.com/regression/overfitting-regression-models/). 
 
@@ -79,7 +79,7 @@ Another thing to think about is __collinarity__ among your explanatory variables
 {% endcapture %}
 {% include callout.html content=callout %}
 
-### 3. Some practice with linear models
+# 3. Some practice with linear models
 {: #linear}
 
 We will now explore a few different types of models. Create a new script and add in your details. We will start by working with a sample dataset about apple yield in relation to different factors. The dataset is part of the `agridat` package.
@@ -151,7 +151,7 @@ You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. The
 
 __So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye! 
 
-#### More practice: another model
+## More practice: another model
 
 Now that we've written a model and understood its output, let's analyse another dataset and learn to read it's output, too. We'll introduce something just a bit different.
 
@@ -212,7 +212,7 @@ It always makes a lot more sense when you can visualise the relationship, too:
 {% include figure.html url=link caption="Our model tells us that weight at weaning increases significantly with weaning date, and there is only a marginal difference between the rate of males' and females' weight gain. The plot shows all of this pretty clearly." %}
 
 {% capture callout %}
-#### Model terminology, and the special case of the ANOVA
+## Model terminology, and the special case of the ANOVA
 
 Confused when hearing the terms linear regression, linear model, and ANOVA? Let's put an end to this: they're all fundamentally the same thing!
 
@@ -228,7 +228,7 @@ anova(apples.m)
 {% endcapture %}
 {% include callout.html content=callout %}
 
-#### Checking assumptions
+## Checking assumptions
 
 In addition to checking whether this model makes sense from an ecological perspective, we should check that it actually meets the assumptions of a linear model: 
 
@@ -269,12 +269,12 @@ This will produce a set of four plots:
 In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this [helpful page](https://data.library.virginia.edu/diagnostic-plots/) to get you started.
 
 
-### 4. Practicing generalised linear models
+# 4. Practicing generalised linear models
 {: #generalised}
 
 The model we used above was a __general__ linear model since it met all the assumptions for one (normal distribution, homoscedasticity, etc.) Quite often in ecology and environmental science that is not the case and then we use different data distributions. Here we will talk about a Poisson and a binomial distribution. To use them, we need to run __generalised__ linear models.
 
-#### A model with a Poisson distribution
+## A model with a Poisson distribution
 
 Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the [Living Planet Index](http://www.livingplanetindex.org/home/index). 
 
@@ -311,7 +311,7 @@ From the summary of our model we can see that European Shag abundance varies sig
 
 __Figure 1. European shag abundance on the Isle of May, Scotland, between 1970 and 2006.__ Points represent raw data and model fit represents a generalised linear model with 95% confidence intervals.
 
-#### A model with a binomial distribution
+## A model with a binomial distribution
 
 We will now work this the `Weevil_damage.csv` data that you can import from your project's directory. We can examine if damage to Scot's pine by weevils (a binary, TRUE/FALSE variable) varies based on the block in which the trees are located. You can imagine that different blocks represent different Scot's pine populations, and perhaps some of them will be particularly vulnerable to weevils? Because of the binary nature of the response variable (true or false), a binomial model is appropriate here.
 
@@ -334,7 +334,7 @@ __We have now covered the basics of modelling. Next, you can go through <a href 
 - [General and generalised linear models, by Germán Rodríguez](http://data.princeton.edu/R/linearModels.html).
 - [Regression modelling in R, by Harvard University](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html).
 
-### 5. Challenge yourself!
+# 5. Challenge yourself!
 {: #challenge}
 
 Now that you can write and understand linear regressions, why don't you have a go at modelling another dataset?

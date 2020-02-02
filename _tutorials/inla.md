@@ -7,7 +7,7 @@ author: Greg Albery
 survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
 ---
 	
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn about `INLA` and why it's useful](#intro)
 2. [Perform model selection in `INLA`](#selection)
@@ -18,7 +18,7 @@ survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
 
 __All the files needed to complete this tutorial can be downloaded from this [GitHub repository](https://github.com/ourcodingclub/CC-INLA). Click on `Clone or Download/Download ZIP` and then unzip the files.__
 
-## 1. Learn about INLA and why it's useful
+# 1. Learn about INLA and why it's useful
 {: #intro}
 
 Welcome to this tutorial on `INLA`, written by [Greg Albery](https://www.researchgate.net/profile/Gregory_Albery off of the [Pemberton Group](http://rumdeer.biology.ed.ac.uk), Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is [@Gfalbery](https://twitter.com/Gfalbery?lang=en-gb).
@@ -34,17 +34,17 @@ _TWO DISCLAIMERS:_
 1. This tutorial will centre around the beginner-level specifics of `INLA` models. It will rely on a working knowledge of GLMMs, model selection methods, etc., and won't include a huge amount of complexities about the inner workings of `INLA` itself. I'm not an expert on INLA, but I have a sturdy working knowledge of it, and I'm super enthusiastic about its use. I also believe that a load more systems could do with some more robust spatial and spatiotemporal analyses.
 2. Spatial analysis often seems scary. `INLA` and I are here to convince you that it should be less scary and more common. I'm a firm believer that spatial analysis can enrich your results and tell you stuff about your study system, rather than threatening the importance and interesting nature of your results.
 
-### Recommended reading for later: 
+__Recommended reading for later:__
 
 - This GitHub repository from a paper about fisheries (quite complicated code but a great exhaustive example): https://github.com/GodinA/cjfas-bycatch-INLA-SPDE
 - Pawley and McArdle, 2018: https://www.biorxiv.org/content/biorxiv/early/2018/08/06/385526.full.pdf
 - Zuur et al., 2018: http://www.highstat.com/index.php/beginner-s-guide-to-regression-models-with-spatial-and-temporal-correlation
 
-### Basics of `INLA`
+## Basics of `INLA`
 
 `INLA` is an increasingly popular analysis package in R.
 
-#### It uses the Integrated Nested Laplace Approximation, a deterministic Bayesian method.
+It uses the Integrated Nested Laplace Approximation, a deterministic Bayesian method.
 
 __Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on inferring the probability of a set of data given the determined parameters (involves setting a prior!). For more details, you can check out our [Intro to Bayesian Statistics tutorial]({{ site.baseurl }}/tutorials/mcmcglmm/index.html).
 
@@ -56,41 +56,33 @@ __`INLA` allows a wide range of different functions: GLMM, GAMM, spatial autocor
 
 The tutorial will take you through an analysis step by step. This will involve:
 
-__- Model selection in `INLA`.__
-
-__- The components of an `INLA` model (nuts and bolts).__
-
-__- Setting up a spatial analysis.__
-
-__- Modifications and specifications of spatial models.__
-
-__- Spatiotemporal analyses (dabbing into them).__
+- Model selection in `INLA`.
+- The components of an `INLA` model (nuts and bolts).
+- Setting up a spatial analysis.
+- Modifications and specifications of spatial models.
+- Spatiotemporal analyses (dabbing into them).
 
 _This will include a load of functions I've written to easily perform simple tasks using `INLA`, which I'm happy to deconstruct for you if needed. If you do use them in an analysis and find them helpful, or if you find a problem with them, please let me know!_
 
 The general setup of an `INLA` spatial analysis is as follows:
 
-__- Plot and explore your data.__
+- Plot and explore your data.
+- Decide on covariates.
+- Carry out model selection using `DIC` to reduce the number of covariates.
+- Run a final non-spatial model.
+- Decide on a set of spatial dependence structures.
 
-__- Decide on covariates.__
-
-__- Carry out model selection using `DIC` to reduce the number of covariates.__
-
-__- Run a final non-spatial model.__
-
-__- Decide on a set of spatial dependence structures.__
-
-#### The data
+## The data
 
 This tutorial is going to use a dataset working on a wild animal, trapped in a Scottish woodland. The experiment used a combination of individual anthelminthic treatment and nutritional supplementation to investigate how they impacted parasite intensity. 
 
-#### The research question
+## The research question
 
 How do different treatments influence parasite activity and is that influenced by spatial patterns?
 
 The researchers trapped Hosts in four grids, two of which were supplemented with high-quality food. Some individuals were treated with antiparasitic compounds, and others were not. At each capture, phenotypic data such as body condition were taken and Parasites were counted.
 
-### Import the data
+## Import the data
 
 Let's import the data.
 
@@ -169,7 +161,7 @@ table(with(TestHosts, tapply(Grid, ID, function(x) length(unique(x)))))
 
 Not much moving around! Looks like individuals tend to stay on the same grid.
 
-## 2. Perform model selection in `INLA`
+# 2. Perform model selection in `INLA`
 {: #selection}
 
 Model selection is a method that reduces the amount of covariates that are included in the data to stop overfitting. This will increase the generality of your models, and is good practise!
@@ -227,9 +219,9 @@ Instead of doing this manually, which takes time and a lot of code and is boring
 
 NB: This is a demonstration not a setup for a perfect analysis. Remember to:
 
-__- Explore your data.__
-__- Be careful of outliers.__
-__- Do not include highly-correlated covariates.__
+- Explore your data.
+- Be careful of outliers.
+- Do not include highly-correlated covariates.
 
 _If you don't explore your data thoroughly things can easily go wrong. Do not rely on this function for analysis without thinking about it and checking your data thoroughly!_
 
@@ -260,22 +252,22 @@ IM1 <- inla(f1,
 summary(IM1)
 ```
 
-### Elaborating on our model selection
+## Elaborating on our model selection
 
 To examine the importance of spatial autocorrelation, we then look at the DIC of a series of competing models with different random effect structures. I have decided that, given the layout of my sampling locations, there are a few potential ways to code spatial autocorrelation in this dataset.
 
-__1. Spatial autocorrelation constant across the study period, and across the study area (spatial, 1 mesh).__
-__2. Spatial autocorrelation constant across the study area, varying across the study period (spatiotemporal, X meshes).__
-__3. Spatial autocorrelation varying within each grid to ignore spatial patterns between grids (spatial, 4 meshes).__
+1. Spatial autocorrelation constant across the study period, and across the study area (spatial, 1 mesh).
+2. Spatial autocorrelation constant across the study area, varying across the study period (spatiotemporal, X meshes).
+3. Spatial autocorrelation varying within each grid to ignore spatial patterns between grids (spatial, 4 meshes).
 
 We will make these models, compete them with each other, and investigate whether the inclusion of spatial random effects changes our fixed effect estimates (does including spatial variation change whether we think males have higher Parasite counts, for example?)
 
-## 3. Learn the components of an `INLA` model
+# 3. Learn the components of an `INLA` model
 {: #inla}
 
 The setup so far has involved using quite simple model formulae. The next step is where people often become frustrated, as it involves model setups which are more unique to INLA and hard to pick apart. 
 
-### A bit about `INLA`
+## A bit about `INLA`
 
 `INLA` is computationally efficient because it uses a SPDE (Stochastic Partial Differentiation Equation) to estimate the spatial autocorrelation of the data. This involves using a "mesh" of discrete sampling locations which are interpolated to estimate a continuous process in space (see very helpful figure).
 
@@ -285,10 +277,10 @@ So, you create a mesh using sampling locations and/or the borders of your study 
 
 There are lots of variations on a mesh, which can be examined by plotting it. 
 
-## 4. Set up a spatial analysis
+# 4. Set up a spatial analysis
 {: #spatial}
 
-### Setting up a mesh
+## Setting up a mesh
 
 ```r
 Locations = cbind(TestHosts$Easting, TestHosts$Northing) # using the sampling locations 
@@ -413,7 +405,7 @@ GOODSTACK <- inla.stack(
     w = w.Host)) # Leave
 ```
 
-### Running the model
+## Running the model
 
 So, we have everything set up to conduct a spatial analysis. All we need is to put it into the inla function and see what happens. Fortunately, once you specify the stack you can add it into the `data =` argument and then changing the formula will run whatever variation you need (as long as it only uses A, W, random and fixed effects that already exist in the stack).
 
@@ -470,7 +462,7 @@ ggField(IM3, Mesh, Groups = 1) +
 
 At what range does autocorrelation fade in space? INLA models with a large kappa (inverse range) parameter change very quickly in space. Those with a large range and small kappa parameter have much longer, slower graidents.
 
-### Looking at the range
+## Looking at the range
 
 ```r
 # function takes (a list of) models and plots the decay of spatial autocorrelation across a user-defined range
@@ -483,6 +475,7 @@ Maxrange = 40
 
 INLARange(list(IM3), maxrange = Maxrange)
 ```
+
 ![Spatial autocorrelation plot]({{ site.baseurl }}/assets/img/tutorials/inla/Range1.png)
 
 However, being able to visualise spatial patterns does not necessarily mean that spatial autocorrelation is affecting the model substantially, and range does not correspond to the importance of autocorrelation! In order to investigate that, we have to look at model fit. How does the DIC of these models compare?
@@ -506,10 +499,10 @@ Seems like spatial autocorrelation doesn't affect these data the way we've coded
 
 If I had had no more ###a priori### expectations for this study, I would stop here. Don't keep analysing different variables or combinations of variables until eventually you find a variety of spatial autocorrelation that affects your data. 
 
-## 5. Modify and specify spatial `INLA` models
+# 5. Modify and specify spatial `INLA` models
 {: #spatial2}
 
-### Seasonal model
+## Seasonal model
 
 Now: what if the spatial field varied seasonally? We specify the A matrix, SPDE and model differently to produce several different groups.
 
@@ -582,7 +575,7 @@ INLARange(SpatialHostList[3:4], maxrange = Maxrange, mesh = Mesh, ModelNames = c
 ![Comparison of spatial autocorrelation between models]({{ site.baseurl }}/assets/img/tutorials/inla/Range2.png)
 
 
-## 6. Learn about spatiotemporal analyses
+# 6. Learn about spatiotemporal analyses
 {: #spatialtemp}
 
 There is a faster way to split spatial fields into groups, using `repl` instead of splitting it into groups and connecting them via iid models. However, I'm showing you this method as it's a way into spatiotemporal models. In the above model, we have assumed that monthly spatial fields are totally unrelated to each other. However, we can use an "exchangeable" model to force a correlation between them, and to derive a rho correlation between the fields.
@@ -630,7 +623,7 @@ INLARange(SpatialHostList[3:5], maxrange = Maxrange, ModelNames = c("Full", "Mon
 ![Spatial autocorrelation plot model comparison]({{ site.baseurl }}/assets/img/tutorials/inla/Range3.png)
 
 
-### Within-grid model
+## Within-grid model
 
 Let's try using repl instead of group, just for completeness's sake. Just to recap: this is slightly quicker, but can only be used when you're not specifying a link between the fields. 
 
@@ -713,7 +706,7 @@ ggField(I6, Mesh2, Groups = NGroup2)  +
 
 But the fields look cool!
 
-### Final summary
+# Final summary
 
 The best-fitting model is SPDE 3 (model 5). This features different spatial fields for each month, with correlation between the fields. However, this formulation only slightly improves model fit over the non-spatial models, so we shouldn't worry too much about the spatial effects we're seeing! Good news. Also, if you run the code below, you will see that the effect estimates barely differ between these models. So, even though space has an effect, the effect is small and doesn't modify our previous conclusions! Congratulations, your system is robust to spatial dependence effects!
 
@@ -722,7 +715,6 @@ Efxplot(SpatialHostList, ModelNames = c("Base", "IID", "SPDE", "SPDE2", "SPDE3",
 ```
 
 ![Interval plot of effect sizes with all models]({{ site.baseurl }}/assets/img/tutorials/inla/FinalEffects.png)
-
 
 # Added extras 
 

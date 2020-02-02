@@ -7,21 +7,19 @@ author: Declan
 survey_link: https://www.surveymonkey.co.uk/r/WVL5GXB
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 [Understand why Python is so useful for scientific programming](#understanding)
 
 1. [Installing Python and running a simple Python program](#installing)
 2. [Reading data from a file](#reading)
 3. [Get a feel for how Python looks and feels](#feeling)
-4. [Load data from a text file into memory](#loading)
-5. [Learn about some basic Python data types and structures](#basics)
-6. [Moving beyond the core Python language with modules](#modules)
-7. [A brief introduction to data analysis with the pandas package](#pandas)
-8. [Plotting data with Matplotlib](#matplotlib)
+4. [Load data from a text file into memory and basic data structures](#loading)
+5. [Moving beyond the core Python language with modules](#modules)
+6. [A brief introduction to data analysis with the pandas package](#pandas)
+7. [Plotting data with Matplotlib](#matplotlib)
 
-
-## Understanding why Python is so useful for scientific programming
+# 1. Understanding why Python is so useful for scientific programming
 {: #understanding}
 
 You may have heard about the Python programming language before. It is often talked about as the next "up and coming" programming language, or described as being a new, "trendy" programming language that everyone should be learning, particularly scientists. I would argue that Python is no longer merely "up and coming", or even particularly new, but one of the most popular and useful programming languages you could invest time in learning. In fact, as of 2018, Python is (by certain measures) **the most widely used programming language in the world**. So if you are a scientist, researcher, or student doing any kind of data analysis, or numeric programming, then I think Python is worth investing some time in learning, even just the basics.
@@ -40,7 +38,7 @@ If you are interested in reading more about the growth of Python (and the backgr
 
 ## Python's strengths as a language
 
-### 1. Readability
+### Readability
 
 Python shines because it is designed to be *readable* by us humans. Python is often described as a language that is intuitive and relatively easy to learn. The **syntax** (how you arrange the set of words and symbols to make a Python program) is meant to be intuitve to humans by being similar to natural human languages in many ways. For example, look at these little snippets of Python and see if you can guess what they mean and what might happen if we told the computer to run the code:
 
@@ -83,14 +81,13 @@ Finally there is a *logical operator*: `and`. *Both* boolean expressions in the 
 
 Did you win some chocolate? (I hope so!)
 
-### 2. General Purpose
+### General Purpose
 
 Python has a major advantage when compared to some other commonly used programming languages in the scientific community; it is a *general purpose* programming language. Compared to other languages such as Matlab, IDL, ncl, and R, which were designed with specific applications in mind, Python was built as a general purpose programming language (like Java, C, Ruby etc.). This means you can use Python to write your data analysis code, plot the results of the analysis, write a numerical model, run a website, do your tax return...the list goes on. 
 
 Because of its general-purpose design, Python is used in the real world in a range of industries. Python is used by scientists at universities across the world, developers at big tech companies like Amazon, Facebook, and Google, by financial services companies, and social media apps like Facebook and Instagram, for example. In short, while this tutorial focuses on scientific applications of Python, you are learning a programming language that has a huge variety both within and outwith the scientific community.
 
-
-### 3. Scientific Python Community
+### Scientific Python Community
 
 The third reason Python is so great is the community behind it. As mentioned before, writing code is as much a way of communicating between humans trying to solve the same scientific problems as it is telling the computer what to do. Python has a very friendly and active community supporting it, many of whom are found on internet resources such as forums and the popular [StackOverflow Q&A site](https://stackoverflow.com). 
 
@@ -98,12 +95,10 @@ If you are stuck with a problem in Python, online resources are so plentiful tha
 
 In the domain of science, the Scientific Python community is just as well established. You may have already heard of Python packages like `numpy` (Numerical Python), `scipy` (Scientific Python), as well as other tools like `pandas`, `matplotlib`, and many more. Many of these tools were developed by scientists to share something back to the Python community, and they have now grown and become almost _de facto_ standard tools within the scientific programming community. 
 
-
-
-## Installing Python and running a simple Python program
+# 1. Installing Python and running a simple Python program
 {: #installing}
 
-### Installation
+## Installation
 
 The method for installing Python depends on your operating system (Linux/Mac/Windows), but the easiest way I have found, which works across multiple operating systems is to install a distribution of Python called 'Anaconda'. Anaconda includes a range of useful packages for scientific coding, such as `matplotlib`, `numpy` and  `pandas` (We will cover these later on in the tutorial). It all comes with the conda package manager - a tool for easily installing other Python add-on packages that you may want to use. It also comes with a few useful programmes which can be used to write Python code. The download link is here: [Downloading Anaconda](https://www.anaconda.com/download/).
 
@@ -113,11 +108,11 @@ The method for installing Python depends on your operating system (Linux/Mac/Win
 
 On Windows, you may run into some problems, depending on you version, but help can be found in the official Python documentation pages for [using Python on Windows](https://docs.python.org/3.3/using/windows.html).
 
-### The Python workflow 
+## The Python workflow 
 
 From here you have two main options for how to write your Python code during this workshop:
 
-#### Following the tutorial with the command line and any text editor
+### Option A - Following the tutorial with the command line and any text editor
 
 This method of writing Python code is most applicable to Mac and Linux users, as it requires access to a terminal program like Terminal.app, or the Gnome Terminal.
 
@@ -133,8 +128,7 @@ Any output will be printed to the screen in the terminal or console you are runn
 
 This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Linux/Mac terminal users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/) and [Windows command line users](http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/).
 
-
-#### Following the tutorial with Spyder or another IDE
+### Option B - Following the tutorial with Spyder or another IDE
 
 If you are not comfortable using the command line or terminal, or are on a Windows machine, we recommend using this method.
 
@@ -150,7 +144,7 @@ Although we recommend using Spyder if you are a beginner, there are many other w
 
 For consistency in this workshop and to maintain transferability between different platforms, the rest of the tutorial assumes that you are using the text editor and command line approach described above, but everything should still work if you want to use an IDE like Spyder.
 
-#### Hello, World!
+## Hello, World!
 
 Let's try running the most basic program to test you have a working Python installation:
 
@@ -172,19 +166,18 @@ python hello.py
 
 Hopefully, regardless of what method you use, you should see "Hello, World!" printed to screen.
 
-#### Files for this tutorial
+## Files for this tutorial
 
 This short tutorial is based around exploring data from the School of GeoSciences weather station, which is located on top of the James Clark Maxwell Building at the University of Edinburgh.
 
-## You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.
+__You can download the data, and some helpful Python cheatsheets from [this github repository](https://github.com/ourcodingclub/CC-python-intro). Clone and download the repo as a zipfile by pressing the big green button, then unzip it. You should then save any python scripts to that folder, so they can access the data easily.__
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC-python-intro) to your own Github account and then clone it using the HTTPS/SSH link. For more details on how to register on Github, download Git and use version control, please check out our [previous tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 
 You can have a look at all the data via the [link to the station webpage](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 
 
-
-## Reading data from a file
+# 2. Reading data from a file
 {: #reading}
 
 We are going to start off simple, using the basic 'core' Python language features to explore the data, then later in the tutorial we'll look at some of the ways we can use modules and libraries to make dealing with data easier. Create a new Python script in your editor or IDE, and type in the following lines:
@@ -212,7 +205,7 @@ Note how when using `with` we do not have to worry about closing the file -- it 
 The second argument we provide to the `open()` function, `"r"`, tells the Python we want to open the file for *reading* from it. There are other arguments that we could have given such as `"w"` for writing to the file. [More details can be found in the Python documentation](https://docs.python.org/3/library/functions.html#open).
 
 
-### A note on code blocks in Python
+# 3. A note on code blocks in Python
 {: #feeling}
 
 All programming languages need a way of marking small units or subsections of code. For example, in a `for` loop, there needs to be a way to mark the start and end of the code to be executed within the loop. Some programming languages use terminating keywords to take care of this, Matlab and Fortran for example use the **end** keyword to signify the end of a particular code block. C-based languages often use the "curly braces" to open and close code blocks. E.g.:
@@ -228,9 +221,8 @@ Python uses neither braces nor "end" statements to mark the end of code blocks. 
 
 You may use either a tab or spaces (any number of spaces...) to indicate indentation. I prefer personally to use two spaces, as it's easy to type and keeps the code looking nice and compact, but it's up to your personal preference. The important thing is to **be consistent with your whitespace and indentation!**
 
-### Loading a text file into memory and basic data structures
+# 4. Loading a text file into memory and basic data structures
 {: #loading}
-{: #basics}
 
 We can load the data in from the file and print it to screen, but that probably isn't much practical use. How should we approach reading the data into variables that we can manipulate and perform calculations on? We can do this by assigning the values in the file to a basic Python data structure, the **list**. (We shall discover later that lists are not necessarily the best data struture for numerical data, but they are a good introduction when learning Python.)
 
@@ -307,7 +299,7 @@ Note that we must first create an empty list to store our pressure data in. We a
 
 We now have a data structure called `pressure_data` that contains all the air pressure measurements from the text file. But there are a couple of problems here. (Can you think what they might be?)
 
-Hint: Think about
+Hint - Think about:
 
 1. The very first line in the original text file
 2. The type of the data in the list...
@@ -373,7 +365,7 @@ The output should be:
 ```
 
 
-## Moving beyond the core Python language with modules
+# 5. Moving beyond the core Python language with modules
 {: #modules}
 
 This all seems a bit long-winded, doesn't it? Isn't Python meant to be quick and easy, I hear you cry? 
@@ -403,7 +395,7 @@ The `quoting=csv.QUOTE_NONNUMERIC` argument tells the csv module to read all the
 
 Using the built-in `csv` module is *okay*; it's a bit nicer than the manual version we made using only the core Python language, but there are *much* better alternatives available by using one of the many available Python *packages*. In the remainder of the tutorial, we are going to (very briefly!) look at two powerful Python packages that are widely used in scientific programming: `pandas` and `matplotlib`. (`numpy` will be covered in a later tutorial).
 
-#### Packages vs libraries vs modules
+## Packages vs libraries vs modules
 
 You will hear the following terms used a lot in the Python world (and other languages too). In a general sense, they all refer to 'add-ons, 'extras', or additional Python software providing extra features in addition to the core Python language. *Package* usually means an externally developed piece of Python software that has to be installed separately. A *library* or *module* generally refers to add-ons that already bundled with a standard Python installation (such as the `csv` library/module). You will find the terms are used interchangeably - even in the official Python documentation!
 
@@ -411,24 +403,22 @@ You will hear the following terms used a lot in the Python world (and other lang
 
 Packages and modules are ubiquitous in Python, and most scientific programming done with Python makes use of one or more packages that are installed separately to the standard Python installation. You can think of them as 'add-ons' to the basic Python language, much like libraries in R or other programming languages. `pandas` is a package that contains a whole bunch of useful functions and data structures for dealing with tables of data, time-series data, and other similar datasets.
 
-
-
-## A brief introduction to data analysis with Pandas
+# 6. A brief introduction to data analysis with Pandas
 {: #pandas}
 
 We are going to dive right in here and start using a Python package called `pandas`, which is widely used for data analysis. (The name comes from *panel data* rather than the cute black and white fluffy animals at Edinburgh Zoo.)
 
-### Why Pandas and when to use it?
+## Why Pandas and when to use it
 
 `pandas` is useful for situations when you have data in 'table-like' form, such as the sample weather station data we are using, that you want to perform some form of analysis on. `pandas` is particularly useful when you have columns of data, potentially of different data types. Timeseries data, database-like data, are other typical types of dataset used with `pandas`. 
 
-#### When to use `pandas`:
+### When to use `pandas`:
 
 - Table-like columnar data
 - Interfacing with databases (MySQL etc.)
 - Multiple data-types in a single data file.
 
-#### When not to use `pandas`:
+### When not to use `pandas`:
 
 - For really simple data files (a single column of values in a text file, for example, might be overkill).
 - If you are dealing with large gridded datasets of a single data type. (Consider using `numpy`).
@@ -456,8 +446,7 @@ In this case, we are using the `read_csv` function to load a text based file (af
 
 Finally, note that we have assigned the result of the `read_csv` function call to a variable we have created called `data`. This variable is a `pandas` *dataframe*. (Try using `type(data)` to get Python to confirm this for you). We will have a look at the `pandas` dataframe type in a later tutorial, for now you can think of it as a more 'feature-rich' data structure than the `list` type we used in the previous example. 
 
-
-### Exploring our weather data
+## Exploring our weather data
 
 `pandas` is clever in that it is aware that the header row is used to refer to the columns of data below it in the text file. Whereas in a standard Python list we would have to index an item of data by an index number, `pandas` lets us access data by its column name, which easier to remember than a number! So if we wanted to get hold of the Air Pressure data, we could do so using:
 
@@ -484,7 +473,7 @@ print(pressure_data)
 Python should print out all the Air Pressure data, as well as a 'record' number on the left hand side, and at the end it prints out the name of the data variable and the data type.
 
 
-## Plotting data with matplotlib
+# 7. Plotting data with matplotlib
 {: #matplotlib}
 
 Let's plot the data! We are going to use another package called `matplotlib`. `matplotlib` is a widely used plotting library that can be used to create a wide range of high-quality charts and graphs of scientific data. We're going to keep it simple in this introductory tutorial by plotting a simple line graph of the pressure data from the JCMB weather station.
@@ -606,11 +595,11 @@ The final figure should look like this:
 
 ![Atmospheric pressure with labelled axes]({{ site.baseurl }}/assets/img/tutorials/python-intro/pressure_final.png)
 
-## Summary
+# Summary
 
 In this tutorial we have looked at why Python is popular for scientific programming, and gotten a feel for how Python looks and feels. Hopefully, you have learnt some of the basic syntax, and how to write and run simple python scripts to read in data from text files, and make a simple plot of some of the data.
 
-### Tutorial outcomes:
+# Tutorial outcomes:
 
 1. You have a feel for how widely used Python is, and why it is popular
 2. You can run a simple test Python program on your computer

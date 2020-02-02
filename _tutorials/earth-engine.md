@@ -7,7 +7,7 @@ author: Gergana and Isla
 survey_link: https://www.surveymonkey.co.uk/r/VKMZHD3
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn what the Google Earth Engine is](#intro)
 2. [Find out what types of analyses you can do using the GEE](#analyses)
@@ -21,11 +21,11 @@ survey_link: https://www.surveymonkey.co.uk/r/VKMZHD3
 
 __All the files you need to complete this tutorial will be generated and exported from the GEE during the course of the tutorial.__
 
-### [Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free. 
+__[Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free.__
 
 __Say what you'll be using the GEE for - for research, education, etc. It might take a few hours or a day or so for your registration to be approved.__
 
-## 1. Learn what the Google Earth Engine is
+# 1. Learn what the Google Earth Engine is
 {: #intro}
 
 The Google Earth Engine, as its developers have described it, is "_the most advanced cloud-based geospatial processing platform in the world!_" What this means is that, through the Google Earth Engine, you can access and efficiently analyse numerous open-source spatial databases (like Landsat and MODIS remote sensing imagery, the Global Forest Change dataset, roads, protected areas, etc.). When doing these analyses, you are using the Google servers, so you can do analyses that would take weeks, if not months, on your computer or even a fancy computer.
@@ -33,27 +33,27 @@ The Google Earth Engine, as its developers have described it, is "_the most adva
 __From the Google Earth Engine, you can export `.csv` files of any values you've calculated and `geoTIFF` files (georeferenced images) to your Google Drive account.__
 
 
-## 2. Find out what types of analyses you can do using the GEE
+# 2. Find out what types of analyses you can do using the GEE
 {: #analyses}
 
 __With the GEE, you can answer large-scale research questions in an efficient way that really was just not possible before, so quite exciting! You can use large geospatial datasets to address a plethora of questions and challenges facing humanity in the modern world. We will see later on how to explore what datasets are available to work with in the GEE, and it's also possible to import your own georeferenced imagery (like photos from drone missions).__ You can find out how to import your own raster data from [this page](https://developers.google.com/earth-engine/image_upload) on the GEE developers website.
 
 For example, you can classify different land cover types, you can calculate and extract values for landscape features such as [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Normalised Difference Vegetation Index) - for the world, a particular region of interest, or many different areas around the world. Really, the possibilities are enormous, and here we are only scratching the surface by giving you an example of how you can use the GEE to calculate changes in forest cover over time.
 
-### You can check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/) if you are keen to learn more and to practice your GEE skills!
+__You can check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/) if you are keen to learn more and to practice your GEE skills!__
 
 
-## 3. Get familiar with the GEE layout
+# 3. Get familiar with the GEE layout
 {: #layout}
 
-### [Go to the Earth Engine to start your GEE journey!](https://code.earthengine.google.com)
+__[Go to the Earth Engine to start your GEE journey!](https://code.earthengine.google.com)__
 
 _Take a moment to familiarise yourself with the layout of the Earth Engine editor - like when first starting to learn a new language, it can seem like a lot to take in at once! With your blank script, have a go at exploring the different tabs. Notice how if you draw polygons or drop points, they will appear in your script. You can go to the `Inspector` tab, click on a place in the map, and see what information is available for it. Here is an outline of what most of the tabs do:_
 
 ![Google Earth Engine webUI layout annotated]({{ site.baseurl }}/assets/img/tutorials/earth-engine/gee_layout.png)
 
 
-## 4. Learn the basic principles of JavaScript
+# 4. Learn the basic principles of JavaScript
 {: #javascript}
 
 __The Google Earth Engine uses the programming language [JavaScript](https://en.wikipedia.org/wiki/JavaScript).__
@@ -82,16 +82,16 @@ To add comments in your script, use `//`. For example, at the start of your blan
 
 __In JavaScript, you have to run your entire script at once - that is, you can't, for example, select two lines of your script and run just those, you have to run the whole thing. You "run" a script by pressing the `Run` button. This means that throughout your tutorial, as you add more lines to your script, you have to keep pressing `Run` to see the results of the new code you've added.__
 
-## 5. Import and explore data - protected areas and forest cover change as a case study
+# 5. Import and explore data - protected areas and forest cover change as a case study
 {: #import}
 
 Like with any analysis, it's not so much about the data as it is about your research question, so as you start exploring the GEE, remember to keep your research questions (or science communication goals, since the GEE is pretty great for that, too) in mind!
 
-### Research question
+## Research question
 
 __How has forest cover changed in different national parks around the world?__
 
-### Import and explore a dataset in the GEE - protected areas
+## Import and explore a dataset in the GEE - protected areas
 
 To import the protected area dataset (polygons of the protected areas around the world from the World Database of Protected Areas), type `protected area` in the search tab and select the polygon version of the database (the other one is just points, i.e. the coordinates of one point within the protected areas, not their outline).
 
@@ -105,7 +105,7 @@ Your imported dataset appears at the top of the script - it's currently called `
 
 __Remember to save your script and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
 
-### Visualise protected areas around the world
+## Visualise protected areas around the world
 
 Next up, we'll use the `Map` function to map the dataset and we will add a layer. You can then turn that layer on and off from the layer tab in the top right corner of the map window. You can also change the opacity.
 
@@ -121,7 +121,7 @@ Move around the world, find a national park and "inspect" it - can you find the 
 
 ![Earth Engine Inspector layout screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/map_inspect.png)
 
-### Import and explore a dataset in the GEE - forest cover change
+## Import and explore a dataset in the GEE - forest cover change
 
 Similarly to how you imported the protected area dataset, go to the search tab, type in `global forest change` and select the [Hansen et al. dataset](http://science.sciencemag.org/content/342/6160/850). 
 
@@ -153,7 +153,7 @@ __If you want to turn lots of code lines into comments or turn lots of comments 
 
 We are now ready to improve our map and derive quantitative values for forest loss and gain!
 
-## 6. Visualise forest cover change
+# 6. Visualise forest cover change
 {: #visualise}
 
 First, it's good practice to define the scale of your analyses - in our case, it's 30 m, the resolution of the Global Forest Change dataset. If a given pixel has experienced forest loss, this means that somewhere in that 30 m x 30 m square, there were decreases in forest cover.
@@ -187,7 +187,7 @@ var loss = gfc.select(['loss']);
 var gain = gfc.select(['gain']);
 ```
 
-### Make a global map of forest cover, forest loss and forest gain
+## Make a global map of forest cover, forest loss and forest gain
 
 Now that we have our three variables, we can create a layer for each of them and we can plot them using colours of our choice. We will use the same `Map.addLayer` function as before, but in addition to adding the object name, we will specify the colours and what we want to call the specific layers.
 
@@ -219,7 +219,7 @@ _You can also switch between map view and satellite view. If you zoom in enough 
 
 ![Amazon forest deforestation map]({{ site.baseurl }}/assets/img/tutorials/earth-engine/amazon_forest.png)
 
-## 7. Calculate total forest cover gain and loss in specific locations
+# 7. Calculate total forest cover gain and loss in specific locations
 {: #calculate}
 
 __So far we can see where forest loss and gain have occurred, so we know about the _extent_ of forest change, but we don't know about the _magnitude_ of forest change, so our next step is to convert the number of pixels that have experienced gain or loss (remember that they are just 0 or 1 values, 0 for no, 1 for yes) into areas, e.g. square kilometers.__
@@ -274,7 +274,7 @@ var statsGain = areaGain.reduceRegions({
 });
 ```
 
-## 8. Export results - summary tables
+# 8. Export results - summary tables
 {: #export}
 
 At this stage, we have calculated the areas of forest loss and gain in our chosen protected areas, but we haven't actually seen or visualised those numbers.
@@ -297,7 +297,7 @@ Export.table.toDrive({
 
 _Go check out your files in your Google Drive. Scroll all the way right to see the `sum` column, which shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
 
-## 9. Further visualisation in R - the best of both worlds!
+# 9. Further visualisation in R - the best of both worlds!
 {: #R}
 
 _We are keen to incorporate different platforms and languages in our analyses, playing to the strengths of each. `R` and `R` packages like `ggplot2` offer more flexibility in how you visualise your findings, so we will now switch over to `R` to make a barplot of forest loss and gain in the four protected areas we studied._

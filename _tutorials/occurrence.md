@@ -7,7 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.com/r/JYDDZ8F
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Download, format and manipulate biodiversity data](#download)
 2. [Clean species occurrence data](#clean)
@@ -20,12 +20,12 @@ __In this tutorial, we will focus on how to efficiently format, manipulate and v
 ![Panel of Beluga occurrences, with population trends and GBIF occurrence time series frequency]({{ site.baseurl }}/assets/img/tutorials/occurrence/beluga_panel.png)
 
 
-### 1. Download, format and manipulate biodiversity data
+# 1. Download, format and manipulate biodiversity data
 {: #download}
 
 We will be working with occurrence data for the beluga whale from the [Global Biodiversity Information Facility](http://www.gbif.org/) and population data for the same species from the [Living Planet Database](http://www.livingplanetindex.org/home/index), both of which are publicly available datasets.
 
-#### Set your working directory.
+## Set your working directory.
 
 It helps to keep all your data, scripts, image outputs etc. in a single folder. This minimises the chance of losing any part of your analysis and makes it easier to move the analysis on your computer without breaking filepaths. Note that filepaths are defined differently on Mac/Linux and Windows machines. On a Mac/Linux machine, user files are found in the 'home' directory (`~`), whereas on a Windows machine, files can be placed in multiple 'drives' (e.g. `D:`). Also note that on a Windows machine, if you copy and paste a filepath from Windows Explorer into RStudio, it will appear with backslashes (`\ `), but R requires all filepaths to be written using forward-slashes (`/`) so you will have to change those manually.
 
@@ -41,7 +41,7 @@ setwd("~/Work/coding_club/CC-occurrence-master")
 
 __Make a new script file using `File/ New File/ R Script` and we are all set to start exploring where beluga whales have been recorded and how their populations have changed in the last few decades.__
 
-#### Organise your script into sections
+## Organise your script into sections
 
 As with any piece of writing, when writing an R script it really helps to have a clear structure. A script is a `.R` file that contains your code. You could directly type code into the R console, but that way you have no record of it and you won't be able to reuse it later. To make a new `.R` file, open RStudio and go to `File/New file/R script`. For more information on the general RStudio layout, you can check out our [Intro to RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html). A clearly structured script allows both the writer and the reader to easily navigate through the code to find the desired section.
 
@@ -52,7 +52,7 @@ The best way to split your script into sections is to use comments. You can defi
 
 __NOTE: If you don't see the outline icon, you most likely do not have the newest version of RStudio. If you want to get this feature, you can [download](https://www.rstudio.com/products/rstudio/download/) the newest version of RStudio.__
 
-#### Write an informative header
+## Write an informative header
 
 __Whatever your coding adventure, it will be way smoother if you record what you are doing and why you are doing it, so that  your collaborators and future you can come back to the script and not be puzzled by the thousands of line of code. It's good practice to start a script with information on who you are, what the code is for and when you are writing it. We have some comments throughout the code in the tutorial. Feel free to add more comments to your script using a hashtag `#` before a line of text.__
 
@@ -84,7 +84,7 @@ library(png)
 library(gridExtra)
 ```
 
-#### Make your own `ggplot2` theme
+## Make your own `ggplot2` theme
 
 If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another, and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our graphs we won't need to use `legend.position`, but it's fine to keep it in the theme in case any future graphs we apply it to do have the need for legends.
 
@@ -113,7 +113,7 @@ theme_marine <- function(){
 }
 ```
 
-#### Load species occurrence and population trend data
+## Load species occurrence and population trend data
 
 __The data are in an `.RData` format, as those are quicker to use, since `.Rdata` files are more compressed. Of course, a drawback is that `.RData` files can only be used within R, whereas `.csv` files are more transferable.__
 
@@ -132,7 +132,7 @@ load("beluga.RData")
 load("marine.RData")
 ```
 
-#### Data formatting
+## Data formatting
 
 The `beluga` object contains hundreds of columns with information about the GBIF records. To make our analysis quicker, we can select just the ones we need using the `select` function from the `dplyr` package, which picks out just the columns we asked for. Note that you can also use `select` to remove columns from a data frame by adding a `-` before a column name, e.g. `-region`.
 
@@ -149,7 +149,7 @@ __We specified that we want the `select` function from exactly the `dplyr` packa
 #            unable to find an inherited method for function select for signature "grouped_df"
 ```
 
-#### Format and manipulate population change dataset
+## Format and manipulate population change dataset
 
 __Next, we will follow a few consecutive steps to format the population change data, exclude `NA` values and prepare the abundance data for analysis. Each step follows logically from the one before and we don't need to store intermediate objects along the way - we just need the final object. For this purpose, we can use pipes.__
 
@@ -187,7 +187,7 @@ str(beluga.pop)
 beluga.pop$year <- parse_number(beluga.pop$year)
 ```
 
-#### Quantify population change
+## Quantify population change
 
 __We will fit simple linear models (abundance over time for each population, `abundance ~ year`) to get a measure of the overall change experienced by each population for the period it was monitored. We will extract the slope, i.e. the estimate for the `year` term for each population. We can do this in a pipe as well, which makes for an efficient analysis. Here, we are analysing five populations, but you can also do it for thousands. With the `broom` package, we can extract model coefficients using one single line: `tidy(model_name)`.__
 
@@ -211,14 +211,14 @@ beluga.slopes <- beluga.slopes %>%
   ungroup()
 ```
 
-### 2. Clean species occurrence data
+# 2. Clean species occurrence data
 {: #clean}
 
 We have over a thousand GBIF occurrence records of belugas. Using the `CleanCoordinates` function from the `CoordinateCleaner` package, developed by Alexander Zizka, we can perform different tests of validity to flag potentially wrong coordinates ([more info here](https://github.com/azizka/CoordinateCleaner)). For example, we are currently working with a marine species, the beluga whale, so we don't expect to see those on land. Nevertheless, people sometimes see whales from land, i.e. when they are whalewatching from the coastline and when they take a GPS reading. That occurrence would technically be on land, since it's for the land-based observer, not the whale swimming by. Additionally, some of the records might be from zoos, which can explain species appearing to occur outside of their usual ranges.
 
 Before we perform the coordinate tests, we can make a quick map to get an idea of the spatial spread of the beluga GBIF records. With `ggplot2` and the `ggthemes` packages (the theme_map() function comes from `ggthemes`), you can make quick and easy maps. To choose colours for your map, you can use the `Rcolourpicker` addin, which offers a really easy way to get the colour codes for whatever colours you want right within `RStudio`.
 
-#### Picking colours using the `Rcolourpicker` addin
+## Picking colours using the `Rcolourpicker` addin
 
 Setting custom colours for your graphs can set them apart from all the rest (we all know what the default `ggplot2` colours look like!), make them prettier and most importantly, give your work a consistent and logical colour scheme. Finding the codes, e.g. `colour="#8B5A00"`, for your chosen colours, however, can be a bit tedious. Though one can always use Paint / Photoshop / google colour codes, there is a way to do this within RStudio thanks to the addin `colourpicker`. RStudio addins are installed the same way as packages and you can access them by clicking on `Addins` in your RStudio menu. To install `colourpicker`, run the following code:
 
@@ -347,6 +347,9 @@ anti_join(beluga.base, beluga.pipe)  # There are no differences
 ```
 
 __We could keep going with the occurrence clean up and you could use the identifier for each record (the `key` column in the data frame that has a unique value for each record) to go back to the original GBIF data and filter out that record, using e.g. `new.beluga <- filter(beluga.clean, key != "whatever the key number is")`. You can also look up the many columns of data from the original GBIF dataframe to get more information on that specific record, e.g. is it from a wild population, how was it collected and by whom. Then you might decide you want to exclude more records.__
+
+# 3. Visualise & customise species occurrence and population trends
+{: #datavis}
 
 __For now, we will move onto more data visualisation. We will customise our map of beluga occurrence, visualise when the records were collected and how some of the beluga populations have changed through time.__
 
@@ -522,7 +525,7 @@ beluga3 <- filter(beluga.pop, id == "1950" | id == "4557" | id == "4558")
 
 You might have noticed that the process is a bit repetitive. We are performing the same action, but for different species. It's not that big of a deal for three populations, but imagine we had a thousand!  If that were the case, we could have used a loop that goes through each population and makes a graph, or we could have used a pipe, where we group by population id and then make the graphs and finally we could have used the `lapply()` function which applies a function, in our case making a graph, to e.g. each population. There are many options and if you would like to learn more on how to automate your analysis and data visualisation when doing the same thing for many places or species, you can check out [our tutorial comparing loops, pipes and `lapply()`]({{ site.baseurl }}/tutorials/seecc/index.html) and [our tutorial on using functions and loops]({{ site.baseurl }}/tutorials/funandloops/index.html).
 
-#### Arrange all graphs in a panel with the `gridExtra` package
+## Arrange all graphs in a panel with the `gridExtra` package
 
 The `grid.arrange` function from the `gridExtra` package creates panels of different graphs. You can check out our [data visualisation tutorial]({{ site.baseurl }}/tutorials/datavis/index.html#panel) to find out more about `grid.arrange`.
 

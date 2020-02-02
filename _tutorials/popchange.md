@@ -7,7 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/NYVBNF8
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Tidy dataset](#tidy)
 2. [Calculate population change](#calc) 
@@ -64,8 +64,10 @@ str(LPI_EU)
 View(LPI_EU)
 ```
 
-The data are currently in wide format: each year is a column, which is not convenient for analysis. In a [tidy dataset](http://garrettgman.github.io/tidying/) each row is an observation. We can transform the dataset into long format using the `gather()` function from the `tidyr` package.
+# 1. Tidy the data 
 {: #tidy}
+
+The data are currently in wide format: each year is a column, which is not convenient for analysis. In a [tidy dataset](http://garrettgman.github.io/tidying/) each row is an observation. We can transform the dataset into long format using the `gather()` function from the `tidyr` package.
 
 ```r
 # Transform data to long format ----
@@ -102,8 +104,10 @@ LPI_long <- LPI_long %>%
 	mutate(scalepop = (population - min(population))/(max(population)-min(population)))
 ```
 
-We have subsetted the data for the ten most common orders in the LPI European database so we can quantify the change in populations from an order of our choice. Alternatively, we can calculate population change for all orders or for just the marine or terrestrial ones: many options!
+# 2. Calculate population change 
 {: #calc}
+
+We have subsetted the data for the ten most common orders in the LPI European database so we can quantify the change in populations from an order of our choice. Alternatively, we can calculate population change for all orders or for just the marine or terrestrial ones: many options!
 
 ```r
 # Calculate population change for an order of your choice ----
@@ -127,8 +131,10 @@ pop_change <- anseriformes %>%
   ungroup()  # get rid of the grouping
 ```
 
-We are now all set to make our map! This is a simple map we will make using `ggplot2` - it doesn't have topography, or cities and roads. Instead, it presents a stylised view of European countries and focuses on where the different populations are located and how they have changed.
+# 3. Make a map of vertebrate population change in Europe
 {: #map}
+
+We are now all set to make our map! This is a simple map we will make using `ggplot2` - it doesn't have topography, or cities and roads. Instead, it presents a stylised view of European countries and focuses on where the different populations are located and how they have changed.
 
 We are using the `viridis` package for the colour palette of the points. The `viridis` package contains four colour palettes, which are friendly to colour blind people and they look quite nice in general.
 
@@ -162,6 +168,6 @@ ggsave(EU_pop, filename = "anseriformes.png", width = 10, height = 10)
 
 Here we have created a map for _Anseriformes_, an order which includes many species of waterfowl, like the mallard and pochard. Curious to see how vertebrate populations across the whole LPI database have changed? You can check out our [tutorial on efficient ways to quantify population change]({{ site.baseurl }}/tutorials/seecc/index.html), where we compare how for-loops, `lapply()` functions and pipes compare when it comes to dealing with a lot of data.
 
-### We'd love to see the maps you've made so feel free to email them to us at ourcodingclub@gmail.com!
+__We'd love to see the maps you've made so feel free to email them to us at ourcodingclub@gmail.com!__
 
 

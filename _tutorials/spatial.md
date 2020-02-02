@@ -7,7 +7,7 @@ author: Maude Grenier
 survey_link: https://www.surveymonkey.com/r/8MJ8GRY
 ---
 
-## Tutorial Aims:
+# Tutorial Aims:
 
 1. [Explore raster data](#section1)
 2. [Visualise spectral bands](#section2)
@@ -27,8 +27,7 @@ Alternatively, for large scale analysis where downloading huge files is not an o
 
 Satellite data mostly consist of __reflectance data__, which can be defined as a measure of the intensity of the reflected sun radiation by the earth's surface. Reflectance is measured for __different wavelength of the electromagnetic spectrum__. The Sentinel 2 optical sensor measures reflectance at __13 wavelength bandwidths__, or bands for short. In satellite images, these data are stored in __rasters__, or a matrix data structure, where __each pixel stores the data for the 13 wavelengths__. Therefore, Sentinel 2 data contains several raster layers, one for each spectral band. More information on Sentinel 2 can be accessed [here](https://en.wikipedia.org/wiki/Sentinel-2).
 
-
-## 1. Explore raster data
+# 1. Explore raster data
 {: #section1}
 
 Once you have unzipped the files you downloaded from the [repository](https://github.com/ourcodingclub/CC-spatial) on your computer, open `RStudio`, create a new script by clicking on `File/ New File/ R Script`. It is always a good idea the write a header to your script with your name, data and purpose such as `Intro to spatial analysis tutorial` as shown below. Then, set the working directory to the location of the unzipped files on your computer and load the following packages, installing them if necessary:
@@ -149,7 +148,7 @@ cropped_tay <- crop(b7, e)
 plot(cropped_tay)
 ```
 
-## 2. Visualise spectral bands
+# 2. Visualise spectral bands
 {: #section2}
 
 __The bands can be plotted with different colour palettes to improve visualisation, such as `viridis`, and saved using the code below.__
@@ -263,7 +262,7 @@ __60 m resolution__
 band 1, band 9 and band 10
 
 
-## 3. Manipulate rasters: NDVI and KMN classification
+# 3. Manipulate rasters: NDVI and KMN classification
 {: #section3}
 
 __The [Normalised Difference Vegetation Index (NDVI)](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) is a widely used vegetation index that quantifies vegetation presence, health or structure. It is calculated using the Near Infrared (NIR) and Red bandwith of the spectrum. Healthy vegetation reflects light strongly in the NIR part of the spectrum and absorbs light in red part of the visible spectrum for photosynthesis. A high ratio between light refected in the NIR part of the spectrum and light reflected in the red part of the spectrum would represent areas that potentially have healthy vegetation. It is worth noting that different plant species absorb light in the red part of the spectrum at different rates. The same plant will also absorb light in the red band differently depending on whether it is stressed or healthy, or the time of year. It is often used over large areas as an indication of land cover change.__
@@ -432,9 +431,10 @@ A simple classification like this one is only to give an idea of land cover type
 
 __Exercise: Using the NDVI, RGB and `kmeans` plot, can you deduce other land cover around the Loch Tay area?__
 
-------------------------------------------------------------------------
 
-#### In our introduction to remote sensing spatial analysis, we have covered how to:
+# Conclusion
+
+In this introduction to remote sensing spatial analysis, we have covered how to:
 
 - Import a GeoTIFF file as a raster in R.
 - Extract layers from a multi-layer raster objects and get the raster properties.

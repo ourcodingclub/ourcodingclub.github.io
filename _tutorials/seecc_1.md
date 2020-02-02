@@ -7,7 +7,7 @@ layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Formatting and tidying data using `tidyr`](#tidyr)
 2. [Efficiently manipulating data using `dplyr`](#dplyr)
@@ -15,7 +15,7 @@ survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
 4. [Automating data visualisation using `ggplot2` and `dplyr`](#datavis)
 5. [Species occurrence maps based on GBIF and Flickr data](#Flickr)
 
-# Quantifying population change
+## Quantifying population change
 
 This workshop will provide an overview of methods used to investigate an ecological research question using a big(ish) dataset that charts the population trends of ~15,000 animal populations from ~3500 species across the world, provided by the [Living Planet Index Database](http://www.livingplanetindex.org/home/index). We will use the LPI dataset to first examine how biodiversity has changed since 1970, both globally and at the biome scale, and then we will zoom in further to create a map of the distribution of the Atlantic puffin based on occurrence data from [Global Biodiversity Information Facility](http://www.gbif.org/) and [Flickr](http://www.flickr.com/). We will be following a generic workflow that is applicable to most scientific endeavours, at least in the life sciences. This workflow can be summed up in this diagram we [recreated](http://r4ds.had.co.nz) from Hadley Wickham's book R for Data Science:
 
@@ -61,10 +61,10 @@ load("puffin_GBIF.RData")
 ```
 
 
-## 1. Formatting and tidying data using `tidyr`
+# 1. Formatting and tidying data using `tidyr`
 {: #tidyr}
 
-### Reshaping data frames using `gather()`
+## Reshaping data frames using `gather()`
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
@@ -99,7 +99,7 @@ Because column names are coded in as characters, when we turned the column names
 LPI_long$year <- parse_number(LPI_long$year)
 ```
 
-### Using sensible variable names
+## Using sensible variable names
 
 Have a look at the column names in `LPI_long`:
 
@@ -136,7 +136,7 @@ LPI_long$biome <- gsub("/", "", LPI_long$biome, fixed = TRUE)
 ```
 
 
-## 2. Efficiently manipulating data using `dplyr`
+# 2. Efficiently manipulating data using `dplyr`
 {: #dplyr}
 
 Now that our dataset is *tidy* we can get it ready for our analysis. This data frame contains data from lots of different sources so to help answer our question of how populations have changed since 1970, we should create some new variables and filter out the unnecessary data.
@@ -183,7 +183,7 @@ LPI_biome_summ <- LPI_long %>%
 
 Check out the new data frame using `View(LPI_biome_summ)` to find out how many populations each biome has, as well as other summary information.
 
-## 3. Automating data manipulation using `lapply()`, loops and pipes
+# 3. Automating data manipulation using `lapply()`, loops and pipes
 {: #lapply_loops}
 
 Often we want to perform the same type of analysis on multiple species, plots, or any other groups within our data - copying and pasting is inefficient and can easily lead to mistakes, so it's much better to automate the process within R and avoid all the repetition. There are several ways to do this, including using `apply()` and it's variants, loops, and pipes. For more information, you can check out our tutorials on [loops]({{ site.baseurl }}/tutorials/funandloops/index.html) and [piping]({{ site.baseurl }}/tutorials/piping/index.html), but for now, here is a brief summary.
@@ -358,12 +358,12 @@ write.csv(LPI_models_pipes_mod, file="LPI_models_pipes.csv", )  # This takes a l
 Compare the `.RData` file with an equivalent `.csv` file. `.RData` files are much more compressed than `.csv` files, and load into R much more quickly. For the `.csv` here, we removed one column, so the final result might not be that different in terms of file size, but in general `.RData` files are smaller. They are also guaranteed to be in the right format, unlike a `.csv`, which can have problems with quotes (`""`), commas (`,`) and unfinished lines. One drawback however is that they can't be used with software other than `R`.
 
 
-## 4. Automating data visualisation using `ggplot2` and `dplyr`
+# 4. Automating data visualisation using `ggplot2` and `dplyr`
 {: #datavis}
 
 Now that we have quantified how the different populations in the LPI dataset have changed through time, it'd be great to visualise the results. First, we can explore how populations are changing in different biomes through histograms of slope estimates. We could filter the data for each biome, make a new data frame, make the histogram, save it, and repeat all of this many times, or we could get it done all in one go using `ggplot2` and pipes `%>%`. Here we'll save the plots as `.pdf` files, but you could use `.png` as well. We will also set a custom theme for `ggplot2` to use when making the histograms and choose a colour for the bins using `Rcolourpicker`.
 
-### Making your own `ggplot2` theme
+## Making your own `ggplot2` theme
 
 If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up - you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution - create a customised theme that combines all the `theme()` elements you want, and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another, and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our histograms we won't need to use `legend.position`, but it's fine to keep it in the theme, in case any future graphs we apply it to do have the need for legends.
 
@@ -386,7 +386,7 @@ theme_LPI <- function(){
 }
 ```
 
-### Picking colours using the `Rcolourpicker` addin
+## Picking colours using the `Rcolourpicker` addin
 
 Setting custom colours for your graphs can set them apart from all the rest (we all know what the default `ggplot2` colours look like!), make them prettier, and most importantly, give your work a consistent and logical colour scheme. Finding the codes, e.g. `colour = "#8B5A00"`, for your chosen colours, however, can be a bit tedious. Though one can always use Paint / Photoshop / google colour codes, there is a way to do this within RStudio thanks to the addin `colourpicker`. RStudio addins are installed the same way as packages, and you can access them by clicking on `Addins` in your RStudio menu. To install `colourpicker`, run the following code:
 
@@ -402,11 +402,11 @@ When you click on `All R colours` you will see lots of different colours you can
 
 ![RStudio colourpicker interface screenshot]({{ site.baseurl }}/assets/img/tutorials/seecc_1/colourpicker2.png)
 
-### Plotting histograms of population change in different biomes and saving them
+## Plotting histograms of population change in different biomes and saving them
 
 __We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
 
-#### You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code.
+__You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code.__
 
 ```r
 biome.plots <- LPI_long %>%
@@ -426,7 +426,7 @@ The histograms will be saved in your working directory. You can use `getwd()` to
 
 ![Histogram of population change]({{ site.baseurl }}/assets/img/tutorials/seecc_1/hist_polar_seas.png)
 
-### Ploting slope estimates for population change versus duration of monitoring and adding histograms along the margins
+## Plotting slope estimates for population change versus duration of monitoring and adding histograms along the margins
 
 Within RStudio, you can use addins, including `Rcolourpicker` that we discussed above, and `ggExtra` that we will use for our marginal histograms.
 
@@ -486,7 +486,7 @@ We used a colour palette from `RColorBrewer` to colour the points (`Set1`). You 
 ![World map of species distributions]({{ site.baseurl }}/assets/img/tutorials/seecc_1/puffinmap.png)
 
 
-## 5. Species occurrence maps based on GBIF and Flickr data
+# 5. Species occurrence maps based on GBIF and Flickr data
 {: #Flickr}
 
 In this part of the tutorial, we will use two datasets, one from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org) and one from [Flickr](https://www.flickr.com), to create species occurrence maps. 
@@ -496,7 +496,7 @@ Most of the time the data is in the form of presence-only records. Volunteers, o
 
 We will go through different steps to download, clean and visualise this type of data. We will start with downloading all the occurrences of atlantic puffin in the UK that are in the GBIF database. Then we will do some spatial manipulation of data attached to pictures of atlantic puffins taken in the UK and uploaded on Flickr. Finally, we will produce density maps of both of these datasets to look for hotspots of puffins and/or puffin watchers.
 
-### Download puffin occurrences from GBIF
+## Download puffin occurrences from GBIF
 
 First install and load all the package needed.
 
@@ -544,7 +544,7 @@ library(ggthemes)
 ```
 ![UK map of species distribution]({{ site.baseurl }}/assets/img/tutorials/seecc_1/GBIFoccurr.png)
 
-### Clean data from Flickr
+## Clean data from Flickr
 
 We will now use the dataset flickr_puffins.txt. This dataset has been collected from Flickr Application Programming Interface (API), which is an interface through which softwares can interact with each other. APIs make it easy for developers to create applications which access the features or data of an operating system, application or other service. Because of time constraints, we are not going to go through the code to download data from Flick API, but you can find the script [here](https://github.com/ourcodingclub/SEECC-workshop/blob/master/FlickrAPI.R) and I am happy to help if you find something unclear.
 
@@ -680,7 +680,7 @@ points(flickr_correct, pch = 20, col = "steelblue")
 
 ![Map of UK species around coast]({{ site.baseurl }}/assets/img/tutorials/seecc_1/FlickrCoast2.png)
 
-### Density maps
+## Density maps
 
 __Now that we have the datasets cleaned, it is time to make some pretty maps. When you have presence-only data, one of the things you might want to do is to check whether there are hotspots. Density maps made with `ggplot2` can help you visualise that.__
 

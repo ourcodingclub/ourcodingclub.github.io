@@ -7,7 +7,7 @@ author: Isla and Gergana
 survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 ---
 
-### Tutorial Aims:
+# Tutorial Aims:
 
 1. [Learn what a statistical model is](#model)
 2. [Come up with a research question](#question)
@@ -22,23 +22,23 @@ survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 
 __All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
-## Introduction
+# Introduction
 
 __Ecological data can throw up complex challenges for statistical models and designing the appropriate model to answer your research question can be one of the trickiest parts of ecological research (and research in other fields). Learning how to design statistical models can take time, but developing rigorous statistical approaches as early as possible will help you in your future research career. If you put the time in, soon you will realise that statistics aren't a total pain and continuous frustration, but something pretty fun that really engages your brain in diverse ways. So to start off, I like to put the computer coding aside, make myself a hot drink or get a fancy latte at a coffee shop, get out my pen or pencil and paper and put on my thinking cap.__
 
 
-## 1. Learn what a statistical model is
+# 1. Learn what a statistical model is
 {: #model}
 
 In order to answer research questions, we require statistical tests of the relationships in our data. In modern ecology and other fields, models are designed to fit the structure of data and to appropriately test the questions that we have as researchers. Thus, the first step to any data analysis is figuring out what your research question is. __Without a research question, there is no point in trying to conduct a statistical test. So let's pause here and figure out the research question for our tutorial today.__
 
 
-## 2. The research question
+# 2. The research question
 {: #question}
 
 In this tutorial, we will work with part of the long-term plant cover dataset from the [Toolik Lake Field Station](http://arc-lter.ecosystems.mbl.edu/terrestrial-data).  These data (remember the word data is plural, thus data are ... not data is ...!) are plant composition data collected over four years across five sites over time in Arctic tundra in Northern Alaska.  A simple question we might ask with these data is: how has the species richness changed in these plots over time?
 
-### Question 1: How has plant species richness changed over time at Toolik Lake?
+## Question 1: How has plant species richness changed over time at Toolik Lake?
 
 Once we have figured out our research question, we next need to figure out our hypothesis. To come up with a hypothesis, we need to learn something about this system. To start us off today, we will suggest a hypothesis for you: plant species richness is increasing over time. We might expect this as these tundra plots might be undergoing warming and warming might lead to increased plant species richness in tundra plant communities (see [this paper](https://www.nature.com/articles/s41586-018-0005-6) for more on this topic).
 
@@ -54,11 +54,11 @@ __Hypothesis 2: Plant species richness has decreased over time at Toolik Lake.__
 
 Toolik Lake Station is in Alaska, a place that has been warming at rates higher than the rest of the world, so we might also wonder how temperature influences the plant communities there, in particular, their richness. So, we pose a second question:
 
-### Question 2: How does mean annual temperature influence plant species richness?
+## Question 2: How does mean annual temperature influence plant species richness?
 
 __Hypothesis 1: Higher temperatures correspond with higher species richness.__
 
-#### How are questions 1 and 2 different?
+How are questions 1 and 2 different?
 
 __Detection models__
 When we ask how plant species richness has changed over time, we are interested in __detecting__ change. We want to know what happened to plant communities in Toolik Lake, but we are not testing anything regarding __why__ such changes in species richness occurred (and maybe there were no changes over time).
@@ -69,7 +69,7 @@ When we ask how temperature influences plant species richness, we are looking to
 For now, this should be enough set-up for us to progress ahead with our models, but remember to __always start with the question first when conducting any research project and statistical analysis.__
 
 
-## 3. Thinking about our data
+# 3. Thinking about our data
 {: #thinking}
 
 There are different statistical tests that we could use to conduct our analyses and what sort of statistical test we use depends on the question and the type of data that we have to test our research question.  Since we have already thought about our question for a bit, let's now think about our data.  What kind of data are we dealing with here?
@@ -226,26 +226,27 @@ __The plant cover can be any value that is positive, it is therefore bounded at 
 __The plant cover data are skewed to the left, i.e., most of the records in the `Relative.Cover` column have small values. These distributions and characteristics of the data need to be taken into account when we design our model.__
 
 
-## 4. Thinking about our experimental design
+# 4. Thinking about our experimental design
 {: #design}
 
 In the Toolik dataset of plant cover, we have both spatial and temporal replication.  The spatial replication is on three different levels: there are multiple sites, which have multiple blocks within them and each block has eight plots. The temporal replication refers to the different years in which plant cover was recorded: four years.
 
 __What other types of issues might we need to consider?__
 
-### Spatial autocorrelation
+## Spatial autocorrelation
+
 One of the assumptions of a model is that the data points are independent. In reality, that is very rarely the case. For example, plots that are closer to one another might be more similar, which may or may not be related to some of the drivers we're testing, e.g. temperature.
 
-### Temporal autocorrelation  
+## Temporal autocorrelation  
 Similarly, it's possible that the data points in one year are not independent from those in the year before. For example, if a species was more abundant in the year 2000, that's going to influence it's abundance in 2001 as well.
 
 
-## 5. Turn a question into a model
+# 5. Turn a question into a model
 {: #types}
 
 __Let's go back to our original question:__
 
-### Question 1: How has plant species richness changed over time at Toolik Lake?
+## Question 1: How has plant species richness changed over time at Toolik Lake?
 
 What is our dependent and independent variable here?  We could write out our base model in words:
 
@@ -256,7 +257,7 @@ __In `R`, this turns into the code: `richness ~ time`.__
 __Richness is our dependent (predictor) variable and time is our independent variable ([ see here for more details](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
 
 
-## 6. Learn about the different types of models
+# 6. Learn about the different types of models
 {: #models}
 
 Before we get back to our dataset that we are designing a model for, let's revisit some statistics basics.
@@ -270,7 +271,7 @@ __Here are some questions to consider.__
 * What is the most important result from a model output?
 * Why does it matter which type of models we use?
 
-## 7. General linear models
+# 7. General linear models
 {: #linear}
 
 Model without any random effects:
@@ -306,7 +307,7 @@ __For now, let's check the residual versus predicted plot for our linear model. 
 plot(plant_m)
 ```
 
-## 8. Hierarchical models using `lme4`
+# 8. Hierarchical models using `lme4`
 {: #lme4}
 
 Now that we have explored the idea of a hierarchical model, let's see how our analysis changes if we do or do not incorporate elements of the experimental design to the hierarchy of our model.
@@ -398,7 +399,7 @@ __Assumptions not accounted for:__
 2. We have not accounted for temporal autocorrelation in the data - whether the influence of prior years of data are influencing the data in a given year.
 
 
-## 9. Random slopes versus random intercepts `lme4`
+# 9. Random slopes versus random intercepts `lme4`
 {: #lme4b}
 
 __We can now think about having random slopes and random intercepts. For our question, how does temperature influence species richness, we can allow each plot to have it's own relationship with temperature.__
@@ -453,7 +454,7 @@ save_plot(filename = "model_temp_richness_rs_ri.png",
 
 ![Random slope model predicted values by plot]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness_rs_ri.png)
 
-#### An important note about honest graphs!
+## An important note about honest graphs!
 
 Interestingly, the default options from the `ggpredict()` function set the scale differently for the y axes on the two plots. If you just see the first plot, at a first glance you'd think that species richness is increasing a lot as temperature increases! But take note of the y axis: it doesn't actually start at zero, thus the relationship is shown to be way stronger than it actually is.
 
@@ -508,7 +509,7 @@ ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
 ![ggplot2 random slope model predicted values]({{ site.baseurl }}/assets/img/tutorials/model-design/ri_rs_predictions_zoom.png)
 
 
-## 10. Hierarchical models using `MCMCglmm`
+# 10. Hierarchical models using `MCMCglmm`
 {: #MCMCglmm}
 
 __Let's take our `lme4` model and explore what that model structure looks like in `MCMCglmm`. `MCMCglmm` fits Generalised Linear Mixed-effects Models using a Markov chain Monte Carlo approach under a Bayesian statistical framework.__
@@ -597,11 +598,11 @@ MCMCplot(betula_m$VCV)
 
 ![Parameter estimate interval plot]({{ site.baseurl }}/assets/img/tutorials/model-design/mcmc_vis2.png)
 
-#### Conclusions
+# Conclusions
 
 Today we have learned that in order to design a statistical model, we first need to think about our questions, the structure in the data we are working with and the types of assumptions that we want to make. No model will ever be perfect, but we can use hierarchical models to minimize the assumptions that we are making about our data and to better represent the complex data structures that we often have in ecology and other disciplines. Designing a statistical model can at first seem very overwhelming, but it gets easier over time and in the end, can be one of the most fun bits of ecology, believe it or not! And the more tools you build in your statistical toolkit to help you developing appropriate statistical models, the better you will be able to tackle the challenges that ecological data throw your way! Happy modelling!
 
-#### Extras
+# Extras
 
 If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
 

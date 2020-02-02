@@ -7,7 +7,7 @@ author: Ed C
 survey_link: https://www.surveymonkey.co.uk/r/795PKMV
 ---
 
-### Tutorial aims:
+# Tutorial aims:
 
 1. [What is NumPy?](#introduction)
 2. [Basic manipulation NumPy arrays](#basic)
@@ -15,9 +15,7 @@ survey_link: https://www.surveymonkey.co.uk/r/795PKMV
 4. [Reading and writing data](#io)
 5. [Cautions when using NumPy arrays](#cautions)
 
-
-
-## What is NumPy?
+# 1. What is NumPy?
 {: #introduction}
 
 So what is NumPy? According to the official website, NumPy is the fundamental package for scientific computing with Python. One trade-off of using Python is its computing speed. On the other hand, C is known for its high speed. Hence, the developers came to the conclusion of writing a package of numerical functions which is written in C, but which you can run from Python. So, without having to learn C, you can use its power in Python.
@@ -53,10 +51,10 @@ Using numpy is much faster than the base python version! It is faster to run, sa
 
 NumPy serves as the basis of most scientific packages in Python, including pandas, matplotlib, scipy, etc. Hence, it would be a good idea to explore the basics of data handling in Python with NumPy. This tutorial does not come with any pre-written files, but is a follow-along tutorial. So better start typing on your IDE or IPython.
 
-## Basic manipulation numerical arrays
+# 2. Basic manipulation numerical arrays
 {: #basic}
 
-### Importing the package
+## Importing the package
 
 So let us get started. If you have the NumPy package installed, you should import it.
 
@@ -66,7 +64,7 @@ import numpy as np
 
 This is a standard import statement, which uses the syntax `import package as alias`. This allows us to call NumPy with `np`, instead of having to keep typing the whole word `numpy` each time we want to use one of the NumPy functions. The same syntax can be used with other modules such as `import pandas as pd`. It is very common to use the alias `np` for NumPy, but you can choose whatever alias you want.
 
-### Creating NumPy arrays
+## Creating NumPy arrays
 
 Creating arrays in NumPy is very easy. Below we create 3 different arrays. Try running these lines of code in Python.
 
@@ -86,8 +84,10 @@ print(a.shape)
 ```
 `a` will be a 2D array of size 3x3. The rows will be `[0., 1., 2.], [3., 4., 5.], [6., 7., 8.]`. The print statement should return a tuple `(3, 3)`.
 
-### Accessing and slicing data
+## Accessing and slicing data
+
 Accessing NumPy array is straight-forward.
+
 ```python
 a = np.arange(30.).reshape(10, 3)
 # the next line will print the first row of the array
@@ -194,7 +194,7 @@ e = np.arange(9.).reshape(3, 3)
 e[e>5] = 10.0
 ```
 
-## Masked Arrays
+# 3. Masked Arrays
 {: #mask}
 
 Suppose you have a time series with missing data, and want to perform the row sum.
@@ -217,7 +217,7 @@ This should give you 210,000.
 There are numerous ways to mask your data for different purposes. All the available methods are listed in the [numpy.ma documentation](https://docs.scipy.org/doc/numpy/reference/maskedarray.generic.html) on the web.
 
 
-## Reading and writing data
+# 4. Reading and writing data
 {: #io}
 
 Using standard .csv files, there are number of methods that let you read data file. While the shortest way is to use `np.genfromtxt()` function, my personal favourite is to use Pandas to read it and then convert it to pure NumPy arrays.
@@ -253,7 +253,7 @@ temperature = open_dataset['temperature']
 There are also a number of packages available to allow you to open files of different formats as NumPy arrays (e.g. `netCDF4` for netCDF files).
 
 
-## Cautions when using NumPy
+# 5. Cautions when using NumPy
 {: #cautions}
 
 Some of you (with some experience in Python) might have felt something is not quite right. The culprit might be the fact that we have been able change the values of the original arrays within loops, which is not the default behaviour of Python!
@@ -293,7 +293,7 @@ print(c, d)
 
 As a scientific computing tool, Python is a powerful tool, with NumPy at its heart. This tutorial hopefully would have helped people starting in their quest of using numerical analysis with Python.
 
-### Tutorial outcomes:
+# Tutorial outcomes:
 
 1. You know what NumPy is used for.
 2. You manipulate and explore NumPy arrays using slicing
