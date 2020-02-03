@@ -44,6 +44,7 @@ __We are an enthusiastic group of ecology and environmental science students and
 ## News 
 
 * 24th January 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/dl_course/) 
+* 23rd January 2020 - [Google dataset search out of beta](https://blog.google/products/search/discovering-millions-datasets-web/)
 * 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
 * 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
 
