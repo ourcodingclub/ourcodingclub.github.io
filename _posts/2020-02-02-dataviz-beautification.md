@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Efficient data synthesis and visualisation
-subtitle: A Coding Club workshop for the Oxford Zoology & Plant Sciences departments
+subtitle: A Coding Club workshop for Colorado University at Boulder
 date: 2020-02-02 10:00:00
 author: Gergana
 meta: "Tutorials"
@@ -143,7 +143,7 @@ get_wd()
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map1.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map1.png" alt="Img" style="width: 700px;"/> </center>
 
 Our first map does a not terrible job at visualising where the sites are, but it looks rather off and is not particularly great to look at. It's also not communicating much information other than where the sites are. For example, we can use colours to indicate the elevation of each site.
 
@@ -169,7 +169,7 @@ ggsave(lter_map2, filename = "map2.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map2.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map2.png" alt="Img" style="width: 700px;"/> </center>
 
 Next up we can work on improving the map projection - by default we get the Mercantor projection but that doesn't represent the world very realistically. With the `ggalt` package and the `coord_proj` function, we can easily swap the default projection.
 
@@ -199,7 +199,7 @@ ggsave(lter_map3, filename = "map3.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map3.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map3.png" alt="Img" style="width: 700px;"/> </center>
 
 The projection is better now, but because there are a few faraway sites, the map looks quite small. Since those sites are not going to be our focus, we can zoom in on the map.
 
@@ -225,7 +225,7 @@ ggsave(lter_map4, filename = "map4.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map4.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map4.png" alt="Img" style="width: 700px;"/> </center>
 
 Next up we can declutter a bit - we don't really need that grey background and people know that on a map you have latitude and longitude as the axes.
 
@@ -254,7 +254,7 @@ ggsave(lter_map5, filename = "map5.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map5.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map5.png" alt="Img" style="width: 700px;"/> </center>
 
 Sometimes we want to annotate points and communicate what's where - the `ggrepel` package is very useful in such cases.
 
@@ -287,7 +287,7 @@ ggsave(lter_map6, filename = "map6.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map6.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map6.png" alt="Img" style="width: 700px;"/> </center>
 
 Well, we _slightly_ overdid it with the labels, we have a lot of sites and it's definitely an eye sore to look at all of their names at once. But where annotations really shine is in drawing attention to a specific point or data record. So we can add a label just for one of the sites, Niwot Ridge, from where the plant data for the rest of the tutorial comes.
 
@@ -318,7 +318,7 @@ ggsave(lter_map7, filename = "map7.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map7.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map7.png" alt="Img" style="width: 700px;"/> </center>
 
 This is looking better, but the colours are not very exciting. Depending on the purpose of the map and where it's going (e.g., presentation, manuscript, a science communication piece), we can also add some text with an interesting fact about the site.
 
@@ -354,7 +354,7 @@ ggsave(lter_map8, filename = "map8.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/map8.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/map8.png" alt="Img" style="width: 700px;"/> </center>
 
 <b>There goes our map! Hard to say our "finished" map, because figures evolve a lot, but for now we'll leave the map here and move onto distributions - a great way to communicate the whole spectrum of variance in your dataset!</b>
 
@@ -362,31 +362,25 @@ ggsave(lter_map8, filename = "map8.png",
 
 ## Visualise distributions (and make them rain data with raincloud plots)
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
+<b>Behind every mean, there is a distribution, and that distribution has a story tell, if only we let it! Visualising distributions is a very useful way to communicate patterns in your data in a more transparent way than just a mean and its error.</b>
 
-```r
+Violin plots (the fatter the violin at a given value, the more data points there) are pretty and sound poetic, but we can customise them to make their messages pop out more. Thus the beautification journey begins again.
 
-```
-</section>
+<center> <img src="{{ site.baseurl }}/img/beautification2.png" alt="Img" style="width: 900px;"/> </center>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
+<div class="bs-callout-blue" markdown="1">
+If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another and then when you apply your theme to a graph, only the relevant elements will be considered.
+</div>
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1"> 
 
 ```r
-
-```
-</section>
-
 # DISTRIBUTIONS ----
+# Setting a custom ggplot2 function
+# This function makes a pretty ggplot theme
+# This function takes no arguments 
+# meaning that you always have just niwot_theme() and not niwot_theme(something else here)
 
 theme_niwot <- function(){
   theme_bw() +
@@ -411,15 +405,134 @@ theme_niwot <- function(){
                                            size = 2, linetype = "blank"))
 }
 
+```
+</section>
+
+First up, we should decide on a variable whose distribution we will show. The data we are working with represent plant species and how often they were recorded at a fertilisation experiment at the Niwot Ridge LTER site. There are multiple plots per fertilisation treatment and they were monitored in several years, so one thing we can calculate from these data is the number of species per plot per year.
+
+<div class="bs-callout-blue" markdown="1">
+
+__A data manipulation tip:__ Pipes (%>%) are great for streamlining data analysis. If you haven't used them before, you can find an intro in <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">our tutorial here</a>. A useful way to familiriase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to a certain point. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year)` and *not* the whole `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year) %>%`.
+
+__Running pipes sequentially line by line also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
+
+__Grouping by a certain variable is probably one of the most commonly used functions from the `tidyverse` (e.g., in our case we group by year and plot to calculate species richness for every combo of those two grouping variables), but remember to ungroup afterwards as if you forget, the grouping remains even if you don't "see" it and that might later on lead to some unintended consequences.__
+</div>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 # Calculate species richness per plot per year
 niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year) %>%
   mutate(richness = length(unique(USDA_Scientific_Name))) %>% ungroup()
 
+```
+</section>
+
+Now that we have calculated the species richness, we can visualise how it varies across fertilisation treatments.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 (distributions1 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
     geom_violin())
 
 ggsave(distributions1, filename = "distributions1.png",
        height = 5, width = 5)
+
+```
+</section>
+
+<center> <img src="{{ site.baseurl }}/img/distributions1.png" alt="Img" style="width: 700px;"/> </center>
+
+Not that inspiring, but a useful first look at the data distributions.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<center> <img src="{{ site.baseurl }}/img/distributions1.png" alt="Img" style="width: 700px;"/> </center>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+
+
 
 (distributions2 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
     geom_violin(aes(fill = fert, colour = fert), alpha = 0.5) +
@@ -558,30 +671,7 @@ ggsave(distributions_magic2, filename = "distributions_magic2.png",
 
 
 
-If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another and then when you apply your theme to a graph, only the relevant elements will be considered - e.g. for our graphs we won't need to use `legend.position`, but it's fine to keep it in the theme in case any future graphs we apply it to do have the need for legends.
 
-```r
-# Setting a custom ggplot2 function ---
-# This function makes a pretty ggplot theme
-# This function takes no arguments 
-# meaning that you always have just niwot_theme() and not niwot_theme(something else here)
-theme_clean <- function(){
-  theme_bw() +
-    theme(axis.text.x = element_text(size = 14),
-          axis.text.y = element_text(size = 14),
-          axis.title.x = element_text(size = 14, face = "plain"),             
-          axis.title.y = element_text(size = 14, face = "plain"),             
-          panel.grid.major.x = element_blank(),                                          
-          panel.grid.minor.x = element_blank(),
-          panel.grid.minor.y = element_blank(),
-          panel.grid.major.y = element_blank(),  
-          plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), units = , "cm"),
-          plot.title = element_text(size = 15, vjust = 1, hjust = 0.5),
-          legend.text = element_text(size = 12, face = "italic"),          
-          legend.title = element_blank(),                              
-          legend.position = c(0.5, 0.8))
-}
-```
 
 
 
