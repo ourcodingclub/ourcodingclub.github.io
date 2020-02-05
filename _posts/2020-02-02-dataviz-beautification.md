@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Efficient data synthesis and visualisation
+title: Efficient and beautiful data visualisation
 subtitle: A Coding Club workshop for Colorado University at Boulder
 date: 2020-02-02 10:00:00
 author: Gergana
@@ -604,7 +604,7 @@ alpine_magic <- niwot_richness %>% mutate(fairy_dust = case_when(fert == "PP" & 
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/distributions_magic1.png" alt="Img" style="width: 500px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/distributions_magic1.png" alt="Img" style="width: 600px;"/> </center>
 
 <div class="bs-callout-blue" markdown="1">
 
@@ -637,152 +637,186 @@ ggsave(distributions_magic2, filename = "distributions_magic2.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/distributions_magic2.png" alt="Img" style="width: 500px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/distributions_magic2.png" alt="Img" style="width: 600px;"/> </center>
 
-Raining or not, both versions of the raincloud plot look alright, so like many things in data viz, a matter of personal preferenec.
+Raining or not, both versions of the raincloud plot look alright, so like many things in data viz, a matter of personal preferenece.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
+<a name="distributions"></a>
 
-```r
+## Make, customise and annotate histograms
 
-```
-</section>
+<b>A histogram is a simple but mighty plot and for the times when violins and rainclouds are a bit too busy, they can be an excellent way to communicate patterns in your data. Here's the journey (one of the many possible journeys) of a histogram.</b>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
+<center> <img src="{{ site.baseurl }}/img/beautification3.png" alt="Img" style="width: 900px;"/> </center>
 
-```r
+<div class="bs-callout-blue" markdown="1">
 
-```
-</section>
+__A data manipulation tip:__ Whenever we go about doing our science, it's important to be transparent and aware of our sample size and any limitations and strengths that come with it. A very useful function to count the number of observations (rows in your data frame) is `tally()`, which combined with `group_by()` creates a nice and quick summary of how many observations there are in the different categories in your data.
+</div>
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1"> 
 
 ```r
+# Calculate number of data records per plot per year
+# Using the tally() function
 
+observations <- niwot_plant_exp %>% group_by(USDA_Scientific_Name) %>%
+  tally() %>% arrange(desc(n))  # rearanging the data frame so that the most common species are first
 ```
 </section>
 
+<div class="bs-callout-blue" markdown="1">
 
+__A data manipulation tip:__ Filtering and selecting just certain parts of our data is a task we do often, and thanks to the `tidyverse`, there are efficient ways to filter based on a certain pattern. For example, let's imagine we want just the records for plant species from the _Carex_ family - we don't really want to spell them all out, and we might miss some if we do. So we can just filter for anything that contains the word `Carex`.
+</div>
+
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 
 ```r
-# Check the distribution of duration across the time-series
-# A quick and not particularly pretty graph
-(duration_hist <- ggplot(aus_pops, aes(x = duration)) +
-    geom_histogram())
+# Filtering out just Carex species
+carex <- niwot_plant_exp %>%
+  filter(str_detect(USDA_Scientific_Name, pattern = "Carex"))
 ```
+</section>
 
-<center> <img src="{{ site.baseurl }}/img/hist1a.png" alt="Img" style="width: 500px;"/> </center>
+Now that we have a data frame with just _Carex_ plant observations, we can visualise the distribution of how frequently these species are observed across the plots. In these data, that means plotting a histogram of the number of "hits" - how many times during the field data collection the pin used for observations "hit" a _Carex_ species.
 
-This graph just uses all the `ggplot2` default settings. It's fine if you just want to see the distribution and move on, but if you plan to save the graph and share it with other people, we can make it way better. The figure beautification journey!
-
-<b> When using `ggplot2`, you usually start your code with `ggplot(your_data, aes(x = independent_variable, y = dependent_variable))`, then you add the type of plot you want to make using `+ geom_boxplot()`, `+ geom_histogram()`, etc. `aes` stands for aesthetics, hinting to the fact that using `ggplot2` you can make aesthetically pleasing graphs - there are many `ggplot2` functions to help you clearly communicate your results, and we will now go through some of them.</b>
-
-<b>When we want to change the colour, shape or fill of a variable based on another variable, e.g. colour-code by species, we include `colour = species` inside the `aes()` function. When we want to set a specific colour, shape or fill, e.g. `colour = "black"`, we put that outside of the `aes()` function.</b>
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 
 ```r
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), fill = "turquoise4"))
+(histogram1 <- ggplot(carex, aes(x = hits)) +
+  geom_histogram())
 
-(duration_hist <- ggplot(aus_pops, aes(x = duration)) +
+ggsave(histogram1, filename = "histogram1.png",
+       height = 5, width = 5)
+```
+</section>
+
+<center> <img src="{{ site.baseurl }}/img/histogram1.png" alt="Img" style="width: 500px;"/> </center>
+
+This does the job, but it's not particularly beautiful and everything is rather on the grey side. 
+
+<b>With the growing popularity of `ggplot2`, oen thing that stands out is that here we have used all of the default `ggplot2` options. Similarly, when we use the default `ggplot2` colours like in the violin plots earlier on, most people now recognise those, so you risk people immediately thinking "I know those colours, ggplot!" versus pausing to actually take in your scientific message. So making a graph as "yours" as possible can make your work more memorable!</b>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+(histogram2 <- ggplot(carex, aes(x = hits)) +
     geom_histogram(alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), 
-		   fill = "turquoise4") +
-    # setting new colours, changing the opacity and defining custom bins
-    scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))))
-    # the final line of code removes the empty blank space below the bars
+                   breaks = seq(0, 100, by = 3),
+		   # Choosing a Carex-like colour
+                   fill = "palegreen4") +
+    theme_niwot())
+
+ggsave(histogram2, filename = "histogram2.png",
+       height = 5, width = 5)
 ```
+</section>
 
-<center> <img src="{{ site.baseurl }}/img/hist1b.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist5.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/histogram2.png" alt="Img" style="width: 500px;"/> </center>
 
-Now imagine you want to have a darker blue outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
+This one is definitely nicer to look at, but our histogram is floating in space. We can easily remove the empty space.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+(histogram3 <- ggplot(carex, aes(x = hits)) +
+    geom_histogram(alpha = 0.6, 
+                   breaks = seq(0, 100, by = 3),
+                   fill = "palegreen4") +
+    theme_niwot() +
+    scale_y_continuous(limits = c(0, 100), expand = expand_scale(mult = c(0, 0.1))))
+# the final line of code removes the empty blank space below the bars)
+
+ggsave(histogram3, filename = "histogram3.png",
+       height = 5, width = 5)
+```
+</section>
+
+<center> <img src="{{ site.baseurl }}/img/histogram3.png" alt="Img" style="width: 500px;"/> </center>
+
+Now imagine you want to have a darker green outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 
 ```r
 # Adding an outline around the whole histogram
-h <- hist(aus_pops$duration, breaks = seq(5, 40, by = 1), plot = FALSE)
+h <- hist(carex$hits, breaks = seq(0, 100, by = 3), plot = FALSE)
 d1 <- data.frame(x = h$breaks, y = c(h$counts, NA))  
-d1 <- rbind(c(5,0), d1)
+d1 <- rbind(c(0, 0), d1)
 ```
+</section>
 
 __When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
 ```r
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), fill = "turquoise4") +
-    scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))) +
+(histogram4 <- ggplot(carex, aes(x = hits)) +
+    geom_histogram(alpha = 0.6, 
+                   breaks = seq(0, 100, by = 3),
+                   fill = "palegreen4") +
+    theme_niwot() +
+    scale_y_continuous(limits = c(0, 100), expand = expand_scale(mult = c(0, 0.1))) +
+    # Adding the outline
     geom_step(data = d1, aes(x = x, y = y),
-              stat = "identity", colour = "deepskyblue4"))
+              stat = "identity", colour = "palegreen4"))
 
 summary(d1) # it's fine, you can ignore the warning message
 # it's because some values don't have bars
 # thus there are missing "steps" along the geom_step path
+
+ggsave(histogram4, filename = "histogram4.png",
+       height = 5, width = 5)
 ```
+</section>
 
-<center> <img src="{{ site.baseurl }}/img/hist4.png" alt="Img" style="width: 500px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/histogram4.png" alt="Img" style="width: 500px;"/> </center>
 
-We can also add a line for the mean duration across studies and add an annotation on the graph so that people can quickly see what the line means.
+We can also add a line for the mean number of hits and add an annotation on the graph so that people can quickly see what the line means.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 
 ```r
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), fill = "turquoise4") +
-    scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))) +
+(histogram5 <- ggplot(carex, aes(x = hits)) +
+    geom_histogram(alpha = 0.6, 
+                   breaks = seq(0, 100, by = 3),
+                   fill = "palegreen4") +
+    theme_niwot() +
+    scale_y_continuous(limits = c(0, 100), expand = expand_scale(mult = c(0, 0.1))) +
     geom_step(data = d1, aes(x = x, y = y),
-              stat = "identity", colour = "deepskyblue4") +
-    geom_vline(xintercept = mean(aus_pops$duration), linetype = "dotted",
-               colour = "deepskyblue4", size = 1))
-
-(duration_hist <- ggplot() +
-    geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                   breaks = seq(5, 40, by = 1), fill = "turquoise4") +
-    scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))) +
-    geom_step(data = d1, aes(x = x, y = y),
-              stat = "identity", colour = "deepskyblue4") +
-    geom_vline(xintercept = mean(aus_pops$duration), linetype = "dotted",
-               colour = "deepskyblue4", size = 1) +
+              stat = "identity", colour = "palegreen4") +
+    geom_vline(xintercept = mean(carex$hits), linetype = "dotted",
+             colour = "palegreen4", size = 1) +
     # Adding in a text allocation - the coordinates are based on the x and y axes
-    annotate("text", x = 15, y = 500, label = "The mean duration\n was 23 years.") +
+    annotate("text", x = 50, y = 50, label = "The mean number of\nCarex observations was 16.") +
     # "\n" creates a line break
-    geom_curve(aes(x = 15, y = 550, xend = mean(aus_pops$duration) - 1, yend = 550),
+    geom_curve(aes(x = 50, y = 60, xend = mean(carex$hits) + 2, yend = 60),
                arrow = arrow(length = unit(0.07, "inch")), size = 0.7,
-               color = "grey20", curvature = -0.3))
-    # Similarly to the annotation, the curved line follows the plot's coordinates
-    # Have a go at changing the curve parameters to see what happens
+               color = "grey30", curvature = 0.3) +
+    labs(x = "\nObservation hits", y = "Count\n"))
+# Similarly to the annotation, the curved line follows the plot's coordinates
+# Have a go at changing the curve parameters to see what happens
+
+ggsave(histogram5, filename = "histogram5.png",
+       height = 5, width = 5)
 ```
+</section>
 
-<center> <img src="{{ site.baseurl }}/img/hist3.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/hist2.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/img/histogram5.png" alt="Img" style="width: 500px;"/> </center>
 
-We are super close to a nice histogram - all we are missing is letting it "shine". The default `ggplot2` theme is a bit cluttered and the grey background and lines distract from the main message of the graph. At the start of the tutorial we made our own clean theme, time to put it in action!
+<b>Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your figure making!</b>
 
-```r
-(duration_hist <- ggplot() +
-  geom_histogram(data = aus_pops, aes(x = duration), alpha = 0.6, 
-                 breaks = seq(5, 40, by = 1), fill = "turquoise4") +
-  scale_y_continuous(limits = c(0, 600), expand = expand_scale(mult = c(0, 0.1))) +
-  geom_step(data = d1, aes(x = x, y = y),
-            stat = "identity", colour = "deepskyblue4") +
-  geom_vline(xintercept = mean(aus_pops$duration), linetype = "dotted",
-             colour = "deepskyblue4", size = 1) +
-  annotate("text", x = 15, y = 500, label = "The mean duration\n was 23 years.") +
-  geom_curve(aes(x = 15, y = 550, xend = mean(aus_pops$duration) - 1, yend = 550),
-             arrow = arrow(length = unit(0.07, "inch")), size = 0.7,
-             color = "grey20", curvature = -0.3) +
-  labs(x = "\nDuration", y = "Number of time-series\n") +
-  theme_clean())
-```
-
-<center> <img src="{{ site.baseurl }}/img/hist1.png" alt="Img" style="width: 500px;"/> </center>
-
-There's our histogram! We can save it using `ggsave`. The units for the height and width are in inches. Unless you specify a different file path, the graph will go in your working directory. If you've forgotten where that is, you can easily find out by running `getwd()` in the console.
-
-```r
-ggsave(duration_hist, filename = "hist1.png",
-       height = 5, width = 6)
-```
+<b>If you'd like more inspiration and tips, check out the materials below!</b>
 
 ## Extra resources
 
