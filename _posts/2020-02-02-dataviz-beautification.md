@@ -445,102 +445,33 @@ ggsave(distributions1, filename = "distributions1.png",
 ```
 </section>
 
-<center> <img src="{{ site.baseurl }}/img/distributions1.png" alt="Img" style="width: 700px;"/> </center>
+<center> <img src="{{ site.baseurl }}/img/distributions1.png" alt="Img" style="width: 500px;"/> </center>
 
-Not that inspiring, but a useful first look at the data distributions.
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<center> <img src="{{ site.baseurl }}/img/distributions1.png" alt="Img" style="width: 700px;"/> </center>
+Not that inspiring, but a useful first look at the data distributions. We can bring some colour in to make it more exciting and also add our custom theme so that the plot is clearer.
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1"> 
 
 ```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
-
-```r
-
-```
-</section>
-
-
-
-
 (distributions2 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
     geom_violin(aes(fill = fert, colour = fert), alpha = 0.5) +
+    # alpha controls the opacity
     theme_niwot())
 
 ggsave(distributions2, filename = "distributions2.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions2.png" alt="Img" style="width: 500px;"/> </center>
+
+
+This is better, but it's still taxing on a reader or observer of the graph to figure out, for example, where is the mean in each cateogry. Thus we can overlay the violins with box plots.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 (distributions3 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
     geom_violin(aes(fill = fert, colour = fert), alpha = 0.5) +
     geom_boxplot(aes(colour = fert), width = 0.2) +
@@ -548,7 +479,17 @@ ggsave(distributions2, filename = "distributions2.png",
 
 ggsave(distributions3, filename = "distributions3.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions3.png" alt="Img" style="width: 500px;"/> </center>
+
+While the boxplots do add some more information on the plot, we still don't know exactly where the data points are, and the smoothing function for violins can sometimes hide the real value of a given variable. So intead of a boxplot, we can add the actual data points.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 (distributions4 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
     geom_violin(aes(fill = fert, colour = fert), alpha = 0.5) +
     geom_jitter(aes(colour = fert), position = position_jitter(0.1), 
@@ -557,53 +498,57 @@ ggsave(distributions3, filename = "distributions3.png",
 
 ggsave(distributions4, filename = "distributions4.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions4.png" alt="Img" style="width: 500px;"/> </center>
+
+A bit busy! While it's nice to see the real data, the points are rather hard to tell apart when they are on top of the violins. And this is where raincloud plots come in! They combine a distribution with the real data points as well as a boxplot.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+# We will use a function by Ben Marwick
+# This code loads the function in the working environment
 source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
 
-raincloud_theme <- function(){
-  theme(
-  text = element_text(size = 10),
-  axis.title.x = element_text(size = 16),
-  axis.title.y = element_text(size = 16),
-  axis.text = element_text(size = 14),
-  axis.text.x = element_text(vjust = 0.5),
-  legend.title = element_text(size = 16),
-  legend.text = element_text(size = 16),
-  legend.position = "right",
-  plot.title = element_text(lineheight = .8, face = "bold", size = 16),
-  panel.border = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.grid.major = element_blank(),
-  axis.line.x = element_line(colour = "black", size = 0.5, linetype = "solid"),
-  axis.line.y = element_line(colour = "black", size = 0.5, linetype = "solid"))
-}
-
-lb <- function(x) mean(x) - sd(x)
-ub <- function(x) mean(x) + sd(x)
-
-sumld <- niwot_richness %>% dplyr::select(fert, richness) %>%
-  group_by(fert) %>% 
-  summarise_all(funs(mean, median, lower = lb, upper = ub))
-
+# Now we can make the plot!
 (distributions5 <- 
     ggplot(data = niwot_richness, 
            aes(x = reorder(fert, desc(richness)), y = richness, fill = fert)) +
+    # The half violins
     geom_flat_violin(position = position_nudge(x = 0.2, y = 0), alpha = 0.8) +
+    # The points
     geom_point(aes(y = richness, color = fert), 
                position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
+    # The boxplots
     geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
+    # \n adds a new line which creates some space between the axis and axis title
     labs(y = "Species richness\n", x = NULL) +
-    guides(fill = FALSE) +
-    guides(color = FALSE) +
+    # Removing legends
+    guides(fill = FALSE, color = FALSE) +
+    # Setting the limits of the y axis
     scale_y_continuous(limits = c(0, 30)) +
+    # Picking nicer colours
     scale_fill_manual(values = c("#5A4A6F", "#E47250",  "#EBB261", "#9D5A6C")) +
     scale_colour_manual(values = c("#5A4A6F", "#E47250",  "#EBB261", "#9D5A6C")) +
-    raincloud_theme() +
     theme_niwot())
 
 ggsave(distributions5, filename = "distributions5.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions5.png" alt="Img" style="width: 500px;"/> </center>
+
+That's nicer and the combo of the different kinds of plots makes it easy to see both the distribution as well as things like the mean. For a full raincloud plot experience, we can flip the x and y axis.
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 (distributions6 <- 
     ggplot(data = niwot_richness, 
            aes(x = reorder(fert, desc(richness)), y = richness, fill = fert)) +
@@ -612,19 +557,33 @@ ggsave(distributions5, filename = "distributions5.png",
                position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
     geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
     labs(y = "\nSpecies richness", x = NULL) +
-    guides(fill = FALSE) +
-    guides(color = FALSE) +
+    guides(fill = FALSE, color = FALSE) +
     scale_y_continuous(limits = c(0, 30)) +
     scale_fill_manual(values = c("#5A4A6F", "#E47250",  "#EBB261", "#9D5A6C")) +
     scale_colour_manual(values = c("#5A4A6F", "#E47250",  "#EBB261", "#9D5A6C")) +
     coord_flip() +
-    raincloud_theme() +
     theme_niwot())
 
 ggsave(distributions6, filename = "distributions6.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions6.png" alt="Img" style="width: 500px;"/> </center>
+
+Final stop along this specific beautification journey, for now at least! But before we move onto histograms, a note about another useful `tidyverse` feature - being able to quickly create a new variable based on conditions from more than one of the existing variables.
+
+<div class="bs-callout-blue" markdown="1">
+
+__A data manipulation tip:__ Using `case_when()`, combined with `mutate`, is a great way to create new variables based on one or more conditions from other variables.
+</div>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 # Create new columns based on a combo of conditions using case_when()
+# A fictional example
 alpine_magic <- niwot_richness %>% mutate(fairy_dust = case_when(fert == "PP" & hits > 5 ~ "Blue fairy dust",
                                                                  fert == "CC" & hits > 15 ~ "The ultimate fairy dust"))
 
@@ -636,15 +595,26 @@ alpine_magic <- niwot_richness %>% mutate(fairy_dust = case_when(fert == "PP" & 
                position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
     geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
     labs(y = "\nSpecies richness", x = NULL) +
-    guides(fill = FALSE) +
-    guides(color = FALSE) +
+    guides(fill = FALSE, color = FALSE) +
     scale_y_continuous(limits = c(0, 30)) +
     scale_fill_manual(values = c("turquoise4", "magenta4")) +
     scale_colour_manual(values = c("turquoise4", "magenta4")) +
     coord_flip() +
-    raincloud_theme() +
     theme_niwot())
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions_magic1.png" alt="Img" style="width: 500px;"/> </center>
+
+<div class="bs-callout-blue" markdown="1">
+
+__A data manipulation tip:__ Often we have missing values, or not everything has a category, for example in the magic plot above,  many of the species are classified as `NA`. If we want to drop those records, we can use `drop_na()` and in the brackets specify which specific column(s) should be the evaluator.
+</div>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
 alpine_magic_only <- alpine_magic %>% drop_na(fairy_dust)
 
 (distributions_magic2 <- 
@@ -655,23 +625,45 @@ alpine_magic_only <- alpine_magic %>% drop_na(fairy_dust)
                position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
     geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
     labs(y = "\nSpecies richness", x = NULL) +
-    guides(fill = FALSE) +
-    guides(color = FALSE) +
+    guides(fill = FALSE, color = FALSE) +
     scale_y_continuous(limits = c(0, 30)) +
     scale_fill_manual(values = c("turquoise4", "magenta4")) +
     scale_colour_manual(values = c("turquoise4", "magenta4")) +
     coord_flip() +
-    raincloud_theme() +
     theme_niwot())
 
 ggsave(distributions_magic2, filename = "distributions_magic2.png",
        height = 5, width = 5)
+```
+</section>
 
+<center> <img src="{{ site.baseurl }}/img/distributions_magic2.png" alt="Img" style="width: 500px;"/> </center>
 
+Raining or not, both versions of the raincloud plot look alright, so like many things in data viz, a matter of personal preferenec.
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
 
+```r
 
+```
+</section>
 
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
+
+<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="1"> 
+
+```r
+
+```
+</section>
 
 
 
