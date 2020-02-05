@@ -5,6 +5,8 @@ subtitle: Creating interactive web apps using the R language
 date: 2017-03-07 16:00:00
 author: John
 survey_link: https://www.surveymonkey.co.uk/r/PC9RT6R
+redirect_from:
+  - /2017/03/07/shiny.html
 ---
 
 # Tutorial aims:

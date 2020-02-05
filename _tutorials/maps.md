@@ -5,6 +5,8 @@ subtitle: Using R as a GIS software tool and creating informative maps
 date: 2016-12-11T16:00:00.000Z
 author: John
 survey_link: https://www.surveymonkey.co.uk/r/NMD3N5K
+redirect_from: 
+  - /2016/12/11/maps_tutorial.html
 ---
 
 # Tutorial Aims:

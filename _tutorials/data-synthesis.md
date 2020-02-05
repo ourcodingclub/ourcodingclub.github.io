@@ -5,6 +5,8 @@ subtitle: A Coding Club workshop for the Oxford Zoology & Plant Sciences departm
 date: 2016-01-01 10:00:00
 author: Gergana
 survey_link: https://www.surveymonkey.com/r/XD85MW5
+redirect_from:
+  - /2016/01/01/data-synthesis.html
 ---
 
 1. [Format and manipulate large datasets](#tidyverse)

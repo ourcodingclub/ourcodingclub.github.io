@@ -5,6 +5,8 @@ date: "2017-03-20 10:00:00"
 subtitle: Quantifying population change and visualising species occurrence
 layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
+redirect_from:
+  - /2017/09/13/seecc.html
 ---
 
 # Tutorial Aims:

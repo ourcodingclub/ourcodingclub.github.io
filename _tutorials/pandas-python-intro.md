@@ -5,6 +5,8 @@ subtitle: Create plots and manipulate data with Pandas and Matplotlib
 date: 2018-04-18 00:00:00
 author: Declan V.
 survey_link: https://www.surveymonkey.co.uk/r/R6PJGKJ
+redirect_from:
+  - /2018/04/18/pandas-python-intro.html
 ---
 
 Welcome to this tutorial about data analysis with Python and the Pandas library. If you did the [Introduction to Python tutorial]({{ site.baseurl }}/tutorials/python-intro/index.html), you'll rememember we briefly looked at the `pandas` package as a way of quickly loading a `.csv` file to extract some data. This tutorial looks at `pandas` and the plotting package `matplotlib` in some more depth. 

@@ -5,6 +5,8 @@ subtitle: Cleaning occurrence data and customising graphs and maps
 date: 2018-03-06 10:00:00
 author: Gergana and Isla
 survey_link: https://www.surveymonkey.com/r/XD85MW5
+redirect_from:
+  - /2018/12/02/tidyverse.html
 ---
 
 ### Tutorial Aims:

@@ -5,6 +5,8 @@ subtitle: Using R to answer sociological questions
 date: 2018-01-29 10:00:00
 author: John 
 survey_link: https://www.surveymonkey.co.uk/r/VMRWSKQ
+redirect_from: 
+  - /2018/01/29/qualitative.html
 ---
 
 # Tutorial Aims:

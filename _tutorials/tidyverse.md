@@ -5,6 +5,8 @@ subtitle: A BES QE SIG training event
 date: 2018-12-02 10:00:00
 author: Gergana
 survey_link: https://www.surveymonkey.com/r/XD85MW5
+redirect_from:
+  - /2018/03/06/tidyverse.html
 ---
 
 

@@ -5,6 +5,8 @@ subtitle: How to Deal with Arrays of Numbers
 date: 2018-11-30 10:00:00
 author: Ed C
 survey_link: https://www.surveymonkey.co.uk/r/795PKMV
+redirect_from:
+  - /2018/11/30/numpy.html
 ---
 
 # Tutorial aims:

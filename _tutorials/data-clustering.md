@@ -5,6 +5,8 @@ subtitle: Finding patterns in your data
 date: 2017-03-21 08:40:00
 author: Pedro
 survey_link: https://www.surveymonkey.co.uk/r/B723DLF
+redirect_from:
+  - /2017/03/21/data-clustering.html
 ---
 
 # Tutorial Aims:

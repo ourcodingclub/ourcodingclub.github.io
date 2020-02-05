@@ -5,6 +5,8 @@ subtitle: Determining the best type of model to answer your question
 date: 2018-04-06 10:00:00
 author: Isla and Gergana
 survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
+redirect_from:
+  - /2018/04/06/model-design.html
 ---
 
 # Tutorial Aims:

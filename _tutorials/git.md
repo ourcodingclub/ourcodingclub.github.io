@@ -5,6 +5,8 @@ subtitle: Keeping track of your code and its many versions
 date: 2017-02-27 08:00:00
 author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/NXNHYYX
+redirect_from: 
+  - /2017/02/27/git.html
 ---
 
 # Tutorial Aims:

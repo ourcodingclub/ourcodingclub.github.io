@@ -5,6 +5,8 @@ subtitle: Saving yourself lots of copying and pasting
 date: 2017-02-08 08:00:00
 author: Gergana and John
 survey_link: https://www.surveymonkey.co.uk/r/NRKM679
+redirect_from: 
+  - /2017/02/08/funandloops.html
 ---
 
 # Tutorial aims:

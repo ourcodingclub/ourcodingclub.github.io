@@ -7,6 +7,8 @@ author: Haydn & Beverly
 updated: 16-05-2019
 updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/X7VHQ6S
+redirect_from:
+  - /2017/03/29/data-vis-2.html
 ---
 
 # Tutorial aims & steps:

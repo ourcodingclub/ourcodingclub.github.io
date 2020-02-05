@@ -5,6 +5,8 @@ subtitle: Making a map of vertebrate population change in Europe
 date: 2017-11-11 21:11:27
 author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/NYVBNF8
+redirect_from:
+  - /2017/11/11/popchange.html
 ---
 
 # Tutorial Aims:

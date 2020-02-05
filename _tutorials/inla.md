@@ -5,6 +5,8 @@ subtitle: Dealing with spatial autocorrelation in statistical models
 date: 2018-12-04 21:11:27
 author: Greg Albery
 survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
+redirect_from:
+  - /2018/12/04/inla.html
 ---
 	
 # Tutorial Aims:

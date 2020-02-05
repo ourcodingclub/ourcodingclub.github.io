@@ -5,6 +5,8 @@ subtitle: The basics of the Fortran programming language
 date: 2018-07-30 00:00:00
 author: Declan Valters
 survey_link: https://www.surveymonkey.co.uk/r/VG5BK9T
+redirect_from: 
+  - /2018/07/30/fortran-intro.html
 ---
 
 # Tutorial aims:

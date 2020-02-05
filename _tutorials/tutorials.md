@@ -6,6 +6,8 @@ date: 2017-11-23 10:00:00
 author: The Coding Club Team
 meta: "Tutorials"
 survey_link: https://www.surveymonkey.com/r/c6brzlh
+redirect_from:
+  - /2017/11/23/tutorials.html
 ---
 
 

@@ -6,6 +6,8 @@ meta: Tutorials
 subtitle: "Modelling, forecasting and data formatting in R"
 layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/26V3WTJ
+redirect_from:
+  - /2017/04/26/time.html
 ---
 
 # Tutorial Aims:

@@ -7,6 +7,8 @@ author: Gergana
 updated: 2019-12-09
 updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/NNRS98G
+redirect_from:
+  - /2017/02/28/modelling.html
 ---
 
 # Tutorial Aims & Steps:

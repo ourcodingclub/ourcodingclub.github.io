@@ -7,6 +7,8 @@ author: Gergana
 updated: 2019-05-14
 updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
+redirect_from:
+  - /2017/01/29/datavis.html
 ---
 
 # Tutorial aims and steps:

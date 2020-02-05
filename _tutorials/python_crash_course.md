@@ -5,6 +5,8 @@ subtitle: How to get started with Python
 date: 2018-11-05T12:00:00.000Z
 author: James
 survey_link: https://www.surveymonkey.co.uk/r/VN5XKPR
+redirect_from:
+  - /2018/11/05/python_crash_course.html
 ---
 
 # Tutorial Aims:

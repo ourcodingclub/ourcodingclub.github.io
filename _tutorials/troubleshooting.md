@@ -7,6 +7,8 @@ updated: 2019-04-04 00:00:00
 author: Gergana
 updater: Sandra
 survey_links: https://www.surveymonkey.co.uk/r/6CQF3J7
+redirect_from:
+  - /2016/11/15/troubleshooting.html
 ---
 
 # Tutorial aims:

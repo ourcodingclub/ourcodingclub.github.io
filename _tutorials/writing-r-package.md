@@ -5,6 +5,8 @@ subtitle: Tutorial adapted from stirlingcodingclub.github.io
 date: 2019-03-20 00:00:00
 author: Brad Duthie
 survey_link: https://www.surveymonkey.co.uk/r/X7VHQ6S
+redirect_from:
+  - /2019/03/20/writing-r-package.html
 ---
 
 ### Tutorial Content

@@ -5,6 +5,8 @@ subtitle: Cleaning occurrence data and customising graphs and maps
 date: 2018-01-06 10:00:00
 author: Gergana
 survey_link: https://www.surveymonkey.com/r/JYDDZ8F
+redirect_from:
+  - /2018/01/06/occurrence.html
 ---
 
 # Tutorial Aims:

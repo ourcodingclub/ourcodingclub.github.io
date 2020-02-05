@@ -7,6 +7,9 @@ updated: 2019-04-04
 author: Sandra
 updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
+redirect_from: 
+  - /2017/01/06/data-manip-intro.html
+  - /2017/01/18/piping.html
 ---
 
 # Tutorial aims:

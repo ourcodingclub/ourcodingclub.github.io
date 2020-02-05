@@ -5,6 +5,8 @@ subtitle: Quantifying forest cover change & harnessing the power of the Earth En
 date: 2018-11-26 10:00:00
 author: Gergana and Isla
 survey_link: https://www.surveymonkey.co.uk/r/VKMZHD3
+redirect_from: 
+  - /2018/11/26/earth-engine.html
 ---
 
 # Tutorial Aims:

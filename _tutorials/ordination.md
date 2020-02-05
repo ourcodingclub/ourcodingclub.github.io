@@ -5,6 +5,8 @@ subtitle: Finding patterns in your data
 date: 2018-05-04 12:15:00
 author: Koenraad
 survey_link: https://www.surveymonkey.co.uk/r/VYLPZ29
+redirect_from:
+  - /2018/05/04/ordination.html
 ---
 
 # Tutorial Aims

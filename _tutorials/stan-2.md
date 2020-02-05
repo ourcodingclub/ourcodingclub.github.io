@@ -5,6 +5,8 @@ subtitle: Using the rstanarm and brms packages to run Stan models
 date: 2018-04-30 10:00:00
 author: Gergana and Maxwell Farrell
 survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
+redirect_from:
+  - /2018/04/30/stan-2.html
 ---
 
 # Tutorial Aims:

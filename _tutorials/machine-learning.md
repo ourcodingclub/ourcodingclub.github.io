@@ -5,6 +5,8 @@ subtitle: Getting started with machine learning in R
 date: 2018-10-15 08:00:00
 author: Samuel Kellerhals
 survey_link: https://www.surveymonkey.co.uk/r/77YWPQL
+redirect_from:
+  - /2018/10/15/machine-learning.html
 ---
 
 

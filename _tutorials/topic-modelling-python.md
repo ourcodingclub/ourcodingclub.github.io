@@ -5,6 +5,8 @@ subtitle: Unsupervised Machine Learning to Find Tweet Topics
 date: 2018-12-10 10:00:00
 author: James
 survey_link: https://www.surveymonkey.co.uk/r/7C5N3QV
+redirect_from:
+  - /2018/12/10/topic-modelling-python.html
 ---
 
 # Tutorial aims:

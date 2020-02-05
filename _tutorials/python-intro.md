@@ -5,6 +5,8 @@ subtitle: Importing and exploring data with Python, writing good scientific code
 date: 2018-01-26 00:00:00
 author: Declan
 survey_link: https://www.surveymonkey.co.uk/r/WVL5GXB
+redirect_from:
+  - /2018/01/26/python-intro.html
 ---
 
 # Tutorial aims:

@@ -5,6 +5,8 @@ subtitle: Getting started with Bayesian modelling in Stan
 date: 2018-04-17 08:00:00
 author: Max Farrell & Isla Myers-Smith
 survey_link: https://www.surveymonkey.co.uk/r/P39ZP2G
+redirect_from:
+  - /2018/04/17/stan-intro.html
 ---
 
 # Tutorial Aims:
