@@ -260,8 +260,8 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   html-proofer
+  jekyll-redirect-from
   jekyll-target-blank
-  minima (~> 2.5)
 
 BUNDLED WITH
    2.1.4

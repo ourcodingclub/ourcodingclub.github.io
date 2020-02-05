@@ -5,6 +5,8 @@ updated: 2019-03-28
 author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
 banner: "../assets/img/banner/slider-bg-pale.jpg"
+redirect_from:
+  - /2016/11/13/intro-to-r.html
 ---
 
 # Tutorial aims:
