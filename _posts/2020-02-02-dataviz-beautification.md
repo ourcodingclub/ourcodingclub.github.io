@@ -2,10 +2,10 @@
 layout: post
 title: Efficient data synthesis and visualisation
 subtitle: A Coding Club workshop for the Oxford Zoology & Plant Sciences departments
-date: 2016-01-01 10:00:00
+date: 2020-02-02 10:00:00
 author: Gergana
 meta: "Tutorials"
-tags: data_manip data_vis intermediate
+tags: data_manip data_vis intermediate advanced
 ---
 
 ### Tutorial Aims:
@@ -157,6 +157,10 @@ Our first map does a not terrible job at visualising where the sites are, but it
              color = "gray80", fill = "gray80", size = 0.3) +
     geom_point(data = lter, 
                aes(x = long, y = lat, fill = ele),
+	       # when you set the fill or colour to vary depending on a variable
+	       # you put that (e.g., fill = ele) inside the aes() call
+	       # when you want to set a specific colour (e.g., colour = "grey30"),
+	       # that goes outside of the aes() call
                alpha = 0.8, size = 4, colour = "grey30",
                shape = 21))
 
