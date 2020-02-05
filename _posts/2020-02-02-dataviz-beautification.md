@@ -108,7 +108,7 @@ __An important note about graphs made using `ggplot2`: you'll notice that throug
 
 <center><img src="{{ site.baseurl }}/img/beautification1.png" alt="Img" style="width: 950px;"/> </center>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code02" markdown="1"> 
 
 ```r
@@ -147,7 +147,7 @@ get_wd()
 
 Our first map does a not terrible job at visualising where the sites are, but it looks rather off and is not particularly great to look at. It's also not communicating much information other than where the sites are. For example, we can use colours to indicate the elevation of each site.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code03" markdown="1"> 
 
 ```r
@@ -173,7 +173,7 @@ ggsave(lter_map2, filename = "map2.png",
 
 Next up we can work on improving the map projection - by default we get the Mercantor projection but that doesn't represent the world very realistically. With the `ggalt` package and the `coord_proj` function, we can easily swap the default projection.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code04" markdown="1"> 
 
 ```r
@@ -203,7 +203,7 @@ ggsave(lter_map3, filename = "map3.png",
 
 The projection is better now, but because there are a few faraway sites, the map looks quite small. Since those sites are not going to be our focus, we can zoom in on the map.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code05" markdown="1"> 
 
 ```r
@@ -229,7 +229,7 @@ ggsave(lter_map4, filename = "map4.png",
 
 Next up we can declutter a bit - we don't really need that grey background and people know that on a map you have latitude and longitude as the axes.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code06" markdown="1"> 
 
 ```r
@@ -258,7 +258,7 @@ ggsave(lter_map5, filename = "map5.png",
 
 Sometimes we want to annotate points and communicate what's where - the `ggrepel` package is very useful in such cases.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code07" markdown="1"> 
 
 ```r
@@ -291,7 +291,7 @@ ggsave(lter_map6, filename = "map6.png",
 
 Well, we _slightly_ overdid it with the labels, we have a lot of sites and it's definitely an eye sore to look at all of their names at once. But where annotations really shine is in drawing attention to a specific point or data record. So we can add a label just for one of the sites, Niwot Ridge, from where the plant data for the rest of the tutorial comes.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code08" markdown="1"> 
 
 ```r
@@ -322,7 +322,7 @@ ggsave(lter_map7, filename = "map7.png",
 
 This is looking better, but the colours are not very exciting. Depending on the purpose of the map and where it's going (e.g., presentation, manuscript, a science communication piece), we can also add some text with an interesting fact about the site.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code09" markdown="1"> 
 
 ```r
@@ -372,7 +372,7 @@ Violin plots (the fatter the violin at a given value, the more data points there
 If you've ever tried to perfect your `ggplot2` graphs, you might have noticed that the lines starting with `theme()` quickly pile up: you adjust the font size of the axes and the labels, the position of the title, the background colour of the plot, you remove the grid lines in the background, etc. And then you have to do the same for the next plot, which really increases the amount of code you use. Here is a simple solution: create a customised theme that combines all the `theme()` elements you want and apply it to your graphs to make things easier and increase consistency. You can include as many elements in your theme as you want, as long as they don't contradict one another and then when you apply your theme to a graph, only the relevant elements will be considered.
 </div>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code10" markdown="1"> 
 
 ```r
@@ -419,7 +419,7 @@ __Running pipes sequentially line by line also comes in handy when there is an e
 __Grouping by a certain variable is probably one of the most commonly used functions from the `tidyverse` (e.g., in our case we group by year and plot to calculate species richness for every combo of those two grouping variables), but remember to ungroup afterwards as if you forget, the grouping remains even if you don't "see" it and that might later on lead to some unintended consequences.__
 </div>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code11" markdown="1"> 
 
 ```r
@@ -432,8 +432,8 @@ niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year) %>%
 
 Now that we have calculated the species richness, we can visualise how it varies across fertilisation treatments.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="1"> 
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1"> 
 
 ```r
 (distributions1 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
@@ -449,8 +449,8 @@ ggsave(distributions1, filename = "distributions1.png",
 
 Not that inspiring, but a useful first look at the data distributions. We can bring some colour in to make it more exciting and also add our custom theme so that the plot is clearer.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code12" markdown="1"> 
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code13" markdown="1"> 
 
 ```r
 (distributions2 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
@@ -468,8 +468,8 @@ ggsave(distributions2, filename = "distributions2.png",
 
 This is better, but it's still taxing on a reader or observer of the graph to figure out, for example, where is the mean in each cateogry. Thus we can overlay the violins with box plots.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code13" markdown="1"> 
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code14" markdown="1"> 
 
 ```r
 (distributions3 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
@@ -486,8 +486,8 @@ ggsave(distributions3, filename = "distributions3.png",
 
 While the boxplots do add some more information on the plot, we still don't know exactly where the data points are, and the smoothing function for violins can sometimes hide the real value of a given variable. So intead of a boxplot, we can add the actual data points.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code14" markdown="1"> 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1"> 
 
 ```r
 (distributions4 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
@@ -505,8 +505,8 @@ ggsave(distributions4, filename = "distributions4.png",
 
 A bit busy! While it's nice to see the real data, the points are rather hard to tell apart when they are on top of the violins. And this is where raincloud plots come in! They combine a distribution with the real data points as well as a boxplot.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code15" markdown="1"> 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1"> 
 
 ```r
 
@@ -545,8 +545,8 @@ ggsave(distributions5, filename = "distributions5.png",
 
 That's nicer and the combo of the different kinds of plots makes it easy to see both the distribution as well as things like the mean. For a full raincloud plot experience, we can flip the x and y axis.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code16" markdown="1"> 
+<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code17" markdown="1"> 
 
 ```r
 (distributions6 <- 
@@ -578,8 +578,8 @@ Final stop along this specific beautification journey, for now at least! But bef
 __A data manipulation tip:__ Using `case_when()`, combined with `mutate`, is a great way to create new variables based on one or more conditions from other variables.
 </div>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code17" markdown="1"> 
+<a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code18" markdown="1"> 
 
 ```r
 # Create new columns based on a combo of conditions using case_when()
@@ -611,8 +611,8 @@ alpine_magic <- niwot_richness %>% mutate(fairy_dust = case_when(fert == "PP" & 
 __A data manipulation tip:__ Often we have missing values, or not everything has a category, for example in the magic plot above,  many of the species are classified as `NA`. If we want to drop those records, we can use `drop_na()` and in the brackets specify which specific column(s) should be the evaluator.
 </div>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code18" markdown="1"> 
+<a id="Acode19" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code19" markdown="1"> 
 
 ```r
 alpine_magic_only <- alpine_magic %>% drop_na(fairy_dust)
@@ -654,8 +654,8 @@ Raining or not, both versions of the raincloud plot look alright, so like many t
 __A data manipulation tip:__ Whenever we go about doing our science, it's important to be transparent and aware of our sample size and any limitations and strengths that come with it. A very useful function to count the number of observations (rows in your data frame) is `tally()`, which combined with `group_by()` creates a nice and quick summary of how many observations there are in the different categories in your data.
 </div>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code19" markdown="1"> 
+<a id="Acode20" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code20" markdown="1"> 
 
 ```r
 # Calculate number of data records per plot per year
@@ -672,8 +672,8 @@ __A data manipulation tip:__ Filtering and selecting just certain parts of our d
 </div>
 
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code20" markdown="1"> 
+<a id="Acode21" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code21" markdown="1"> 
 
 ```r
 # Filtering out just Carex species
@@ -684,8 +684,8 @@ carex <- niwot_plant_exp %>%
 
 Now that we have a data frame with just _Carex_ plant observations, we can visualise the distribution of how frequently these species are observed across the plots. In these data, that means plotting a histogram of the number of "hits" - how many times during the field data collection the pin used for observations "hit" a _Carex_ species.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code21" markdown="1"> 
+<a id="Acode22" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code22" markdown="1"> 
 
 ```r
 (histogram1 <- ggplot(carex, aes(x = hits)) +
@@ -702,8 +702,8 @@ This does the job, but it's not particularly beautiful and everything is rather 
 
 <b>With the growing popularity of `ggplot2`, oen thing that stands out is that here we have used all of the default `ggplot2` options. Similarly, when we use the default `ggplot2` colours like in the violin plots earlier on, most people now recognise those, so you risk people immediately thinking "I know those colours, ggplot!" versus pausing to actually take in your scientific message. So making a graph as "yours" as possible can make your work more memorable!</b>
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code22" markdown="1"> 
+<a id="Acode23" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code23" markdown="1"> 
 
 ```r
 (histogram2 <- ggplot(carex, aes(x = hits)) +
@@ -722,8 +722,8 @@ ggsave(histogram2, filename = "histogram2.png",
 
 This one is definitely nicer to look at, but our histogram is floating in space. We can easily remove the empty space.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code23" markdown="1"> 
+<a id="Acode24" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code24" markdown="1"> 
 
 ```r
 (histogram3 <- ggplot(carex, aes(x = hits)) +
@@ -743,8 +743,8 @@ ggsave(histogram3, filename = "histogram3.png",
 
 Now imagine you want to have a darker green outline around the whole histogram - not around each individual bin, but the whole shape. It's the little things that add up to make nice graphs! We can use `geom_step()` to create the histogram outline, but we have to put the steps in a data frame first. The three lines of code below are a bit of a cheat to create the histogram outline effect. Check out the object `d1` to see what we've made.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code24" markdown="1"> 
+<a id="Acode25" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code25" markdown="1"> 
 
 ```r
 # Adding an outline around the whole histogram
@@ -756,8 +756,8 @@ d1 <- rbind(c(0, 0), d1)
 
 __When we want to plot data from different data frames in the same graph, we have to move the data frame from the main `ggplot()` call to the specific part of the graph where we want to use each dataset. Compare the code below with the code for the previous versions of the histograms to spot the difference.__
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code25" markdown="1"> 
+<a id="Acode26" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code26" markdown="1"> 
 
 ```r
 (histogram4 <- ggplot(carex, aes(x = hits)) +
@@ -783,8 +783,8 @@ ggsave(histogram4, filename = "histogram4.png",
 
 We can also add a line for the mean number of hits and add an annotation on the graph so that people can quickly see what the line means.
 
-<a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code26" markdown="1"> 
+<a id="Acode27" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code27" markdown="1"> 
 
 ```r
 (histogram5 <- ggplot(carex, aes(x = hits)) +
