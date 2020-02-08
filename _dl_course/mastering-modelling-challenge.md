@@ -1,21 +1,26 @@
 ---
 layout: course
 title: "Data analysis and modelling challenge: Seabird population dynamics" 
+banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
 This challenge will require the use of data manipulation, visualisation and analysis skills, and is the culmination of the [MASTERING MODELLING]({{ site.baseurl }}/dl_course/mastering-modelling/index.html) course stream. You will find here all the instructions you need to complete the challenge. 
 
+{% capture banner %}
 # Challenge outline and objectives
 
 The Isle of May, located on the east coast of Scotland, is a nature reserve home to large colonies of seabirds. A long-term monitoring programme is in place, and every year, scientists and volunteers record information about the abundance, breeding success, and diet of seabirds such as puffins, fulmars, kittiwakes, shags, guillemots, and razorbills. There is concern that with changing climate, the abundance of sandeels (and the plankton upon which they depend), a favourite food resource for birds, will decrease or shift temporally so that the availability will be reduced at the critical time of breeding and chick rearing. 
 
 Your mission will be to analyse the breeding success and other behaviours of seabirds compiled and summarised by the [Centre for Ecology and Hydrology](http://ceh.ac.uk/) to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the breeding of the birds.
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/larch.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Data overview 
 
 You will use the following datasets, available to download from the [Challenge repository](https://github.com/ourcodingclub/CC_course_challenge3) on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers. 
 
-## CEH's Isle of May Long-Term Study data__
+## CEH's Isle of May Long-Term Study data
 
 * __Breeding success of sea birds (IMLOTSBSDataset1982-2016.csv)__: compiled as the number of chicks fledged per nest. Original data link [here](https://catalogue.ceh.ac.uk/documents/02c98a4f-8e20-4c48-8167-1cd5044c4afe).
 * __Dive times and depths of auks (IoM_AukDiving.csv)__: from the Isle of May outside the breeding season, obtained by fitting birds with data loggers. Original data link [here](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372).
@@ -82,11 +87,15 @@ The dataset contains the logged start and end time of each dive – to get you s
 
 For __an extra challenge__, why don’t you try answering those same questions using a Bayesian framework?
 
+{% capture banner %}
 # Getting started
 
 Download the [challenge repository](https://github.com/ourcodingclub/CC_course_challenge3), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/pine.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test! 
 
@@ -126,5 +135,5 @@ We love getting your feedback, and will add more hints to this section if you ge
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: 
 
 * __Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016).__ The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016. Available from the [NERC Environmental Information Data Centre](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe) under an Open Government License.
-* __ Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019).__ Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season. Available from the [NERC Environmental Information Data Centre](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372) under an Open Government License.
+* __Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019).__ Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season. Available from the [NERC Environmental Information Data Centre](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372) under an Open Government License.
 * __Met Office (2019).__ Regional time series of monthly, seasonal and annual values. Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.

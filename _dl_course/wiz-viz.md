@@ -2,7 +2,7 @@
 layout: course
 title: "Wiz of Data Vis"
 subtitle: "A (good) graph is worth a thousand words!"
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/wiz-viz.jpg"
 ---
 
 
@@ -10,6 +10,7 @@ This stream is aimed at scientists who are looking to improve and expand their d
 
 We will first teach you to format your datasets in the most efficient way for plotting and the basics of the `ggplot2` package. Then, we'll move way beyond basic and learn to customise all the elements of a graph, create our own palettes and themes, and use panels to declutter graphs. We will use different types of data, from model predictions to geographical data, and work towards presenting them in an engaging and informative way. Finally, we'll explore the Markdown language for professional and reproducible reporting of codes and results, and have fun with interactive web apps!
 
+{% capture banner %}
 # As part of this course stream, we suggest you do the following tutorials:
 
 * [Efficient data manipulation: Streamline your code]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html)
@@ -18,6 +19,9 @@ We will first teach you to format your datasets in the most efficient way for pl
 * [Spatial analysis in R]({{ site.baseurl }}/tutorials/spatial/index.html) 
 * [Professional reporting with Markdown]({{ site.baseurl }}/tutorials/rmarkdown-1/index.html) 
 * [Intro to Shiny: interactive web apps]({{ site.baseurl }}/tutorials/shiny/index.html) 
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/path.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Getting started
 
@@ -34,11 +38,15 @@ You can track your progression and access the course quizzes in our course porta
 
 ![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
+{% capture link %}{{ site.baseurl }}/dl_course/wiz-viz-challenge/index.html{% endcapture %}
+{% capture banner %}
 # Challenge yourself
 
 Have you completed all the tutorials you wanted to? Feel you're ready for some real-life applications? We encourage you to test your skills and take the challenge associated to this stream.
 
 Our case-study challenges are designed to test the range of skills you gained throughout the course. We provide guidance but no step-by-step instructions, so your solution will be unique! A challenge might take you 4-8 hours to complete (get in touch if you get stuck!). The button below will take you to the challenge page where you can see what is required.
 
-{% capture link %}{{ site.baseurl }}/dl_course/stats-scratch-challenge.html{% endcapture %}
 {% include link-button.html url=link button="Try me!" %}
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/woods.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}

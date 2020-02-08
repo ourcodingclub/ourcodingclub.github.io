@@ -519,7 +519,16 @@ tr:hover {
 	color: $white;
 	padding: 10px 15px;
     background-image: none !important;
-	background-color: $linkColour;
+	background-color: $hoverColour;
+}
+
+.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a {
+	color: $white;
+}
+
+
+.scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a {
+	color: $white;
 }
 
 

@@ -9,7 +9,7 @@ Here you can find our collection of programming and statistics tutorials. We wel
 We regularly post tutorials, which you can complete in-person at one of [our workshops in Edinburgh](https://drive.google.com/file/d/1etKfW5HtOhrut9nBhl4dY8heoyJafAyC/view?usp=sharing) or online in your own time.
 
 <div id="accordion">
-	<h3 style="background-color: red;">R basics</h3>
+	<h3>R basics</h3>
 	<div class="tutpanel">
     	<div class="tutcont">
         	<a href="{{ site.baseurl }}/tutorials/intro-to-r">

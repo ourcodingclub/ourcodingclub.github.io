@@ -17,7 +17,7 @@ plugins:
 encoding: utf-8
 lang: en-GB
 title: "Coding Club"
-logo: "/assets/img/logos/logo_stack.svg"
+logo: "/assets/img/logos/logo_hex.svg"
 description: ""
 baseurl: ""
 url: "https://ourcodingclub.github.io"

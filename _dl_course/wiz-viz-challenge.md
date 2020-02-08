@@ -1,10 +1,12 @@
 ---
 layout: course
 title: "Data visualisation challenge: Native woodlands"
+banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
 This challenge will require the use of data manipulation, plotting and mapping skills, and is the culmination of the [WIZ OF DATA VIS]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge.
 
+{% capture banner %}
 # Challenge outline and objectives
 
 While Scotland is best known for its endless rolling heather hills, it used to be covered in wide swathes of forest. Less than 20% of Scotland is now afforested, and only 4% of the territory consists of native woodlands ([Woodland Trust](https://www.woodlandtrust.org.uk/about-us/where-we-work/scotland/), [Scottish Natural Heritage](https://www.nature.scot/professional-advice/land-and-sea-management/managing-land/forests-and-woodlands/woodland-expansion-across-scotland)). 
@@ -12,6 +14,9 @@ While Scotland is best known for its endless rolling heather hills, it used to b
 The Scottish government has included woodland expansion goals in its Climate Change plan, and several governmental and non governmental organisations are working towards the creation of new woodlands that will support native species and provide a wider range of ecosystem services than just timber. 
 
 You have been asked to provide a report on the extent and structure of some high-priority conservation habitats in national nature reserves (NNR) of Scotland. For selected woodland types, you are required to prepare maps of their distribution in the Cairngorms, the Glen Affric, and the Trossachs nature reserve areas. You have also been tasked to calculate their respective extent within the reserve boundaries, and some basic biodiversity indices.
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/cliff.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Data overview 
 
@@ -19,7 +24,7 @@ You will use the following datasets, available from the [Challenge repository](h
 
 __NOTE:__ The data files have been saved as RDS objects because of their relatively large size. You can easily read a RDS file in R using the [`readRDS()` function](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS).
 
-## Native Woodland Survey of Scotland__
+## Native Woodland Survey of Scotland
  
 * __NWSS.RDS__: a shapefile of all woodland patches in Scotland. The most important variables in the dataset are:
 	* __DOM_HABITA__: the main habitat type for the polygon. We will only retain some habitats of interest.
@@ -37,8 +42,7 @@ Original data link [here](http://data-forestry.opendata.arcgis.com/datasets/fead
 
 ## National Nature Reserves
 
-* __ SNH_national_reserves.RDS__: a shapefile containing the outlines of Scotland's [NNRs](https://www.nnr.scot/). The most important variables in the dataset are:
-
+* __SNH_national_reserves.RDS__: a shapefile containing the outlines of Scotland's [NNRs](https://www.nnr.scot/). The most important variables in the dataset are:
 - __NAME__: The name of the reserve
 - __SITE_HA__: The area of the site in hectares
 
@@ -118,11 +122,15 @@ __Be ready to answer the questions:__
 * Which area has the most species?
 * Which area has the lowest evenness?
 
+{% capture banner %}
 # How to get started 
 
 Download the [challenge repository](https://github.com/ourcodingclub/CC_course_challenge2), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions. 
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_3.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test! 
 

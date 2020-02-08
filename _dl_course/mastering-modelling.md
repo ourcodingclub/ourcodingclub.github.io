@@ -2,7 +2,7 @@
 layout: course
 title: "Mastering Modelling"
 subtitle: "Advanced data manipulation and analysis for complex ecological datasets"
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/mastering-modelling.jpg"
 ---
 
 # Stream overview
@@ -13,6 +13,7 @@ But fear not, environmental scientist! This course stream is designed to give th
 
 We assume you have a good understanding of the different objects in R and can manipulate them, for instance for plotting or inclusion in linear models. Need a refresher? Take a look at the tutorials in our [Stats from Scratch]({{ site.baseurl }}/dl_course/stats-scratch/index.html) or [Wiz of Data Vis]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course streams.
 
+{% capture banner %}
 # As part of this course stream, we suggest you do the following tutorials:
 
 * [Efficient data manipulation: Streamline your code]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html)
@@ -22,6 +23,9 @@ We assume you have a good understanding of the different objects in R and can ma
 * [Intro to mixed-effects linear models]({{ site.baseurl }}/tutorials/mixed-models/index.html) 
 * [Intro to Bayesian inference with MCMCglmm]({{ site.baseurl }}/tutorials/mcmcglmm/index.html)
 * [Generalised mixed-effects models in Stan]({{ site.baseurl }}/tutorials/stan-2/index.html)
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/river.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Getting started
 
@@ -38,11 +42,15 @@ You can track your progression and access the course quizzes in our course porta
 
 ![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
+{% capture link %}{{ site.baseurl }}/dl_course/mastering-modelling-challenge/index.html{% endcapture %}
+{% capture banner %}
 # Challenge yourself
 
 Have you completed all the tutorials you wanted to? Feel you're ready for some real-life applications? We encourage you to test your skills and take the challenge associated to this stream.
 
 Our case-study challenges are designed to test the range of skills you gained throughout the course. We provide guidance but no step-by-step instructions, so your solution will be unique! A challenge might take you 4-8 hours to complete (get in touch if you get stuck!). The button below will take you to the challenge page where you can see what is required.
-
-{% capture link %}{{ site.baseurl }}/dl_course/stats-scratch-challenge.html{% endcapture %}
 {% include link-button.html url=link button="Try me!" %}
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/gannets.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
+

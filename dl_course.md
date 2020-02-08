@@ -26,7 +26,8 @@ Our tutorials cover the following key skills we think should be in an ecologist'
 * Bayesian statistics
 * Version control, collaborative coding and coding etiquette
 {% endcapture %}
-{% include scroll-banner.html content=banner id='toolbox' %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/slider-bg.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 ## Is this course for me?
 

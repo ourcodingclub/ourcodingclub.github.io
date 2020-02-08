@@ -2,37 +2,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
 @import url(http://fonts.googleapis.com/css?family=Volkhov:400italic);
-body { font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; color: #384743; }
-
-h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; color: #383743; font-weight: 400; padding-top: 5px; }
-
-h2 { font-size: 30px; }
-
-h3 { font-size: 28px; }
-
-h4 { font-size: 25px; }
-
-h5 { font-size: 22px; }
-
-h6 { font-size: 20px; }
-
-p { font-size: 15px; line-height: 28px; }
-
-ul { list-style: square; list-style-position: inside; margin: 5px; padding: 0; }
-
-ol { list-style-position: inside; margin: 5px; padding: 0; }
-
-li { padding-left: 20px; margin: 0 0 10px 0; }
-
-a { color: #61247C; text-decoration: none; transition: color .1s, background-color .1s; }
-a:hover, a:active, a:focus { color: #604da8; text-decoration: underline; }
-
-.highlight code { background-color: #ebebeb; font-family: 'Menlo', monospace !important; font-size: 15px; }
-
-pre { display: block; margin-bottom: 2rem; padding: 1rem; white-space: pre; white-space: pre-wrap; word-break: break-all; word-wrap: break-word; }
-
-.language-plaintext { font-size: 15px; }
-
 body { margin: 0; padding: 0; }
 
 #navigation-container { margin: 0 auto; width: 70%; }
@@ -196,7 +165,42 @@ tr:hover { background-color: #f5f5f5; }
 
 .scroll-banner { color: #ffffff; padding: 10px 15px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
 
-.scroll-banner-nobg { color: #ffffff; padding: 10px 15px; background-image: none !important; background-color: #61247C; }
+.scroll-banner-nobg { color: #ffffff; padding: 10px 15px; background-image: none !important; background-color: #604da8; }
+
+.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a { color: #ffffff; }
+
+.scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a { color: #ffffff; }
+
+body { font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; color: #384743; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; color: #383743; font-weight: 400; padding-top: 5px; }
+
+h2 { font-size: 30px; }
+
+h3 { font-size: 28px; }
+
+h4 { font-size: 25px; }
+
+h5 { font-size: 22px; }
+
+h6 { font-size: 20px; }
+
+p { font-size: 15px; line-height: 28px; }
+
+ul { list-style: square; list-style-position: inside; margin: 5px; padding: 0; }
+
+ol { list-style-position: inside; margin: 5px; padding: 0; }
+
+li { padding-left: 20px; margin: 0 0 10px 0; }
+
+a { color: #61247C; text-decoration: none; transition: color .1s, background-color .1s; }
+a:hover, a:active, a:focus { color: #604da8; text-decoration: underline; }
+
+.highlight code { background-color: #ebebeb; font-family: 'Menlo', monospace !important; font-size: 15px; }
+
+pre { display: block; margin-bottom: 2rem; padding: 1rem; white-space: pre; white-space: pre-wrap; word-break: break-all; word-wrap: break-word; }
+
+.language-plaintext { font-size: 15px; }
 
 /* syntax.css GitHub syntax highlighting styles Tango style obtained from https://github.com/richleland/pygments-css/blob/master/tango.css  */
 .highlight .hll { background-color: #ebebeb; }

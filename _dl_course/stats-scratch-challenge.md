@@ -1,15 +1,20 @@
 ---
 layout: course
 title: "Intro to R challenge: Where are the red squirrels?"
+banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
 This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the [STATS FROM SCRATCH]({{ site.baseurl }}/dl_course/stats-scratch/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge. 
 
+{% capture banner %}
 # Challenge outline and objectives
 
 Red squirrels, once widespread throughout the UK, have declined sharply in the last century following the introduction of grey squirrels from North America. Most of the remaining populations are now restricted to parts of Scotland, and still threatened by the expansion of grey squirrels, which are more competitive and carry the deadly squirrel pox.
 
 Red squirrels are a protected species and, with conservation efforts from [dedicated organisations](https://scottishsquirrels.org.uk/), are able to maintain strongholds in various parts of Scotland. These organisations also collect information on red and grey squirrel sightings, and we will use these data in the challenge to learn more about red squirrel population trends and habitat preferences.
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Data overview
 
@@ -30,7 +35,7 @@ __You will use the following datasets, available from the [Challenge Github repo
 * The National Forest Inventory for Scotland 2017, from the [Forestry Commission](http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/)
 * OS grid cells at a 10 x 10 km resolution, from [this Git repository](https://github.com/charlesroper/OSGB_Grids)
 
-* __Fancy a more advanced challenge? Why don't you try re-creating this dataset yourself?__ (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)
+__Fancy a more advanced challenge? Why don't you try re-creating this dataset yourself?__ (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)
 
 # Specific tasks
 
@@ -95,11 +100,15 @@ __Be prepared to answer the question:__
 
 * In what cover classes are red squirrels more abundant than the grey?
 
+{% capture banner %}
 # How to get started
 
 Download the [challenge Github repository](https://github.com/ourcodingclub/CC_course_challenge1), which contains all the data you need, and create a new script for your challenge. Refer to this page to make sure you are answering all the questions.
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources).
+{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/robin.jpg{% endcapture %}
+{% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test!
 
