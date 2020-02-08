@@ -76,9 +76,10 @@ a {
 }
 
 // Code
-code, pre {
+.highlight code {
 	background-color: $codeBackgroundColour;
-	font-family: "Menlo, monospace",
+	font-family: 'Menlo', monospace !important;
+	font-size: 15px;
 }
 
 pre {
@@ -91,3 +92,6 @@ pre {
     word-wrap: break-word;
 }
 
+.language-plaintext {
+	font-size: 15px;
+}

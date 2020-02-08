@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "TUTORIALS"
+title: "Tutorials"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 

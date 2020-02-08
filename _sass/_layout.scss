@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Copy code button
-.copy-button {
+.copy-button, .hide-back-button {
   webkit-transition: opacity .1s ease-in-out;
   -o-transition: opacity .1s ease-in-out;
   transition: opacity .1s ease-in-out;
@@ -451,6 +451,10 @@ h1, h2, h3, h4, h5, h6 {
 // Increase opacity on hover of code chunk
 div.highlight:hover .copy-button:hover, div.highlight .copy-button:focus {
     opacity: 1;
+}
+
+div.highlight:hover .hide-back-button:hover, div.highlight .hide-back-button:focus {
+	opacity: 1;
 }
 
 // Course intro stream img container
@@ -499,6 +503,25 @@ tr:hover {
 .call {
 	display: inline-block;
 }
+
+// Scrolling banner
+.scroll-banner {
+	color: $white;
+	padding: 10px 15px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.scroll-banner-nobg {
+	color: $white;
+	padding: 10px 15px;
+    background-image: none !important;
+	background-color: $linkColour;
+}
+
 
 // * {
 //   background: #000 !important;

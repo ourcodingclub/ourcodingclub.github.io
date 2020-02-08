@@ -34,13 +34,13 @@ kramdown:
 
 # Favicons 
 favicons: 
-    16: '/assets/img/logos/logo_stack@16px.png'
-    32: '/assets/img/logos/logo_stack@32px.png'
-    64: '/assets/img/logos/logo_stack@64px.png'
-    128: '/assets/img/logos/logo_stack@128px.png'
-    256: '/assets/img/logos/logo_stack@256px.png'
-    512: '/assets/img/logos/logo_stack@512px.png'
-    1024: '/assets/img/logos/logo_stack@1024px.png'
+    16: '/assets/img/logos/logo_hex@16px.png'
+    32: '/assets/img/logos/logo_hex@32px.png'
+    64: '/assets/img/logos/logo_hex@64px.png'
+    128: '/assets/img/logos/logo_hex@128px.png'
+    256: '/assets/img/logos/logo_hex@256px.png'
+    512: '/assets/img/logos/logo_hex@512px.png'
+    1024: '/assets/img/logos/logo_hex@1024px.png'
 
 # Site navigation
 navigation_header:

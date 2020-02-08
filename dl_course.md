@@ -12,6 +12,7 @@ Depending on your chosen path, you will learn to use R to manipulate, graph and 
 
 By the end of the course, you will be able to undertake one (or more) of our case-study challenges, using open data to answer questions about Scottish environmental issues, giving you a flavour of real-life applications of data science.
 
+{% capture banner %}
 Our tutorials cover the following key skills we think should be in an ecologist's toolbox:
 
 * The basics of functional and object-oriented programming
@@ -24,7 +25,8 @@ Our tutorials cover the following key skills we think should be in an ecologist'
 * Geospatial analysis
 * Bayesian statistics
 * Version control, collaborative coding and coding etiquette
-
+{% endcapture %}
+{% include scroll-banner.html content=banner id='toolbox' %}
 
 ## Is this course for me?
 
