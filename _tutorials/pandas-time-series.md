@@ -6,6 +6,7 @@ date: 2019-01-07 10:00:00
 author: Ashley
 redirect_from:
   - /2019/01/07/pandas-time-series.html
+tags: python
 ---
 
 In this tutorial we will do some basic exploratory visualisation and analysis of time series data. We will learn how to create a `pandas.DataFrame` object from an input data file, plot its contents in various ways, work with resampling and rolling calculations, and identify correlations and periodicity.

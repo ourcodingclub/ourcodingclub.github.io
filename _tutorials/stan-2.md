@@ -7,6 +7,7 @@ author: Gergana and Maxwell Farrell
 survey_link: https://www.surveymonkey.co.uk/r/PX3XHD
 redirect_from:
   - /2018/04/30/stan-2.html
+tags: modelling 
 ---
 
 # Tutorial Aims:

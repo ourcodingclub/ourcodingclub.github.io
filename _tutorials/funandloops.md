@@ -7,6 +7,7 @@ author: Gergana and John
 survey_link: https://www.surveymonkey.co.uk/r/NRKM679
 redirect_from: 
   - /2017/02/08/funandloops.html
+tags: basic-r
 ---
 
 # Tutorial aims:

@@ -7,6 +7,7 @@ author: Pedro
 survey_link: https://www.surveymonkey.co.uk/r/B723DLF
 redirect_from:
   - /2017/03/21/data-clustering.html
+tags: modelling 
 ---
 
 # Tutorial Aims:

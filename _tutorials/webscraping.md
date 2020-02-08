@@ -7,6 +7,7 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/S9R5G2T
 redirect_from:
   - /2017/03/06/webscraping.html
+tags: data-manip
 ---
 
 # Tutorial Aims:

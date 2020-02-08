@@ -7,6 +7,7 @@ layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/V537CQ5
 redirect_from: 
   - /2018/01/22/mcmcglmm.html
+tags: modelling 
 ---
 
 This tutorial is aimed at people who are new to meta-analysis and using the `MCMCglmm` package written by [Dr. Jarrod Hadfield](https://www.youtube.com/watch?v=XepXtl9YKwc), to help you become comfortable with using the package, and learn some of the ways you can analyse your data. It isn’t designed to teach you about hardcore Bayesian statistics or mixed modelling, but rather to highlight the differences between MCMCglmm and other statistical approaches you may have used before, and overcome some of the problems you may encounter as a new user. 

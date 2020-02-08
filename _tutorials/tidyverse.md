@@ -7,6 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.com/r/XD85MW5
 redirect_from:
   - /2018/03/06/tidyverse.html
+tags: spatial
 ---
 
 

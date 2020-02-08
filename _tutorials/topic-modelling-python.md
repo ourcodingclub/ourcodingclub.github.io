@@ -7,6 +7,7 @@ author: James
 survey_link: https://www.surveymonkey.co.uk/r/7C5N3QV
 redirect_from:
   - /2018/12/10/topic-modelling-python.html
+tags: python
 ---
 
 # Tutorial aims:

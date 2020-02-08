@@ -7,6 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/NYVBNF8
 redirect_from:
   - /2017/11/11/popchange.html
+tags: spatial
 ---
 
 # Tutorial Aims:

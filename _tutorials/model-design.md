@@ -7,6 +7,7 @@ author: Isla and Gergana
 survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 redirect_from:
   - /2018/04/06/model-design.html
+tags: modelling 
 ---
 
 # Tutorial Aims:

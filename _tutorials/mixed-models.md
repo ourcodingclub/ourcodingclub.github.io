@@ -8,6 +8,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/HJYGVSF
 redirect_from: 
   - /2017/03/15/mixed-models.html
+tags: modelling 
 ---
 
 This workshop is aimed at people new to mixed modeling and as such, it doesn't cover all the nuances of mixed models, but hopefully serves as a starting point when it comes to both the concepts and the code syntax in `R`. There are no equations used to keep it beginner friendly.

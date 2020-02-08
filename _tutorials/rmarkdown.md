@@ -7,6 +7,7 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/F5PDDHV
 redirect_from:
   - /2016/11/24/rmarkdown-1.html
+tags: reprod
 ---
 
 # Tutorial Aims:

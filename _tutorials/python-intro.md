@@ -7,6 +7,7 @@ author: Declan
 survey_link: https://www.surveymonkey.co.uk/r/WVL5GXB
 redirect_from:
   - /2018/01/26/python-intro.html
+tags: python
 ---
 
 # Tutorial aims:

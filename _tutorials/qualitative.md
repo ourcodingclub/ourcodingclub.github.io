@@ -7,6 +7,7 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/VMRWSKQ
 redirect_from: 
   - /2018/01/29/qualitative.html
+tags: data-vis
 ---
 
 # Tutorial Aims:

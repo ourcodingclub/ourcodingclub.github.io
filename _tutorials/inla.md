@@ -7,6 +7,7 @@ author: Greg Albery
 survey_link: https://www.surveymonkey.co.uk/r/VVGXKZG
 redirect_from:
   - /2018/12/04/inla.html
+tags: modelling 
 ---
 	
 # Tutorial Aims:

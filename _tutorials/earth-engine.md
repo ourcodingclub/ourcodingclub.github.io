@@ -7,6 +7,7 @@ author: Gergana and Isla
 survey_link: https://www.surveymonkey.co.uk/r/VKMZHD3
 redirect_from: 
   - /2018/11/26/earth-engine.html
+tags: earth-engine
 ---
 
 # Tutorial Aims:

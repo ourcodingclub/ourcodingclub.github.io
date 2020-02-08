@@ -7,6 +7,7 @@ author: Samuel Kellerhals
 survey_link: https://www.surveymonkey.co.uk/r/77YWPQL
 redirect_from:
   - /2018/10/15/machine-learning.html
+tags: modelling 
 ---
 
 

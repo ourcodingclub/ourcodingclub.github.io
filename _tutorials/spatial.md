@@ -7,6 +7,7 @@ author: Maude Grenier
 survey_link: https://www.surveymonkey.com/r/8MJ8GRY
 redirect_from:
   - /2019/03/26/spatial.html
+tags: spatial
 ---
 
 # Tutorial Aims:

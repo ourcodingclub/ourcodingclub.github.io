@@ -10,6 +10,7 @@ survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
 redirect_from: 
   - /2017/01/06/data-manip-intro.html
   - /2017/01/18/piping.html
+tags: data-manip
 ---
 
 # Tutorial aims:

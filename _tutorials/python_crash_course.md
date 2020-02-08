@@ -7,6 +7,7 @@ author: James
 survey_link: https://www.surveymonkey.co.uk/r/VN5XKPR
 redirect_from:
   - /2018/11/05/python_crash_course.html
+tags: python
 ---
 
 # Tutorial Aims:

@@ -7,6 +7,7 @@ author: Ed C
 survey_link: https://www.surveymonkey.co.uk/r/795PKMV
 redirect_from:
   - /2018/11/30/numpy.html
+tags: python
 ---
 
 # Tutorial aims:

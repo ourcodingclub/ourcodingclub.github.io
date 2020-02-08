@@ -7,6 +7,7 @@ author: John
 survey_link: https://www.surveymonkey.co.uk/r/NMD3N5K
 redirect_from: 
   - /2016/12/11/maps_tutorial.html
+tags: spatial
 ---
 
 # Tutorial Aims:

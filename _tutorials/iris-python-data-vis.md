@@ -7,9 +7,10 @@ author: Declan Valters
 survey_link: https://www.surveymonkey.co.uk/r/VH6XDVZ
 redirect_from:
   - /2018/10/31/iris-python-data-vis.html
+tags: python
 ---
 
-_Material for this tutorial was adapted from the [SciTools tutorial](https://scitools.org.uk">SciTools (SciTools is the group that maintain the Iris software.) It was adapted and modified under the GNU public licence v 3.0 for this OurCodingClub tutorial and we acknowledge appreciate the use of original source materials from SciTools - Thank you!_
+Material for this tutorial was adapted from the [SciTools tutorial](https://scitools.org.uk) (SciTools is the group that maintain the Iris software.) It was adapted and modified under the GNU public licence v3.0 for this Coding Club tutorial and we acknowledge appreciate the use of original source materials from SciTools - Thank you!_
 
 Welcome to this tutorial in the Python series about the Iris python package. Iris is a powerful tool used for manipulating multi-dimensional earth science data. Iris is really useful when you are dealing with data from sources such as weather and climate models, particularly when it is stored in common formats such as NetCDF (a common data file format used in the climate science community.) 
 

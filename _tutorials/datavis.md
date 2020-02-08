@@ -9,6 +9,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 redirect_from:
   - /2017/01/29/datavis.html
+tags: data-vis
 ---
 
 # Tutorial aims and steps:

@@ -9,11 +9,13 @@
 	<h3>Related tutorials:</h3>
 	{% for tutorial in site.tutorials%}
 		{% if tutorial.url != page.url %}
-  			{% for tag in tutorial.tags %}
+    		<ul>
+  				{% for tag in tutorial.tags %}
     				{% if page.tags contains tag %}
-						<h4><a style="margin:0 padding:0" href="{{ tutorial.url }}">- {{ tutorial.title }}</a></h4>
-  				{% endif %}
-			{% endfor %}
+						<li><a href="{{ tutorial.url }}">{{ tutorial.title }}</a></li>
+  					{% endif %}
+				{% endfor %}
+			</ul>
 		{% endif %}
 	{% endfor %}
 	<br>

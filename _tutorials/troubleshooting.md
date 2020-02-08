@@ -9,6 +9,7 @@ updater: Sandra
 survey_links: https://www.surveymonkey.co.uk/r/6CQF3J7
 redirect_from:
   - /2016/11/15/troubleshooting.html
+tags: basic-r
 ---
 
 # Tutorial aims:

@@ -7,6 +7,7 @@ author: Gergana
 survey_link: https://www.surveymonkey.com/r/JYDDZ8F
 redirect_from:
   - /2018/01/06/occurrence.html
+tags: spatial
 ---
 
 # Tutorial Aims:

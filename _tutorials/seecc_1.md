@@ -7,6 +7,7 @@ layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/9L5ZFNK
 redirect_from:
   - /2017/09/13/seecc.html
+tags: spatial
 ---
 
 # Tutorial Aims:
