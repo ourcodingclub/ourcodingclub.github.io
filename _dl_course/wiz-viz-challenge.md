@@ -1,7 +1,7 @@
 ---
 layout: course
 title: "Data visualisation challenge: Native woodlands"
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/wiz-viz.jpg"
 ---
 
 This challenge will require the use of data manipulation, plotting and mapping skills, and is the culmination of the [WIZ OF DATA VIS]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge.
@@ -15,7 +15,7 @@ The Scottish government has included woodland expansion goals in its Climate Cha
 
 You have been asked to provide a report on the extent and structure of some high-priority conservation habitats in national nature reserves (NNR) of Scotland. For selected woodland types, you are required to prepare maps of their distribution in the Cairngorms, the Glen Affric, and the Trossachs nature reserve areas. You have also been tasked to calculate their respective extent within the reserve boundaries, and some basic biodiversity indices.
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/cliff.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/pine.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Data overview 
@@ -129,7 +129,7 @@ Download the [challenge repository](https://github.com/ourcodingclub/CC_course_c
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_3.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/larch.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test! 

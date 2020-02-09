@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Data Science for ecologists and environmental scientists"
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/dl_course_banner.jpg"
 ---
 
 ## Course overview
@@ -26,7 +26,7 @@ Our tutorials cover the following key skills we think should be in an ecologist'
 * Bayesian statistics
 * Version control, collaborative coding and coding etiquette
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/slider-bg.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/landscape.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 ## Is this course for me?

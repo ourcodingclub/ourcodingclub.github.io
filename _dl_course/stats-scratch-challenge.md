@@ -107,7 +107,7 @@ Download the [challenge Github repository](https://github.com/ourcodingclub/CC_c
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources).
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/robin.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_3.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test!

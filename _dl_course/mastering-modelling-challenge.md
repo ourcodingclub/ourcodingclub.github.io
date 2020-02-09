@@ -1,7 +1,7 @@
 ---
 layout: course
 title: "Data analysis and modelling challenge: Seabird population dynamics" 
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/mastering-modelling.jpg"
 ---
 
 This challenge will require the use of data manipulation, visualisation and analysis skills, and is the culmination of the [MASTERING MODELLING]({{ site.baseurl }}/dl_course/mastering-modelling/index.html) course stream. You will find here all the instructions you need to complete the challenge. 
@@ -13,7 +13,7 @@ The Isle of May, located on the east coast of Scotland, is a nature reserve home
 
 Your mission will be to analyse the breeding success and other behaviours of seabirds compiled and summarised by the [Centre for Ecology and Hydrology](http://ceh.ac.uk/) to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the breeding of the birds.
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/larch.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/cliffs.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Data overview 
@@ -94,7 +94,7 @@ Download the [challenge repository](https://github.com/ourcodingclub/CC_course_c
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/pine.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/puffins.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test! 
