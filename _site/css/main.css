@@ -4,7 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Volkhov:400italic);
 body { margin: 0; padding: 0; }
 
-#navigation-container { margin: 0 auto; width: 70%; }
+#navigation-container { margin: 0 auto; width: 70%; padding: 5px 0px; }
 
 #navigation-container label, #hamburger { display: none; }
 
@@ -15,7 +15,7 @@ body { margin: 0; padding: 0; }
   /* Toggle show/hide menu on checkbox click */
   #navigation-container ul { display: none; }
   #navigation-container input:checked ~ ul { display: block; } }
-.navigation-bar img { float: left; max-width: 100px; }
+.navigation-bar img { float: left; max-width: 125px; }
 
 .navigation-bar ul { text-align: center; overflow: hidden; }
 
