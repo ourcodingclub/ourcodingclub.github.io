@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "CODING CLUB: A POSITIVE PEER-LEARNING COMMUNITY"
+title: "Coding Club: A Positive Peer-Learning Community"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
