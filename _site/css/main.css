@@ -35,7 +35,7 @@ body { margin: 0; padding: 0; }
 
 .license { width: 80px; padding: -20px; }
 
-.banner { display: flex; flex-direction: column; align-items: center; justify-content: center; background-position: cover; background-size: cover; background-repeat: no-repeat; width: 100%; height: 200px; }
+.banner { display: flex; flex-direction: column; align-items: center; justify-content: center; background-position: cover; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; width: 100%; height: 200px; }
 
 .banner h1, .banner h3 { text-align: center; padding: 0px 30px; text-transform: uppercase; color: #ebebeb; }
 
