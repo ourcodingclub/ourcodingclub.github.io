@@ -98,7 +98,7 @@ __Important notes:__ Pipes only work on data frame objects, and functions outsid
 {% capture callout %}
 __We're not lazy, but we love shortcuts!__ In RStudio, you can use `Ctrl + Shift + M` (or `Cmd + Shift + M` on a Mac) to create the `%>%` operator.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 Let's use some more of our favourite `dplyr` functions in pipe chains. Can you guess what this does?
 
@@ -334,7 +334,7 @@ paste(getwd(), '/', 'map-', .$Genus, '.png', sep = '')
 
 So, in the end, the whole string could read something like: 'C:/Coding_Club/map-Acer.png'.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 We hope you've learned new hacks that will simplify your code and make it more efficient! Let's see if you can use what we learned today to accomplish a last data task. 
 

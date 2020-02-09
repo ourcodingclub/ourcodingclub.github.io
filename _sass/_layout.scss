@@ -383,16 +383,13 @@ body {
     color: $white;
 }
 
-.alertbox, .importantbox {
+.alertbox {
 	border: 1px solid black;
 	border-radius: 5px;
 	width: 50px;
 	height: 30px;
 	color: black;
 	margin: 5px 0;
-}
-
-.alertbox {
 	background-color: #ffcccc;
 }
 
@@ -514,7 +511,6 @@ tr:hover {
 	background-size: cover;
 }
 
-
 .scroll-banner-nobg {
 	color: $white;
 	padding: 10px 15px;
@@ -522,13 +518,16 @@ tr:hover {
 	background-color: $hoverColour;
 }
 
-.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a {
-	color: $white;
+ h1, h2, h3, h4, h5, h6, p, a {
+ 	&.scroll-banner {
+		color: $white;
+	}
 }
 
-
-.scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a {
-	color: $white;
+h1, h2, h3, h4, h5, h6, p, a {
+	&.scroll-banner-nobg {
+		color: $white;
+	}
 }
 
 

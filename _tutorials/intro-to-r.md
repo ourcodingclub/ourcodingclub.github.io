@@ -476,4 +476,4 @@ To recap, here are a few important terms we learned in this lesson:
 - __working directory__: the folder on your computer linked to your current R session, where you import data from and save files to. You set it at the beginning of your session with the `setwd()` function.
 - __workspace__: this is your virtual working environment, which contains all the functions of the packages you have loaded, the data you have imported, the objects you have created, and so on. It's usually best to start a work session with a clear workspace.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}

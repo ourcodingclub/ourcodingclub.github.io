@@ -98,7 +98,7 @@ Errors are not the only scary red text that will appear in the console. Often, y
 
 Warnings are not necessarily the end of the world, but you should see them as major red flags, and make sure you know what is going on before you pursue your analysis. Like error messages, a simple online search of the warning text will often put you on the right track. 
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 # 4. Practice! 
 {: #practice}

@@ -95,3 +95,16 @@ pre {
 .language-plaintext {
 	font-size: 15px;
 }
+
+.callout code, .callout pre {
+	background-color: $codeCalloutBackgroundColour;
+}
+
+.alert code, .alert pre {
+	background-color: $codeAlertBackgroundColour;
+}
+
+.important code, .important pre {
+	background-color: $codeImportantBackgroundColour;
+}
+

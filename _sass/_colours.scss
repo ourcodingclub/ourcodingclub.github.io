@@ -11,7 +11,10 @@ $linkColour: #61247C !default;
 $hoverColour: #604da8 !default;
 $white: #ffffff !default;
 
-// Callout colours
-$calloutColour: #66d2ff !default;
+// Callout colours #e4fcff
+$calloutColour: #c0ebef !default;
+$codeCalloutBackgroundColour: lighten(desaturate($calloutColour, 10%), 10%) !default;
 $alertColour: #ff3333 !default;
-$importantColour: #ffd633 !default;
+$codeAlertBackgroundColour: lighten(desaturate($alertColour, 10%), 10%) !default;
+$importantColour: #F9E59B !default;
+$codeImportantBackgroundColour: lighten(desaturate($importantColour, 10%), 10%) !default;

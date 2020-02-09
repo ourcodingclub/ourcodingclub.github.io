@@ -178,7 +178,7 @@ Go to your lab's main repository, click on `Create new file` and add `github-eti
 - Don't use funky characters and spaces in your file names, these cause trouble because of differences in Mac/Windows systems.
 - Always __pull__ before you push in case someone has done any work since the last time you pulled - you wouldn't want anyone's work to get lost or to have to resolve many coding conflicts.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 
 # 3. Sync and interact with your repository through `RStudio`
@@ -199,7 +199,7 @@ Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the 
 
 We know that there might be problems with the newest updates of the Mac software and installing git and linking it with RStudio. The solutions appear to be very specific to the Mac version you have, so if the above steps didn't work, a good starting point is googling \"rstudio can't find git mac **your version**\" and trying out the suggested solutions.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 

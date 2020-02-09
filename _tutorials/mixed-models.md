@@ -252,7 +252,7 @@ This is, put simply, because estimating variance on few data points is very impr
 
 Finally, keep in mind that the name *random* doesn't have much to do with *mathematical randomness*. Yes, it's confusing. Just think about them as the *grouping* variables for now. Strictly speaking it's all about making our models representative of our questions **and getting better estimates**. Hopefully, our next few examples will help you make sense of how and why they're used.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 **In the end, the big questions are:** *what are you trying to do? What are you trying to make predictions about? What is just variation (a.k.a "noise") that you need to control for?*
 
@@ -397,7 +397,7 @@ Now it's obvious that we have 24 samples (8 mountain ranges x 3 sites) and not j
 
 **To sum up:** for **nested random effects**, the factor appears **ONLY** within a particular level of another factor (each site belongs to a specific mountain range and only to that range); for **crossed effects**, a given factor appears in more than one level of another factor (dragons appearing within more than one mountain range). **Or you can just remember that if your random effects aren't nested, then they are crossed!**
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 ## Our second mixed model
 {: #second}

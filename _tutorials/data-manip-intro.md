@@ -182,7 +182,7 @@ Something to keep in mind is that __if you use a name again in a same session, i
 
 As you will now see, we can also make use of the arrow `<-` to overwrite specific values or range of values we need to change. 
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 ```r
 ## CHANGING VARIABLE NAMES AND VALUES IN A DATA FRAME
@@ -368,7 +368,7 @@ The first creates a duplicate of our object, because R recognises the name as an
 
 It takes time and practice to get used to these conventions, but just keep an eye out for [error messages]({{ site.baseurl }}/tutorials/troubleshooting/index.html) and you'll get there.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 Now that we know how to subset rows, let's do the same with columns!
 
@@ -508,7 +508,7 @@ __However__, you find out that your field assistant was a bit careless during da
 2. There was a calibration error with the measuring device for the tabasco trial, but only for the Hungarian Horntail species. All measurements are 30 cm higher than they should be.
 3. The lengths are given in centimeters, but really it would make sense to convert them to meters.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 __Now let's see what you can do!__
 

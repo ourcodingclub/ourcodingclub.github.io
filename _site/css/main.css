@@ -119,15 +119,13 @@ body { margin: 0; padding: 0; }
 
 .values-desc { font-size: 8pt; }
 
-.callout { padding: 5px 20px; border-radius: 10px; background-color: #66d2ff; }
+.callout { padding: 5px 20px; border-radius: 10px; background-color: #c0ebef; }
 
-.important { background-color: #ffd633; }
+.important { background-color: #F9E59B; }
 
 .alert { background-color: #ff3333; color: #ffffff; }
 
-.alertbox, .importantbox { border: 1px solid black; border-radius: 5px; width: 50px; height: 30px; color: black; margin: 5px 0; }
-
-.alertbox { background-color: #ffcccc; }
+.alertbox { border: 1px solid black; border-radius: 5px; width: 50px; height: 30px; color: black; margin: 5px 0; background-color: #ffcccc; }
 
 .alertbox p { margin: 0 auto; text-align: center; }
 
@@ -167,9 +165,9 @@ tr:hover { background-color: #f5f5f5; }
 
 .scroll-banner-nobg { color: #ffffff; padding: 10px 15px; background-image: none !important; background-color: #604da8; }
 
-.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a { color: #ffffff; }
+h1.scroll-banner, h2.scroll-banner, h3.scroll-banner, h4.scroll-banner, h5.scroll-banner, h6.scroll-banner, p.scroll-banner, a.scroll-banner { color: #ffffff; }
 
-.scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a { color: #ffffff; }
+h1.scroll-banner-nobg, h2.scroll-banner-nobg, h3.scroll-banner-nobg, h4.scroll-banner-nobg, h5.scroll-banner-nobg, h6.scroll-banner-nobg, p.scroll-banner-nobg, a.scroll-banner-nobg { color: #ffffff; }
 
 body { font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; color: #384743; }
 
@@ -201,6 +199,12 @@ a:hover, a:active, a:focus { color: #604da8; text-decoration: underline; }
 pre { display: block; margin-bottom: 2rem; padding: 1rem; white-space: pre; white-space: pre-wrap; word-break: break-all; word-wrap: break-word; }
 
 .language-plaintext { font-size: 15px; }
+
+.callout code, .callout pre { background-color: #eaf7f8; }
+
+.alert code, .alert pre { background-color: #f76e6e; }
+
+.important code, .important pre { background-color: #f9f0ce; }
 
 /* syntax.css GitHub syntax highlighting styles Tango style obtained from https://github.com/richleland/pygments-css/blob/master/tango.css  */
 .highlight .hll { background-color: #ebebeb; }

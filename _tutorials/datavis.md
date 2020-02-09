@@ -311,7 +311,7 @@ If your axis labels need to contain special characters or superscript, you can g
 
 To create additional space between an axis title and the axis itself, use `\n` when writing your title, and it will act as a line break.
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 
 ## 3c. Boxplot to examine whether vulture abundance differs between Croatia and Italy

@@ -165,7 +165,7 @@ You can also add in `theme()` elements to your plot, which let you customise eve
 
 __Note:__ if we wanted to specify different options for the x and y axis, we could use `axis.text.x` or `axis.title.x` and `axis.text.y` or `axis.title.y` and specify separate characteristics for each axis. 
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
 
 ```r
 (hist <- ggplot(species_counts, aes(x = plot, y = Species_number, fill = land)) +
@@ -456,7 +456,8 @@ summary <- species_counts %>%  group_by(land) %>% summarise(mean = mean(Species_
 Boxplots, just like dot plots, give a more accurate idea of the range of values in your data: but remember that the thicker line in the box represents the median, not the mean!
 
 {% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+{% include callout.html content=callout colour="important" %}
+
 ## Reordering factors
 
 Remember how we learnt to recode and reorder factors in our [advanced data manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-advanced/index.html#factors)? We often want to do this so that we can __plot values in a specific order__.
