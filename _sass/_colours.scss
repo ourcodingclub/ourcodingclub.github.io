@@ -7,8 +7,8 @@ $boxBackgroundColour: #ebebeb !default;
 $headingColour: #383743 !default;
 $bannerImageColour: #ebebeb !default;
 $bodyColour: #384743 !default;
-$linkColour: #61247C !default;
-$hoverColour: #604da8 !default;
+$linkColour: darken(#5fc9cb, 20%) !default;
+$hoverColour: desaturate($linkColour, 10%) !default;
 $white: #ffffff !default;
 
 // Callout colours #e4fcff
