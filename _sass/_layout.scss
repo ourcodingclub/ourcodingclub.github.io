@@ -165,6 +165,7 @@ body {
 #accordion h3 {
 	background-color: $headingColour !important;
 	color: $white !important;
+	border: 1px solid $headingColour !important;
 }
 
 #accordion h3:hover, #accordion .ui-state-active {

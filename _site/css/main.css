@@ -55,7 +55,7 @@ body { margin: 0; padding: 0; }
 
 .team-profile img { float: right; width: 20%; }
 
-#accordion h3 { background-color: #383743 !important; color: #ffffff !important; }
+#accordion h3 { background-color: #383743 !important; color: #ffffff !important; border: 1px solid #383743 !important; }
 
 #accordion h3:hover, #accordion .ui-state-active { background-color: #ffffff !important; border: 1px solid #383743 !important; color: #383743 !important; }
 
