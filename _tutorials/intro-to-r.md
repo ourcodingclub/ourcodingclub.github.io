@@ -120,7 +120,7 @@ You can find all the files needed to complete this tutorial in this [Github repo
 
 ![Github clone repo screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/github_clone.png)
 {% endcapture %}
-{% include callout.html colour='alert' content=callout %}
+{% include callout.html colour="alert" content=callout %}
 
 
 Now that you have the data saved on your computer, let's import it! In RStudio, you can either click on the _Import dataset_ button and navigate to where you have saved your file, or use the `read.csv()` command. If you use the button, a window will pop up previewing your data. Make sure that next to _Heading_ you have selected _Yes_ (this tells R to treat the first row of your data as the column names) and click _Import_. In the console, you will see the code for your import, which includes the file path - it's a good idea to copy this code into your script, so that for future reference you know where your dataset came from. 

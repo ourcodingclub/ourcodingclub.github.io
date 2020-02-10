@@ -69,13 +69,13 @@ body { margin: 0; padding: 0; }
 
 .tutdesc { padding-left: 15px; overflow: auto; }
 
-#accordion .ui-accordion-header { background-color: #eee; padding: 5px; text-align: center; }
+#accordion .ui-accordion-header { background-color: #eef2f6; padding: 5px; text-align: center; }
 
 .form-group { margin: 10px 0px; text-align: center; }
 
-.form-group input { width: 100%; background: #F6F8FA; height: 60px; border: 1px solid #EEF2F6; box-shadow: none; margin: 10px 0px; border-radius: 8px; padding: 0px 5px; box-sizing: border-box; -moz-box-sizing: border-box; }
+.form-group input { width: 100%; background: #f6f8fa; height: 60px; border: 1px solid #eef2f6; box-shadow: none; margin: 10px 0px; border-radius: 8px; padding: 0px 5px; box-sizing: border-box; -moz-box-sizing: border-box; }
 
-.form-group textarea { background: #F6F8FA; height: 135px; border: 1px solid #EEF2F6; box-shadow: none; width: 100%; max-width: 100%; border-radius: 8px; padding: 5px 5px; box-sizing: border-box; -moz-box-sizing: border-box; }
+.form-group textarea { background: #f6f8fa; height: 135px; border: 1px solid #eef2f6; box-shadow: none; width: 100%; max-width: 100%; border-radius: 8px; padding: 5px 5px; box-sizing: border-box; -moz-box-sizing: border-box; }
 
 .form-group button { width: 100%; height: 60px; background-color: #309294; border: none; color: #ffffff; font-size: 18px; margin: 10px 0px; border-radius: 8px; }
 
@@ -121,13 +121,15 @@ body { margin: 0; padding: 0; }
 
 .callout { padding: 5px 20px; border-radius: 10px; background-color: #c0ebef; }
 
-.important { background-color: #F9E59B; }
+.important { background-color: #f9e59b; }
 
-.alert { background-color: #ff3333; color: #ffffff; }
+.alert { background-color: #d22e23; color: #ffffff; }
 
-.alertbox { border: 1px solid black; border-radius: 5px; width: 50px; height: 30px; color: black; margin: 5px 0; background-color: #ffcccc; }
+.alert a { color: #ace3e4; }
 
-.alertbox p { margin: 0 auto; text-align: center; }
+.alertbox { border: 1px solid #000000; border-radius: 5px; width: 50px; height: 30px; color: black; margin: 5px 0; background-color: #d65b52; }
+
+.alertbox p { margin: 0 auto; text-align: center; color: #ffffff; }
 
 h1.callout, h2.callout, h3.callout, h4.callout, h5.callout, h6.callout { margin-top: 0; }
 
@@ -155,7 +157,7 @@ table, th, td { border-collapse: collapse; }
 
 th { color: #ffffff; background-color: #383743; }
 
-tr:hover { background-color: #f5f5f5; }
+tr:hover { background-color: #eef2f6; }
 
 .call-container { background-color: #ebebeb; text-align: center; padding: 50px; margin: 15px; }
 
@@ -202,7 +204,7 @@ pre { display: block; margin-bottom: 2rem; padding: 1rem; white-space: pre; whit
 
 .callout code, .callout pre { background-color: #eaf7f8; }
 
-.alert code, .alert pre { background-color: #f76e6e; }
+.alert code, .alert pre { background-color: #d65b52; }
 
 .important code, .important pre { background-color: #f9f0ce; }
 

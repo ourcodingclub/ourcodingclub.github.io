@@ -198,7 +198,7 @@ body {
 }
 
 #accordion .ui-accordion-header {
-	background-color: #eee;
+	background-color: $greyBorderColour;
 	padding: 5px;
 	text-align: center;
 }
@@ -211,9 +211,9 @@ body {
 
 .form-group input {
 	width: 100%;
-	background: #F6F8FA;
+	background: $formTextBackgroundColour;
 	height: 60px;
-	border: 1px solid #EEF2F6;
+	border: 1px solid $greyBorderColour;
 	box-shadow: none;
 	margin: 10px 0px;
 	border-radius: 8px;
@@ -223,9 +223,9 @@ body {
 }
 
 .form-group textarea {
-	background: #F6F8FA;
+	background: $formTextBackgroundColour;
 	height: 135px;
-	border: 1px solid #EEF2F6;
+	border: 1px solid $greyBorderColour;
 	box-shadow: none;
 	width: 100%;
 	max-width: 100%;
@@ -385,20 +385,26 @@ body {
     color: $white;
 }
 
+.alert a {
+	color: lighten($linkColour, 40%);
+}
+
 .alertbox {
-	border: 1px solid black;
+	border: 1px solid $black;
 	border-radius: 5px;
 	width: 50px;
 	height: 30px;
 	color: black;
 	margin: 5px 0;
-	background-color: #ffcccc;
+	background-color: $codeAlertBackgroundColour;
 }
 
 .alertbox p {
 	margin: 0 auto;
 	text-align: center;
+	color: $white;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
     &.callout {
@@ -488,7 +494,7 @@ th {
 }
 
 tr:hover {
-	background-color: #f5f5f5;
+	background-color: $greyBorderColour;;
 }
 
 // Call to action
