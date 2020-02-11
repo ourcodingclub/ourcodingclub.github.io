@@ -4,10 +4,20 @@
 	{% if page.survey_link %}
 		<h4><a href="{{ include.survey_link }}" target="_blank">We would love to hear your feedback, please fill out our survey!</a></h4>
 	{% endif %}
-	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h4>
+	<h4>Contact us with any questions on <a href="mailto:ourcodingclub@gmail.com?Subject=Tutorial%20question" target = "_top">ourcodingclub@gmail.com</a></h4>	
+    {% assign tags_count = 0 %}
+    {% for tutorial in site.tutorials %}
+    	{% if tutorial.url != page.url %}
+    		{% if tutorial.tags == page.tags %}
+    				{% assign tags_count == tags_count | plus: 1 %}
+    		{% endif %}
+		{% endif %}
+	{% endfor %}
+	{% if tags_count == 1 %}
 	<br>
 	<h3>Related tutorials:</h3>
-	{% for tutorial in site.tutorials%}
+	{% endif %}
+	{% for tutorial in site.tutorials %}
 		{% if tutorial.url != page.url %}
     		<ul>
   				{% for tag in tutorial.tags %}

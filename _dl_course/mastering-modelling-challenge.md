@@ -13,7 +13,7 @@ The Isle of May, located on the east coast of Scotland, is a nature reserve home
 
 Your mission will be to analyse the breeding success and other behaviours of seabirds compiled and summarised by the [Centre for Ecology and Hydrology](http://ceh.ac.uk/) to assess the health of these seabird populations. You will look for temporal trends, but also for environmental factors which may influence the breeding of the birds.
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/cliffs.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/cliff.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Data overview 
@@ -94,7 +94,7 @@ Download the [challenge repository](https://github.com/ourcodingclub/CC_course_c
 
 There is no script or code provided for this challenge: how you go about solving the tasks is entirely up to you! You may want to refer to the tutorials listed below (and other online resources). 
 {% endcapture %}
-{% capture url %}{{ site.baseurl }}/assets/img/banner/puffins.jpg{% endcapture %}
+{% capture url %}{{ site.baseurl }}/assets/img/banner/puffin.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
 # Finished? Take the test! 

@@ -1,7 +1,7 @@
 ---
 layout: course
 title: "Intro to R challenge: Where are the red squirrels?"
-banner: "../assets/img/banner/slider-bg-pale.jpg"
+banner: "../assets/img/banner/stats-scratch.jpg"
 ---
 
 This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the [STATS FROM SCRATCH]({{ site.baseurl }}/dl_course/stats-scratch/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge. 
@@ -134,7 +134,7 @@ You can specify a variety of [logical statements]({{ site.baseurl }}/tutorials/d
 {% include reveal.html content=reveal button="How do I remove unwanted data points" %}
 
 {% capture reveal %}
-NA values are something special in R, and there are special functions to handle them. Take a look at the `is.na()` logical function, and see if you can use it within a`mutate` call to create a new column based on existing values.
+NA values are something special in R, and there are special functions to handle them. Take a look at the `is.na()` logical function, and see if you can use it within a `mutate` call to create a new column based on existing values.
 
 You'll want mutate to replace the value in a cell _IF_ the original value was one, and _ELSE_ you'll want to keep the original value. Oh, hey, do you know the `ifelse()` function?
 {% endcapture %}

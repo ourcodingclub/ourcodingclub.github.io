@@ -7,6 +7,7 @@ author: Brad Duthie
 survey_link: https://www.surveymonkey.co.uk/r/X7VHQ6S
 redirect_from:
   - /2019/03/20/writing-r-package.html
+tags: reprod
 ---
 
 ### Tutorial Content
