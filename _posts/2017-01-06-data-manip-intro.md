@@ -33,7 +33,7 @@ tags: data_manip intro_to_r
 
 #### <a href="#base"> Subset, extract and modify data with R base operators 
 
-#### <a href="#tidy"> What is tidy data, and how do we achieve it?
+#### <a href="#tidy"> What are tidy data, and how do we achieve them?
 
 #### <a href="#dplyr"> Explore the most common and useful functions of `dplyr` </a>
 
@@ -286,7 +286,7 @@ That was a lot, but now you'll be able to adapt these little chunks of code to m
 
 <a name="#tidy"> </a>
 
-### What is tidy data, and how do we achieve it? 
+### What are tidy data, and how do we achieve them? 
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead of time and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
