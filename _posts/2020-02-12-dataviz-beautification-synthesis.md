@@ -1319,15 +1319,15 @@ ggsave(trends_mass, filename = "trends_mass.png",
 
 <center> <img src="{{ site.baseurl }}/img/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/img/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
 
-### Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your data syntheses!</b>
+### Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your data syntheses!
 
 <b>If you'd like more inspiration and tips, check out the materials below!</b>
 
 ## Extra resources
 
-## Check out our new free online course <a href="https://ourcodingclub.github.io/course_home/" target="_blank">"Data Science for Ecologists and Environmental Scientists"</a>!
+### Check out our new free online course <a href="https://ourcodingclub.github.io/course_home/" target="_blank">"Data Science for Ecologists and Environmental Scientists"</a>!
 
-## You can also check out the package `patchwork` for another way to make multi-figure panels from `ggplot2` figures <a href="https://github.com/thomasp85/patchwork" target="_blank">here</a>.
+### You can also check out the package `patchwork` for another way to make multi-figure panels from `ggplot2` figures <a href="https://github.com/thomasp85/patchwork" target="_blank">here</a>.
 
 To learn more about the power of pipes check out:
 <a href = "http://dplyr.tidyverse.org/" target ="_blank"> the tidyverse website</a> and <a href="http://r4ds.had.co.nz/pipes.html" target="_blank"> the R for Data Science book</a>.
