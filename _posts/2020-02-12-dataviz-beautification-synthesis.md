@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Efficient and beautiful data visualisation
-subtitle: A Coding Club workshop for Colorado University at Boulder
-date: 2020-02-02 10:00:00
+title: Efficient and beautiful data synthesis
+subtitle: A Coding Club workshop for the University of Glasgow
+date: 2020-02-12 10:00:00
 author: Gergana
 meta: "Tutorials"
 tags: data_manip data_vis intermediate advanced
