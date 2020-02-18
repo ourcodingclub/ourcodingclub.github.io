@@ -464,7 +464,7 @@ __We've learned about `map()`, but there are other `purrr` functions,too, and we
 walk2(paste0(path2, names(aus_models_wide), ".pdf"), system.plots, ggsave)
 ```
 
-<a name="tidyverse"></a>
+<a name="synthesis"></a>
 
 ## 3. Synthesise information from different databases
 
