@@ -84,7 +84,7 @@ library(ggthemes)  # for a mapping theme
 library(ggalt)  # for custom map projections
 library(ggrepel)  # for annotations
 library(viridis)  # for nice colours
-library(models)  # for cleaning up models
+library(broom)  # for cleaning up models
 # devtools::install_github("wilkox/treemapify")
 library(treemapify)  # for making area graphs
 library(wesanderson)  # for nice colours
