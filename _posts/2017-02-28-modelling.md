@@ -351,7 +351,7 @@ Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`
 ```r
 shag <- read.csv("shagLPI.csv", header = TRUE)
 
-shag$year <- as.numeric(shag$year)  # transform year from character into numeric variable
+shag$year <- as.numeric(as.character(shag$year))  # transform year from character into numeric variable
 
 # Making a histogram to assess data distribution
 (shag.hist <- ggplot(shag, aes(pop)) + geom_histogram() + theme.clean())
