@@ -145,7 +145,7 @@ ggsave(lter_map1, filename = "map1.png",
        
 # the map will be saved in your working directory
 # if you have forgotten where that is, use this code to find out
-get_wd()
+getwd()
 ```
 </section>
 
@@ -177,7 +177,7 @@ ggsave(lter_map2, filename = "map2.png",
 
 <center> <img src="{{ site.baseurl }}/img/map2.png" alt="Img" style="width: 700px;"/> </center>
 
-Next up we can work on improving the map projection - by default we get the Mercantor projection but that doesn't represent the world very realistically. With the `ggalt` package and the `coord_proj` function, we can easily swap the default projection.
+Next up we can work on improving the map projection - by default we get the Mercator projection but that doesn't represent the world very realistically. With the `ggalt` package and the `coord_proj` function, we can easily swap the default projection.
 
 <a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code04" markdown="1"> 
@@ -418,7 +418,7 @@ First up, we should decide on a variable whose distribution we will show. The da
 
 <div class="bs-callout-blue" markdown="1">
 
-__A data manipulation tip:__ Pipes (%>%) are great for streamlining data analysis. If you haven't used them before, you can find an intro in <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">our tutorial here</a>. A useful way to familiriase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to a certain point. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year)` and *not* the whole `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year) %>%`.
+__A data manipulation tip:__ Pipes (%>%) are great for streamlining data analysis. If you haven't used them before, you can find an intro in <a href="https://ourcodingclub.github.io/2017/01/06/data-manip-efficient.html" target="_blank">our tutorial here</a>. A useful way to familiariase yourself with what the pipe does at each step is to "break" the pipe and check out what the resulting object looks like if you've only ran the code up to a certain point. You can do that by just select the relevant bit of code and running only that, but remember you have to exclude the piping operator at the end of the line, so e.g. you select up to `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year)` and *not* the whole `niwot_richness <- niwot_plant_exp %>% group_by(plot_num, year) %>%`.
 
 __Running pipes sequentially line by line also comes in handy when there is an error in your pipe and you don't know which part exactly introduces the error.__
 
