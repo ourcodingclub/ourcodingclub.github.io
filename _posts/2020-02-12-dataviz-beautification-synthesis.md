@@ -75,7 +75,7 @@ Here are some common graph types, but really there is loads more, and you can vi
 # Your name, date and email
 
 # Your working directory, set to the folder you just downloaded from Github, e.g.:
-setwd("~/Downloads/CC-dataviz-beautification")
+setwd("~/Downloads/CC-dataviz-beautification-synthesis")
 
 # Libraries ----
 # if you haven't installed them before, run the code install.packages("package_name")
