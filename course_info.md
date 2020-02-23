@@ -20,7 +20,7 @@ redirect_from:
 <a name = "signup"></a>
 <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
 <div class="content-new-streams">
-    <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "height:200px; width:auto" alt="Sign up icon">
+    <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "width:10%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon">
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
       
@@ -102,7 +102,7 @@ redirect_from:
 <section id="portfolio-work" style="background-color:#f3f3f2; padding-bottom:20px">
 <div class="content-new-streams">
 <div class="row-eq-height">
-    <img src="{{ site.baseurl }}/assets/img/dl_course/github-download.png" style= "max-width:200; height:auto" alt="git logo">
+    <img src="{{ site.baseurl }}/assets/img/dl_course/github-download.png" style= "width:30%; height:auto; padding:30px;" alt="git logo">
       <div class="col-md-4 col-sm-2">
         <div class="profile" style="border: 0px;">
         </div>
@@ -124,7 +124,7 @@ redirect_from:
    </div>
    </div>
    <div class="row" style="padding:10px 0px">
-     <center><img src="{{ site.baseurl }}/assets/img/dl_course/clone-repo.png" style= "width: 60%; height:auto" alt="clone-repo"></center> 
+     <center><img src="{{ site.baseurl }}/assets/img/dl_course/clone-repo.png" style= "width: 50%; height:auto" alt="clone-repo"></center> 
    </div>
    <div class="content-new-streams">
    <div class="row">
@@ -141,10 +141,10 @@ redirect_from:
  <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
 <div class="content-new-streams">
 <div class="row-eq-height">
-      <div class="col-md-7 col-sm-12">
+      <div class="col-md-12 col-sm-12">
         <div class="block">
             <h2>4. Learn!</h2>
-           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:20%; height:auto; padding:90px 30px" alt="laptop icon">
+           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:35%; height:auto; padding:10px 30px; vertical-align: middle; float:right;" alt="laptop icon">
           <p>Now you're all set to start working on the tutorials! You can find the list of tutorials <b>on each stream page</b>, along with the links to related quizzes and challenges.</p>
          <p>An average tutorial takes around <b>two hours</b> to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
           
@@ -156,8 +156,6 @@ redirect_from:
          
         </div>
       </div><!-- .col-md-7 close -->
-      <div class="col-md-5 col-sm-12">
-      </div><!-- .col-md-5 close -->
     </div>
    </div>
 </section> <!-- end of Learn-->
@@ -167,7 +165,7 @@ redirect_from:
 <a name = "challenges"></a>
  <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
            <div class="content-new-info">
-          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 90px 10px; vertical-align: top;" alt="mountain icon">
+          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 120px 10px; vertical-align: top;" alt="mountain icon">
             <h2><font color="white">5. Challenge yourself</font></h2>
           <p>We offer three data challenges as the culmination of each course stream. <b>In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations.</b> The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance. It will be up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
           <br>
@@ -178,13 +176,13 @@ redirect_from:
            <div class="content-new-streams">
              <h2><font color="white">Our data challenges</font></h2>
              <ul>
-            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/stats-scratch-challenge/index.html" target="_blank">Where are the red squirrels?</a><br>
+            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/stats-scratch-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Where are the red squirrels?</a><br>
             A data manipulation and analysis challenge for the Stats from Scratch stream</li>
             
-            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/wiz-viz-challenge/index.html" target="_blank">Exploring the native woodlands of Scotland</a><br>
+            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/wiz-viz-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Exploring the native woodlands of Scotland</a><br>
             A spatial data visualisation challenge for the Wiz of Data Viz stream</li>
             
-            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html" target="_blank">Investigating seabirds breeding success</a><br>
+            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Investigating seabirds breeding success</a><br>
             A modelling challenge for the Mastering Modelling stream</li>
              </ul>
 </div>
@@ -213,7 +211,7 @@ redirect_from:
 <section id="portfolio-work" style="background-color: #e4e6e5; padding-bottom:20px">
 <div class="content-new-streams">
 <div class="row">
-       <center><img src="{{ site.baseurl }}/assets/img/dl_course/DL-CC.png" style= "width:40%; height:auto" alt="DL-CC"></center>
+       <center><img src="{{ site.baseurl }}/assets/img/dl_course/DL-CC.png" style= "width:30%; height:auto; padding: 25px 10px; float:right;" alt="DL-CC"></center>
             <h2>About the course</h2>
       <h3>What is the Coding Club?</h3>
           <p>Our Coding Club started in 2016 when a we, a group of students and staff members in Environmental and Ecological Sciences at the University of Edinburgh decided they wanted to learn more computer programming and quantitative methods than what they were being taught in class. Our goal is to overcome “code fear” and “statistics anxiety”. Statistics anxiety – the worry about a lack of quantitative skills – and code fear – the fear of programming – can hold people back in their studies and careers. We received funding to create coding tutorials and run weekly workshops that rapidly became a success.</p>
