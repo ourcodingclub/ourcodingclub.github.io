@@ -3,7 +3,7 @@ body {
 	padding: 0;
 }
 
-a:active {
+a:hover {
 text-decoration: none;
 }
 
@@ -546,9 +546,9 @@ tr:hover {
 	text-decoration: none;
 }
 
-.scroll-banner a:active {
+.scroll-banner a:hover {
 	text-decoration: none;
-	color: $white
+	color: #ffffff;
 }
 
 .scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a {
@@ -723,7 +723,7 @@ tr:hover {
   background-color: #a34675;
 }
 
-#portfolio-work .a:active {
+#portfolio-work .a:hover {
 text-decoration: none;
 }
 
