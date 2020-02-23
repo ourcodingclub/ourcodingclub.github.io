@@ -156,8 +156,6 @@ redirect_from:
          
         </div>
       </div><!-- .col-md-7 close -->
-      <div class="col-md-5 col-sm-12">
-      </div><!-- .col-md-5 close -->
     </div>
    </div>
 </section> <!-- end of Learn-->
@@ -213,7 +211,7 @@ redirect_from:
 <section id="portfolio-work" style="background-color: #e4e6e5; padding-bottom:20px">
 <div class="content-new-streams">
 <div class="row">
-       <center><img src="{{ site.baseurl }}/assets/img/dl_course/DL-CC.png" style= "width:40%; height:auto" alt="DL-CC"></center>
+       <center><img src="{{ site.baseurl }}/assets/img/dl_course/DL-CC.png" style= "width:30%; height:auto; padding: 25px 10px; float:right;" alt="DL-CC"></center>
             <h2>About the course</h2>
       <h3>What is the Coding Club?</h3>
           <p>Our Coding Club started in 2016 when a we, a group of students and staff members in Environmental and Ecological Sciences at the University of Edinburgh decided they wanted to learn more computer programming and quantitative methods than what they were being taught in class. Our goal is to overcome “code fear” and “statistics anxiety”. Statistics anxiety – the worry about a lack of quantitative skills – and code fear – the fear of programming – can hold people back in their studies and careers. We received funding to create coding tutorials and run weekly workshops that rapidly became a success.</p>
