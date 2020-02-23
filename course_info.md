@@ -24,7 +24,7 @@ redirect_from:
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
       
-      <div style="padding:10px">
+      <div style="padding:20px">
          <center>
             <a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank"> Sign me up! 
             </a>
@@ -195,8 +195,14 @@ redirect_from:
             <h2>6. Get recognition</h2>
           <p>Congratulations! You worked hard, learned new skills, and perhaps you want to show the world (or a potential employer) how far you've come. You can request your certificate in a few clicks. You will be able to download your PDF certificate listing the tutorials and challenges that you have successfully completed. </p>
           <br>
-          <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank">Graduate from Coding Club!</a>
-        </div>
+          
+                <div style="padding:20px">
+         <center>
+            <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank"> Graduate from Coding Club! 
+            </a>
+         </center>
+      </div>
+    </div>
 </section> <!-- end of certificate-->
 
 <!-- About the course -->
@@ -242,10 +248,14 @@ redirect_from:
           <br>  
           <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
           <br>
-          <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank">Contact us</a>
-
-        </div>
-      </div><!-- .col-md-8 close -->
+          <div style="padding:20px">
+            <center>
+               <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
+               </a>
+            </center>
+         </div>
+      </div>
+   </div><!-- .col-md-8 close -->
             
     </div>
    </div>
