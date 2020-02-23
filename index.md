@@ -53,8 +53,6 @@ Coding Club is for everyone, regardless of their career stage or current level o
 
 <b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b>
 
-Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. If you would like to join us or learn more, please email __ourcodingclub@gmail.com__. You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. 
-
 {% capture link %}
 https://twitter.com/our_codingclub
 {% endcapture %}
@@ -126,7 +124,7 @@ Coding Club is for everyone keen to learn about programming and statistics and h
 
 ## Contribute
 
-__We are very keen to expand our team and anyone can join in! We are looking for people interested in [contributing tutorials and/or hosting workshops]({{ site.baseurl }}/workshop/). Feel free to contact us with any questions or feedback: we would really appreciate your input!__
+__Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. We are very keen to expand our team and anyone can join in! We are looking for people interested in [contributing tutorials and/or hosting workshops]({{ site.baseurl }}/workshop/). You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. Feel free to contact us with any questions or feedback: we would really appreciate your input!__
 
 {% capture link %}
 {{ site.baseurl }}/contact/
