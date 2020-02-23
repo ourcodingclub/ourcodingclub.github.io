@@ -47,15 +47,14 @@ redirect_from:
     <h3>Is this course for me?</h3>
     <p>We think so - it's for everyone! Our course is aimed at people wishing to improve their programming and quantitative skills, particularly in ecological and environmental fields. That said, anyone with an interest in coding and data science can participate! It just means that our examples are drawn from nature, and the tutorials are focused on answering ecological questions (but most techniques also apply in other disciplines too).</p>
     <h3>What's special about this course?</h3>
-    <p>Our course is designed to give you the data science skills you want and need. As such, we propose three different streams aimed at different interests and levels of ability. The set-up of our course is very flexible, so that you can pick and choose from each stream to create your own learning path. At the end, all the tutorials and challenges that you have completed will appear on your certificate.</p>
-        <h3>Oh, and it’s completely free!</h3>
+    <p>Our course is designed to give you the data science skills you want and need. As such, we propose three different streams aimed at different interests and levels of ability. The set-up of our course is very flexible, so that you can pick and choose from each stream to create your own learning path. At the end, all the tutorials and challenges that you have completed will appear on your certificate. <b>Oh, and it’s completely free!</b></p>
 </div>
 
 <center><h2>How and when can I join?</h2></center>
 <div class="row">
   <div class="column-new">
   <p>The course runs continuously, so you can <b>join at any time</b>, and there is no time limit for completion. Learning should not be stressful, and we know that you are busy! Just remember that learning programming is essentially learning a new language, and practicing often goes a long way.</p>
-<p><b>Keep scrolling for more information, and you will be able to access sign-up from there.</b></p>
+<p><b>Keep scrolling for more information, and you will be able to access sign-up at the bottom of the page.</b></p>
   </div>
   </div>
   
