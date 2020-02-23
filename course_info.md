@@ -144,7 +144,7 @@ redirect_from:
       <div class="col-md-7 col-sm-12">
         <div class="block">
             <h2>4. Learn!</h2>
-           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:40%; height:auto" alt="laptop icon">
+           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:20%; height:auto; padding:30px" alt="laptop icon">
           <p>Now you're all set to start working on the tutorials! You can find the list of tutorials <b>on each stream page</b>, along with the links to related quizzes and challenges.</p>
          <p>An average tutorial takes around <b>two hours</b> to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
           
