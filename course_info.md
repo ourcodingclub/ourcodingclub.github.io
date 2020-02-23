@@ -165,7 +165,7 @@ redirect_from:
 <a name = "challenges"></a>
  <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
            <div class="content-new-info">
-          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 120px 10px; vertical-align: top;" alt="mountain icon">
+          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 130px 10px; vertical-align: top;" alt="mountain icon">
             <h2><font color="white">5. Challenge yourself</font></h2>
           <p>We offer three data challenges as the culmination of each course stream. <b>In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations.</b> The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance. It will be up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
           <br>
@@ -173,7 +173,7 @@ redirect_from:
           <br>
          <p><b>Each challenge will probably take you anywhere between 3-8 hours to complete.</b> Don't get frustrated if you get stuck somewhere: take a break, ask a friend or colleague for help, or get in touch with us. We want you to have fun and feel empowered: after all, you've worked hard and learned a lot! </p>
         </div>
-           <div class="content-new-streams">
+         <div class="content-new-streams">
              <h2><font color="white">Our data challenges</font></h2>
              <ul>
             <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/stats-scratch-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Where are the red squirrels?</a><br>
@@ -185,7 +185,7 @@ redirect_from:
             <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Investigating seabirds breeding success</a><br>
             A modelling challenge for the Mastering Modelling stream</li>
              </ul>
-</div>
+         </div>
 </section> <!-- end of challenges-->
 
 <!-- Certificate -->
@@ -239,7 +239,7 @@ redirect_from:
       
 <div class="col-md-4 col-sm-2">
         <div class="profile" style="border: 0px;">
-         <img src="{{ site.baseurl }}/assets/img/dl_course/bug.png" style= "max-width:35%; height:auto;" alt="bug icon">
+         <img src="{{ site.baseurl }}/assets/img/dl_course/bug.png" style= "width:15%; height:auto; padding:10px 50px 10px 10px;" alt="bug icon">
         </div>
       </div><!-- .col-md-4 close -->
       
@@ -249,7 +249,7 @@ redirect_from:
           <br>  
           <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
           <br>
-          <div style="padding:20px">
+          <div style="padding:50px">
             <center>
                <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
                </a>
