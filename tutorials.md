@@ -2,6 +2,8 @@
 layout: page
 title: "Tutorials"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
+redirect_from:
+  - /tutorials/
 ---
 
 Here you can find our collection of coding, data science and statistics tutorials with examples in R, Python, JavaScript and Python. We welcome feedback on our work and are happy to answer questions. If you are keen to write a tutorial and have it published on the Coding Club website, check out <a href="">this page</a> for more information.

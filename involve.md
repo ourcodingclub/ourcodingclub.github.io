@@ -2,6 +2,8 @@
 layout: page
 title: "Get Involved"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
+redirect_from:
+  - /involve/
 ---
 
 Would you like to organise a coding club workshop or contribute a tutorial? we are very happy to share our tutorials! Feel free to get in touch and we can help you organise a workshop at your home institution. We would also be thrilled if you are keen to develop new tutorials! Here you can find more information about how to contribute to coding club.

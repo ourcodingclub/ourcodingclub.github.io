@@ -2,6 +2,8 @@
 layout: page
 title: "Data Science for ecologists and environmental scientists"
 banner: "../assets/img/banner/dl_course_banner.jpg"
+redirect_from:
+  - /course_info/
 ---
 
 <center><h2>Course details</h2></center>
