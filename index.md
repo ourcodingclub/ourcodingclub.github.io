@@ -11,7 +11,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </section>
 
 <section id="portfolio-work"> <!-- adding section to expand width of div -->
-<center><h2>The Data Science for Ecologists and Environmental Scientists course is live!</h2></center>
+<center><h3>The Data Science for Ecologists and Environmental Scientists course is live!</h3></center>
 <div class="content-new-info">
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
       <br>
