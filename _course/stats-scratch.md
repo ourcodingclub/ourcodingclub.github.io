@@ -26,19 +26,17 @@ We will teach you the basic syntax of the R language, and right away you'll be u
 
 # Getting started
 
-We hope you enjoy doing the course! There is no time limit for completion, so you can take it at your own pace. Each tutorial might take you between one and three hours to complete, and your completion will be recorded once you take the quiz at the end.
+We hope you enjoy doing the course! There is no time limit for completion, so you can take it at your own pace. Each tutorial listed above might take you between one and three hours to complete, and your completion will be recorded once you take the quiz at the end. You can track your progression and access the course quizzes in our test centre.
 
-### You can download all the materials for this stream from our [GitHub repository](https://github.com/ourcodingclub/CC_course_stream1).
+#### You can download all the materials for this stream from our [GitHub repository](https://github.com/ourcodingclub/CC_course_stream1).
 
-### If you are not yet registered for the course, you will have to [sign up first](https://coding-club.shinyapps.io/course-registration/).
-
-You can track your progression and access the course quizzes in our test centre.
+#### If you are not yet registered for the course, you will have to [sign up first](https://coding-club.shinyapps.io/course-registration/).
 
 
 {% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
 {% include link-button.html url=link button="Launch Test Centre" %}
 
-<center><img src="{{ site.baseurl }}/assets/img/dl_course/DL_workflow.png" style= "width:50%; height:auto;" alt="workflow-diagram">>/center>
+<center><img src="{{ site.baseurl }}/assets/img/dl_course/DL_workflow.png" style= "width:50%; height:auto;" alt="workflow-diagram"></center>
 
 {% capture link %}{{ site.baseurl }}/course/stats-scratch-challenge/index.html{% endcapture %}
 {% capture banner %}
@@ -52,11 +50,12 @@ Our case-study challenges are designed to test the range of skills you gained th
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_2.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
+
 # All done?
 
 If you have finished the stream and would like to request a certificate, you can do so in a few clicks. Note that this will not exclude you from the course, so if you decide to come back for more our doors are still open! 
 
-{% capture link %}https://coding-club.shinyapps.io/certificate/{% endcapture %}
+{% capture link %}"https://coding-club.shinyapps.io/certificate/"{% endcapture %}
 
 <br><br>
 
