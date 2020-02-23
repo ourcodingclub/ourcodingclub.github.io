@@ -695,7 +695,7 @@ tr:hover {
 
 #portfolio-work {
   overflow: hidden;
-  padding: 10px 0;
+  padding: 20px;
 }
 
 #portfolio-work .button {
@@ -717,14 +717,3 @@ tr:hover {
 text-decoration: none;
 }
 
-
-
-/*
- * Row with equal height columns so that text doesn't wrap around images
- */
-.row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
