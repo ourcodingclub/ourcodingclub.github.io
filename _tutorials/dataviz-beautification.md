@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Efficient and beautiful data visualisation
-subtitle: A Coding Club workshop for the EBIO department at the University of Colorado Boulder
+subtitle: Really finessing your graphs
 date: 2020-02-02 10:00:00
 author: Gergana
 redirect_from:
