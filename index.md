@@ -4,32 +4,42 @@ title: "Coding Club: A Positive Peer-Learning Community"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
-<div class="row">
-  <big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment where we develop programming and statistics skills together, using R. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
+<section id="portfolio-work"> <!-- adding section to expand width of div -->
+<div class="content-new-info">
+<big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment where we develop programming and statistics skills together, using R. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
 </div>
+</section>
 
+<section id="portfolio-work"> <!-- adding section to expand width of div -->
 <center><h2>The Data Science for Ecologists and Environmental Scientists course is live!</h2></center>
 <div class="content-new-info">
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
       <br>
       <big>We are so excited to launch our new <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
 </div>
-<div class="content-new-info">
 	  <p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
-	  </div>
+</section>
 
-## About us
+<section id="portfolio-work" style="background-color: #a6caca; padding-bottom:20px">
+<div class="content-new-info">
+<h2>About us</h2>
 
 Our team includes undergradute students, graduates, PhD students and lecturers. We are all passionate for good teaching and improving quantitative skills. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development. 
 
 Over the last four years we have been writing [online tutorials]({{ site.baseurl }}/tutorials/) as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.
+</div>
+</section>
 
 {% capture link %}
 {{ site.baseurl }}/tutorials/
 {% endcapture %}
 {% include link-button.html url=link button="View our tutorials" %}
 
+<section id="portfolio-work" style="background-color: #a6caca; padding-bottom:20px">
+<div class="content-new-info">
 Coding Club is for everyone, regardless of their career stage or current level of knowledge. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.
+</div>
+</section>
 
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
@@ -51,7 +61,11 @@ Coding Club is for everyone, regardless of their career stage or current level o
 	</div>
 </div>
 
+<section id="portfolio-work" style="background-color: #a6caca; padding-bottom:20px">
+<div class="content-new-info">
 <b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b>
+</div>
+</section>
 
 {% capture link %}
 https://twitter.com/our_codingclub
@@ -84,9 +98,13 @@ https://twitter.com/our_codingclub
   </ul>
 </div>
 
-## Our values and goals
+<section id="portfolio-work" style="background-color: #896e81; padding-bottom:20px">
+<div class="content-new-info">
+<h2><font color="white">Our values and goals</font></h2>
 
 Coding Club is for everyone keen to learn about programming and statistics and how these skills can be applied in research. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are so happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.
+</div>
+</section>
 
 <div class="values">
 <ul>
@@ -121,10 +139,13 @@ Coding Club is for everyone keen to learn about programming and statistics and h
   </ul>
 </div>
 
-
-## Contribute
+<section id="portfolio-work">
+<div class="content-new-info">
+<h2>Contribute</h2>
 
 __Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. We are very keen to expand our team and anyone can join in! We are looking for people interested in [contributing tutorials and/or hosting workshops]({{ site.baseurl }}/workshop/). You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. Feel free to contact us with any questions or feedback: we would really appreciate your input!__
+</div>
+</section>
 
 {% capture link %}
 {{ site.baseurl }}/contact/
@@ -209,7 +230,9 @@ __Our mission is to create a diverse learning community where we help each other
 * 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
 * 17th October 2018 - [Quantitative skills and Coding Club - a blog post for the Software Sustainability Institute](https://software.ac.uk/blog/2018-10-17-coding-club-peer-learning-programming-statistics-and-data-science)
 
-## Funding
+<section id="portfolio-work">
+<div class="content-new-info">
+<h2>Funding</h2>
 
 Coding Club was jumpstarted with support from an [Innovation Initiative Grant](http://www.ed.ac.uk/development-alumni/iig) from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We are now taking Coding Club further with the help of a [Principal's Teaching Award Scheme grant](http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club). We are working together with the [NERC E3 Doctoral Training Partnership](http://e3dtp.geos.ed.ac.uk/) which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.
 
@@ -218,5 +241,7 @@ Coding Club was jumpstarted with support from an [Innovation Initiative Grant](h
 <img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos">
 <img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo">
 <img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
+</div>
+</section>
 
 {% include call.html %}
