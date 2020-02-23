@@ -3,7 +3,7 @@ body {
 	padding: 0;
 }
 
-a:hover {
+a:active {
 text-decoration: none;
 }
 
@@ -537,7 +537,17 @@ tr:hover {
 	background-color: $darkBoxColour;
 }
 
-.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a {
+.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p {
+	color: $white
+}
+
+.scroll-banner a {
+	color: #b8f2f8;
+	text-decoration: none;
+}
+
+.scroll-banner a:active {
+	text-decoration: none;
 	color: $white
 }
 
@@ -713,7 +723,7 @@ tr:hover {
   background-color: #a34675;
 }
 
-#portfolio-work .a:hover {
+#portfolio-work .a:active {
 text-decoration: none;
 }
 
