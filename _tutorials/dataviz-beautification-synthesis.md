@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Efficient and beautiful data synthesis
-subtitle: A Coding Club workshop for the EBIO department at the University of Glasgow
+subtitle: Taking your tidyverse skills to the next level
 date: 2020-02-12 10:00:00
 author: Gergana
 redirect_from:
