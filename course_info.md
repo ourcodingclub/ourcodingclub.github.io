@@ -165,7 +165,7 @@ redirect_from:
 <a name = "challenges"></a>
  <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
            <div class="content-new-info">
-          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:25px 30px 140px 10px; vertical-align: top;" alt="mountain icon">
+          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:25px 30px 160px 10px; vertical-align: top;" alt="mountain icon">
             <h2><font color="white">5. Challenge yourself</font></h2>
           <p>We offer three data challenges as the culmination of each course stream. <b>In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations.</b> The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance. It will be up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
           <br>
