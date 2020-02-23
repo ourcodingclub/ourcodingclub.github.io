@@ -34,6 +34,9 @@ redirect_from:
 </div>
 </section>
 
+{% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
+{% include link-button.html url=link button="Registered user? This way to the quiz centre and your progress to date." %}
+
 <a name = "streams"></a>
  <section id="portfolio-work" style="background-color:#275d71; color:#ffffff; padding-bottom:20px">
 <div class="content-new-streams">
