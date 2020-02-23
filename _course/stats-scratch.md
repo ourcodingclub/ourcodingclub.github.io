@@ -40,7 +40,7 @@ You can track your progression and access the course quizzes in our course porta
 
 ![Course workflow diagram]({{ site.baseurl }}/assets/img/dl_course/DL_workflow.png)
 
-{% capture link %}{{ site.baseurl }}/dl_course/stats-scratch-challenge/index.html{% endcapture %}
+{% capture link %}{{ site.baseurl }}/course/stats-scratch-challenge/index.html{% endcapture %}
 {% capture banner %}
 # Challenge yourself
 
