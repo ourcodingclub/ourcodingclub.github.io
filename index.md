@@ -24,6 +24,11 @@ Our team includes undergradute students, graduates, PhD students and lecturers. 
 
 Over the last four years we have been writing [online tutorials]({{ site.baseurl }}/tutorials/) as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.
 
+{% capture link %}
+{{ site.baseurl }}/tutorials/
+{% endcapture %}
+{% include link-button.html url=link button="View our tutorials" %}
+
 Coding Club is for everyone, regardless of their career stage or current level of knowledge. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.
 
 <div class="owl-carousel-wrapper">
@@ -46,14 +51,11 @@ Coding Club is for everyone, regardless of their career stage or current level o
 	</div>
 </div>
 
-<b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.
+<b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b>
 
-Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. If you would like to join us or learn more, please email __ourcodingclub@gmail.com__. You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. You can follow our coding adventures on [Twitter](https://twitter.com/our_codingclub)!
+Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. If you would like to join us or learn more, please email __ourcodingclub@gmail.com__. You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. 
 
-{% capture link %}
-{{ site.baseurl }}/tutorials/
-{% endcapture %}
-{% include link-button.html url=link button="View our tutorials" %}
+<h3>You can also follow our coding adventures and find out about new tutorials and cool resources on [Twitter](https://twitter.com/our_codingclub)!</h3>
 
 <div class="count">
 <ul class="count-list">
@@ -80,6 +82,7 @@ Our mission is to create a diverse learning community where we help each other t
 	</li>
   </ul>
 </div>
+
 ## Our values and goals
 
 Coding Club is for everyone keen to learn about programming and statistics and how these skills can be applied in research. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are so happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.
@@ -126,26 +129,6 @@ __We are very keen to expand our team and anyone can join in! We are looking for
 {{ site.baseurl }}/contact/
 {% endcapture %}
 {% include link-button.html url=link button="Get in touch" %}
-
-## News 
-
-* 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/) 
-* 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/) 
-* 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/) 
-* 23rd January 2020 - [Google dataset search out of beta](https://blog.google/products/search/discovering-millions-datasets-web/)
-* 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
-* 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
-* 17th October 2018 - [Quantitative skills and Coding Club - a blog post for the Software Sustainability Institute](https://software.ac.uk/blog/2018-10-17-coding-club-peer-learning-programming-statistics-and-data-science)
-
-## Funding
-
-Coding Club was jumpstarted with support from an [Innovation Initiative Grant](http://www.ed.ac.uk/development-alumni/iig) from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We are now taking Coding Club further with the help of a [Principal's Teaching Award Scheme grant](http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club). We are working together with the [NERC E3 Doctoral Training Partnership](http://e3dtp.geos.ed.ac.uk/) which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.
-
-<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 40%; height:auto" alt="Data Lab logo">
-<img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 40%; height:auto" alt="Innovation Initiative Grant logo">
-<img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 40%; height:auto" alt="DTP and NERC logos">
-<img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 40%; height:auto" alt="UoE Global Environment & Society Academy logo">
-<img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:40%; height:auto" alt="UoE IAD">
 
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
@@ -214,5 +197,25 @@ Coding Club was jumpstarted with support from an [Innovation Initiative Grant](h
 		</div>
 	</div>
 </div>
+
+## News 
+
+* 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/) 
+* 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/) 
+* 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/) 
+* 23rd January 2020 - [Google dataset search out of beta](https://blog.google/products/search/discovering-millions-datasets-web/)
+* 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
+* 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
+* 17th October 2018 - [Quantitative skills and Coding Club - a blog post for the Software Sustainability Institute](https://software.ac.uk/blog/2018-10-17-coding-club-peer-learning-programming-statistics-and-data-science)
+
+## Funding
+
+Coding Club was jumpstarted with support from an [Innovation Initiative Grant](http://www.ed.ac.uk/development-alumni/iig) from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We are now taking Coding Club further with the help of a [Principal's Teaching Award Scheme grant](http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club). We are working together with the [NERC E3 Doctoral Training Partnership](http://e3dtp.geos.ed.ac.uk/) which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.
+
+<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo">
+<img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo">
+<img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos">
+<img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo">
+<img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
 
 {% include call.html %}
