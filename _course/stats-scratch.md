@@ -55,8 +55,8 @@ Our case-study challenges are designed to test the range of skills you gained th
 
 If you have finished the stream and would like to request a certificate, you can do so in a few clicks. Note that this will not exclude you from the course, so if you decide to come back for more our doors are still open! 
 
-<div class="form-group"> 
-   <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank" style="background-color:#ffffff"> Graduate from Coding Club! 
+<div id="form-group"> 
+   <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank" style="background-color:#ffffff"> Request your certificate
             </a>
 </div>
 <br><br>
