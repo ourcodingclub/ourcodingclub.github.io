@@ -144,7 +144,7 @@ redirect_from:
       <div class="col-md-7 col-sm-12">
         <div class="block">
             <h2>4. Learn!</h2>
-           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:35%; height:auto; padding:90px 30px" alt="laptop icon">
+           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:35%; height:auto; padding:90px 30px; vertical-align: middle; float:right;" alt="laptop icon">
           <p>Now you're all set to start working on the tutorials! You can find the list of tutorials <b>on each stream page</b>, along with the links to related quizzes and challenges.</p>
          <p>An average tutorial takes around <b>two hours</b> to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
           
@@ -167,7 +167,7 @@ redirect_from:
 <a name = "challenges"></a>
  <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
            <div class="content-new-info">
-          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 90px 10px; vertical-align: top;" alt="mountain icon">
+          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 120px 10px; vertical-align: top;" alt="mountain icon">
             <h2><font color="white">5. Challenge yourself</font></h2>
           <p>We offer three data challenges as the culmination of each course stream. <b>In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations.</b> The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance. It will be up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
           <br>
