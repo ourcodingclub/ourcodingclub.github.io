@@ -55,7 +55,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	</div>
 </div>
 
-<section id="portfolio-work" style="background-color: #a6caca; padding-bottom:20px">
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
 <div class="content-new-info">
 <p><b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b></p>
 </div>
