@@ -20,7 +20,7 @@ redirect_from:
 <a name = "signup"></a>
 <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
 <div class="content-new-streams">
-    <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "width:20%; height:auto; padding:20px;" alt="Sign up icon">
+    <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "width:10%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon">
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
       
