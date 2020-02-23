@@ -141,7 +141,7 @@ redirect_from:
  <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
 <div class="content-new-streams">
 <div class="row-eq-height">
-      <div class="col-md-9 col-sm-12">
+      <div class="col-md-12 col-sm-12">
         <div class="block">
             <h2>4. Learn!</h2>
            <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:35%; height:auto; padding:10px 30px; vertical-align: middle; float:right;" alt="laptop icon">
@@ -181,10 +181,10 @@ redirect_from:
             <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/stats-scratch-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Where are the red squirrels?</a><br>
             A data manipulation and analysis challenge for the Stats from Scratch stream</li>
             
-            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/wiz-viz-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8>Exploring the native woodlands of Scotland</a><br>
+            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/wiz-viz-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Exploring the native woodlands of Scotland</a><br>
             A spatial data visualisation challenge for the Wiz of Data Viz stream</li>
             
-            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8>Investigating seabirds breeding success</a><br>
+            <li style="font-size:16px;"><a href="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html" target="_blank" style="font-weight:600; color:#b8f2f8">Investigating seabirds breeding success</a><br>
             A modelling challenge for the Mastering Modelling stream</li>
              </ul>
 </div>
