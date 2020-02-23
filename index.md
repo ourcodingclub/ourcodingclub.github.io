@@ -55,7 +55,7 @@ Coding Club is for everyone, regardless of their career stage or current level o
 
 Our mission is to create a diverse learning community where we help each other to attain fluency in statistics and programming. If you would like to join us or learn more, please email __ourcodingclub@gmail.com__. You can also check out [our blog post on peer-to-peer teaching](http://www.teaching-matters-blog.ed.ac.uk/?p=1129) on the Teaching Matters blog. 
 
-<h3>You can also follow our coding adventures and find out about new tutorials and cool resources on [Twitter](https://twitter.com/our_codingclub)!</h3>
+<h3>You can also follow our coding adventures and find out about new tutorials and cool resources on <a href="https://twitter.com/our_codingclub" target="_blank">Twitter</a>!</h3>
 
 <div class="count">
 <ul class="count-list">
