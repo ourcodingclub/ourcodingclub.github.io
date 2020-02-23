@@ -3,6 +3,10 @@ body {
 	padding: 0;
 }
 
+a:hover {
+text-decoration: none;
+}
+
 // Header
 #navigation-container {
 	margin: 0 auto;
@@ -266,7 +270,7 @@ body {
 }
 
 .owl-carousel {
-	border:1px solid black;
+	border: none;
 	padding: 10px;
 }
 
@@ -595,7 +599,9 @@ tr:hover {
   width: 45%;
   padding: 14px;
   margin: 0 auto;
+  border:0 !important
 }
+
 #testimonial .testimonial-carousel img {
   padding-bottom: 38px;
 }
@@ -637,7 +643,7 @@ tr:hover {
 .content-new img {
     margin-right: 15px;
     float: left;
-    width: 50%;
+    width: 45%;
 }
 
 .content-new h3,
@@ -700,4 +706,13 @@ tr:hover {
   font-size: 20px;
   color: #f0f6f1;
   margin-top: 30px;
+}
+
+#portfolio-work .button:hover {
+  text-decoration: none;
+  background-color: #a34675;
+}
+
+#portfolio-work .a:hover {
+text-decoration: none;
 }

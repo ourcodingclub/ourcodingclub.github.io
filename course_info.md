@@ -8,12 +8,14 @@ redirect_from:
 
 <center><h2>Course details</h2></center>
 
+<section id="portfolio-work"> <!-- adding section to expand width of div -->
 <div class="content-new-info">
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
       <br>
       <br>
       <big><b>Here you can find all the information you need to <a href="#signup">sign up</a> for the course and choose <a href="#streams">which tutorials</a> you want to complete. See our <a href="#instructions">instructions</a> on how best to access the course materials and how to <a href="#challenges">test</a> your new skills. We'll also <a href="#about">introduce ourselves</a> - don't hesitate to <a href="#contact">get in touch</a> with questions or feedback!</b></big>
 </div>
+</section>
 
 <a name = "signup"></a>
 <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
@@ -21,9 +23,19 @@ redirect_from:
     <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "height:200px; width:auto" alt="Sign up icon">
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
-          <center><a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank">Sign me up!</a></center>
+      
+      <div style="padding:20px">
+         <center>
+            <a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank"> Sign me up! 
+            </a>
+         </center>
+      </div>
+          
 </div>
 </section>
+
+{% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
+{% include link-button.html url=link button="Registered user? This way to the quiz centre and your progress to date." %}
 
 <a name = "streams"></a>
  <section id="portfolio-work" style="background-color:#275d71; color:#ffffff; padding-bottom:20px">
@@ -132,7 +144,7 @@ redirect_from:
       <div class="col-md-7 col-sm-12">
         <div class="block">
             <h2>4. Learn!</h2>
-           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:40%; height:auto" alt="laptop icon">
+           <img src="{{ site.baseurl }}/assets/img/dl_course/tut-and-quiz.png" style= "width:20%; height:auto; padding:90px 30px" alt="laptop icon">
           <p>Now you're all set to start working on the tutorials! You can find the list of tutorials <b>on each stream page</b>, along with the links to related quizzes and challenges.</p>
          <p>An average tutorial takes around <b>two hours</b> to complete, although some may be longer or shorter. Make sure you save your script often as you go, so you can pick up where you left off if you don't finish a tutorial in one sitting. Our <a href="https://ourcodingclub.github.io/2016/11/13/intro-to-r.html" target="_blank">Intro to R</a> and <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" target="_blank">Coding Etiquette</a> tutorials will tell you more about managing your code and scripts properly.</p>
           
@@ -155,7 +167,7 @@ redirect_from:
 <a name = "challenges"></a>
  <section id="portfolio-work" style="background-color: #896e81; color:#ffffff; padding-bottom:20px">
            <div class="content-new-info">
-          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "height:200px; width:auto vertical-align: top;" alt="mountain icon">
+          <img src="{{ site.baseurl }}/assets/img/dl_course/challenge.png" style= "width:20%; height:auto; padding:20px 30px 90px 10px; vertical-align: top;" alt="mountain icon">
             <h2><font color="white">5. Challenge yourself</font></h2>
           <p>We offer three data challenges as the culmination of each course stream. <b>In these challenges, we give you various research questions to answer, using real-life, open-source data from Scottish environmental organisations.</b> The challenges are meant to be, well, challenging (!), and therefore we only provide minimal guidance. It will be up to you to make decisions and get creative with your code - there are usually more than one valid way of getting to an answer! </p>
           <br>
@@ -186,8 +198,14 @@ redirect_from:
             <h2>6. Get recognition</h2>
           <p>Congratulations! You worked hard, learned new skills, and perhaps you want to show the world (or a potential employer) how far you've come. You can request your certificate in a few clicks. You will be able to download your PDF certificate listing the tutorials and challenges that you have successfully completed. </p>
           <br>
-          <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank">Graduate from Coding Club!</a>
-        </div>
+          
+                <div style="padding:20px">
+         <center>
+            <a class="button" href="https://coding-club.shinyapps.io/certificate/" target="_blank"> Graduate from Coding Club! 
+            </a>
+         </center>
+      </div>
+    </div>
 </section> <!-- end of certificate-->
 
 <!-- About the course -->
@@ -233,10 +251,14 @@ redirect_from:
           <br>  
           <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
           <br>
-          <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank">Contact us</a>
-
-        </div>
-      </div><!-- .col-md-8 close -->
+          <div style="padding:20px">
+            <center>
+               <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
+               </a>
+            </center>
+         </div>
+      </div>
+   </div><!-- .col-md-8 close -->
             
     </div>
    </div>
