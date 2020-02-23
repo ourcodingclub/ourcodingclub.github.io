@@ -8,7 +8,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <div class="content-new-info">
 <big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment where we develop programming and statistics skills together, using R. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
 </div>
-</div>
+</section>
 
 <section id="portfolio-work"> <!-- adding section to expand width of div -->
 <center><h2>The Data Science for Ecologists and Environmental Scientists course is live!</h2></center>
