@@ -5,9 +5,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
 <div class="row">
-  <div class="column-new">
   <big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment where we develop programming and statistics skills together, using R. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
-</div>
 </div>
 
 <center><h2>The Data Science for Ecologists and Environmental Scientists course is live!</h2></center>
@@ -31,19 +29,19 @@ Coding Club is for everyone, regardless of their career stage or current level o
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop1.png" alt="Workshop photo">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop1.JPG" alt="Workshop photo">
 		</div>
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop2.png" alt="Workshop photo">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop2.JPG" alt="Workshop photo">
 		</div>
 		<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop3.png" alt="Workshop photo">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop3.JPG" alt="Workshop photo">
 		</div>
 				<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop4.png" alt="Workshop photo">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop4.JPG" alt="Workshop photo">
 		</div>
 				<div class="owl-carousel-img">
-			<img src="{{ site.baseurl }}/assets/img/index/workshop5.png" alt="Workshop photo">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop5.JPG" alt="Workshop photo">
 		</div>
 	</div>
 </div>
