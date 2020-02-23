@@ -24,7 +24,7 @@ redirect_from:
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
       
-      <div>
+      <div style="padding:10px">
          <center>
             <a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank"> Sign me up! 
             </a>
