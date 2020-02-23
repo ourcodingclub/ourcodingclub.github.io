@@ -8,12 +8,14 @@ redirect_from:
 
 <center><h2>Course details</h2></center>
 
+<section id="portfolio-work"> <!-- adding section to expand width of div -->
 <div class="content-new-info">
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
       <br>
       <br>
       <big><b>Here you can find all the information you need to <a href="#signup">sign up</a> for the course and choose <a href="#streams">which tutorials</a> you want to complete. See our <a href="#instructions">instructions</a> on how best to access the course materials and how to <a href="#challenges">test</a> your new skills. We'll also <a href="#about">introduce ourselves</a> - don't hesitate to <a href="#contact">get in touch</a> with questions or feedback!</b></big>
 </div>
+</section>
 
 <a name = "signup"></a>
 <section id="portfolio-work" style="background-color: #eceef1; padding-bottom:20px">
@@ -21,7 +23,14 @@ redirect_from:
     <img src="{{ site.baseurl }}/assets/img/dl_course/sign-up.png" style= "height:200px; width:auto" alt="Sign up icon">
       <h2>1. Sign up</h2>
       <p>By registering for the course, you can access not only our tutorials but also quizzes and challenges that will allow you to put your skills into practice and request your certificate. Registering only takes a minute. Remember to make a note of your login details!</p>
-          <center><a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank">Sign me up!</a></center>
+      
+      <div>
+         <center>
+            <a class="button" href="https://coding-club.shinyapps.io/course-registration/" target="_blank"> Sign me up! 
+            </a>
+         </center>
+      </div>
+          
 </div>
 </section>
 
