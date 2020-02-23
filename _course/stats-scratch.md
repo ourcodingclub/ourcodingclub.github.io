@@ -45,6 +45,13 @@ We hope you enjoy doing the course! There is no time limit for completion, so yo
 Have you completed all the tutorials you wanted to? Feel you're ready for some real-life applications? We encourage you to test your skills and take the challenge associated to this stream.
 
 Our case-study challenges are designed to test the range of skills you gained throughout the course. We provide guidance but no step-by-step instructions, so your solution will be unique! A challenge might take you 4-8 hours to complete (get in touch if you get stuck!). The button below will take you to the challenge page where you can see what is required.
+
+<form class="form-group" action="{{ site.baseurl }}/course/stats-scratch-challenge/index.html" method="get"> 
+   <button type="submit" style="background-color:#3f5542"> Try me!
+            </button>
+</form>
+
+
 {% include link-button.html url=link button="Try me!" %}
 {% endcapture %}
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_2.jpg{% endcapture %}
@@ -56,7 +63,7 @@ Our case-study challenges are designed to test the range of skills you gained th
 If you have finished the stream and would like to request a certificate, you can do so in a few clicks. Note that this will not exclude you from the course, so if you decide to come back for more our doors are still open! 
 
 <form class="form-group" action="https://coding-club.shinyapps.io/certificate/" method="get"> 
-   <button type="submit" style="background-color:#ffffff"> Request your certificate
+   <button type="submit" style="background-color:#dcbc6c"> Request your certificate
             </button>
 </form>
 <br><br>
