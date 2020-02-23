@@ -43,12 +43,12 @@ redirect_from:
 {% include scroll-banner.html content=banner background=url %}
 
 <div class="content-new">
-    <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smaller.png" alt="Course logo">
+    <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smaller_white.png" alt="Course logo">
     <h3>Is this course for me?</h3>
     <p>We think so - it's for everyone! Our course is aimed at people wishing to improve their programming and quantitative skills, particularly in ecological and environmental fields. That said, anyone with an interest in coding and data science can participate! It just means that our examples are drawn from nature, and the tutorials are focused on answering ecological questions (but most techniques also apply in other disciplines too).</p>
     <h3>What's special about this course?</h3>
     <p>Our course is designed to give you the data science skills you want and need. As such, we propose three different streams aimed at different interests and levels of ability. The set-up of our course is very flexible, so you can pick and choose from each stream to create your own learning path. At the end, all the tutorials and challenges that you have completed will appear on your certificate.</p>
-    <h4>Oh, and it’s completely free!</h4>
+    <h5>Oh, and it’s completely free!</h5>
 </div>
 
 <center><h2>How and when can I join?</h2></center>
