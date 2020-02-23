@@ -1,31 +1,15 @@
 <!DOCTYPE html>
-<html class="no-js">
-  <head>
+<html lang="{{ site.lang }}">
+	<head>
+    	{% include head.html %}
+	</head>
+	<body>
+		{% include header.html %}
+			{{ content }}
+    	{% include footer.html %}
 
-    {% include head.html %}
-
-  </head>
-  <body>
-
-
-    {% include header.html %}
-
-
-    {{ content }}
-
-
-
-
-
-
-
-
-
-    {% include footer.html %}
-    
-{% if jekyll.environment == 'production' %}
-    {% include analytics.html %}
+	{% if jekyll.environment == 'production' %}
+    	{% include analytics.html %}
     {% endif %}
-    </body>
+	</body>
 </html>
-

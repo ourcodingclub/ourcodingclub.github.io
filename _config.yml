@@ -1,45 +1,75 @@
-
+# Exclude files from Jekyll build
 exclude:
-  - "/vendor/"
-  - "Gemfile"
-  - "Gemfile.lock"
-  - "README.md"
-  - "LICENSE.md"
-  - "*.gemspec"
+    - README.md
+    - LICENSE
+    - CNAME
+    - Gemfile
+    - Gemfile.lock
 
-keep_files:
-  - "CNAME"
-  - ".git"
-  - ".gitignore"
+# Installed gems
+plugins: 
+    - jekyll-target-blank
+    - jekyll-redirect-from
 
+# Gem settings
 
 # Site settings
-title: Coding Club
-subtitle: "A positive peer-learning community"
-# Base URL of site. It should always start with a slash,
-# and never end with a slash. Set it to a blank value if hosting at the
-# root of your server.
-# baseurl: "/" # the subpath of your site
-url: "http://ourcodingclub.github.io" # the base hostname & protocol for your site
-baseurl: ''
-cover: "/assets/cover.png"
-logo: "/assets/logo.png"
-
-# Build settings
+encoding: utf-8
+lang: en-GB
+title: "Coding Club"
+logo: "/assets/img/logos/logo_hex.svg"
+description: ""
+baseurl: ""
+url: "https://ourcodingclub.github.io"
+repo: "https://github.com/ourcodingclub/ourcodingclub.github.io"
+email: "ourcodingclub@gmail.com"
+google_analytics: UA-92956541-1
+css_inline: false 
 markdown: kramdown
 highlighter: rouge
 kramdown:
   syntax_highlighter: rouge
   input: GFM
-  auto_ids: true
+  auto_ids: true 
 
-# Google analytics
-google_analytics: UA-92956541-1
+# Favicons 
+favicons: 
+    16: '/assets/img/logos/logo_hex@16px.png'
+    32: '/assets/img/logos/logo_hex@32px.png'
+    64: '/assets/img/logos/logo_hex@64px.png'
+    128: '/assets/img/logos/logo_hex@128px.png'
+    256: '/assets/img/logos/logo_hex@256px.png'
+    512: '/assets/img/logos/logo_hex@512px.png'
+    1024: '/assets/img/logos/logo_hex@1024px.png'
 
-# Category descriptions (for archive pages)
-descriptions:
-  - cat: jekyll
-    desc: "Posts describing Jekyll setup techniques."
+# Site navigation
+navigation_header:
+- title: Home
+  url: /
+- title: Tutorials
+  url: /tutorials.html
+- title: Course
+  url: /course.html
+- title: Team
+  url: /team.html
+- title: Get involved
+  url: /involve.html
+- title: Links
+  url: /links.html
+- title: Contact
+  url: /contact.html
 
-  - cat: dummy
-    desc: "Just some placeholder posts, lorem ipsum and the rest."
+# Define collections
+collections:
+    tutorials:
+        output: true
+        permalink: /tutorials/:path/
+    course:
+        output: true
+        permalink: /course/:path/
+    DL:
+        output: true
+        permalink: /DL/:path/
+    posts:
+        output: true
+        permalink: /posts/:path/

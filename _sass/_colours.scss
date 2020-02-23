@@ -1,0 +1,24 @@
+// Text colours
+$headingColour: #383743 !default;
+$bannerImageColour: #ebebeb !default;
+$bodyColour: #384743 !default;
+$linkColour: darken(#5fc9cb, 20%) !default;
+$hoverColour: desaturate($linkColour, 10%) !default;
+$white: #ffffff !default;
+$black: #000000 !default;
+
+// Background colours
+$backgroundColour: #ffffff !default;
+$codeBackgroundColour: #ebebeb !default;
+$boxBackgroundColour: #ebebeb !default;
+$darkBoxColour: darken($linkColour, 15%) !default;
+$formTextBackgroundColour: #f6f8fa !default;
+$greyBorderColour: #eef2f6 !default;
+
+// Callout colours #e4fcff
+$calloutColour: #c0ebef !default;
+$codeCalloutBackgroundColour: lighten(desaturate($calloutColour, 10%), 10%) !default;
+$alertColour: #d22e23 !default;
+$codeAlertBackgroundColour: lighten(desaturate($alertColour, 10%), 10%) !default;
+$importantColour: #f9e59b !default;
+$codeImportantBackgroundColour: lighten(desaturate($importantColour, 10%), 10%) !default;

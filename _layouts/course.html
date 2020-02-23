@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+{% if page.title %}
+	{% include page-banner.html %}
+{% endif %}
+
+<div class="content">
+	{{ content }}
+	{% capture link %}{{ site.baseurl }}/course/{% endcapture %}
+	{% include link-button.html url=link button="Back to course home" %}
+</div>
+

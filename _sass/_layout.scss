@@ -1,0 +1,703 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+// Header
+#navigation-container {
+	margin: 0 auto;
+	width: 70%;
+	padding: 5px 0px;
+}
+
+#navigation-container label, #hamburger {
+  display: none;
+}
+
+// Switch to hamburger on small screen 
+@media screen and (max-width: 768px){
+	#navigation-container label {
+		display: inline-block;
+		color: $headingColour;
+		font-size: 3em;
+		border: 1px solid black;
+		margin: 20px 50px;
+		padding: 0px 5px; 
+	}
+	
+	#navigation-container nav {
+		float: right;
+	}
+	
+	/* Break down menu items into vertical */
+	#navigation-container ul li {
+		display: block;
+	}
+	
+	/* Toggle show/hide menu on checkbox click */
+	#navigation-container ul {
+		display: none;
+	}
+	#navigation-container input:checked ~ ul {
+		display: block;
+	}
+}
+
+.navigation-bar img {
+	float:left;
+	max-width: 125px;
+}
+
+.navigation-bar ul {
+	text-align: center;
+	overflow: hidden;
+}
+
+.navigation-bar li {
+	display: inline-block;
+	margin: 20px 0px;
+	padding: 10px 15px;
+}
+
+.item-current {
+	background-color: $boxBackgroundColour;
+	border-radius: 4px;
+	list-style-position: inside;
+	color: $headingColour;
+}
+
+// Footer
+.footer {
+	background-color: $boxBackgroundColour;
+}
+
+.footer-container {
+	text-align: center;
+	margin: 0 auto;
+	width: 70%;
+	padding: 20px 0px;
+}
+
+.footer-link-list {
+	padding: 0px;
+}
+
+.footer-link-list li {
+	display: inline-block;
+	padding: 10px;
+}
+
+.footer-text p {
+	padding: 10px 0px;
+}
+
+.license {
+	width: 80px;
+	padding: -20px;
+}
+
+// Banner
+.banner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-position: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	height: 200px;
+}
+
+.banner h1, .banner h3 {
+	text-align: center;
+	padding: 0px 30px;
+	text-transform: uppercase;
+	color: $bannerImageColour;
+}
+
+.banner h1 {
+	font-weight: 600;
+}
+
+.banner h3 {
+	font-weight: 400;
+}
+
+// Main content
+.content {
+	padding: 30px;
+	margin: 0 auto;
+	max-width: 85%;
+}
+
+.content img {
+	display: block;
+	margin: 10px auto;
+	max-width: 85%;
+	max-height: 900px;
+}
+
+.author {
+	font-style: italic;
+	margin-top: -5px; 
+
+}
+
+// Team page profiles
+.team-profile {
+	 overflow: auto;
+ }
+
+.team-profile p {
+	float: left;
+	width: 75%;
+}
+
+.team-profile img {
+	float: right;
+	width: 20%;
+}
+
+// Tutorials page
+// Style accordion
+#accordion h4 {
+	background-color: #ebebeb !important;
+	content: '\02795'; 
+	color: #669ea0 !important;
+	border: 1px solid #ebebeb !important;
+}
+
+#accordion h4:hover, #accordion .ui-state-active {
+	background-color: #669ea0 !important;
+	border: 1px solid #ebebeb !important;
+	color: $white !important;
+	    content: "\2796";
+}
+
+.tutpanel{
+  background-color: none;
+}
+
+.tutcont {
+	padding: 6px 0px;
+}
+
+.tuthex {
+    width: 150px;
+
+}
+
+.tuthex img {
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+
+.tutdesc {
+    padding-left: 15px;
+    overflow: auto;
+}
+
+#accordion .ui-accordion-header {
+	background-color: $greyBorderColour;
+	padding: 5px;
+	text-align: center;
+	border-top: 0 none;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  top: 1px;
+}
+
+//Contact form
+.form-group {
+	margin: 10px 0px;
+	text-align: center;
+}
+
+.form-group input {
+	width: 100%;
+	background: $formTextBackgroundColour;
+	height: 60px;
+	border: 1px solid $greyBorderColour;
+	box-shadow: none;
+	margin: 10px 0px;
+	border-radius: 8px;
+	padding: 0px 5px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+
+.form-group textarea {
+	background: $formTextBackgroundColour;
+	height: 135px;
+	border: 1px solid $greyBorderColour;
+	box-shadow: none;
+	width: 100%;
+	max-width: 100%;
+	border-radius: 8px;
+	padding: 5px 5px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+
+.form-group button {
+	width: 100%;
+	height: 60px;
+	background-color: $linkColour;
+	border: none;
+	color: $white;
+	font-size: 18px;
+	margin: 10px 0px;
+	border-radius: 8px;
+}
+
+.form-group button:hover {
+	background-color: $white; 
+	color: $hoverColour;
+	border: 1px solid $hoverColour;;
+}
+
+// Carousels
+.owl-carousel-wrapper {
+	width: 60%;
+	margin: 10px auto;
+}
+
+.owl-carousel {
+	border:1px solid black;
+	padding: 10px;
+}
+
+.owl-carousel-quote {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.owl-carousel-quote img {
+	max-width: 50px;
+	border-radius: 50%;
+	margin: 10px auto;
+}
+
+.owl-carousel-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.owl-carousel-img img {
+	max-width: 80%;
+	height: auto;
+}
+
+.owl-nav {
+	text-align: center;
+	font-size: 25pt;
+}
+
+.owl-nav button {
+	display: inline-block;
+}
+
+.owl-nav i {
+	padding: 15px 50px;
+}
+
+// Links table
+.links {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.links td {
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	width: 50%;
+	
+}
+
+// Survey inclusion
+.survey {
+	border-width: 1px;
+	border-style: solid;
+	background-color: $boxBackgroundColour;
+	margin: 30px 0px;
+	padding: 20px;
+}
+
+// Tickers
+
+.count, .values {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.count-list span, .values span {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.count li, .values li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;	
+  vertical-align: top; 
+  width: 20%;
+}
+
+.count i, .values i {
+	font-size: 40pt;
+	colour: $headingColour;
+	padding: 10px;
+}
+
+.counter, .counter-desc {
+	font-size: 20px;
+}
+
+// Values ticker specific
+
+.values-title {
+	font-size: 12pt;
+	padding: 10px 0px;
+}
+
+.values-desc {
+	font-size: 8pt;
+}
+
+// Callout box
+.callout {
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: $calloutColour;
+}
+
+.important {
+    background-color: $importantColour;
+}
+
+.alert {
+    background-color: $alertColour;
+    color: $white;
+}
+
+.alert a {
+	color: lighten($linkColour, 40%);
+}
+
+.alertbox {
+	border: 1px solid $black;
+	border-radius: 5px;
+	width: 50px;
+	height: 30px;
+	color: black;
+	margin: 5px 0;
+	background-color: $codeAlertBackgroundColour;
+}
+
+.alertbox p {
+	margin: 0 auto;
+	text-align: center;
+	color: $white;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    &.callout {
+    	margin-top: 0;
+    }
+}
+
+// Reveal answer button
+.reveal {
+	background-color: $linkColour; 
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;border: none;
+  	white-space:nowrap;
+    display:inline-block;
+    margin: 10px;
+    min-width: 20%;
+}
+
+.reveal-container {
+	display: block 
+}
+
+// Figure with caption
+.figure {
+	text-align: center;
+	padding-top: 5px;
+}
+
+// Copy code button
+.copy-button, .hide-back-button {
+  webkit-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+  opacity: 0.75;
+  margin: 5px;
+  border: none;
+  background-color: $linkColour;
+  border-radius: 5px;
+  color: $white;
+  float: right;
+  width: 150px;
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+// Increase opacity on hover of code chunk
+div.highlight:hover .copy-button:hover, div.highlight .copy-button:focus {
+    opacity: 1;
+}
+
+div.highlight:hover .hide-back-button:hover, div.highlight .hide-back-button:focus {
+	opacity: 1;
+}
+
+// Course intro stream img container
+.stream-container {
+	width: 100%;
+	text-align: center;
+}
+
+.stream-container img {
+	display: inline-block;
+	width: 350px;
+}
+
+// Tables 
+
+table { 
+	border: 2px solid black;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid black;
+}
+
+table, th, td {
+	border-collapse: collapse;
+}
+
+th {
+	color: $white;
+	background-color: $headingColour;
+}
+
+tr:hover {
+	background-color: $greyBorderColour;;
+}
+
+// Call to action
+.call-container {
+	background-color: $boxBackgroundColour;
+	text-align: center;
+	padding: 50px;
+	margin: 15px;
+}
+
+.call {
+	display: inline-block;
+}
+
+// Scrolling banner
+.scroll-banner {
+	color: $white;
+	padding: 70px 70px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.scroll-banner-nobg {
+	color: $white;
+	padding: 70px 70px;
+    background-image: none !important;
+	background-color: $darkBoxColour;
+}
+
+.scroll-banner h1, .scroll-banner h2, .scroll-banner h3, .scroll-banner h4, .scroll-banner h5, .scroll-banner h6, .scroll-banner p, .scroll-banner a {
+	color: $white
+}
+
+.scroll-banner-nobg h1, .scroll-banner-nobg h2, .scroll-banner-nobg h3, .scroll-banner-nobg h4, .scroll-banner-nobg h5, .scroll-banner-nobg h6, .scroll-banner-nobg p, .scroll-banner-nobg a {
+	color: $white
+}
+
+
+// * {
+//   background: #000 !important;
+//   color: #0f0 !important;
+//   outline: solid #f00 1px !important;
+// }
+
+
+/*--	
+	Data Lab call to action
+--*/
+#DL-action {
+  background: url("assets/img/banner/DL_action_bg.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 70px 0px;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+}
+
+#DL-action h2 {
+  padding-bottom: 20px;
+  line-height: 33px;
+  margin: 0;
+  font-size: 35px;
+  colour: #ffffff;
+}
+#DL-action p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+#DL-action .btn-call-to-action {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #da8033;
+  font-size: 20px;
+  color: #332427;
+  margin-top: 30px;
+}
+
+
+#testimonial h2 {
+  line-height: 27px;
+  color: #ffffff;
+  padding-top: 10px;
+}
+
+#testimonial .testimonial-carousel {
+  text-align: center;
+  width: 45%;
+  padding: 14px;
+  margin: 0 auto;
+}
+#testimonial .testimonial-carousel img {
+  padding-bottom: 38px;
+}
+
+
+
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column-new {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.content-new {
+    width: 95%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.content-new img {
+    margin-right: 15px;
+    float: left;
+    width: 50%;
+}
+
+.content-new h3,
+.content-new p{
+    margin-left: 15px;
+    display: block;
+    margin: 2px 0 0 0;
+}
+
+.content-new-info {
+    width: 85%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.content-new-info img {
+    margin-right: 35px;
+    float: left;
+    width: 25%;
+}
+
+.content-new-info h3,
+.content-new-info p{
+    margin-left: 15px;
+    display: block;
+    margin: 2px 0 0 0;
+}
+
+.content-new-streams {
+    width: 85%;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.content-new-streams img {
+    margin-right: 15px;
+    margin-left: 15px;
+    float: right;
+    width: 40%;
+}
+
+.content-new-streams h3,
+.content-new p{
+    margin-left: 45px;
+    margin-right: 25px;
+    display: block;
+    margin: 30px 0 0 0;
+}
+
+#portfolio-work {
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+#portfolio-work .button {
+  padding: 25px 45px;
+  border: none;
+  border-radius: 10px;
+  background-color: #8d1853;
+  font-size: 20px;
+  color: #f0f6f1;
+  margin-top: 30px;
+}

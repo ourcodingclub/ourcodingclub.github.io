@@ -1,0 +1,9 @@
+<div markdown="1" class="callout {% if include.colour == 'important' %}important{% elsif include.colour == 'alert' %}alert{% else %}{% endif %}">
+  {% if include.colour == 'alert' %}
+  <div class="alertbox">
+  	  <p>Read!</p>
+  </div>
+  {% endif %}
+    {{ include.content }}
+</div>
+
