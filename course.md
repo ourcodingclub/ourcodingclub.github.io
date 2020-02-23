@@ -19,6 +19,11 @@ redirect_from:
   <br>
   </div>
   </div>
+  
+{% capture link %}
+{{ site.baseurl }}/course_info/
+{% endcapture %}
+{% include link-button.html url=link button="Returning user? Go straight to the course info page" %}
 
 {% capture banner %}
 <h2>Our tutorials cover the following key skills we think <br >should be in an ecologist's toolbox:</h2>
