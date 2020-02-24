@@ -123,6 +123,8 @@ https://twitter.com/our_codingclub
 <div class="content-new-info">
 <h2>Data Science in Edinburgh</h2>
 <p><b><h4><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h4></b></p>
+</div>
+</section>
 
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
 <div class="content-new-info">
