@@ -32,7 +32,7 @@ $tealDark: #4c6e73 !default;
 $goldLight: #efd388 !default;
 $goldDark: #cfa73e !default;
 $greenLight: #9ac08f !default;
-$greenDark: #426b44 !default;
+$greenDark: desaturate(#426b44, 10%) !default;
 $heatherLight: #acaab5 !default;
 $heatherDark: #5a556b !default;
 $reddishBrown: #a7633a; 
