@@ -54,9 +54,9 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </section>
 
 {% capture link %}
-{{ site.baseurl }}/tutorials/
+https://twitter.com/our_codingclub
 {% endcapture %}
-{% include link-button.html url=link button="View our tutorials" %}
+{% include link-button.html url=link button="Follow us on Twitter and find out about our latest tutorials!" %}
 
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
@@ -77,19 +77,6 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 		</div>
 	</div>
 </div>
-
-<p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
-
-<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
-<div class="content-new-info">
-<p><b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b></p>
-</div>
-</section>
-
-{% capture link %}
-https://twitter.com/our_codingclub
-{% endcapture %}
-{% include link-button.html url=link button="Follow us on Twitter and find out about our latest tutorials!" %}
 
 <section id="portfolio-work">
 <div class="content-new-info">
@@ -131,6 +118,17 @@ https://twitter.com/our_codingclub
     </li>
   </ul>
 </div>
+
+<section id="portfolio-work">
+<div class="content-new-info">
+<h2>Data Science in Edinburgh</h2>
+<p><b><h4><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h4></b></p>
+
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
+<div class="content-new-info">
+<p><b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b></p>
+</div>
+</section>
 
 <section id="portfolio-work">
 <div class="content-new-info">
