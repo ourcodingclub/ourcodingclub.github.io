@@ -16,10 +16,10 @@ Red squirrels are a protected species and, with conservation efforts from [dedic
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
-
+{% capture coloursection %}
 # Data overview
 
-#### __You will use the following datasets, available from the [Challenge Github repository](https://github.com/ourcodingclub/CC_course_challenge1) on Github. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.__
+##### __You will use the following datasets, available from the [Challenge Github repository](https://github.com/ourcodingclub/CC_course_challenge1) on Github. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.__
 
 ### The Scottish Squirrel Database
 
@@ -38,8 +38,10 @@ Red squirrels are a protected species and, with conservation efforts from [dedic
 
 __Fancy a more advanced challenge? Why don't you try re-creating this dataset yourself?__ (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)
 
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="goldLight" %}
 
-
+{% capture coloursection %}
 # Specific tasks
 
 Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.
@@ -57,8 +59,10 @@ __Be prepared to answer the question:__
 
 To the nearest thousand, how large is your __cleaned__ dataset?
 
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="reddishBrown" %}
 
-
+{% capture coloursection %}
 ## 2. Temporal trends
 
 Determine if there is a temporal trend in the number of observations for red and grey squirrels (2008-2017). Specifically, you should:
@@ -75,8 +79,10 @@ __Be prepared to answer the questions:__
 
 __Think about the following:__ what could be the reasons for this trend? Is it ecologically meaningful? Are there any biases in the data to be aware of?
 
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="greenDark" %}
 
-
+{% capture coloursection %}
 ## 3. Do red and grey squirrels prefer different habitats?
 
 We usually think of grey squirrels as city dwellers, while red squirrels require extensive forest cover. Determine whether recent squirrel counts in OS grid cells (10km) are linked to forest cover in that cell. Specifically, you should: 
@@ -90,8 +96,10 @@ __Be prepared to answer the questions:__
 * Are red squirrels significantly associated with forested areas? 
 * Does the model explain the variation in the data well?
 
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="beigeYellow" %}
 
-
+{% capture coloursection %}
 ## 4. Re-classify forest cover
 
 Building on the previous point, try turning the forest cover data into a categorical variable, and use the visual representation of your choice to display the median abundance of grey and red squirrels in these classes, and the uncertainty around these measures. Specifically, you should: 
@@ -108,7 +116,8 @@ Building on the previous point, try turning the forest cover data into a categor
 __Be prepared to answer the question:__
 
 * In what cover classes are red squirrels more abundant than the grey?
-
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="greenLight" %}
 
 {% capture banner %}
 # How to get started
@@ -129,7 +138,7 @@ Once you have a fully working script and have completed the specific tasks, take
 {% include link-button.html url=link button="Go to quiz centre" %}
 
 
-
+{% capture coloursection %}
 # Help & hints
 
 Here is a list of tutorials that might help you complete this challenge:
@@ -155,6 +164,8 @@ You'll want mutate to replace the value in a cell _IF_ the original value was on
 {% include reveal.html content=reveal button="I can't figure out how to replace NA values with something else." %}
 
 We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="lightGrey" %}
 
 {% capture coloursection %}
 # Acknowledgements
@@ -165,7 +176,7 @@ We thank all the organisations that provided open access data for this challenge
 * __Forestry Commission (2018).__ National Forest Inventory Woodland Scotland 2017. Available at the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/) under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]
 * __Charles Roper (2015).__ OSGB Grids in shapefile format. Available on [Github](https://github.com/charlesroper/OSGB_Grids) under a CC-0 (public domain) license.
 {% endcapture %}
-{% include coloursection.html content=coloursection colour="tealLight" %}
+{% include coloursection.html content=coloursection colour="boldOrange" %}
 
 <!-- Get help -->
 <a name = "contact"></a>

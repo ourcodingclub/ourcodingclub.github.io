@@ -781,7 +781,7 @@ text-decoration: none;
 // Define combinations of bg colours and font colours for sections
 
 .coloursection {
-    padding: 20px 40px;
+    padding: 20px 40px 30px 40px;
     border-radius: 5px;
 }
 
@@ -803,4 +803,34 @@ text-decoration: none;
 .heatherDark {
     background-color: $heatherDark;
     color: $fontLight;
+}
+
+.greenLight {
+    background-color: $greenLight;
+    color: $fontDark;
+}
+
+.greenDark {
+    background-color: $greenDark;
+    color: $fontLight;
+}
+
+.reddishBrown {
+    background-color: $reddishBrown;
+    color: $fontLight;
+}
+
+.lightGrey {
+    background-color: $lightGrey;
+    color: $fontDark;
+}
+
+.beigeYellow {
+    background-color: $beigeYellow;
+    color: $fontDark;
+}
+
+.boldOrange {
+    background-color: $boldOrange;
+    color: $fontDark;
 }
