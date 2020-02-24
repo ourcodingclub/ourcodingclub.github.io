@@ -516,6 +516,11 @@ redirect_from:
 	</div>
 </div>
 
+{% capture link %}
+https://twitter.com/our_codingclub
+{% endcapture %}
+{% include link-button.html url=link button="Follow us on Twitter and find out about our latest tutorials!" %}
+
 ## COMING SOON:
 
 * Animated graphs
