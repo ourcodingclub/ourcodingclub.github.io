@@ -4,11 +4,6 @@ title: "Coding Club: A Positive Peer-Learning Community"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
 
-<section id="portfolio-work"> <!-- adding section to expand width of div -->
-<div class="content-new-info">
-<big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment for people to develop programming and statistics skills together, using R, Python, JavaScript and more. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
-</div>
-
 <div class="content-new-info">
 <br>
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
@@ -18,11 +13,39 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	  <p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
 </section>
 
+<div class="count">
+<ul class="count-list">
+	<li>
+		<div>
+            <i class="fas fa-edit"></i>
+			<span class="counter">42</span>
+			<span class="counter-desc">Tutorials</span>
+		</div>
+    </li>
+    <li>
+		<div>
+            <i class="fas fa-mouse-pointer"></i>
+			<span class="counter">603569</span>
+			<span class="counter-desc">Pageviews</span>
+		</div>
+    </li>
+    <li>
+		<div>
+            <i class="fas fa-history"></i>
+			<span class="counter">127645</span>
+			<span class="counter-desc">Hours of coding</span>
+		</div>
+	</li>
+  </ul>
+</div>
+
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
 <div class="content-new-streams">
     <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon"><h2>About us</h2>
 
-<p>Our team includes undergradute students, graduates, PhD students and lecturers. We are all passionate for good teaching and improving quantitative skills. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
+<p><section id="portfolio-work"> <!-- adding section to expand width of div -->
+<div class="content-new-info">
+<p>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. We want to replace statistics anxiety and code fear with inspiration and motivation to learn. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
 <p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
 
@@ -65,32 +88,6 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 https://twitter.com/our_codingclub
 {% endcapture %}
 {% include link-button.html url=link button="Follow us on Twitter and find out about our latest tutorials!" %}
-
-<div class="count">
-<ul class="count-list">
-	<li>
-		<div>
-            <i class="fas fa-edit"></i>
-			<span class="counter">42</span>
-			<span class="counter-desc">Tutorials</span>
-		</div>
-    </li>
-    <li>
-		<div>
-            <i class="fas fa-mouse-pointer"></i>
-			<span class="counter">603569</span>
-			<span class="counter-desc">Pageviews</span>
-		</div>
-    </li>
-    <li>
-		<div>
-            <i class="fas fa-history"></i>
-			<span class="counter">127645</span>
-			<span class="counter-desc">Hours of coding</span>
-		</div>
-	</li>
-  </ul>
-</div>
 
 <section id="portfolio-work">
 <div class="content-new-info">
