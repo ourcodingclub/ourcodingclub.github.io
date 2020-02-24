@@ -777,3 +777,24 @@ text-decoration: none;
   text-decoration: none;
   background-color: #a98a99;
 }
+
+// Define combinations of bg colours and font colours for sections
+.tealLight {
+    background-color: $tealLight;
+    color: $fontDark;
+}
+
+.tealDark {
+    background-color: $tealDark;
+    color: $fontLight;
+}
+
+.heatherLight {
+    background-color: $heatherLight;
+    color: $fontDark;
+}
+
+.heatherDark {
+    background-color: $heatherDark;
+    color: $fontLight;
+}

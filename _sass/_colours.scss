@@ -22,3 +22,15 @@ $alertColour: #d22e23 !default;
 $codeAlertBackgroundColour: lighten(desaturate($alertColour, 10%), 10%) !default;
 $importantColour: #f9e59b !default;
 $codeImportantBackgroundColour: lighten(desaturate($importantColour, 10%), 10%) !default;
+
+// Coloured section potential colours - add as you see fit
+$fontLight: #f6f6f6;
+$fontDark: #29272c;
+$tealLight: #98dce7;
+$tealDark:#4c6e73;
+$goldLight: #efd388;
+$goldDark: #cfa73e;
+$greenLight: #b3c3b4;
+$greenDark: #426b44;
+$heatherLight: #acaab5;
+$heatherDark: #5a556b;
