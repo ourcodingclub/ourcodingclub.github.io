@@ -34,7 +34,7 @@ We hope you enjoy doing the course! There is no time limit for completion, so yo
 
 
 {% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
-{% include link-button.html url=link button="Launch Test Centre" %}
+{% include link-button.html url=link button="Launch Quiz Centre" %}
 
 <center><img src="{{ site.baseurl }}/assets/img/dl_course/DL_workflow.png" style= "width:50%; height:auto;" alt="workflow-diagram"></center>
 
