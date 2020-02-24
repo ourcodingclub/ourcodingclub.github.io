@@ -777,3 +777,69 @@ text-decoration: none;
   text-decoration: none;
   background-color: #a98a99;
 }
+
+// Define combinations of bg colours and font colours for sections
+
+.coloursection {
+    padding: 20px 40px 30px 40px;
+    border-radius: 5px;
+    margin: 25px 0px;
+}
+
+.tealLight {
+    background-color: $tealLight;
+    color: $fontDark;
+}
+
+.tealDark {
+    background-color: $tealDark;
+    color: $fontLight;
+}
+
+.heatherLight {
+    background-color: $heatherLight;
+    color: $fontDark;
+}
+
+.heatherDark {
+    background-color: $heatherDark;
+    color: $fontLight;
+}
+
+.greenLight {
+    background-color: $greenLight;
+    color: $fontDark;
+}
+
+.greenDark {
+    background-color: $greenDark;
+    color: $fontLight;
+}
+
+.greenDark h1 {
+    color: $fontLight;
+}
+
+.greenDark h2 {
+    color: $fontLight;
+}
+
+.reddishBrown {
+    background-color: $reddishBrown;
+    color: $fontLight;
+}
+
+.lightGrey {
+    background-color: $lightGrey;
+    color: $fontDark;
+}
+
+.beigeYellow {
+    background-color: $beigeYellow;
+    color: $fontDark;
+}
+
+.boldOrange {
+    background-color: $boldOrange;
+    color: $fontDark;
+}

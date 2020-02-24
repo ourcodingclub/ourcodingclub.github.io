@@ -18,7 +18,24 @@ $greyBorderColour: #eef2f6 !default;
 // Callout colours #e4fcff
 $calloutColour: #c0ebef !default;
 $codeCalloutBackgroundColour: lighten(desaturate($calloutColour, 10%), 10%) !default;
-$alertColour: #d22e23 !default;
+$alertColour: #c08fb2 !default;
 $codeAlertBackgroundColour: lighten(desaturate($alertColour, 10%), 10%) !default;
 $importantColour: #f9e59b !default;
 $codeImportantBackgroundColour: lighten(desaturate($importantColour, 10%), 10%) !default;
+
+// Coloured section potential colours - add as you see fit
+$fontLight: #f6f6f6 !default;
+$fontDark: #29272c !default;
+
+$tealLight: #98dce7 !default;
+$tealDark: #4c6e73 !default;
+$goldLight: #efd388 !default;
+$goldDark: #cfa73e !default;
+$greenLight: #9ac08f !default;
+$greenDark: desaturate(#426b44, 10%) !default;
+$heatherLight: #acaab5 !default;
+$heatherDark: #5a556b !default;
+$reddishBrown: #a7633a; 
+$lightGrey: #eef2f3;
+$beigeYellow: #dacf9e;
+$boldOrange: #f8ac59;
