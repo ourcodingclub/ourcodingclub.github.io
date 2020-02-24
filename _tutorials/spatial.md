@@ -449,3 +449,18 @@ In this introduction to remote sensing spatial analysis, we have covered how to:
 - Perform an unsupervised image classification using the kmeans algorithm to cluster the pixels in 10 clusters.
 
 If you want to explore further, there are excellent resources availabe in [the Spatial Data Science with R by Robert J. Hijmans](http://rspatial.org/index.html).
+
+<br>
+
+<section id="portfolio-work" style="background-color: #98dee2; padding-bottom:20px">
+<div class="content-new-streams">
+<a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream1.png" style= "width:30%; height:auto; padding:20px;20px;20px;80px;" alt="Stats from Scratch stream"></a>
+<h4>Doing this tutorial as part of our Data Science for Ecologists and Environmental Scientists online course?</h4>
+<p><big>This tutorial is part of the <b><a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank">Stats from Scratch stream</a></b> from our online course. Go to the stream page to find out about the other tutorials part of this stream!</big></p>
+<p>If you have already signed up for our course and you are ready to take the quiz, go to our quiz centre.<b> Note that you need to <a href="https://ourcodingclub.github.io/course_info" target="_blank">sign up first</a> before you can take the quiz.</b> If you haven't heard about the course before and want to learn more about it, check out the <a href="https://ourcodingclub.github.io/course" target="_blank">course page.</a></p>
+
+{% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
+{% include link-button.html url=link button="Launch Quiz Centre" %}
+
+</div>
+</section>

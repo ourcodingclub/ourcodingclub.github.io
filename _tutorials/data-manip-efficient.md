@@ -466,3 +466,28 @@ We hope this was useful. Let's look back at what you can now do, and as always, 
 2. You know how to reclassify values or recode factors using logical statements
 3. You can tweak `dplyr`'s function `group_by()` to act as a loop without having to write one, following it by `do()`
 
+<br>
+
+<section id="portfolio-work" style="background-color: #98dee2; padding-bottom:20px">
+<div class="content-new-streams">
+<a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream1.png" style= "width:30%; height:auto; padding:20px;20px;20px;80px;" alt="Stats from Scratch stream"></a>
+<h4>Doing this tutorial as part of our Data Science for Ecologists and Environmental Scientists online course?</h4>
+<p><big>This tutorial is part of the <b><a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank">Stats from Scratch stream</a></b> from our online course. Go to the stream page to find out about the other tutorials part of this stream!</big></p>
+<p>If you have already signed up for our course and you are ready to take the quiz, go to our quiz centre.<b> Note that you need to <a href="https://ourcodingclub.github.io/course_info" target="_blank">sign up first</a> before you can take the quiz.</b> If you haven't heard about the course before and want to learn more about it, check out the <a href="https://ourcodingclub.github.io/course" target="_blank">course page.</a></p>
+
+{% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
+{% include link-button.html url=link button="Launch Quiz Centre" %}
+
+</div>
+</section>
+<section id="portfolio-work" style="background-color: #a0a2cb; padding-bottom:20px">
+<div class="content-new-streams">
+<a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream2.png" style= "width:30%; height:auto; padding:20px;20px;20px;80px;" alt="Stats from Scratch stream"></a>
+<p><big>This tutorial is also part of the <b><a href="https://ourcodingclub.github.io/course/wiz-viz/index.html" target="_blank">Wiz of Data Vis stream</a></b> from our online course. Go to the stream page to find out about the other tutorials part of this stream!</big></p>
+<p>If you have already signed up for our course and you are ready to take the quiz, go to our quiz centre.<b> Note that you need to <a href="https://ourcodingclub.github.io/course_info" target="_blank">sign up first</a> before you can take the quiz.</b> If you haven't heard about the course before and want to learn more about it, check out the <a href="https://ourcodingclub.github.io/course" target="_blank">course page.</a></p>
+
+{% capture link %}https://coding-club.shinyapps.io/test-centre/{% endcapture %}
+{% include link-button.html url=link button="Launch Quiz Centre" %}
+
+</div>
+</section>
