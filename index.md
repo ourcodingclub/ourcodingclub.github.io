@@ -230,7 +230,7 @@ https://twitter.com/our_codingclub
 <p>Coding Club was jumpstarted with support from an <a href="http://www.ed.ac.uk/development-alumni/iig" target="_blank">Innovation Initiative Grant</a> from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We took Coding Club further with the help of a <a href="http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club" target="_blank">Principal's Teaching Award Scheme grant</a>. We are working together with the <a href="http://e3dtp.geos.ed.ac.uk/" target="_blank">NERC E3 Doctoral Training Partnership</a> which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.</p>
 
 <img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"><img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo"><img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos">
-
+<br>
 <img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo"><img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
 </div>
 </section>
