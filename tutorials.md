@@ -6,9 +6,9 @@ redirect_from:
   - /tutorials/
 ---
 
-Here you can find our collection of coding, data science and statistics tutorials with examples in R, Python, JavaScript and Python. We welcome feedback on our work and are happy to answer questions. If you are keen to write a tutorial and have it published on the Coding Club website, check out <a href="">this page</a> for more information.
+<p>Here you can find our collection of coding, data science and statistics tutorials with examples in R, Python, JavaScript and Python. We regularly post tutorials, which you can complete in-person at one of <a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">our workshops in Edinburgh</a> or online in your own time. If you are keen to write a tutorial and have it published on the Coding Club website, check out <a href="https://ourcodingclub.github.io/involve.html" target="_blank">this page</a> for more information.</p>
 
-We regularly post tutorials, which you can complete in-person at one of [our workshops in Edinburgh](https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing) or online in your own time.
+<p><b>As you click through, you'll notice that some tutorials have ribbons on their logos - they are part of our free and self-paced online course <a href="https://ourcodingclub.github.io/course.html" target="_blank">Data Science for Ecologists and Environmental Scientists</a>! Yellow for the <a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank">Stats from Scratch</a> stream, blue for <a href="https://ourcodingclub.github.io/course/wiz-viz/index.html" target="_blank">Wiz of Data Viz</a> and purple for <a href="https://ourcodingclub.github.io/course/mastering-modelling/index.html" target="_blank">Mastering Modelling</a>. Learn more about the course and how to sign up <a href="https://ourcodingclub.github.io/course.html" target="_blank">here!</a></b></p>
 
 <div id="accordion">
 	<h4>R basics</h4>
@@ -130,87 +130,7 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
         	</div>
     	</div>
 	</div>
-	<h4>Spatial data</h4>
-	<div class="tutpanel">
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="Basic maps hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/maps">
-                	<h2>Basic maps and spatial analysis</h2>
-                	<p>Using R as a GIS software tool to create informative maps</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/spatial_logo.png" alt="Raster analysis hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/spatial">
-                	<h2>Analysis with rasters and remote-sensing data</h2>
-                	<p>Using multispectral data, raster stacks, and k-means clustering</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="Flickr species occurrence hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/seecc_1/index.html#Flickr">
-                	<h2>Species occurrence and density maps</h2>
-                	<p>Using GBIF and Flickr data to visualise species occurrence</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="Population change hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/seecc_1">
-                	<h2>Working efficiently with large datasets</h2>
-                	<p>Quantifying population change and visualising species occurrence</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="Tidyverse workflow hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
-                	<h2>Visualisation workflows in the tidyverse</h2>
-                	<p>Working with many models & functional programming</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/popchange2.png" alt="Population change maps hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/popchange">
-                	<h2>Quantifying and visualising population trends</h2>
-                	<p>Making maps of populations and population change</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/occur_icon.png" alt="Species occurrence hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/occurrence">
-                	<h2>Manipulation and visualisation of occurrence data</h2>
-                	<p>Cleaning occurrence data and customising graphs and maps</p>
-            	</a>
-        	</div>
-    	</div>
-	</div>
-	<h4>Modelling</h4>
+		<h4>Modelling</h4>
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
@@ -289,6 +209,17 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	</a>
         	</div>
     	</div>
+    	    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/popchange2.png" alt="Population change maps hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/popchange">
+                	<h2>Quantifying and visualising population trends</h2>
+                	<p>Making maps of populations and population change</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/oridnation_icon.png" alt="Ordination hex logo">
@@ -330,6 +261,75 @@ We regularly post tutorials, which you can complete in-person at one of [our wor
             	<a href="{{ site.baseurl }}/tutorials/data-clustering">
                 	<h2>Data clustering</h2>
                 	<p>Finding patterns in your data</p>
+            	</a>
+        	</div>
+    	</div>
+	</div>
+	<h4>Spatial data</h4>
+	<div class="tutpanel">
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/spatial_logo.png" alt="Raster analysis hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/spatial">
+                	<h2>Analysis with rasters and remote-sensing data</h2>
+                	<p>Using multispectral data, raster stacks, and k-means clustering</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="Flickr species occurrence hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc_1/index.html#Flickr">
+                	<h2>Species occurrence and density maps</h2>
+                	<p>Using GBIF and Flickr data to visualise species occurrence</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="Population change hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc_1">
+                	<h2>Working efficiently with large datasets</h2>
+                	<p>Quantifying population change and visualising species occurrence</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="Tidyverse workflow hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
+                	<h2>Visualisation workflows in the tidyverse</h2>
+                	<p>Working with many models & functional programming</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/occur_icon.png" alt="Species occurrence hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/occurrence">
+                	<h2>Manipulation and visualisation of occurrence data</h2>
+                	<p>Cleaning occurrence data and customising graphs and maps</p>
+            	</a>
+        	</div>
+    	</div>
+    	    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/work8_3.png" alt="Basic maps hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/maps">
+                	<h2>Basic maps and spatial analysis</h2>
+                	<p>Using R as a GIS software tool to create informative maps</p>
             	</a>
         	</div>
     	</div>
