@@ -165,7 +165,7 @@ We thank all the organisations that provided open access data for this challenge
 * __Forestry Commission (2018).__ National Forest Inventory Woodland Scotland 2017. Available at the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/) under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]
 * __Charles Roper (2015).__ OSGB Grids in shapefile format. Available on [Github](https://github.com/charlesroper/OSGB_Grids) under a CC-0 (public domain) license.
 {% end coloursection %}
-{% include coloursection.html content=coloursection colour="tealDark" %}
+{% include coloursection.html content=coloursection colour='tealDark' %}
 
 <!-- Get help -->
 <a name = "contact"></a>

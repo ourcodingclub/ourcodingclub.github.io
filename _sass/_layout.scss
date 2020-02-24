@@ -779,6 +779,12 @@ text-decoration: none;
 }
 
 // Define combinations of bg colours and font colours for sections
+
+.coloursection {
+    padding: 20px 40px;
+    border-radius: 5px;
+}
+
 .tealLight {
     background-color: $tealLight;
     color: $fontDark;

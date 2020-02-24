@@ -24,13 +24,13 @@ $importantColour: #f9e59b !default;
 $codeImportantBackgroundColour: lighten(desaturate($importantColour, 10%), 10%) !default;
 
 // Coloured section potential colours - add as you see fit
-$fontLight: #f6f6f6;
-$fontDark: #29272c;
-$tealLight: #98dce7;
-$tealDark:#4c6e73;
-$goldLight: #efd388;
-$goldDark: #cfa73e;
-$greenLight: #b3c3b4;
-$greenDark: #426b44;
-$heatherLight: #acaab5;
-$heatherDark: #5a556b;
+$fontLight: #f6f6f6 !default;
+$fontDark: #29272c !default;
+$tealLight: #98dce7 !default;
+$tealDark:#4c6e73 !default;
+$goldLight: #efd388 !default;
+$goldDark: #cfa73e !default;
+$greenLight: #b3c3b4 !default;
+$greenDark: #426b44 !default;
+$heatherLight: #acaab5 !default;
+$heatherDark: #5a556b !default;
