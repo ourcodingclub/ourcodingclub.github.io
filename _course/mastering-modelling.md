@@ -60,5 +60,5 @@ If you have finished the stream and would like to request a certificate, you can
    <button type="submit" style="background-color:#69a6e0"> Request your certificate
             </button>
 </form>
-<br><br>
+
 
