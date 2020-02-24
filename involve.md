@@ -15,9 +15,9 @@ We would be thrilled to have people from anywhere in the world use our tutorials
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
 		<div class="owl-carousel-img">
-				<div class="owl-carousel-img">
 			<img src="{{ site.baseurl }}/assets/img/index/workshop3.JPG" alt="Workshop photo">
 		</div>
+		<div class="owl-carousel-img">
 			<img src="{{ site.baseurl }}/assets/img/index/workshop1.JPG" alt="Workshop photo">
 		</div>
 		<div class="owl-carousel-img">
