@@ -32,8 +32,14 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	</li>
   </ul>
 </div>
-<big>We have launched our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the change to get a certificate for your work.</big>
+<big>We have launched our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the chance to get a certificate for your work.</big>
 </div>
+
+<section id="index-work" style="padding-bottom:30px">
+<div class="container">
+        <center><a class="button-newest" href="{{ site.baseurl }}/tutorials">Explore our tutorials</a>         <a class="button-new" href="{{ site.baseurl }}/course">Take the course</a>         <a class="button" href="{{ site.baseurl }}/involve">Contribute and get involved</a></center>
+  </div>
+</section>
 
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
 <div class="content-new-streams">

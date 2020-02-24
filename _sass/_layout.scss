@@ -727,3 +727,53 @@ tr:hover {
 text-decoration: none;
 }
 
+#index-work .button {
+  padding: 10px 45px;
+  border: #a5a5a5;
+  border-radius: 10px;
+  background-color: #d6e9ec;
+  font-size: 20px;
+  color: #2c2c2c;
+  margin-top: 3px;
+}
+
+#index-work .button:hover {
+  text-decoration: none;
+  background-color: #8db7be;
+}
+
+#index-work .a:hover {
+text-decoration: none;
+}
+
+#index-work .button-new {
+  padding: 10px 125px;
+  border: #a5a5a5;
+  border-radius: 10px;
+  background-color: #f4eddc;
+  font-size: 20px;
+  color: #2c2c2c;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+#index-work .button-new:hover {
+  text-decoration: none;
+  background-color: #d8bf82;
+}
+
+#index-work .button-newest {
+  padding: 10px 85px;
+  border: #a5a5a5;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  font-size: 20px;
+  color: #2c2c2c;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+#index-work .button-newest:hover {
+  text-decoration: none;
+  background-color: #a98a99;
+}
