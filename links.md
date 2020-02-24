@@ -86,10 +86,6 @@ Below is a hand-picked and categorised list of resources that we used when learn
 		<td><a href="http://www.rstudio.com/resources/webinars/introducing-notebooks-with-r-markdown" target="_blank">www.rstudio.com/resources/webinars/introducing-notebooks-with-r-markdown/</a></td>
 	</tr>
 	<tr>
-		<td>LaTeX math mode syntax</td>
-		<td><a href="http://reu.dimacs.rutgers.edu/Symbols.pdf" target="_blank">reu.dimacs.rutgers.edu/Symbols.pdf</a></td>
-	</tr>
-	<tr>
 		<td>Concise guide to LaTeX programming</td>
 		<td><a href="https://tobi.oetiker.ch/lshort/lshort.pdf" target="_blank">https://tobi.oetiker.ch/lshort/lshort.pdf</a></td>
 	</tr>
@@ -113,14 +109,6 @@ Below is a hand-picked and categorised list of resources that we used when learn
 	<tr>
 		<td>Hadley Wickham's R for Data Science book</td>
 		<td><a href="http://r4ds.had.co.nz/" target="_blank">r4ds.had.co.nz/</a></td>
-	</tr>
-	<tr>
-		<td>Linear models and linear mixed effects models in R: Tutorial by Bodo Winter</td>
-		<td><a href="http://www.bodowinter.com/tutorial/bw_LME_tutorial1.pdf" target="_blank">www.bodowinter.com/tutorial/bw_LME_tutorial1.pdf</a></td>
-	</tr>
-	<tr>
-		<td>A very basic tutorial for performing linear mixed effects analyses by Bodo Winter</td>
-		<td><a href="http://www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf" target="_blank">www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf</a></td>
 	</tr>
 </table>
 

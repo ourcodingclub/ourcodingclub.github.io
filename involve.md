@@ -12,6 +12,26 @@ We would love to extend Coding Club beyond the University of Edinburgh and creat
 
 We would be thrilled to have people from anywhere in the world use our tutorials! If you would like to organise a Coding Club workshop, please get in touch at ourcodingclub@gmail.com and we can share our advice and experience and answer any questions you might have. The workshop can take whatever format you consider suitable: people can get together and collectively go through a given tutorial, or you can lead a workshop for your lab group or department.
 
+<div class="owl-carousel-wrapper">
+	<div class="owl-carousel">
+		<div class="owl-carousel-img">
+				<div class="owl-carousel-img">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop3.JPG" alt="Workshop photo">
+		</div>
+			<img src="{{ site.baseurl }}/assets/img/index/workshop1.JPG" alt="Workshop photo">
+		</div>
+		<div class="owl-carousel-img">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop2.JPG" alt="Workshop photo">
+		</div>
+				<div class="owl-carousel-img">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop4.JPG" alt="Workshop photo">
+		</div>
+				<div class="owl-carousel-img">
+			<img src="{{ site.baseurl }}/assets/img/index/workshop5.JPG" alt="Workshop photo">
+		</div>
+	</div>
+</div>
+
 ## How does a Coding Club workshop work?
 
 There are many ways to run a coding workshop and different approaches might work better in different situations. Here is how we usually structure our workshops. The workshops take two hours and begin with a short presentation or introductory talk about what we will be doing, what skills we will acquire and what they are useful for. We then direct workshop attendants to the link for the tutorial around which the workshop is focused. People usually open the tutorial on half of their screen and RStudio (or some other IDE depending on the workshop) on the other half of their screen.
