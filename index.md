@@ -183,6 +183,23 @@ https://twitter.com/our_codingclub
 	</div>
 </div>
 
+<a name = "coursebrief"></a>
+<section id="portfolio-work" style="background-color: #a6d4dc; padding-bottom:20px">
+<div class="content-new-info">
+<a href="https://ourcodingclub.github.io/course" target="_blank"><img src="{{ site.baseurl }}/assets/img/dl_course/course-details-tall.png" style= "width:30%; height:auto; padding:20px;20px;20px;80px;" alt="Data Science course details"></a>
+<h2><b>Data Science for Ecologists and Environmental Scientists</b> - a free online course</h2>
+<p><b><a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists</a> is an online learning initiative for anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript. Our motivation is to overcome "code fear" and "statistics anxiety" in learners of all ages and from all walks of life. This course is developed for international audiences, but is also uniquely Scottish with real-world data to put quantitative skills into the context of key ecological questions.</b></p>
+
+<p>The three course themes introduce learners to key elements of data science - ‘<a href="https://ourcodingclub.github.io/course/stats-scratch/index.html" target="_blank">Stats from Scratch</a>’, ‘<a href="https://ourcodingclub.github.io/course/wiz-viz/index.html" target="_blank">Wiz of Data Vis</a>’ and ‘<a href="https://ourcodingclub.github.io/course/mastering-modelling/index.html" target="_blank">Mastering Modelling</a>’. The 16 individual tutorials that make up the course, in addition to the further 25 tutorials hosted by <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">Coding Club</a>, allow learners to create their own bespoke learning pathway to gaining key skill sets. Quizzes and challenges test knowledge, but also allow users to join a larger community of learners and gain confidence in their own skills. Join the hundreds of thousands of Coding Club users and develop your data science skills through this entirely free and engaging online learning initiative!</p>
+<br>
+<section id="index-work" style="padding-bottom:20px">
+<div class="container">
+<a class="button-new" href="{{ site.baseurl }}/course">Learn more about the course</a>
+</div>
+</section>
+</div>
+</section>
+<br>
 <section id="portfolio-work" style="background-color: #f4eddc; padding-bottom:20px">
 <div class="content-new-streams">
 <a href="https://datascienceees.github.io" target="_blank"><img src="{{ site.baseurl }}/assets/img/index/ds-edi.png" style= "width:20%; height:auto; padding:20px;20px;20px;80px;" alt="Data Science in Edinburgh logo"></a>
