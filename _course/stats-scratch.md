@@ -46,12 +46,6 @@ Have you completed all the tutorials you wanted to? Feel you're ready for some r
 
 Our case-study challenges are designed to test the range of skills you gained throughout the course. We provide guidance but no step-by-step instructions, so your solution will be unique! A challenge might take you 4-8 hours to complete (get in touch if you get stuck!). The button below will take you to the challenge page where you can see what is required.
 
-<form class="form-group" action="{{ site.baseurl }}/course/stats-scratch-challenge/index.html" method="get"> 
-   <button type="submit" style="background-color:#3f5542"> Try me!
-            </button>
-</form>
-
-
 {% include link-button.html url=link button="Try me!" %}
 {% endcapture %}
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_2.jpg{% endcapture %}
