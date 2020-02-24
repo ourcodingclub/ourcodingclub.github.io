@@ -10,6 +10,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </div>
 
 <div class="content-new-info">
+<br>
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
     <center><h4>The Data Science for Ecologists and Environmental Scientists course is live!</h4></center>
       <big>We are so excited to launch our new <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
@@ -229,7 +230,9 @@ https://twitter.com/our_codingclub
 
 <p>Coding Club was jumpstarted with support from an <a href="http://www.ed.ac.uk/development-alumni/iig" target="_blank">Innovation Initiative Grant</a> from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We took Coding Club further with the help of a <a href="http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club" target="_blank">Principal's Teaching Award Scheme grant</a>. We are working together with the <a href="http://e3dtp.geos.ed.ac.uk/" target="_blank">NERC E3 Doctoral Training Partnership</a> which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.</p>
 
-<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"><img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo"><img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos"><img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo"><img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
+<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"><img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo"><img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos">
+
+<img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo"><img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
 </div>
 </section>
 
