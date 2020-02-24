@@ -86,21 +86,21 @@ https://twitter.com/our_codingclub
 		<div>
             <i class="fas fa-image"></i>
 			<span class="values-title">Quantitative skills</span>
-			<span class="values-desc">Empowering students and future professionals to answer research questions and harness the power of data</span>
+			<span class="values-desc">We empower students and future professionals to answer research questions and harness the power of data</span>
 		</div>
     </li>
     <li>
 		<div>
             <i class="fas fa-leaf"></i>
 			<span class="values-title">Sustainable learning</span>
-			<span class="values-desc">Supporting the future development of Coding Club through mentorship and training</span>
+			<span class="values-desc">We support the future development of Coding Club through mentorship and training</span>
 		</div>
     </li>
     <li>
 		<div>
             <i class="fas fa-globe-europe"></i>
 			<span class="values-title">Collaboration in learning</span>
-			<span class="values-desc">Establishing links between organisations and institutions which develop quantitative skills</span>
+			<span class="values-desc">We establish links between organisations and institutions which develop quantitative skills</span>
 		</div>
 	</li>
     <li>
