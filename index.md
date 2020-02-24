@@ -10,21 +10,20 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </div>
 
 <div class="content-new-info">
+<br>
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
-    <center><h4>The Data Science for Ecologists and Environmental Scientists course is live!</h4></center>
-      <br>
       <big>We are so excited to launch our new <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
 </div>
 	  <p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
 </section>
 
-<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
-<div class="content-new-info">
-<h2>About us</h2>
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
+<div class="content-new-streams">
+    <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon"><h2>About us</h2>
 
 <p>Our team includes undergradute students, graduates, PhD students and lecturers. We are all passionate for good teaching and improving quantitative skills. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
-<p>Over the last four years we have been writing [online tutorials]({{ site.baseurl }}/tutorials/) as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
+<p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
 
 <p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
 </div>
@@ -55,7 +54,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	</div>
 </div>
 
-<section id="portfolio-work" style="background-color: #a6caca; padding-bottom:20px">
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
 <div class="content-new-info">
 <p><b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b></p>
 </div>
@@ -230,7 +229,9 @@ https://twitter.com/our_codingclub
 
 <p>Coding Club was jumpstarted with support from an <a href="http://www.ed.ac.uk/development-alumni/iig" target="_blank">Innovation Initiative Grant</a> from the Edinburgh Fund at the University of Edinburgh. We organised our first joint workshop with the University of Aberdeen with the help of a GESA Innovation Initiative Grant. We took Coding Club further with the help of a <a href="http://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/march-2017/coding-club" target="_blank">Principal's Teaching Award Scheme grant</a>. We are working together with the <a href="http://e3dtp.geos.ed.ac.uk/" target="_blank">NERC E3 Doctoral Training Partnership</a> which supports some of our team members. Our <a href="https://ourcodingclub.github.io/course" target="_blank">Data Science for Ecologists and Environmental Scientists course</a> is funded by <a href="https://www.thedatalab.com" target="_blank">the Data Lab</a> in Scotland.</p>
 
-<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"><img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo"><img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos"><img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo"><img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
+<img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"><img src="{{ site.baseurl }}/assets/img/index/UoE_InnovationGrants_logo_2COL300dpi.jpg" style= "width: 30%; height:auto" alt="Innovation Initiative Grant logo"><img src="{{ site.baseurl }}/assets/img/index/dtp_for_cc.jpg" style= "width: 30%; height:auto" alt="DTP and NERC logos">
+<br>
+<img src="{{ site.baseurl }}/assets/img/index/GESA.jpg" style= "width: 30%; height:auto" alt="UoE Global Environment & Society Academy logo"><img src="{{ site.baseurl }}/assets/img/index/iad.png" style= "width:30%; height:auto" alt="UoE IAD">
 </div>
 </section>
 
