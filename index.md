@@ -7,11 +7,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <div class="content-new-info">
 <br>
     <a href="https://ourcodingclub.github.io/course.html" target="_blank"><img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo"></a>
-    <h5>The Data Science for Ecologists and Environmental Scientists course is live!</h5>
-      <big>We are so excited to launch our new online and entirely free <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
-</div>
-
-<div class="count">
+    <div class="count">
 <ul class="count-list">
 	<li>
 		<div>
@@ -36,10 +32,16 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	</li>
   </ul>
 </div>
+</div>
+
+
+<h5>The Data Science for Ecologists and Environmental Scientists course is live!</h5>
+<big>We are so excited to launch our new online and entirely free <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
+
 
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
 <div class="content-new-streams">
-    <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon"><h2>About us</h2>
+    <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="About us"><h2>About us</h2>
 
 <p>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. We want to replace statistics anxiety and code fear with inspiration and motivation to learn. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
