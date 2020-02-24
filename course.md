@@ -148,3 +148,10 @@ redirect_from:
     </div>
   </div>
 </section>
+
+<div class="row">
+  <div class="column-new">
+  <a href="https://www.thedatalab.com" target="_blank"><img src="{{ site.baseurl }}/assets/img/index/data-lab-logo.png" style= "width: 30%; height:auto" alt="Data Lab logo"></a>
+  <p>The Data Science for Ecologists and Environmental Scientists course is funded by the <a href="https://www.thedatalab.com" target="_blank">Data Lab</a>.</p>
+  </div>
+  </div>
