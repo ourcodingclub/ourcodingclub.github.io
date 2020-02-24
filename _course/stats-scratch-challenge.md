@@ -16,7 +16,7 @@ Red squirrels are a protected species and, with conservation efforts from [dedic
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
-<section id="portfolio-work" style="background-color: #b2bcb7; padding-bottom:20px">
+
 # Data overview
 
 #### __You will use the following datasets, available from the [Challenge Github repository](https://github.com/ourcodingclub/CC_course_challenge1) on Github. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.__
@@ -37,9 +37,9 @@ Red squirrels are a protected species and, with conservation efforts from [dedic
 * OS grid cells at a 10 x 10 km resolution, from [this Git repository](https://github.com/charlesroper/OSGB_Grids)
 
 __Fancy a more advanced challenge? Why don't you try re-creating this dataset yourself?__ (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)
-</section>
 
-<section id="portfolio-work" style="background-color: #d1b375; padding-bottom:20px">
+
+
 # Specific tasks
 
 Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.
@@ -56,9 +56,9 @@ Clean the squirrel dataset for the last decade, so it’s ready to analyse. Spec
 __Be prepared to answer the question:__
 
 To the nearest thousand, how large is your __cleaned__ dataset?
-</section>
 
-<section id="portfolio-work" style="background-color: #f1efe8; padding-bottom:20px">
+
+
 ## 2. Temporal trends
 
 Determine if there is a temporal trend in the number of observations for red and grey squirrels (2008-2017). Specifically, you should:
@@ -74,9 +74,9 @@ __Be prepared to answer the questions:__
 * Considering the nature of our response variable, what modelling approach would be the most appropriate? (Don't worry if you only ran a linear regression! It's a justifiable approach for a preliminary analysis, and for such large numbers the results will be similar.) 
 
 __Think about the following:__ what could be the reasons for this trend? Is it ecologically meaningful? Are there any biases in the data to be aware of?
-</section>
 
-<section id="portfolio-work" style="background-color: #455a4a; color: #ffffff; padding-bottom:20px">
+
+
 ## 3. Do red and grey squirrels prefer different habitats?
 
 We usually think of grey squirrels as city dwellers, while red squirrels require extensive forest cover. Determine whether recent squirrel counts in OS grid cells (10km) are linked to forest cover in that cell. Specifically, you should: 
@@ -89,9 +89,9 @@ __Be prepared to answer the questions:__
 
 * Are red squirrels significantly associated with forested areas? 
 * Does the model explain the variation in the data well?
-</section>
 
-<section id="portfolio-work" style="background-color: #ebe9d8; padding-bottom:20px">
+
+
 ## 4. Re-classify forest cover
 
 Building on the previous point, try turning the forest cover data into a categorical variable, and use the visual representation of your choice to display the median abundance of grey and red squirrels in these classes, and the uncertainty around these measures. Specifically, you should: 
@@ -108,7 +108,7 @@ Building on the previous point, try turning the forest cover data into a categor
 __Be prepared to answer the question:__
 
 * In what cover classes are red squirrels more abundant than the grey?
-</section>
+
 
 {% capture banner %}
 # How to get started
@@ -120,7 +120,7 @@ There is no script or code provided for this challenge: how you go about solving
 {% capture url %}{{ site.baseurl }}/assets/img/banner/squirrel_3.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
-<section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
+
 # Finished? Take the quiz!
 
 Once you have a fully working script and have completed the specific tasks, take the quiz.
@@ -128,7 +128,7 @@ Once you have a fully working script and have completed the specific tasks, take
 {% capture link %} https://coding-club.shinyapps.io/test-centre/ {% endcapture %}
 {% include link-button.html url=link button="Go to quiz centre" %}
 
-</section>
+
 
 # Help & hints
 
@@ -156,7 +156,7 @@ You'll want mutate to replace the value in a cell _IF_ the original value was on
 
 We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!
 
-<section id="portfolio-work" style="background-color: #a7764a; color: #ffffff; padding-bottom:20px">
+
 # Acknowledgements
 
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow:
@@ -164,7 +164,7 @@ We thank all the organisations that provided open access data for this challenge
 * __Scottish Wildlife Trust (2018).__ The Scottish Squirrel Database. Occurrence dataset [https://doi.org/10.15468/fqg0h3] under license CC-BY-4.0
 * __Forestry Commission (2018).__ National Forest Inventory Woodland Scotland 2017. Available at the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/) under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]
 * __Charles Roper (2015).__ OSGB Grids in shapefile format. Available on [Github](https://github.com/charlesroper/OSGB_Grids) under a CC-0 (public domain) license.
-</section>
+
 
 <!-- Get help -->
 <a name = "contact"></a>
