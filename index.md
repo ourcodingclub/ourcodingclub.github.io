@@ -6,7 +6,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 
 <section id="portfolio-work"> <!-- adding section to expand width of div -->
 <div class="content-new-info">
-<big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment where we develop programming and statistics skills together, using R. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
+<big><b>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. Our mission is to create a fun and supportive environment for people to develop programming and statistics skills together, using R, Python, JavaScript and more. We want to replace statistics anxiety and code fear with inspiration and motivation to learn, and here we will share our experience.</b></big>
 </div>
 
 <div class="content-new-info">
