@@ -17,7 +17,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	  <p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
 </section>
 
-<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
 <div class="content-new-streams">
     <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon"><h2>About us</h2>
 
