@@ -6,7 +6,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 
 <div class="content-new-info">
 <br>
-    <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo">
+    <a href="https://ourcodingclub.github.io/course.html" target="_blank"><img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" alt="Course logo"></a>
     <h5>The Data Science for Ecologists and Environmental Scientists course is live!</h5>
       <big>We are so excited to launch our new online and entirely free <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
 </div>
