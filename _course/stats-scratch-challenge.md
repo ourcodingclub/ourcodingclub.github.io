@@ -150,3 +150,34 @@ We thank all the organisations that provided open access data for this challenge
 * __Forestry Commission (2018).__ National Forest Inventory Woodland Scotland 2017. Available at the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/3cb1abc185a247a48b9d53e4c4a8be87_0/) under Open Governement licence: Crown copyright and database right 2018 Ordnance Survey [100021242]
 * __Charles Roper (2015).__ OSGB Grids in shapefile format. Available on [Github](https://github.com/charlesroper/OSGB_Grids) under a CC-0 (public domain) license.
 
+<!-- Get help -->
+<a name = "contact"></a>
+ <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
+        <div class="content-new-info">
+           
+<div class="row-eq-height">
+      
+<div class="col-md-4 col-sm-2">
+        <div class="profile" style="border: 0px;">
+         <img src="{{ site.baseurl }}/assets/img/dl_course/bug.png" style= "width:15%; height:auto; padding:10px 50px 10px 10px;" alt="bug icon">
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-10">
+        <div class="block">
+            <h2>Get in touch</h2>
+          <br>  
+          <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
+          <br>
+          <div style="padding:50px">
+            <center>
+               <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
+               </a>
+            </center>
+         </div>
+      </div>
+   </div><!-- .col-md-8 close -->
+            
+    </div>
+   </div>
+</section> <!-- end of help-->

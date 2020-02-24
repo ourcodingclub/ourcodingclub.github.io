@@ -137,3 +137,35 @@ We thank all the organisations that provided open access data for this challenge
 * __Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016).__ The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016. Available from the [NERC Environmental Information Data Centre](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe) under an Open Government License.
 * __Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019).__ Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season. Available from the [NERC Environmental Information Data Centre](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372) under an Open Government License.
 * __Met Office (2019).__ Regional time series of monthly, seasonal and annual values. Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.
+
+<!-- Get help -->
+<a name = "contact"></a>
+ <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
+        <div class="content-new-info">
+           
+<div class="row-eq-height">
+      
+<div class="col-md-4 col-sm-2">
+        <div class="profile" style="border: 0px;">
+         <img src="{{ site.baseurl }}/assets/img/dl_course/bug.png" style= "width:15%; height:auto; padding:10px 50px 10px 10px;" alt="bug icon">
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-10">
+        <div class="block">
+            <h2>Get in touch</h2>
+          <br>  
+          <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
+          <br>
+          <div style="padding:50px">
+            <center>
+               <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
+               </a>
+            </center>
+         </div>
+      </div>
+   </div><!-- .col-md-8 close -->
+            
+    </div>
+   </div>
+</section> <!-- end of help-->

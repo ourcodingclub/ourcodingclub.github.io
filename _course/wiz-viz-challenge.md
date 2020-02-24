@@ -182,3 +182,35 @@ We thank all the organisations that provided open access data for this challenge
 * __Scottish Natural Heritage (2018).__ National Nature Reserves. Shapefile [available here](https://gateway.snh.gov.uk/natural-spaces/dataset.jsp?dsid=NNR) under Open Government Licence (Crown copyright).
 * __Forestry Commission (2018).__ Native Woodland Survey of Scotland (NWSS). Available on the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7) under Open Governement licence (Crown copyright).
 * __Forestry Commission (2018).__ Native Woodland Survey of Scotland (NWSS) - Species structure. Available on [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6) under Open Governement licence (Crown copyright).
+
+<!-- Get help -->
+<a name = "contact"></a>
+ <section id="portfolio-work" style="background-color: #bccd6da; padding-bottom:20px">
+        <div class="content-new-info">
+           
+<div class="row-eq-height">
+      
+<div class="col-md-4 col-sm-2">
+        <div class="profile" style="border: 0px;">
+         <img src="{{ site.baseurl }}/assets/img/dl_course/bug.png" style= "width:15%; height:auto; padding:10px 50px 10px 10px;" alt="bug icon">
+        </div>
+      </div><!-- .col-md-4 close -->
+      
+      <div class="col-md-8 col-sm-10">
+        <div class="block">
+            <h2>Get in touch</h2>
+          <br>  
+          <p>Bee in your bonnet? Technical issues? Don't hesitate to get in touch with any questions or suggestions concerning the course. Please keep in mind that this is a brand new course and we are still testing and implementing some features, so if you notice errors or some areas of the site are not working as they should, please tell us!</p>
+          <br>
+          <div style="padding:50px">
+            <center>
+               <a class="button" href="mailto:ourcodingclub@gmail.com" target="_blank"> Contact us 
+               </a>
+            </center>
+         </div>
+      </div>
+   </div><!-- .col-md-8 close -->
+            
+    </div>
+   </div>
+</section> <!-- end of help-->
