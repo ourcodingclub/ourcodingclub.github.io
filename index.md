@@ -32,7 +32,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 	</li>
   </ul>
 </div>
-<big>We are so excited to launch our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the change to get a certificate for your work.</big>
+<big>We have launched our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the change to get a certificate for your work.</big>
 </div>
 
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
