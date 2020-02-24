@@ -10,7 +10,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
     <h5>The Data Science for Ecologists and Environmental Scientists course is live!</h5>
       <big>We are so excited to launch our new online and entirely free <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists course</a>! Check out the course for a tailored selection of Coding Club tutorials, quizzes and challenges, plus the option to get a certificate for your work. Our course is fully free and aimed at anyone wanting to gain data science skills in the programming language R, with additional content in Python and JavaScript.</big>
 </div>
-	  <p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
+<p><b><h2><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h2></b></p>
 </section>
 
 <div class="count">
