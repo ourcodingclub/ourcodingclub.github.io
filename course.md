@@ -6,18 +6,23 @@ redirect_from:
   - /course/
   - /course_home/
 ---
+<section id="portfolio-work" style="padding-bottom:0px"> <!-- adding section to expand width of div -->
+<div class="content-new-info">
+    <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" style= "width:20%; height:auto;" alt="Course logo">
+<p><b>Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the chance to get a certificate for your work. Our course Data Science for Ecologists and Environmental Scientists runs continuously, so you can sign up anytime and learn from 16 core tutorials, 16 quizzes, 3 practical challenges and over 20 more tutorials available on the Coding Club website!</b></p>
+<p>People in environmental fields and beyond increasingly need strong data manipulation, analysis, and visualisation skills, but quantitative skills can be intimidating and learning is not always accessible. Our goal is to overcome code fear and statistics anxiety so that people can build up their confidence and take their careers further.</p>
+</div>
+</section>
 
-<center><h2>Course overview</h2></center>
+<div class="stream-container">
+	<a href="{{ site.baseurl }}/course/stats-scratch/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream1.png"></a>
+	<a href="{{ site.baseurl }}/course/wiz-viz/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream2.png"></a>
+	<a href="{{ site.baseurl }}/course/mastering-modelling/index.html"><img src="{{ site.baseurl }}/assets/img/dl_course/DL_stream3.png"></a>
+</div>
 
 <div class="row">
-  <div class="column-new">
-  <big><b>Scientists in environmental fields increasingly need strong data manipulation, analysis, and visualisation skills, but are not always taught data science in their degrees. Our online course is made by ecologists, for ecologists, and focuses on giving you the skills you need for your studies or career.</b></big></div>
-  <br>
     <div class="column-new">
-  <p>Depending on your chosen path, you will learn to use R to manipulate, graph and analyse ecological data, or build on your existing skills to create advanced data visualisations or master new analysis techniques such as mixed-effect modelling, ordination and more. By the end of the course, you will be able to undertake one (or more) of our case-study challenges, using open data to answer questions about Scottish environmental issues, giving you a flavour of real-life applications of data science.</p>
-  <br>
-  <br>
-  <br>
+  <p>Depending on your chosen stream, you will learn to use R to manipulate, graph and analyse ecological data, or build on your existing skills to create advanced data visualisations or master new analysis techniques such as mixed-effect modelling, ordination and more. By the end of the course, you will be able to undertake one (or more) of our case-study challenges, using open data to answer questions about Scottish environmental issues, giving you a flavour of real-life applications of data science.</p>
   </div>
   </div>
   
@@ -48,7 +53,7 @@ redirect_from:
     <h3>Is this course for me?</h3>
     <p>We think so - it's for everyone! Our course is aimed at people wishing to improve their programming and quantitative skills, particularly in ecological and environmental fields. That said, anyone with an interest in coding and data science can participate! It just means that our examples are drawn from nature, and the tutorials are focused on answering ecological questions (but most techniques also apply in other disciplines too).</p>
     <h3>What's special about this course?</h3>
-    <p>Our course is designed to give you the data science skills you want and need. Our three streams are aimed at different interests and levels of ability. The set-up of our course is very flexible, so you can pick and choose from each stream to create your own learning path. At the end, all the tutorials and challenges that you have completed will appear on your certificate.</p>
+    <p>Our course is designed to give you the data science skills you want and need. Our three streams are aimed at different interests and levels of ability. The set-up of our course is very flexible, so you can pick and choose from each stream to create your own learning path. All the tutorials and challenges that you have completed will appear on your certificate.</p>
     <h5>Oh, and it’s completely free!</h5>
 </div>
 
