@@ -34,8 +34,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </div>
 <big>We have launched our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the chance to get a certificate for your work.</big>
 </div>
-
-<section id="index-work" style="padding-bottom:30px">
+<section id="index-work" style="padding-bottom:20px">
 <div class="container">
         <center><a class="button-newest" href="{{ site.baseurl }}/tutorials">Explore our tutorials</a>         <a class="button-new" href="{{ site.baseurl }}/course">Take the course</a>         <a class="button" href="{{ site.baseurl }}/involve">Contribute and get involved</a></center>
   </div>
@@ -49,7 +48,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 
 <p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
 
-<p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
+<p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
 </div>
 </section>
 
@@ -78,71 +77,43 @@ https://twitter.com/our_codingclub
 	</div>
 </div>
 
-<section id="portfolio-work">
+<section id="portfolio-work" style="padding-top:10px">
 <div class="content-new-info">
-<h2>Our values and goals</h2>
-
-<p>Coding Club is for everyone keen to learn about programming and statistics and how these skills can be applied in research. We want to create a jolly and diverse community where everyone has a voice and feels comfortable to express it. Our own team includes people from different backgrounds and nationalities and we are so happy to be working together. We want to establish the same ethos within Coding Club as a whole: Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
-</div>
-</section>
-
+<center><h2>Our values and goals</h2></center>
 <div class="values">
 <ul>
 	<li>
 		<div>
             <i class="fas fa-image"></i>
 			<span class="values-title">Quantitative skills</span>
-			<span class="values-desc">Empowering students and future professionals to answer research questions</span>
+			<span class="values-desc">Empowering students and future professionals to answer research questions and harness the power of data</span>
 		</div>
     </li>
     <li>
 		<div>
             <i class="fas fa-leaf"></i>
-			<span class="values-title">Sustainable learning communities</span>
+			<span class="values-title">Sustainable learning</span>
 			<span class="values-desc">Supporting the future development of Coding Club through mentorship and training</span>
 		</div>
     </li>
     <li>
 		<div>
             <i class="fas fa-globe-europe"></i>
-			<span class="values-title">Collaboration in learning and teaching</span>
+			<span class="values-title">Collaboration in learning</span>
 			<span class="values-desc">Establishing links between organisations and institutions which develop quantitative skills</span>
 		</div>
 	</li>
     <li>
       <div>
             <i class="fas fa-handshake"></i>
-			<span class="values-title">Wide and diverse participation in quantitative sciences</span>
-			<span class="values-desc">Fostering a supportive and inclusive environment where everyone has opportunities to learn</span>
+			<span class="values-title">Diversity</span>
+			<span class="values-desc">Fostering a supportive and inclusive environment with diverse opportunities to learn</span>
       </div>
     </li>
   </ul>
 </div>
-
-<section id="portfolio-work">
-<div class="content-new-info">
-<h2>Data Science in Edinburgh</h2>
-<p><b><h4><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">You can find our schedule for Edinburgh workshops in 2020 here</a> and all our online tutorials <a href="https://ourcodingclub.github.io/tutorials.html" target="_blank">here</a>!</h4></b></p>
 </div>
 </section>
-
-<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
-<div class="content-new-info">
-<p><b>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</b></p>
-</div>
-</section>
-
-<section id="portfolio-work">
-<div class="content-new-info">
-<h2>Contribute</h2>
-<p><b>Our mission is to support a diverse learning community where we help each other to attain fluency in statistics and programming.</b> We are very keen to expand our team and anyone can join in! We are looking for people interested in <a href="https://ourcodingclub.github.io/involve.html" target="_blank">contributing tutorials and/or hosting workshops</a>. You can also check out <a href="https://dynamicecology.wordpress.com/2018/10/25/guest-post-coding-club-trying-to-overcome-the-fear-factor-in-teaching-and-learning-quantitative-skills/" target = "_blank">our blog post on Dynamic Ecology for more about our teaching philosophy</a>. Feel free to contact us with any questions or feedback: we would really appreciate your input!</p>
-</div>
-</section>
-
-{% capture link %}
-{{ site.baseurl }}/contact/
-{% endcapture %}
-{% include link-button.html url=link button="Get in touch" %}
 
 <div class="owl-carousel-wrapper">
 	<div class="owl-carousel">
@@ -212,9 +183,21 @@ https://twitter.com/our_codingclub
 	</div>
 </div>
 
+<section id="portfolio-work" style="background-color: #f4eddc; padding-bottom:20px">
+<div class="content-new-streams">
+<a href="https://datascienceees.github.io" target="_blank"><img src="{{ site.baseurl }}/assets/img/index/ds-edi.png" style= "width:20%; height:auto; padding:20px;20px;20px;80px;" alt="Data Science in Edinburgh logo"></a>
+<h2>Data Science in Edinburgh</h2>
+<p><b><h4><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">Schedule for Edinburgh workshops in 2020!</a></h4></b></p>
+
+<p><big>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</big></p>
+</div>
+</section>
+
+<section id="portfolio-work" style="padding-bottom:1px">
 <div class="content-new-info">
 <h2>News</h2>
 </div>
+</section>
 * 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/) 
 * 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/) 
 * 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/) 
@@ -222,6 +205,18 @@ https://twitter.com/our_codingclub
 * 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
 * 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
 * 17th October 2018 - [Quantitative skills and Coding Club - a blog post for the Software Sustainability Institute](https://software.ac.uk/blog/2018-10-17-coding-club-peer-learning-programming-statistics-and-data-science)
+
+<section id="portfolio-work">
+<div class="content-new-info">
+<h2>Contribute</h2>
+<p><b>Our mission is to support a diverse learning community where we help each other to attain fluency in statistics and programming.</b> We are very keen to expand our team and anyone can join in! We are looking for people interested in <a href="https://ourcodingclub.github.io/involve.html" target="_blank">contributing tutorials and/or hosting workshops</a>. You can also check out <a href="https://dynamicecology.wordpress.com/2018/10/25/guest-post-coding-club-trying-to-overcome-the-fear-factor-in-teaching-and-learning-quantitative-skills/" target = "_blank">our blog post on Dynamic Ecology for more about our teaching philosophy</a>. Feel free to contact us with any questions or feedback: we would really appreciate your input!</p>
+</div>
+</section>
+
+{% capture link %}
+{{ site.baseurl }}/contact/
+{% endcapture %}
+{% include link-button.html url=link button="Get in touch" %}
 
 <section id="portfolio-work">
 <div class="content-new-info">
