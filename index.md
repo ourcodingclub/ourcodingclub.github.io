@@ -18,8 +18,8 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 </section>
 
 <section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px">
-<div class="content-new-info">
-<h2>About us</h2>
+<div class="content-new-streams">
+    <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="Sign up icon"><h2>About us</h2>
 
 <p>Our team includes undergradute students, graduates, PhD students and lecturers. We are all passionate for good teaching and improving quantitative skills. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
