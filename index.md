@@ -9,7 +9,7 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <meta property="og:url" content="https://ourcodingclub.github.io" />
 <meta property="og:title" content="Coding Club: a positive peer-learning community" />
 <meta property="og:description" content="Free and accessible tutorials on data analysis, manipulation, visualisation and more." />
-<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/logos/logo_hex.svg" />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/logos/logo_hex_cc.png" />
 
 <div class="content-new-info">
 <br>
