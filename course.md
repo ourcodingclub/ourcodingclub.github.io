@@ -6,6 +6,14 @@ redirect_from:
   - /course/
   - /course_home/
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course.html" />
+<meta property="og:title" content="Data Science for Ecologists and Environmental Scientists" />
+<meta property="og:description" content="Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the chance to get a certificate for your work." />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/logos/Logo_Data_Science_smaller_white.png" />
+
 <section id="portfolio-work" style="padding-bottom:0px"> <!-- adding section to expand width of div -->
 <div class="content-new-info">
     <img src="{{ site.baseurl }}/assets/img/logos/Logo_Data_Science_smallest.png" style= "width:20%; height:auto;" alt="Course logo">
