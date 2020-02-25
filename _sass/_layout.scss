@@ -805,12 +805,16 @@ text-decoration: none;
 }
 
 .goldLight {
-    background-color: $tealLight;
+    background-color: $goldLight;
     color: $fontDark;
 }
 
 .goldDark {
-    background-color: $tealDark;
+    background-color: $goldDark;
+    color: $fontLight;
+}
+
+.goldDark h2 {
     color: $fontLight;
 }
 
@@ -824,6 +828,9 @@ text-decoration: none;
     color: $fontLight;
 }
 
+.heatherDark h2 {
+    color: $fontLight;
+}
 
 .greenLight {
     background-color: $greenLight;
@@ -868,7 +875,15 @@ text-decoration: none;
     color: $fontLight;
 }
 
+.steelBlue h2 {
+    color: $fontLight;
+}
+
 .purpleDark {
     background-color: $purpleDark;
+    color: $fontLight;
+}
+
+.purpleDark h1 {
     color: $fontLight;
 }

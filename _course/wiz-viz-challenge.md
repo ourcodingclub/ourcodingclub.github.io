@@ -59,7 +59,7 @@ The spatial objects have been saved using the [sf package](https://r-spatial.git
 
 You will not have to do any complex spatial analysis for this, but the instructions will point you in the right direction when functions specific to the _sf_ package might be needed. More [hints](#hints) can be found at the bottom of the page.
 {% endcapture %}
-{% include coloursection.html content=coloursection colour="goldLight" %}
+{% include coloursection.html content=coloursection colour="golDark" %}
 
 {% capture coloursection %}
 # Specific tasks 
@@ -101,7 +101,7 @@ Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric
 
 __HINT:__ Producing a map is not very different than producing any other plot. The _sf_ package integrates almost seamlessly with _ggplot2_, so you can use all your favourite ways of selecting colours based on factor levels, adding text and legends, etc. The only difference is that the _sf_ objects are called in your plot through _geom_sf_. 
 {% endcapture %}
-{% include coloursection.html content=coloursection colour="heatherDark" %}
+{% include coloursection.html content=coloursection colour="goldLight" %}
 
 {% capture coloursection %}
 ## 3. Calculate the proportion of land (in %) covered by each habitat in the three areas.
