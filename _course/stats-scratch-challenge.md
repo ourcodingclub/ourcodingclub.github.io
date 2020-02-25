@@ -3,6 +3,13 @@ layout: course
 title: "Intro to R challenge: Where are the red squirrels?"
 banner: "../assets/img/banner/stats-scratch.jpg"
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course/stats-scratch-challenge/index.html?" />
+<meta property="og:title" content="Stats from Scratch Challenge: Where are the red squirrels?" />
+<meta property="og:description" content="Put your skills into practice with our challenge!" />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL-challenge-squirrel.jpg" />
 
 This challenge will require the use of data manipulation, plotting and linear modelling skills, and is the culmination of the [STATS FROM SCRATCH]({{ site.baseurl }}/dl_course/stats-scratch/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge. 
 
