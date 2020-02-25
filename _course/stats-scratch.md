@@ -4,10 +4,17 @@ title: "Stats from Scratch"
 subtitle: "An introduction to data manipulation and analysis in R"
 banner: "../assets/img/banner/stats-scratch.jpg"
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course/stats-scratch/index.html" />
+<meta property="og:title" content="Stats from Scratch: Data Science for Ecologists and Environmental Scientists" />
+<meta property="og:description" content="Take the initial plunge and learn R, this stream is for anyone looking to learn data manipulation and statistical analysis." />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL_stream1.png" />
 
 # Stream overview
 
-__This stream is aimed at scientists who are looking to learn the R language for data manipulation and statistical analysis.__ No programming experience required, so it is ideal for students, postgraduate researchers, and anyone who has been using commercial software for data analysis and wishes they could have more flexibility in their analyses!
+__This stream is aimed at people who are looking to learn the R language for data manipulation and statistical analysis.__ No programming experience required, so it is ideal for students, postgraduate researchers, and anyone who has been using commercial software for data analysis and wishes they could have more flexibility in their analyses!
 
 We will teach you the basic syntax of the R language, and right away you'll be using it to import, manipulate and plot data. You will get into the good habit of using scripts to write clear and reproducible code, and learn the most efficient tricks to prepare and tidy data for analysis in R. We will use a variety of ecological data to practice making graphs and running linear models. Soon you will have all the skills you need to analyse your own data and present the results in a professional way!
 
