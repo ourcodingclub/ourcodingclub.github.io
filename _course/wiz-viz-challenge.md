@@ -18,9 +18,10 @@ You have been asked to provide a report on the extent and structure of some high
 {% capture url %}{{ site.baseurl }}/assets/img/banner/pine.jpg{% endcapture %}
 {% include scroll-banner.html content=banner background=url %}
 
+{% capture coloursection %}
 # Data overview 
 
-You will use the following datasets, available from the [Challenge repository](https://github.com/ourcodingclub/CC_course_challenge2) on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.
+##### __You will use the following datasets, available from the [Challenge repository](https://github.com/ourcodingclub/CC_course_challenge2) on GitHub. To be able to answer the quiz questions properly, it is important that you use these datasets and not potentially updated versions available through the original providers.__
 
 __NOTE:__ The data files have been saved as RDS objects because of their relatively large size. You can easily read a RDS file in R using the [`readRDS()` function](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS).
 
@@ -47,14 +48,20 @@ Original data link [here](http://data-forestry.opendata.arcgis.com/datasets/fead
 - __SITE_HA__: The area of the site in hectares
 
 Original data link [here](https://gateway.snh.gov.uk/natural-spaces/dataset.jsp?dsid=NNR).
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="lightGrey" %}
 
+{% capture coloursection %}
 ## About spatial data
 Two of the three datasets are __shapefiles__, which means that they contain geometric information that allow the data to be represented as shapes (polygons), points or lines. But don't panic! When you import the files into R, you will see that you can preview and manipulate the data much like any other dataframe.
 
 The spatial objects have been saved using the [sf package](https://r-spatial.github.io/sf/articles/sf1.html) which allows for integration with the tidyverse: the _sf_ functions are pipe-friendly and you can pretty much do everything to a _sf_ object that you would do to a regular dataframe (e.g. merge with another dataset, subset to some values or conditions, etc). Remember, in the end, a spatial dataset is just like any other dataset, with extra geographic information tucked in one column!
 
 You will not have to do any complex spatial analysis for this, but the instructions will point you in the right direction when functions specific to the _sf_ package might be needed. More [hints](#hints) can be found at the bottom of the page.
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="goldLight" %}
 
+{% capture coloursection %}
 # Specific tasks 
 
 Here is a detailed list of the tasks you should achieve within this challenge. Remember that a challenge is meant to be, well, challenging, and therefore we are setting you goals but the choice of workflow and functions to achieve them is up to you! We also list the questions that will be asked in the quiz at the end to confirm your successful completion - we suggest you take note of your answers as you go.
@@ -80,7 +87,10 @@ You will need to clean and filter the data to the sites and woodland types of in
 _NB: There are 6 more NNRs within the Cairngorms National Park, but these three are large ones within the core of the park, and the only ones we'll be considering for this analysis._
 
 __HINT:__ Once you have filtered both datasets to only keep the regions and habitats of interest, the best way forward is to create __one object__ that combines the two: i.e. only keep the habitats of interest _that are found within_ the regions of interest. You may need some indepent research to figure it out, but only one function from the _sf_ package is required to achieve this. To get you started, know that all _sf_ functions begin with _"st_"_, and this type of spatial operation is called an _intersection_...
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="heatherDark" %}
 
+{%% capture coloursection %}
 ## 2. Map the areas of interest 
 
 Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric) showing the geographical distribution of the priority habitats. __Specifically, you should:__ 
@@ -90,7 +100,10 @@ Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric
 	* What type(s) of priority habitat is (are) found in the Trossachs but not in the other two areas?
 
 __HINT:__ Producing a map is not very different than producing any other plot. The _sf_ package integrates almost seamlessly with _ggplot2_, so you can use all your favourite ways of selecting colours based on factor levels, adding text and legends, etc. The only difference is that the _sf_ objects are called in your plot through _geom_sf_. 
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="heatherDark" %}
 
+{% capture coloursection %}
 ## 3. Calculate the proportion of land (in %) covered by each habitat in the three areas.
 
 The total NNR area is found in the cell SITE_HA, and the habitat polygon size is contained in the cell HECTARES. _(Note that there are more than one polygon per habitat type! Think about grouping observations first.)_
@@ -103,7 +116,10 @@ __Be prepared to answer the questions:__
 
 * What type of graph did you create?
 * What proportion of Glen Affric is covered in pinewoods?
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="steelBlue" %}
 
+{% capture coloursection %}
 ## 4. Calculate the species richness and evenness of the three areas.
 
 __Species richness__ simply corresponds to the number of different species in each area. _(Tip: all the species information can be found in __species_structure.RDS__.)_ 
@@ -121,6 +137,9 @@ __Be ready to answer the questions:__
 
 * Which area has the most species?
 * Which area has the lowest evenness?
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="beigeYellow" %}
+
 
 {% capture banner %}
 # How to get started 
@@ -175,6 +194,8 @@ We have a tutorial that shows exactly how to create a [custom colour palette]({{
  
 We love getting your feedback, and will add more hints to this section if you get in touch and tell us where you struggled in this challenge!
 
+
+{% capture coloursection %}
 # Acknowledgements 
 
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follows: 
@@ -182,6 +203,8 @@ We thank all the organisations that provided open access data for this challenge
 * __Scottish Natural Heritage (2018).__ National Nature Reserves. Shapefile [available here](https://gateway.snh.gov.uk/natural-spaces/dataset.jsp?dsid=NNR) under Open Government Licence (Crown copyright).
 * __Forestry Commission (2018).__ Native Woodland Survey of Scotland (NWSS). Available on the [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7) under Open Governement licence (Crown copyright).
 * __Forestry Commission (2018).__ Native Woodland Survey of Scotland (NWSS) - Species structure. Available on [Forestry Commission Open Data portal](http://data-forestry.opendata.arcgis.com/datasets/feadebb6bbf844a7bfdb5c8a7b9f73d7_6) under Open Governement licence (Crown copyright).
+{% endcapture %}
+{% include coloursection.html content=coloursection colour="purpleDark" %}
 
 <!-- Get help -->
 <a name = "contact"></a>

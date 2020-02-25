@@ -796,12 +796,35 @@ text-decoration: none;
     color: $fontLight;
 }
 
+.tealDark h1 {
+    color: $fontLight;
+}
+
+.tealDark h2 {
+    color: $fontLight;
+}
+
+.goldLight {
+    background-color: $tealLight;
+    color: $fontDark;
+}
+
+.goldDark {
+    background-color: $tealDark;
+    color: $fontLight;
+}
+
 .heatherLight {
     background-color: $heatherLight;
     color: $fontDark;
 }
 
 .heatherDark {
+    background-color: $heatherDark;
+    color: $fontLight;
+}
+
+.heatherDark h1, h2, h3, h4, h5, h6 {
     background-color: $heatherDark;
     color: $fontLight;
 }
@@ -842,4 +865,24 @@ text-decoration: none;
 .boldOrange {
     background-color: $boldOrange;
     color: $fontDark;
+}
+
+.steelBlue {
+    background-color: $steelBlue;
+    color: $fontLight;
+}
+
+.steelBlue h1, h2 {
+    background-color: $steelBlue;
+    color: $fontLight;
+}
+
+.purpleDark {
+    background-color: $purpleDark;
+    color: $fontLight;
+}
+
+.purpleDark h1, h2 {
+    background-color: $purpleDark;
+    color: $fontLight;
 }
