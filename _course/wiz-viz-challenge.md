@@ -59,7 +59,7 @@ The spatial objects have been saved using the [sf package](https://r-spatial.git
 
 You will not have to do any complex spatial analysis for this, but the instructions will point you in the right direction when functions specific to the _sf_ package might be needed. More [hints](#hints) can be found at the bottom of the page.
 {% endcapture %}
-{% include coloursection.html content=coloursection colour="golDark" %}
+{% include coloursection.html content=coloursection colour="goldDark" %}
 
 {% capture coloursection %}
 # Specific tasks 
