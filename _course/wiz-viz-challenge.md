@@ -90,7 +90,7 @@ __HINT:__ Once you have filtered both datasets to only keep the regions and habi
 {% endcapture %}
 {% include coloursection.html content=coloursection colour="heatherDark" %}
 
-{%% capture coloursection %}
+{% capture coloursection %}
 ## 2. Map the areas of interest 
 
 Create a map for each of the three areas (Cairngorms, Trossachs, and Glen Affric) showing the geographical distribution of the priority habitats. __Specifically, you should:__ 
