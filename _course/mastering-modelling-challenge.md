@@ -1,6 +1,6 @@
 ---
 layout: course
-title: "Data analysis and modelling challenge: Seabird population dynamics" 
+title: "Mastering Modelling challenge: Seabird population dynamics" 
 banner: "../assets/img/banner/mastering-modelling.jpg"
 ---
 

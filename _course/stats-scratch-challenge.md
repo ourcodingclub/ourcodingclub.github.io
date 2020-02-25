@@ -1,6 +1,6 @@
 ---
 layout: course
-title: "Intro to R challenge: Where are the red squirrels?"
+title: "Stats from Scratch challenge: Where are the red squirrels?"
 banner: "../assets/img/banner/stats-scratch.jpg"
 ---
 <meta name="twitter:card" content="summary" />

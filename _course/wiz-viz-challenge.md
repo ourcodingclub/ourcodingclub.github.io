@@ -1,6 +1,6 @@
 ---
 layout: course
-title: "Data visualisation challenge: Native woodlands"
+title: "Wiz of Data Vis challenge: Native woodlands"
 banner: "../assets/img/banner/wiz-viz.jpg"
 ---
 
