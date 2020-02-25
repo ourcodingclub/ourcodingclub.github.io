@@ -38,7 +38,7 @@ Red squirrels are a protected species and, with conservation efforts from [dedic
 
 __Fancy a more advanced challenge? Why don't you try re-creating this dataset yourself?__ (Best suited to someone with notions of spatial analysis: all you have to do is intersect the files and extract the area.)
 {% endcapture %}
-{% include coloursection.html content=coloursection colour="goldLight" %}
+{% include coloursection.html content=coloursection colour="lightGrey" %}
 
 {% capture coloursection %}
 # Specific tasks
