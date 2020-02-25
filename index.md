@@ -3,6 +3,13 @@ layout: page
 title: "Coding Club: A Positive Peer-Learning Community"
 banner: "../assets/img/banner/slider-bg-pale.jpg"
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io" />
+<meta property="og:title" content="Coding Club: a positive peer-learning community" />
+<meta property="og:description" content="Free and accessible tutorials on data analysis, manipulation, visualisation and more." />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/logos/logo_hex.svg" />
 
 <div class="content-new-info">
 <br>
