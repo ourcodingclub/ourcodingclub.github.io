@@ -58,7 +58,7 @@ install.packages("INLA",
 We will be using two datasets for this practical, derived from my own fieldwork here in Edinburgh. The purpose of the study was to collect fox scats (i.e. faecal marking) in public greenspace around the city of Edinburgh and analyse them for gastrointestinal parasites. 
 
 {% capture callout %}
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -164,7 +164,7 @@ We've now ran our first `INLA` model, nice one!
 
 __In the output you can find some general information about the model: the time it took to run, a summary of the fixed effects, and model selection criteria (if you have specified them in the model), as well as the precision for any random effects (in this case just our spatial component `ZONE_CODE`). It is important to remember that `INLA` works with precision (tau = 1/Variance), so higher values of precision would correspond to lower values of variance.__
 
-We can see that `GS_Ratio` has a positive effect on the number of scats found (the 0.025q and 0.075 quantiles do not cross zero so this is a "significant" positive effect), and that the iid (random factorial effect) of `ZONE_CODE` id has a much lower precision than the spatial effect, which means that using `ZONE_CODE` as a standard random effect would probably suffice in this case. 
+We can see that `GS_Ratio` has a positive effect on the number of scats found (the 0.025q and 0.075 quantiles do not cross zero so this is a "significant" positive effect), and that the iid (random factorial effect) of `ZONE_CODE` id has a much lower precision than the spatial effect, which means that using `ZONE_CODE` as a standard factorial random effect would probably suffice in this case. 
 
 ### Setting priors
 
@@ -375,7 +375,7 @@ __Now that the data is properly loaded, we can start putting together all the co
 ### The Mesh
 __Unlike the area data, point data do not have explicit neighbours and thus we would have to calculate the autocorrelation structure between each possible point existing in space, which is obviously imposssible. For this reason, the first step is to discretise the space to create a mesh that would create artificial (but useful) set of neighbours so we could calculate the autocorrelation between points. `INLA` uses a triangle mesh, because is much more flexible and can be adapted to irregular spaces. There are several options that can be used to adjust the mesh.__
 
-I will not spend a lot of time explaining the mesh as there are a number of excellent tutorials that do that much better than I could, and I find defining the mesh is the easiest part of this `INLA` modelling process!
+I will not spend a lot of time explaining the mesh as there are a number of excellent tutorials that do a much better job than I could (check out <a href="https://haakonbakka.bitbucket.io/btopic126.html" target="_blank">this one</a> for example), and I find defining the mesh is the easiest part of this `INLA` modelling process!
 
 ```R
 # Now we can construct the mesh around our points
@@ -430,7 +430,8 @@ plot(Scot_Shape_BNG, add=T)
 {% capture callout %}
 _NOTE:_ You can see that the mesh extends past the coastline into the sea. Since we are trying to evaluate the effect of greenspace ratio on the parasite species of foxes, it makes no sense to include area that are part of the sea in the mesh. There are two possible solutions: the first is to run the model using this mesh and then simply ignore the results the model provides for the sea area. The second is to modify the mesh to reflect the coastline.
 
-Keep in mind that you can either use shapefiles or create nonconvex hulls around the data and use those shapes to create bespoke meshes. Check out the Blangiardo & Cameletti book (chapter 6) for more exhaustive examples.
+Keep in mind that you can either use shapefiles or create nonconvex hulls around the data and use those shapes to create bespoke meshes. Check out the <a href="https://onlinelibrary.wiley.com/doi/10.1111/jtsa.12201" target="_blank">Blangiardo & Cameletti book(chapter 6)</a> for more exhaustive examples.
+
 {% endcapture %}
 {% include callout.html content=callout colour='important' %}
 
@@ -438,7 +439,7 @@ Keep in mind that you can either use shapefiles or create nonconvex hulls around
 
 __Now that we have constructed our mesh, we need to relate the data points to the mesh vertices.__
 
-As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex, then it will be directly related to the adjacent vertices (and the points that fall on them). However, if the points falls within a triangle, its weight will be split between the tree vertices according to the proximity and the points will have "pseudo-neighbours" from all the vertices of the triangles.
+As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex, then it will be directly related to the adjacent vertices (and the points that fall on them). However, if the datapoints falls within a mesh triangle, its weight will be split between the tree vertices according to the proximity and the points will have "pseudo-neighbours" from all the  mesh vertices defining the triangles.
 
 ```R
 A_point <- inla.spde.make.A(Mesh3, loc = Loc)
@@ -508,7 +509,7 @@ Mod_p1.field <- inla.spde2.result(inla = Mod_Point1,
                                  name = "spatial.field1", spde = spde, 
                                  do.transf = T)     # This will transform the results back from the internal model scale 
 
-names(Mod_p1.field)
+names(Mod_p1.field) # check the component of Mod_p1.field
 ```
 
 <big>The two most important things we can extract here are the range parameter (kappa), the nominal variance (sigma) and the range (r, radius where autocorrelation falls below 0.1)). These are important parameters of the spatial autocorrelation: the higher the Kappa, the smoother the spatial autocorrelation structure (and the highest the range). Shorter range indicates a sharp increase of autocorrelation between closely located points and a stronger autocorrelation effect.</big>
@@ -545,7 +546,8 @@ I am going to mention in passing a variety of custumisations to the model (such 
 
 ### Specify PC priors
 
-__We can provide priors to the spatial term. A special kind of priors (penalised complexity or pc priors) can be imposed on the `SPDE`. These priors are widely used as they (as the name suggests) penalise the complexity of the model. In practice they shrink the spatial model towards the base model (one without a spatial term). To do so we apply weakly informative priors that penalise small ranges and large variances.__
+__We can provide priors to the spatial term. A special kind of priors (penalised complexity or pc priors) can be imposed on the `SPDE`. These priors are widely used as they (as the name suggests) penalise the complexity of the model. In practice they shrink the spatial model towards the base model (one without a spatial term). To do so we apply weakly informative priors that penalise small ranges and large variances.__ 
+Check out the <a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1415907" target="_blank">Fulgstag et al (2018)</a> paper for a more detailed theorethical explanation of how PC priors work.
 
 ```R
 spde.pc   <- inla.spde2.pcmatern(Mesh3,                      # inla.spde2.pcmatern() instead of inla.spde2.matern()"
@@ -555,7 +557,7 @@ spde.pc   <- inla.spde2.pcmatern(Mesh3,                      # inla.spde2.pcmate
 
 ### Spatial index
 
-__One useful step includes constructing a spatial index. This will provide all the required elements to the SPDE model. This is not strictly necessary, unless you want to create multiple spatial fields (e.g. year-specific spatial fields). The number of replicates will produce `iid` replicates (the variance will be equally distributed between the levels), while the number of groups will produce dependent replicates (each level of the group will depend from the previous/following one).__
+__One useful step includes constructing a spatial index. This will provide all the required elements to the SPDE model. This is not strictly necessary, unless you want to create multiple spatial fields (e.g. year-specific spatial fields). The number of replicates will produce `iid` independent, identically distributed replicates (the variance will be equally distributed between the levels, which is equivalent to a GLM standard factorial effect), while the number of groups will produce dependent replicates (each level of the group will depend from the previous/following one).__
 
 Shown beneath are the default settings for the index (no replicates or groups are specified):
 
@@ -638,8 +640,7 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-The amount of greenspace (`GS Ratio`) is clearly positively correlated with species richness, but the effect is fairly linear, so we could re-fit the model.
-
+The amount of greenspace (`GS Ratio`) is clearly positively correlated with species richness, but the effect is fairly linear, so we might want to consider fitting it as a linear effect in the next model (we won't loose much information by doing so)
 ```r
 plot(Mod_Point2$summary.random$JanDate[,1:2], 
      type = "l", 
