@@ -894,6 +894,7 @@ par(mfrow = c(1,1), mar = c(2,2, 1,1))
 plot(predmean_ras, asp = 1, col = my.palette.post)
 points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
+
 # plot the model predictions for sd
 par(mfrow = c(1,1), mar = c(2,2, 1,1))
 plot(predsd_ras, asp = 1, col = my.palette.var)
