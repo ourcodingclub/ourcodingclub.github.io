@@ -70,7 +70,7 @@ All the files you need to complete this tutorial can be downloaded from [this re
 
 The data I am going to use includes area data of the number of scats found (The hexagonal lattice in the figure) and the point data of the parasite richness we found per sample.
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG01_Dataset.jpg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG01_Dataset.jpg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Dataset overview</center>
 
 <a name="lattice"></a>
@@ -104,7 +104,7 @@ spplot(obj = Fox_Lattice, zcol = "Scat_No",
        col.regions = my.palette, cuts = 8)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02_Scat_No.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02_Scat_No.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Number of fox scats across space</center>
 
 As mentioned previously, `INLA` needs to know which areas are neighbouring, so it can compute the spatial autocorrelation structure, we do that by computing the adjacency matrix.
@@ -131,7 +131,7 @@ image(inla.graph2matrix(H), xlab = "", ylab = "")
 
 This matrix shows the neighbouring for each cell. You have the cell numerical ID (`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves). Each line will have up to 6 neighbours (hexagons have 6 edges), corresponding to the number of neighbours of the lattice cell. Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name, so you have a clump of adjacent cells around the diagonal line. When using administrative districts this matrix will likely be messier.
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Adjacency matrix</center>
 
 We also need to specify the model formula. This model will test whether there is a linear effect of greenspace ratio (`GS_ratio`) on the number of fox scats found in each area across Edinburgh. We will do the model formula first, which doesn't actually run our model, and we will do the running part in the next step.
@@ -235,7 +235,7 @@ spplot(obj = Fox_Lattice_post, zcol = "cat.zeta",
        col.regions = my.palette.post)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG03_PostMean.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG03_PostMean.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Posterior means mapped across space showing the number of fox scats as per our model.</center>
 
 Similarly, we can plot the uncertainty associated with the posterior mean. As with any modelling, important to think not just about the mean, but how confident we are in that mean.
@@ -264,7 +264,7 @@ spplot(obj = Fox_Lattice_var, zcol = "cat.prob.csi",
        col.regions = my.palette.var, add = T)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG04_PostVar.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG04_PostVar.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Uncertainty in the posterior means mapped across space as per our model.</center>
 
 {% capture callout %}
@@ -342,7 +342,7 @@ plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
 plot(Scot_Shape, add = T)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG05_Point_wrongCRS.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG05_Point_wrongCRS.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Mixing up different coordinate systems results in a wrong graph!</center>
 
 However, if we change the transform the CRS of `Scot_Shape` using the `spTransform()` function, we can correctly map correctly the fox scats and the Scotland shapefile together.
@@ -357,7 +357,7 @@ plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG06_Point_rightCRS.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG06_Point_rightCRS.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>And now all is fine!</center>
 
 __Now that the data is properly loaded, we can start putting together all the components required by a geostatistical `INLA` model. We'll start fitting just a simple base model with only an intercept and spatial effect in it and build up complexity from there.__
@@ -412,7 +412,7 @@ plot(Mesh4,asp = 1, main = "")
 points(Loc, col = 2, pch = 16, cex = 0.1)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG07_Meshes.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG07_Meshes.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Here is the progression of our meshes!</center>
 
 __The third Mesh seems the most regular and appropriate for this dataset.__
@@ -424,7 +424,7 @@ points(Fox_Point, col = 2, pch = 16, cex = 1)
 plot(Scot_Shape_BNG, add=T)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG08_Right_Mesh.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG08_Right_Mesh.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Here is the best mesh to use.</center>
 
 {% capture callout %}
@@ -439,7 +439,7 @@ Keep in mind that you can either use shapefiles or create nonconvex hulls around
 
 __Now that we have constructed our mesh, we need to relate the data points to the mesh vertices.__
 
-As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex, then it will be directly related to the adjacent vertices (and the points that fall on them). However, if the datapoints falls within a mesh triangle, its weight will be split between the tree vertices according to the proximity and the points will have "pseudo-neighbours" from all the  mesh vertices defining the triangles.
+As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex (a vertex is each angular point of a polygon, here a triangle), then it will be directly related to the adjacent vertices (and the points that fall on them). However, if the datapoints falls within a mesh triangle, its weight will be split between the tree vertices according to the proximity and the points will have "pseudo-neighbours" from all the  mesh vertices defining the triangles.
 
 ```R
 A_point <- inla.spde.make.A(Mesh3, loc = Loc)
@@ -496,7 +496,7 @@ _NOTE:_ `INLA` offers a number of functions to manipulate posterior marginals. W
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/TAB_01_PostMarg functions.jpg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/TAB_01_PostMarg functions.jpg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>(Krainski et al 2018, Chapter 1)</center>
 
 __Back to extracting our random term variance now.__
@@ -547,7 +547,7 @@ I am going to mention in passing a variety of custumisations to the model (such 
 ### Specify PC priors
 
 __We can provide priors to the spatial term. A special kind of priors (penalised complexity or pc priors) can be imposed on the `SPDE`. These priors are widely used as they (as the name suggests) penalise the complexity of the model. In practice they shrink the spatial model towards the base model (one without a spatial term). To do so we apply weakly informative priors that penalise small ranges and large variances.__ 
-Check out the <a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1415907" target="_blank">Fulgstag et al (2018)</a> paper for a more detailed theorethical explanation of how PC priors work.
+Check out the <a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1415907" target="_blank">Fulgstag et al (2018)</a> paper for a more detailed theoretical explanation of how PC priors work.
 
 ```R
 spde.pc   <- inla.spde2.pcmatern(Mesh3,                      # inla.spde2.pcmatern() instead of inla.spde2.matern()"
@@ -654,7 +654,7 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG09_GS_Ratiorw2.jpeg" alt="Img" style="width: 70%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG10_JanDatrw1.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG09_GS_Ratiorw2.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG10_JanDatrw1.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Visualising the effects as per our model results.</center>
 
 __Now we can extract some further information about the spatial field.__
@@ -739,7 +739,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG11_xmean_ras.jpeg" alt="Img" style="width: 70%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG12_xsd_ras.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG11_xmean_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG12_xsd_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>The mean and variance of the Gaussian Random Field.</center>
 
 
@@ -761,7 +761,7 @@ plot(GS_Pred, col = my.palette_GS)
 points(Fox_Point, pch = 16, cex = 0.5) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG13_GS_Pred.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG13_GS_Pred.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Greenspace in Edinburgh</center>
 
 {% capture callout %}
@@ -901,7 +901,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_predmean_ras.jpeg" alt="Img" style="width: 70%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG15_predsd_ras.jpeg" alt="Img" style="width: 70%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_predmean_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG15_predsd_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Visualising the model predictions for species richness (its mean and variance (here standard deviation)</center>
 
 In the interest of keeping this tutorial short(ish), I have only presented an example of producing model predictions at unsampled locations. But keep in mind that producing predictions for model validation is relatively straightforward (e.g., when you want to check how the real values and the model predictions compare, and you should be able to do it using the code I presented here as a template). Feel free to have a go if you'd like a challenge!
