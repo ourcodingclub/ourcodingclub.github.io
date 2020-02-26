@@ -3,6 +3,13 @@ layout: course
 title: "Wiz of Data Vis challenge: Native woodlands"
 banner: "../assets/img/banner/wiz-viz.jpg"
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course/wiz-viz/index.html" />
+<meta property="og:title" content="Wiz of Data Vis Challenge: Where are Scotland's high-value conservation habitats?" />
+<meta property="og:description" content="Put your skills into practice with our challenge!" />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL-challenge-larch.jpg" />
 
 This challenge will require the use of data manipulation, plotting and mapping skills, and is the culmination of the [WIZ OF DATA VIS]({{ site.baseurl }}/dl_course/wiz-viz/index.html) course stream. Scroll for more information on your tasks and how to complete the challenge.
 
