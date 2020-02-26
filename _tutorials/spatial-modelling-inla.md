@@ -26,6 +26,7 @@ The first and most important concept you need to remember (in my opinion), is th
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
+
 `INLA` explicitly uses neighbouring structures to estimate the spatial autocorrelation structure of the entire dataset. For area data this is relatively straghtforward as there is an explicit neighbouring structure included in the data (areas either share a border or they don't). For point processes, however, we need to create an artificial discretisation of the space to tell the models which points are close to each other and where each new point have explicit neighbours so we can calculate the spatial autocorrelation structure among them. Once you understand this concept, the steps taken to fit a spatial model become logical, as it is just a matter of finding the best way to discretise the space and relate it back to the original dataset.
 
 Analysis of area data (where each polygon has clearly defined neighbours) is generally more straightforward, and that is where we will start in this tutorial and then we will gradually build up the complexity.
@@ -107,21 +108,22 @@ As mentioned previously, `INLA` needs to know which areas are neighbouring, so i
 Lattice_Data <- Fox_Lattice@data
 str(Lattice_Data)
 
-require(spdep)
+require(spdep)  # a package that can tabulate contiguity in spatial objects
 require(INLA)
 
 # Specify the adjacency matrix
-Lattice_Temp <- poly2nb(Fox_Lattice)
-nb2INLA("Lattice.graph", Lattice_Temp)
-Lattice.adj <- paste(getwd(),"/Lattice.graph",sep="")
+Lattice_Temp <- poly2nb(Fox_Lattice)  # construct the neighbour list
+nb2INLA("Lattice.graph", Lattice_Temp) # create the adjacency matrix in INLA format
+Lattice.adj <- paste(getwd(),"/Lattice.graph",sep="") # name the object
 
 inla.setOption(scale.model.default = F)
-H <- inla.read.graph(filename = "Lattice.graph")  
+H <- inla.read.graph(filename = "Lattice.graph")  # and save it as a graph
 
 # Plot adjacency matrix 
 image(inla.graph2matrix(H), xlab = "", ylab = "")
 ```
-Note that in this case the cells were already sorted so they are only adjacent to ones with a similar name. When using administrative districts this matrix will likely be messier.
+This matrix shows the neighbouring for each cell. You have the cell numerical ID(`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves).
+Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name. When using administrative districts this matrix will likely be messier.
 
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg{% endcapture %}
 {% include figure.html url=link caption="Adjacency matrix" %}
@@ -147,9 +149,12 @@ Mod_Lattice <- inla(formula,
                     control.compute = list(cpo = T, dic = T, waic = T))  
 # CPO, DIC and WAIC metric values can all be computed by specifying that in the control.compute option
 # These values can then be used for model selection purposes if you wanted to do that
-```
 
+summary(Mod_Lattice)
+```
 We've now ran our first `INLA` model, nice one!
+In the output you can find some general information about the model: the time it took to run, a summary of the fixed effects, and model selection criteria (if you have specified them in the model), as well as the precision for any random effects (in this case just our spatial component `ZONE_CODE`). It is important to remember that `INLA` works with precision(tau = 1/Variance), so higher values of precision would correspond to lower values of variance.
+We can see that `GS_Ratio` has a significant, positive effect on the number of scats found (the 0.025q and 0.075 quantiles do not cross zero), and that the iid (random factorial effect) of `ZONE_CODE` id has a much lower precision than the spatial effect, which means that using `ZONE_CODE` as a standard random effect would probably suffice in this case. 
 
 ### Setting priors
 
@@ -172,7 +177,6 @@ Mod_Lattice_p <- inla(formula_p,
                     control.compute = list(cpo = T)
                   )
                                     
-summary(Mod_Lattice)
 summary(Mod_Lattice_p)
 
 # We can extract the summary of the fixed effects (in this case only GS)
@@ -259,13 +263,19 @@ Note that the posterior mean is highest where we have the higher level of uncert
 ## Geostatistical Data: Marked Point Data
 
 {% capture callout %}
-For this analysis, we will be using geostatistical data, also known as marked points. In practice the dataset comprises of georeferenced points that have an associated value (which is generally the response variable). In this example, we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (`Spp_Rich`) found in each scat. The dataset also contains a number of variables associated with each sample: 
+For this analysis, we will be using geostatistical data, also known as marked points. This is one of the most common type of spatial data. It includes points (with associated coordinates), which have a value attached, which is generally the measurement of the response variable we are interested here. The idea is that these points are the realisation of a smooth spatial process that happens everywhere in space, and the points are just samples of this process (we will never be able to sample the entire process as there are infinite points in the continuous space).
+A classic example would be soil Ph: this is a property of the soil and it exist everywhere, but we will only measure it at some locations. By linking the values we have collected with other measurements we could find out that soil Ph is dependent on precipitation level, or vegetation type, and (with enough information) we could be able to reconstruct the underlying spatial process.
+
+We are generally interested in understanding the underlying process (which variable influence it? how does it change in space and time?) and to recreate it (by producing model predictions.
+{% endcapture %}
+{% include callout.html content=callout colour='callout' %}
+
+In this example, we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (`Spp_Rich`) found in each scat. The dataset also contains a number of variables associated with each sample: 
 
 - JanDate (the date when the sample was collected)
 - Site (which park was it collected from), 
 - Greenspace variability (`GS_Var`) which is a categorical variable measuring the number of different greenspace types (Low, Med, High)
-{% endcapture %}
-{% include callout.html content=callout colour='callout' %}
+
 
 In this case we are going to model the species richness of gastrointestinal parasites as a function of greenspace ratio, while taking into account both the spatial effect and the other covariates mentioned just above.
 
@@ -799,8 +809,11 @@ plot(Scot_Shape_BNG, add = T)
 ```
 ######### FIG14_predmean_ras #############      ######### FIG15_predsd_ras #############
 
-## Final Remarks
+In the interest of keeping this tutorial short, I have only presented an example of producing model predictions at unsampled locations, however, keep in mind that producing prediction for model validation is relatively straightforward (and you should be able to do it using the code I presented here as a template). 
+You just need to split the dataset in two (one part used for estimation, the other for validation) and assign NAs to the response variable of the validation subset (while retaining coordinates and the rest of the covariate), then prepare a separate validation projection matrix (`A_Val`) and a validation stack, similarly to what we have done here.
+Finally, when you run the model you can access the predicted values for the validation data by using the `inla.stack.index()` function and use it to evaluate the predictive power of your model.
 
+## Final Remarks
 
 If you made it this far, Well done!!
 After this you should be able to fit basic spatial models of area and marked point data, extract results and make predictions. Spatial modelling is becoming increasingly popular and being able to account for autocorrelation in your modelling is a great skill to have.
