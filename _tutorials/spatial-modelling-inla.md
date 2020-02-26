@@ -64,7 +64,7 @@ We will be using two datasets for this practical, derived from my own fieldwork 
 
 ## The question
 
-##### Is the amount of greenspace in an area was significantly correlated with:
+##### Is the amount of greenspace in an area significantly correlated with:
 ##### A) The number of fox scats found
 ##### B) The number of parasite species (species richness) found in each scat
 
