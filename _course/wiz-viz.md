@@ -4,7 +4,13 @@ title: "Wiz of Data Vis"
 subtitle: "A (good) graph is worth a thousand words!"
 banner: "../assets/img/banner/wiz-viz.jpg"
 ---
-
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course/wiz-viz/index.html" />
+<meta property="og:title" content="Wiz of Data Vis: Data Science for Ecologists and Environmental Scientists" />
+<meta property="og:description" content="Make graphs that tell a compelling story and learn different ways of communicating key messages with data." />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL_stream2.png" />
 
 This stream is aimed at scientists who are looking to improve and expand their data visualisation skills. This is ideal for students or researchers wanting to produce high-impact figures, people working with geospatial data, or with an interest in science communication. For this stream, we will assume you have some basic R experience and know how to import files and manipulate data to some degree. (You don't? Try our [Stats from Scratch]({{ site.baseurl }}/dl_course/stats-scratch/index.html) course stream instead, or just visit some of its tutorials for a refresher.)
 
