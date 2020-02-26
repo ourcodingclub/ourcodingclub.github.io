@@ -208,6 +208,10 @@ marg.zones <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
 Then we use `lapply()` to calculate the value of the posterior mean of the spatial random effect (zeta) from the marginal distributions for each #area (we exponentiate the distibutions to convert them into real numbers, as the output of the model is expressed in the linear predictor scale of the model which was a log scale).
 
 ```R
+Nareas <- length(Lattice_Data[,1])
+
+csi <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
+
 zeta <- lapply(marg.zones,function(x) inla.emarginal(exp,x))  
 
 zeta.cutoff <- c(0, 1, 2, 5, 9, 15, 20, 35, 80, 800)   # we make a categorisation to make visualisation easier
