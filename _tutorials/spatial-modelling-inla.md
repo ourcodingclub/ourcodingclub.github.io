@@ -315,7 +315,7 @@ _NOTE:_ The choice of CRS should be done on the basis of the extent of the study
 __The type of coordinates is important as several steps in the code are unit-specific and should be modified accordingly. I will point them out as they come up. To illustrate this concept, I will plot the points against the shapefile of Scotland, derived from <a href="https://gadm.org/index.html" target="_blank">GADM website</a> (an excellent source for administrative district shapefiles), which is mapped using Lat-Long.__
 
 ```R
-require (rgdal)
+require(rgdal)
 
 # First, we need the coordinates of the points
 Loc <- cbind(Point_Data$Easting, Point_Data$Northing)
