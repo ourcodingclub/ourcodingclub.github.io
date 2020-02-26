@@ -655,7 +655,7 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_9_10.png" alt="Img" style="width: 90%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_9_10.png" alt="Img" style="width: 100%; height:auto;"/></center>
 <center>Visualising the effects as per our model results.</center>
 
 __Now we can extract some further information about the spatial field.__
@@ -740,7 +740,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_11_12.png" alt="Img" style="width: 90%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_11_12.png" alt="Img" style="width: 100%; height:auto;"/></center>
 <center>The mean and variance of the Gaussian Random Field.</center>
 
 <a name="modelpredictions"></a>
@@ -901,7 +901,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_14_15.png" alt="Img" style="width: 90%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_14_15.png" alt="Img" style="width: 100%; height:auto;"/></center>
 <center>Visualising the model predictions for species richness (its mean and variance (here standard deviation)</center>
 
 In the interest of keeping this tutorial short(ish), I have only presented an example of producing model predictions at unsampled locations. But keep in mind that producing predictions for model validation is relatively straightforward (e.g., when you want to check how the real values and the model predictions compare, and you should be able to do it using the code I presented here as a template). Feel free to have a go if you'd like a challenge!
