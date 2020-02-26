@@ -54,6 +54,11 @@ install.packages("INLA",
 
 We will be using two datasets for this practical, derived from my own fieldwork here in Edinburgh. The purpose of the study was to collect fox scats (i.e. faecal marking) in public greenspace around the city of Edinburgh and analyse them for gastrointestinal parasites. 
 
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+{% endcapture %}
+{% include callout.html content=callout colour=alert %}
+
 ## The question
 
 ##### Is the amount of greenspace in an area was significantly correlated with:
@@ -65,8 +70,6 @@ The data I am going to use includes area data of the number of scats found (The 
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG01_Dataset.jpg{% endcapture %}
 {% include figure.html url=link caption="Dataset overview" %}
 
-######### FIG01_Dataset ############# 
-
 <a name="lattice"></a>
 ## Modelling Area Data
 
@@ -75,33 +78,39 @@ __The aim of this section is to carry out a spatial analysis on area data.__ Thi
 __Here, we are going to test the hypothesis that a higher greenspace ratio (a higher percentage of green areas) is associated with a higher number of scats found. We are going to use a dataset I have modified for the purpose of this tutorial. The data refer to the number of fox scats found in the city of Edinburgh during a 6 months survey of every public green area in the city.__
 
 To do so, I have constructed a lattice that covers the study area, and for each zone recorded the number of scats found, along with the greenspace ratio, calculated using the <a href="https://digimap.edina.ac.uk/webhelp/os/data_information/os_products/scotlands_greenspace_map.htm" target="_blank">Greenspace Dataset</a> from Edina Digimap.
-```R
-#load the lattice shapefile and the fox scat data
-require (sp)
-require(rgdal)
 
-# Fox lattice is a spatial object containing the polygons constructed on the basis of the data (normally you would use administrative district)
+```R
+# Load the lattice shapefile and the fox scat data
+require(sp)  # package to work with spatial data
+require(rgdal)  # package to work with spatial data
+
+# Fox lattice is a spatial object containing the polygons constructed on the basis of the data
+# (normally you would use administrative district)
 Fox_Lattice <- readOGR("Fox_Lattice/Fox_Lattice.shp")
 
 require(RColorBrewer)
+# Create a colour palette to use in graphs
 my.palette <- brewer.pal(n = 9, name = "YlOrRd")
 
+# Visualise the number of scats across space
 spplot(obj = Fox_Lattice, zcol = "Scat_No",
        col.regions = my.palette, cuts = 8)
 ```
 
-######### FIG02_Scat_No #############
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02_Scat_No.jpeg{% endcapture %}
+{% include figure.html url=link caption="Number of fox scats across space" %}
 
-As mentioned previously, INLA needs to know which areas are neighbouring, so it can compute the spatial autocorrelation structure, we do that by computing the adjacency matrix.
+As mentioned previously, `INLA` needs to know which areas are neighbouring, so it can compute the spatial autocorrelation structure, we do that by computing the adjacency matrix.
+
 ``` R
-# we can extract the data frame attached to the shp object 
+# We can extract the data frame attached to the shape (file extensioon shp) object 
 Lattice_Data <- Fox_Lattice@data
 str(Lattice_Data)
 
-
 require(spdep)
 require(INLA)
-# specify the adjacency matrix
+
+# Specify the adjacency matrix
 Lattice_Temp <- poly2nb(Fox_Lattice)
 nb2INLA("Lattice.graph", Lattice_Temp)
 Lattice.adj <- paste(getwd(),"/Lattice.graph",sep="")
@@ -109,36 +118,51 @@ Lattice.adj <- paste(getwd(),"/Lattice.graph",sep="")
 inla.setOption(scale.model.default = F)
 H <- inla.read.graph(filename = "Lattice.graph")  
 
-#plot adjacency matrix 
+# Plot adjacency matrix 
 image(inla.graph2matrix(H), xlab = "", ylab = "")
 ```
-note that in this case the cells were already sorted so they are only adjacent to the ones with a similar name. When using administrative districts this matrix will likely be much more messy
-######### FIG02b_Adjacency matrix #############
+Note that in this case the cells were already sorted so they are only adjacent to ones with a similar name. When using administrative districts this matrix will likely be messier.
 
-We also need to specify the model formula. This model will test whether there is alinear effect of GS_ratio on the number of scats found in each area.
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg{% endcapture %}
+{% include figure.html url=link caption="Adjacency matrix" %}
+
+We also need to specify the model formula. This model will test whether there is a linear effect of greenspace ratio (`GS_ratio`) on the number of fox scats found in each area across Edinburgh. We will do the model formula first, which doesn't actually run our model, and we will do the running part in the next step.
+
 ``` R
 formula <- Scat_No ~ 1 + GS_Ratio + # fixed effect
   f(ZONE_CODE, model = "bym",       # spatial effect: ZONE_CODE is a numeric identifier for each area in the lattice  (does not work with factors)
-    graph = Lattice.adj)            # this specify the neighbouring of the lattice areas
-
-# Finally, we can run the model using the inla() function
-Mod_Lattice <- inla(formula,     
-                    family = "poisson",
-                    data = Lattice_Data,
-                    control.compute = list(cpo = T, dic = T, waic = T))  # CPO, DIC and WAIC can all be computed by specifying it in the control.compute option. they can then be used for model selection purposes
+    graph = Lattice.adj)            # this specifies the neighbouring of the lattice areas
 ```
 
-_NOTE:_ The spatial effect is modelled using the BYM (Besag, York and Mollie's model) is the model type usually used to fit area data. CAR (conditional auto-regressive) and besag models are other options.
+{% capture callout %}
+_NOTE:_ The spatial effect is modelled using the BYM (Besag, York and Mollie's model) is the model type usually used to fit area data. CAR (conditional auto-regressive) and besag models are other options, but here we will focus on BYM since that is appropriate way to model the spatial effect when working with area data.
+{% endcapture %}
+{% include callout.html content=callout colour='callout' %}
 
-We can also set priors for the hyperparameters by specifying them in the formula. `INLA` works with precision (tau = 1/Variance) so a very low precision correspond to a very high variance by default. Keep in mind that the priors need to be specified for the linear predictor of the model (so they need to be transformed according to the data distribution) in this case they follow a log gamma distribution (since it's a poisson model)
+```r
+# Finally, we can run the model using the inla() function
+Mod_Lattice <- inla(formula,     
+                    family = "poisson",  # since we are working with count data
+                    data = Lattice_Data,
+                    control.compute = list(cpo = T, dic = T, waic = T))  
+# CPO, DIC and WAIC metric values can all be computed by specifying that in the control.compute option
+# These values can then be used for model selection purposes if you wanted to do that
+```
+
+We've now ran our first `INLA` model, nice one!
+
+### Setting priors
+
+__We can also set priors for the hyperparameters by specifying them in the formula. `INLA` works with precision (tau = 1/Variance) so a very low precision corresponds to a very high variance by default. Keep in mind that the priors need to be specified for the linear predictor of the model (so they need to be transformed according to the data distribution) in this case they follow a log gamma distribution (since it's a Poisson model).__
+
 ```R
 formula_p <- Scat_No ~ 1 + GS_Ratio + 
   f( ZONE_CODE, model = "bym", 
      graph = Lattice.adj, 
      scale.model = TRUE,
      hyper = list(
-       prec.unstruct = list(prior = "loggamma",param = c(1,0.001)),   # precision for the unstructured effect (residual noise)
-       prec.spatial =  list(prior = "loggamma",param = c(1,0.001))    # precision for the spatial structured effect
+       prec.unstruct = list(prior = "loggamma", param = c(1,0.001)),   # precision for the unstructured effect (residual noise)
+       prec.spatial =  list(prior = "loggamma", param = c(1,0.001))    # precision for the spatial structured effect
        )
      )
 
@@ -155,15 +179,20 @@ summary(Mod_Lattice_p)
 round(Mod_Lattice$summary.fixed, 3)
 ```
 
-The posterior mean for the random(spatial) effect can also be computed and plotted overlayed to the lattice, to do so, we need to extract the posterior mean of the spatial effect for each of the cells in the lattice (using the `emarginal()` function) and then add it to the original shapefile so we can map it.
-This represents the distribution in space of the response variable, once you accounted for the covariates included in the model. Think of it as the "real distribution" of the response variable in space, according to the model (obviously this is only as good as the model we have and will suffer if the estimation are poor, we have missing data or we failed to include an important covariate in our model)
+The posterior mean for the random (spatial) effect can also be computed and plotted overlayed to the lattice. To do so, we need to extract the posterior mean of the spatial effect for each of the cells in the lattice (using the `emarginal()` function) and then add it to the original shapefile so we can map it.
+
+This represents the distribution in space of the response variable, once you accounted for the covariates included in the model. Think of it as the "real distribution" of the response variable in space, according to the model (obviously this is only as good as the model we have and will suffer if the estimation are poor, we have missing data or we failed to include an important covariate in our model).
+
 ```R
+# Calculating the number of areas
 Nareas <- length(Lattice_Data[,1])
 
 csi <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
-zeta <- lapply(csi,function(x) inla.emarginal(exp,x))  # we exponentiate the distibutions to convert them into real numbers (the output of the model is expressed in the linear predictor scale of the model)
+zeta <- lapply(csi,function(x) inla.emarginal(exp,x))  
+# we exponentiate the distibutions to convert them into real numbers 
+# (the output of the model is expressed in the linear predictor scale of the model which was a log scale)
 
-zeta.cutoff <- c(0, 1, 2, 5, 9, 15, 20, 35, 80, 800)   # the categorisation is made to make visualisation easier
+zeta.cutoff <- c(0, 1, 2, 5, 9, 15, 20, 35, 80, 800)   # we make a categorisation to make visualisation easier
 cat.zeta <- cut(unlist(zeta),
                 breaks = zeta.cutoff,
                 include.lowest = TRUE)
@@ -178,15 +207,21 @@ data.fox.post <- attr(Fox_Lattice_post, "data")
 attr(Fox_Lattice_post, "data") <- merge(data.fox.post, 
                                        maps.cat.zeta, 
                                        by = "ZONE_CODE")
+```
 
+Now we are ready to make a colour palette and make our map!
+
+```r
 my.palette.post <- rev(brewer.pal(n = 9, name = "YlGnBu"))
 spplot(obj = Fox_Lattice_post, zcol = "cat.zeta",
        col.regions = my.palette.post)
 ```
 
-######### FIG03_PostMean #############
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG03_PostMean.jpeg{% endcapture %}
+{% include figure.html url=link caption="Posterior means mapped across space showing the number of fox scats as per our model." %}
 
-Similarly, we can plot the uncertainty associated with the posterior mean 
+Similarly, we can plot the uncertainty associated with the posterior mean. As with any modelling, important to think not just about the mean, but how confident we are in that mean.
+
 ``` R
 a <- 0
 prob.csi <- lapply(csi, function(x) {1 - inla.pmarginal(a, x)})
@@ -211,34 +246,49 @@ spplot(obj = Fox_Lattice_var, zcol = "cat.prob.csi",
        col.regions = my.palette.var, add = T)
 ```
 
-######### FIG04_PostVar #############
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG04_PostVar.jpeg{% endcapture %}
+{% include figure.html url=link caption="Uncertainty in the posterior means mapped across space as per our model." %}
+
+{% capture callout %}
 Note that the posterior mean is highest where we have the higher level of uncertainty. We have some area where the response variable reaches really high numbers, this is due to missing GS data in this areas (GS=0), so the model compensates for it; however, these are the areas where we also have the highest uncertainty, because the model is unable to produce accurate estimates.
+{% endcapture %}
+{% include callout.html content=callout colour='important' %}
 
 <a name="point"></a>
 
 ## Geostatistical Data: Marked Point Data
 
-For this analysis we will be using geostatistical data, also known as marked points. In practice the dataset comprises of georeferenced points that have an associated value (which is generally the response variable). 
-In this example we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (Spp_Rich) found in each scat. The dataset also contains a number of variables associated with each sample: 
+{% capture callout %}
+For this analysis, we will be using geostatistical data, also known as marked points. In practice the dataset comprises of georeferenced points that have an associated value (which is generally the response variable). In this example, we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (`Spp_Rich`) found in each scat. The dataset also contains a number of variables associated with each sample: 
 
-##### JanDate (the datewhen the sample was collected)
-##### Site (which park was it collected from), 
-##### Greenspace variability (GS_Var) which is a categorical variable measuring the number of different greenspace types (Low, Med, High)
+- JanDate (the date when the sample was collected)
+- Site (which park was it collected from), 
+- Greenspace variability (`GS_Var`) which is a categorical variable measuring the number of different greenspace types (Low, Med, High)
+{% endcapture %}
+{% include callout.html content=callout colour='callout' %}
 
-In this case we are going to model the species richness of gastrointestinal parasites as a function of greenspace ratio, while taking into account both the spatial effect and the other covariates I just mentioned.
+In this case we are going to model the species richness of gastrointestinal parasites as a function of greenspace ratio, while taking into account both the spatial effect and the other covariates mentioned just above.
+
 ``` R
 Point_Data <- read.csv("Point_Data.csv")
 str(Point_Data )
 ```
 
-When transforming the point dataset into a spatial object a Coordinate Reference System (CRS) needs to be specified. 
-The coordinates for this dataset are expressed in Easting/ Northing and it's projected using the British National Grid (BNG). This is important in case you are using multiple shapefiles which might not be in the same coordinate system, and they will have to be projected accordingly.
+When transforming the point dataset into a spatial object, we need to specify a Coordinate Reference System (CRS). The coordinates for this dataset are expressed in Easting / Northing and it's projected using the British National Grid (BNG). This is important in case you are using multiple shapefiles which might not be in the same coordinate system, and they will have to be projected accordingly.
 
-_NOTE:_ The choice of CRS should be done on the basis of the extent of the study area. For small areas (such as this), Easting-Northing coordinate systems are best. They effectively express the coordinates on a flat surface (which does not take into account the globe curvature and consequent modification of the projection shape). Latitude-Longitude should be used for medium-sized studies (country level/ multi country levels), this will take into account the more realistic shape of the map. Finally, for studies coducted at continental and global scale, radians should be used, and the mesh should be fitted taking into account the curvature of the globe.
+{% capture callout %}
+_NOTE:_ The choice of CRS should be done on the basis of the extent of the study area. 
+- __Small areas__ - For small areas (such as this), Easting-Northing coordinate systems are best. They effectively express the coordinates on a flat surface (which does not take into account the globe curvature and consequent modification of the projection shape). 
+- __Medium-sized studies__ - We should use Latitude-Longitude for medium-sized studies (country level/ multi country levels), as this will take into account a more realistic shape of the map. 
+- __Continental and global-scale studies__ - Finally, for studies conducted at continental and global scale, we should use radians and fit the mesh taking into account the curvature of the globe.
+{% endcapture %}
+{% include callout.html content=callout colour='important' %}
 
-The type of coordinates is important as several steps in the code are unit-specific and should be modifies accordingly, I will point them out as they come up. To illustrate this concept, I will plot the points against the shapefile of Scotland, derived from <a href="https://gadm.org/index.html" target="_blank">GADM website</a> (an excellent source for administrative district shapefiles), which is mapped using Lat-Long
+The type of coordinates is important as several steps in the code are unit-specific and should be modified accordingly. I will point them out as they come up. To illustrate this concept, I will plot the points against the shapefile of Scotland, derived from <a href="https://gadm.org/index.html" target="_blank">GADM website</a> (an excellent source for administrative district shapefiles), which is mapped using Lat-Long.
+
 ``` R
 require (rgdal)
+
 # First, we need the coordinates of the points
 Loc <- cbind(Point_Data$Easting, Point_Data$Northing)
 # Then we can transform our dataset in a spatial object (a spatial point dataframe)
@@ -250,15 +300,14 @@ Fox_Point <- SpatialPointsDataFrame(coords = Loc, data = Point_Data, match.ID = 
 par(mfrow = c(1,1), mar = c(1,1,1,1))
 plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
 
-# load the UK shapefile and subset the Scotland polygon
+# Load the UK shapefile and subset the Scotland polygon
 UK_Shape <- readOGR(dsn = "United Kingdom", layer = "gadm34_GBR_1")
 Scot_Shape <- UK_Shape[UK_Shape$NAME_1 == "Scotland",]
 
-# using the proj4string() function we can check the projection of the shapefile
+# Using the proj4string() function we can check the projection of the shapefile
 proj4string(Scot_Shape)
+# You should see "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
 ```
-proj4string(Scot_Shape)
-"+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
 
 This is the standard latitude/longitude coordinate system, which is projected in a geodesic system (taking into account the curvature of the globe). Most shapefiles (especially at country level) will use this coordinate system. This <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf" target="_blank">Cheatsheet </a> provides more context and explains how to specify the right coordinate system using R notation.
 
@@ -269,7 +318,8 @@ plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
 plot(Scot_Shape, add = T)
 ```
 
-######### FIG5_Point_wrongCRS #############
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG05_Point_wrongCRS.jpeg{% endcapture %}
+{% include figure.html url=link caption="" %}
 
 However, if we change the transform the CRS of Scot_Shape using the `spTransform()` function, we can map them together
 ``` R
@@ -283,15 +333,20 @@ plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T)
 ```
 
-######### FIG6_Point_rightCRS #############
+{% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG06_Point_rightCRS.jpeg{% endcapture %}
+{% include figure.html url=link caption="" %}
 
-Now that the data is properly loaded, we can start putting together all the components required by a geostatistical `INLA` model. We'll start fitting just a simple base model with only an intercept and spatial effect in it and build up complexity from there.
+__Now that the data is properly loaded, we can start putting together all the components required by a geostatistical `INLA` model. We'll start fitting just a simple base model with only an intercept and spatial effect in it and build up complexity from there.__
+
+{% capture callout %}
 The absolutely essential component of a model are: 
 
 ##### The mesh
 ##### The projector matrix
 ##### The correlation structure specifier(spde) 
 ##### The formula
+{% endcapture %}
+{% include callout.html content=callout colour='important' %}
 
 ### The Mesh
 Unlike the area data, point data do not have explicit neighbours and thus we would have to calculate the autocorrelation structure between each possible point existing in the space, which is obviously imposssible. For this reason,the first step is to discretise the space to create a mesh that would create artificial (but useful) set of neighbours so we could calculate the autocorrelation between points `INLA` uses a triangle mesh, because is much more flexible and can be adapted to irregular spaces. There are several options that can be used to adjust the mesh.
