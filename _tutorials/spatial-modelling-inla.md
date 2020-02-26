@@ -13,7 +13,7 @@ tags: modelling intermediate advanced
 1. [Learn to fit simple models on area data](#lattice)
 2. [Learn the basics of geostatistical (marked points) data modelling](#point)
 3. [Construct and run more complex spatial models](#increasecomplexity)
-4. [Plot spatial predictions and gaussian random field](#modelpredictions)
+4. [Plot spatial predictions and Gaussian random field](#modelpredictions)
 
 <br>
 {% capture callout %}
@@ -58,7 +58,7 @@ install.packages("INLA",
 We will be using two datasets for this practical, derived from my own fieldwork here in Edinburgh. The purpose of the study was to collect fox scats (i.e. faecal marking) in public greenspace around the city of Edinburgh and analyse them for gastrointestinal parasites. 
 
 {% capture callout %}
-All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+#### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -74,7 +74,7 @@ The data I am going to use includes area data of the number of scats found (The 
 <center>Dataset overview</center>
 
 <a name="lattice"></a>
-## Modelling Area Data
+## Learn to fit simple models on area data
 
 {% capture callout %}
 This kind of data is normally found in epidemiological, ecological or social sciences studies. In brief, it reports a value (often it's the number of cases of a disease) per area, which could be an administrative district, such as a post-code area, council area, region and so on. The main characteristic of area data is that there are explicit neighbours for each or the areas, which makes computing the autocorrelation structure much easier.
@@ -129,7 +129,7 @@ H <- inla.read.graph(filename = "Lattice.graph")  # and save it as a graph
 image(inla.graph2matrix(H), xlab = "", ylab = "")
 ```
 
-This matrix shows the neighbouring for each cell. You have the cell numerical ID (`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves). Each line will have up to 6 neighbours (hexagons have 6 edges), corresponding to the number of neighbours of the lattice cell. Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name, so you have a clump of adjacent cells around the diagonal line. When using administrative districts this matrix will likely be messier.
+This matrix shows the neighbouring for each cell. You have the cell numerical ID (`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves). For example you can trace with your eyes cell number 50 and see its neighbours (cells 49 and 51). Each line will have up to 6 neighbours (hexagons have 6 edges), corresponding to the number of neighbours of the lattice cell. Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name, so you have a clump of adjacent cells around the diagonal line. When using administrative districts this matrix will likely be messier.
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Adjacency matrix</center>
@@ -266,7 +266,7 @@ spplot(obj = Fox_Lattice_var, zcol = "cat.prob.csi",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG04_PostVar.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
 <center>Uncertainty in the posterior means mapped across space as per our model.</center>
-
+<br>
 {% capture callout %}
 Note that the posterior mean is highest where we have the higher level of uncertainty. We have some area where the response variable reaches really high numbers, this is due to missing GS data in this areas (GS=0), so the model compensates for it; however, these are the areas where we also have the highest uncertainty, because the model is unable to produce accurate estimates.
 {% endcapture %}
@@ -274,7 +274,7 @@ Note that the posterior mean is highest where we have the higher level of uncert
 
 <a name="point"></a>
 
-## Geostatistical Data: Marked Point Data
+## Learn the basics of geostatistical (marked points) data modelling
 
 {% capture callout %}
 For this analysis, we will be using geostatistical data, also known as marked points. This is one of the most common type of spatial data. It includes points (with associated coordinates), which have a value attached, which is generally the measurement of the response variable we are interested here. The idea is that these points are the realisation of a smooth spatial process that happens everywhere in space, and the points are just samples of this process (we will never be able to sample the entire process as there are infinite points in the continuous space).
@@ -526,7 +526,7 @@ inla.hpdmarginal(0.95, Mod_p1.field$marginals.range.nominal[[1]])            # C
 ```
 
 <a name="increasingcomplexity"></a>
-## Increasing Model Complexity
+## Construct and run more complex spatial models
 
 Normally we are interested in fitting models that include covariates (and we are interested in how these covariates influence the response variable while taking into account spatial autocorrelation. In this case, we need to add another step in the model construction.
 We will retain the same mesh we used before (`Mesh3`), and the projector matrix (`A_point`), and we will continue from there.
@@ -640,7 +640,8 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-The amount of greenspace (`GS Ratio`) is clearly positively correlated with species richness, but the effect is fairly linear, so we might want to consider fitting it as a linear effect in the next model (we won't loose much information by doing so)
+The amount of greenspace (`GS Ratio`) is clearly positively correlated with species richness, but the effect is fairly linear, so we might want to consider fitting it as a linear effect in the next model (we won't loose much information by doing so).
+
 ```r
 plot(Mod_Point2$summary.random$JanDate[,1:2], 
      type = "l", 
@@ -654,7 +655,7 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG09_GS_Ratiorw2.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG10_JanDatrw1.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG09_GS_Ratiorw2.jpeg" alt="Img" style="width: 45%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG10_JanDatrw1.jpeg" alt="Img" style="width: 45%; height:auto;"/></center>
 <center>Visualising the effects as per our model results.</center>
 
 __Now we can extract some further information about the spatial field.__
@@ -739,12 +740,12 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG11_xmean_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG12_xsd_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG11_xmean_ras.jpeg" alt="Img" style="width: 45%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG12_xsd_ras.jpeg" alt="Img" style="width: 45%; height:auto;"/></center>
 <center>The mean and variance of the Gaussian Random Field.</center>
 
 
 <a name="modelpredictions"></a>
-### Model Predictions
+## Plot spatial predictions and gaussian random field
 
 __Finally, I'm going to show how to produce spatial predictions from `INLA` models. This will involve a bit of manipulation of rasters and matrices (check out the Coding Club tutorial on this subject <a href="https://ourcodingclub.github.io/tutorials/spatial/" target="_blank">here</a) if you'd like to learn more about working with rasters in `R`. Essentially it comes down to creating a spatial grid of coordinates where we do not have values but wish to generate an prediction for the response variable using the model estimations (taking into account the spatial autocorrelation structure of the data). __
 
@@ -901,7 +902,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_predmean_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG15_predsd_ras.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_predmean_ras.jpeg" alt="Img" style="width: 45%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG15_predsd_ras.jpeg" alt="Img" style="width: 45%; height:auto;"/></center>
 <center>Visualising the model predictions for species richness (its mean and variance (here standard deviation)</center>
 
 In the interest of keeping this tutorial short(ish), I have only presented an example of producing model predictions at unsampled locations. But keep in mind that producing predictions for model validation is relatively straightforward (e.g., when you want to check how the real values and the model predictions compare, and you should be able to do it using the code I presented here as a template). Feel free to have a go if you'd like a challenge!
