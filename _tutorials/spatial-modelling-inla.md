@@ -17,7 +17,8 @@ tags: modelling intermediate advanced
 
 <br>
 {% capture callout %}
-__Keen to take your analyses and statistical models to the next level? Working with data distributed across space and want to incorporate their spatial structure in your models? If yes, read on and you can jumpstart your spatial modelling journey! This tutorial is meant to be a starting point for anyone interested in spatial modelling, and aims to show the basics of modelling spatial data using `R-INLA`. This is by no mean a comprehensive tutorial, and it's only scratching the surface of what is possible using INLA. However, my main goal with this tutorial is to give you the tools needed to start a basic analysis, in a way that would make more advanced customisation of the model possible (if not easy) using the available resources.__
+__Keen to take your analyses and statistical models to the next level? Working with data distributed across space and want to incorporate their spatial structure in your models? If yes, read on and you can jumpstart your spatial modelling journey! This tutorial is meant to be a starting point for anyone interested in spatial modelling, and aims to show the basics of modelling spatial data using `R-INLA`. 
+This is by no mean a comprehensive tutorial, and it's only scratching the surface of what is possible using INLA. However, my main goal with this tutorial is to give you the tools needed to start a basic analysis, in a way that would make more advanced customisation of the model possible (if not easy) using the available resources.__
 {% endcapture %}
 {% include callout.html content=callout colour='important' %}
 <br>
@@ -74,9 +75,13 @@ The data I am going to use includes area data of the number of scats found (The 
 <a name="lattice"></a>
 ## Modelling Area Data
 
-__The aim of this section is to carry out a spatial analysis on area data.__ This kind of data is normally found in epidemiological, ecological or social sciences studies. In brief, it reports the number of cases (generally of a disease) recorded per area, which could be an administrative district, such as a post-code area, council area, region and so on. The main characteristic of area data is that there are explicit neighbours for each or the areas, which makes computing the autocorrelation structure much easier.
+{% capture callout %}
+This kind of data is normally found in epidemiological, ecological or social sciences studies. In brief, it reports a value (often it's the number of cases of a disease) per area, which could be an administrative district, such as a post-code area, council area, region and so on. The main characteristic of area data is that there are explicit neighbours for each or the areas, which makes computing the autocorrelation structure much easier.
+A special subset of area data is lattice data, which reports area data from a regular grid of cells (like the one we have here). This is genrally preferable as the space is split in more comparable areas and the space discretisation is more even. However, this is rarely the case, as lattice data is generally constructed specifically from points (in which case it would be best to use the points directly), while real area data generally is derived from surveys done at administrative district levels, which are not regular by nature.  
+{% endcapture %}
+{% include callout.html content=callout colour='callout' %}
 
-__Here, we are going to test the hypothesis that a higher greenspace ratio (a higher percentage of green areas) is associated with a higher number of scats found. We are going to use a dataset I have modified for the purpose of this tutorial. The data refer to the number of fox scats found in the city of Edinburgh during a 6 months survey of every public green area in the city.__
+__The aim of this section is to carry out a spatial analysis on area data. Here, we are going to test the hypothesis that a higher greenspace ratio (a higher percentage of green areas) is associated with a higher number of scats found. We are going to use a dataset I have modified for the purpose of this tutorial. The data refer to the number of fox scats found in the city of Edinburgh during a 6 months survey of every public green area in the city.__
 
 To do so, I have constructed a lattice that covers the study area, and for each zone recorded the number of scats found, along with the greenspace ratio, calculated using the <a href="https://digimap.edina.ac.uk/webhelp/os/data_information/os_products/scotlands_greenspace_map.htm" target="_blank">Greenspace Dataset</a> from Edina Digimap.
 
@@ -122,8 +127,8 @@ H <- inla.read.graph(filename = "Lattice.graph")  # and save it as a graph
 # Plot adjacency matrix 
 image(inla.graph2matrix(H), xlab = "", ylab = "")
 ```
-This matrix shows the neighbouring for each cell. You have the cell numerical ID(`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves).
-Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name. When using administrative districts this matrix will likely be messier.
+This matrix shows the neighbouring for each cell. You have the cell numerical ID(`ZONE_CODE`) on both axis and you can find which cells they are neighbouring with (plus the diagonal which means that the cells neighbour with themselves). Each line will have up to 6 neighbours (exagons have 6 edges), corresponding to the number of neighbours of the lattice cell.
+Note that in this case the cells were already sorted in alphabetical order so they are only adjacent to ones with a similar name, so you have a clump of adjacent cells around the diagonal line. When using administrative districts this matrix will likely be messier.
 
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG02b_Adjacency Matrix.jpeg{% endcapture %}
 {% include figure.html url=link caption="Adjacency matrix" %}
@@ -158,7 +163,7 @@ We can see that `GS_Ratio` has a significant, positive effect on the number of s
 
 ### Setting priors
 
-__We can also set priors for the hyperparameters by specifying them in the formula. `INLA` works with precision (tau = 1/Variance) so a very low precision corresponds to a very high variance by default. Keep in mind that the priors need to be specified for the linear predictor of the model (so they need to be transformed according to the data distribution) in this case they follow a log gamma distribution (since it's a Poisson model).__
+__We can also set priors for the hyperparameters (the parameters of the prior distribution) by specifying them in the formula. `INLA` works with precision (tau = 1/Variance) so a very low precision corresponds to a very high variance by default. Keep in mind that the priors need to be specified for the linear predictor of the model (so they need to be transformed according to the data distribution) in this case they follow a log gamma distribution (since it's a Poisson model).__
 
 ```R
 formula_p <- Scat_No ~ 1 + GS_Ratio + 
@@ -187,14 +192,16 @@ The posterior mean for the random (spatial) effect can also be computed and plot
 
 This represents the distribution in space of the response variable, once you accounted for the covariates included in the model. Think of it as the "real distribution" of the response variable in space, according to the model (obviously this is only as good as the model we have and will suffer if the estimation are poor, we have missing data or we failed to include an important covariate in our model).
 
+First we select the marginal posterior distributions of the spatial random effect for each area using the `Nareas` index
 ```R
 # Calculating the number of areas
 Nareas <- length(Lattice_Data[,1])
+marg.zones <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
+```
 
-csi <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
-zeta <- lapply(csi,function(x) inla.emarginal(exp,x))  
-# we exponentiate the distibutions to convert them into real numbers 
-# (the output of the model is expressed in the linear predictor scale of the model which was a log scale)
+Then we use `lapply()` to calculate the value of the posterior mean of the spatial random effect (zeta) from the marginal distributions for each #area (we exponentiate the distibutions to convert them into real numbers, as the output of the model is expressed in the linear #predictor scale of the model which was a log scale)
+```R
+zeta <- lapply(marg.zones,function(x) inla.emarginal(exp,x))  
 
 zeta.cutoff <- c(0, 1, 2, 5, 9, 15, 20, 35, 80, 800)   # we make a categorisation to make visualisation easier
 cat.zeta <- cut(unlist(zeta),
@@ -351,10 +358,10 @@ __Now that the data is properly loaded, we can start putting together all the co
 {% capture callout %}
 The absolutely essential component of a model are: 
 
-##### The mesh
-##### The projector matrix
-##### The correlation structure specifier(spde) 
-##### The formula
+- The mesh
+- The projector matrix
+- The correlation structure specifier (spde) 
+- The formula
 {% endcapture %}
 {% include callout.html content=callout colour='important' %}
 
@@ -487,6 +494,18 @@ inla.hpdmarginal(0.95, Mod_p1.field$marginals.range.nominal[[1]])            # C
 Normally we are interested in fitting models that include covariates (and we are interested in how these covariates influence the response variable while taking into account spatial autocorrelation in this case we need to add another step in the model construction.
 We will retain the same mesh we used before (Mesh3), and the projector matrix (A_point), and we will continue from there.
 I am going to mention in passing to a variety of costumisation for the model (such as spatio-temporal modelling), while I think it's beyond the scope of this practical for me to go into details, you can find a lot of useful examples (and code) in <a href="https://www.taylorfrancis.com/books/9780429031892" target="_blank">this recent book</a>, which also includes really useful tables of customisation options for the `inla()` function.
+
+{% capture callout %}
+We are now going to expand our model to include all the available components: 
+
+- The mesh
+- The projector matrix
+- The correlation structure specifier (spde), including __PC priors__ on the spatial structure
+- __The spatial index__
+- __The stack__
+- The formula
+{% endcapture %}
+{% include callout.html content=callout colour='important' %}
 
 ###Specify PC priors
 we can provide priors to the spatial term. A special kind of priors (penalised complexity or pc priors) can be imposed on the spde. These priors are widely used as they (as the name suggests) penalise the complexity of the model. In practice they shrink the spatial model towards the base model (one without a spatial term) to do so we apply weakly informative priors that penalise small ranges and large variance
