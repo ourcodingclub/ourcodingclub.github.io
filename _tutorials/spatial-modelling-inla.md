@@ -655,7 +655,7 @@ for(i in c(4,6))
 abline(h = 0, lty = 3)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG09_GS_Ratiorw2.jpeg" alt="Img" style="width: 30%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG10_JanDatrw1.jpeg" alt="Img" style="width: 30%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG9_10.jpg" alt="Img" style="width: 80%; height:auto;"/></center>
 <center>Visualising the effects as per our model results.</center>
 
 __Now we can extract some further information about the spatial field.__
@@ -740,9 +740,8 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG11_xmean_ras.jpeg" alt="Img" style="width: 30%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG12_xsd_ras.jpeg" alt="Img" style="width: 30%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG_11_12.jpg" alt="Img" style="width: 80%; height:auto;"/></center>
 <center>The mean and variance of the Gaussian Random Field.</center>
-
 
 <a name="modelpredictions"></a>
 ## Plot spatial predictions and gaussian random field
@@ -902,7 +901,7 @@ points(Fox_Point, pch = 16, cex = 0.5)
 plot(Scot_Shape_BNG, add = T) 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_predmean_ras.jpeg" alt="Img" style="width: 30%; height:auto;"/> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG15_predsd_ras.jpeg" alt="Img" style="width: 30%; height:auto;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG14_15.jpg" alt="Img" style="width: 80%; height:auto;"/></center>
 <center>Visualising the model predictions for species richness (its mean and variance (here standard deviation)</center>
 
 In the interest of keeping this tutorial short(ish), I have only presented an example of producing model predictions at unsampled locations. But keep in mind that producing predictions for model validation is relatively straightforward (e.g., when you want to check how the real values and the model predictions compare, and you should be able to do it using the code I presented here as a template). Feel free to have a go if you'd like a challenge!
