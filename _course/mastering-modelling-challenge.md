@@ -3,6 +3,13 @@ layout: course
 title: "Mastering Modelling challenge: Seabird population dynamics" 
 banner: "../assets/img/banner/mastering-modelling.jpg"
 ---
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@our_codingclub" />
+<meta name="twitter:creator" content="@our_codingclub" />
+<meta property="og:url" content="https://ourcodingclub.github.io/course/mastering-modelling-challenge/index.html?" />
+<meta property="og:title" content="Mastering Modelling Challenge: How does climate influence seabird breeding?" />
+<meta property="og:description" content="Put your skills into practice with our challenge!" />
+<meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL-challenge-puffinrazor.jpg" />
 
 This challenge will require the use of data manipulation, visualisation and analysis skills, and is the culmination of the [MASTERING MODELLING]({{ site.baseurl }}/dl_course/mastering-modelling/index.html) course stream. You will find here all the instructions you need to complete the challenge. 
 

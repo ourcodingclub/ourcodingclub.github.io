@@ -8,7 +8,7 @@ banner: "../assets/img/banner/mastering-modelling.jpg"
 <meta name="twitter:site" content="@our_codingclub" />
 <meta name="twitter:creator" content="@our_codingclub" />
 <meta property="og:url" content="https://ourcodingclub.github.io/course/mastering-modelling/index.html" />
-<meta property="og:title" content="Mastering Modellign: Data Science for Ecologists and Environmental Scientists" />
+<meta property="og:title" content="Mastering Modelling: Data Science for Ecologists and Environmental Scientists" />
 <meta property="og:description" content="Learn statistical modelling from model design through to mixed models, Bayesian inference and more." />
 <meta property="og:image" content="https://ourcodingclub.github.io/assets/img/dl_course/DL_stream3.png" />
 
