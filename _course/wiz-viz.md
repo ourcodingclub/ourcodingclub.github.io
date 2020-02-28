@@ -23,7 +23,7 @@ We will first teach you to format your datasets in the most efficient way for pl
 * [Data visualisation I: beautiful and informative graphs]({{ site.baseurl }}/tutorials/datavis/index.html)
 * [Data visualisation II: customising graphs]({{ site.baseurl }}/tutorials/data-vis-2/index.html) 
 * [Spatial analysis in R]({{ site.baseurl }}/tutorials/spatial/index.html) 
-* [Professional reporting with Markdown]({{ site.baseurl }}/tutorials/rmarkdown-1/index.html) 
+* [Professional reporting with Markdown]({{ site.baseurl }}/tutorials/rmarkdown/index.html) 
 * [Intro to Shiny: interactive web apps]({{ site.baseurl }}/tutorials/shiny/index.html) 
 {% endcapture %}
 {% capture url %}{{ site.baseurl }}/assets/img/banner/path.jpg{% endcapture %}
