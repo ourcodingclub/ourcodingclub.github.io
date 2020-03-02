@@ -27,8 +27,6 @@ Our website may collect some personal data, such as the IP address of your compu
 
 __Essential Cookies__ provide some of the basic functionalities of our website. Without them you may not be able to use the website our Course.
 
-__Analytics Cookies__ inform us on how visitors use our website. This helps us identify our most popular content and improve the site. These cookies do not collect information that identifies visitors, so we cannot identify you individually. We use Google Analytics to track usage of our website (so we know how often each page is visited). 
+__Analytics Cookies__ inform us on how visitors use our website. This helps us identify our most popular content and improve the site. These cookies do not collect information that identifies visitors, so we cannot identify you individually. We use Google Analytics to track usage of our website (so we know how often each page is visited) and to understand our users (including the inferred country, gender and age of the user).
 
 __Personalization Cookies__ allow our website to remember the choices you make as you browse the site. They provide more personal features. They cannot track your browsing activity on other sites once you leave our site.
-
-
