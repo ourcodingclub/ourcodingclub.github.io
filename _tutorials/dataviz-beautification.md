@@ -29,7 +29,7 @@ __The goal of this tutorial is to advance skills in data visualisation, efficien
 
 The `gg` in `ggplot2` stands for grammar of graphics. Writing the code for your graph is like constructing a sentence made up of different parts that logically follow from one another. In a more visual way, it means adding layers that take care of different elements of the plot. Your plotting workflow will therefore be something like creating an empty plot, adding a layer with your data points, then your measure of uncertainty, the axis labels, and so on.
 
-<center><img src="{{ site.baseurl }}/assets/assets/img/tutorials/dataviz-beautification/DL_datavis1_layers.png" alt="Img" style="width: 900px;"/> </center>
+<center><img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification/DL_datavis1_layers.png" alt="Img" style="width: 900px;"/> </center>
 <center> <b>Just like onions and fancy cakes, graphs in `ggplot2` have layers. </b> </center>
 
 __Note: Pressing enter after each "layer" of your plot (i.e. indenting it) prevents the code from being one gigantic line and makes it much easier to read.__
@@ -58,7 +58,7 @@ A very key part of making any data visualisation is making sure that it is appro
 
 Here are some common graph types, but really there is loads more, and you can visit <a href="https://www.r-graph-gallery.com/" target="_blank">the R Graph Gallery</a>for more inspiration!
 
-<center><img src="{{ site.baseurl }}/assets/assets/img/tutorials/dataviz-beautification/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;"/> </center>
+<center><img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification/DL_datavis1_which_plot.png" alt="Img" style="width: 950px;"/> </center>
 
 <b>Figures can change a lot the more you work on a project, and often they go on what we call a beautification journey - from a quick plot with boring or no colours to a clear and well-illustrated graph. So now that we have the data needed for the examples in this tutorial, we can start the journey.</b>
 
@@ -96,14 +96,14 @@ __Managing long scripts:__ Lines of code pile up quickly! There is an outline fe
 
 </div>
 
-<center> <img src="{{ site.baseurl }}/assets/assets/img/tutorials/dataviz-beautification/outline_screenshot.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification/outline_screenshot.png" alt="Img" style="width: 600px;"/> </center>
 
 __An important note about graphs made using `ggplot2`: you'll notice that throughout this tutorial, the `ggplot2` code is always surrounded by brackets. That way, we both make the graph, assign it to an object, e.g. `duration1` and we "call" the graph, so we can see it in the plot tab. If you don't have the brackets around the code chunk, you'll make the graph, but you won't actually see it. Alternatively, you can "call" the graph to the plot tab by running just the line `duration1`. It's also best to assign your graphs to objects, especially if you want to save them later, otherwise they just disappear and you'll have to run the code again to see or save the graph.__
 
 ## Make and beautify maps
 <b>Often we find ourselves needing to plot sites or species' occurrences on a map and with `ggplot2` and a combo of a few of its companion packages, we can make nice and clear maps, with the option to choose among different map projections. Here is the journey this particular map of the sites part of the <a href="https://lternet.edu" target="_blank">Long-Term Ecological Research Network</a> are embarking on - small tweaks among the different steps, but ultimately the final map stands out more.</b>
 
-<center><img src="{{ site.baseurl }}/assets/assets/img/tutorials/dataviz-beautification/beautification1.png" alt="Img" style="width: 950px;"/> </center>
+<center><img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification/beautification1.png" alt="Img" style="width: 950px;"/> </center>
 
 ```r
 # MAPS ----
