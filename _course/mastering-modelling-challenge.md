@@ -29,8 +29,8 @@ You will use the following datasets, available to download from the [Challenge r
 
 ## CEH's Isle of May Long-Term Study data
 
-* __Breeding success of sea birds (IMLOTSBSDataset1982-2016.csv)__: compiled as the number of chicks fledged per nest. Original data link [here](https://catalogue.ceh.ac.uk/documents/02c98a4f-8e20-4c48-8167-1cd5044c4afe).
-* __Dive times and depths of auks (IoM_AukDiving.csv)__: from the Isle of May outside the breeding season, obtained by fitting birds with data loggers. Original data link [here](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372).
+* __Breeding success of sea birds (IMLOTSBSDataset1982-2016.csv)__: compiled as the number of chicks fledged per nest. Original data link [here](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe).
+* __Dive times and depths of auks (IoM_AukDiving.csv)__: from the Isle of May outside the breeding season, obtained by fitting birds with data loggers. Original data link [here](https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372).
 
 ## Climate data from the Met Office
 
@@ -141,9 +141,11 @@ We love getting your feedback, and will add more hints to this section if you ge
 
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: 
 
-* __Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016).__ The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016. Available from the [NERC Environmental Information Data Centre](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe) under an Open Government License.
-* __Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019).__ Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season. Available from the [NERC Environmental Information Data Centre](https://catalogue.ceh.ac.uk/documents/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372) under an Open Government License.
-* __Met Office (2019).__ Regional time series of monthly, seasonal and annual values. Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.
+* Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016). __The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016.__ NERC Environmental Information Data Centre. (Dataset). https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe (available under an Open Government Licence)
+
+* Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019). __Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season.__ NERC Environmental Information Data Centre. (Dataset). https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372  (available under an Open Government Licence)
+
+* Met Office (2019). __Regional time series of monthly, seasonal and annual values.__ Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.
 
 <!-- Get help -->
 <a name = "contact"></a>
