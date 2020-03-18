@@ -141,11 +141,11 @@ We love getting your feedback, and will add more hints to this section if you ge
 
 We thank all the organisations that provided open access data for this challenge. The datasets licences are as follow: 
 
-* Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016). __The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016.__ NERC Environmental Information Data Centre. (Dataset). [https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe) (available under an Open Government Licence)
+*Newell, M.; Harris, M.P.; Wanless, S.; Burthe, S.; Bogdanova, M.; Gunn, C.M.; Daunt, F. (2016). __The Isle of May long-term study (IMLOTS) seabird annual breeding success 1982-2016.__ NERC Environmental Information Data Centre. (Dataset). [https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe](https://doi.org/10.5285/02c98a4f-8e20-4c48-8167-1cd5044c4afe) (available under an Open Government Licence)
 
-* Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019). __Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season.__ NERC Environmental Information Data Centre. (Dataset). [https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372](https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372)  (available under an Open Government Licence)
+*Dunn, R.E.; Wanless, S.; Green, J.A.; Harris, M.P.; Daunt, F. (2019). __Dive times and depths of auks (Atlantic puffin, common guillemot and razorbill) from the Isle of May outside the seabird breeding season.__ NERC Environmental Information Data Centre. (Dataset). [https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372](https://doi.org/10.5285/6ab0ee70-96f8-41e6-a3e3-6f4c31fa5372)  (available under an Open Government Licence)
 
-* Met Office (2019). __Regional time series of monthly, seasonal and annual values.__ Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.
+*Met Office (2019). __Regional time series of monthly, seasonal and annual values.__ Available from the [Met Office Datasets page](https://www.metoffice.gov.uk/climate/uk/summaries/datasets) under an Open Government License. Crown Copyright.
 
 <!-- Get help -->
 <a name = "contact"></a>
