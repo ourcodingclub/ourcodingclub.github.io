@@ -266,31 +266,29 @@ To compile our program, make sure you have saved the sample triangle-area progra
 You will need to be running Linux for this particular example. (It is possible to compile Fortran on Windows and MacOS as well, but the command names may be slightly different). If you are on Windows but have access to a Linux server via your institution it is advised to use that for the next part.
 
 1. Open a command-line/terminal session. In the prompt, check that you have the `gfortran` compiler program available by typing `gfortran --version`. Hopefully this will return the version number if it is installed. (If not, you will get an error message)
+    ```
+  [dvalters@baltic01 Programming-tutorials]$ gfortran --version
+  GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-28)
+  Copyright (C) 2015 Free Software Foundation, Inc.
 
-```
-[dvalters@baltic01 Programming-tutorials]$ gfortran --version
-GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-28)
-Copyright (C) 2015 Free Software Foundation, Inc.
-
-GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
-You may redistribute copies of GNU Fortran
-under the terms of the GNU General Public License.
-For more information about these matters, see the file named COPYING
-```
+  GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
+  You may redistribute copies of GNU Fortran
+  under the terms of the GNU General Public License.
+  For more information about these matters, see the file named COPYING
+    ```
 
 2. In the same directory as you saved the .f90 file, run the following command
+    ```
+  gfortran triangle.f90 -o triangle
+    ```
 
-```
-gfortran triangle.f90 -o triangle
-```
+    This tells gfortran (a fortran compiler, commonly found on Linux operating systems) to take the file `triangle.f90` and produce a program called `triangle` for us to run. The `-o` flag lets us specify an output name for our program.
 
-This tells gfortran (a fortran compiler, commonly found on Linux operating systems) to take the file `triangle.f90` and produce a program called `triangle` for us to run. The `-o` flag lets us specify an output name for our program.
-
-When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` program executable.
+    When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` program executable.
 
 3. Run the program
 
-To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Heron's Formula. 
+    To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Heron's Formula. 
 
 Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above?
 
