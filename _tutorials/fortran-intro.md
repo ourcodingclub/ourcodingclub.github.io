@@ -90,7 +90,7 @@ __Lines 6-17:__
 
 The next section of the program is where we define the variables to be used in the program. In `Fortran` programs, you will almost always see these defined at the very top of the program, unlike in other languages where you can define them as you go along. `Fortran` likes to know at the start which variables it is dealing with. We will cover what the different types are in the next section. Note also how we have added comments to explain in more human-readable format what each variable does.
 
-The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and functions. (*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the `WRITE` function. We also terminate our program using the `END PROGRAM` statement.
+The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and functions. (\*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the `WRITE` function. We also terminate our program using the `END PROGRAM` statement.
 
 This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to _compile_ it, which is covered in a later section of the tutorial.
  
@@ -170,7 +170,7 @@ The `READ` function tells the fortran program to record the values you enter via
 READ(*,*)  a, b, c
 ```
 
-In Fortran functions, any inputs needed for the function are placed inside a list within the two round-brackets (parentheses), as in `READ(input1, input2, etc...)`. In `READ`, The first asterisk (*) means the input comes from the keyboard in a READ statement and goes to the screen in a WRITE statement. The second asterisk (*) means the computer decides how the I/O elements should look based on the TYPE of data in the list of variables that follow.
+In Fortran functions, any inputs needed for the function are placed inside a list within the two round-brackets (parentheses), as in `READ(input1, input2, etc...)`. In `READ`, The first asterisk (\*) means the input comes from the keyboard in a READ statement and goes to the screen in a WRITE statement. The second asterisk (\*) means the computer decides how the I/O elements should look based on the TYPE of data in the list of variables that follow.
 
 The list of variables that follow will be assigned the values that you type, one at a time. So in our program we have three variables (a, b, c) that we have already defined earlier on. When the program is running and gets to the READ statement, it will prompt you to enter a variable and press enter. This will happen three times, and each value you type will be assigned to `a`, `b` and `c` respectively.
 
