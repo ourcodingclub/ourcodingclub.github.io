@@ -451,7 +451,7 @@ __Now that we have constructed our mesh, we need to relate the data points to th
 As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex (a vertex is each angular point of a polygon, here a triangle), then it will be directly related to the adjacent vertices (like the blue point in the figure). However, if the datapoints falls within a mesh triangle (dark red point), its weight will be split between the tree vertices according to the proximity of the to each vertex (the red, orange and yellow points with the dark border). The original data point will then have a larger number of "pseudo-neighbours" according to the neighbours of vertices defining the triangles, weighted in a similar manner than those vertices (however, the total weight of each datapoint will always be one.
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG08b_Proj_Mat.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
-<center>Here is the best mesh to use.</center>
+<center>Graphic representation of how the projection matrix creates neighbours.</center>
 
 The projector matrix automatically computes the weight vector for the neighbourhood of each point and is calculated by providing the mesh and the locations of the datapoints to the `inla.spde.make.A()` function.
 ```R
