@@ -201,6 +201,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/inla2_icon.png" alt="INLA modelling hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/spatial-modelling-inla">
+                	<h2>Hierarchical modelling of spatial data</h2>
+                	<p>Spatial modelling using R-INLA</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/inla_logo.png" alt="INLA hex logo">
