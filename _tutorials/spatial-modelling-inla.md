@@ -32,11 +32,11 @@ The first and most important concept you need to remember (in my opinion), is th
 
 Analysis of area data (where each polygon has clearly defined neighbours) is generally more straightforward, and that is where we will start in this tutorial and then we will gradually build up the complexity.
 
-This tutorial assumes working knowledge of <a href="https://ourcodingclub.github.io/tutorials/mixed-models/" target="_blank">GLMs and GLMMs</a>, as well as <a href="https://ourcodingclub.github.io/tutorials/mcmcglmm/" target="_blank">Bayesian statistics</a> and some experience in <a href="https://ourcodingclub.github.io/tutorials/maps/" target="_blank">spatial data manipulation</a> (especially of  <a href="https://ourcodingclub.github.io/tutorials/spatial/" target="_blank">raster data</a>). Luckily, all these subjects are covered by previous Coding Club tutorials, so check them out! It might also be useful to have a read our other <a href="https://ourcodingclub.github.io/tutorials/inla/" target="_blank">INLA tutorial</a>, which includes some introduction to the general framework of `R-INLA`.
+This tutorial assumes working knowledge of <a href="https://ourcodingclub.github.io/tutorials/mixed-models/" target="_blank">GLMs and GLMMs</a>, as well as <a href="https://ourcodingclub.github.io/tutorials/mcmcglmm/" target="_blank">Bayesian statistics</a> and some experience in <a href="https://ourcodingclub.github.io/tutorials/maps/" target="_blank">spatial data manipulation</a> (especially of  <a href="https://ourcodingclub.github.io/tutorials/spatial/" target="_blank">raster data</a>). Luckily, all these subjects are covered by previous Coding Club tutorials, so check them out! It might also be useful to have a read of our other <a href="https://ourcodingclub.github.io/tutorials/inla/" target="_blank">INLA tutorial</a>, which includes some introduction to the general framework of `R-INLA`.
 
 ## The packages
 
-Before going further in the tutorial, it would be good to start downloading the relevant packages (if you don't have them already). Some of them ( `R-INLA` in particular), might take several minutes, so you might want to do this before starting the tutorial.
+Before going further in the tutorial, it would be good to start downloading the relevant packages (if you don't have them already). Some of them (`R-INLA` in particular), might take several minutes, so you might want to do this before starting the tutorial.
 
 ```R
 # Adding dep = T means you will also install package dependencies
@@ -64,9 +64,9 @@ We will be using two datasets for this practical, derived from my own fieldwork 
 
 ## The question
 
-##### Is the amount of greenspace in an area significantly correlated with:
-##### A) The number of fox scats found
-##### B) The number of parasite species (species richness) found in each scat
+##### Is the amount of greenspace significantly correlated with:
+##### A) The number of fox scats found?
+##### B) The number of parasite species (species richness) found in each scat?
 
 The data I am going to use includes area data of the number of scats found (The hexagonal lattice in the figure) and the point data of the parasite richness we found per sample.
 
@@ -82,6 +82,9 @@ A special subset of area data are lattice data, which reports area data from a r
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
+Modelling area data in INLA is relatively straightforward (at least compared to point datasets). This is due to the fact that the areas already have explicit neighbours (you can tell just looking at the figure which cells are next to which others). 
+This means that all we need to do is to translate this into an adjacency matrix which specifies the neighbouring system of our dataset in a way that INLA can understand, then we can fit the model straight away (this is firmly NOT the case with point datasets).
+
 __The aim of this section is to carry out a spatial analysis on area data. Here, we are going to test the hypothesis that a higher greenspace ratio (a higher percentage of green areas) is associated with a higher number of scats found. We are going to use a dataset I have modified for the purpose of this tutorial. The data refer to the number of fox scats found in the city of Edinburgh during a 6 months survey of every public green area in the city.__
 
 To do so, I have constructed a lattice that covers the study area, and for each zone recorded the number of scats found, along with the greenspace ratio, calculated using the <a href="https://digimap.edina.ac.uk/webhelp/os/data_information/os_products/scotlands_greenspace_map.htm" target="_blank">Greenspace Dataset</a> from Edina Digimap.
@@ -93,7 +96,11 @@ require(rgdal)  # package to work with spatial data
 
 # Fox lattice is a spatial object containing the polygons constructed on the basis of the data
 # (normally you would use administrative district)
-Fox_Lattice <- readOGR("Fox_Lattice/Fox_Lattice.shp")
+Fox_Lattice <- readOGR("Fox_Lattice/Fox_Lattice.shp") 
+
+#Warning message:
+#In readOGR("Fox_Lattice/Fox_Lattice.shp") : Z-dimension discarded
+# Ignore this warning message, this is showing since there is not a z-value assigned to each cell (we have attached our response value as a data frame instead)
 
 require(RColorBrewer)
 # Create a colour palette to use in graphs
@@ -197,22 +204,17 @@ The posterior mean for the random (spatial) effect can also be computed and plot
 
 This represents the distribution in space of the response variable, once you accounted for the covariates included in the model. Think of it as the "real distribution" of the response variable in space, according to the model (obviously this is only as good as the model we have and will suffer if the estimation are poor, we have missing data or we failed to include an important covariate in our model).
 
-First we select the marginal posterior distributions of the spatial random effect for each area using the `Nareas` index:
+First we select the marginal posterior distributions of the spatial random effect for each area using the `Nareas` index, then we use `lapply()` to calculate the value of the posterior mean of the spatial random effect (zeta) from the marginal distributions for each #area (we exponentiate the distibutions to convert them into real numbers, as the output of the model is expressed in the linear predictor scale of the model which was a log scale).
 
 ```R
 # Calculating the number of areas
 Nareas <- length(Lattice_Data[,1])
-marg.zones <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
-```
 
-Then we use `lapply()` to calculate the value of the posterior mean of the spatial random effect (zeta) from the marginal distributions for each #area (we exponentiate the distibutions to convert them into real numbers, as the output of the model is expressed in the linear predictor scale of the model which was a log scale).
-
-```R
-Nareas <- length(Lattice_Data[,1])
-
-csi <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
-
-zeta <- lapply(marg.zones,function(x) inla.emarginal(exp,x))  
+# select the posterior marginal distribution for each zone
+# these correspond to the first 347 (number of cells) items of the marginal distribution for the spatial random effect (zeta)
+zone.index <- Mod_Lattice$marginals.random$ZONE_CODE[1:Nareas]
+# exponentiate each of the zone marginals to return it to its original values (remember that this is a poisson model so all the components of the model are log-transformed)
+zeta <- lapply(zone.index,function(x) inla.emarginal(exp,x))  
 
 zeta.cutoff <- c(0, 1, 2, 5, 9, 15, 20, 35, 80, 800)   # we make a categorisation to make visualisation easier
 cat.zeta <- cut(unlist(zeta),
@@ -246,25 +248,25 @@ Similarly, we can plot the uncertainty associated with the posterior mean. As wi
 
 ```R
 a <- 0
-prob.csi <- lapply(csi, function(x) {1 - inla.pmarginal(a, x)})
+prob.zone <- lapply(zone.index, function(x) {1 - inla.pmarginal(a, x)})
 
-prob.csi.cutoff <- c(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
-cat.prob.csi <- cut(unlist(prob.csi),
-                    breaks = prob.csi.cutoff, 
+prob.zone.cutoff <- c(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+cat.prob.zone <- cut(unlist(prob.zone),
+                    breaks = prob.zone.cutoff, 
                     include.lowest = T)
 
 # Create a new polygon from Fox_Lattice and add the value of the posterior sd
-maps.cat.prob.csi <- data.frame(ZONE_CODE = Lattice_Data$ZONE_CODE, 
-                                cat.prob.csi = cat.prob.csi)
+maps.cat.prob.zone <- data.frame(ZONE_CODE = Lattice_Data$ZONE_CODE, 
+                                cat.prob.zone = cat.prob.zone)
 
 Fox_Lattice_var <- Fox_Lattice
 data.fox.var <- attr(Fox_Lattice_var, "data")
 attr(Fox_Lattice_var, "data") <- merge(data.fox.var, 
-                                       maps.cat.prob.csi, 
+                                       maps.cat.prob.zone, 
                                        by = "ZONE_CODE")
 
 my.palette.var <- brewer.pal(n = 9, name = "BuPu")
-spplot(obj = Fox_Lattice_var, zcol = "cat.prob.csi",
+spplot(obj = Fox_Lattice_var, zcol = "cat.prob.zone",
        col.regions = my.palette.var, add = T)
 ```
 
@@ -289,7 +291,10 @@ We are generally interested in understanding the underlying process (which varia
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
-In this example, we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (`Spp_Rich`) found in each scat. The dataset also contains a number of variables associated with each sample: 
+In this example, we are going to be using the same points I used to generate the dataset for the spatial data (the Edinburgh fox scats), but we will be looking at the number of parasites species (`Spp_Rich`) found in each scat. The dataset include the location of each point (each one a scat found during the survey), but what we are interested in modelling here is the number of parasite species found in each scat. This means that each point in the dataset has a value attached (a mark, hence the name marked point process), which is what we are interested in modelling.
+In this case we do not have explicit neighbours for the points, so we will need to construct an artificial discretisation of the space and tell INLA the neighbouring structure of the discretisation.
+
+The dataset also contains a number of other variables associated with each sample: 
 
 - JanDate (the date when the sample was collected)
 - Site (which park was it collected from), 
@@ -391,11 +396,11 @@ Mesh2 <- inla.mesh.2d(Loc,
 
 Mesh3 <- inla.mesh.2d(Loc, 
                       max.edge = c(900, 2000), 
-                      cutoff = 200)            # The cutoff is the distance at which two points will be considered as one. Useful for dataset with a lot of points clamped together
+                      cutoff = 500)            # The cutoff is the distance at which two points will be considered as one. Useful for dataset with a lot of points clamped together
 
 Mesh4 <- inla.mesh.2d(Loc, 
                       max.edge = c(900, 2000), 
-                      cutoff = 200, 
+                      cutoff = 500, 
                       offset = c(1000, 1000))    # The offset control the extension of the two layer (high and low triangle density)
 ```
 
@@ -441,23 +446,31 @@ Keep in mind that you can either use shapefiles or create nonconvex hulls around
 
 ### Projector matrix
 
-__Now that we have constructed our mesh, we need to relate the data points to the mesh vertices.__
+__Now that we have constructed our mesh, we need to relate the data points to the mesh vertices. The projector matrix provides the model with the neighborhood structure of the dataset using the mesh vertex as explicit neighbours__
 
-As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex (a vertex is each angular point of a polygon, here a triangle), then it will be directly related to the adjacent vertices (and the points that fall on them). However, if the datapoints falls within a mesh triangle, its weight will be split between the tree vertices according to the proximity and the points will have "pseudo-neighbours" from all the  mesh vertices defining the triangles.
+As mentioned before, geostatistical data do not have explicit neighbours, so we need to artificially discretise the space using the mesh. The projector matrix projects the points onto the mesh where each vertex has explicitly specified neighbours. If the data point falls on the vertex (a vertex is each angular point of a polygon, here a triangle), then it will be directly related to the adjacent vertices (like the blue point in the figure). However, if the datapoints falls within a mesh triangle (dark red point), its weight will be split between the tree vertices according to the proximity of the to each vertex (the red, orange and yellow points with the dark border). The original data point will then have a larger number of "pseudo-neighbours" according to the neighbours of vertices defining the triangles, weighted in a similar manner than those vertices (however, the total weight of each datapoint will always be one.
 
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/spatial-inla/FIG08b_Proj_Mat.jpeg" alt="Img" style="width: 65%; height:auto;"/></center>
+<center>Here is the best mesh to use.</center>
+
+The projector matrix automatically computes the weight vector for the neighbourhood of each point and is calculated by providing the mesh and the locations of the datapoints to the `inla.spde.make.A()` function.
 ```R
 A_point <- inla.spde.make.A(Mesh3, loc = Loc)
 dim (A_point)
-# [1] 223 1029    # Number of points  # Number of nodes int he mesh
+# [1] 223 849    # Number of points  # Number of nodes int he mesh
 ```
 
 ### SPDE
 
-__The SPDE (standing for Stochastic Partial Differential Equation) is the solution for the Matern correlation structure. In practice this part integrates the weight of each datapoint in the mesh and computes the solution to the SPDE which calculates the autocorrelation structure between each point and its neighbours.__
+__The SPDE (Stochastic Partial Differential Equation) is the mathematical solution to the Matérn covariance function and it is effectively what allows INLA to efficiently compute the spatial autocorrelation structure  of the dataset at the mesh vertices.
+It calculates the correlation structure between the vertices of the mesh (which will then be weighted by the vectors calculated using the projector matrix to calculate the correlation matrix applicable to the actual dataset).__
 
 ```R
 spde1 <- inla.spde2.matern(Mesh3, 
                             alpha = 2) # alpha is 2 by default, for most models this can be left as it is (needs to be adjusted for 3D meshes)
+
+spde1$n.spde
+[1] 849   # the dimension of the spde is the same as the mesh vertices
 ```
 
 ### Fitting a basic spatial model
@@ -468,7 +481,7 @@ One thing to keep in mind is that `INLA` syntax codes nonlinear effects using th
 
 ```R
 #First, we specify the formula
-formula_p1 <- y ~ -1 + intercept +
+formula_p1 <- y ~ -1 + Intercept +
   f(spatial.field1, model = spde1)       # this specifies the spatial random effect. The name (spatial.field1) is of your choosing but needs to be the same you will include in the model 
 ```
 
@@ -478,7 +491,7 @@ __We have our formula and we're ready to run the model!__
 # Now we can fit the proper model using the inla() function 
 Mod_Point1 <- inla(formula_p1,
                 data = list( y = Point_Data$Spp_Rich,         # response variable
-                            intercept = rep(1,spde1$n.spde),   # intectept (manually specified)
+                            Intercept = rep(1,spde1$n.spde),   # intercept (manually specified)
                             spatial.field1 = 1:spde1$n.spde),  # the spatial random effect (specified with the matern autocorrelation structure from spde1)   
                 control.predictor = list( A = A_point, 
                                           compute = T),       # this tells the model to compute the posterior marginals for the linear predictor
@@ -496,7 +509,7 @@ round(Mod_Point1$summary.hyperpar[1,],3)
 __We can also compute the random term variance by using the `emarginal()` function (remember that INLA works with precisions so we cannot directly extract the variance).__
 
 {% capture callout %}
-_NOTE:_ `INLA` offers a number of functions to manipulate posterior marginals. We are only going to use the `emarginal()` (which computes the expectations of a function and is used to transform precision to variance) for this tutorial, but it is worth knowing that there is a full roster of function for marginal manipulation, such as sampling from the marginals, transforming them or computing summary statistics.
+_NOTE:_ `INLA` offers a number of functions to manipulate posterior marginals. We are only going to use the `emarginal()` (which computes the expectations of a function and is used, among other things, to transform precision to variance) for this tutorial, but it is worth knowing that there is a full roster of function for marginal manipulation, such as sampling from the marginals, transforming them or computing summary statistics.
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
@@ -593,13 +606,17 @@ StackEst <- inla.stack(data = list(y = Point_Data$Spp_Rich),               # Fir
                         
                         tag="Est")                                          # The tag specify the name of this stack
 ```
+{% capture callout %}
+_NOTE:_ The intercept in this case is fit to be constant in space (it is fit together with the spatial effect, which means that it is always 1 at each of the n.spde vertices of the mesh). This is not necessarily the case, if you want to fit the intercept to be constant through the dataset (and hence be affected by the spatial effect), you can code it together with the list of the other covariates, but keep in mind that then you will need to specify intercept as `Intercept = rep(1, n.dat)`, where n.dat is the number of datapoints in the dataset (rather then the number of mesh vertices).
+{% endcapture %}
+{% include callout.html content=callout colour='callout' %}
 
 ### Fitting the model
 
 __In the formula, we specify what kind of effect each covariate should have. Linear variables are specified in a standard GLM way, while random effects and non-linear effects need to be specified using the `f(Cov Name, model = Effect Type)` format, similarly to what we have seen so far for the spatial effect terms.__
 
 ```R
-formula_p2 <- y ~ - 1 + Intercept + GS_Var +  #linear covariates
+formula_p2 <- y ~ - 1 + Intercept + GS_Var +  # linear covariates
   f(spatial.field2, model = spde.pc) +        # the spatial effect is specified using the spde tag (which is why we don't use the "" for it)
   f(GS_Ratio, model = "rw2") +                # non-linear effects such as random walk and autoregressive effects (rw1/rw2/ar1) can be add like this
   f(JanDate,model = "rw1") +                  # rw1 allows for less smooth transitions between nodes (useful for temporal data)
@@ -920,6 +937,6 @@ You made it through the tutorial, well done!!!
 __After this you should be able to fit basic spatial models of area and marked point data, extract results and make predictions. Spatial modelling is becoming increasingly popular and being able to account for autocorrelation in your modelling is a great skill to have.__
 
 There is probably still much more you want to know. The good news is that `INLA` is extremely customisable and you can modify it to do almost anything you need.
-The `R-INLA` project is under active development, and the <a href="http://www.r-inla.org/" target="_blank">INLA project website</a> is a great place to go to find materials (including tutorials, examples with explanations and code from published articles) and help: the discussion R-INLA group is very active and it is a great place to go if you get stuck. 
+The `R-INLA` project is under active development, and the <a href="http://www.r-inla.org/" target="_blank">INLA project website</a> is a great place to go to find materials (including tutorials, examples with explanations and code from published articles) and help: the R-INLA discussion group is very active and it is a great place to go if you get stuck. 
 
-There are also a number of books and tutorials avaiable online (I have mentioned a couple but so many more are available), most of which are freely available to download (including the code), or available in the library if you're a student.
+There are also a number of books and tutorials (I have mentioned a few but so many more are available), most of which are freely available to download (including the code), or available in the library if you're a student.
