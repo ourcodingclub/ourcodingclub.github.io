@@ -203,7 +203,7 @@ redirect_from:
     	</div>
 	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/inla2_hex.png" alt="INLA modelling hex logo">
+            	<img src="{{ site.baseurl }}/assets/img/hex/inla2_hex2.png" alt="INLA modelling hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/spatial-modelling-inla">
