@@ -12,7 +12,7 @@ tags: fortran
 
 # Tutorial aims:
 
-1. [Understand what the Fortran progamming langauge is](#understanding)
+1. [Understand what the Fortran programming language is](#understanding)
 2. [Learn about a brief history of Fortran](#history)
 3. [Understand how Fortran differs to other programming languages](#feeling)
 4. [Learn some of the basic syntax of the Fortran language](#basics)
@@ -78,7 +78,7 @@ END PROGRAM  HeronFormula
 
 __Lines 1-3:__
 
-The first three lines are comment lines - you will hopefully find a lot of these in `Fortran` programs you are given, and in the ones you write yourself. Comment lines are just notes or explanations that help the programmer and the user. They are never executed by the computer and you can write whatever you like within any line marked as a comment. In `Fortran` this is the exclamation mark (!). Any line beginning with an exclamtion mark will be ignored by the computer when the program runs. Comments help the user to understand more complicated bits of code by providing a more human-readable explanation, or perhaps giving an example of how to use the code.
+The first three lines are comment lines - you will hopefully find a lot of these in `Fortran` programs you are given, and in the ones you write yourself. Comment lines are just notes or explanations that help the programmer and the user. They are never executed by the computer and you can write whatever you like within any line marked as a comment. In `Fortran` this is the exclamation mark (!). Any line beginning with an exclamation mark will be ignored by the computer when the program runs. Comments help the user to understand more complicated bits of code by providing a more human-readable explanation, or perhaps giving an example of how to use the code.
 
 __Line 5:__
 
@@ -90,7 +90,7 @@ __Lines 6-17:__
 
 The next section of the program is where we define the variables to be used in the program. In `Fortran` programs, you will almost always see these defined at the very top of the program, unlike in other languages where you can define them as you go along. `Fortran` likes to know at the start which variables it is dealing with. We will cover what the different types are in the next section. Note also how we have added comments to explain in more human-readable format what each variable does.
 
-The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and functions. (*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the `WRITE` function. We also terminate our program using the `END PROGRAM` statement.
+The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and functions. (\*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the `WRITE` function. We also terminate our program using the `END PROGRAM` statement.
 
 This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to _compile_ it, which is covered in a later section of the tutorial.
  
@@ -170,7 +170,7 @@ The `READ` function tells the fortran program to record the values you enter via
 READ(*,*)  a, b, c
 ```
 
-In Fortran functions, any inputs needed for the function are placed inside a list within the two round-brackets (parentheses), as in `READ(input1, input2, etc...)`. In `READ`, The first asterisk (*) means the input comes from the keyboard in a READ statement and goes to the screen in a WRITE statement. The second asterisk (*) means the computer decides how the I/O elements should look based on the TYPE of data in the list of variables that follow.
+In Fortran functions, any inputs needed for the function are placed inside a list within the two round-brackets (parentheses), as in `READ(input1, input2, etc...)`. In `READ`, The first asterisk (\*) means the input comes from the keyboard in a READ statement and goes to the screen in a WRITE statement. The second asterisk (\*) means the computer decides how the I/O elements should look based on the TYPE of data in the list of variables that follow.
 
 The list of variables that follow will be assigned the values that you type, one at a time. So in our program we have three variables (a, b, c) that we have already defined earlier on. When the program is running and gets to the READ statement, it will prompt you to enter a variable and press enter. This will happen three times, and each value you type will be assigned to `a`, `b` and `c` respectively.
 
@@ -184,7 +184,7 @@ Would print out the values assigned to a, b, and c.
 
 ## Mathematical operations
 
-Fortran is designed primarily for numerical calculations, and it has many built-in functions for mathematical operations. In the example triangle-area program, we use the basic functions: `+, -, *, /` for addition, subtraction, multiplication, and division. There is one other that we use in the above example, `SQRT()`, which finds the square root of a number. 
+Fortran is designed primarily for numerical calculations, and it has many built-in functions for mathematical operations. In the example triangle-area program, we use the basic functions: `+, -, *, /` for addition, subtraction, multiplication, and division. There is one other function that we use in the above example, `SQRT()`, which finds the square root of a number. 
 
 ## Logical expressions
 
@@ -203,7 +203,7 @@ The true or false value assigned to these two variables will depend on the outco
 
 Two logical operators are used in this example: the greater-than operator `>` and the `.AND.` operator. Greater than behaves in the same way as its mathematical counterpart. E.g. `1 > 2` would give the answer `FALSE`, because one is not greater than two. 
 
-The `.AND.` operator checks to see if both expressions either side are true or false. E.g. `(1 < 2) .AND. (3 < 4)` would return `TRUE` because both expressions are `TRUE`. Notice that we can use brackets, similalrly in a mathematical context, to state the order in which we want expression to be evaluated. First the computer will evaluate the expression in the brackets, before proceding to evaluating the `.AND.` expression(s) as a whole.
+The `.AND.` operator checks to see if both expressions on either side are true or false. E.g. `(1 < 2) .AND. (3 < 4)` would return `TRUE` because both expressions are `TRUE`. Notice that we can use brackets, similarly in a mathematical context, to state the order in which we want the expression to be evaluated. First the computer will evaluate the expression in the brackets, before proceeding to evaluating the `.AND.` expression(s) as a whole.
 
 The outcome of these two lines (`TRUE`/`FALSE`) will depend on the inputs you give the program when it runs, which we will come to soon.
 
@@ -242,7 +242,7 @@ You must remember to mark the end of the `IF...THEN...ELSE` block with an `END I
 
 ### Wrapping it up
 
-That is the end of our triangle area program. There is a final `END PROGRAM` statement to mark the end of the program, telling Fortran that we have done. 
+That is the end of our triangle area program. There is a final `END PROGRAM` statement to mark the end of the program, telling Fortran that we are done. 
 
 But how do we execute (run) the program? We will cover this in the next section.
 
@@ -253,7 +253,7 @@ But how do we execute (run) the program? We will cover this in the next section.
 
 `Fortran` programs have an extra step required before you can run or 'execute' them. Once the program has been written and saved as a plain-text file, we must convert it into a format that the computer hardware can understand and process. This stage is called _compilation_ - we are compiling our program into a format suitable for the computer we wish to run it on. 
 
-If you have come from a background in using langauges such as `R`, `Python`, or `MATLAB`, you may not have encountered this compilation stage before, as the usual method of running programs written in these languages hides away the compilation stage from the user. These types of languages (`R`, `Python`, etc.) are sometimes described as _interpreted_ languages. The program is run through a special program called the _interpreter_, and this does all the compilation dynamically,or at _run-time_. 
+If you have come from a background in using languages such as `R`, `Python`, or `MATLAB`, you may not have encountered this compilation stage before, as the usual method of running programs written in these languages hides away the compilation stage from the user. These types of languages (`R`, `Python`, etc.) are sometimes described as _interpreted_ languages. The program is run through a special program called the _interpreter_, and this does all the compilation dynamically, or at _run-time_. 
 
 `Fortran`, being optimised for fast, numerical computation, requires the user to perform the compilation step themselves, which allows fine tuning of the optimisation options of the program and many other customisations of the final program.
 
@@ -266,43 +266,41 @@ To compile our program, make sure you have saved the sample triangle-area progra
 You will need to be running Linux for this particular example. (It is possible to compile Fortran on Windows and MacOS as well, but the command names may be slightly different). If you are on Windows but have access to a Linux server via your institution it is advised to use that for the next part.
 
 1. Open a command-line/terminal session. In the prompt, check that you have the `gfortran` compiler program available by typing `gfortran --version`. Hopefully this will return the version number if it is installed. (If not, you will get an error message)
+    ```
+  [dvalters@baltic01 Programming-tutorials]$ gfortran --version
+  GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-28)
+  Copyright (C) 2015 Free Software Foundation, Inc.
 
-```
-[dvalters@baltic01 Programming-tutorials]$ gfortran --version
-GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-28)
-Copyright (C) 2015 Free Software Foundation, Inc.
-
-GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
-You may redistribute copies of GNU Fortran
-under the terms of the GNU General Public License.
-For more information about these matters, see the file named COPYING
-```
+  GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
+  You may redistribute copies of GNU Fortran
+  under the terms of the GNU General Public License.
+  For more information about these matters, see the file named COPYING
+    ```
 
 2. In the same directory as you saved the .f90 file, run the following command
+    ```
+  gfortran triangle.f90 -o triangle
+    ```
 
-```
-gfortran triangle.f90 -o triangle
-```
+    This tells gfortran (a fortran compiler, commonly found on Linux operating systems) to take the file `triangle.f90` and produce a program called `triangle` for us to run. The `-o` flag lets us specify an output name for our program.
 
-This tells gfortran (a fortran compiler, commonly found on Linux operating sytems) to take the file `triangle.f90` and produce a program called `triangle` for us to run. The `-o` flag lets us specify an output name for our program.
-
-When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` progrom executable.
+    When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` program executable.
 
 3. Run the program
 
-To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Herron's Formula. 
+    To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Heron's Formula. 
 
-Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above.
+Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above?
 
 # 6. Exercises
 {: #structure}
 
 Now we know how to write, compile, and run a simple Fortran program, lets experiment with modifying and writing our own code.
 
-Everytime you modify the code, you will need to re-run the compilation step above.
+Every time you modify the code, you will need to re-run the compilation step above.
 
 1. Add a message to the screen when the program runs to remind users how to enter the data. (i.e. enter 3 values and press the return key.)  
-2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagoreas Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
+2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagorean Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
 
 ## Independent coding
 
