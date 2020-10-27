@@ -849,10 +849,9 @@ aus_models <- aus_pops %>%
            species.name, id, duration, minyear, maxyear,
            system, common.name) %>%
   # Create a linear model for each group
-  do(mod = lm(scalepop ~ year, data = .)) %>%
   # Extract model coefficients using tidy() from the
   # *** tidy() function from the broom package ***
-  tidy(mod) %>%
+  do(broom::tidy(lm(scalepop ~ year, .))) %>%
   # Filter out slopes and remove intercept values
   filter(term == "year") %>%
   # Get rid of the column term as we don't need it any more
