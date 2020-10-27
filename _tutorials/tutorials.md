@@ -220,11 +220,11 @@ You are two clicks away from having a website with your tutorial! Now click on `
 
 __Scroll down to the `GitHub pages` section again - you can see the link for your tutorial! If you need to edit your tutorial, you can go back to your repository, select the `index.md` file, then click on `Edit` and make any necessary changes. You can also check out different themes for your website, though the default one is clean and tidy, which works well for coding and statistics tutorials in general.__
 
-__We would love to see your tutorials - feel free to share them with us on Twitter __@our_codingclub__ or via email __ourcodingclub@gmail.com__
+__We would love to see your tutorials - feel free to share them with us on Twitter __@our_codingclub__ or via email __ourcodingclub(at)gmail.com__
 
 ### Contribute a tutorial
 
-__Are you keen to share some of your coding and statistics knowledge? We would love to have more people join our team and build a world-wide community of people teaching and learning together! You can take a look at the tutorials we have already developed. Feel free to make suggestions for changes on existing tutorials and get in touch with us at ourcodingclub@gmail.com if you would like to make a new tutorial.__
+__Are you keen to share some of your coding and statistics knowledge? We would love to have more people join our team and build a world-wide community of people teaching and learning together! You can take a look at the tutorials we have already developed. Feel free to make suggestions for changes on existing tutorials and get in touch with us at ourcodingclub(at)gmail.com if you would like to make a new tutorial.__
 
 ### Useful resources
 

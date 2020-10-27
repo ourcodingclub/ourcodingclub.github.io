@@ -114,7 +114,8 @@ Practice is the best way to learn any new language, so let's jump straight in an
 
 Follow the link, click on "Download Zip", and save and unzip the folder somewhere on your computer. (Never heard of Github? Don't worry, we will cover it in a [later tutorial]({{ site.baseurl }}/tutorials/git/index.html). For now, it's simply the website where you can download our course material from.)
 
-You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics).
+### You can find all the files needed to complete this tutorial in this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics).
+Click on `Code` and then `Download zip`. Remember to unzip the files before you start working with them in `RStudio`.
 
 ![Github clone repo screenshot]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/github_clone.png)
 

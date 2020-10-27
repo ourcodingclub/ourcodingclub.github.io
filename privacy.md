@@ -9,7 +9,7 @@ Our Coding Club ("we", "our", "us") is a group of students and staff from the Un
 
 ## How we handle data from your general website use
 
- We only collect data that you willingly provide online via our online contact form (such as your name, contact details, e-mail address etc.) or participation in feedback surveys. We use this information to answer your queries, provide the services requested (e.g. signing you up for our mailing list), and improve our services. You can request to unsubscribe from the mailing list at any time by contacting us at ourcodingclub@gmail.com. 
+ We only collect data that you willingly provide online via our online contact form (such as your name, contact details, e-mail address etc.) or participation in feedback surveys. We use this information to answer your queries, provide the services requested (e.g. signing you up for our mailing list), and improve our services. You can request to unsubscribe from the mailing list at any time by contacting us at ourcodingclub(at)gmail.com. 
 
 ## How we handle data from the Course
 
@@ -19,7 +19,7 @@ You are asked to provide some demographic information (country, gender, age, occ
 
 All the data we collect is stored securely and managed through Amazon Web Services. We will keep your data on file for a maximum of three years, after which it will be erased.
 
-You have the right to request a copy of your personal data, or request that we amend or delete your information. Contact us at ourcodingclub@gmail.com with the subject "Data privacy". 
+You have the right to request a copy of your personal data, or request that we amend or delete your information. Contact us at ourcodingclub(at)gmail.com with the subject "Data privacy". 
 
 ## How we use cookies
 

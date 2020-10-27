@@ -173,6 +173,6 @@ ggsave(EU_pop, filename = "anseriformes.png", width = 10, height = 10)
 
 Here we have created a map for _Anseriformes_, an order which includes many species of waterfowl, like the mallard and pochard. Curious to see how vertebrate populations across the whole LPI database have changed? You can check out our [tutorial on efficient ways to quantify population change]({{ site.baseurl }}/tutorials/seecc/index.html), where we compare how for-loops, `lapply()` functions and pipes compare when it comes to dealing with a lot of data.
 
-__We'd love to see the maps you've made so feel free to email them to us at ourcodingclub@gmail.com!__
+__We'd love to see the maps you've made so feel free to email them to us at ourcodingclub(at)gmail.com!__
 
 

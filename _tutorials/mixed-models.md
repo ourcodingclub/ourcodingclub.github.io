@@ -459,7 +459,7 @@ We only need to make one change to our model to allow for random slopes as well 
 ```r
 mixed.ranslope <- lmer(testScore ~ bodyLength2 + (1 + bodyLength2|mountainRange/site), data = dragons) 
 
-summary(mixed.slope)
+summary(mixed.ranslope)
 ```
 
 Here, we're saying, let's model the intelligence of dragons as a function of body length, knowing that populations have different intelligence baselines **and** that the relationship may vary among populations. 

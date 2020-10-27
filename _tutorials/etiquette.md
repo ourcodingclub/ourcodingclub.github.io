@@ -62,7 +62,7 @@ A more informative script intro:
 # Analysing vertebrate population change based on the Living Planet Index
 # Data available from http://www.livingplanetindex.org/
 
-# Gergana Daskalova ourcodingclub@gmail.com
+# Gergana Daskalova ourcodingclub(at)gmail.com
 # 25-04-2017
 
 # Libraries ----
