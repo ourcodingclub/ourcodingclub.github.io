@@ -25,7 +25,7 @@ __The goal of this tutorial is to advance skills in data synthesis, particularly
 
 </div>
 
-## All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-dataviz-beautification-synthesis" target="_blank">this repository</a>. __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+## All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-dataviz-beautification-synthesis" target="_blank">this repository</a>. __Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
 `R` really shines when it comes to data visualisation and with some tweaks, you can make eye-catching plots that make it easier for people to understand your science. The `ggplot2` package, part of the `tidyverse` collection of packages, as well as its many extension packages are a great tool for data visualisation, and that is the world that we will jump into over the course of this tutorial. 
 
@@ -618,7 +618,7 @@ ggsave(histogram1, filename = "histogram1.png",
 
 This does the job, but it's not particularly beautiful and everything is rather on the grey side. 
 
-<b>With the growing popularity of `ggplot2`, oen thing that stands out is that here we have used all of the default `ggplot2` options. Similarly, when we use the default `ggplot2` colours like in the violin plots earlier on, most people now recognise those, so you risk people immediately thinking "I know those colours, ggplot!" versus pausing to actually take in your scientific message. So making a graph as "yours" as possible can make your work more memorable!</b>
+<b>With the growing popularity of `ggplot2`, one thing that stands out is that here we have used all of the default `ggplot2` options. Similarly, when we use the default `ggplot2` colours like in the violin plots earlier on, most people now recognise those, so you risk people immediately thinking "I know those colours, ggplot!" versus pausing to actually take in your scientific message. So making a graph as "yours" as possible can make your work more memorable!</b>
 
 ```r
 (histogram2 <- ggplot(carex, aes(x = hits)) +
