@@ -260,7 +260,7 @@ __Richness is a function of time.__
 
 __In `R`, this turns into the code: `richness ~ time`.__
 
-__Richness is our dependent (predictor) variable and time is our independent variable ([ see here for more details](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
+__Richness is our dependent (response) variable and time is our independent (predictor) variable ([ see here for more details](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)). This is our base model, but what other things do we need to account for? What would happen if we just modelled richness as a function of time without dealing with the other structure in our data?  Let's find out in the rest of the tutorial.__
 
 
 # 6. Learn about the different types of models
