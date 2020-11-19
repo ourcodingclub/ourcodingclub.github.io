@@ -11,7 +11,7 @@ We are very keen to discuss ways to innovate teaching in quantitative analysis a
 ## Send us an email:
 
 <div class="form-group">
-	<form action="https://formspree.io/f/" method="POST">
+	<form action="https://formspree.io/f/mleolaen" method="POST">
 		<input type="text" name="_name" class="form-control" placeholder="Your Name" required />
 		<input type="email" name="_replyto" class="form-control" placeholder="Email Address" required />
 		<input type="text" name="_subject" class="form-control" placeholder="Subject" required />
@@ -20,11 +20,10 @@ We are very keen to discuss ways to innovate teaching in quantitative analysis a
     </form>
 </div>
 
-
 ## Subscribe to our mailing list to hear about weekly workshops
 
 <div class="form-group">
-	<form action="https://formspree.io/f/" method="POST">
+	<form action="https://formspree.io/f/mleolaen" method="POST">
 		<div class="form-group">
 			<input type='hidden' name='_subscribe' value='subscribe'/>
 			<input type='text' class="form-control" name='_email' placeholder="Email" required/>
@@ -32,7 +31,6 @@ We are very keen to discuss ways to innovate teaching in quantitative analysis a
 		</div>
 	</form>
 </div>
-
 
 ## Come to our workshops
 
