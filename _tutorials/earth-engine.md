@@ -235,7 +235,7 @@ For each of the variables we created earlier (forest cover, forest loss and fore
 ```javascript
 // The units of the variables are numbers of pixels
 // Here we are converting the pixels into actual area
-// Dividing by 10 000 so that the final result is in km2
+// Dividing by 1 000 000 so that the final result is in km2
 var areaCover = treeCover.multiply(ee.Image.pixelArea())
                 .divide(1000000).select([0],["areacover"]);
 
