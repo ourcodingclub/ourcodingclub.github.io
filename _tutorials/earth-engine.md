@@ -230,20 +230,20 @@ _You can also switch between map view and satellite view. If you zoom in enough 
 
 __So far we can see where forest loss and gain have occurred, so we know about the _extent_ of forest change, but we don't know about the _magnitude_ of forest change, so our next step is to convert the number of pixels that have experienced gain or loss (remember that they are just 0 or 1 values, 0 for no, 1 for yes) into areas, e.g. square kilometers.__
 
-For each of the variables we created earlier (forest cover, forest loss and forest gain), we will now create new variables representing the _areas_ of forest cover, loss and gain. To achieve this, we will use the `ee.Image.pixelArea()` function, and we have to `multiply` our original variables (e.g., `treeCover`), similar to when you convert from meters to centimeters, you would miltiply by 100. Here we want the area to be in square kilometers, so to go from hectares to square kilometers, we will also divide by 10000. Finally, we select the first band from our new variables - the areas of forest cover, loss and gain, respectively.
+For each of the variables we created earlier (forest cover, forest loss and forest gain), we will now create new variables representing the _areas_ of forest cover, loss and gain. To achieve this, we will use the `ee.Image.pixelArea()` function, and we have to `multiply` our original variables (e.g., `treeCover`), similar to when you convert from meters to centimeters, you would miltiply by 100. Here we want the area to be in square kilometers, so to go from square meters to square kilometers, we will also divide by 1 000 000. Finally, we select the first band from our new variables - the areas of forest cover, loss and gain, respectively.
 
 ```javascript
 // The units of the variables are numbers of pixels
 // Here we are converting the pixels into actual area
 // Dividing by 10 000 so that the final result is in km2
 var areaCover = treeCover.multiply(ee.Image.pixelArea())
-                .divide(10000).select([0],["areacover"]);
+                .divide(1000000).select([0],["areacover"]);
 
 var areaLoss = loss.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
-              .divide(10000).select([0],["arealoss"]);
+              .divide(1000000).select([0],["arealoss"]);
 
 var areaGain = gain.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
-              .divide(10000).select([0],["areagain"]);
+              .divide(1000000).select([0],["areagain"]);
 ```
 
 ### Calculate forest loss and gain in specific areas
