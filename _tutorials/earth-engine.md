@@ -315,7 +315,9 @@ _Open up `RStudio` (or just `R` depending on your preferences) and start a new s
 ```r
 # Load libraries ----
 library(ggplot2)
-library(ggthemr)  # to set a custom theme
+devtools::install_github('Mikata-Project/ggthemr') # to install the ggthemr package
+# if you don't have it already
+library(ggthemr)  # to set a custom theme but non essential!
 library(forcats)  # to reorder categorical variables
 ```
 
@@ -356,7 +358,6 @@ The `ggthemr` theme we chose earlier gives the graph more of an infographic feel
 
 ```r
 (forest_barplot <- ggplot(forest_change, aes(x = NAME, y = sum/GIS_AREA, 
-                                             colour = fct_rev(type), 
                                              fill = fct_rev(type))) +
     geom_bar(stat = "identity", position = "dodge") +
     labs(x = NULL, y = "Forest change (% of park area)\n") +
