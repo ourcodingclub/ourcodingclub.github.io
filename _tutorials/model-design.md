@@ -24,7 +24,7 @@ tags: modelling
 10. [Hierarchical models using `MCMCglmm`](#MCMCglmm)
 
 {% capture callout %}
-All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
