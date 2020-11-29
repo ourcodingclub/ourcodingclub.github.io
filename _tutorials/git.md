@@ -43,13 +43,14 @@ If you are on a personal Windows machine, download and install [Git](https://git
     * "Git LFS (Large File Support)"
     * "Associate .git* ..."
     * "Associate .sh ..."
-2. When prompted to choose the default editor, pick Nano (a simple terminal editor) or Notepad++ (a simple graphical editor):
+2. When prompted to choose the default editor, pick Nano (a simple terminal editor) or Notepad++ (a simple graphical editor)
 3. For "Adjust your PATH environment", select: "Use Git from Git Bash only"
 4. For "Choose HTTPS transport backend", select: "Use the OpenSSL library"
 5. For "Configure the line ending conversions", select: "Checkout Windows-style,..."
 6. For "Configure the terminal emulator ...", select: "Use MinTTY ..."
-7. For "Configure extra options", select: "Enable file system caching"
-8. "Enable Git Credential Manager" 
+7. For "Configure extra options", select:
+    * "Enable file system caching"
+    * "Enable Git Credential Manager"
 
 If you are on a personal Mac machine, install Git via Homebrew, which is a package manager for command line programs on Mac. First, open a terminal, which can be found at `~/Application/Utilities/Terminal.app`. Then, copy and paste this line into the terminal and hit "Enter":
 
