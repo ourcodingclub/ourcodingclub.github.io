@@ -189,7 +189,7 @@ The "commit-pull-push" workflow can be embedded within `RStudio` using "Projects
 
 __Log into your Github account and navigate to the repository you created earlier__
 
-Click `Clone or download` and copy the HTTPS link.
+Click `Code` and copy the HTTPS link.
 
 ![Github clone repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git/repo_clone.png)
 
