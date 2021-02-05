@@ -614,6 +614,8 @@ If you are keen, you can now try out the `brms` package and generate the Stan co
 
 __You can check out [the Stan hierarchical modelling tutorial here]({{ site.baseurl }}/tutorials/stan-2/index.html)!__
 
+#### Keen to take your modelling skills to the next level? If you want to learn hierarchical **spatial** modelling and accounting for spatial autocorrelation, [check out our tutorial on INLA]({{ site.baseurl }}/tutorials/spatial-modelling-inla/)!
+
 <br>
 
 <section id="portfolio-work" style="background-color: #a0a2cb; padding-bottom:20px">
