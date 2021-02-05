@@ -668,6 +668,8 @@ The model selection process recommended by Zuur *et al.* (2009) is a top-down st
 
 **Well done for getting through this!** As you probably gather, mixed effects models can be a bit tricky and often there isn't much consensus on the best way to tackle something within them. The coding bit is actually the (relatively) easy part here. Be mindful of what you are doing, prepare the data well and things should be alright.
 
+#### Keen to take your modelling skills to the next level? If you want to learn hierarchical **spatial** modelling and accounting for spatial autocorrelation, [check out our tutorial on INLA]({{ site.baseurl }}/tutorials/spatial-modelling-inla/)!
+
 <br>
 
 <section id="portfolio-work" style="background-color: #a0a2cb; padding-bottom:20px">
