@@ -2,6 +2,7 @@
 .sass-cache
 _site/
 Gemfile.lock
+.jekyll-metadata
 .DS_Store
 .Rproj.user
 .Rhistory
