@@ -217,7 +217,7 @@ The `scale_fill_manual(values = c("your-colour-1", "your-colour-2", ...))` funct
 {% capture callout %}
 ## Need inspiration for your colours?
 
-You can define colours using R's [built-in colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or by specifying their [Hex codes](https://www.color-hex.com/). The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our [previous tutorial]({{ site.baseurl }}/datavis_update/index.html#practice) for instructions on how to install it.
+You can define colours using R's [built-in colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or by specifying their [Hex codes](https://www.color-hex.com/). The `Colour Picker` package is a great way to pick colours within the comfort of R Studio: see our [previous tutorial]({{ site.baseurl }}/tutorials/datavis/#colourpicker) for instructions on how to install it.
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
