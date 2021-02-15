@@ -452,7 +452,8 @@ Let's plot this again - visualising what's going on is always helpful. You shoul
 
 You might have noticed that all the lines on the above figure are parallel: that's because so far, we have only fitted **random-intercept models**. A random-intercept model allows the intercept to vary for each level of the random effects, but keeps the slope constant among them. So in our case, using this model means that we expect dragons in all mountain ranges to exhibit the same relationship between body length and intelligence (fixed slope), although we acknowledge that some populations may be smarter or dumber to begin with (random intercept).
 
-You can find an excellend visualisation of random intercepts and slopes (at this website)[https://mfviz.com/hierarchical-models/].
+You can find an excellent visualisation of random intercepts and slopes [at this website](https://mfviz.com/hierarchical-models/)
+
 
 Now, in the life sciences, we perhaps more often assume that not all populations would show the exact same relationship, for instance if your study sites/populations are very far apart and have some relatively important environmental, genetic, etc differences. Therefore, we often want to fit a **random-slope and random-intercept model**. Maybe the dragons in a very cold vs a very warm mountain range have evolved different body forms for heat conservation and may therefore be smart even if they're smaller than average. 
 
