@@ -320,7 +320,7 @@ To create additional space between an axis title and the axis itself, use `\n` w
 Box plots are very informative as they show the median and spread of your data, and allow you to quickly compare values among groups. If some boxes don't overlap with one another, you probably have significant differences, and it's worth to investigate further with statistical tests. 
 
 ```r
-(vulture_boxplot <- ggplot(vultureITCR, aes(`Country list`, abundance)) + geom_boxplot())
+(vulture_boxplot <- ggplot(vultureITCR, aes(`Country.list`, abundance)) + geom_boxplot())
 
 # Beautifying
 
