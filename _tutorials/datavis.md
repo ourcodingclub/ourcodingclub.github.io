@@ -513,7 +513,7 @@ arctic <- filter(LPI2, Common.Name %in% c('Reindeer / Caribou', 'Beluga whale'))
          legend.title = element_text(size = 12))
 )
 
-# Not great becausE of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)
+# Not great because of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)
 (arctic.box <- ggplot(filter(arctic, abundance < 8000), aes(x = Country.list, y = abundance)) +
       geom_boxplot() +
       labs(x = 'Country', y = 'Abundance \n') +
