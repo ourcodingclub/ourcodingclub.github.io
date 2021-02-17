@@ -24,7 +24,7 @@ tags: modelling
 10. [Hierarchical models using `MCMCglmm`](#MCMCglmm)
 
 {% capture callout %}
-All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -613,6 +613,8 @@ Today we have learned that in order to design a statistical model, we first need
 If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
 
 __You can check out [the Stan hierarchical modelling tutorial here]({{ site.baseurl }}/tutorials/stan-2/index.html)!__
+
+#### Keen to take your modelling skills to the next level? If you want to learn hierarchical **spatial** modelling and accounting for spatial autocorrelation, [check out our tutorial on INLA]({{ site.baseurl }}/tutorials/spatial-modelling-inla/)!
 
 <br>
 

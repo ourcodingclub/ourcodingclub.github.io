@@ -210,8 +210,8 @@ https://twitter.com/our_codingclub
 <section id="portfolio-work" style="background-color: #f4eddc; padding-bottom:20px">
 <div class="content-new-streams">
 <a href="https://datascienceees.github.io" target="_blank"><img src="{{ site.baseurl }}/assets/img/index/ds-edi.png" style= "width:20%; height:auto; padding:20px;20px;20px;80px;" alt="Data Science in Edinburgh logo"></a>
-<h2>Data Science in Edinburgh</h2>
-<p><b><h4><a href="https://drive.google.com/file/d/16lpxNNEq8lnqWWB2S8kUoyYPyigAM0dk/view?usp=sharing" target="_blank">Schedule for Edinburgh workshops in 2020!</a></h4></b></p>
+<h2>Data Science in Edinburgh (and now over Zoom anywhere!)</h2>
+<p><b><h4><a href="https://drive.google.com/file/d/177CZOYTnAqiL2BuoVKu-RDnjLRfbHg84/view?usp=sharing" target="_blank">Schedule for our workshops in Jan-May 2021, all held over Zoom so anyone can tune in!</a></h4></b></p>
 
 <p><big>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</big></p>
 </div>

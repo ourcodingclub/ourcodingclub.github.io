@@ -4,8 +4,8 @@ title: Beautiful and informative data visualisation
 subtitle: Using ggplot2 to communicate your results
 date: 2017-01-29 10:00:00
 author: Gergana
-updated: 2019-05-14
-updater: Sandra
+updated: 2020-02-17
+updater: Elise Gallois
 survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 redirect_from:
   - /2017/01/29/datavis.html
@@ -160,7 +160,7 @@ LPI2$abundance <- as.numeric(LPI2$abundance)
 This is a very large dataset, so for the first few graphs we will focus on how the population of __only one species__ has changed. Pick a species of your choice, and make sure you spell the name exactly as it is entered in the dataframe. In this example, we are using the "Griffon vulture", but you can use whatever species you want. To see what species are available, use the following code to get a list:
 
 ```r
-unique(LPI2$`Common.Name`)
+unique(LPI2$Common.Name)
 ```
 
 Now, filter out just the records for that species, substituting `Common.Name` for the name of your chosen species. 
@@ -320,7 +320,7 @@ To create additional space between an axis title and the axis itself, use `\n` w
 Box plots are very informative as they show the median and spread of your data, and allow you to quickly compare values among groups. If some boxes don't overlap with one another, you probably have significant differences, and it's worth to investigate further with statistical tests. 
 
 ```r
-(vulture_boxplot <- ggplot(vultureITCR, aes(`Country list`, abundance)) + geom_boxplot())
+(vulture_boxplot <- ggplot(vultureITCR, aes(Country.list, abundance)) + geom_boxplot())
 
 # Beautifying
 
@@ -513,7 +513,7 @@ arctic <- filter(LPI2, Common.Name %in% c('Reindeer / Caribou', 'Beluga whale'))
          legend.title = element_text(size = 12))
 )
 
-# Not great becausE of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)
+# Not great because of high-abundance outliers for reindeer in Canada - let's remove them for now (wouldn't do that for an analysis!)
 (arctic.box <- ggplot(filter(arctic, abundance < 8000), aes(x = Country.list, y = abundance)) +
       geom_boxplot() +
       labs(x = 'Country', y = 'Abundance \n') +
