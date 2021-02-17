@@ -160,7 +160,7 @@ LPI2$abundance <- as.numeric(LPI2$abundance)
 This is a very large dataset, so for the first few graphs we will focus on how the population of __only one species__ has changed. Pick a species of your choice, and make sure you spell the name exactly as it is entered in the dataframe. In this example, we are using the "Griffon vulture", but you can use whatever species you want. To see what species are available, use the following code to get a list:
 
 ```r
-unique(LPI2$`Common.Name`)
+unique(LPI2$Common.Name)
 ```
 
 Now, filter out just the records for that species, substituting `Common.Name` for the name of your chosen species. 
