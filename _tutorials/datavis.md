@@ -4,8 +4,8 @@ title: Beautiful and informative data visualisation
 subtitle: Using ggplot2 to communicate your results
 date: 2017-01-29 10:00:00
 author: Gergana
-updated: 2019-05-14
-updater: Sandra
+updated: 2020-02-17
+updater: Elise Gallois
 survey_link: https://www.surveymonkey.co.uk/r/83WV8HV
 redirect_from:
   - /2017/01/29/datavis.html
@@ -320,7 +320,7 @@ To create additional space between an axis title and the axis itself, use `\n` w
 Box plots are very informative as they show the median and spread of your data, and allow you to quickly compare values among groups. If some boxes don't overlap with one another, you probably have significant differences, and it's worth to investigate further with statistical tests. 
 
 ```r
-(vulture_boxplot <- ggplot(vultureITCR, aes(`Country.list`, abundance)) + geom_boxplot())
+(vulture_boxplot <- ggplot(vultureITCR, aes(Country.list, abundance)) + geom_boxplot())
 
 # Beautifying
 
