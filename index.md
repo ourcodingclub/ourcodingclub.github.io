@@ -26,14 +26,14 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
     <li>
 		<div>
             <i class="fas fa-mouse-pointer"></i>
-			<span class="counter">603569</span>
+			<span class="counter">1,100,862</span>
 			<span class="counter-desc">Pageviews</span>
 		</div>
     </li>
     <li>
 		<div>
             <i class="fas fa-history"></i>
-			<span class="counter">127645</span>
+			<span class="counter">1,276,450</span>
 			<span class="counter-desc">Hours of coding</span>
 		</div>
 	</li>
