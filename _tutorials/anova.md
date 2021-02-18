@@ -137,7 +137,7 @@ library(tidyverse)  # For data wrangling and data visualisation
 
 
 {% capture callout %}
-**The explanatory variable is the CAUSE and the response variable is the EFFECT.**
+The **explanatory variable** is the **CAUSE** and the **response variable** is the **EFFECT.**
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
 
@@ -327,7 +327,10 @@ The dollar sign `$` isolates the column `Temperature` from the data frame `frogs
 
 Note that data can be log-transformed to meet normality assumptions. Alternatively, non-parametric tests are available for non-normally distributed data. Have a look at [this tutorial](https://www.dataanalytics.org.uk/non-parametric-tests-using-r/) for examples of non-parametric testing in R.
 
-**We can plot a histogram to have a look at the frequency distribution of our response variable.**
+{% capture callout %}
+We can plot a **histogram** to have a look at the frequency **distribution** of our response variable.
+{% endcapture %}
+{% include callout.html content=callout colour="important" %}
 
 First, we can make sure that all the figures we make will be consistent and beautiful using this theme. A theme is like a template: it will make all the figures you apply it to have similar features (e.g. font size, line width, colour palette...). For now, **just copy the code below, since data visualization is not the focus of this tutorial.** But if you want to learn more about customising your plots, check out [this tutorial](https://ourcodingclub.github.io/tutorials/data-vis-2/).
 
@@ -650,7 +653,7 @@ If you are keen to see a few cool data visualisation tricks, keep scrolling...
 # 8. BONUS:
 {: #bonus}
 
-## Adding icons with `phylopic`
+#### Adding icons with `phylopic`
 {: #phylopic}
 
 {% capture reveal %}
@@ -712,7 +715,7 @@ Find out more about how to insert a phylopic [here.](https://rdrr.io/github/scko
 {% include reveal.html button="Click here to view" content=reveal %}
 
 
-## Making a panel with `gridExtra`
+#### Making a panel with `gridExtra`
 {: #panel}
 
 {% capture reveal %}
@@ -753,7 +756,7 @@ ggsave(frog_panel, file = "assets/img/frog_panel.png", width = 18, height = 9)
 {% include reveal.html button="Click here to view" content=reveal %}
 
 
-## Pre-registrations
+#### Pre-registrations
 {: #prereg}
 
 {% capture reveal %}
