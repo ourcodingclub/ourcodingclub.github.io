@@ -354,6 +354,7 @@ ggsave(trends_mass, filename = "trends_mass.png",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
 
+```r
 # Make a new theme
 theme_coding <- function(){            # creating a new theme function
   theme_bw()+                          # using a predefined theme as a base
@@ -367,14 +368,22 @@ theme_coding <- function(){            # creating a new theme function
           legend.title = element_blank(),
           legend.position = c(0.9, 0.9))
 }
+```
+
+<div class="bs-callout-blue" markdown="1">
 
 A data manipulation tip: Using case_when(), combined with mutate, is a great way to create new variables based on one or more conditions from other variables.
 
+</div>
+
+```r
 # Create new columns based on a combo of conditions using case_when()
 bird_models_mass <- bird_models_mass %>% 
   mutate(wren_or_not = case_when(common.name == "Mallee emu-wren" ~ "Yes",
                                  common.name != "Mallee emu-wren" ~ "No"))
+```
 
+```r
 (trends_mass_wren <- ggplot() +
     geom_point(data = bird_models_mass, aes(x = log(mass), y = abs(estimate),
                                      colour = wren_or_not,
@@ -395,18 +404,26 @@ bird_models_mass <- bird_models_mass %>%
     guides(size = F, colour = F) +
     ggtitle("Mallee emu-wren trends\nin the context of Australian-wide trends") +
     labs(x = "\nlog(Body mass)", y = "Absolute population change\n"))
+```
 
+```r
 ggsave(trends_mass_wren, filename = "trends_mass_wren.png",
        height = 5, width = 6)
+```
 
 ## 3. Put your story in perspective
 
+```r
 world <- map_data("world")
+```
 
+```r
 bird_coords <- bird_pops_long %>% 
   dplyr::select(3:27) %>%
   distinct()
+```
 
+```r
 (pop_map <- ggplot(bird_coords, aes(x = decimal.longitude, y = decimal.latitude)) + 
     geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.4) +
     geom_bin2d(bins = 100) +
@@ -435,14 +452,17 @@ bird_coords <- bird_pops_long %>%
                                                     unit = "cm"))))
 
 ggsave(pop_map, filename = "bird_map.png")
+```
 
+```r
 bird_panel <- grid.arrange(pop_map, trends_mass_wren, ncol = 2, 
                            widths = c(0.6, 0.4),
                            heights = c(1, 0.15))
 
 ggsave(bird_panel, filename = "bird_map_panel.png",
        height = 5, width = 12)
-       
+```
+
 ### Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your data syntheses!
 
 <b>If you'd like more inspiration and tips, check out the materials below!</b>
