@@ -378,6 +378,7 @@ theme_coding <- function(){            # creating a new theme function
 While having lots of data is often impressive, it can also make it hard to actually figure out what the key message of the graph is. In this tutorial we are exploring how bird populations are changing over time. Might be cool to highlight a particular species, like this mallee emu-wren, a small bird that hasn't experienced particularly dramatic population changes. But in a time of global change, telling apart relatively stable populations is also important!
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/wren.png" alt="Img" style="width: 500px;"/></center>
+<center>Illustration by <a href="https://www.malkolmboothroyd.com" target="_blank">Malkolm Boothroyd</a></center>
 
 We could make the mallee emu-wren point bigger and a different colour, for which we essentially need a column that says whether or not a given record is for the mallee emu-wren.
 
@@ -403,6 +404,8 @@ lapply(packs, require, character.only = TRUE)
 icon <- readPNG("wren.png")
 icon <- rasterGrob(icon, interpolate=TRUE)
 ```
+
+And onto the figure!
 
 ```r
 (trends_mass_wren <- ggplot() +
@@ -435,7 +438,7 @@ icon <- rasterGrob(icon, interpolate=TRUE)
 ```
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass_wren.png" alt="Img" style="width: 500px;"/></center>
 
-You can save it using ggsave - you could use either `png` or `pdf` depending on your needs - `png` files are raster files and if you keep zooming, they will become blurry and are not great for publications or printed items. `pdf` files are vectorised so you can keep zooming to your delight and they look better in print but are larger files, not as easy to embed online or in presentations. So think of where your story is going and that can help you decide of the file format.
+You can save it using `ggsave()` - you could use either `png` or `pdf` depending on your needs - `png` files are raster files and if you keep zooming, they will become blurry and are not great for publications or printed items. `pdf` files are vectorised so you can keep zooming to your delight and they look better in print but are larger files, not as easy to embed online or in presentations. So think of where your story is going and that can help you decide of the file format.
 
 ```r
 ggsave(trends_mass_wren, filename = "trends_mass_wren.png",
