@@ -370,11 +370,7 @@ theme_coding <- function(){            # creating a new theme function
 }
 ```
 
-<div class="bs-callout-blue" markdown="1">
-
 A data manipulation tip: Using case_when(), combined with mutate, is a great way to create new variables based on one or more conditions from other variables.
-
-</div>
 
 ```r
 # Create new columns based on a combo of conditions using case_when()
