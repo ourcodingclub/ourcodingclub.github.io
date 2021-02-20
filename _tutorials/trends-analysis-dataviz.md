@@ -78,6 +78,7 @@ library(viridis)  # for nice colours
 library(broom)  # for cleaning up models
 library(wesanderson)  # for nice colours
 library(gridExtra) # to make figure panels
+library(png)
 ```
 
 <div class="bs-callout-blue" markdown="1">
@@ -391,6 +392,18 @@ bird_models_mass <- bird_models_mass %>%
 
 Now we are ready for an even snazzier graph! One thing you might notice is different is that before we added our data frame right at the start in the first line inside the `ggplot()`, whereas now we are adding the data inside each specific element - `geom_point`, `geom_smooth`, etc. This way `ggplot` gets less confused about what elements of the code apply to which parts of the graph - a useful thing to do when making more complex graphs.
 
+We can also add our mallee emu-wren illustration to the plot!
+
+```r
+# Load packages for adding images
+packs <- c("png","grid")
+lapply(packs, require, character.only = TRUE)
+
+# Load beluga icon
+icon <- readPNG("wren.png")
+icon <- rasterGrob(icon, interpolate=TRUE)
+```
+
 ```r
 (trends_mass_wren <- ggplot() +
     geom_point(data = bird_models_mass, aes(x = log(mass), y = abs(estimate),
@@ -406,6 +419,8 @@ Now we are ready for an even snazzier graph! One thing you might notice is diffe
                      # We are specifying the size of the labels and nudging the points so that they
                      # don't hide data points, along the x axis we are nudging by one
                      min.segment.length = 0, inherit.aes = FALSE) +
+    annotation_custom(icon, xmin = 2.3, xmax = 4.2, ymin = 0.16, ymax = 0.22) +  
+    # Adding the icon
     scale_colour_manual(values = c("turquoise4", "#b7784d")) +
     # Adding custom colours
     scale_size_manual(values= c(3, 10)) +
