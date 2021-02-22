@@ -146,6 +146,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+		<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/anova_icon.png" alt="ANOVA hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/anova">
+                	<h2>ANOVA from A to (XY)Z</h2>
+                	<p>Tidying data, running a one-way ANOVA and making a beautiful data visualisation</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="Model design hex logo">
