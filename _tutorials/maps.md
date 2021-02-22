@@ -25,7 +25,7 @@ tags: spatial
 5. [Using shapefiles](#shp)
 
 {% capture callout %}
-All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-6-Maps). Clone and download the repo as a zipfile, then unzip it.
+All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this Github repository](https://github.com/ourcodingclub/CC-6-Maps). Click on Code/Download ZIP and unzip the folder, or clone the repository to your own GitHub account. 
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
