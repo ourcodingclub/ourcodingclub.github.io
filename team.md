@@ -99,6 +99,12 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
+	<h3>Elise Gallois</h3>
+	<p>I’m a 2nd Year E4 DTP PhD student at the University of Edinburgh, studying the effects of microclimate on various aspects Arctic tundra ecology. For this project I’m busy analyzing time series data, spatial data, as well as analyzing data from multiple different sources. Throughout this process I’ve found that Coding Club tutorials have given me the skillset and confident to tackle these challenges, and I really love being able to pass on these skills to others as a tutor. My favourite thing about Coding Club is watching people with no experience in coding build up their confidence and ability to solve their own unique coding and statistical challenges. You can find me here: <a href="https://www.elisegallois.com/" target="_blank">https://www.elisegallois.com/</a>, and on Twitter at <a href="https://twitter.com/e_gallois" target="_blank">@e_gallois</a>.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/elise.png" alt="Elise Gallois photo">
+</div>
+
+<div class="team-profile">
 	<h3>Boyan Karabaliev</h3>
 	<p>Hi everyone! I'm a fourth-year Ecological and Environmental Sciences student! A long term attendee and fan of coding club, I have finally joined the team in 2021, helping out with workshops, content, and maintaining the website. I first started using R in 2018, and it has been immensely helpful in all kinds of projects in (and sometimes out of!) uni. I am happy to share my experience with R and Data Science and to show everyone that coding is not difficult! Interested in all things ecology, conservation, and data analysis.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/boyan.png" alt="Boyan photo">
