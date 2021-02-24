@@ -17,7 +17,7 @@ tags: spatial
 3. [Manipulate rasters: NDVI and KMN classification](#section3)
 
 {% capture callout %}
-All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-spatial). Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 

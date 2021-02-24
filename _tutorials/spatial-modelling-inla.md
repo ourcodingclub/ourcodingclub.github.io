@@ -58,7 +58,7 @@ install.packages("INLA",
 We will be using two datasets for this practical, derived from my own fieldwork here in Edinburgh. The purpose of the study was to collect fox scats (i.e. faecal marking) in public greenspace around the city of Edinburgh and analyse them for gastrointestinal parasites. 
 
 {% capture callout %}
-#### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
+#### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/spatial-inla). __Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
