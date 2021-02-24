@@ -392,6 +392,7 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
 {% endcapture %}
 {% include reveal.html button="Click this line to view a solution" content=reveal %}
 
+#### Interested in conducting ANOVA? Check out our in-depth tutorial [ANOVA from A to (XY)Z]({{ site.baseurl }}/tutorials/anova)!
 
 <br>
 
