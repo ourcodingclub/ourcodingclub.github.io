@@ -452,6 +452,8 @@ And the final plot would look something like this:
 {% endcapture %}
 {% include reveal.html button="Ready? Click this line to view the solution" content=reveal %}
 
+#### Interested in taking your first steps in statistical modelling? Check out our in-depth tutorial [ANOVA from A to (XY)Z]({{ site.baseurl }}/tutorials/anova)!
+
 <br>
 
 <section id="portfolio-work" style="background-color: #ebd970; padding-bottom:20px">
