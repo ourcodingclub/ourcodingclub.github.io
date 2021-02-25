@@ -99,6 +99,18 @@ We are working with great people with a strong motivation to teach and learn. He
 <p>Time has passed and some of our members have graduated and continued onto further adventures!</p>
 
 <div class="team-profile">
+	<h3>Anna Chirumbolo</h3>
+	<p>Ecological and Environmental Sciences. I have developed a strong interest for data science and particularly in its application with remote sensing, for monitoring long-term change in plant diversity. In my current dissertation I assess the spatial consistency between two different data sets (one from satellite data and one from ground-based collections) on functional leaf trait distribution across the world’s biomes. Coding Club has been an incredible experience for me to deepen my knowledge of coding and statistical skills, which I love to share to those who come to the workshops!</p>
+	<img src="{{ site.baseurl }}/assets/img/team/anna.png" alt="Anna Chirumbolo photo">
+</div>
+
+<div class="team-profile">
+	<h3>Shawn Schneidereit</h3>
+	<p>I am a fourth-year undergrad student, studying Ecological and Environmental Sciences with Management, where I primarily focus on data science, remote sensing, and GIS applications. For my undergraduate dissertation, I am researching the spectral diversity hypothesis and whether remotely sensed spectral data can be used as an indicator of biodiversity in arctic tundra environments. I am an alumnus of the Data Science in Ecological and Environmental Sciences course and began attending Coding Club as a student in 2018. The open and friendly learning environment curated by Coding Club was the seminal event in leading me to gain a passion for data science and the keystone upon which I was able to build further analytical skills. I am grateful to be taken on as a Coding Club tutor and hope to help other students gain the inspiration and fundamentals of coding and data science.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/shawn.png" alt="Shawn Schneidereit photo">
+</div>
+
+<div class="team-profile">
 	<h3>John Godlee</h3>
 	<p>I am a PhD student from the University of Edinburgh where I research the canopy structure of savanna ecosystems and its relationship with biodiversity. I have used R on a range of projects, from analysing employee satisfaction data for a private equity firm to mining linguistic transcripts for speech patterns. Through my own work, I have gained experience in using R for statistical modelling, mapping, and data manipulation. I have experience designing sustainable projects through my work in nature conservation and as the student representative for the University of Edinburgh School of GeoSciences. I’m very interested in the role of open-source and collaborative technology in academia. I am part of the <a href="http://e3dtp.geos.ed.ac.uk/" target="_blank">NERC E3 Doctoral Training Programme.</a></p>
 	<img src="{{ site.baseurl }}/assets/img/team/john.png" alt="John photo">
