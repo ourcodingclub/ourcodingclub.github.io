@@ -74,27 +74,6 @@ We are working with great people with a strong motivation to teach and learn. He
 	<img src="{{ site.baseurl }}/assets/img/team/isla.png" alt="Isla photo">
 </div>
 
-<h1>Collaborators</h1>
-<p>We are very keen to connect with people around the world who are also interested in promoting skills in statistics and programming and would love to organise collaborative workshops, so feel free to get in touch with us.</p>
-
-<div class="team-profile">
-	<h3>Francesca Mancini</h3>
-	<p><a href="https://francescamancini.github.io/" target="_blank">Francesca</a> is a PhD student from the University of Aberdeen, where she uses computational methods and non-conventional data sources to study sustainability of socio-ecological systems. Francesca is also the leader of the <a href="https://aberdeenstudygroup.github.io/studyGroup/" target="_blank">Aberdeen Study Group</a> and together we organised Coding Club's first joint workshop on <a href="https://ourcodingclub.github.io/2017/03/20/seecc.html" target="_blank">quantifying population change and visualising species occurrence</a>. You can read more about our joint workshop on the <a href="https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards/" target="_blank">Team Shrub blog</a> and <a href="https://francescamancini.github.io/FirstSteps/" target="_blank">Francesca's blog</a>. We look forward to working together again in the future!</p>
-	<img src="{{ site.baseurl }}/assets/img/team/francesca.png" alt="Francesca photo">
-</div>
-
-<div class="team-profile">
-	<h3>Koenraad van Meerbeek</h3>
-	<p><a href="http://pure.au.dk/portal/en/persons/koenraad-van-meerbeek(a52348f4-25d1-4542-8f61-d6e444444f56).html" target="_blank">I am a postdoc at the Center for Biodiversity Dynamics in a changing world</a> at Aarhus University in Denmark. My PhD at the University of Leuven (Belgium) was about the link between nature conservation and bioenergy production. Now, I am studying the effects of global change drivers (climate change, invasive species) on biodiversity and ecosystem functioning on a global scale. I am also interested in how to best design nature conservation in the future. As a nature conservation manager of a protected area in Belgium, I also have practical experience in protecting the regional biodiversity. I really love statistics and I try to learn as much as possible (so much to learn!). By teaching and developing tutorials, I want to pass on this fascination to other people. I will soon move to fixed position in Belgium, where I will be teaching courses like Ecology, Botany and Ecological data processing (statistics!).</p>
-	<img src="{{ site.baseurl }}/assets/img/team/koenraad.png" alt="Koenraad photo"/>
-</div>
-
-<div class="team-profile">
-	<h3>Max Farrell</h3>
-	<p><a href="http://farrell.research.mcgill.ca" target="_blank">Max Farrell</a> is a PhD student in the Biology Department at McGill University. His research merges theory and tools from macroecology, computational statistics, and biodiversity genomics to study interactions between hosts and parasites. You can check out the `Stan` tutorial we developped with Max <a href="https://ourcodingclub.github.io/2018/04/17/stan-intro.html" target="_blank">here</a>.</p>
-	<img src="{{ site.baseurl }}/assets/img/team/max.png" alt="Max photo"/>
-</div>
-
 <h1>Coding Club Alumni</h1>
 <p>Time has passed and some of our members have graduated and continued onto further adventures!</p>
 
@@ -192,6 +171,27 @@ We are working with great people with a strong motivation to teach and learn. He
 	<h3>Dr Christina Coakley</h3>
 	<p>Dr Christina Coakley is a University Teacher within the School of GeoSciences at the University of Edinburgh. She has created a Virtual Learning Environment (VLE) to develop a basic understanding of the R Statistical Software among undergraduate students and fully supports the advancement of quantitative teaching through in-person and online distance learning.  </p>
 	<img src="{{ site.baseurl }}/assets/img/team/chrissy.png" alt="Chrissy photo">
+</div>
+
+<h1>Collaborators</h1>
+<p>We are very keen to connect with people around the world who are also interested in promoting skills in statistics and programming and would love to organise collaborative workshops, so feel free to get in touch with us.</p>
+
+<div class="team-profile">
+	<h3>Francesca Mancini</h3>
+	<p><a href="https://francescamancini.github.io/" target="_blank">Francesca</a> is a PhD student from the University of Aberdeen, where she uses computational methods and non-conventional data sources to study sustainability of socio-ecological systems. Francesca is also the leader of the <a href="https://aberdeenstudygroup.github.io/studyGroup/" target="_blank">Aberdeen Study Group</a> and together we organised Coding Club's first joint workshop on <a href="https://ourcodingclub.github.io/2017/03/20/seecc.html" target="_blank">quantifying population change and visualising species occurrence</a>. You can read more about our joint workshop on the <a href="https://teamshrub.wordpress.com/2017/04/10/coding-club-goes-to-aberdeen-and-the-impact-awards/" target="_blank">Team Shrub blog</a> and <a href="https://francescamancini.github.io/FirstSteps/" target="_blank">Francesca's blog</a>. We look forward to working together again in the future!</p>
+	<img src="{{ site.baseurl }}/assets/img/team/francesca.png" alt="Francesca photo">
+</div>
+
+<div class="team-profile">
+	<h3>Koenraad van Meerbeek</h3>
+	<p><a href="http://pure.au.dk/portal/en/persons/koenraad-van-meerbeek(a52348f4-25d1-4542-8f61-d6e444444f56).html" target="_blank">I am a postdoc at the Center for Biodiversity Dynamics in a changing world</a> at Aarhus University in Denmark. My PhD at the University of Leuven (Belgium) was about the link between nature conservation and bioenergy production. Now, I am studying the effects of global change drivers (climate change, invasive species) on biodiversity and ecosystem functioning on a global scale. I am also interested in how to best design nature conservation in the future. As a nature conservation manager of a protected area in Belgium, I also have practical experience in protecting the regional biodiversity. I really love statistics and I try to learn as much as possible (so much to learn!). By teaching and developing tutorials, I want to pass on this fascination to other people. I will soon move to fixed position in Belgium, where I will be teaching courses like Ecology, Botany and Ecological data processing (statistics!).</p>
+	<img src="{{ site.baseurl }}/assets/img/team/koenraad.png" alt="Koenraad photo"/>
+</div>
+
+<div class="team-profile">
+	<h3>Max Farrell</h3>
+	<p><a href="http://farrell.research.mcgill.ca" target="_blank">Max Farrell</a> is a PhD student in the Biology Department at McGill University. His research merges theory and tools from macroecology, computational statistics, and biodiversity genomics to study interactions between hosts and parasites. You can check out the `Stan` tutorial we developped with Max <a href="https://ourcodingclub.github.io/2018/04/17/stan-intro.html" target="_blank">here</a>.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/max.png" alt="Max photo"/>
 </div>
 
 {% include call.html %}
