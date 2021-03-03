@@ -74,7 +74,7 @@ First, we will use the `raster` package to read the satellite image file and ins
 
 ```r
 # Load data
-tay <- raster('data/taycrop.tif')
+tay <- raster('taycrop.tif')
 
 # Get properties of the Tay raster
 tay
@@ -98,18 +98,18 @@ In the output, we get details of the image such as the number of bands, dimensio
 We can create individual raster layers for each of the spectral bands in the raster tay.
 
 ```r
-b1 <- raster('data/taycrop.tif', band=1)
-b2 <- raster('data/taycrop.tif', band=2)
-b3 <- raster('data/taycrop.tif', band=3)
-b4 <- raster('data/taycrop.tif', band=4)
-b5 <- raster('data/taycrop.tif', band=5)
-b6 <- raster('data/taycrop.tif', band=6)
-b7 <- raster('data/taycrop.tif', band=7)
-b8 <- raster('data/taycrop.tif', band=8)
-b9 <- raster('data/taycrop.tif', band=9)
-b10 <- raster('data/taycrop.tif', band=10)
-b11 <- raster('data/taycrop.tif', band=11)
-b12 <- raster('data/taycrop.tif', band=12)
+b1 <- raster('taycrop.tif', band=1)
+b2 <- raster('taycrop.tif', band=2)
+b3 <- raster('taycrop.tif', band=3)
+b4 <- raster('taycrop.tif', band=4)
+b5 <- raster('taycrop.tif', band=5)
+b6 <- raster('taycrop.tif', band=6)
+b7 <- raster('taycrop.tif', band=7)
+b8 <- raster('taycrop.tif', band=8)
+b9 <- raster('taycrop.tif', band=9)
+b10 <- raster('taycrop.tif', band=10)
+b11 <- raster('taycrop.tif', band=11)
+b12 <- raster('taycrop.tif', band=12)
 ```
 
 We can now compare two bands to see if they have the same extent, number of rows and column, projection,
@@ -250,7 +250,7 @@ ggsave("allbands.png", scale = 1.5, dpi = 300) # to save plot
 __Alternatively, for a quick visualisation, the original file can be loaded as a raster brick and plotted using 'plot'.__
 
 ```r
-s_tay <- brick('data/taycrop.tif')
+s_tay <- brick('taycrop.tif')
 plot(s_tay)
 ```
 
