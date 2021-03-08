@@ -418,7 +418,7 @@ redirect_from:
     	</div>
     	<div class="tutcont">
         	<div class="tuthex">
-            	<img src="" alt="R package hex logo">
+            	<img src="{{ site.baseurl }}/assets/img/hex/writing_r_package_icon.png" alt="R package hex logo">
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/writing-r-package">
