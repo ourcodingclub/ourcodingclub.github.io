@@ -40,7 +40,7 @@ Next, in your script file you need to set your working directory to the folder y
 setwd("~/Downloads/CC-Qualit-master")
 ```
 
-Next, load the packages needed for this tutorial by copying the code below into your script file then running those lines of code using either `Cmd + Return` on a Mac, or `Ctrl + Enter` on Windows. If this is the first time you're using them these packages, you'll need to install them first, for example using `install.packages("tidyverse")`, and afterwards you can use `library()` to load them.
+Next, load the packages needed for this tutorial by copying the code below into your script file then running those lines of code using either `Cmd + Enter` on a Mac, or `Ctrl + Enter` on Windows. If this is the first time you're using them these packages, you'll need to install them first, for example using `install.packages("tidyverse")`, and afterwards you can use `library()` to load them.
 
 ```r
 library(tidyverse)
