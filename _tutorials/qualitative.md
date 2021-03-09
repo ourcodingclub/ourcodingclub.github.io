@@ -1,11 +1,11 @@
 ---
 layout: tutorial
-title: Analysing ordinal data, surveys, count data 
+title: Analysing ordinal data, surveys, count data
 subtitle: Using R to answer sociological questions
 date: 2018-01-29 10:00:00
-author: John 
+author: John
 survey_link: https://www.surveymonkey.co.uk/r/VMRWSKQ
-redirect_from: 
+redirect_from:
   - /2018/01/29/qualitative.html
 tags: data-vis
 ---
@@ -17,7 +17,7 @@ tags: data-vis
 3. [Mining text responses and comments for keywords](#text-mining)
 4. [Statistically analyse qualitative data](#analyse)
 
-This workshop will explore qualitative data, the sort of data you might collect through responses to survey questions, interview transcripts, or observations. The data analysis techniques in this workshop lend themselves well to sociological research, and the examples we will use come from a study on human behaviour related to environmentally friendly actions, but they could easily be applied to observations of any system. For example, you might use an ordinal scale (e.g. 1-5, Disagree-Agree) to describe the perceived health of a plant seedling, with the question being something like "How wilted are the leaves? 1 = no sign of damage, 5 = leaves abcised". 
+This workshop will explore qualitative data, the sort of data you might collect through responses to survey questions, interview transcripts, or observations. The data analysis techniques in this workshop lend themselves well to sociological research, and the examples we will use come from a study on human behaviour related to environmentally friendly actions, but they could easily be applied to observations of any system. For example, you might use an ordinal scale (e.g. 1-5, Disagree-Agree) to describe the perceived health of a plant seedling, with the question being something like "How wilted are the leaves? 1 = no sign of damage, 5 = leaves abcised".
 
 Firstly, we will learn how to format data from surveys and interviews effectively so that it can be easily used in analysis later. Then we will explore ways to visualise these data graphically. Finally, we will run some simple statistical analyses to answer some hypotheses.
 
@@ -40,26 +40,25 @@ Next, in your script file you need to set your working directory to the folder y
 setwd("~/Downloads/CC-Qualit-master")
 ```
 
-Next, load the packages needed for this tutorial by copying the code below into your script file then running those lines of code using either `Cmd + R` on a Mac, or `Ctrl + R` on Windows. If this is the first time you're using them these packages, you'll need to install them first, for example using `install.packages("ggplot2")`, and afterwards you can use `library()` to load them.
+Next, load the packages needed for this tutorial by copying the code below into your script file then running those lines of code using either `Cmd + Enter` on a Mac, or `Ctrl + Enter` on Windows. If this is the first time you're using them these packages, you'll need to install them first, for example using `install.packages("tidyverse")`, and afterwards you can use `library()` to load them.
 
 ```r
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 library(RColorBrewer)
 library(tidytext)
 library(R.utils)
 library(wordcloud)
+library(viridis)
 ```
 
 Finally, load the data files we will be using for the tutorial.
 
 ```r
 # The survey responses
-sust_data <- read.csv("sust_behaviour.csv")
+sust_data <- read_csv("sust_behaviour.csv")
 
 # A lookup table which connects each column in `sust_data` to the actual question on the survey
-sust_lookup <- read.csv("sust_lookup.csv")
+sust_lookup <- read_csv("sust_lookup.csv")
 
 # A list of boring and non-useful words, bundled with `tidytext`
 data(stop_words)
@@ -68,7 +67,7 @@ These are anonymised data from an online survey designed to investigate whether 
 
 This example dataset is formatted to purposely resemble the sort of thing you might generate from your own survey responses on Google Forms or Survey Monkey. It is not quite ready for analysis yet. We will spend some time getting the data ready for analysis, so that you can learn the skills needed to format your own data for analysis.
 
-The object `sust_lookup` is a table which connects the name of each column in the dataframe to the corresponding question that was asked in the survey. Replacing the raw questions with shorter column names makes it much easier to write code, and with the lookup table we can add the actual question title back in when we are creating plots. 
+The object `sust_lookup` is a table which connects the name of each column in the dataframe to the corresponding question that was asked in the survey. Replacing the raw questions with shorter column names makes it much easier to write code, and with the lookup table we can add the actual question title back in when we are creating plots.
 
 # 1. Formatting qualitative data
 {: #format}
@@ -86,7 +85,7 @@ You should see that the column contains five discrete categories that follow an 
 
 ```r
 sust_data$sustainability_daily_think <- factor(sust_data$sustainability_daily_think,
-	levels = c("Never", "Rarely", "Sometimes", "Often", "All the time"), 
+	levels = c("Never", "Rarely", "Sometimes", "Often", "All the time"),
 	ordered = TRUE)
 ```
 
@@ -99,7 +98,7 @@ head(sust_data)
 OR
 
 ```r
-str(sust_data)
+glimpse(sust_data)
 ```
 
 Other columns in the data frame, such as `sust_data$energy_action`, contain strings of letters, e.g. `BDEFH`. This question on the survey presented the user with a list of sustainable actions related to the home, e.g. "I have replaced my lightbulbs with energy saving lightbulbs" and asked the user to tick all the ones that applied to them. Each of the letters refers to a single action. The format of this column is similar to what you would receive if you downloaded the raw results of a Google Form.
@@ -115,7 +114,7 @@ sust_data$energy_action_n <- nchar(as.character(sust_data$energy_action))
 {: #visualise}
 
 
-Now that we formatted our data for analysis we can visualise the data to identify interesting patterns. 
+Now that we formatted our data for analysis we can visualise the data to identify interesting patterns.
 
 Let's start with the Likert scales. We can create bar charts to visualise the number of responses to a question which fit into each of the ordinal categories. The correct form for the bar chart will depend on the type of question that was asked, and the wording of the various responses. For example, if potential responses were presented as "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree", you could assume that the neutral or zero answer is in the middle, with Disagree being negative and Agree being positive. On the other hand, if the answers were presented as "Never", "Rarely", "Sometimes", "Often", "All the time", the neutral or zero answer would be Never, with all other answers being positive. For the first example, we could use a "diverging stacked bar chart", and for the latter we would just use a standard "stacked bar chart".
 
@@ -135,9 +134,9 @@ If you look in the `sustainability_daily_think` column, you will see that it con
 sust_data$sustainability_daily_think
 ```
 
-First, we need to make a summary data frame of the responses from this column, which can be done easily using the `dplyr` package. For an introduction to `dplyr`, check out [our tutorial on data manipulation and formatting]({{ site.baseurl }}/tutorials/piping/index.html). You can use the code below to make a summary table: 
+First, we need to make a summary data frame of the responses from this column, which can be done easily using the `dplyr` package. For an introduction to `dplyr`, check out [our tutorial on data manipulation and formatting]({{ site.baseurl }}/tutorials/piping/index.html). You can use the code below to make a summary table:
 
-```r 
+```r
 sust_think_summ_wide <- sust_data %>%
 	group_by(gender, sustainability_daily_think) %>%  # grouping by these two variables
 	tally() %>%  # counting the number of responses
@@ -163,11 +162,11 @@ __Long Format:__
 	<tr><td>3</td><td>Female</td><td>Sometimes</td><td>32.283</td></tr>
 	<tr><td>4</td><td>Female</td><td>Often</td><td>51.181</td></tr>
 	<tr><td>5</td><td>Female</td><td>All the time</td><td>13.386</td></tr>
-	<tr><td>6</td><td>Male</td><td>Never</td><td>3.226</td></tr>
-	<tr><td>7</td><td>Male</td><td>Rarely</td><td>6.452</td></tr>
-	<tr><td>8</td><td>Male</td><td>Sometimes</td><td>32.258</td></tr>
-	<tr><td>9</td><td>Male</td><td>Often</td><td>38.710</td></tr>
-	<tr><td>10</td><td>Male</td><td>All the time</td><td>19.355</td></tr>
+	<tr><td>6</td><td>Male</td><td>Never</td><td>3.125</td></tr>
+	<tr><td>7</td><td>Male</td><td>Rarely</td><td>6.250</td></tr>
+	<tr><td>8</td><td>Male</td><td>Sometimes</td><td>34.375</td></tr>
+	<tr><td>9</td><td>Male</td><td>Often</td><td>37.500</td></tr>
+	<tr><td>10</td><td>Male</td><td>All the time</td><td>18.750</td></tr>
 </table>
 
 __Wide Format:__
@@ -194,11 +193,11 @@ __Wide Format:__
 	<tr>
 		<td>2</td>
 		<td>Male</td>
-		<td>3.226</td>
-		<td>6.452</td>
-		<td>32.258</td>
-		<td>38.710</td>
-		<td>19.355</td>
+		<td>3.125</td>
+		<td>6.250</td>
+		<td>34.375</td>
+		<td>37.500</td>
+		<td>18.750</td>
 	</tr>
 </table>
 
@@ -219,7 +218,7 @@ sust_think_summ_hi_lo <- sust_think_summ_wide %>%
 		midhigh = Sometimes / 2) %>%
 	dplyr::select(gender, Never, Rarely, midlow, midhigh, Often, `All the time`) %>%
 	gather(key = response, value = perc, 2:7) %>%
-	`colnames <-`(c("gender", "response", "perc"))
+	`colnames<-`(c("gender", "response", "perc"))
 ```
 
 In the code above we have created two new columns `midhigh` and `midlow`, which both contain values from `Sometimes`, but divided by two. The `Sometimes` column is then dropped from the data frame using `dplyr::select()`. The data frame is then gathered back into long format so there are three columns, gender, response type, and percentage of respondents.
@@ -241,7 +240,7 @@ sust_think_summ_lo <- sust_think_summ_hi_lo %>%
 Next, in order to change the colours on the plot, we need to define a custom colour scheme. To do this, we can use a colour palette from `RColorBrewer` and tweak it a bit.
 
 ```r
-# Use RColorBrewer to store a preset diverging colour palette as a vector of colour codes 
+# Use RColorBrewer to store a preset diverging colour palette as a vector of colour codes
 legend_pal <- brewer.pal(name = "RdBu", n = 5)
 
 # Duplicate the middle value, remember that "Sometimes" is actually two groups, "midhigh" and "midlow"
@@ -257,15 +256,15 @@ names(legend_pal) <- c("All the time", "Often", "midhigh", "midlow", "Rarely", "
 Now we are ready to make our graph, the exciting part!
 
 ```r
-(plot <- ggplot() + 
+(plot <- ggplot() +
 	geom_bar(data = sust_think_summ_hi, aes(x = gender, y=perc, fill = response), stat="identity") +
-	geom_bar(data = sust_think_summ_lo, aes(x = gender, y=-perc, fill = response), stat="identity") + 
-	geom_hline(yintercept = 0, color =c("black")) + 
-	scale_fill_manual(values = legend_pal, 
+	geom_bar(data = sust_think_summ_lo, aes(x = gender, y=-perc, fill = response), stat="identity") +
+	geom_hline(yintercept = 0, color =c("black")) +
+	scale_fill_manual(values = legend_pal,
 		breaks = c("All the time", "Often", "midhigh", "Rarely", "Never"),
 		labels = c("All the time", "Often", "Sometimes", "Rarely", "Never")) +
-	coord_flip() + 
-	labs(x = "Gender", y = "Percentage of respondents (%)") + 
+	coord_flip() +
+	labs(x = "Gender", y = "Percentage of respondents (%)") +
 	ggtitle(sust_lookup$survey_question[sust_lookup$column_title == "sustainability_daily_think"]) +
 	theme_classic())
 ```
@@ -277,7 +276,7 @@ Of course, there are other options to display this sort of data. You could use a
 
 ## Basic stacked bar chart
 
-To make a conventional stacked bar chart, we will use the question on "How many of these energy related sustainable actions do you perform?", the responses to which are found in `sust_data$energy_action`.
+To make a conventional stacked bar chart, we will use the question on "How many of these energy related sustainable actions do you perform?", the responses to which are found in `sust_data$energy_action`. We will group the responses by age cohort.
 
 First, we need to count the number of sustainable actions performed, like we did earlier:
 
@@ -285,31 +284,26 @@ First, we need to count the number of sustainable actions performed, like we did
 sust_data$energy_action_n <- nchar(as.character(sust_data$energy_action))
 ```
 
-Then we can define a custom colour palette for red and blue and name the colours after our gender categories:
+
+
+Then create the plot. We will use a colourblind-friendly colour palette provided by the `viridis` package.
 
 ```r
-male_female_pal <- c("#0389F0", "#E30031")
-names(male_female_pal) <- c("Male", "Female")
+(barchart <- ggplot(sust_data, aes(x =energy_action_n, fill = age)) +
+    geom_bar() +
+    scale_fill_viridis_d() +
+    scale_x_continuous(breaks = seq(1:8)) +
+    theme_classic())
 ```
 
-Then create the plot:
-
-```r
-(barchart <- ggplot(sust_data, aes(x =energy_action_n, fill = gender)) + 
-	geom_bar() + 
-	scale_fill_manual(values = male_female_pal) + 
-	scale_x_continuous(breaks = seq(1:8)) +
-	theme_classic())
-```
-
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object.
 
 ![Stackd bar plot of gender and sustainable energy behaviour]({{ site.baseurl }}/assets/img/tutorials/qualitative/stacked_bar_qual.png)
 
 
 ## Bubble plot
 
-If we want to compare correlations between two categories of data, we can use a bubble plot. For example, is there a pattern between age of respondent and how often they think about sustainable activities? The data from this survey doesn't contain actual age values, only age ranges (e.g. 18-20, 21-29 etc.). 
+If we want to compare correlations between two categories of data, we can use a bubble plot. For example, is there a pattern between age of respondent and how often they think about sustainable activities? The data from this survey doesn't contain actual age values, only age ranges (e.g. 18-20, 21-29 etc.).
 
 First, create a summary table by tallying the number of responses by the two groups, age and how often they think about sustainable activities:
 
@@ -323,56 +317,66 @@ Then to create the bubble plot, simply adjust the size of points according to th
 
 ```r
 (bubbleplot <- ggplot(sust_bubble, aes(x = age, y = sustainability_daily_think)) +
-	geom_point(aes(size = n)) + 
+	geom_point(aes(size = n)) +
 	theme_classic())
 ```
 
 ![Bubble plot of age vs. sustainable thoughts]({{ site.baseurl }}/assets/img/tutorials/qualitative/bubble_chart_qual.png)
 
-# 3. Mining text responses and comments for keywords 
+# 3. Mining text responses and comments for keywords
 {: #text-mining}
 
 
-As well as the tick box style questions, some questions in our survey asked for free-hand text comments. These comments give some extra information and context to survey responses and shouldn't be ignored. As an example, look at the column `energy_action_comment` by typing:
+As well as the tick box style questions, some questions in our survey asked for free-hand text comments. These comments give some extra information and context to survey responses and shouldn't be ignored. As an example, look at *first 20 elements* of the column `energy_action_comment` by typing:
 
 ```r
-sust_data$energy_action_comment
+head(sust_data$energy_action_comment, 20)
 ```
 
-We can mine the comments for keywords to build up a more complete picture of what our respondents were thinking about when they did the survey and whether that varies by gender. To make the comments easier to work with, we should make the data "tidy" by splitting each comment so that each row has a single word only. 
+We can mine the comments for keywords to build up a more complete picture of what our respondents were thinking about when they did the survey and whether that varies by gender. To make the comments easier to work with, we should make the data "tidy" by splitting each comment so that each row has a single word only.
 
-## Comments from all the questions 
+## Comments from all the questions
 
 The following pipe collects all the comment columns along with the gender and id columns (`dplyr::select()`), then gathers those comment columns together into a single column (`gather()`), then transforms the comments column from a factor into a character class (`mutate()`). Note that we are using `dplyr::select()` instead of just `select()` - this is because often we have other packages loaded that might also have a `select()` function within them, so we want to explicitly state that we want to use the `select()` function from the `dplyr` package.
 
 ```r
-sust_comm_gather <- sust_data %>% 
-	dplyr::select(id, gender, energy_action_comment, 
-		food_action_comment, water_action_comment, 
-		waste_action_comment, other_action_comment) %>%
-	gather(action, comment, -id, -gender) %>%
-	mutate(comment = as.character(comment))
+sust_comm_gather <- sust_data %>%
+  dplyr::select(id, gender, energy_action_comment,
+                food_action_comment, water_action_comment,
+                waste_action_comment, other_action_comment) %>%
+  gather(action, comment, -id, -gender) %>%
+  mutate(comment = as.character(comment))
 ```
 
-The next pipe takes that gathered data and uses `unnest_tokens()` from the `tidytext` package to split the comments so that there is only one word per row, then it uses the list of boring words from the `stop_words` object that we loaded earlier to remove those words from our dataset (`anti_join()`). Then it counts the number of occurrences of each unique word in the `comment_word` column. Finally a bit of tidying in the form of removing words which occur less than 5 times (`filter(n > 5)`) and removing NA values (`filter(!is.na(comment_word))`): 
+The next pipe takes that gathered data and uses `unnest_tokens()` from the `tidytext` package to split the comments so that there is only one word per row, then it uses the list of boring words from the `stop_words` object that we loaded earlier to remove those words from our dataset (filtering them out using `filter()` and the `!` and `%in%` operators to remove words that occur in the stop_words$word column). We are also removing empty values `!(is.na(comment_word))` and words that are actually just numbers (`is.na(as.numeric(comment_word)`). Then it counts the number of occurrences of each unique word in the `comment_word` column, by grouping by gender and summarising using the `n()` function. Finally a bit of tidying in the form of removing words which occur less than 10 times (`filter(n > 10)`).
+
 ```r
 sust_comm_tidy <- sust_comm_gather %>%
-	group_by(gender) %>%
-	unnest_tokens(output = comment_word,
-		input = comment) %>%
-	anti_join(stop_words, by = c("comment_word" = "word")) %>%
-	count(comment_word, sort = TRUE)  %>%
-	filter(n > 10) %>%
-	filter(!is.na(comment_word)) 
+  unnest_tokens(output = comment_word,
+                input = comment) %>%
+  filter(!(is.na(comment_word)),
+         is.na(as.numeric(comment_word)),
+         !(comment_word %in% stop_words$word)) %>%
+  group_by(gender, comment_word) %>%
+  summarise(n = n()) %>%
+  ungroup() %>%
+  filter(n > 10)
+```
+
+Let's define a custom colour palette for red and blue and name the colours after our gender categories:
+
+```r
+male_female_pal <- c("#0389F0", "#E30031")
+names(male_female_pal) <- c("Male", "Female")
 ```
 
 Now it is easy to plot the occurrences of each word, and colour by gender (`fill = gender`), using `ggplot()`:
 
 ```r
-(occurrence <- ggplot(sust_comm_tidy, aes(x = comment_word, y = n, fill = gender)) + 
-	geom_bar(stat = "identity") + 
-	coord_flip() + 
-	scale_fill_manual(values = male_female_pal) + 
+(occurrence <- ggplot(sust_comm_tidy, aes(x = comment_word, y = n, fill = gender)) +
+	geom_bar(stat = "identity") +
+	coord_flip() +
+	scale_fill_manual(values = male_female_pal) +
 	theme_classic())
 ```
 
@@ -380,30 +384,33 @@ Now it is easy to plot the occurrences of each word, and colour by gender (`fill
 
 ## Comments from a single question
 
-We might also want to investigate a single question's comments in more detail. For example, the `energy_action_comment` column. First repeat the action of converting to character format (`mutate()`), then split the column so each row is one word (`unnest_tokens()`), then remove boring words (`antijoin()`), and count the frequency of each word:
+We might also want to investigate a single question's comments in more detail. For example, the `energy_action_comment` column. First repeat the action of converting to character format (`mutate()`), then filtering, summarising and grouping following a similar procedure as for the previous graph.
 
 ```r
 tidy_energy_often_comment <- sust_data %>%
-	mutate(energy_action_comment = as.character(energy_action_comment)) %>%
-	unnest_tokens(output = energy_action_comment_word,
-		input = energy_action_comment) %>%
-	anti_join(stop_words, by = c("energy_action_comment_word" = "word")) %>%
-	count(energy_action_comment_word, sort = TRUE) 
+  mutate(energy_action_comment = as.character(energy_action_comment)) %>%
+  unnest_tokens(output = energy_action_comment_word,
+                input = energy_action_comment) %>%
+  filter(!(is.na(energy_action_comment_word)),
+         is.na(as.numeric(energy_action_comment_word)),
+         !(energy_action_comment_word %in% stop_words$word)) %>%
+  group_by(gender, energy_action_comment_word) %>%
+  summarise(n = n()) %>%
+  ungroup()
 ```
 
 Then keep only the most common words and plot it as a bar chart:
 
 ```r
 tidy_energy_often_comment_summ <- tidy_energy_often_comment %>%
-	filter(n > 10) %>%
-	filter(!is.na(energy_action_comment_word)) %>%
-	mutate(energy_action_comment_word = reorder(energy_action_comment_word, n ))
+  filter(n > 10) %>%
+  mutate(energy_action_comment_word = reorder(energy_action_comment_word, n ))
 
 (most_common_plot <- ggplot(tidy_energy_often_comment_summ, aes(x = energy_action_comment_word, y = n)) +
-	geom_col() +
-	xlab(NULL) +  # this means we don't want an axis title
-	coord_flip() + 
-	theme_classic())
+    geom_col() +
+    xlab(NULL) +  # this means we don't want an axis title
+    coord_flip() +
+    theme_classic())
 ```
 
 ![Most common words barplot]({{ site.baseurl }}/assets/img/tutorials/qualitative/word_bar_qual.png)
@@ -425,7 +432,7 @@ For more on text mining using `tidytext`, you can check out [the Gitbook website
 # 4. Analyse qualitative data
 {: #analyse}
 
-Due to the way survey data are usually formatted, with lot of counts and factors, the assumptions of conventional parametric statistical analysis are often violated, so we can branch out from our usual linear models! Below are a few examples of how to test various hypotheses using our survey data. 
+Due to the way survey data are usually formatted, with lot of counts and factors, the assumptions of conventional parametric statistical analysis are often violated, so we can branch out from our usual linear models! Below are a few examples of how to test various hypotheses using our survey data.
 
 ## Chi-squared
 
@@ -436,18 +443,18 @@ gender_think_chi <- chisq.test(sust_data$gender, sust_data$sustainability_daily_
 gender_think_chi
 ```
 
-The output of the `gender_think_chi` object can be used to interpret the outcome of the chi-squared test, with a lower p-value indicating a greater probability that the two variables are dependent on each other. In this case, `p = 0.01518`, which is lower than the conventional threshold of `0.05`, meaning we can reject the null hypothesis that gender does not correlate with the frequency at which people think about sustainable tasks.
+The output of the `gender_think_chi` object can be used to interpret the outcome of the chi-squared test, with a lower p-value indicating a greater probability that the two variables are dependent on each other. In this case, `p = 0.01572`, which is lower than the conventional threshold of `0.05`, meaning we can reject the null hypothesis that gender does not correlate with the frequency at which people think about sustainable tasks.
 
 ## Poisson regression
 
-For a more in depth analysis, we might hypothesise that gender causes the difference in the number of energy related sustainable actions performed. This is in contrast to the Chi-squared test which merely suggests a non-directional correlative tendency between the two variables. As the number of actions performed is count data, we can use a `Poisson regression`, which is a type of a generalised linear model: 
+For a more in depth analysis, we might hypothesise that gender causes the difference in the number of energy related sustainable actions performed. This is in contrast to the Chi-squared test which merely suggests a non-directional correlative tendency between the two variables. As the number of actions performed is count data, we can use a `Poisson regression`, which is a type of a generalised linear model:
 
 ```r
 energy_action_pois <- glm(energy_action_n ~ gender, family = "poisson", data = sust_data)
 summary(energy_action_pois)
 ```
 
-In this case it seems like there actually isn't much effect of gender on number of actions performed, with a very low z-value of `0.343` and a non-significant p-value (`0.732`). This means we cann accept the null hypothesis that gender does not affect the number of sustainable energy actions performed. 
+In this case it seems like there actually isn't much effect of gender on number of actions performed, with a very low z-value of `0.457` and a non-significant p-value (`0.648`). This means we can accept the null hypothesis that gender does not affect the number of sustainable energy actions performed.
 
 ## Multi-variate Poisson regression
 
@@ -463,4 +470,3 @@ We don't find support for our hypothesis that gender differences increase with a
 ## Conclusion
 
 __In this tutorial, we learned how to visualise qualitative data using different types of plots, as well as how to analyse the data to test different hypotheses, hopefully getting you one step closer to unwrapping your data presents!__
-
