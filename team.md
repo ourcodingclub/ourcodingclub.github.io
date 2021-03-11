@@ -27,6 +27,12 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
+	<h3>Maude Grenier</h3>
+	<p>I’m a 1<sup>st</sup> Year Sainsbury PhD student at the University of Edinburgh, studying changes in the timing of life events in Arctic plants. To investigate these changes, I will use different data sources to build time series and Bayesian models. Coding Club tutorials have introduced me to coding as an undergraduate and have given me the skillset and confidence to tackle this project. I love being able to help people with little coding experience build up their confidence and skills to tackle their own data more effectively.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/maude.png" alt="Maude Grenier photo">
+</div>
+
+<div class="team-profile">
 	<h3>Erica Zaja</h3>
 	<p>My name is Erica and I am an undergraduate Ecology and Environmental Sciences with Management student at Edinburgh University. I am really excited to be a new Coding Club tutor this semester! I started studying coding with the online <a href="https://ourcodingclub.github.io/course.html" target="_blank">Data Science for Ecologists and Environmental scientists course</a>, which kept me company for a few months of isolation! Despite only recently discovering the wonders of R, I have been challenging my R-skills ever since. Applying an understanding of statistics and object-oriented programming to my courses has made my life so much easier! I love getting my hands dirty in the fields (my main interest being agro-ecology), but thanks to R I have discovered a real passion for Data Science. The skillset Coding Club has given me has made the creation of <a href="https://ourcodingclub.github.io/tutorials/anova/" target="_blank">my very own tutorial</a> possible! I am excited for future opportunities and I’d love to spread this excitement to my peers.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/erica.png" alt="Erica photo">
