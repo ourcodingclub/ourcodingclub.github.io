@@ -248,7 +248,7 @@ A reminder that there are no P values in `INLA`. Importance or significance of v
 ```r
 f1 <- as.formula(paste0(resp, " ~ ", 
                         paste(Finalcovar, collapse = " + "), 
-                        "+ f(ID, model = 'iid'")) 
+                        "+ f(ID, model = 'iid')")) 
 
 IM1 <- inla(f1,
             family = "nbinomial",
