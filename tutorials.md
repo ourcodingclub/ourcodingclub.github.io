@@ -367,8 +367,8 @@ redirect_from:
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/rmarkdown">
-                	<h2>Markdown</h2>
-                	<p>Using Markdown to save and share code</p>
+                	<h2>R Markdown</h2>
+                	<p>Using R Markdown to save and share code</p>
             	</a>
         	</div>
     	</div>
