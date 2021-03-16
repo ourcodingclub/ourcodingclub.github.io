@@ -22,9 +22,10 @@ tags: reprod
 2. [Download RMarkdown](#download)
 3. [Create an RMarkdown (`.Rmd`) file](#create)
 4. [YAML header material](#identify)
-5. [Insert code from an R script into a `.Rmd` file](#insert)
-6. [Create a `.pdf` file from your `.Rmd` file](#pdf)
-7. [`R` Notebooks (the future of reproducible code? Maybe?)](#notebook)
+5. [Markdown syntax](#markdown-syntax)
+6. [Insert code from an R script into a `.Rmd` file](#insert)
+7. [Create a `.pdf` file from your `.Rmd` file](#pdf)
+8. [`R` Notebooks (the future of reproducible code? Maybe?)](#notebook)
 
 
 # 1. What is R Markdown?
@@ -32,12 +33,14 @@ tags: reprod
 
 R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis, otherwise nobody can be certain that you analysed your data properly. You might choose to create an RMarkdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. RMarkdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook.
 
-RMarkdown uses [Markdown syntax](https://daringfireball.net/projects/markdown/). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to many other file types like `.html` or `.pdf` to display the headers, images etc..
+RMarkdown makes use of [Markdown syntax](https://www.markdownguide.org/basic-syntax). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to many other file types like `.html` or `.pdf` to display the headers, images etc..
+
+When you create an RMarkdown file (.Rmd), you use conventional [Markdown syntax](https://www.markdownguide.org/basic-syntax) alongside chunks of code written in R (or other programming languages!). When you **knit** the RMarkdown file, the Markdown formatting and the R code are evaluated, and an output file (HTML, PDF, etc) is produced.
 
 To see what RMarkdown is capable of, have a look at this [undergraduate dissertation](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/UnderGrad_Dissertation_Rmd.pdf), which gives a concise log of their statistical analysis, or the [completed demo RMarkdown file](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/RMarkdown_Tutorial_Demo_Rmd.Rmd) for this tutorial.
 
 {% capture callout %}
-All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/CC-2-RMarkdown). __Clone and download the repo as a zip file, then unzip it.__
+All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/CC-2-RMarkdown). __Download by clicking on Code -> Download ZIP, then unzipping the archive in a folder you will use for this tutorial.__
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -60,20 +63,20 @@ library(rmarkdown)
 
 To create a new RMarkdown file (`.Rmd`), select `File -> New File -> R Markdown...`_ in `RStudio`, then choose the file type you want to create. For now we will focus on a `.html` `Document`, which can be easily converted to other file types later.
 
-The newly created `.Rmd` file comes with basic instructions, but we want to create our own RMarkdown script, so go ahead and delete everything in the example file. 
+The newly created `.Rmd` file comes with basic instructions, but we want to create our own RMarkdown script, so go ahead and delete everything in the example file.
 
 Now save the `.Rmd` file to the repository you downloaded earlier [from Github](https://github.com/ourcodingclub/CC-2-RMarkdown).
 
 Now open the `RMarkdown_Tutorial.R` practice script from the repository you downloaded earlier in another tab in `RStudio` and use the instructions below to help you convert this script into a coherent RMarkdown document, bit by bit.
 
-If you have any of your own `R` scripts that you would like to make into an R Markdown document, you can also use those! 
+If you have any of your own `R` scripts that you would like to make into an R Markdown document, you can also use those!
 
 
 # 4. The YAML Header
 {: #identify}
 
 
-At the top of any RMarkdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.html` options](http://rmarkdown.rstudio.com/html_document_format.html) and [here for `.pdf` options](http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document. Have a flick through quickly to familiarise yourself with the sorts of things you can alter by adding an option to the `YAML` header. 
+At the top of any RMarkdown script is a `YAML` header section enclosed by `` --- ``. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for `.html` options](http://rmarkdown.rstudio.com/html_document_format.html) and [here for `.pdf` options](http://rmarkdown.rstudio.com/pdf_document_format.html). Rules in the header section will alter the whole document. Have a flick through quickly to familiarise yourself with the sorts of things you can alter by adding an option to the `YAML` header.
 
 Insert something like this at the top of your new `.Rmd` script:
 
@@ -86,16 +89,84 @@ output: html_document
 ---
 ```
 
-By default, the `title`, `author`, `date` and `output` format are printed at the top of your `.html` document. This is the minimum you should put in your header section. 
+By default, the `title`, `author`, `date` and `output` format are printed at the top of your `.html` document. This is the minimum you should put in your header section.
 
 
 Now that we have our first piece of content, we can test the `.Rmd` file by compiling it to `.html`. To compile your `.Rmd` file into a `.html` document, you should press the `Knit` button in the taskbar:
 
 ![RStudio Knit HTML screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Knit_HTML_Screenshot.jpg)
 
-By default, RStudio opens a separate preview window to display the output of your .Rmd file. If you want the output to be displayed in the `Viewer` window in `RStudio` (the same window where you would see plotted figures / packages / file paths), select “View in Pane” from the drop down menu that appears when you click on the `Knit` button in the taskbar, or in the `Settings gear icon` drop down menu next to the `Knit` button. 
+By default, RStudio opens a separate preview window to display the output of your .Rmd file. If you want the output to be displayed in the `Viewer` window in `RStudio` (the same window where you would see plotted figures / packages / file paths), select “View in Pane” from the drop down menu that appears when you click on the `Knit` button in the taskbar, or in the `Settings gear icon` drop down menu next to the `Knit` button.
 
 A preview appears, and a `.html` file is also saved to the same folder where you saved your `.Rmd` file.
+
+# 4. Markdown syntax
+{: #markdown-syntax}
+
+You can use regular **markdown** rules in your **R Markdown** document. Once you **knit** your document, the output will display text formatted according to the following simple rules.
+
+## Formatting Text
+
+Here are a few common formatting commands:
+
+`*Italic*`
+
+*Italic*
+
+<hr>
+
+`**Bold**`
+
+**Bold**
+
+<hr>
+
+This is  \`code` in text
+
+This is `code` in text
+
+<hr>
+
+`# Header 1`
+
+# Header 1
+
+<hr>
+
+`## Header 2`
+
+## Header 2
+
+Note that when a `#` symbol is placed inside a code chunk it acts as a normal R comment, but when placed in text it controls the header size.
+
+<hr>
+
+`* Unordered list item`
+
+<li> Unordered list item </li>
+
+<hr>
+
+`1. Ordered list item`
+
+1. Ordered list item
+
+<hr>
+
+`[Link](https://www.google.com)`
+
+[Link](https://www.google.com)
+
+<hr>
+
+`$A = \pi \times r^{2}$`
+
+![Rendered equation example]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Inline_eq_ex.png)
+
+The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
+
+
+To practice this
 
 
 # 5. Code Chunks
@@ -109,14 +180,19 @@ norm <- rnorm(100, mean = 0, sd = 1)
 ```
 ````
 
+You can quickly insert a code chunk in RStudio using a button in the toolbar:
+
+![RStudio Insert R Chunk in R Markdown screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/insert-R-chunk.png)
+
 Inside the curly brackets is a space where you can assign rules for that code chunk. The code chunk above says that the code is R code. We'll get onto some other curly brace rules later.
 
 __Have a go at grabbing some code from the example R script and inserting it into a code chunk in your `.Rmd` document.__
 
-You can run an individual chunk of code at any time by placing your cursor inside the code chunk and selecting `Run -> Run Current Chunk`:
+You can run an individual chunk of code at any time by clicking on the small green arrow:
 
-![RStudio run current chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/run_sel.png)
+![RStudio run chunk screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/run-code-chunk-rmarkdown-green-arrow.png)
 
+The output of the code will appear just beneath the code chunk.
 
 ### More on Code Chunks
 
@@ -124,22 +200,22 @@ It's important to remember when you are creating an RMarkdown file that if you w
 
 ````
 ```{r}
-plot(dataframe)
+print(dataframe)
 ```
 ````
 
-you must include instructions showing what `dataframe` is, just like in a normal R script. For example: 
+you must include instructions showing what `dataframe` is, just like in a normal R script. For example:
 
 ````
 ```{r}
 A <- c("a", "a", "b", "b")
 B <- c(5, 10, 15, 20)
 dataframe <- data.frame(A, B)
-plot(dataframe)
+print(dataframe)
 ```
 ````
 
-Or if you are loading a dataframe from a `.csv` file, you must include the code in the `.Rmd`: 
+Or if you are loading a dataframe from a `.csv` file, you must include the code in the `.Rmd`:
 
 ````
 ```{r}
@@ -147,7 +223,7 @@ dataframe <- read.csv("~/Desktop/Code/dataframe.csv")
 ```
 ````
 
-Similarly, if you are using any packages in your analysis, you will have to load them in the `.Rmd` file using `library()` as in a normal `R` script. 
+Similarly, if you are using any packages in your analysis, you will have to load them in the `.Rmd` file using `library()` as in a normal `R` script.
 
 ````
 ```{r}
@@ -157,7 +233,7 @@ library(dplyr)
 
 ## Hiding code chunks
 
-If you don't want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include `echo = FALSE` in the code chunk instructions. 
+If you don't want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include `echo = FALSE` in the code chunk instructions.
 
 
 ````
@@ -165,7 +241,7 @@ If you don't want the code of a particular code chunk to appear in the final doc
 A <- c("a", "a", "b", "b")
 B <- c(5, 10, 15, 20)
 dataframe <- data.frame(A, B)
-plot(dataframe)
+print(dataframe)
 ```
 ````
 
@@ -173,7 +249,7 @@ Similarly, you might want to create an object, but not include both the code and
 
 ````
 ```{r, include = FALSE}
-richness <- 
+richness <-
   edidiv %>%
     group_by(taxonGroup) %>%
     summarise(Species_richness = n_distinct(taxonName))
@@ -274,7 +350,7 @@ By default, RMarkdown will place graphs by maximising their height, while keepin
 A <- c("a", "a", "b", "b")
 B <- c(5, 10, 15, 20)
 dataframe <- data.frame(A, B)
-plot(dataframe)
+print(dataframe)
 ```
 ````
 
@@ -321,11 +397,11 @@ pander(dataframe)           # Create the table
 
 Find more info on pander [here](https://cran.r-project.org/web/packages/pander/pander.pdf).
 
-### Manually creating tables using markdown syntax 
+### Manually creating tables using markdown syntax
 
-You can also manually create small tables using markdown syntax.
+You can also manually create small tables using markdown syntax. This should be put outside of any code chunks.
 
-For example: 
+For example:
 
 ```
 | Plant | Temp. | Growth |
@@ -385,9 +461,9 @@ The ``:-----:`` tells markdown that the line above should be treated as a header
   </tr>
 </table>
 
-### Creating tables from model outputs 
+### Creating tables from model outputs
 
-Using `tidy()` from the package `broom`, we are able to create tables of our model outputs, and insert these tables into our  markdown file. The example below shows a simple example linear model, where the summary output table can be saved as a new R object and then added into the markdown file. 
+Using `tidy()` from the package `broom`, we are able to create tables of our model outputs, and insert these tables into our  markdown file. The example below shows a simple example linear model, where the summary output table can be saved as a new R object and then added into the markdown file.
 
 
 ````
@@ -396,75 +472,15 @@ library(broom)
 A <- c(20, 15, 10)
 B <- c(1, 2, 3)
 
-lm_test <- lm(A ~ B)            # Creating linear model 
+lm_test <- lm(A ~ B)            # Creating linear model
 summary(lm_test)                # Obtaining linear model summary statistics
 
-table_obj <- tidy(lm_test)      # Using tidy() to create a new R object called table 
+table_obj <- tidy(lm_test)      # Using tidy() to create a new R object called table
 pander(table_obj, digits = 3)   # Using pander() to view the created table, with 3 sig figs  
 ```
 ````
 
-## Formatting Text
-
-Markdown syntax can be used to change how text appears in your output file. Here are a few common formatting commands:
-
-`*Italic*` 
-
-*Italic*
-
-<hr>
-
-`**Bold**`
-
-**Bold**
-
-<hr>
-
-This is  \`code` in text 
-
-This is `code` in text
-
-<hr>
-
-`# Header 1`
-
-# Header 1
-
-<hr>
-
-`## Header 2`
-
-## Header 2
-
-Note that when a `#` symbol is placed inside a code chunk it acts as a normal R comment, but when placed in text it controls the header size.
-
-<hr>
-
-`* Unordered list item`
-
-<li> Unordered list item </li>
-
-<hr>
-
-`1. Ordered list item`
-
-1. Ordered list item
-
-<hr>
-
-`[Link](https://www.google.com)`
-
-[Link](https://www.google.com)
-
-<hr>
-
-`$A = \pi \times r^{2}$`
-
-![Rendered equation example]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/Inline_eq_ex.png)
-
-The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
-
-# 6. Creating `.pdf` files in Rmarkdown
+# 7. Creating `.pdf` files in Rmarkdown
 {: #pdf}
 
 Creating `.pdf` documents for printing in A4 requires a bit more fiddling around. RStudio uses another document compiling system called [LaTeX](https://www.latex-project.org/) to make `.pdf` documents.
@@ -477,7 +493,9 @@ Running these installers will install a version of LaTeX onto your system, which
 
 Becoming familiar with [LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) will give you a lot more options to make your R Markdown `.pdf` look pretty, as LaTeX commands are mostly compatible with R Markdown, though some googling is often required.
 
-To compile a `.pdf` instead of a `.html` document, change `output:` from `html_document` to `pdf_document`. 
+To compile a `.pdf` instead of a `.html` document, change `output:` from `html_document` to `pdf_document`, or use the dropdown menu from the "Knit" button:
+
+![Knit to PDF from RStudio screenshot]({{ site.baseurl }}/assets/img/tutorials/rmarkdown/knit-to-PDF-rmarkdown.png)
 
 ## Common problems when compiling a `.pdf`
 
@@ -487,17 +505,17 @@ Add a `global_options` argument at the start of your `.Rmd` file:
 
 ````
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(message=FALSE, 
-tidy.opts=list(width.cutoff=60)) 
+knitr::opts_chunk$set(message=FALSE,
+tidy.opts=list(width.cutoff=60))
 ```
 ````
 
-This code chunk won't be displayed in the final document due to the `include = FALSE` call and should be placed immediately after the YAML header to affect everything below that. 
+This code chunk won't be displayed in the final document due to the `include = FALSE` call and should be placed immediately after the YAML header to affect everything below that.
 
 `tidy.opts = list(width.cutoff = 60)` defines the margin cutoff point and wraps text to the next line. Play with the value to get it right.
 
 
-<hr> 
+<hr>
 
 - I lose my syntax highlighting
 
@@ -506,7 +524,7 @@ Use the `xelatex` engine to compile your `.pdf`:
 ````
 - - -
 author: John Doe
-output: pdf_document 
+output: pdf_document
 latex_engine: xelatex
 - - -
 ````
@@ -520,14 +538,14 @@ By default, R markdown uses the base LaTeX engine to compile pdfs, but this may 
 Add a `geometry` argument to the YAML header
 
 ````
-- - - 
+- - -
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
 output: pdf_document
 latex_engine: xelatex
 geometry: left = 0.5cm, right = 1cm, top = 1cm, bottom = 1cm
-- - - 
+- - -
 ````
 
 `geometry` is a LaTeX command.
@@ -551,15 +569,15 @@ Codey codey code code
 
 Add a font argument to your header section
 
-```{}
---- 
+```
+---
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
 output: pdf_document
 latex_engine: xelatex
 mainfont: Arial
---- 
+---
 ```
 
 `mainfont` is a LaTeX command.
@@ -571,28 +589,29 @@ At this point, if you haven't been following through already, have a go at conve
 Remember that a good R markdown document should provide a reproducible log of your code, properly commented, with subtitles, comments and code relevant output so the reader knows what is going on.
 
 
-# 7. `R` Notebooks
+# 8. `R` Notebooks
 {: #notebook}
 
-RMarkdown outputs to a non-interactive file format like `.html` or `.pdf`. When presenting your code, this means you have to make a choice, do you want interactive but messy looking code (`.Rmd`) or non-interactive but neat looking code (`.html`, `.pdf`)? R notebooks provide a file format that combines the interactivity of a `.Rmd` file with the attractiveness of `.html` output. 
+RMarkdown outputs to a non-interactive file format like `.html` or `.pdf`. When presenting your code, this means you have to make a choice, do you want interactive but messy looking code (`.Rmd`) or non-interactive but neat looking code (`.html`, `.pdf`)? R notebooks provide a file format that combines the interactivity of a `.Rmd` file with the attractiveness of `.html` output.
 
-R notebooks output to the imaginatively named `.nb.html` format. `.nb.html` files can be loaded into a web browser to see the output, or loaded into a code editor like RStudio to see the code. You are able to interactively select which code chunks to hide or show code chunks. 
+R notebooks output to the imaginatively named `.nb.html` format. `.nb.html` files can be loaded into a web browser to see the output, or loaded into a code editor like RStudio to see the code. You are able to interactively select which code chunks to hide or show code chunks.
 
-Notebooks use the same syntax as `.Rmd` files so it is easy to copy and paste the script from a `.Rmd` into a Notebook. To create a new R Notebook file, select `File -> New File -> R Notebook`. Create a notebook from your newly created `.Rmd` file by copying and pasting the script. If you choose to copy and paste the script, make sure that under your YAML header, output: html_notebook instead of output: html_document. 
+Notebooks use the same syntax as `.Rmd` files so it is easy to copy and paste the script from a `.Rmd` into a Notebook. To create a new R Notebook file, select `File -> New File -> R Notebook`. Create a notebook from your newly created `.Rmd` file by copying and pasting the script. If you choose to copy and paste the script, make sure that under your YAML header, output: html_notebook instead of output: html_document.
 
 Alternatively, to turn any existing `.Rmd` file into an `R` notebook, add `html_notebook: default` under the `output:` argument in the YAML header. It's okay if you have more than one output type. For example, this code would give you a `pdf` and an `R notebook.
 
-```{}
---- 
+```
+---
+---
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
 output:
-pdf_document: default
+  html_notebook: default
+  pdf_document: default
 latex_engine: xelatex
 mainfont: Arial
-html_notebook: default
---- 
+---
 ```
 
 To output to `.nb.html`, first make sure all your code chunks have been run:
@@ -609,38 +628,32 @@ R notebooks have only been around for about a couple of years so they're not per
 
 ### Difference between RMarkdown and RNotebooks
 
-#### Executing commands 1 line at a time
+R Markdown documents are 'knitted', while R Notebooks are 'previewed'.
 
-The first difference between R Markdown and R Notebooks is in the execution of chunks. For R Markdown, when a chunk is executed, all the code is sent to the console at once. But in an R Notebook, only one line at a time is sent. This allows execution to stop if a line raises an error in R Noteboks.
+Although the notebook preview looks similar to the knitted markdown document, the notebook preview does not execute any code chunks, but only shows you a rendered copy of the Markdown output of your document along with the most recent chunk output. The preview is also generated automatically whenever the notebook is saved. This would be especially useful if we have the preview showing in the Viewer window next to the console. **This means that in R Notebooks, we are able to visually assess the output as we develop the document without having to knit the whole document again.**
 
-#### Preview in R Notebooks vs Knit in R Markdown 
-
-R Markdown documents are 'knitted', while R Notebooks are 'previewed'. 
-
-Although the notebook preview looks similar to the knitted markdown document, the notebook preview does not execute any code chunks, but only shows you a rendered copy of the Markdown output of your document along with the most recent chunk output. The preview is also generated automatically whenever the notebook is saved. This would be especially useful if we have the preview showing in the Viewer window next to the console. **This means that in R Notebooks, we are able to visually assess the output as we develop the document without having to knit the whole document again.** 
-
-For example, with the following code chunk example (from the `RMarkdown_Tutorial.R` practice script), we are creating a table of species richness for each taxonomic group. 
+For example, with the following code chunk example (from the `RMarkdown_Tutorial.R` practice script), we are creating a table of species richness for each taxonomic group.
 
 ````
 ```{r}
-richness <- 
+richness <-
   edidiv %>%
   group_by(taxonGroup) %>%
   summarise(Species_richness = n_distinct(taxonName))
 ```
 ````
 
-To bring up the table output, we can add `richness`, `pander(richness)`, `kable(richness)` to the end of that code chunk. If we had initially forgotten to add in either one of those functions, the table would not have been produced in both the knitted markdown document and the notebook preview. Imagine that we are now editing the R Markdown document / R Notebook document to include this function to bring up the table in the outputted document. 
+To bring up the table output, we can add `richness`, `pander(richness)`, `kable(richness)` to the end of that code chunk. If we had initially forgotten to add in either one of those functions, the table would not have been produced in both the knitted markdown document and the notebook preview. Imagine that we are now editing the R Markdown document / R Notebook document to include this function to bring up the table in the outputted document.
 
-For RMarkdown: we would type in `pander(richness)`, run that specific code chunk, and then have to click the Knit button in the taskbar to knit the whole document again. 
+For RMarkdown: we would type in `pander(richness)`, run that specific code chunk, and then have to click the Knit button in the taskbar to knit the whole document again.
 
-For R Notebooks, we type in `pander(richness)`, run that specific code chunk, and save the document, and the preview in the Viewer window would be updated on its own - there is no need to click the Preview button in the taskbar and run the code for the whole document. 
+For R Notebooks, we type in `pander(richness)`, run that specific code chunk, and save the document, and the preview in the Viewer window would be updated on its own - there is no need to click the Preview button in the taskbar and run the code for the whole document.
 
 __Note: R Markdown Notebooks are only available in RStudio 1.0 or higher.__
 
 ## Bonus task!
 
-Either in a small group or on your own, convert one of the three demo R scripts into a well commented and easy to follow R Markdown document, or R Markdown Notebook. The files (`RMarkdown_Demo_1.R`, `RMarkdown_Demo_2.R`, `RMarkdown_Demo_3.R`) can be found in the [repo you downloaded earlier](https://github.com/ourcodingclub/CC-2-RMarkdown). 
+Either in a small group or on your own, convert one of the three demo R scripts into a well commented and easy to follow R Markdown document, or R Markdown Notebook. The files (`RMarkdown_Demo_1.R`, `RMarkdown_Demo_2.R`, `RMarkdown_Demo_3.R`) can be found in the [repo you downloaded earlier](https://github.com/ourcodingclub/CC-2-RMarkdown).
 
 
 # Tutorial Outcomes:
