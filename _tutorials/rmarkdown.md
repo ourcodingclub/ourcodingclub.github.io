@@ -53,7 +53,7 @@ __Haven't used R or RStudio before? No worries! Check out our [Intro to R and RS
 
 To get RMarkdown working in RStudio, the first thing you need is the `rmarkdown` package, which you can get from [CRAN](https://cran.r-project.org/web/packages/rmarkdown/index.html) by running the following commands in R or RStudio:
 
-``` r
+```r
 install.packages("rmarkdown")
 library(rmarkdown)
 ```
@@ -80,14 +80,14 @@ At the top of any RMarkdown script is a `YAML` header section enclosed by `` ---
 
 Insert something like this at the top of your new `.Rmd` script:
 
-```
+````
 ---
 title: "Edinburgh Biodiversity"
 author: John Doe
 date: 22/Oct/2016
 output: html_document
 ---
-```
+````
 
 By default, the `title`, `author`, `date` and `output` format are printed at the top of your `.html` document. This is the minimum you should put in your header section.
 
@@ -467,32 +467,33 @@ Using `tidy()` from the package `broom`, we are able to create tables of our mod
 
 
 ````
-```{r}
+```{r warning=FALSE}
 library(broom)
+library(pander)
 A <- c(20, 15, 10)
 B <- c(1, 2, 3)
 
 lm_test <- lm(A ~ B)            # Creating linear model
-summary(lm_test)                # Obtaining linear model summary statistics
 
 table_obj <- tidy(lm_test)      # Using tidy() to create a new R object called table
-pander(table_obj, digits = 3)   # Using pander() to view the created table, with 3 sig figs  
+
+pander(table_obj, digits = 3)   # Using pander() to view the created table, with 3 sig figs 
 ```
 ````
+
+By using `warning=FALSE` as an argument, any warnings produced will be outputted in the console when knitting but will not appear in the produced document.
 
 # 7. Creating `.pdf` files in Rmarkdown
 {: #pdf}
 
 Creating `.pdf` documents for printing in A4 requires a bit more fiddling around. RStudio uses another document compiling system called [LaTeX](https://www.latex-project.org/) to make `.pdf` documents.
 
-The easiest way to use LaTeX is to install the TinyTex distribution from within RStudio. First, restart your R session (Session -> Restart R), then run:
+The easiest way to use LaTeX is to install the TinyTex distribution from within RStudio. First, restart your R session (Session -> Restart R), then run these line in the console:
 
-````
-```{r}
+```r
 install.packages("tinytex")
 tinytex::install_tinytex()
 ```
-````
 
 Becoming familiar with [LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) will give you a lot more options to make your R Markdown `.pdf` look pretty, as LaTeX commands are mostly compatible with R Markdown, though some googling is often required.
 
@@ -525,12 +526,12 @@ This code chunk won't be displayed in the final document due to the `include = F
 Use the `xelatex` engine to compile your `.pdf`:
 
 ````
-- - -
+---
 author: John Doe
 output: 
   pdf_document:
     latex_engine: xelatex
-- - -
+---
 ````
 
 By default, R markdown uses the base LaTeX engine to compile pdfs, but this may limit certain options when it comes to formatting. There are lots of other engines to play around with as well.
@@ -542,7 +543,7 @@ By default, R markdown uses the base LaTeX engine to compile pdfs, but this may 
 Add a `geometry` argument to the YAML header
 
 ````
-- - -
+---
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
@@ -550,7 +551,7 @@ output:
   pdf_document:
     latex_engine: xelatex
 geometry: left = 0.5cm, right = 1cm, top = 1cm, bottom = 1cm
-- - -
+---
 ````
 
 `geometry` is a LaTeX command.
@@ -607,7 +608,6 @@ Notebooks use the same syntax as `.Rmd` files so it is easy to copy and paste th
 Alternatively, to turn any existing `.Rmd` file into an `R` notebook, add `html_notebook: default` under the `output:` argument in the YAML header. __If you have more than one output document type, the "Knit" button will only produce the first type.__ You can use the dropdown menu form the __Knit__ button to produce one of the other types.
 
 ```
----
 ---
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
