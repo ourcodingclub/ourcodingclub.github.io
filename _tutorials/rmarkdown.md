@@ -351,6 +351,7 @@ A <- c("a", "a", "b", "b")
 B <- c(5, 10, 15, 20)
 dataframe <- data.frame(A, B)
 print(dataframe)
+boxplot(B~A,data=dataframe)
 ```
 ````
 
