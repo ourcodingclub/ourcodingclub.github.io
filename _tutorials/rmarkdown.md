@@ -35,7 +35,7 @@ R Markdown allows you to create documents that serve as a neat record of your an
 
 RMarkdown makes use of [Markdown syntax](https://www.markdownguide.org/basic-syntax). Markdown is a very simple 'markup' language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to many other file types like `.html` or `.pdf` to display the headers, images etc..
 
-When you create an RMarkdown file (.Rmd), you use conventional [Markdown syntax](https://www.markdownguide.org/basic-syntax) alongside chunks of code written in R (or other programming languages!). When you **knit** the RMarkdown file, the Markdown formatting and the R code are evaluated, and an output file (HTML, PDF, etc) is produced.
+When you create an RMarkdown file (.Rmd), you use conventional [Markdown syntax](https://www.markdownguide.org/basic-syntax) alongside chunks of code written in R (or other programming languages!). When you __knit__ the RMarkdown file, the Markdown formatting and the R code are evaluated, and an output file (HTML, PDF, etc) is produced.
 
 To see what RMarkdown is capable of, have a look at this [undergraduate dissertation](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/UnderGrad_Dissertation_Rmd.pdf), which gives a concise log of their statistical analysis, or the [completed demo RMarkdown file](https://github.com/ourcodingclub/CC-2-RMarkdown/blob/master/RMarkdown_Tutorial_Demo_Rmd.Rmd) for this tutorial.
 
@@ -103,7 +103,7 @@ A preview appears, and a `.html` file is also saved to the same folder where you
 # 4. Markdown syntax
 {: #markdown-syntax}
 
-You can use regular **markdown** rules in your **R Markdown** document. Once you **knit** your document, the output will display text formatted according to the following simple rules.
+You can use regular __markdown__ rules in your __R Markdown__ document. Once you __knit__ your document, the output will display text formatted according to the following simple rules.
 
 ## Formatting Text
 
@@ -166,7 +166,7 @@ Note that when a `#` symbol is placed inside a code chunk it acts as a normal R 
 The `$` symbols tells R markdown to use [LaTeX equation syntax](http://reu.dimacs.rutgers.edu/Symbols.pdf).
 
 
-To practice this
+To practice this, try writing some formatted text in your `.Rmd` document and producing a `.html` page using the "Knit" button.
 
 
 # 5. Code Chunks
@@ -485,11 +485,14 @@ pander(table_obj, digits = 3)   # Using pander() to view the created table, with
 
 Creating `.pdf` documents for printing in A4 requires a bit more fiddling around. RStudio uses another document compiling system called [LaTeX](https://www.latex-project.org/) to make `.pdf` documents.
 
-If you are using Windows, go to the [MikTeX website](https://miktex.org/download) and download the appropriate "Complete MikTeX Installer" for your system, either 32-bit or 64-bit.
+The easiest way to use LaTeX is to install the TinyTex distribution from within RStudio. First, restart your R session (Session -> Restart R), then run:
 
-If you are using a Mac, go to the [MacTeX website](https://tug.org/mactex/mactex-download.html) and download the "MacTeX.pkg".
-
-Running these installers will install a version of LaTeX onto your system, which R will then be able to call on to compile the `.pdf`.
+````
+```{r}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+````
 
 Becoming familiar with [LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) will give you a lot more options to make your R Markdown `.pdf` look pretty, as LaTeX commands are mostly compatible with R Markdown, though some googling is often required.
 
@@ -524,8 +527,9 @@ Use the `xelatex` engine to compile your `.pdf`:
 ````
 - - -
 author: John Doe
-output: pdf_document
-latex_engine: xelatex
+output: 
+  pdf_document:
+    latex_engine: xelatex
 - - -
 ````
 
@@ -542,8 +546,9 @@ Add a `geometry` argument to the YAML header
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
-output: pdf_document
-latex_engine: xelatex
+output: 
+  pdf_document:
+    latex_engine: xelatex
 geometry: left = 0.5cm, right = 1cm, top = 1cm, bottom = 1cm
 - - -
 ````
@@ -574,8 +579,9 @@ Add a font argument to your header section
 title: "R Markdown Tutorial Demo"
 author: "John Godlee"
 date: "30/11/2016"
-output: pdf_document
-latex_engine: xelatex
+output:
+  pdf_document:
+    latex_engine: xelatex
 mainfont: Arial
 ---
 ```
@@ -598,7 +604,7 @@ R notebooks output to the imaginatively named `.nb.html` format. `.nb.html` file
 
 Notebooks use the same syntax as `.Rmd` files so it is easy to copy and paste the script from a `.Rmd` into a Notebook. To create a new R Notebook file, select `File -> New File -> R Notebook`. Create a notebook from your newly created `.Rmd` file by copying and pasting the script. If you choose to copy and paste the script, make sure that under your YAML header, output: html_notebook instead of output: html_document.
 
-Alternatively, to turn any existing `.Rmd` file into an `R` notebook, add `html_notebook: default` under the `output:` argument in the YAML header. It's okay if you have more than one output type. For example, this code would give you a `pdf` and an `R notebook.
+Alternatively, to turn any existing `.Rmd` file into an `R` notebook, add `html_notebook: default` under the `output:` argument in the YAML header. __If you have more than one output document type, the "Knit" button will only produce the first type.__ You can use the dropdown menu form the __Knit__ button to produce one of the other types.
 
 ```
 ---
@@ -608,8 +614,8 @@ author: "John Godlee"
 date: "30/11/2016"
 output:
   html_notebook: default
-  pdf_document: default
-latex_engine: xelatex
+  pdf_document:
+    latex_engine: xelatex
 mainfont: Arial
 ---
 ```
@@ -630,7 +636,7 @@ R notebooks have only been around for about a couple of years so they're not per
 
 R Markdown documents are 'knitted', while R Notebooks are 'previewed'.
 
-Although the notebook preview looks similar to the knitted markdown document, the notebook preview does not execute any code chunks, but only shows you a rendered copy of the Markdown output of your document along with the most recent chunk output. The preview is also generated automatically whenever the notebook is saved. This would be especially useful if we have the preview showing in the Viewer window next to the console. **This means that in R Notebooks, we are able to visually assess the output as we develop the document without having to knit the whole document again.**
+Although the notebook preview looks similar to the knitted markdown document, the notebook preview does not execute any code chunks, but only shows you a rendered copy of the Markdown output of your document along with the most recent chunk output. The preview is also generated automatically whenever the notebook is saved. This would be especially useful if we have the preview showing in the Viewer window next to the console. __This means that in R Notebooks, we are able to visually assess the output as we develop the document without having to knit the whole document again.__
 
 For example, with the following code chunk example (from the `RMarkdown_Tutorial.R` practice script), we are creating a table of species richness for each taxonomic group.
 
