@@ -35,7 +35,7 @@ Set your working directory to the location of the folder you just downloaded fro
 setwd("~/Downloads/CC-time-series-master")
 ```
 
-Next, load (`library()`) the packages needed for this tutorial. If this the first time you're using these packages, you'll need to install them first (e.g. by runnign `install.packages("ggplot2)` and afterwards you can load them using `library()`. You only need to install packages once, but you have to load them in every new `RStudio` session.
+Next, load (`library()`) the packages needed for this tutorial. If this the first time you're using these packages, you'll need to install them first (e.g. by running `install.packages("ggplot2)` and afterwards you can load them using `library()`. You only need to install packages once, but you have to load them in every new `RStudio` session.
 
 ```r
 library(ggplot2)
@@ -242,7 +242,7 @@ Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to
 	theme_classic())
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object.
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `time_plot` after you've created the "time_plot" object.
 
 ![Time series line plot of milk production]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
 
