@@ -8,7 +8,7 @@ layout: tutorial
 survey_link: https://www.surveymonkey.co.uk/r/26V3WTJ
 redirect_from:
   - /2017/04/26/time.html
-tags: modelling 
+tags: modelling
 ---
 
 # Tutorial Aims:
@@ -73,7 +73,7 @@ class(monthly_milk)
 class(monthly_milk$month)
 ```
 
-`head(monthly_milk)` shows us that the `month` column is in a sensible format (`YYYY-MM-DD`) and contains no time data. `class(monthly_milk)` shows us that the data is in the form of a data frame, which is ideal. However, `class(monthly_milk$month)` shows us that the data is currently being interpreted as a `factor`. Factors are a data class that can have distinct categories, but infer no sequential order or heirarchy beyond simple alphabetic order, so if we tried to analyse this data in its current form, `R` wouldn't understand that `1962-01-01` comes before `1962-02-01`. Luckily, `R` also has a `Date` class, which is much easier to work with. So let's coerce the data to the `Date` class:
+`head(monthly_milk)` shows us that the `month` column is in a sensible format (`YYYY-MM-DD`) and contains no time data. `class(monthly_milk)` shows us that the data is in the form of a data frame, which is ideal. However, `class(monthly_milk$month)` shows us that the data in the `month` is currently being interpreted as a `character`, which means it is simply treated as text. If we tried to analyse this data in its current form, `R` wouldn't understand that `1962-01-01` represents a point in time and comes a month before `1962-02-01`. Luckily, `R` also has a `Date` class, which is much easier to work with. So let's coerce the data to the `Date` class:
 
 ```r
 # Coerce to `Date` class
@@ -143,7 +143,7 @@ Data in the `Date` class in the conventional `YYYY-MM-DD` format are easier to u
   </tr>
 </table>
 
-To transform a `Date` class object into a `character` format with an alternative layout, you can use `format()` in conjunction with any of the date codes in the table above. For example you could transform `2017-02-25` into `February - Saturday 25 - 2017`. But note that this new `character` format won't be interpreted as a date by `R` in analyses. Try a few different combinations of date codes from the table above, using the code below as an example:
+To transform a `Date` class object into a `character` format with an alternative layout, you can use `format()` in conjunction with any of the date codes in the table above. For example you could transform `2017-02-25` into `February - Saturday 25 - 2017`. But note that this new `character` format won't be interpreted as a date by `R` in analyses. Try a few different combinations of date codes from the table above, using the code below as an example (which will not assign the results to an object but rather just print them out in the console):
 
 ```r
 format(monthly_milk$month_date, format = "%Y-%B-%u")
@@ -166,7 +166,7 @@ head(daily_milk)
 class(daily_milk$date_time)
 ```
 
-Again, the date and time are in a sensible format (YYYY-MM-DD HH:MM:SS), but are interpreted by `R` as being in the `factor` class. Let's change this to `POSIXct POSIXt` using `as.POSIXct()`:
+Again, the date and time are in a sensible format (YYYY-MM-DD HH:MM:SS), but are interpreted by `R` as being in the `character` class. Let's change this to `POSIXct POSIXt` using `as.POSIXct()`:
 
 ```r
 daily_milk$date_time_posix <- as.POSIXct(daily_milk$date_time, format = "%Y-%m-%d %H:%M:%S")
@@ -215,7 +215,7 @@ If your data are not already nicely formatted, not to worry, it's easy to transf
 
 ```r
 monthly_milk$bad_date <- format(monthly_milk$month_date, format = "%d/%b/%Y-%u")
-head(monthly_milk$bad_date)  # Awful... 
+head(monthly_milk$bad_date)  # Awful...
 class(monthly_milk$bad_date)  # Not in `Date` class
 ```
 
@@ -227,7 +227,7 @@ head(monthly_milk$good_date)
 class(monthly_milk$good_date)
 ```
 
-Now we know how to transform data in to the `Date` class, and how to create `character` class data from `Date` data. 
+Now we know how to transform data in to the `Date` class, and how to create `character` class data from `Date` data.
 
 
 # 2. Visualising time series data
@@ -242,7 +242,7 @@ Plotting time series data with `ggplot2` requires the use of `scale_x_date()` to
 	theme_classic())
 ```
 
-Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object. 
+Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualized it. You would then have to call the object such that it will be displayed by just typing `barplot` after you've created the "barplot" object.
 
 ![Time series line plot of milk production]({{ site.baseurl }}/assets/img/tutorials/time/monthly_milk_plot.png)
 
@@ -261,7 +261,7 @@ Plotting date and time data is done similarly using `scale_x_datetime()`:
 
 
 # 3. Statistical analysis of time series data
-{: #stats} 
+{: #stats}
 
 ## Decomposition
 
@@ -294,13 +294,13 @@ Next, it looks like there are some peaks and troughs that occur regularly in eac
 monthly_milk$year <- format(monthly_milk$month_date, format = "%Y")
 monthly_milk$month_num <- format(monthly_milk$month_date, format = "%m")
 
-# Create a colour palette using the `colortools` package 
+# Create a colour palette using the `colortools` package
 year_pal <- sequential(color = "darkturquoise", percentage = 5, what = "value")
 
 # Make the plot
 (seasonal <- ggplot(monthly_milk, aes(x = month_num, y = milk_prod_per_cow_kg, group = year)) +
 	geom_line(aes(colour = year)) +
-	theme_classic() + 
+	theme_classic() +
 	scale_color_manual(values = year_pal))
 ```
 
@@ -321,7 +321,7 @@ monthly_milk_stl <- stl(monthly_milk_ts, s.window = "period")
 
 # Generate plots
 plot(monthly_milk_stl)  # top=original data, second=estimated seasonal, third=estimated smooth trend, bottom=estimated irregular element i.e. unaccounted for variation
-monthplot(monthly_milk_ts, choice = "seasonal")  # variation in milk production for each month
+monthplot(monthly_milk_ts)  # variation in milk production for each month
 seasonplot(monthly_milk_ts)
 ```
 
@@ -331,7 +331,7 @@ seasonplot(monthly_milk_ts)
 
 Often time series data are used to predict what might happen in the future, given the patterns seen in the data. This is known as forecasting. There are many methods used to forecast time series data, and they vary widely in complexity, but this should serve as a brief introduction to the most commonly used methods.
 
-All the models used in this workshop are known as ETS models. ETS stands for Error, Trend, Seasonality. ETS models are also known as Exponential Smoothing State Space models. ETS models are used for modelling how a single variable will change over time by identifying its underlying trends, not taking into account any other variables. ETS models differ from a simple moving average by weighting the influence of previous points on future time points based on how much time is between the two points. i.e. over a longer period of time it is more likely that some unmeasured condition has changed, resulting in different behaviour of the variable that has been measured. Another important group of forecast models are the ARIMA models, autoregressive models which describe autocorrelations in the data rather than trends and seasonality. Unfortunately there isn't a lot of time to get into ARIMA models during this workshop, but [Rob Hyndman and George Athanasopoulos have a great book that is freely available online which covers ARIMA models and a lot more](https://www.otexts.org/fpp/8). 
+All the models used in this workshop are known as ETS models. ETS stands for Error, Trend, Seasonality. ETS models are also known as Exponential Smoothing State Space models. ETS models are used for modelling how a single variable will change over time by identifying its underlying trends, not taking into account any other variables. ETS models differ from a simple moving average by weighting the influence of previous points on future time points based on how much time is between the two points. i.e. over a longer period of time it is more likely that some unmeasured condition has changed, resulting in different behaviour of the variable that has been measured. Another important group of forecast models are the ARIMA models, autoregressive models which describe autocorrelations in the data rather than trends and seasonality. Unfortunately there isn't a lot of time to get into ARIMA models during this workshop, but [Rob Hyndman and George Athanasopoulos have a great book that is freely available online which covers ARIMA models and a lot more](https://www.otexts.org/fpp/8).
 
 ETS models are normally denoted by three letters, e.g. `ETS_AMZ`. The first letter (A) refers to the error type, the second letter (M) is the trend type and the third letter (Z) is the season type. Possible letters are:
 
