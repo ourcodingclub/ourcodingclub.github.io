@@ -1,0 +1,5 @@
+## Contribute a tutorial
+
+Are you keen to share some of your coding and statistics knowledge? We would love to have more people join our team and build a world-wide community of people teaching and learning together! You can take a look at the [tutorials we have already developed](https://ourcodingclub.github.io/tutorials/). Feel free to make suggestions for changes on existing tutorials and get in touch with us at ourcodingclub(at)gmail.com if you would like to make a new tutorial.
+
+We have put together a [guide to contributing tutorials](https://github.com/ourcodingclub/tutorials-in-progress/blob/master/Tutorial_publishing_guide.md), where we have explained how we prepare our tutorials and how we upload them on GitHub. You can either develop a tutorial on your own or you could team up with some of your peers or us! There are no requirements on length or restrictions on topics. If you have ideas about useful coding and statistics skills and would like to share them, we can help you turn them into a tutorial. Feel free to get in touch with any questions!
