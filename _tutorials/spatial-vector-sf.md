@@ -2,7 +2,7 @@
 layout: tutorial
 title: Geospatial vector data in R with sf
 subtitle: Create static and interactive maps using osmdata, sf, ggplot2 and tmap
-date: 2021-03-27 19:00:00
+date: 2021-03-26 19:00:00
 author: Boyan
 tags: spatial, maps
 ---
@@ -12,15 +12,13 @@ tags: spatial, maps
 -   [Tutorial aims](#tutorial-aims)
 -   [1. Introduction](#1-introduction)
 -   [2. OpenStreetMap query](#2-openstreetmap-query)
--   [3. Coordinate reference systems
-    (CRS)](#3-coordinate-reference-systems-crs)
+-   [3. Coordinate reference systems(CRS)](#3-coordinate-reference-systems-crs)
 -   [4. Spatial operations](#4-spatial-operations)
 -   [5. Draw maps](#5-draw-maps)
 -   [6. Challenge](#6-challenge)
 -   [Notes](#notes)
 -   [Further reading](#further-reading)
 -   [Bibliography](#bibliography)
--   [Reproducibility](#reproducibility)
 
 <br />
 
@@ -162,17 +160,17 @@ library(ggspatial) # map backgrounds and annotations for ggplot
 library(tmap) # static/interactive map library with ggplot-like syntax
 ```
 
-<br />
 
 Installing the **sf** library on Windows and Mac OS X should work by
 running `install.packages("sf")`. If you use Linux, or have trouble
 installing it, [see this
-page](https://github.com/r-spatial/sf#installing). <br />
+page](https://github.com/r-spatial/sf#installing).
 
 **You may get a prompt from R asking whether it should install packages
 from source**. Installing from source rather than binary takes more
 time, but may give you a slightly newer version. You do not usually need
 to worry about this and can just respond with “no.”
+
 <br />
 
 ## 2. OpenStreetMap query
@@ -224,8 +222,6 @@ city_polygon <- getbb("City of Edinburgh",
 city_rect <- getbb("City of Edinburgh", featuretype = "settlement")
 ```
 
-<br />
-
 Now, we construct and execute our query:
 
 ``` r
@@ -241,7 +237,7 @@ greensp_osm <-
   # limit data to the Edinburgh polygon instead of the rectangular bounding box
 ```
 
-<br /> This is a very simple query. We will not go into more details
+This is a very simple query. We will not go into more details
 here, but you can read more about **osmdata**
 [here](https://github.com/ropensci/osmdata#usage), and more about more
 complex overpass queries (that can also easily be executed in R)
@@ -254,7 +250,7 @@ Let’s have a look at the result of our query.
 greensp_osm
 ```
 
-<br /> The query returns a list which contains multiple sf object, each
+The query returns a list which contains multiple sf object, each
 for a different geometry type. (We can call individual elements of a
 list by using `list_object$element` or `list_object[["element"]]`). In
 our results, the polygons and multipolygons are likely of interest.
@@ -265,8 +261,6 @@ Let’s have a glimpse:
 glimpse(greensp_osm$osm_polygons)
 glimpse(greensp_osm$osm_multipolygons)
 ```
-
-<br />
 
 Here, we see that many columns have been returned, corresponding to all
 attributes that at least one of the features has. The ‘geometry’ column
@@ -293,7 +287,7 @@ greensp_sf <- bind_rows(st_cast(greensp_osm$osm_polygons, "MULTIPOLYGON"),
   select(name, osm_id, leisure)
 ```
 
-<br /> You may notice that we did not put the geometry column into
+You may notice that we did not put the geometry column into
 select. That is because in `sf` features that is not necessary: the
 `select()` operation ignores it and so this column is always kept.
 
@@ -349,7 +343,8 @@ head(greensp_sf)
     ## 4891786 Kingsknowe Golf Course 4891786 golf_course MULTIPOLYGON (((-3.265052 5...
     ## 4892551                   <NA> 4892551        <NA> MULTIPOLYGON (((-3.146338 5...
 ```
-<br /> Here, we can see the type of geometry of this sf object
+
+Here, we can see the type of geometry of this sf object
 (`MULTIPOLYGON`), the coordinate reference system (WGS 84 - more on that
 in the next section!), and some of the values of each of the columns,
 including the geometry column. Let’s see the unique values of “leisure”:
@@ -359,8 +354,6 @@ unique(greensp_sf$leisure)
 ```
 
     ## [1] "park"           "golf_course"    NA               "nature_reserve"
-
-<br />
 
 The query has returned the three green space types we requested, and for
 some reason some NA values for “leisure.” Let’s remove these from the
@@ -421,7 +414,6 @@ Reading a file is even easier, using `st_read()`:
 greensp_sf <- st_read(dsn = "greenspaces_Edi_OSM.gpkg", layer="greenspaces")
 ```
 <br />
-
 ## 3. Coordinate reference systems (CRS)
 
 **Coordinate reference systems** relate vector geometries to the Earth’s
@@ -513,8 +505,6 @@ Let’s transform our data into the British National Grid CRS, using it’s
 greensp_sf <- st_transform(greensp_sf, 27700)
 ```
 
-<br />
-
 Let’s view the resulting CRS:
 
 ``` r
@@ -588,6 +578,7 @@ The description has changed. Some key elements:
 For a more detailed overview of projections and transformations, see
 [Chapter 6 of Geocomputation with
 R](https://geocompr.robinlovelace.net/reproj-geo-data.html).
+
 <br />
 
 ## 4. Spatial operations
@@ -602,7 +593,6 @@ the `st_area()` function:
 greensp_sf <- mutate(greensp_sf, area = st_area(greensp_sf))
 ```
 
-
 Let’s check out the result:
 
 ``` r
@@ -613,7 +603,8 @@ head(greensp_sf$area)
     ## Units: [m^2]
     ## [1]  29515.82  29073.37 150754.53 477437.67 398419.52 233094.05
 
-<br /> The function has recognised that the coordinate system units in
+
+The function has recognised that the coordinate system units in
 our data are metres, and has returned `area` as a variable of type
 `units`. Using the **units** library, we can easily convert between
 measurement units without worrying by how much we need to
@@ -800,12 +791,11 @@ tmap_mode("view") # interactive mode
 ```
 
 
-To save the tmap as a .html file:
+This should produce the same interactive map as the one you saw in the beginning of the tutorial (it will appear in the Viewer tab in RStudio). To save the tmap as a .html file:
 
 ``` r
 tmap_save(tm = edi_greenspace_tmap, filename = "output-maps/edi_greenspace_tmap.html")
 ```
-<br />
 
 ## 6. Challenge
 
@@ -1035,7 +1025,8 @@ Cookbook*. Boca Raton, Florida: Chapman; Hall/CRC.
 {% endcapture %}
 {% include reveal.html button="Click here to view Bibliography" content=reveal %}
 
-<br />
+
+#### Interesting in learning more about spatial data? Check out our tutorial on [raster data]({{ site.baseurl }}/tutorials/spatial) and our tutorial on [hierarchical modelling of spatial data with R-INLA]({{ site.baseurl }}/tutorials/spatial-modelling-inla)!
 
 <script type="text/javascript">
 
