@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Write your dissertation in Rmarkdown
-subtitle: Use Rmarkdown to create complex pdf documents
+subtitle: Using Rmarkdown to create complex pdf documents
 date: 2021-03-25 19:00:00
 author: Anna
 tags: reprod

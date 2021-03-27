@@ -303,6 +303,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/spatial-vector-sf.png" alt="Geospatial vector data logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/spatial-vector-sf">
+                	<h2>Geospatial vector data in R with sf</h2>
+                	<p>Creating static and interactive maps using osmdata, sf, ggplot2 and tmap</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/sp_map.png" alt="Flickr species occurrence hex logo">
@@ -369,6 +380,17 @@ redirect_from:
             	<a href="{{ site.baseurl }}/tutorials/rmarkdown">
                 	<h2>R Markdown</h2>
                 	<p>Using R Markdown to save and share code</p>
+            	</a>
+        	</div>
+    	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/rmarkdown-dissertation.png" alt="Write your dissertation in Rmarkdown hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/rmarkdown-dissertation">
+                	<h2>Write your dissertation in Rmarkdown</h2>
+                	<p>Using Rmarkdown to create complex pdf documents</p>
             	</a>
         	</div>
     	</div>

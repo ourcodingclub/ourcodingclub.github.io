@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Geospatial vector data in R with sf
-subtitle: Create static and interactive maps using osmdata, sf, ggplot2 and tmap
+subtitle: Creating static and interactive maps using osmdata, sf, ggplot2 and tmap
 date: 2021-03-26 19:00:00
 author: Boyan
 tags: spatial, maps
@@ -32,7 +32,7 @@ tags: spatial, maps
     (**tmap**).
 <br />
 <iframe width="100%" height="300" src="{{ site.baseurl }}/assets/img/tutorials/spatial-vector-sf/edi_greenspace_tmap.html" title="Interactive tmap Edinburgh greenspaces"></iframe>
-*Interactive map produced using tmap. Zoom into Edinburgh too interact with green spaces.*
+*Interactive map produced using tmap. Zoom into Edinburgh to interact with green spaces.*
 <br />
 
 ## 1. Introduction
