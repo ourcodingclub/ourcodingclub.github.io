@@ -1,8 +1,8 @@
 ---
 layout: tutorial
-title: Geospatial vector data in R with sf
+title: Geospatial vector data in sf
 subtitle: Create static and interactive maps using osmdata, sf, ggplot2 and tmap
-date: 2021-03-27 19:00:00
+date: 2021-03-26 19:00:00
 author: Boyan
 tags: spatial, maps
 ---
@@ -32,9 +32,13 @@ tags: spatial, maps
 4.  Learn to perform basic spatial operations using the **sf** library
 5.  Learn to create simple static (**ggplot2**) or interactive
     (**tmap**).
+
 <br />
-<iframe width="100%" height="300" src="{{ site.baseurl }}/assets/img/tutorials/spatial-vector-sf/edi_greenspace_tmap.html" title="Interactive tmap Edinburgh greenspaces"></iframe>
-*Interactive map produced using tmap. Zoom into Edinburgh too interact with green spaces.*
+
+![]({{ site.baseurl }}/assets/img/tutorials/spatial-vector-sf/interactive-map-screenshot.png)
+
+*Screenshot of an interactive map produced using tmap*
+
 <br />
 
 ## 1. Introduction
@@ -82,7 +86,9 @@ transform the data into a different coordinate reference system and how
 to perform other spatial operations (union and difference between
 polygons).
 
-The text **output of some code chunks is included** just under the code chunk, with lines starting with "##".
+The output of most code chunks is included, but for some it is omitted
+to limit the size of the webpage and to encourage engagement with the
+code.
 
 
 #### What are geospatial vector data?
@@ -173,7 +179,6 @@ page](https://github.com/r-spatial/sf#installing). <br />
 from source**. Installing from source rather than binary takes more
 time, but may give you a slightly newer version. You do not usually need
 to worry about this and can just respond with “no.”
-<br />
 
 ## 2. OpenStreetMap query
 
@@ -297,6 +302,8 @@ greensp_sf <- bind_rows(st_cast(greensp_osm$osm_polygons, "MULTIPOLYGON"),
 select. That is because in `sf` features that is not necessary: the
 `select()` operation ignores it and so this column is always kept.
 
+<br />
+
 {% capture reveal %}
 
 Data from OSM can change, therefore, the `sf` object as produced when
@@ -305,17 +312,19 @@ load it into R, and continue with the tutorial. This is only recommended
 if the query did not work, or the data somehow doesn’t work with the
 rest of the tutorial.
 
-1.  Download the .rds file <a href="https://github.com/ourcodingclub/CC-spatial-vector-sf">from this repository</a>. You can download by clicking on Code -> Download ZIP, then unzipping the archive.
-2.  Move the `greensp_sf.rds` file into your working directory.
-3.  Load the file in R: `greensp_sf <- readRDS("greensp_sf.rds")`
-4.  Continue with the tutorial.
+1.  <a href="greensp_sf.rds" download>Download .rds file</a>
+2.  Move the file into your working directory
+3.  Load the file: `greensp_sf <- readRDS("greensp_sf.rds")`
+4.  Continue with the tutorial. <br />
 
 {% endcapture %}
 {% include reveal.html button="Optional dataset download" content=reveal %}
 
 
+<br />
+
 Let’s explore the result. First, we can very easily plot the geometries
-coloured by one of the attributes. In our case, we will use “leisure”.
+coloured by one of the attributes. In our case, we will use “leisure.”
 
 ``` r
 # Plot coloured by the value of leisure
@@ -335,7 +344,7 @@ Let’s look at the object.
 ``` r
 head(greensp_sf)
 ```
-```
+
     ## Simple feature collection with 6 features and 3 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
@@ -348,7 +357,7 @@ head(greensp_sf)
     ## 4891768   Baberton Golf Course 4891768 golf_course MULTIPOLYGON (((-3.28719 55...
     ## 4891786 Kingsknowe Golf Course 4891786 golf_course MULTIPOLYGON (((-3.265052 5...
     ## 4892551                   <NA> 4892551        <NA> MULTIPOLYGON (((-3.146338 5...
-```
+
 <br /> Here, we can see the type of geometry of this sf object
 (`MULTIPOLYGON`), the coordinate reference system (WGS 84 - more on that
 in the next section!), and some of the values of each of the columns,
@@ -420,7 +429,7 @@ Reading a file is even easier, using `st_read()`:
 # If we want to load this dataset:
 greensp_sf <- st_read(dsn = "greenspaces_Edi_OSM.gpkg", layer="greenspaces")
 ```
-<br />
+
 
 ## 3. Coordinate reference systems (CRS)
 
@@ -449,8 +458,6 @@ Let’s have a look at the CRS of our `sf` object.
 st_crs(greensp_sf)
 ```
 
-{% capture reveal %}
-
     ## Coordinate Reference System:
     ##   User input: EPSG:4326
     ##   wkt:
@@ -473,8 +480,6 @@ st_crs(greensp_sf)
     ##         BBOX[-90,-180,90,180]],
     ##     ID["EPSG",4326]]
 
-{% endcapture %}
-{% include reveal.html button="View output of st_crs()" content=reveal %}
 
 **Don’t be scared by that output!** You don’t need to understand every
 line to proceed, but some bits are useful. This is called a WKT
@@ -522,8 +527,6 @@ Let’s view the resulting CRS:
 st_crs(greensp_sf)
 ```
 
-{% capture reveal %}
-
     ## Coordinate Reference System:
     ##   User input: EPSG:27700
     ##   wkt:
@@ -566,8 +569,6 @@ st_crs(greensp_sf)
     ##         BBOX[49.75,-9,61.01,2.01]],
     ##     ID["EPSG",27700]]
 
-{% endcapture %}
-{% include reveal.html button="View output of st_crs()" content=reveal %}
 
 The description has changed. Some key elements:
 
@@ -588,7 +589,7 @@ The description has changed. Some key elements:
 For a more detailed overview of projections and transformations, see
 [Chapter 6 of Geocomputation with
 R](https://geocompr.robinlovelace.net/reproj-geo-data.html).
-<br />
+
 
 ## 4. Spatial operations
 
@@ -702,7 +703,7 @@ greensp_sf <- bind_rows(greensp_sf_list) %>%
   # calculate area again
   filter(as.numeric(area_ha) >= 2) # remove area < 2 ha again
 ```
-<br />
+
 
 ## 5. Draw maps
 
@@ -805,13 +806,15 @@ To save the tmap as a .html file:
 ``` r
 tmap_save(tm = edi_greenspace_tmap, filename = "output-maps/edi_greenspace_tmap.html")
 ```
-<br />
+
 
 ## 6. Challenge
 
 Calculate the total area of each type of green space. Please note that
 we can’t just sum the areas we calculated as there are overlapping
 polygons within the green space types.
+
+**Solution:**
 
 {% capture reveal %}
 
@@ -823,7 +826,8 @@ finally use `st_units()` to convert to hectares.
 ``` r
 (greensp_type_area <-
   lapply(greensp_sf_list,
-      function(x) set_units(st_area(st_union(x)), "ha")) %>% # apply the function to each element of the list using lapply()
+      function(x) set_units(st_area(st_union(x)), "ha")) %>%
+  # apply the function to each element of the list
   as.data.frame() %>%
   pivot_longer(cols = everything(), names_to = "greensp_type",
                values_to = "area_ha"))
