@@ -50,7 +50,7 @@ To do the tutorial, you will need to have R (tutorial was tested on R 4.0.4), RS
 
 There are several other distributions that you install on your local machine, including [MikTex](https://miktex.org/download), [MacTex](https://www.tug.org/mactex/mactex-download.html) and [TeX Live](https://www.tug.org/texlive/quickinstall.html), but [TinyTex](https://yihui.org/tinytex/) **works best for R users, as with it you don't have to install LaTex packages which you don't need, and missing packages will be automatically installed on RStudio. Also, TinyTex does not require *sysadmin* privileges.**
 
-To install or uninstall TinyTex from your local machine, this the code necessary (which you can write in your RStudio console).
+To install or uninstall TinyTex from your local machine, this code is necessary (which you can write in your RStudio console).
 
 ````
 # get the tinytex package
@@ -542,7 +542,7 @@ We are going to do the same for our template.
 
 When creating and managing a bibliography in LaTex, we use the package `natbib` for customising citations, when using `BibiTex`. [BibiTex](http://www.bibtex.org/) is a tool and file format used to describe and process lists of references, mostly **in conjunction with LaTex documents.**
 
-As I hope most of you will know and know how to use by now, there are a series of **reference managers** freely available to download, which ease and speed up the amount of time you are going to spend referencing and citing in your work.
+There are a series of **reference managers** freely available to download, which ease and speed up the amount of time you are going to spend referencing and citing in your work.
 
 The most popular and best ones (to my advice) are **Mendeley and Zotero**. One of the nice features about them is that after saving your list of references in a folder, you can export them into `BibiTex format` (**.bib**). This way, **you can directly link the content from the new `.bib` file to any document that supports LaTex syntax.**
 
