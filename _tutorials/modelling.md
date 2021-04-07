@@ -9,7 +9,7 @@ updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/NNRS98G
 redirect_from:
   - /2017/02/28/modelling.html
-tags: modelling 
+tags: modelling
 ---
 
 # Tutorial Aims & Steps:
@@ -23,16 +23,16 @@ tags: modelling
 4. [Practice generalised linear models](#generalised)
 5. [Challenge yourself!](#challenge)
 
-Things get real in this tutorial! As you are setting out to answer your research questions, often you might want to know what the effect of X on Y is, how X changes with Y, etc. The answer to "What statistical analysis are you going to use?" will probably be a model of some sort. A model in its simplest form may look something like: 
+Things get real in this tutorial! As you are setting out to answer your research questions, often you might want to know what the effect of X on Y is, how X changes with Y, etc. The answer to "What statistical analysis are you going to use?" will probably be a model of some sort. A model in its simplest form may look something like:
 
-`temp.m <- lm(soil.temp ~ elevation)` - i.e. we are trying to determine the effect of elevation (the _independent_, _predictor_, or _explanatory_ variable) on soil temperature (the _dependent_, or _response_ variable). We might hypothesise that as you go up in elevation, the soil temperature decreases, which would give you a negative effect (i.e. a downward slope). 
+`temp.m <- lm(soil.temp ~ elevation)` - i.e. we are trying to determine the effect of elevation (the _independent_, _predictor_, or _explanatory_ variable) on soil temperature (the _dependent_, or _response_ variable). We might hypothesise that as you go up in elevation, the soil temperature decreases, which would give you a negative effect (i.e. a downward slope).
 
 A slightly more complicated model might look like: `skylark.m <- lm(abundance ~ treatment + farm.area, family = poisson, data = skylarks)`. Here you are modelling `abundance`, the response variable, as a function of `treatment` (e.g. a categorical variable describing different types of farms) AND of `farm.area` (i.e. the size of each farm where abundance data were collected), which are both your explanatory variables. The `family` argument refers to the _distribution_ of the data. In this case, `abundance` represents count, zero-inflated data (allows for zero-valued observations), for which a Poisson distribution is suitable (but more on this later). The `data` argument refers to the data frame in which all the variables are stored.
 
-Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising! 
+Are your data all nicely formatted and ready for analysis? You can check out our [Data formatting and manipulation tutorial]({{ site.baseurl }}/tutorials/piping/index.html) if tidying up your data is still on your to-do list, but for now we'll provide you with some ready-to-go data to get practising!
 
 {% capture callout %}
-Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Clone\Download`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.
+Go to [the Github repository for this tutorial](https://github.com/ourcodingclub/CC-8-Modelling), click on `Code`, select `Download ZIP` and then unzip the files to a folder on your computer. If you are registered on GitHub, you can also clone the repository to your computer and start a version-controlled project in RStudio. For more details on how to start a version-controlled project, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial.
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -58,15 +58,15 @@ Another important aspect of modelling to consider is how many terms, i.e. explan
 skylark.m <- lm(abundance ~ treatment + farm.area)
 ```
 
-Here we are chiefly interested in the effect of treatment: does skylark abundance vary between the different farm treatments? This is the research question we might have set out to answer, but we still need to acknowledge that these treatments are probably not the only thing out there influencing bird abundance. Based on our ecological understanding, we can select other variables we may want to control for. For example, skylark abundance will most likely be higher on larger farms, so we need to account for that. 
+Here we are chiefly interested in the effect of treatment: does skylark abundance vary between the different farm treatments? This is the research question we might have set out to answer, but we still need to acknowledge that these treatments are probably not the only thing out there influencing bird abundance. Based on our ecological understanding, we can select other variables we may want to control for. For example, skylark abundance will most likely be higher on larger farms, so we need to account for that.
 
-But wait - surely bird abundance on farms also depends on where the species occur to begin with, and the location of the farms within the country might also have an effect. Thus, let's add `latitude + longitude` to the model. 
+But wait - surely bird abundance on farms also depends on where the species occur to begin with, and the location of the farms within the country might also have an effect. Thus, let's add `latitude + longitude` to the model.
 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude)
 ```
 
-Last, imagine your experimental design didn't go as planned: you meant to visit all farms three times to collect data, but some farms you managed to visit only twice. Ignoring this would weaken your final results - is abundance different / the same because the treatment has no / an effect, or because there were differences in study effort? To test that, you can include a `visits` term examining the effect of number of visits on abundance. 
+Last, imagine your experimental design didn't go as planned: you meant to visit all farms three times to collect data, but some farms you managed to visit only twice. Ignoring this would weaken your final results - is abundance different / the same because the treatment has no / an effect, or because there were differences in study effort? To test that, you can include a `visits` term examining the effect of number of visits on abundance.
 
 ```r
 skylark.m <- lm(abundance ~ treatment + farm.area + latitude + longitude + visits)
@@ -78,9 +78,9 @@ Some might say this model is very complex, and they would be right - there are a
 {% capture callout %}
 ## Don't go over the top!
 
-It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting [here](https://statisticsbyjim.com/regression/overfitting-regression-models/). 
+It is important to be aware of the multiple factors that may influence your response variables, but if your model has a lot of variables, you are also in danger of __overfitting__. This means that there is simply not enough variation in your dataset (often because it is too small) to be accounted by all those variables, and your model will end up being super tailored to this specific dataset, but not necessarily representative of the generalised process or relationship you are trying to describe. Overfitting can cast doubt over your model's output, so think carefully about the structure of your model, and read more about how to detect and avoid overfitting [here](https://statisticsbyjim.com/regression/overfitting-regression-models/).
 
-Another thing to think about is __collinarity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky. 
+Another thing to think about is __collinearity__ among your explanatory variables. If two variables in your dataset are very correlated with each other, chances are they will both explain similar amounts of variation in your response variable - but the same variation, not different or complementary aspects of it! Imagine that you measured tree heights as you walked up a mountain, and at each measuring point you recorded your elevation and the air temperature. As you may expect that air temperature goes down with increasing elevation, including both these factors as explanatory variables may be risky.
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
 
@@ -133,7 +133,7 @@ library(ggplot2)
   labs(x = "Spacing (m)", y = "Yield (kg)"))
 ```
 
-_Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._ 
+_Note that putting your entire ggplot code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but will need to call it to visualise the plot._
 
 ![Boxplot of tree spacing vs. yield]({{ site.baseurl }}/assets/img/tutorials/modelling/apples2.png)
 
@@ -148,19 +148,19 @@ __Check out the summary output of our model:__
 
 ![RStudio console output model summary]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs1.png)
 
-Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth. 
+Turns out that yield does significantly differ between the three spacing categories, so we can reject the null hypothesis of no effect of spacing on apple yield. It looks like apple yield is indeed higher when the distance between trees is higher, which is in line with our original ecological thoughts: the further away trees are from one another, the less they are limiting each other's growth.
 
-But let's take a look at a few other things from the summary output. Notice how because `spacing2` is a factor, you get results for `spacing210` and `spacing214`. If you are looking for the `spacing26` category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. __A very important thing to understand is that the estimates for the other categories are presented _ relative to _ the reference level. So, for the 10-m spacing category, the estimated value from the model is not `35.9`, but `35.9 + 120.6 = 156.5`.__ A look at our boxplot will make this easy to verify. 
+But let's take a look at a few other things from the summary output. Notice how because `spacing2` is a factor, you get results for `spacing210` and `spacing214`. If you are looking for the `spacing26` category, that is the intercept: R just picks the first category in an alphabetical order and makes that one the intercept. __A very important thing to understand is that the estimates for the other categories are presented _relative to_ the reference level. So, for the 10-m spacing category, the estimated value from the model is not `35.9`, but `35.9 + 120.6 = 156.5`.__ A look at our boxplot will make this easy to verify.
 
-You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. These values refer to how much of the variation in the `yield` variable is explained by our predictor `spacing2`. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. `R-squared` values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The `Adjusted R-squared` value takes into account how many terms your model has and how many data points are available in the response variable. 
+You also get a `Multiple R-squared` value and an `Adjusted R-squared` value. These values refer to how much of the variation in the `yield` variable is explained by our predictor `spacing2`. The values go from 0 to 1, with 1 meaning that our model variables explain 100% of the variation in the examined variable. `R-squared` values tend to increase as you add more terms to your model, but you also need to be wary of overfitting. The `Adjusted R-squared` value takes into account how many terms your model has and how many data points are available in the response variable.
 
-__So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye! 
+__So now, can we say this is a good model?__ It certainly tells us that spacing has a _significant_ effect on yield, but maybe not a very _important_ one compared to other possible factors influencing yield, as spacing only explains around 15% of the variation in yield. Imagine all the other things that could have an impact on yield that we have not studied: fertilisation levels, weather conditions, water availability, etc. So, no matter how excited you might be of reporting significant effects of your variables, especially if they confirm your hypotheses, always take the time to assess your model with a critical eye!
 
 ## More practice: another model
 
 Now that we've written a model and understood its output, let's analyse another dataset and learn to read it's output, too. We'll introduce something just a bit different.
 
-We will use the `ilri.sheep` dataset, also from the agridat package, to answer the question: _Is the weight of lambs at weaning a function of their age at weaning?_, with the hypothesis that lambs that are weaned later are also heavier. 
+We will use the `ilri.sheep` dataset, also from the agridat package, to answer the question: _Is the weight of lambs at weaning a function of their age at weaning?_, with the hypothesis that lambs that are weaned later are also heavier.
 
 ```r
 sheep <- agridat::ilri.sheep   # load the data
@@ -174,12 +174,12 @@ sheep.m1 <- lm(weanwt ~ weanage, data = sheep)   # run the model
 summary(sheep.m1)                                # study the output
 
 ```
- 
+
 ![RStudio console model output summary]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_outputs2.png)
 
-Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level). 
+Can you spot the difference between this model and the apple model? In the apple model, our predictor `spacing` was a __categorical__ variable. Here, our predictor `weanage` is a __continuous__ variable. For the apple model, the output gave us the yield estimate (mean) for each level of spacing (with _Intercept_ being our reference level).
 
-Here, the intercept is the value of _Y_ when _X_ is 0. In many models this is not of interest and sometimes doesn't make a ton of sense, but in our case you could potentially argue that it's the weight of a newborn lamb. 
+Here, the intercept is the value of _Y_ when _X_ is 0. In many models this is not of interest and sometimes doesn't make a ton of sense, but in our case you could potentially argue that it's the weight of a newborn lamb.
 Then, the output gives us an estimate, which is the _slope_ of the relationship. In this case, every day you wait to wean a lamb will result in an average increase of 0.08 kg in its weight. You probably remember how to write linear equations from school, so that you could write it thus: __lamb weight = 2.60 + 0.08(age)__.
 
 So far, so good? Let's read one extra output where things get a little bit more complex. Our model, with `weanage`as the sole predictor, currently only explains about 20% of the variation in the weight at weaning. What if the sex of the lamb also influences weight gain? Let's run a new model to test this:
@@ -223,19 +223,22 @@ Confused when hearing the terms linear regression, linear model, and ANOVA? Let'
 
 Linear regression and linear model are complete synonyms, and we usually use these terms when we're quantifying the effect of a __continuous__ explanatory variable on a __continuous__ response variable: what is the change in _Y_ for a 1 unit change in _X_? We just did this for the sheep data: what is the weight gain for each extra day pre-weaning?
 
-Now enters the ANOVA, which stands for Analysis of Variance. We usually talk about an ANOVA when we're quantifying the effect of a __discrete, or categorical__ explanatory variable on a __continuous__ response variable. We just did with the apples: how does the mean yield vary depending on the spacing category? It is also a linear model, but instead of getting a slope that allows us to predict the yield for any value of spacing, we get an estimate of the yield for each category. 
+Now enters the ANOVA, which stands for Analysis of Variance. We usually talk about an ANOVA when we're quantifying the effect of a __discrete, or categorical__ explanatory variable on a __continuous__ response variable. We just did with the apples: how does the mean yield vary depending on the spacing category? It is also a linear model, but instead of getting a slope that allows us to predict the yield for any value of spacing, we get an estimate of the yield for each category.
 
 So, just to let it sink, repeat after us: _ANOVA is a linear regression_ (and here is a [nice article](https://www.theanalysisfactor.com/why-anova-and-linear-regression-are-the-same-analysis/) explaining the nitty gritty stuff). You can run the `anova` function on our linear model object `apples.m` and see how you get the same p-value:
 
 ```r
 anova(apples.m)
 ```
+
+__To learn more about ANOVA, check out [our ANOVA tutorial]({{ site.baseurl }}/tutorials/anova/)!__
+
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
 
 ## Checking assumptions
 
-In addition to checking whether this model makes sense from an ecological perspective, we should check that it actually meets the assumptions of a linear model: 
+In addition to checking whether this model makes sense from an ecological perspective, we should check that it actually meets the assumptions of a linear model:
 
 1- are the residuals, which describe the difference between the observed and predicted value of the dependent variable, normally distributed?
 
@@ -264,12 +267,12 @@ We can examine the model fit further by looking at a few plots:
 plot(apples.m)  # you will have to press Enter in the command line to view the plots
 ```
 
-This will produce a set of four plots: 
+This will produce a set of four plots:
 
 - Residuals versus fitted values
 - a Q-Q plot of standardized residuals
-- a scale-location plot (square roots of standardized residuals versus fitted values) 
-- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1. 
+- a scale-location plot (square roots of standardized residuals versus fitted values)
+- a plot of residuals versus leverage that adds bands corresponding to Cook's distances of 0.5 and 1.
 
 In general, looking at these plots can help you identify any outliers that have a disproportionate influence on the model, and confirm that your model has ran alright e.g. you would want the data points on the Q-Q plot to follow the line. It takes experience to "eyeball" what is acceptable or not, but you can look at this [helpful page](https://data.library.virginia.edu/diagnostic-plots/) to get you started.
 
@@ -281,7 +284,7 @@ The model we used above was a __general__ linear model since it met all the assu
 
 ## A model with a Poisson distribution
 
-Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the [Living Planet Index](http://www.livingplanetindex.org/home/index). 
+Import the `shagLPI.csv` dataset and check it's summary using `summary(shagLPI)`. Notice that for some reason R has decided that year is a character variable, when it should instead be a numeric variable. Let's fix that so that we don't run into trouble later. The data represent population trends for European Shags on the Isle of May and are available from the [Living Planet Index](http://www.livingplanetindex.org/home/index).
 
 ```r
 shag <- read.csv("shagLPI.csv", header = TRUE)
@@ -332,7 +335,7 @@ weevil.m <- glm(damage_T_F ~ block, family = binomial, data = Weevil_damage)
 summary(weevil.m)
 ```
 
-__Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.__ The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in _Y_ for a change in 1 unit of X, because binomial models are a type of __logistic regression__ which relies on log odd ratios - but we won't get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it's not a linear relationship! And finally, you won't get a R squared value to assess the __goodness of fit__ of your model, but you can get at that by looking at the difference between the `Null deviance` (variability explained by a null model, e.g. `glm(damage_T_F ~ 1)`) and the `Residual deviance`, e.g. the amount of variability that remains after you've explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship. 
+__Check out the summary output. It looks like the probability of a pine tree enduring damage from weevils does vary significantly based on the block in which the tree was located.__ The estimates you see are not as straightforward to interpret as those from linear models, where the estimate represents the change in _Y_ for a change in 1 unit of X, because binomial models are a type of __logistic regression__ which relies on log odd ratios - but we won't get into details here. Greater estimates still mean bigger influence of your variables, just keep in mind that it's not a linear relationship! And finally, you won't get a R squared value to assess the __goodness of fit__ of your model, but you can get at that by looking at the difference between the `Null deviance` (variability explained by a null model, e.g. `glm(damage_T_F ~ 1)`) and the `Residual deviance`, e.g. the amount of variability that remains after you've explained some away by your explanatory variable. In short, the bigger the reduction in deviance, the better a job your model is doing at explaining a relationship.
 
 __We have now covered the basics of modelling. Next, you can go through <a href = "{{ site.baseurl }}/tutorials/mixed-models/index.html" target="_blank">our tutorial on mixed effects models</a>, which  account for the structure and nestedness of data. You can also check out a couple of other tutorials on modelling to further your knowledge:__
 
@@ -351,7 +354,7 @@ ToothGrowth <- datasets::ToothGrowth
 ```
 
 1. Are higher doses of vitamin C beneficial for tooth growth?
-2. Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose? 
+2. Does the method of administration (orange juice, `OJ`, or ascorbic acid, `VC`) influence the effect of the dose?
 3. What would be the predicted tooth length of a guinea pig given 1 mg of vitamin C as ascorbic acid?
 
 {% capture reveal %}
@@ -373,9 +376,9 @@ The model is highly significant, and together, dose and method explain around 77
 2. the effect of dose on growth depends on the administration method.
 3. A guinea pig given 1 mg a day as ascorbic acid would have a predicted tooth growth of:
 
-__13.23__ (growth for dose 0.5, orange juice) 
-+ __9.47__ (extra growth for dose 1.0, orange juice) 
-+ __-5.25__ (difference in growth linked to the ascorbic acid treatment for dose 0.5) 
+__13.23__ (growth for dose 0.5, orange juice)
++ __9.47__ (extra growth for dose 1.0, orange juice)
++ __-5.25__ (difference in growth linked to the ascorbic acid treatment for dose 0.5)
 + __-0.68__ (difference in growth for the interaction between dose 1.0 and ascorbic acid treatment)
 __= 16.77__
 
@@ -387,7 +390,7 @@ ggplot(ToothGrowth, aes(x = dose, y = len))+
    theme.clean()
 ```
 
-![Boxplots]({{ site.baseurl }}/img/DL_intro_lm_guineapigs.png)
+![Boxplots]({{ site.baseurl }}/assets/img/tutorials/modelling/DL_intro_lm_guineapigs.png)
 
 {% endcapture %}
 {% include reveal.html button="Click this line to view a solution" content=reveal %}
