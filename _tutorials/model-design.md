@@ -367,7 +367,7 @@ set_theme(base = theme_bw() +
 (re.effects <- plot_model(plant_m_plot3, type = "re", show.values = TRUE))
 
 save_plot(filename = "model_re.png",
-          height = 11, width = 9)  # Save the graph if you wish
+          height = 10, width = 10)  # Save the graph if you wish
 
 ```
 
@@ -383,7 +383,7 @@ Let's visualise our fixed effects:
 (fe.effects <- plot_model(plant_m_plot3, show.values = TRUE))
 
 save_plot(filename = "model_fe.png",
-          height = 11, width = 9)  # Save the graph if you wish
+          height = 8, width = 15)  # Save the graph if you wish
 
 ```
 ![Effect size of fixed effect of site]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
@@ -405,7 +405,7 @@ Let's look at the fixed effect first this time:
 # Visualise the fixed effect
 (temp.fe.effects <- plot_model(plant_m_temp, show.values = TRUE))
 save_plot(filename = "model_temp_fe.png",
-          height = 11, width = 9)
+          height = 7, width = 9)
 ```
 
 ![Effect size of fixed effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
@@ -418,7 +418,7 @@ And the random effects:
 # Visualise the random effect terms
 (temp.re.effects <- plot_model(plant_m_temp, type = "re", show.values = TRUE))
 save_plot(filename = "model_temp_re.png",
-          height = 11, width = 9)
+          height = 7, width = 9)
 ```
 
 Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year.
@@ -462,16 +462,20 @@ This time the model converges, but keep in mind that we are ignoring the hierarc
 We can visualise the results:
 
 ```r
-(plant.re.effects <- plot_model(plant_m_rs, type = "re", show.values = TRUE))
-save_plot(filename = "model_plant_re.png",
-          height = 17, width = 15)
-
 (plant.fe.effects <- plot_model(plant_m_rs, show.values = TRUE))
 save_plot(filename = "model_plant_fe.png",
           height = 14, width = 9)
 ```
 
-![Effect size of mean temp.]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
+![Effect size of mean temp - random slopes]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
+
+```r
+(plant.re.effects <- plot_model(plant_m_rs, type = "re", show.values = TRUE))
+save_plot(filename = "model_plant_re.png",
+          height = 17, width = 15)
+```
+
+![Random slopes - random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_re.png)
 
 To get a better idea of what the random slopes and intercepts are doing, we can visualise your model predictions. We will use the `ggeffects` package to calculate model predictions and plot them. First, we calculate the overall predictions for the relationship between species richness and temperature. Then, we calculate the predictions for each plot, thus visualising the among-plot variation. Note that the second graph has both freely varying slopes and intercepts (i.e., they're different for each plot).
 
@@ -479,7 +483,12 @@ To get a better idea of what the random slopes and intercepts are doing, we can 
 ggpredict(plant_m_rs, terms = c("Mean.Temp")) %>% plot()
 save_plot(filename = "model_temp_richness.png",
           height = 9, width = 9)
+```
 
+
+![Random slope model predicted values]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness.png)
+
+```r
 ggpredict(plant_m_rs, terms = c("Mean.Temp", "Plot"), type = "re") %>% plot()
 save_plot(filename = "model_temp_richness_rs_ri.png",
           height = 9, width = 9)
