@@ -7,7 +7,7 @@ author: Isla and Gergana
 survey_link: https://www.surveymonkey.co.uk/r/PFJ7S2D
 redirect_from:
   - /2018/04/06/model-design.html
-tags: modelling 
+tags: modelling
 ---
 
 # Tutorial Aims:
@@ -24,7 +24,7 @@ tags: modelling
 10. [Hierarchical models using `MCMCglmm`](#MCMCglmm)
 
 {% capture callout %}
-### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Clone/Download/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+### All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-model-design). Click on `Code` -> `Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
@@ -84,14 +84,12 @@ Our data consists of plant species cover measured across four years in plots tha
 
 ```r
 # Load libraries ----
-library(dplyr)  # for data manipulation
-library(ggplot2)  # for data visualisation
-library(lme4)  # for models
+library(tidyverse)  # for data manipulation (tidyr, dplyr), visualization, (ggplot2), ...
+library(lme4)  # for hierarchical models
 library(sjPlot)  # to visualise model outputs
 library(ggeffects)  # to visualise model predictions
-library(MCMCglmm)  # for models
-library(MCMCvis)  # to visualise model outputs
-library(brms)  # for models
+library(MCMCglmm)  # for Bayesian models
+library(MCMCvis)  # to visualise Bayesian model outputs
 library(stargazer)  # for tables of model outputs
 
 # Load data ----
@@ -108,12 +106,21 @@ To check out what class of data we are dealing with we can use the str() functio
 str(toolik_plants)
 ```
 
-`Site` and `Species` are strings (letters) and categorical data (factors) - they are names.  `Year`, `Cover`, `Mean.Temp` and `SD.Temp` are numeric and continuous data - they are numbers. `Cover` shows the relative cover (out of 1) for different plant species, `Mean.Temp` is the mean annual temperature at Toolik Lake Station and `SD.Temp` is the standard deviation of the mean annual temperature. Then, we have `Treatment`, another categorical variable that refers to different chemical treatments, e.g. some plots received extra nitrogen, others extra phosphorus. Finally, we have `Block` and `Plot`, which give more detailed information about where the measurements were taken.
+`Site` and `Species` are of the `character` type (text, composed of letters) - they are names, and we will treat them as categorical variables.  `Year`, `Cover`, `Mean.Temp` and `SD.Temp` are numeric and continuous data - they are numbers. `Cover` shows the relative cover (out of 1) for different plant species, `Mean.Temp` is the mean annual temperature at Toolik Lake Station and `SD.Temp` is the standard deviation of the mean annual temperature. Then, we have `Treatment`, another categorical variable that refers to different chemical treatments, e.g. some plots received extra nitrogen, others extra phosphorus. Finally, we have `Block` and `Plot`, which give more detailed information about where the measurements were taken.
 
-The plot numbers are currently coded as numbers - 1, 2,...8, making it a numerical variable. We should make them a categorical variable, since just like `Site` and `Block`, the numbers represent the different categories, not actual count data.
+The plot numbers are currently coded as numbers (`num`) - 1, 2,...8, making it a numerical variable. We should make them a categorical variable, since just like `Site` and `Block`, the numbers represent the different categories, not actual count data.
+
+In R, we can use the `factor` type to denote a vector/column as categorical data. With the following code, we can convert multiple columns to factors:
 
 ```r
-toolik_plants$Plot <- as.factor(as.character(toolik_plants$Plot))
+# We can use mutate() from dplyr to modify columns
+# and combine it with across() from dplyr to apply the same
+# function (as.factor()) to the selected columns
+toolik_plants <-
+  toolik_plants %>%
+  mutate(across(c(Site, Block, Plot), as.factor))
+
+str(toolik_plants)
 ```
 
 Now, let's think about the distributions of the data. __Our data structure is a bit like a Russian doll, so let's start looking into that layer by layer.__
@@ -202,7 +209,8 @@ __115 species! Next, we can calculate how many species were recorded in each plo
 # Calculate species richness
 toolik_plants <- toolik_plants %>%
   group_by(Year, Site, Block, Plot) %>%
-  mutate(Richness = length(unique(Species)))
+  mutate(Richness = length(unique(Species))) %>%
+  ungroup()
 ```
 
 To explore the data further, we can make a histogram of species richness.
@@ -213,7 +221,7 @@ To explore the data further, we can make a histogram of species richness.
     theme_classic())
 ```
 
-Note that putting your entire `ggplot` code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the `hist` object. 
+Note that putting your entire `ggplot` code in brackets () creates the graph and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `hist` after you've created the `hist` object.
 
 ![Richness histogram]({{ site.baseurl }}/assets/img/tutorials/model-design/richness_hist.png)
 
@@ -287,6 +295,8 @@ plant_m <- lm(Richness ~ I(Year-2007), data = toolik_plants)
 summary(plant_m)
 ```
 
+Notice how we have transformed the `Year` column - `I(Year - 2007)` means that the year `2008` will become `Year 1` - then your model is estimating richness across the first, second, etc., year from your survey period. Otherwise, if we had kept the years just as `2008`, `2009`,..., the model would have estimated richness really far back into the past, starting from `Year 1`, `Year 2`... `Year 1550` up until `2012`. This would make the magnitude of the estimates we get wrong. You can experiment to see what happens if we just add in `Year` - suddenly the slope of species change goes in the hundreds!
+
 __Assumptions made:__
 
 1. The data are normally distributed.
@@ -318,17 +328,16 @@ plot(plant_m)
 
 Now that we have explored the idea of a hierarchical model, let's see how our analysis changes if we do or do not incorporate elements of the experimental design to the hierarchy of our model.
 
-First, let's model with only site as a random effect.  This model does not incorporate the temporal replication in the data or the fact that there are plots within blocks within those sites. 
-
-Notice how we have transformed the `Year` column - `I(Year - 2007)` means that the year `2008` will become `Year 1` - then your model is estimating richness across the first, second, etc., year from your survey period. Otherwise, if we had kept the years just as `2008`, `2009`,..., the model would have estimated richness really far back into the past, starting from `Year 1`, `Year 2`... `Year 1550` up until `2012`. This would make the magnitude of the estimates we get wrong. You can experiment to see what happens if we just add in `Year` - suddenly the slope of species change goes in the hundreds!
+First, let's model with only site as a random effect.  This model does not incorporate the temporal replication in the data or the fact that there are plots within blocks within those sites.
 
 ```r
 plant_m_plot <- lmer(Richness ~ I(Year-2007) + (1|Site), data = toolik_plants)
 summary(plant_m_plot)
-plot(plant_m_plot)  # Checking assumptions
 ```
 
-From the `summary()` outputs, you can see the effect sizes, a key element of the model outputs. Effect sizes tell us about the strengths of the relationships we are testing. We are still not accounting for the different plots and blocks though, so let's gradually add those and see how the results change.
+From the `summary()` outputs, you can see the effect sizes (under the column "Estimate" in the "Fixed effects" part of the summary), a key element of the model outputs. Effect sizes tell us about the strengths of the relationships we are testing. In this model, the "Year" variable has an effect of about -0.7 on "Richness", which can be interpreted as an annual decrease of 0.7 species.
+
+We are still not accounting for the different plots and blocks though, so let's gradually add those and see how the results change.
 
 ```r
 plant_m_plot2 <- lmer(Richness ~ I(Year-2007) + (1|Site/Block), data = toolik_plants)
@@ -342,31 +351,56 @@ plant_m_plot3 <- lmer(Richness ~ I(Year-2007) + (1|Site/Block/Plot), data = tool
 summary(plant_m_plot3)
 ```
 
-__This final model answers our question about how plant species richness has changed over time, whilst also accounting for the hierarchical structure of the data. Let's visualise the results using the `sjPlot` package!__
+__This final model answers our question about how plant species richness has changed over time, whilst also accounting for the hierarchical structure of the data.__
+
+Let's check our model's "fitted vs residuals" plot.
+
+```r
+plot(plant_m_plot3)  # Checking residuals
+```
+
+The points on this graph are evenly distributed on both sides of the horizontal line, which is a good sign that the model residuals do not violate the assumptions of the linear models.
+
+__Let's visualise the results using the `sjPlot` package!__
 
 ```r
 # Set a clean theme for the graphs
-set_theme(base = theme_bw() + 
+set_theme(base = theme_bw() +
             theme(panel.grid.major.x = element_blank(),
                   panel.grid.minor.x = element_blank(),
                   panel.grid.minor.y = element_blank(),
                   panel.grid.major.y = element_blank(),
                   plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), units = , "cm")))
 
-# Visualises random effects 
+# Visualises random effects
 (re.effects <- plot_model(plant_m_plot3, type = "re", show.values = TRUE))
-save_plot(filename = "model_re.png",
-          height = 11, width = 9)  # Save the graph if you wish
 
-# To see the estimate for our fixed effect (default): Year
-(fe.effects <- plot_model(plant_m_plot3, show.values = TRUE))
-save_plot(filename = "model_fe.png",
-          height = 11, width = 9)  # Save the graph if you wish
+save_plot(filename = "model_re.png",
+          height = 8, width = 15)  # Save the graph if you wish
+
 ```
 
 Note how when we visualise our random effects, three different plots come up (use the arrow buttons in the "plots" window to scroll through the plots). The first two show the interaction effects. Here, we are only interested in the plot that shows us the random effects of site, i.e. the figure we see below:
 
-![Effect size of random effect of site]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
+![Effect size of random effect of site]({{ site.baseurl }}/assets/img/tutorials/model-design/model_re.png)
+
+Let's visualise our fixed effects:
+
+```r
+
+# To see the estimate for our fixed effect (default): Year
+(fe.effects <- plot_model(plant_m_plot3, show.values = TRUE))
+
+save_plot(filename = "model_fe.png",
+          height = 8, width = 15)  # Save the graph if you wish
+
+```
+![Effect size of fixed effect of site]({{ site.baseurl }}/assets/img/tutorials/model-design/model_fe.png)
+
+Since we only have one fixed effect in this model (Year), the graph produced shows the estimate for that effect size (the point) and the confidence interval (line around the point).
+
+
+Now, let's look at the effect of __mean temperature__ on __richness__. We will use the same hierarchical structure for site/block/plot random effects. We will also add __year__ as random effect this time.
 
 ```r
 plant_m_temp <- lmer(Richness ~ Mean.Temp + (1|Site/Block/Plot) + (1|Year),
@@ -374,23 +408,31 @@ plant_m_temp <- lmer(Richness ~ Mean.Temp + (1|Site/Block/Plot) + (1|Year),
 summary(plant_m_temp)
 ```
 
-Let's see the model outputs again:
+Let's look at the fixed effect first this time:
 
-```
-# Visualise the random effect terms
-(temp.re.effects <- plot_model(plant_m_temp, type = "re", show.values = TRUE))
-save_plot(filename = "model_temp_re.png",
-          height = 11, width = 9)
-
+```r
 # Visualise the fixed effect
 (temp.fe.effects <- plot_model(plant_m_temp, show.values = TRUE))
 save_plot(filename = "model_temp_fe.png",
-          height = 11, width = 9)
+          height = 8, width = 15)
 ```
 
-Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year. 
+![Effect size of fixed effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
 
-![Effect size of random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_fe.png)
+The very wide confidence interval this time suggest high uncertainty about the effect of temperature on richness.
+
+And the random effects:
+
+```r
+# Visualise the random effect terms
+(temp.re.effects <- plot_model(plant_m_temp, type = "re", show.values = TRUE))
+save_plot(filename = "model_temp_re.png",
+          height = 8, width = 15)
+```
+
+Again, with the random effect terms, we can see the random effects of interactions, as well as for site, and year. Use your arrow buttons in the plots window to navigate between the plots. The figure you see below is the random effect of year.
+
+![Effect size of random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_re.png)
 
 __Assumptions made:__
 
@@ -418,44 +460,49 @@ summary(plant_m_rs)
 
 __Check out the summary outputs and the messages we get. This model is not converging and we shouldn't trust its outputs: the model structure is too complicated for the underlying data, so now we can simplify it.__
 
+If the code is running for a while, feel free to click on the "Stop" button and continue with the tutorial, as the model is not going to converge.
+
 ```r
-plant_m_rs <- lmer(Richness ~ Mean.Temp + (Mean.Temp|Plot) + (1|Year),
+plant_m_rs <- lmer(Richness ~ Mean.Temp + (Mean.Temp|Site) + (1|Year),
                  data = toolik_plants)
 summary(plant_m_rs)
 ```
 
-__This one is not converging either! Let's try with just a `Plot` random intercept and with random slopes to illustrate what a random slope model looks like.__
-
-```r
-plant_m_rs <- lmer(Richness ~ Mean.Temp + (Mean.Temp|Plot),
-                 data = toolik_plants)
-summary(plant_m_rs)
-```
+This time the model converges, but keep in mind that we are ignoring the hierarchical structure below "Site", and therefore violating about assumption about independent data points (data below the "Site" level are actually grouped). But we will use it to show you what random-slopes models look like.
 
 We can visualise the results:
 
 ```r
-(plant.re.effects <- plot_model(plant_m_rs, type = "re", show.values = TRUE))
-save_plot(filename = "model_plant_re.png",
-          height = 17, width = 15)
-
 (plant.fe.effects <- plot_model(plant_m_rs, show.values = TRUE))
 save_plot(filename = "model_plant_fe.png",
-          height = 14, width = 9)
+          height = 8, width = 15)
 ```
 
-![Effect size of mean temp.]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
+![Effect size of mean temp - random slopes]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_fe.png)
+
+```r
+(plant.re.effects <- plot_model(plant_m_rs, type = "re", show.values = TRUE))
+save_plot(filename = "model_plant_re.png",
+          height = 8, width = 15)
+```
+
+![Random slopes - random effect of year]({{ site.baseurl }}/assets/img/tutorials/model-design/model_plant_re.png)
 
 To get a better idea of what the random slopes and intercepts are doing, we can visualise your model predictions. We will use the `ggeffects` package to calculate model predictions and plot them. First, we calculate the overall predictions for the relationship between species richness and temperature. Then, we calculate the predictions for each plot, thus visualising the among-plot variation. Note that the second graph has both freely varying slopes and intercepts (i.e., they're different for each plot).
 
 ```r
 ggpredict(plant_m_rs, terms = c("Mean.Temp")) %>% plot()
 save_plot(filename = "model_temp_richness.png",
-          height = 9, width = 9)
+          height = 12, width = 14)
+```
 
-ggpredict(plant_m_rs, terms = c("Mean.Temp", "Plot"), type = "re") %>% plot()
+![Random slope model predicted values]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness.png)
+
+```r
+ggpredict(plant_m_rs, terms = c("Mean.Temp", "Site"), type = "re") %>% plot() +
+  theme(legend.position = "bottom")
 save_plot(filename = "model_temp_richness_rs_ri.png",
-          height = 9, width = 9)
+          height = 12, width = 14)
 ```
 
 ![Random slope model predicted values by plot]({{ site.baseurl }}/assets/img/tutorials/model-design/model_temp_richness_rs_ri.png)
@@ -471,14 +518,16 @@ __We can manually plot the predictions to overcome this problem.__
 predictions <- ggpredict(plant_m_rs, terms = c("Mean.Temp"))
 
 (pred_plot1 <- ggplot(predictions, aes(x, predicted)) +
-  geom_line() +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = .1) +
-  scale_y_continuous(limits = c(0, 22)) +
-  labs(x = "\nMean annual temperature", y = "Predicted species richness\n"))
+    geom_line() +
+    geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = .1) +
+    scale_y_continuous(limits = c(0, 35)) +
+    labs(x = "\nMean annual temperature", y = "Predicted species richness\n"))
 
 ggsave(pred_plot1, filename = "overall_predictions.png",
        height = 5, width = 5)
 ```
+
+![ggplot2 random slope model overall predictions]({{ site.baseurl }}/assets/img/tutorials/model-design/overall_predictions.png)
 
 __The relationship between temperature and species richness doesn't look that strong anymore! In fact, we see pretty small increases in species richness as temperature increases. What does that tell you about our hypothesis?__
 
@@ -487,12 +536,13 @@ Now we can do the same, but this time taking into account the random effect.
 ```r
 # Predictions for each grouping level (here plot which is a random effect)
 # re stands for random effect
-predictions_rs_ri <- ggpredict(plant_m_rs, terms = c("Mean.Temp", "Plot"), type = "re")
+predictions_rs_ri <- ggpredict(plant_m_rs, terms = c("Mean.Temp", "Site"), type = "re")
 
 (pred_plot2 <- ggplot(predictions_rs_ri, aes(x = x, y = predicted, colour = group)) +
-  stat_smooth(method = "lm", se = FALSE)  +
-  scale_y_continuous(limits = c(0, 22)) +
-  labs(x = "\nMean annual temperature", y = "Predicted species richness\n"))
+    stat_smooth(method = "lm", se = FALSE)  +
+    scale_y_continuous(limits = c(0, 35)) +
+    theme(legend.position = "bottom") +
+    labs(x = "\nMean annual temperature", y = "Predicted species richness\n"))
 
 ggsave(pred_plot2, filename = "ri_rs_predictions.png",
        height = 5, width = 5)
@@ -506,6 +556,7 @@ __Just for the sake of really seeing the random intercepts and random slopes, he
 ```r
 (pred_plot3 <- ggplot(predictions_rs_ri, aes(x = x, y = predicted, colour = group)) +
     stat_smooth(method = "lm", se = FALSE)  +
+    theme(legend.position = "bottom") +
     labs(x = "\nMean annual temperature", y = "Predicted species richness\n"))
 
 ggsave(pred_plot3, filename = "ri_rs_predictions_zoom.png",
@@ -610,7 +661,7 @@ Today we have learned that in order to design a statistical model, we first need
 
 # Extras
 
-If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to thing about how we can implement hierarchical models using the statistical programming language Stan.
+If you are keen, you can now try out the `brms` package and generate the Stan code for this model.  This will help us to start to think about how we can implement hierarchical models using the statistical programming language Stan.
 
 __You can check out [the Stan hierarchical modelling tutorial here]({{ site.baseurl }}/tutorials/stan-2/index.html)!__
 
