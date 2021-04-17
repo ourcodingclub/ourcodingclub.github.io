@@ -326,9 +326,7 @@ require(rgdal)
 Loc <- cbind(Point_Data$Easting, Point_Data$Northing)
 # Then we can transform our dataset in a spatial object (a spatial point dataframe)
 Fox_Point <- SpatialPointsDataFrame(coords = Loc, data = Point_Data, match.ID = T,
-                                    proj4string = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894"))
+                                    proj4string = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
 
 par(mfrow = c(1,1), mar = c(1,1,1,1))
 plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
@@ -356,9 +354,7 @@ plot(Scot_Shape, add = T)
 
 However, if we change the transform the CRS of `Scot_Shape` using the `spTransform()` function, we can correctly map correctly the fox scats and the Scotland shapefile together.
 ```R
-foxcrs <- CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894")
+foxcrs <- CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000")
 
 Scot_Shape_BNG <- spTransform(Scot_Shape, foxcrs)
 
@@ -470,7 +466,7 @@ spde1 <- inla.spde2.matern(Mesh3,
                             alpha = 2) # alpha is 2 by default, for most models this can be left as it is (needs to be adjusted for 3D meshes)
 
 spde1$n.spde
-[1] 849   # the dimension of the spde is the same as the mesh vertices
+#[1] 849   # the dimension of the spde is the same as the mesh vertices
 ```
 
 ### Fitting a basic spatial model
@@ -523,7 +519,7 @@ inla.emarginal(function(x) 1/x, Mod_Point1$marginals.hyper[[1]])
 
 # In order to extract the relevant information on the spatial field we will need to use the inla.spde2.result() function
 Mod_p1.field <- inla.spde2.result(inla = Mod_Point1, 
-                                 name = "spatial.field1", spde = spde, 
+                                 name = "spatial.field1", spde = spde1, 
                                  do.transf = T)     # This will transform the results back from the internal model scale 
 
 names(Mod_p1.field) # check the component of Mod_p1.field
@@ -732,18 +728,14 @@ xmean3 <- xmean2[rev(1:length(xmean2[,1])),]
 xmean_ras <- raster(xmean3,
                     xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                     ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                    crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894"))
+                    crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
 
 xsd2 <- t(xsd)
 xsd3 <- xsd2[rev(1:length(xsd2[,1])),]
 xsd_ras <- raster(xsd3,
                   xmn = range(projgrid$x)[1], xmx =range(projgrid$x)[2],
                   ymn = range(projgrid$y)[1], ymx =range(projgrid$y)[2],
-                  crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894"))
+                  crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000")
 ```
 
 `xmean_ras` and `xsd_ras` are raster items and can be exported, stored and manipulated outside R (including in GIS softwares) using the function `writeRaster()`.
@@ -773,7 +765,7 @@ __Finally, I'm going to show how to produce spatial predictions from `INLA` mode
 # The first step is to load the prediction raster file (this one is a ASCII file). 
 require(raster)
 require(rgdal)
-GS_Pred <- raster("GS_Pred/GS_Pred_Ras.txt")
+GS_Pred <- raster("GS_Pred/GS_Pred_Raster.txt")
 
 # This is simply a raster map of greeenspace values (precentage of greenspace per raster cell) plotted for the entire Edinburgh area.
 require(RColorBrewer)
@@ -797,7 +789,6 @@ To start, we transform the raster values for the amount of green space (`GS rati
 ```R
 GS_Matrix <- matrix(GS_Pred)
 
-str(GS_Mat)
 str(GS_Matrix)
 
 y.res <- GS_Pred@nrows
@@ -883,7 +874,7 @@ post.sd.pred <- Mod_Pred$summary.linear.predictor[index.pred, "sd"]
 proj.grid <- inla.mesh.projector(MeshPred, 
                                  xlim = range(pred.grid[,1]), 
                                  ylim = range(pred.grid[,2]), 
-                                 dims = c(ncol,nrow))
+                                 dims = c(x.res, y.res))
 ```
 
 Finally, we project the values we extracted from the model on the lattice we have created and transform the projected predictions to a raster object as we did before with the `GRF` and plot them in a similar fashion (we do this for both the mean and standard deviation).
@@ -897,18 +888,14 @@ predmean2 <- predmean[rev(1:length(predmean[,1])),]
 predmean_ras <- raster(predmean2,
                       xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                       ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                      crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894"))
+                      crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
 
 predsd <- t(post.sd.pred.grid)
 predsd2 <- predsd[rev(1:length(predsd[,1])),]
 predsd_ras <- raster(predsd2,
                        xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                        ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                       crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 
-                                                           +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,
-                                                           -125.157,542.060,0.1502,0.2470,0.8421,-20.4894"))
+                       crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
 
 # plot the model predictions for mean
 par(mfrow = c(1,1), mar = c(2,2, 1,1))
