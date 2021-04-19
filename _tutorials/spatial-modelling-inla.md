@@ -326,7 +326,7 @@ require(rgdal)
 Loc <- cbind(Point_Data$Easting, Point_Data$Northing)
 # Then we can transform our dataset in a spatial object (a spatial point dataframe)
 Fox_Point <- SpatialPointsDataFrame(coords = Loc, data = Point_Data, match.ID = T,
-                                    proj4string = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
+                                    proj4string = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"))
 
 par(mfrow = c(1,1), mar = c(1,1,1,1))
 plot(Fox_Point, col = 2, pch = 16, cex = 0.5)
@@ -354,7 +354,7 @@ plot(Scot_Shape, add = T)
 
 However, if we change the transform the CRS of `Scot_Shape` using the `spTransform()` function, we can correctly map correctly the fox scats and the Scotland shapefile together.
 ```R
-foxcrs <- CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000")
+foxcrs <- CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs")
 
 Scot_Shape_BNG <- spTransform(Scot_Shape, foxcrs)
 
@@ -728,14 +728,14 @@ xmean3 <- xmean2[rev(1:length(xmean2[,1])),]
 xmean_ras <- raster(xmean3,
                     xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                     ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                    crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
+                    crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"))
 
 xsd2 <- t(xsd)
 xsd3 <- xsd2[rev(1:length(xsd2[,1])),]
 xsd_ras <- raster(xsd3,
                   xmn = range(projgrid$x)[1], xmx =range(projgrid$x)[2],
                   ymn = range(projgrid$y)[1], ymx =range(projgrid$y)[2],
-                  crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
+                  crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"))
 ```
 
 `xmean_ras` and `xsd_ras` are raster items and can be exported, stored and manipulated outside R (including in GIS softwares) using the function `writeRaster()`.
@@ -888,14 +888,14 @@ predmean2 <- predmean[rev(1:length(predmean[,1])),]
 predmean_ras <- raster(predmean2,
                       xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                       ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                      crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
+                      crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"))
 
 predsd <- t(post.sd.pred.grid)
 predsd2 <- predsd[rev(1:length(predsd[,1])),]
 predsd_ras <- raster(predsd2,
                        xmn = range(projgrid$x)[1], xmx = range(projgrid$x)[2],
                        ymn = range(projgrid$y)[1], ymx = range(projgrid$y)[2],
-                       crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000"))
+                       crs = CRS("+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs"))
 
 # plot the model predictions for mean
 par(mfrow = c(1,1), mar = c(2,2, 1,1))
