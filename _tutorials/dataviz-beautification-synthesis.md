@@ -273,7 +273,7 @@ ggsave(lter_map6, filename = "map6.png",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/map6.png" alt="Img" style="width: 700px;"/> </center>
 
-Well, we _slightly_ overdid it with the labels, we have a lot of sites and it's definitely an eye sore to look at all of their names at once. But where annotations really shine is in drawing attention to a specific point or data record. So we can add a label just for one of the sites, Niwot Ridge, from where the plant data for the rest of the tutorial comes.
+Well, we _slightly_ overdid it with the labels, so we got a warning that there are too many labels and a map where they don't overlap a lot couldn't be constructed. (Depending on your version of packages, you may instead get a map with all the labels, but with too many of them overlapping). But where annotations really shine is in drawing attention to a specific point or data record. So we can add a label just for one of the sites, Niwot Ridge, from where the plant data for the rest of the tutorial comes.
 
 ```r
 (lter_map7 <- ggplot() +
@@ -425,8 +425,9 @@ ggsave(distributions2, filename = "distributions2.png",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/distributions2.png" alt="Img" style="width: 500px;"/> </center>
 
+__You may get a warning that the font in the theme is not available on your computer.__ If that happens, go back to the code chunk constructing `theme_niwot()` and remove the font line `text = element_text(family = "Helvetica Light"),` or replace the font with another one you have available. Then, remember to re-run that code chunk to update the function before proceeding.
 
-This is better, but it's still taxing on a reader or observer of the graph to figure out, for example, where is the mean in each cateogry. Thus we can overlay the violins with box plots.
+This graph is better, but it's still taxing on a reader or observer of the graph to figure out, for example, where is the mean in each cateogry. Thus we can overlay the violins with box plots.
 
 ```r
 (distributions3 <- ggplot(niwot_richness, aes(x = fert, y = richness)) +
@@ -740,7 +741,7 @@ bird_traits <- read.csv("elton_birds.csv")
 
 We can check out what the data look like now, either by clicking on the objects name on the right in the list in your working environment, or by running `View(bird_pops)` in the console.
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_wide.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/ox_wide.png" alt="Img" style="width: 600px;"/> </center>
 
 __The data are in a wide format (each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year) and the column names are capitalised. Whenever working with data from different sources, chances are each dataset will follow a different column naming system, which can get confusing later on, so in general it is best to pick whatever naming system works for you and apply that to all datasets before you start working with them.__
 
@@ -771,7 +772,7 @@ Because column names are coded in as characters, when we turned the column names
 bird_pops_long$year <- parse_number(bird_pops_long$year)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/ox_long.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/ox_long.png" alt="Img" style="width: 600px;"/> </center>
 
 Check out the data frame again to make sure the years really look like years. As you're looking through, you might notice something else. We have many columns in the data frame, but there isn't a column with the species' name. We can make one super quickly, since there are already columns for the genus and the species.
 
@@ -869,7 +870,7 @@ head(aus_models)
 # Check out the model data frame
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/model_df.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/model_df.png" alt="Img" style="width: 600px;"/> </center>
 
 <a name="synthesis"></a>
 
@@ -902,7 +903,7 @@ bird_models_traits <- left_join(aus_models, bird_diet, by = "species.name") %>%
 head(bird_models_traits)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/joined.png" alt="Img" style="width: 600px;"/> </center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/joined.png" alt="Img" style="width: 600px;"/> </center>
 
 __Now we can explore how bird population trends vary across different feeding strategies. The graphs below are all different ways to answer the same question. Have a ponder about which graph you like the most.__
 
@@ -917,22 +918,22 @@ __Now we can explore how bird population trends vary across different feeding st
 
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_diet1a.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_diet1b.png" alt="Img" style="width: 500px;"/></center>
 
 To make the graph more informative, we can add a line for the overall mean population trend, and then we can easily compare how the diet-specific trends compare to the overall mean trend. We can also plot the mean trend per diet category and we can sort the graph so that it goes from declines to increases.
 
 ```r
-# Calculating mean trends per diet categories
-diet_means <- bird_models_traits %>% group_by(diet) %>%
-  summarise(mean_trend = mean(estimate)) %>%
-  arrange(mean_trend)
-
 # Sorting the whole data frame by the mean trends
 bird_models_traits <- bird_models_traits %>%
   group_by(diet) %>%
   mutate(mean_trend = mean(estimate)) %>%
   ungroup() %>%
   mutate(diet = fct_reorder(diet, -mean_trend))
+
+# Calculating mean trends per diet categories
+diet_means <- bird_models_traits %>% group_by(diet) %>%
+  summarise(mean_trend = mean(estimate)) %>%
+  arrange(mean_trend)
 ```
 
 Finally, we can also use `geom_segment` to connect the points for the mean trends to the line for the overall mean, so we can judge how far off each category is from the mean.
@@ -964,7 +965,7 @@ Finally, we can also use `geom_segment` to connect the points for the mean trend
   guides(colour = FALSE, fill = FALSE))
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_diet.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_diet.png" alt="Img" style="width: 500px;"/></center>
 
 Like before, we can save the graph using `ggsave`.
 
@@ -989,7 +990,7 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     geom_bar(stat = "identity") +
     scale_colour_manual(values = wes_palette("Cavalcanti1")) +
     scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-    guides(fill = FALSE))
+    guides(colour = FALSE))
 
 (diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
                                  subgroup = diet)) +
@@ -1002,9 +1003,9 @@ Now that we know the numbers, we can visualise them. A barplot would be a classi
     # later on we will combine multiple plots so there is no need for the legend
     # to be in twice
 
-# To display the legend, just remove the guides() line
+# To display the legend, just remove the guides() line:
 (diet_area <- ggplot(diet_sum, aes(area = n, fill = diet, label = n,
-                                 subgroup = diet)) +
+                                   subgroup = diet)) +
     geom_treemap() +
     geom_treemap_subgroup_border(colour = "white", size = 1) +
     geom_treemap_text(colour = "white", place = "center", reflow = T) +
@@ -1015,7 +1016,7 @@ ggsave(diet_area, filename = "diet_area.png",
        height = 5, width = 8)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_area.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/diet_area2.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/diet_bar.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/diet_area2.png" alt="Img" style="width: 500px;"/></center>
 
 __We've covered spatial representation of the data (our map), as well as the kinds of species (the diet figures), now we can cover another dimention - time! We can make a timeline of the individual studies to see what time periods are best represented.__
 
@@ -1038,7 +1039,7 @@ bird_models_traits$id <- as.factor(as.character(bird_models_traits$id))
 
 Well this looks untidy! The values are not sorted properly and it looks like a mess, but that happens often when making figures, part of the figure beautification journey. We can fix the graph with the code below.
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline3.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/timeline3.png" alt="Img" style="width: 600px;"/></center>
 
 ```r
 # Create a sorting variable
@@ -1085,7 +1086,7 @@ ggsave(timeline_aus, filename = "timeline.png",
        height = 5, width = 8)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/timeline2.png" alt="Img" style="width: 600px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/timeline2.png" alt="Img" style="width: 600px;"/></center>
 
 __For our final figure using our combined dataset of population trends and species' traits, we will make a figure classic - the scatterplot. Body mass can sometimes be a good predictor of how population trends and extinction risk vary, so let's find out if that's true for the temporal changes in abundance across monitored populations of Australian birds.__
 
@@ -1130,7 +1131,7 @@ ggsave(trends_mass, filename = "trends_mass.png",
        height = 5, width = 6)
 ```
 
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
 
 ### Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your data syntheses!
 
