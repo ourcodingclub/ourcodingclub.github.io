@@ -121,6 +121,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/dataviz-beautification-synthesis.png" alt="Efficient and beautiful data synthesis hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/dataviz-beautification-synthesis">
+                	<h2>Efficient and beautiful data synthesis</h2>
+                	<p>Taking your tidyverse skills to the next level</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/work5.jpg" alt="Shiny hex logo">
