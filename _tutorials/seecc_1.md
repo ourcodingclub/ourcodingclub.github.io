@@ -25,7 +25,7 @@ This workshop will provide an overview of methods used to investigate an ecologi
 ![Tidyverse workflow diagram]({{ site.baseurl }}/assets/img/tutorials/seecc_1/tidyverse.png)
 
 {% capture callout %}
-All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Clone and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
+All the resources for this tutorial, including some helpful cheatsheets can be downloaded from [this repository](https://github.com/ourcodingclub/SEECC-workshop) Press the green 'Code' button and download the repo as a zipfile, then unzip and set the folder as your working directory by running the code below (subbing in the actual folder path), or clicking `Session/ Set Working Directory/ Choose Directory` from the RStudio menu.
 
 Alternatively, you can fork [the repository](https://github.com/ourcodingclub/SEECC-workshop) to your own Github account and then add it as a new RStudio project by copying the HTTPS/SSH link. For more details on how to register on Github, download Git, sync RStudio and Github and use version control, please check out our previous [tutorial]({{ site.baseurl }}/tutorials/git/index.html).
 {% endcapture %}
@@ -95,7 +95,7 @@ View(head(LPIdata_Feb2016))
 At the moment, each row contains a population that has been monitored over time and towards the right of the data frame there are lots of columns with population estimates for each year. To make this data "tidy" (one column per variable) we can use `gather()` to transform the data so there is a new column containing all the years for each population and an adjacent column containing all the population estimates for those years:
 
 ```r
-LPI_long <- gather(data = LPIdata_Feb2016, key = "year", value = "pop", select = 26:70)
+LPI_long <- gather(data = LPIdata_Feb2016, key = "year", value = "pop", 26:70)
 ```
 
 This takes our original dataset `LPIdata_Feb2016` and creates a new column called `year`, fills it with column names from columns `26:70` and then uses the data from these columns to make another column called `pop`.
