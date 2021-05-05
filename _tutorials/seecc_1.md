@@ -411,9 +411,9 @@ When you click on `All R colours` you will see lots of different colours you can
 
 ## Plotting histograms of population change in different biomes and saving them
 
-__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
+__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `summarise(broom::tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
 
-__You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code.__
+__You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code. This code may take a few minutes to run, depending on your laptop.__
 
 ```r
 biome.plots <- LPI_long %>%
@@ -540,7 +540,7 @@ library(ggplot2)
 library(maps)
 library(ggthemes)
 
-(map <- ggplot(occur, aes(x = decimalLongitude, y = decimalLatitude)) + 
+(map <- ggplot(occur$data, aes(x = decimalLongitude, y = decimalLatitude)) + 
     # Specify to only present the UK region of the world in the map 
     # Also change the colour, size of map country borders
     borders(database = "world", regions = "UK", colour = "gray40", size = 0.3) +  
@@ -628,8 +628,8 @@ At the moment, we are using a GCS, which means that the units of the geometry ar
 In R, it is pretty easy to transform a spatial object into a projected coordinate system. In fact, you only need one function.
 
 ```r
-UK_proj <- spTransform(UK, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
-flickr_proj <- spTransform(flickr, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
+UK_proj2 <- spTransform(UK_2, CRS("+proj=longlat +datum=WGS84"))
+flickr_proj <- spTransform(flickr, CRS("+proj=longlat +datum=WGS84"))
 ```
 
 The UK shapefile is composed of many polygons. We can simplify it by dissolving the polygons. This will speed things up.
