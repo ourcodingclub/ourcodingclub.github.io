@@ -157,6 +157,10 @@ Below is a hand-picked and categorised list of resources that we used when learn
 		<td>A guide for aspiring video game programmers - recommended by one of our young users! </td>
 		<td><a href="http://ithare.com/programming-guide-for-video-gamers/" target="_blank">ithare.com/programming-guide-for-video-gamers/</a></td>
 	</tr>
+	<tr>
+		<td>Learning to Code and Design Video Games - another really great recommendation! </td>
+		<td><a href="http://ithare.com/programming-guide-for-video-gamers/" target="_blank">swagbucks.com/shop/student-stem-guide</a></td>
+	</tr>
 </table>
 
 ## Troubleshooting
