@@ -411,22 +411,22 @@ When you click on `All R colours` you will see lots of different colours you can
 
 ## Plotting histograms of population change in different biomes and saving them
 
-__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `summarise(broom::tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
+__We can take our pipe efficiency a step further using the `broom` package. In the three examples above, we extracted the slope, standard error, intercept, etc., line by line, but with `broom` we can extract model coefficients using one single line `summarise(tidy(model_name)`. We can practice using `broom` whilst making the histograms of population change in different biomes (measured by the slope for the `year` term).__ 
 
-__You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code. This code may take a few minutes to run, depending on your laptop.__
+__You will need to create a `Biome_LPI` folder, where your plots will be saved, before you run the code. This code may take a while to run, depending on your laptop. If the PDFs are taking a long time to process (e.g. `1% ~2 h remaining`), feel free press 'Stop' on your console and leave this code until later.__
 
 ```r
 biome.plots <- LPI_long %>%
-  group_by(genus_species_id, biome) %>% 
-  do(mod = lm(scalepop ~ year, data = .)) %>% 
-  tidy(mod) %>% 
-  select(genus_species_id, biome, term, estimate) %>%  # Selecting only the columns we need
-  spread(term, estimate) %>%  # Splitting the estimate values in two columns - one for intercept, one for year
-  ungroup() %>%  # We need to get out of our previous grouping to make a new one
-  group_by(biome) %>%
+  nest_by(genus_species_id, biome) %>% # Group by genus species ID and biome
+  mutate(mod =list(lm(scalepop ~ year, data = data))) %>% # Run your linear model
+  summarise(tidy(mod)) %>%  # Extract model coefficients
+  dplyr::select(genus_species_id, biome, term, estimate) %>%  # Selecting only the columns we need
+  spread(term, estimate)  %>% # Splitting the estimate values in two columns - one for intercept, one for year
+  unnest(cols = c(genus_species_id,biome)) %>% # We need to get out of our previous grouping to make a new one 
   do(ggsave(ggplot(., aes(x = year)) + geom_histogram(colour="#8B5A00", fill="#CD8500") + theme_LPI() 
-            + xlab("Rate of population change (slopes)"), 
-            filename = gsub("", "", paste("Biome_LPI/", unique(as.character(.$biome)), ".pdf", sep = "")), device = "pdf"))
+             + xlab("Rate of population change (slopes)"), 
+             filename = gsub("", "", paste("Biome_LPI/", unique(as.character(.$biome)), ".pdf", sep = "")), device = "pdf"))
+            
 ```
 
 The histograms will be saved in your working directory. You can use `getwd()` to find out where that is, if you've forgotten. Check out the histograms - how does population change vary between the different biomes?
