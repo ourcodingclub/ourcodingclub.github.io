@@ -628,7 +628,7 @@ At the moment, we are using a GCS, which means that the units of the geometry ar
 In R, it is pretty easy to transform a spatial object into a projected coordinate system. In fact, you only need one function.
 
 ```r
-UK_proj2 <- spTransform(UK_2, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
+UK_proj <- spTransform(UK, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
 flickr_proj <- spTransform(flickr, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
 
 ```
