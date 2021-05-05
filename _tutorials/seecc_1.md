@@ -624,12 +624,13 @@ Now we use a shapefile available in the Global Administrative Areas (GADM) datab
 UK <- getData("GADM", country = "GB", level = 0)
 ```
 
-At the moment, we are using a GCS, which means that the units of the geometry are in decimal degrees. If we want to select data points according to their distance in km from the coastline, we need to transform our spatial datasets into projected coordinate systems so the units of the distance will be in metres and not decimal degrees. Universal Transverse Mercator (UTM) is commonly used because it tends to be more locally accurate and has attributes that make the estimating distance easy and accurate. 
+At the moment, we are using a GCS, which means that the units of the geometry are in decimal degrees. If we want to select data points according to their distance in km from the coastline, we need to transform our spatial datasets into projected coordinate systems so the units of the distance will be in metres and not decimal degrees. 
+
 In R, it is pretty easy to transform a spatial object into a projected coordinate system. In fact, you only need one function.
 
 ```r
-UK_proj <- spTransform(UK, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
-flickr_proj <- spTransform(flickr, CRS("+proj=utm +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 "))
+UK_proj <- spTransform(UK, CRS("+proj=tmerc +lat_0=50 +lon_0=-2 +units=m"))
+flickr_proj <- spTransform(flickr, CRS("+proj=tmerc +lat_0=50 +lon_0=-2 +units=m"))
 
 ```
 
@@ -699,7 +700,7 @@ UK.Df <- fortify(UK_diss, region = "ID_0")
 flickr.points <- fortify(cbind(flickr_correct@data, flickr_correct@coords))
 ```
 
-Now, we can build our map with `ggplot2`. If you want to know more about the way you build plots in `ggplot2` here is a useful [link](http://vita.had.co.nz/papers/layered-grammar.pdf). One feature that you might want to take notice of is the use of `fill = ..level.., alpha = ..level..`. This syntax sets the colour and transparency of your density layer as dependent on the density itself. The `stat_` functions compute new values (in this case the `level` variable using the `kde2d` function from the package `MASS`) and create new data frames. The `..level..` tells ggplot to reference that column in the newly built data frame. The two dots indicate that the variable `level` is not present in the original data, but has been computed by the `stat_` function.
+Now, we can build our map with `ggplot2`. If you want to know more about the way you build plots in `ggplot2` here is a useful [link](http://vita.had.co.nz/papers/layered-grammar.pdf). One feature that you might want to take notice of is the use of `fill = ..level.., alpha = ..level..`. This syntax sets the colour and transparency of your density layer as dependent on the density itself. The `stat_` functions compute new values (in this case the `level` variable using the `kde2d` function from the package `MASS`) and create new data frames. The `..level..` tells ggplot to reference that column in the newly built data frame. The two dots indicate that the variable `level` is not present in the original data, but has been computed by the `stat_` function. This may take a while to plot, depending on your computer or laptop. 
 
 ```r
 (plot.years <- ggplot(data = flickr.points, aes(x = longitude, y = latitude)) +  # plot the flickr data
