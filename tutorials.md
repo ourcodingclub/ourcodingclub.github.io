@@ -121,17 +121,6 @@ redirect_from:
             	</a>
         	</div>
     	</div>
-      <div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/dataviz-beautification-synthesis.png" alt="Efficient and beautiful data synthesis hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/dataviz-beautification-synthesis">
-                	<h2>Efficient and beautiful data synthesis</h2>
-                	<p>Taking your tidyverse skills to the next level</p>
-            	</a>
-        	</div>
-    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/work5.jpg" alt="Shiny hex logo">
@@ -144,7 +133,43 @@ redirect_from:
         	</div>
     	</div>
 	</div>
-		<h4>Modelling</h4>
+  <h4>Data synthesis</h4>
+	<div class="tutpanel">
+      <div class="tutcont">
+          <div class="tuthex">
+              <img src="{{ site.baseurl }}/assets/img/hex/dataviz-beautification-synthesis.png" alt="Efficient and beautiful data synthesis hex logo">
+          </div>
+          <div class="tutdesc">
+              <a href="{{ site.baseurl }}/tutorials/dataviz-beautification-synthesis">
+                  <h2>Efficient and beautiful data synthesis</h2>
+                  <p>Taking your tidyverse skills to the next level</p>
+              </a>
+          </div>
+      </div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="Population change hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/seecc_1">
+                	<h2>Working efficiently with large datasets</h2>
+                	<p>Quantifying population change and visualising species occurrence</p>
+            	</a>
+        	</div>
+    	</div>
+    	<div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="Tidyverse workflow hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
+                	<h2>Visualisation workflows in the tidyverse</h2>
+                	<p>Working with many models & functional programming</p>
+            	</a>
+        	</div>
+    	</div>
+  </div>
+	<h4>Modelling</h4>
 	<div class="tutpanel">
     	<div class="tutcont">
         	<div class="tuthex">
@@ -333,28 +358,6 @@ redirect_from:
             	<a href="{{ site.baseurl }}/tutorials/seecc_1/index.html#Flickr">
                 	<h2>Species occurrence and density maps</h2>
                 	<p>Using GBIF and Flickr data to visualise species occurrence</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/tidyverseicon.jpg" alt="Population change hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/seecc_1">
-                	<h2>Working efficiently with large datasets</h2>
-                	<p>Quantifying population change and visualising species occurrence</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/adv_tidyverse.png" alt="Tidyverse workflow hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/tidyverse/index.html#tidyverse">
-                	<h2>Visualisation workflows in the tidyverse</h2>
-                	<p>Working with many models & functional programming</p>
             	</a>
         	</div>
     	</div>
