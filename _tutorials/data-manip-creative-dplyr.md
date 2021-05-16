@@ -1,9 +1,9 @@
 ---
 layout: tutorial
-title: Creative and advanced data manipulation
+title: Advanced data manipulation
 author: Jakub Wieczorkowski
-date: 2020-12-04 08:00:00
-subtitle: Familiarising with the diversity of dplyr package
+date: 2021-05-16 00:00:00
+subtitle: Creative use of diverse dplyr functions
 tags: data-manip intermediate advanced
 ---
 
@@ -16,7 +16,8 @@ tags: data-manip intermediate advanced
 ## Tutorial Steps:
 <a href="#1" markdown="1"> __1.__ Introduction</a>
 
-#### <a href="#i" markdown="1"> _PART I: OCEAN ANIMALS!_</a>
+
+<a href="#i" markdown="1" style="font-size: 120%;"> **Part I: Ocean animals!**</a>
 
 <a href="#2" markdown="1"> __2.__ Combining tables:</a>
 
@@ -31,7 +32,7 @@ tags: data-manip intermediate advanced
 <a href="#2e" markdown="1"> __e)__ challenge</a>
 
 
-#### <a href="#ii" markdown="1"> _PART II: OCEANIA LPI DATA_</a>
+<a href="#ii" markdown="1" style="font-size: 120%;"> **Part II: Oceania LPI data**</a>
 
 <a href="#3" markdown="1"> __3.__ Manipulating variables:</a>
 
@@ -63,16 +64,17 @@ The idea behind it is to make some more advanced aspects of data manipulation cl
 
 We'll go through `dplyr` functions together to make you more aware of their diversity. You will also become more efficient with the functions you already know by making small changes in the code, these will be e.g. my favourite functions `select()` and `mutate()`. You will probably spend an hour or so going through the tutorial - this will depend on how well you already know `dplyr`! However, in the long term, you will save yourself time from having to read through the endless information on the internet on why you keep getting errors or simply not getting the answer you want with the `dplyr` functions you thought you already knew (which has been my struggle for some time!). We'll also cover a few other functions from other `tidyverse` packages to improve your confidence in data manipulation skills.
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 Coding Club has got you covered: if you don't have prior experience with R, check out the <a href="https://ourcodingclub.github.io/tutorials/intro-to-r/" target="_blank" markdown="1">_Intro to R tutorial_</a>. If you're green with data manipulation and you don't want to go into much detail, have a look at the <a href="https://ourcodingclub.github.io/tutorials/data-manip-intro/" target="_blank" markdown="1">_Basic data manipulation tutorial_</a> and then try <a href="https://ourcodingclub.github.io/tutorials/data-manip-efficient/" target="_blank" markdown="1">_Efficient data manipulation tutorial_</a>. However, if you've got any basics and you want to become more creative in `dplyr`, stay with me here!
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 
 In _PART I_, we'll be working with a fictional ocean animals dataset - to make the learning of combining tables less scary than it would be with large data frames. Then, in _PART II_, we'll dive into the manipulation of variables and cases based on Living Planet dataset on marine organisms in Oceania. So, before you put on your scuba diving equipment for _PART II_, grab your snorkelling mask and we're ready to start!
 
-<div style="background-color: #1DB0F91F; padding: 10px; border: 1px solid blue;" markdown="1">
-All the files you need to complete this tutorial can be downloaded from this <a href="https://github.com/jwieczor/creative-dplyr-tutorial" target="_blank" markdown="1">repository</a>. Click on Code -> Download ZIP, and unzip the files into your working directory.
-</div>
-<br />
+{% capture callout %}
+All the files you need to complete this tutorial can be downloaded from this <a href="https://github.com/ourcodingclub/CC-data-manip-advanced-dplyr" target="_blank" markdown="1">repository</a>. Click on Code -> Download ZIP, and unzip the files into your working directory.
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 <br />
 
 <a name="i"></a>
@@ -120,7 +122,7 @@ In `dplyr` there are various functions for combining tables.
 <a name="2a"></a>
 ### a) Combining rows with `bind_rows`
 
-Each animal was given a unique id and weighted. To start with, you have your datasets in two parts: `animal_p1` in which you described octopus and fish; and `animal_p2` where you've got turtles only.
+Each animal was given a unique id and weighted. To start with, you have your datasets in two parts: `animal_p1` in which you described octopuses and fish; and `animal_p2` where you've got turtles only.
 
 The datasets are in the same format (columns are in the order; `id`, `animal`, `weight`) so you can simply put them on top of each other with `bind_rows()`.
 ```r
@@ -145,13 +147,19 @@ Your rp's data are in a separate table (`animal_rp`) so we will need to compare 
 
 We'll first find out how the data tables are different. We can see that both `animal` and `animal_rp` have 8 observations in the Environment window in RStudio, but we have no idea if they are the same. While visual comparison would be possible here, if we had _thousands_ of rows of data, that would be much more difficult. Therefore, we can use __set operations__ to compare the data with code.
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 #### Set operations
+
 `setqual(x, y)` returns `TRUE` if all observations in `x` and `y` are identical.
+
 `intersect(x, y)` finds observations present in both `x` and `y`.
+
 `setdiff(x, y)` finds observations present in `x`, but not in `y`.
+
 `union(x, y)` finds unique observations in `x` and `y` (or use `union_all()` to also retain duplicates).
-</div>
+
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 <br />
 
 ```r
@@ -202,17 +210,20 @@ There are many different functions in `dplyr` to combine tables, but each is dif
 _Figure 2. Basic depiction of mutating joins with a Venn diagram. Source: <a href="https://r4ds.had.co.nz/relational-data.html#outer-join" target="_blank" markdown="1">R for Data Science</a>
 <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/" target="_blank" markdown="1">(CC BY-NC-ND 3.0 US)</a>._
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 
 #### Inner join:
+
 - `inner_join(x, y)` keeps observations appearing in both tables.
 
+
 #### Outer joins:
+
 - `left_join(x, y)` keeps all observations in `x` and only adds matches from `y`.
-- `right_join(x, y)` keeps all observations in `y` and only adds matches from `x`.
-__Note:__ it is the same as `left_join(y, x)`.
+- `right_join(x, y)` keeps all observations in `y` and only adds matches from `x`.  (__Note:__ it is the same as `left_join(y, x)`.)
 - `full_join(x, y)` keeps all observations in `x` and `y`; if there's no match, it returns NAs.
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 
 So each join will return different information. In the case of our ocean animals, we have a table of `animal_weight` which we checked thoroughly, and now we simply want to add meal information for each individual animal, recognised by its `id`.
 ```r
@@ -249,10 +260,12 @@ Yes, that's perfectly fine! I think it is great to get to know all the functions
 
 Another group of joins which is useful to know about are __filtering joins__.
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 `semi_join(x, y)` finds all the observations in `x` that have a match in `y`.
+
 `anti_join(x, y)` removes all the observations in `x` that have a match in `y`.
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 <br />
 
 ```r
@@ -272,7 +285,7 @@ Well done! You should now have some understanding of the different types of join
 
 Actually, while you were testing all the functions, your research partner collected 10 more observations!
 ```r
-# e) Try yourself! ----
+# e) Challenge ----
 
 animal_new <- read.csv("data/animal_new.csv")
 str(animal_new)  # check the dataset
@@ -280,11 +293,9 @@ str(animal_new)  # check the dataset
 
 Now, take the challenge to create a `final_animal` table by combining `animal_new` with your table `animal_joined`!
 
-<br />
 
-<details markdown="1"><summary><strong>Click here for the solution!</strong></summary>
-
-<div style="background-color: #FFF6D2 ; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture reveal %}
+{% capture callout %}
 #### Solution:
 ```r
 animal_final <- animal_joined %>%
@@ -293,11 +304,12 @@ animal_final <- animal_joined %>%
 ```
 
 Notice that `bind_rows()` was not appropriate here because the column order was different between the two tables. `full_join()` allowed us to specify which columns are corresponding to each other between the two tables, and also to indicate that despite of the different spelling, the names were still referring to the same variables.
-</div>
 
-</details>
+{% endcapture %}
+{% include callout.html content=callout colour="important" %}
+{% endcapture %}
+{% include reveal.html button="Click here for the solution!" content=reveal %}
 
-<br />
 
 Now let's visualise what is the meal type and average weight for each animal type you found (fig. 3). If you are not familiar with `ggplot2` and you would like to learn to use it, head to the <a href="https://ourcodingclub.github.io/tutorials/datavis/" target="_blank" markdown="1">_Coding Club tutorial on data visualisation_</a>!
 ```r
@@ -341,10 +353,11 @@ Now that we know some useful tricks for combining tables, we'll have a closer lo
 
 We're going to have a look at Oceania's marine species populations between 1970 and 2014.
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 __A quick reminder on pipes:__
 `x %>% f(y)` is the same as `f(x, y)`. So if you provide the data `x` at the beginning, you don't recall it within the following functions (`f()`) - the pipes would not like to see you putting `x` multiple times! Go to <a href="https://ourcodingclub.github.io/tutorials/data-manip-efficient/" target="_blank" markdown="1">_Efficient data manipulation tutorial_</a> for a more thorough introduction.
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 <br />
 
 ```r
@@ -540,12 +553,13 @@ You may have noticed that if you knew just one of these functions, you would man
 
 And remember, these are not complicated and you can usually guess the right function by thinking about the exact action you want to undertake (have a look below!).
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 - `_all()` if you want to apply the function to all columns
 - `_at()` if you want to apply the function to specific columns (specify them with `vars()`)
 - `_if()` if you want to apply the function to columns of a certain characteristic (e.g. data type)
 - `_with()` if you want to apply the function to columns and include another function within it
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 
 These variants are quite flexible, and keep changing for individual functions (e.g. RStudio tells me now that `rename_with()` has superseded previously used `rename_all()`, `rename_at()`, `rename_if()`). This will happen with time, so stay open-minded about these functions and use help from RStudio to make your code efficient!
 
@@ -624,9 +638,10 @@ marine6 %>%
 
 Nice! Now you know quite a variety of possibilities for creating new variables!
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 If you want to know more about __summarising functions__, go to <a href="https://ourcodingclub.github.io/tutorials/data-manip-efficient/" target="_blank" markdown="1">_Efficient data manipulation tutorial_</a>.
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 
 <a name="4"></a>
 ### 4. Manipulating cases
@@ -638,9 +653,10 @@ Now, we'll talk about manipulating cases - so that's working with rows.
 
 In this section, we'll talk about how to filter the dataset to return a subset of all rows. We can filter to a specific category or a few categories with, conveniently named, `filter()`.
 
-<div style="background-color: #F8FDFC; padding: 10px; border: 1px solid green;" markdown="1">
+{% capture callout %}
 With `filter()`, you can make great use of logical operators which can be found in Table 1 below. You can find more information on them from <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html" target="_blank" markdown="1">_ETH Zurich_</a> or <a href="https://towardsdatascience.com/the-complete-guide-to-logical-operators-in-r-9eacb5fd9abd" target="_blank" markdown="1">_Towards Data Science_</a> websites.
-</div>
+{% endcapture %}
+{% include callout.html colour='callout' content=callout %}
 
 <br />
 
@@ -776,11 +792,10 @@ Lastly, if you would like to manually add an observation, you can use `add_row()
 
 But first, quick exercise to keep you fresh! Can you take the challenge to create `marine7` from `marine6` which you will need to complete this section? Create a new table for _Chrysophrys auratus_ population with the id number of 2077. Then, keep only the columns of id, full species name (in Latin!), year of measurement and size of the population.
 
-<br />
 
-<details markdown="1"><summary><strong>Click here for the solution!</strong></summary>
+{% capture reveal %}
+{% capture callout %}
 
-<div style="background-color: #FFF6D2 ; padding: 10px; border: 1px solid green;" markdown="1">
 #### Solution:
 ```r
 # b) Adding cases ----
@@ -792,11 +807,12 @@ But first, quick exercise to keep you fresh! Can you take the challenge to creat
 ```
 
 Notice that we only had to specify the `id` and not the full name - _Chrysophrys auratus_. That's because each `id` is unique for a population (although you might want to go through the table to make sure that each `genus_species` is  actually _Chrysophrys auratus_ - maybe someone has messed up and gave two populations the same id by accident!).
-</div>
 
-</details>
+{% endcapture %}
+{% include callout.html content=callout colour="important" %}
+{% endcapture %}
+{% include reveal.html button="Click here for the solution!" content=reveal %}
 
-<br />
 
 Nice! Now to the new function. Let's say we wanted to add an observation for the year 1997 at the bottom of the table.
 ```r
