@@ -69,6 +69,12 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
+	<h3>Jakub Weiczorkowski</h3>
+	<p>I am a final year Geography student at the University of Edinburgh and my interests lie in conservation, ecology and environmental change. My undergraduate dissertation involved lots of modelling of grasslands’ and savannas’ herbaceous diversity data, with R being my best friend in this long journey. I completed Data Science in Ecology and Environmental Science course in 2020 and I am excited to now be part of the Coding Club!</p>
+	<img src="{{ site.baseurl }}/assets/img/team/jakub_w.png" alt="Jakub Weiczorkowski photo">
+</div>
+
+<div class="team-profile">
 	<h3>Sandra Angers-Blondin</h3>
 	<p>I have recently completed my PhD at the University of Edinburgh, studying the growth responses of tundra plants to climate change. I love to share my passion for nature and science, be it through outreach, <a href="https://www.instagram.com/sandra.angers.b/" target="_blank">photography</a>, <a href="https://twitter.com/SandyAngersB" target="_blank">social media</a>, or teaching. I’ve been a tutor for the Coding Club for over two years, and I love that I get to learn new things every week by helping other participants solve their coding challenges! I am now working on developing our brand new online course set to launch in 2020 (stay tuned…). </p>
 	<img src="{{ site.baseurl }}/assets/img/team/sandra.png" alt="Sandra photo" border="0">

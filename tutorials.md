@@ -74,6 +74,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/data-manip-creative-dplyr.png" alt="Advanced data manipulation logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-manip-creative-dplyr">
+                	<h2>Advanced data manipulationn</h2>
+                	<p>Creative use of diverse dplyr functions</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/work9.png" alt="Webscraping hex logo">
