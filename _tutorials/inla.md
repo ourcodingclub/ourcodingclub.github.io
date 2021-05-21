@@ -27,7 +27,7 @@ All the files needed to complete this tutorial can be downloaded from this [GitH
 # 1. Learn about INLA and why it's useful
 {: #intro}
 
-Welcome to this tutorial on `INLA`, written by [Greg Albery](https://www.researchgate.net/profile/Gregory_Albery off of the [Pemberton Group](http://rumdeer.biology.ed.ac.uk), Institute of Evolutionary Biology, University of Edinburgh. I'm currently in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is [@Gfalbery](https://twitter.com/Gfalbery?lang=en-gb).
+Welcome to this tutorial on `INLA`, written by [Greg Albery](https://gregalbery.me) off of the [Pemberton Group](http://rumdeer.biology.ed.ac.uk), Institute of Evolutionary Biology, University of Edinburgh. I wrote this tutorial in the last year of my PhD working on helminth parasites in wild red deer on the Isle of Rum, my email is gfalbery@gmail.com, and my twitter handle is [@Gfalbery](https://twitter.com/Gfalbery?lang=en-gb).
 
 __Spatial autocorrelation is a common problem in ecological studies. Googling it, you'll commonly come across this phrase, Tobler's first law of geography:__ 
 
@@ -56,7 +56,7 @@ __Bayesian__ = uses Bayes's theorem, contrasted with frequentist. Based on infer
 
 __Deterministic__ = comes up with the same results every time, contrasted with probabilistic (e.g. MCMC).
 
-__`INLA` allows a wide range of different functions: GLMM, GAMM, spatial autocorrelation, temporal autocorrelation, and spatiotemporal models. Combining this variety with its (eventual) simplicity and computational effeciency, it is becoming increasingly important in ecology. However, it can be unintuitive when you're starting out and like learning all new things, takes a big of thinking to get your head around it, but it's definitely achievable!__
+__`INLA` allows a wide range of different functions: GLMM, GAMM, spatial autocorrelation, temporal autocorrelation, and spatiotemporal models. Combining this variety with its (eventual) simplicity and computational efficiency, it is becoming increasingly important in ecology. However, it can be unintuitive when you're starting out and like learning all new things, takes a big of thinking to get your head around it, but it's definitely achievable!__
 
 ## Tutorial workflow
 
@@ -66,7 +66,7 @@ The tutorial will take you through an analysis step by step. This will involve:
 - The components of an `INLA` model (nuts and bolts).
 - Setting up a spatial analysis.
 - Modifications and specifications of spatial models.
-- Spatiotemporal analyses (dabbing into them).
+- Spatiotemporal analyses (dabbling into them).
 
 _This will include a load of functions I've written to easily perform simple tasks using `INLA`, which I'm happy to deconstruct for you if needed. If you do use them in an analysis and find them helpful, or if you find a problem with them, please let me know!_
 
