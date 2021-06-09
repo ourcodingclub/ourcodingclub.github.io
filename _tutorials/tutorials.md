@@ -101,7 +101,7 @@ You can download the `tut_template.md` file that you can turn into a tutorial fr
 
 __Open the file `tut_template.md` in Atom. The file includes instructions on how to add subheadings, links, code and images. We have prepared a few sample topics based on which you can write a brief tutorial. Please choose a topic by clicking on it, which will take you to all the files necessary to write the tutorial.__
 
-Here is a list of the sample topics you may choose to arite a tutorial on:
+Here is a list of the sample topics you may choose to write a tutorial on:
 
 * [Mapping Arctic fox occurrence records](#polar_map)
 * [Plotting the spatial clustering forest trees due to elephants](#forest_plots)
