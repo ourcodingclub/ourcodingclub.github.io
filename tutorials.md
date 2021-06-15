@@ -80,7 +80,7 @@ redirect_from:
         	</div>
         	<div class="tutdesc">
             	<a href="{{ site.baseurl }}/tutorials/data-manip-creative-dplyr">
-                	<h2>Advanced data manipulationn</h2>
+                	<h2>Advanced data manipulation</h2>
                 	<p>Creative use of diverse dplyr functions</p>
             	</a>
         	</div>

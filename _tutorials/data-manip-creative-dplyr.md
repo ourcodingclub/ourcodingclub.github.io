@@ -17,7 +17,7 @@ tags: data-manip intermediate advanced
 <a href="#1" markdown="1"> __1.__ Introduction</a>
 
 
-<a href="#i" markdown="1" style="font-size: 120%;"> **Part I: Ocean animals!**</a>
+<a href="#i" markdown="1" style="font-size: 120%;"> **Part I: Ocean animals**</a>
 
 <a href="#2" markdown="1"> __2.__ Combining tables:</a>
 
@@ -78,7 +78,7 @@ All the files you need to complete this tutorial can be downloaded from this <a 
 <br />
 
 <a name="i"></a>
-## _PART I: OCEAN ANIMALS!_
+## _Part I: Ocean Animals_
 
 __Create a new, blank script in RStudio and add tutorial title, your name, and the date at the top. When going through the tutorial, copy the individual code chunks and paste them to your script. Use `#` when adding comments.__
 
@@ -347,7 +347,7 @@ _Figure 3. Results of the study on ocean animals. Left: the varying meal types o
 <br />
 <br />
 <a name="ii"></a>
-## _PART II: OCEANIA LPI DATA_
+## _Part II: Oceania LPI data_
 
 Now that we know some useful tricks for combining tables, we'll have a closer look at manipulating variables and cases. As promised, we'll now get a grasp of real-world dataset - Living Planet data. It might be more complicated because we will be handling thousands of rows of data, but this will give you a great hands-on experience which you can use for your future projects!
 
