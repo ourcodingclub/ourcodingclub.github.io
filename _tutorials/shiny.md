@@ -23,12 +23,9 @@ At it's core, Shiny is merely an R package like `dplyr` or `ggplot2`. The packag
 
 Below is an example of the basic Shiny app that we will be recreating in today's tutorial:
 
-<iframe src="https://johngodlee.shinyapps.io/barley_yield_exploration/" style="border:none;width:1000px;height:550px;"></iframe>
+![Example app screenshot]({{ site.baseurl }}/assets/img/tutorials/shiny/barley_example_app.png)
 
-Have a look at these extra examples if you want to see what other Shiny apps can looks like, or if you want inspiration for your own app:
-
-- [A gallery of basic Shiny apps](http://shiny.rstudio.com/gallery/)
-- [A complex app visualising carbon emissions in real time](https://johngodlee.shinyapps.io/carbon_emissions/)
+Have a look at [these examples](http://shiny.rstudio.com/gallery/) if you want to see what a Shiny app looks like, or if you want inspiration for your own app.
 
 ## What are Shiny Apps useful for?
 
@@ -157,9 +154,7 @@ Shiny apps are structured using panels, which are laid out in different arrangem
 # 4. Creating a Shiny App - Basic Syntax
 {: #syntax}
 
-To illustrate how to code a Shiny app, we will emulate a simple app that I wrote to explore some data on the productivity of Barley genotypes.
-
-[Open up the finished web app and have a look at it](https://johngodlee.shinyapps.io/barley_yield_exploration).
+To illustrate how to code a Shiny app, we will recreate a simple app that I wrote to explore some data on the productivity of Barley genotypes.
 
 You can get the code for this app by opening `app.R` in the `Example_app` folder in the tutorial repository which you downloaded earlier.
 
@@ -467,18 +462,10 @@ To embed an app that is hosted by `shinyapps.io`, in your own website you can pu
 ```
 
 
-# 6. Challenge yourself to emulate a Shiny app
+# 6. Challenge yourself to create a Shiny app
 {: #challenge}
 
-Now that you have the skills to create a Shiny app, try to re-create one of the apps in the links below and then publish it to your `shinyapps.io` profile. The data for these apps, as well as the code for the apps in case you get stuck, can be found in [the repository for this tutorial](https://github.com/ourcodingclub/CC-11-Shiny) in the `Challenge Apps` folder.
-
-- [An app investigating the spatial distribution of records used to create the Living Planet Index](https://gndaskalova.shinyapps.io/lpi_example2/). _Hint: You will need to use `verticalLayout()` for this one_.
-
-<iframe src="https://johngodlee.shinyapps.io/LPI_example/" style="border:none;width:1000px;height:700px;"></iframe>
-
-- [An app investigating how plant traits vary across an elevational gradient in the Andes](https://johngodlee.shinyapps.io/seedling_traits_example/)
-
-<iframe src="https://johngodlee.shinyapps.io/seedling_traits_example/" style="border:none;width:1000px;height:500px;"></iframe>
+Now that you have the skills to create a Shiny app, try to create an app of your own and publish it to your `shinyapps.io` profile. Your app could use your own data if you have some, or one of the many datasets that come bundled with R. If you need more inspiration, have a look through the [Shiny app gallery](http://shiny.rstudio.com/gallery/).
 
 <br>
 
