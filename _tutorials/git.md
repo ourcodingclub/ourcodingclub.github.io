@@ -5,7 +5,7 @@ subtitle: Keeping track of your code and its many versions
 date: 2017-02-27 08:00:00
 author: Gergana; updated by Boyan (12 Feb 2021)
 survey_link: https://www.surveymonkey.co.uk/r/NXNHYYX
-redirect_from: 
+redirect_from:
   - /2017/02/27/git.html
 tags: reprod
 ---
@@ -29,7 +29,7 @@ Git uses the command line to perform more advanced actions and we encourage you 
 
 ## What are the benefits of using version control?
 
-Having a GitHub repo makes it easy for you to keep track of collaborative and personal projects - all files necessary for certain analyses can be held together and people can add in their code, graphs, etc. as the projects develop. Each file on GitHub has a history, making it easy to explore the changes that occurred to it at different time points. You can review other people's code, add comments to certain lines or the overall document, and suggest changes. For collaborative projects, GitHub allows you to assign tasks to different users, making it clear who is responsible for which part of the analysis. You can also ask certain users to review your code. For personal projects, version control allows you to keep track of your work and easily navigate among the many versions of the files you create, whilst also maintaining an online backup. 
+Having a GitHub repo makes it easy for you to keep track of collaborative and personal projects - all files necessary for certain analyses can be held together and people can add in their code, graphs, etc. as the projects develop. Each file on GitHub has a history, making it easy to explore the changes that occurred to it at different time points. You can review other people's code, add comments to certain lines or the overall document, and suggest changes. For collaborative projects, GitHub allows you to assign tasks to different users, making it clear who is responsible for which part of the analysis. You can also ask certain users to review your code. For personal projects, version control allows you to keep track of your work and easily navigate among the many versions of the files you create, whilst also maintaining an online backup.
 
 ## How to get started
 
@@ -102,7 +102,7 @@ For example, here is the history for a repo with an R script inside it, as viewe
 # 2. Create your own repository and project folder structure
 {: #github2}
 
-To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wider audience. For now, we will focus on organising and using your main repository that holds the files for all your work. With a free GitHub account, you can use public or private respositories. 
+To make a repository, go to `Repositories/New repository` - choose a concise and informative name that has no spaces or funky characters in it. This can be your master repo that holds together past and ongoing research, data, scripts, manuscripts. Later on you might want to have more repositories - e.g. a repository associated with a particular project that you want to make public or a project where you are actively seeking feedback from a wider audience. For now, we will focus on organising and using your main repository that holds the files for all your work. With a free GitHub account, you can use public or private respositories.
 
 ![Github create new repository screenshot]({{ site.baseurl }}/assets/img/tutorials/git/newrepo.png)
 
@@ -132,7 +132,7 @@ You can directly edit your `README.md` file on Github by clicking on the file an
 You can now write the `README.md` file for your repository. To make headings and subheadings, put hashtags before a line of text - the more hashtags, the smaller the heading will appear. You can make lists using `-` and numbers `1, 2, 3, etc.`. __When working on a shared project, discuss what you may want to include with your collaborators - here are some things you might want to consider:__
 
 ```
-- Your name 
+- Your name
 
 - Project title
 
@@ -148,7 +148,7 @@ Once you have written your `README.md` file, scroll to the bottom of the page. Y
 
 ## Exercise 2: Edit the `.gitignore` file
 
-Repositories often have a file called `.gitignore` and we are about to make one shortly. In this file you specify which files you want Git to ignore when users make changes and add files. Examples include temporary Word, Excel and Powerpoint files, `.Rproj` files, `.Rhist` files, etc. Some files you might want to only have on your local repository (i.e. on your computer), but not online as they might be too big to store online. 
+Repositories often have a file called `.gitignore` and we are about to make one shortly. In this file you specify which files you want Git to ignore when users make changes and add files. Examples include temporary Word, Excel and Powerpoint files, `.Rproj` files, `.Rhist` files, etc. Some files you might want to only have on your local repository (i.e. on your computer), but not online as they might be too big to store online.
 
 Select the `.gitignore` and click 'Edit'. As you will see, the template GitHub provides for R already includes many file types usually found in R projects that should not be included in shared repositories. You can add more files by specifying each file type on a separate line. **Scroll to the bottom of the document and paste the following additions, without overwriting the rest**. Comments in the file are designated by a `#` sign. Then, commit the file to the `main` branch.
 
@@ -215,9 +215,9 @@ Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the 
 
 __Before your first commit from your computer, you may need to configure your username and email. This is easily done, and you only need to do it once, afterwards you can commit-pull-push at your convenience!__
 
-In the top right corner of the RStudio screen (in the Git tab), click on `More/Shell`. 
+In the top right corner of the RStudio screen (in the Git tab), click on `More/Shell`.
 
-__NOTE: If using a Windows PC, the Shell option should launch Git Bash. If it doesn't open Git Bash, please find Git Bash on your computer instead. You can usually search for it in the Start menu, or right-click on the empty space in a folder and click "Git Bash Here".__
+__NOTE: If using a Windows PC, the Shell option should launch Git Bash. If it doesn't open Git Bash, please find Git Bash on your computer instead. You can usually search for it in the Start menu, or right-click on the empty space in any folder in the File Explorer and click "Git Bash Here".__
 
 ![RStudio terminal screenshot]({{ site.baseurl }}/assets/img/tutorials/git/shell.png)
 
@@ -238,14 +238,71 @@ If it worked fine, there will be no messages, you can close the shell window and
 
 We know that there might be problems with the newest updates of the Mac software and installing git and linking it with RStudio. The solutions appear to be very specific to the Mac version you have, so if the above steps didn't work, a good starting point is googling \"rstudio can't find git mac **your version**\" and trying out the suggested solutions.
 
+
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
+
+
+{% capture reveal %}
+
+Important: This is only relevant if you used GitHub in an RStudio project before August 13, 2021 and it has since stopped working. This has likely occurred due to changes implemented by GitHub on that date to make authentication more secure. Here is how to fix this issue, by removing GitHub authentication credentials from your computer and logging in again.
+
+***Step 1 (all platforms):***
+
+In your R session in RStudio, execute the following lines:
+
+```r
+install.packages('gitcreds')
+library(gitcreds)
+gitcreds_delete()
+```
+Do not worry if you receive a warning or error and proceed to the next step.
+Close RStudio (important!).
+
+
+
+***Step 2:***
+
+**Windows**
+
+In the **Start Menu**, search for and open **Credential Manager**. Click on **Windows Credentials**. For all listed items that include 'github', click on the arrow and then click **Remove**. Close the window.
+
+
+**Linux**
+
+In the terminal, execute:
+```shell
+git config --global --unset credential.helper
+rm $HOME/.git-credentials
+```
+
+**Mac (OS X)**
+
+In the terminal, paste the following and press Return:
+```shell
+git credential-osxkeychain erase
+host=github.com
+protocol=https
+```
+
+Do not worry if you do not find the credentials (under Windows) or the commands produce an error. Proceed to Step 3.
+
+
+
+***Step 3:***
+Open your project within RStudio again and attempt to interact with the GitHub repository (e.g. Pull any changes). You should see a promt to log into GitHub using your web browser. Complete the login. GitHub should now work again within RStudio!
+
+{% endcapture %}
+
+{% include reveal.html button="GitHub in an old RStudio project has stopped working?" content=reveal %}
+
+
 
 Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
 
 You are now ready to start making changes and documenting them through Github!  __Note that you can't push empty folders.__
 
-You can open some of the files you made online earlier - for example if you click on your `README.md` file, it will open in `RStudio` and you can make changes. Add some more text just for the sake of exemplifying how version control works. Save the file in the same location (i.e., your repository). 
+You can open some of the files you made online earlier - for example if you click on your `README.md` file, it will open in `RStudio` and you can make changes. Add some more text just for the sake of exemplifying how version control works. Save the file in the same location (i.e., your repository).
 
 ![RStudio Git staging area screenshot]({{ site.baseurl }}/assets/img/tutorials/git/readme_edit.png)
 
@@ -285,7 +342,7 @@ While you were working on a certain part of a script, someone else was working o
 
 If you accidentally push what you didn't intend to, deleted many things (or everything!) and then pushed empty folders, you can revert your commit. You can keep reverting until you reach the point in time when everything was okay. This is an easy way out if you're the only person working in the repository - __be aware that if there are other people that have committed to the repository, reverting will also undo all of their work, as reverting refers to the repository as a whole, not just your own work in it.__
 
-Using these "undo" commands can be daunting, so make sure you read up on the different commands before you attempt anything that may delete work permanently: [here's a starter](https://www.atlassian.com/git/tutorials/undoing-changes/git-revert). It's a good idea to regularly back up your repository to an external hard drive _juuuust_ in case! 
+Using these "undo" commands can be daunting, so make sure you read up on the different commands before you attempt anything that may delete work permanently: [here's a starter](https://www.atlassian.com/git/tutorials/undoing-changes/git-revert). It's a good idea to regularly back up your repository to an external hard drive _juuuust_ in case!
 
 ### Verified commits
 
@@ -388,7 +445,7 @@ Traditionally, Git uses the command line to perform actions on local Git reposit
 
 Below is a quick exercise so you can familiarise yourself with these command line tools. There are a few ways to use interact with Git using the terminal:
 
-1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu. 
+1. If you are already in RStudio on a Mac or Linux machine, you can open a terminal within RStudio by going to `Tools -> Terminal -> New Terminal` in the menu.
 2. If you are on a Mac or Linux machine you could just open a terminal program and run Git from there. Most Mac and Linux machines will have Git installed by default. On Mac you can go open a terminal by going to: `Applications/Utilities/Terminal.app`.
 3. If you are on a personal Windows machine, you can run Git using Git Bash, which can be installed when you installed Git. You should be able to launch it from More -> Shell in RStudio. If that doesn't work, look up the programme under your Start Menu.
 
@@ -456,4 +513,3 @@ Now you can continue editing files, adding changes (`git add <FILE>`), committin
 This tutorial was developed as part of the collaboration between Coding Club and the NERC E3 Doctoral Training Programme. To learn more about the E3 DTP, check out  [the programme's website](http://e3dtp.geos.ed.ac.uk/).
 
 ![NERC E3 DTP logo]({{ site.baseurl }}/assets/img/tutorials/git/dtp_for_cc.jpg)
-	
