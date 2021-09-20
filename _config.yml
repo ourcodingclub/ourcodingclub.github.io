@@ -5,6 +5,7 @@ exclude:
     - CNAME
     - Gemfile
     - Gemfile.lock
+    - vendor
 
 # Installed gems
 plugins: 
