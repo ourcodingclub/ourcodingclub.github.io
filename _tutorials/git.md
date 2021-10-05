@@ -3,7 +3,7 @@ layout: tutorial
 title: Intro to Github for version control
 subtitle: Keeping track of your code and its many versions
 date: 2017-02-27 08:00:00
-author: Gergana; updated by Boyan (12 Feb 2021)
+author: Gergana; updated by Boyan (05 Oct 2021)
 survey_link: https://www.surveymonkey.co.uk/r/NXNHYYX
 redirect_from:
   - /2017/02/27/git.html
@@ -35,6 +35,30 @@ Having a GitHub repo makes it easy for you to keep track of collaborative and pe
 
 __Please register on the [Github website](https://github.com/).__
 
+On your computer, you need to install Git first. The process will depend on your operating system: please follow the instructions below by clicking the relevant button.
+
+
+{% capture reveal %}
+
+
+If you are using a Linux distribution, you can usually install Git by running the following command in the Terminal:
+
+```shell
+sudo apt-get install git
+```
+
+If this doesn't work, look up Git installation instructions for your distribution.
+
+
+{% endcapture %}
+
+{% include reveal.html button="Linux" content=reveal %}
+
+
+
+{% capture reveal %}
+
+
 If you are on a personal Windows machine, download and install [Git](https://git-scm.com/downloads) for your operating system. Below are some recommended installation instructions, to keep things simple. However, if you know what these options do, and want to change them to suit you, go ahead:
 
 1. For "Select Components", check:
@@ -56,19 +80,36 @@ If you are on a personal Windows machine, download and install [Git](https://git
 
 For any configurations not listed here, select the default option.
 
+
+{% endcapture %}
+
+{% include reveal.html button="Windows" content=reveal %}
+
+
+
+{% capture reveal %}
+
+
 If you are on a personal Mac machine, install Git via Homebrew, which is a package manager for command line programs on Mac. First, open a terminal, which can be found at `~/Application/Utilities/Terminal.app`. Then, copy and paste this line into the terminal and hit "Enter":
 
-```
+```shell
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 Now enter the following to install Git:
 
-```
+```shell
 brew install git
 ```
 
 Follow any instructions in the terminal window, you may need to enter your Mac's password or agree to questions by typing `yes`.
+
+
+{% endcapture %}
+
+{% include reveal.html button="macOS" content=reveal %}
+
+
 
 The files you put on GitHub will be public (i.e. everyone can see them & suggest changes, but only the people with access to the repository can directly edit and add/remove files). You can also have private repositories on GitHub, which means that only you can see the files. GitHub now offers [free private repositories as standard](https://blog.github.com/2019-01-07-new-year-new-github/) with up to three collaborators per repository. They also offer a free education package, with access to software and other perks, you can apply for one using [this link](https://education.github.com/discount_requests/new).
 
@@ -213,7 +254,125 @@ Click `Code` and copy the HTTPS link.
 
 Now open RStudio, click `File/ New Project/ Version control/ Git` and paste the HTTPS link from the Github repository into the `Repository URL:` field. Select a folder on your computer - that is where the "local" copy of your repository will be (the online one being on Github).
 
-__Before your first commit from your computer, you may need to configure your username and email. This is easily done, and you only need to do it once, afterwards you can commit-pull-push at your convenience!__
+Once you attempt the project, you will be asked to authenticate. __You only need to do this once on your computer.__ There are multiple possible ways to authenticate your GitHub account on your computer and make it work with RStudio. Here are two recommended approaches:
+
+
+{% capture reveal %}
+
+### Create a Personal Access Token (All platforms)
+
+Creating a Personal Access Token (PAT) is the recommended most secure method for all platforms. However, if you are using Windows (as of September 2021) you may be able to authenticate using the quick "Sign in via browser" option. If you wish to do so, follow the instructions under the next button (Sign in via internet browser (Windows only)).
+
+You can create a PAT using the GitHub website and specify the exact permissions that it provides your computer when interacting with GitHub in the cloud. We will create a token that allows for access and modifications to the repository.
+
+
+***Step 1:*** Create PAT at GitHub website
+
+1. In the __GitHub website__, click on your profile picture in the top-right corner and go to __Settings__.
+2. In the left sidebar, go to __Developer settings__. Then, again in the left sidebar, click __Personal access tokens__.
+3. Click __Generate new token__. Give the token a name (something that describes what you will use it for, e.g. "Local machine token").
+4. Select an __Expiration time__. You can set to no expiration so that you will not have to re-authenticate.
+5. Then, select the __permissions__ you grant to this token. Simply select the __"repo"__ group in bold.
+6. Click __Generate token__. Make sure to __copy the token__ and store it securely, since the website will not show it to you again. (If something goes wrong, you can always generate a new one.)
+
+You can also follow this guide with screenshots:
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+
+***Step 2:*** Authenticate (within RStudio)
+
+On __Windows__, once you interact with a private repository you should get a prompt looking like this:
+
+![connect to github pat screenshot]({{ site.baseurl }}/assets/img/tutorials/git/connect_to_github_pat.png)
+
+Simply paste the token into the Personal access token field and continue.
+
+On __Linux/macOS__, you should get a prompt for your username and then for your password. Input your GitHub username, and __under password, input your PAT instead__.
+
+Your authentication should now be successful and you can interact with GitHub repositories directly from RStudio.
+
+{% endcapture %}
+
+{% include reveal.html button="Sign in via Personal Access Token (All platforms, recommended)" content=reveal %}
+
+
+{% capture reveal %}
+
+### Sign in via internet browser
+
+On Windows, once you try to clone a private repository from GitHub, you should get a prompt like this:
+
+![connect to github browser screenshot]({{ site.baseurl }}/assets/img/tutorials/git/connect_to_github_sign_in_browser.png)
+
+Simply click "Sign in via browser" and authorise your device in the browser window that pops up. Authentication may happen automatically if already logged into GitHub in your browser.
+
+If you do not get a window like this, but simply a request to input your username, follow the instructions for Personal Access Token above.
+
+
+
+{% endcapture %}
+
+{% include reveal.html button="Sign in via internet browser (Windows, fast)" content=reveal %}
+
+
+{% capture reveal %}
+
+Do you have troubles with authenticating with GitHub? Follow this guide to remove GitHub authentication from your computer and sign in anew.
+
+Important: This is relevant if you used GitHub in an RStudio project before August 13, 2021 and it has since stopped working. This has likely occurred due to changes implemented by GitHub on that date to make authentication more secure. Here is how to fix this issue, by removing GitHub authentication credentials from your computer and logging in again. These instructions may be helpful for other GitHub authentication issues as well.
+
+***Step 1 (all platforms):***
+
+In your R session in RStudio, execute the following lines:
+
+```r
+install.packages('gitcreds')
+library(gitcreds)
+gitcreds_delete()
+```
+Do not worry if you receive a warning or error and proceed to the next step.
+Close RStudio (important!).
+
+***Step 2:***
+
+**Windows**
+
+In the **Start Menu**, search for and open **Credential Manager**. Click on **Windows Credentials**. For all listed items that include 'github', click on the arrow and then click **Remove**. Close the window.
+
+
+**Linux**
+
+In the terminal, execute:
+```shell
+git config --global --unset credential.helper
+rm $HOME/.git-credentials
+```
+
+**macOS**
+
+In the terminal, paste the following and press Return:
+```shell
+git credential-osxkeychain erase
+host=github.com
+protocol=https
+```
+
+Do not worry if you do not find the credentials (under Windows) or the commands produce an error. Proceed to Step 3.
+
+***Step 3:***
+Open your project within RStudio again and attempt to interact with the GitHub repository (e.g. Pull any changes). You should see a prompt to authenticate. Follow the instructions under the buttons above (Personal Access Token or Login via Browser).
+
+<br />
+<br />
+<br />
+
+{% endcapture %}
+
+{% include reveal.html button="Troubleshooting (GitHub in RStudio)" content=reveal %}
+
+<br />
+
+__Before your first commit from your computer, you will need to configure your username and email. This is easily done, and you only need to do it once, afterwards you can commit-pull-push at your convenience!__
 
 In the top right corner of the RStudio screen (in the Git tab), click on `More/Shell`.
 
@@ -241,61 +400,6 @@ We know that there might be problems with the newest updates of the Mac software
 
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
-
-
-{% capture reveal %}
-
-Important: This is only relevant if you used GitHub in an RStudio project before August 13, 2021 and it has since stopped working. This has likely occurred due to changes implemented by GitHub on that date to make authentication more secure. Here is how to fix this issue, by removing GitHub authentication credentials from your computer and logging in again.
-
-***Step 1 (all platforms):***
-
-In your R session in RStudio, execute the following lines:
-
-```r
-install.packages('gitcreds')
-library(gitcreds)
-gitcreds_delete()
-```
-Do not worry if you receive a warning or error and proceed to the next step.
-Close RStudio (important!).
-
-
-
-***Step 2:***
-
-**Windows**
-
-In the **Start Menu**, search for and open **Credential Manager**. Click on **Windows Credentials**. For all listed items that include 'github', click on the arrow and then click **Remove**. Close the window.
-
-
-**Linux**
-
-In the terminal, execute:
-```shell
-git config --global --unset credential.helper
-rm $HOME/.git-credentials
-```
-
-**Mac (OS X)**
-
-In the terminal, paste the following and press Return:
-```shell
-git credential-osxkeychain erase
-host=github.com
-protocol=https
-```
-
-Do not worry if you do not find the credentials (under Windows) or the commands produce an error. Proceed to Step 3.
-
-
-
-***Step 3:***
-Open your project within RStudio again and attempt to interact with the GitHub repository (e.g. Pull any changes). You should see a promt to log into GitHub using your web browser. Complete the login. GitHub should now work again within RStudio!
-
-{% endcapture %}
-
-{% include reveal.html button="GitHub in an old RStudio project has stopped working?" content=reveal %}
-
 
 
 Once the files have finished copying across (this may take a while depending on the size of the repo you're joining), you will notice that a few things about your RStudio session have changed: there is a `Git` tab in the top right corner of RStudio, and all the files that are in the repo are now on your computer as well.
