@@ -276,7 +276,7 @@ Alright! Still with me? We have a response variable, the test score and we are a
 
 Note that **our question changes slightly here**: while we still want to know whether there is an association between dragon's body length and the test score, we want to know if that association exists ***after*** controlling for the variation in mountain ranges.
 
-We will fit the random effect usingv the syntax `(1|variableName)`:
+We will fit the random effect using the syntax `(1|variableName)`:
 
 ```r
 mixed.lmer <- lmer(testScore ~ bodyLength2 + (1|mountainRange), data = dragons)
