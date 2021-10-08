@@ -53,7 +53,11 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 
 <p>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. We want to replace statistics anxiety and code fear with inspiration and motivation to learn. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
-<p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
+<p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person and online workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
+	
+<p>In autumn 2021, we are organising weekly in-person workshops in Edinburgh (subject to change depending on COVID-19 regulations) and also live online workshops over Zoom.</p>
+	
+	<p><b><h4><a href="https://drive.google.com/file/d/177CZOYTnAqiL2BuoVKu-RDnjLRfbHg84/view?usp=sharing" target="_blank">Schedule for our workshops in Sept-Nov 2021, in-person in Edinburgh and simultaneously live over Zoom so anyone can tune in!</a></h4></b></p>
 
 <p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
 </div>
