@@ -18,7 +18,7 @@ text-decoration: none;
   display: none;
 }
 
-// Switch to hamburger on small screen 
+// Switch to hamburger on small screen
 @media screen and (max-width: 768px){
 	#navigation-container label {
 		display: inline-block;
@@ -26,18 +26,18 @@ text-decoration: none;
 		font-size: 3em;
 		border: 1px solid black;
 		margin: 20px 50px;
-		padding: 0px 5px; 
+		padding: 0px 5px;
 	}
-	
+
 	#navigation-container nav {
 		float: right;
 	}
-	
+
 	/* Break down menu items into vertical */
 	#navigation-container ul li {
 		display: block;
 	}
-	
+
 	/* Toggle show/hide menu on checkbox click */
 	#navigation-container ul {
 		display: none;
@@ -145,7 +145,7 @@ text-decoration: none;
 
 .author {
 	font-style: italic;
-	margin-top: -5px; 
+	margin-top: -5px;
 
 }
 
@@ -168,7 +168,7 @@ text-decoration: none;
 // Style accordion
 #accordion h4 {
 	background-color: #ebebeb !important;
-	content: '\02795'; 
+	content: '\02795';
 	color: #669ea0 !important;
 	border: 1px solid #ebebeb !important;
 }
@@ -258,7 +258,7 @@ text-decoration: none;
 }
 
 .form-group button:hover {
-	background-color: $white; 
+	background-color: $white;
 	color: $hoverColour;
 	border: 1px solid $hoverColour;;
 }
@@ -324,7 +324,7 @@ text-decoration: none;
 	border-style: solid;
 	border-width: 1px;
 	width: 50%;
-	
+
 }
 
 // Survey inclusion
@@ -354,8 +354,8 @@ text-decoration: none;
 .count li, .values li {
   list-style: none;
   display: inline-block;
-  text-align: center;	
-  vertical-align: top; 
+  text-align: center;
+  vertical-align: top;
   width: 20%;
 }
 
@@ -425,7 +425,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Reveal answer button
 .reveal {
-	background-color: $linkColour; 
+	background-color: $linkColour;
 	color: white;
 	padding: 15px 32px;
 	text-align: center;
@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .reveal-container {
-	display: block 
+	display: block
 }
 
 // Figure with caption
@@ -484,9 +484,9 @@ div.highlight:hover .hide-back-button:hover, div.highlight .hide-back-button:foc
 	width: 350px;
 }
 
-// Tables 
+// Tables
 
-table { 
+table {
 	border: 2px solid black;
 }
 
@@ -563,7 +563,7 @@ tr:hover {
 // }
 
 
-/*--	
+/*--
 	Data Lab call to action
 --*/
 #DL-action {
@@ -734,7 +734,8 @@ text-decoration: none;
   background-color: #d6e9ec;
   font-size: 20px;
   color: #2c2c2c;
-  margin-top: 3px;
+  margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 #index-work .button:hover {
@@ -753,7 +754,8 @@ text-decoration: none;
   background-color: #f4eddc;
   font-size: 20px;
   color: #2c2c2c;
-  margin-top: 3px;
+	margin-top: 20px;
+	margin-bottom: 20px;
   margin-right: 5px;
 }
 
@@ -769,12 +771,76 @@ text-decoration: none;
   background-color: #f1f1f1;
   font-size: 20px;
   color: #2c2c2c;
-  margin-top: 3px;
+	margin-top: 20px;
+	margin-bottom: 20px;
   margin-right: 5px;
 }
 
 #index-work .button-newest:hover {
   text-decoration: none;
+  background-color: #a98a99;
+}
+
+// New button formatting for index Page
+#index-work .btn-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#index-work .btn-group button {
+//  border: 1px solid #a5a5a5;
+  color: #2c2c2c;
+	text-align: center;
+	padding: 10px 24px; /* Some padding */
+//	padding: 10px 85px;
+  cursor: pointer; /* Pointer/hand icon */
+	border-width: 0px;
+	border-radius: 10px;
+  float: left; /* Float the buttons side by side */
+	min-width: 220px;
+	min-height: 50px;
+	max-height: 120px;
+	font-size: 20px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+  margin-right: 4px;
+	margin-left: 4px;
+}
+
+#index-work .btn-group button:hover {
+  text-decoration: none;
+}
+
+/* Clear floats (clearfix hack) */
+#index-work .btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#index-work .button-right {
+  background-color: #d6e9ec;
+}
+
+#index-work .button-right:hover {
+  background-color: #8db7be;
+}
+
+#index-work .button-centre {
+  background-color: #f4eddc;
+}
+
+#index-work .button-centre:hover {
+  background-color: #d8bf82;
+}
+
+#index-work .button-left {
+  background-color: #f1f1f1;
+}
+
+#index-work .button-left:hover {
   background-color: #a98a99;
 }
 

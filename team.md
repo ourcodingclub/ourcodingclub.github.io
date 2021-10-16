@@ -16,20 +16,26 @@ We are working with great people with a strong motivation to teach and learn. He
 
 <div class="team-profile">
 	<h3>Elise Gallois</h3>
-	<p>I’m a 2nd Year E4 DTP PhD student at the University of Edinburgh, studying the effects of microclimate on various aspects Arctic tundra ecology. For this project I’m busy analyzing time series data, spatial data, as well as analyzing data from multiple different sources. Throughout this process I’ve found that Coding Club tutorials have given me the skillset and confident to tackle these challenges, and I really love being able to pass on these skills to others as a tutor. My favourite thing about Coding Club is watching people with no experience in coding build up their confidence and ability to solve their own unique coding and statistical challenges. You can find me here: <a href="https://www.elisegallois.com/" target="_blank">https://www.elisegallois.com/</a>, and on Twitter at <a href="https://twitter.com/e_gallois" target="_blank">@e_gallois</a>.</p>
+	<p>I’m a 3rd Year E4 DTP PhD student at the University of Edinburgh, studying the effects of microclimate on various aspects Arctic tundra ecology. For this project I’m busy analyzing time series data, spatial data, as well as analyzing data from multiple different sources. Throughout this process I’ve found that Coding Club tutorials have given me the skillset and confident to tackle these challenges, and I really love being able to pass on these skills to others as a tutor. My favourite thing about Coding Club is watching people with no experience in coding build up their confidence and ability to solve their own unique coding and statistical challenges. You can find me here: <a href="https://www.elisegallois.com/" target="_blank">https://www.elisegallois.com/</a>, and on Twitter at <a href="https://twitter.com/e_gallois" target="_blank">@e_gallois</a>.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/elise.png" alt="Elise Gallois photo">
 </div>
 
 <div class="team-profile">
 	<h3>Joe Everest</h3>
-	<p>Hi! I am a first year PhD student with a research focus on macroecological change and remote sensing. My PhD aims to tackle novel aspects of tundra biodiversity change and change the way we look at biodiversity throughout the world’s coldest environments. I’m relatively new to the coding arena but having learnt with Coding Club throughout 2020, I’ve become an instant fan and recognise just how much R and coding can offer my research and wider endeavours. I still have much to learn and as a tutor and Coding Club coordinator, I’m delighted to share in this coding journey with the Coding Club family! For more information, check out <a href="https://teamshrub.com/" target="_blank">Team Shrub</a> and the <a href="https://www.ed.ac.uk/e4-dtp" target="_blank">NERC E4 DTP</a> at the University of Edinburgh, or <a href="https://josephjeverest.wordpress.com/" target="_blank">my website</a> and <a href="https://twitter.com/josephjeverest" target="_blank">twitter</a> account. Happy coding!</p>
+	<p>Hi! I am a second year PhD student with a research focus on macroecological change and remote sensing. My PhD aims to tackle novel aspects of tundra biodiversity change and change the way we look at biodiversity throughout the world’s coldest environments. I’m relatively new to the coding arena but having learnt with Coding Club throughout 2020, I’ve become an instant fan and recognise just how much R and coding can offer my research and wider endeavours. I still have much to learn and as a tutor and Coding Club coordinator, I’m delighted to share in this coding journey with the Coding Club family! For more information, check out <a href="https://teamshrub.com/" target="_blank">Team Shrub</a> and the <a href="https://www.ed.ac.uk/e4-dtp" target="_blank">NERC E4 DTP</a> at the University of Edinburgh, or <a href="https://josephjeverest.wordpress.com/" target="_blank">my website</a> and <a href="https://twitter.com/josephjeverest" target="_blank">twitter</a> account. Happy coding!</p>
 	<img src="{{ site.baseurl }}/assets/img/team/joeeverest.png" alt="Joe Everest photo">
 </div>
 
 <div class="team-profile">
 	<h3>Maude Grenier</h3>
-	<p>I’m a 1<sup>st</sup> Year Sainsbury PhD student at the University of Edinburgh, studying changes in the timing of life events in Arctic plants. To investigate these changes, I will use different data sources to build time series and Bayesian models. Coding Club tutorials have introduced me to coding as an undergraduate and have given me the skillset and confidence to tackle this project. I love being able to help people with little coding experience build up their confidence and skills to tackle their own data more effectively.</p>
+	<p>I’m a 2<sup>nd</sup> Year Sainsbury PhD student at the University of Edinburgh, studying changes in the timing of life events in Arctic plants. To investigate these changes, I will use different data sources to build time series and Bayesian models. Coding Club tutorials have introduced me to coding as an undergraduate and have given me the skillset and confidence to tackle this project. I love being able to help people with little coding experience build up their confidence and skills to tackle their own data more effectively.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/maude.png" alt="Maude Grenier photo">
+</div>
+
+<div class="team-profile">
+	<h3>Diana Jerome</h3>
+	<p>I am a first year PhD student studying how shrubs across the tundra- forest ecotone respond to climate change. When I started learning to code I thought of it as a means to an end to analyze my data, but now coding is one of my favorite parts of my research! I am excited to be a part of coding club and help others on their journey to being comfortable coding.  You can find out more about me and my research on my <a href="https://dianakjerome.wixsite.com/home" target="_blank">website</a> and on <a href="https://twitter.com/DianaKJerome" target="_blank">twitter</a>.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/diana_jerome.png" alt="Diana Jerome photo" border="0">
 </div>
 
 <div class="team-profile">
@@ -39,14 +45,20 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
+	<h3>Guillemette</h3>
+	<p>Hello coding peers! I am a fourth-year Ecological and Environmental Sciences student at Edinburgh University. Studying plants and animals around the world is very close to my heart, with a particular interest in biodiversity conservation and the impact of environmental management on local communities. Since taking the Data Science course in 2020 I seem to have developed a strange addiction to coding, while developing the most useful skills ever for my ecological projects. I am now very looking forward helping newbies at the Coding club workshops! </p>
+	<img src="{{ site.baseurl }}/assets/img/team/guillemette.png" alt="Guillemette photo" border="0">
+</div>
+
+<div class="team-profile">
 	<h3>Boyan Karabaliev</h3>
-	<p>Hi everyone! I'm a fourth-year Ecological and Environmental Sciences student! A long term attendee and fan of coding club, I have finally joined the team in 2021, helping out with workshops, content, and maintaining the website. I first started using R in 2018, and it has been immensely helpful in all kinds of projects in (and sometimes out of!) uni. I am happy to share my experience with R and Data Science and to show everyone that coding is not difficult! Interested in all things ecology, conservation, and data analysis.</p>
+	<p>Hi everyone! I'm a an Ecological and Environmental Sciences graduate from the University of Edinburgh! A long term attendee and fan of coding club, I finally joined the team in 2021, helping out with workshops, content, and maintaining the website. I first started using R in 2018, and it has been immensely helpful in all kinds of projects in (and sometimes out of!) uni. I am happy to share my experience with R and Data Science and to show everyone that coding is not difficult! Interested in all things ecology, conservation, and data analysis.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/boyan.png" alt="Boyan photo">
 </div>
 
 <div class="team-profile">
 	<h3>Lucie Pestiaux</h3>
-	<p>I am a final year Ecological and Environmental science with Management undergraduate student at the University of Edinburgh. My interests are in community ecology and more specifically the study of symbiotic relationships in the natural world. I am also interested in urban ecology. I strongly believe that data science can help us seeing the broader picture and understand better the complexity of our systems of interest. Coding Club has pushed me into a field I never thought I would be getting in. But here we are… Intrigued and excited by this discovery I am keen on helping others getting hooked! </p>
+	<p>I am a Ecological and Environmental science with Management graduate from the University of Edinburgh. My interests are in community ecology and more specifically the study of symbiotic relationships in the natural world. I am also interested in urban ecology. I strongly believe that data science can help us seeing the broader picture and understand better the complexity of our systems of interest. Coding Club has pushed me into a field I never thought I would be getting in. But here we are… Intrigued and excited by this discovery I am keen on helping others getting hooked! </p>
 	<img src="{{ site.baseurl }}/assets/img/team/lucie.png" alt="Lucie Pestiaux photo">
 </div>
 
@@ -58,20 +70,20 @@ We are working with great people with a strong motivation to teach and learn. He
 
 <div class="team-profile">
 	<h3>Jiri Subrt</h3>
-	<p>I am a 3rd year undergraduate student of Ecological and Environmental Sciences at the University of Edinburgh. My interests in my field are wide, from animal behaviour, using remote sensing to answer some environmental questions, climate change, marine biology....  You would usually find me checking weather channels because I am obsessed with weather! My data science journey started with using some basic R in 2019, but really started with a Data Science course in my 3rd year. I found coding and statistics very complicated at the beginning, and as a complete math amateur I never thought coding was actually so intuitive and could be so much fun and could make your life easier! Apart from my studies, I am a yoga teacher, a passionate diver and foreign languages enthusiast.</p>
+	<p>I am a 4th year undergraduate student of Ecological and Environmental Sciences at the University of Edinburgh. My interests in my field are wide, from animal behaviour, using remote sensing to answer some environmental questions, climate change, marine biology....  You would usually find me checking weather channels because I am obsessed with weather! My data science journey started with using some basic R in 2019, but really started with a Data Science course in my 3rd year. I found coding and statistics very complicated at the beginning, and as a complete math amateur I never thought coding was actually so intuitive and could be so much fun and could make your life easier! Apart from my studies, I am a yoga teacher, a passionate diver and foreign languages enthusiast.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/jiri.png" alt="Jiri Subrt photo">
 </div>
 
 <div class="team-profile">
 	<h3>Emma Gemal</h3>
-	<p>I am a fourth year undergraduate Ecological and Environmental Sciences student, interested in polar ecology and conservation. I became introduced to the world of coding and data science through Coding Club in 2019 and (despite initially believing I wouldn’t like it) I have been hooked ever since. I have since used R for a range of projects throughout my University career, including my undergraduate dissertation, and hope to continue expanding my knowledge within ecological data science going forward. Coding Club has been a fantastic, inspiring environment for me, and I am excited to be a part of the team!</p>
+	<p>I am an Ecological and Environmental Sciences graduate, interested in polar ecology and conservation. I became introduced to the world of coding and data science through Coding Club in 2019 and (despite initially believing I wouldn’t like it) I have been hooked ever since. I have since used R for a range of projects throughout my University career, including my undergraduate dissertation, and hope to continue expanding my knowledge within ecological data science going forward. Coding Club has been a fantastic, inspiring environment for me, and I am excited to be a part of the team!</p>
 	<img src="{{ site.baseurl }}/assets/img/team/emmag.png" alt="Emma Gemal photo">
 </div>
 
 <div class="team-profile">
-	<h3>Jakub Weiczorkowski</h3>
-	<p>I am a final year Geography student at the University of Edinburgh and my interests lie in conservation, ecology and environmental change. My undergraduate dissertation involved lots of modelling of grasslands’ and savannas’ herbaceous diversity data, with R being my best friend in this long journey. I completed Data Science in Ecology and Environmental Science course in 2020 and I am excited to now be part of the Coding Club!</p>
-	<img src="{{ site.baseurl }}/assets/img/team/jakub_w.png" alt="Jakub Weiczorkowski photo">
+	<h3>Jakub Wieczorkowski</h3>
+	<p>I am a Geography graduate from the University of Edinburgh and my interests lie in conservation, ecology and environmental change. My undergraduate dissertation involved lots of modelling of plant diversity data, with R being my best friend in this long journey. I completed Data Science in Ecology and Environmental Science course in 2020 and I am excited to now be part of the Coding Club!</p>
+	<img src="{{ site.baseurl }}/assets/img/team/jakub_w.png" alt="Jakub Wieczorkowski photo">
 </div>
 
 <div class="team-profile">

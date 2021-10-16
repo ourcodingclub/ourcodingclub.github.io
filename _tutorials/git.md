@@ -195,7 +195,7 @@ Select the `.gitignore` and click 'Edit'. As you will see, the template GitHub p
 
 ```
 # Prevent users to commit their own .RProj
-.Rproj
+*.Rproj
 
 # Temporary files
 *~
