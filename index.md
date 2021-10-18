@@ -42,12 +42,15 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <big>We have launched our new online course <a href="https://ourcodingclub.github.io/course">Data Science for Ecologists and Environmental Scientists</a>! Join in for a free and self-paced journey through a tailored selection of Coding Club tutorials, quizzes and practical challenges and the chance to get a certificate for your work.</big>
 </div>
 <section id="index-work" style="padding-bottom:20px">
-<div class="container">
-        <center><a class="button-newest" href="{{ site.baseurl }}/tutorials">Explore our tutorials</a>         <a class="button-new" href="{{ site.baseurl }}/course">Take the course</a>         <a class="button" href="{{ site.baseurl }}/involve">Contribute and get involved</a></center>
+<div style="width:100%">
+  <div class="btn-group" style="width:100%">
+        <button onclick="location.href='/tutorials';" class="button-left" style="width:32%">Explore our tutorials</button>
+        <button onclick="location.href='/course';" class="button-centre" style="width:32%">Take the course</button>
+        <button onclick="location.href='/involve';" class="button-right" style="width:32%">Contribute and get involved</button>
   </div>
-</section>
+</div>
 
-<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px">
+<section id="portfolio-work" style="background-color: #c4d7d7; padding-bottom:20px; padding-top:20px width:100%">
 <div class="content-new-streams">
     <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="About us"><h2>About us</h2>
 
@@ -56,9 +59,9 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <p>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. We want to replace statistics anxiety and code fear with inspiration and motivation to learn. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
 <p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person and online workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
-	
+
 <p>In autumn 2021, we are organising weekly in-person workshops in Edinburgh (subject to change depending on COVID-19 regulations) and also live online workshops over Zoom.</p>
-	
+
 <p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
 </div>
 </section>
@@ -135,59 +138,59 @@ https://twitter.com/our_codingclub
 			<p>Coding Club leader</p>
 		</div>
 				<div class="owl-carousel-quote">
-			<p>“Coding Club opened up a new exciting world of Data Science to me. Without the tutorials it would have never been that friendly or positive entrance into the world of coding that helped me to get this far. I am looking forward to all the opportunities and discoveries that can come from the skills I learnt.”</p> 
+			<p>“Coding Club opened up a new exciting world of Data Science to me. Without the tutorials it would have never been that friendly or positive entrance into the world of coding that helped me to get this far. I am looking forward to all the opportunities and discoveries that can come from the skills I learnt.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Dani Gargya, 4th year student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“Coding Club has completely shaped my academic and personal life. Before Coding Club, I never thought it would be possible for me to learn any technical computing skills, let alone enjoy it. From the welcoming environment, the clear instructions and applications, I was able to learn quickly and enjoy it! Becoming a tutor further solidified my newfound knowledge and brought me joy - it is great to see how quickly Coding Club can turn people from being completely uncomfortable by coding to confident.”</p> 
+			<p>“Coding Club has completely shaped my academic and personal life. Before Coding Club, I never thought it would be possible for me to learn any technical computing skills, let alone enjoy it. From the welcoming environment, the clear instructions and applications, I was able to learn quickly and enjoy it! Becoming a tutor further solidified my newfound knowledge and brought me joy - it is great to see how quickly Coding Club can turn people from being completely uncomfortable by coding to confident.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Izzy Rich, Coding Club first student then tutor</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“I don't think I realised just how much Coding Club played an integral role in shaping my academic life until I graduated. Coding Club offers a unique learning environment in a transdisciplinary and non-hierarchical setting. This allowed me to develop skills which I have put to a surprising amount of good use, first in my job, and now in my postgraduate degree.”</p> 
+			<p>“I don't think I realised just how much Coding Club played an integral role in shaping my academic life until I graduated. Coding Club offers a unique learning environment in a transdisciplinary and non-hierarchical setting. This allowed me to develop skills which I have put to a surprising amount of good use, first in my job, and now in my postgraduate degree.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Claudia Meca van den Berg, Coding Club first student then tutor</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“Coding Club has given the quantitative and technical skills to pursue challenges that I always thought were beyond my scope of abilities and inspired me to continue to learn and share.”</p> 
+			<p>“Coding Club has given the quantitative and technical skills to pursue challenges that I always thought were beyond my scope of abilities and inspired me to continue to learn and share.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Shawn Schneidereit, Coding Club first student then tutor</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>"The tutors are keen and engaging; their enthusiasm rubs off on all of us. The step-by-step tutorials are useful for going back over things once the session is over. The peer-led nature of the classes is a forgiving, non-threatening atmosphere to ask questions and make mistakes."</p> 
+			<p>"The tutors are keen and engaging; their enthusiasm rubs off on all of us. The step-by-step tutorials are useful for going back over things once the session is over. The peer-led nature of the classes is a forgiving, non-threatening atmosphere to ask questions and make mistakes."</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/joe.jpg" alt="Joe">
 			<p>Joe Boyle</p>
 			<p>Honours Student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>"Getting quite into R now... started to see how it's satisfying when you crack the code!"</p> 
+			<p>"Getting quite into R now... started to see how it's satisfying when you crack the code!"</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/el.jpg" alt="El">
 			<p>Eleanor Walker</p>
 			<p>Honours Student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>"Having people who’ve relatively recently learnt to code as tutors is great because they are good at explaining things from an approachable perspective."</p> 
+			<p>"Having people who’ve relatively recently learnt to code as tutors is great because they are good at explaining things from an approachable perspective."</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Honours Student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“Thousands of thanks for your invaluable help; you have opened new horizons for me!”</p> 
+			<p>“Thousands of thanks for your invaluable help; you have opened new horizons for me!”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Workshop participant</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“My special gratitude to Coding Club for creating a space to learn and discuss R and for their positivity and support along the way.”</p> 
+			<p>“My special gratitude to Coding Club for creating a space to learn and discuss R and for their positivity and support along the way.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Honours student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“I am thankful for everyone in Coding Club for helping me with troubleshooting and making mixed effect models less daunting.”</p> 
+			<p>“I am thankful for everyone in Coding Club for helping me with troubleshooting and making mixed effect models less daunting.”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Honours student</p>
 		</div>
 		<div class="owl-carousel-quote">
-			<p>“Coding Club is expanding minds! I'm looking forward to going through all the tutorials!”</p> 
+			<p>“Coding Club is expanding minds! I'm looking forward to going through all the tutorials!”</p>
 			<img src="{{ site.baseurl }}/assets/img/quotes/quote.svg" alt="quote">
 			<p>Workshop participant</p>
 		</div>
@@ -226,9 +229,9 @@ https://twitter.com/our_codingclub
 <h2>News</h2>
 </div>
 </section>
-* 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/) 
-* 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/) 
-* 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/) 
+* 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/)
+* 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/)
+* 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/)
 * 23rd January 2020 - [Google dataset search out of beta](https://blog.google/products/search/discovering-millions-datasets-web/)
 * 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
 * 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)

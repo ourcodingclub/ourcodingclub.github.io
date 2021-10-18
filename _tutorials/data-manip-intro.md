@@ -7,7 +7,7 @@ updated: 2019-04-04
 author: Sandra
 updater: Sandra
 survey_link: https://www.surveymonkey.co.uk/r/9QHFW33
-redirect_from: 
+redirect_from:
   - /2017/01/06/data-manip-intro.html
   - /2017/01/18/piping.html
 tags: data-manip
@@ -43,11 +43,11 @@ This tutorial is an introduction to data manipulation and only requires an under
 {% capture callout %}
 __Haven't used R before, or need a refresher?__ No worries! Check out our [Intro to R and RStudio tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html), and then come back here to master tidy data management!
 
-__Know all of this already?__ Fast forward to our [Efficient Data Manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html) for more advanced `dplyr` fun. 
+__Know all of this already?__ Fast forward to our [Efficient Data Manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-efficient/index.html) for more advanced `dplyr` fun or to [Advanced Data Manipulation tutorial]({{ site.baseurl }}/tutorials/data-manip-creative-dplyr/) for even deeper `dplyr` knowledge.
 {% endcapture %}
 {% include callout.html content=callout colour='callout' %}
 
-In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions. 
+In this tutorial, we will start by showing some ways to manipulate data using _base R_ syntax (without any extra package), because you will often see solutions online using this syntax, and it is good to understand how objects are built (and how to take them apart). After that, we will introduce principles of tidy data to encourage best practice in data collection and organisation. We will then start using packages from the [ Tidyverse ](https://www.tidyverse.org/), which is quickly becoming the norm in R data science, and offers a neater, clearer way of coding than using only base R functions.
 
 {% capture callout %}
 All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-3-DataManip). Clone and download the repo as a zip file, then unzip it.
@@ -58,12 +58,12 @@ All the files you need to complete this tutorial can be downloaded from [this re
 {: #base}
 
 
-Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `EmpetrumElongation.csv` dataset that you have downloaded from the repository. 
+Data frames are R objects made of rows and columns containing observations of different variables: you will often be importing your data that way. Sometimes, you might notice some mistakes after importing, need to rename a variable, or keep only a subset of the data that meets some conditions. Let's dive right in and do that on the `EmpetrumElongation.csv` dataset that you have downloaded from the repository.
 
 
-__Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hashtags `#` to comment and annotate your script).__ 
+__Create a new, blank script, and add in some information at the top, for instance the title of the tutorial, your name, and the date (remember to use hashtags `#` to comment and annotate your script).__
 
-This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea. 
+This dataset represents annual increments in stem growth, measured on crowberry shrubs on a sand dune system. The `Zone` field corresponds to distinct zones going from closest (2) to farthest (7) from the sea.
 
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/data-manip-intro/crowberry.jpg{% endcapture %}
 {% include figure.html url=link caption="A crowberry shrub, _Empetrum hermaphroditum_. Isn't it pretty?" %}
@@ -91,12 +91,12 @@ elongation[2,5]
 # Here's how we get all the info for row number 6
 elongation[6, ]
 
-# And of course you can mix it all together! 
+# And of course you can mix it all together!
 elongation[6, ]$Indiv   # returns the value in the column Indiv for the sixth observation
-# (much easier calling columns by their names than figuring out where they are!) 
+# (much easier calling columns by their names than figuring out where they are!)
 
 ```
- 
+
 Subsetting with brackets using row and column numbers can be quite tedious if you have a large dataset and you don't know where the observations you're looking for are situated! And it's never recommended anyway, because if you hard-code a number in your script and you add some rows later on, you might not be selecting the same observations anymore! That's why we can use __logical operations__ to access specific parts of the data that match our specification.
 
 
@@ -158,13 +158,13 @@ As you can see, the more demanding you are with your conditions, the more clutte
 {% capture callout %}
 {: #objects}
 
-Did you notice that last bit of code: `c(300:400)` ? We saw in our [intro tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html) that we can use `c()` to _concatenate_ elements in a vector. Using a colon between the two numbers means _counting up from 300 to 400_. 
+Did you notice that last bit of code: `c(300:400)` ? We saw in our [intro tutorial]({{ site.baseurl }}/tutorials/intro-to-r/index.html) that we can use `c()` to _concatenate_ elements in a vector. Using a colon between the two numbers means _counting up from 300 to 400_.
 
 Other useful vector sequence builders are:
 
 __`seq()`__ to create a sequence, incrementing by any specified amount. E.g. try `seq(300, 400, 10)`
 
-__`rep()`__ to create repetitions of elements. E.g. `rep(c(1,2), 3)` will give `1 2 1 2 1 2`. 
+__`rep()`__ to create repetitions of elements. E.g. `rep(c(1,2), 3)` will give `1 2 1 2 1 2`.
 
 You can mix and match! What would `rep(seq(0, 30, 10), 4)`give?
 {% endcapture %}
@@ -176,11 +176,11 @@ And finally, let's say you need to modify some values or factor levels, or want 
 {% capture callout %}
 ## Creating and overwriting objects
 
-Remember how we've been using the arrow `<-` to create new objects? This is a special convention in R that allows you to pick whichever name you want and assign it to an object (vector, list, data frame...). 
+Remember how we've been using the arrow `<-` to create new objects? This is a special convention in R that allows you to pick whichever name you want and assign it to an object (vector, list, data frame...).
 
-Something to keep in mind is that __if you use a name again in a same session, it will overwrite the former object__. With experience, you can start making changes to an object and overwrite as you go, to "update" the object rather than creating many intermediaries ("object1", "object2", ...). However, when you're starting out, it's a good idea to create these intermediary objects, or at least to create a "working copy" that you can reassign to the main data object once you're satisfied with the changes. 
+Something to keep in mind is that __if you use a name again in a same session, it will overwrite the former object__. With experience, you can start making changes to an object and overwrite as you go, to "update" the object rather than creating many intermediaries ("object1", "object2", ...). However, when you're starting out, it's a good idea to create these intermediary objects, or at least to create a "working copy" that you can reassign to the main data object once you're satisfied with the changes.
 
-As you will now see, we can also make use of the arrow `<-` to overwrite specific values or range of values we need to change. 
+As you will now see, we can also make use of the arrow `<-` to overwrite specific values or range of values we need to change.
 {% endcapture %}
 {% include callout.html content=callout colour="important" %}
 
@@ -191,7 +191,7 @@ As you will now see, we can also make use of the arrow `<-` to overwrite specifi
 elong2 <- elongation
 
 # Now suppose you want to change the name of a column: you can use the names() function
-# Used on its own, it returns a vector of the names of the columns. Used on the left side of the assign arrow, it overwrites all or some of the names to value(s) of your choice. 
+# Used on its own, it returns a vector of the names of the columns. Used on the left side of the assign arrow, it overwrites all or some of the names to value(s) of your choice.
 
 names(elong2)                 # returns the names of the columns
 
@@ -212,7 +212,7 @@ __Can you spot pros and cons of options 1 and 2 above?__
 
 _Option 1_ is compact, but requires you to know exactly where the value to be corrected is. If you reimport your dataset at a later time with new values, it may not be in the same place.
 
-_Option 2_ is longer and more difficult to read (it uses brackets to extracts the row corresponding to individual #373, and then the dollar sign to access just the column called X2008), but provides fine control, and the code will run even if the observation moves in your dataset. 
+_Option 2_ is longer and more difficult to read (it uses brackets to extracts the row corresponding to individual #373, and then the dollar sign to access just the column called X2008), but provides fine control, and the code will run even if the observation moves in your dataset.
 
 Using the same techniques, you can specify variable classes, which will be highly useful when we get to designing [statistical models]({{ site.baseurl }}/tutorials/modelling/index.html) and need grouping variables like factors.
 
@@ -221,7 +221,7 @@ Using the same techniques, you can specify variable classes, which will be highl
 ```r
 ## CREATING A FACTOR
 
-# Let's check the classes 
+# Let's check the classes
 str(elong2)
 
 # The zone column shows as integer data (whole numbers), but it's really a grouping factor (the zones could have been called A, B, C, etc.) Let's turn it into a factor:
@@ -248,25 +248,25 @@ levels(elong2$zone) <- c("A", "B", "C", "D", "E", "F")   # you can overwrite the
 That was a lot, but now you'll be able to adapt these little chunks of code to manipulate your own data. The next sections will hopefully make things even easier, as they'll teach you more intuitive functions to accomplish the same things.
 
 
-# 2. What is tidy data, and how do we achieve it? 
+# 2. What is tidy data, and how do we achieve it?
 {: #tidy}
 
 The way you record information in the field or in the lab is probably very different to the way you want your data entered into R. In the field, you want tables that you can ideally draw up ahead of time and fill in as you go, and you will be adding notes and all sorts of information in addition to the data you want to analyse. For instance, if you monitor the height of seedlings during a factorial experiment using warming and fertilisation treatments, you might record your data like this:
 
 ![Wide format data collection example table]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig1.png)
 
-Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary, 
+Let's say you want to run a test to determine whether warming and/or fertilisation affected seedling growth. You may know how your experiment is set up, but R doesn't! At the moment, with 8 measures per row (combination of all treatments and species for one replicate, or block), you cannot run an analysis. On the contrary,
 [tidy datasets](https://www.jstatsoft.org/article/view/v059i10) are arranged so that each **row** represents an **observation** and each **column** represents a **variable**. In our case, this would look something like this:
 
 ![Long format tidy dataframe example]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/SAB_fig2.png)
 
-This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc., R would be able to split the dataframe correctly, as each grouping factor has its own column. 
+This makes a much longer dataframe row-wise, which is why this form is often called *long format*. Now if you wanted to compare between groups, treatments, species, etc., R would be able to split the dataframe correctly, as each grouping factor has its own column.
 
 __Based on this, do you notice something not quite tidy with our previous object `elongation`?__ We have observation of the same variable, i.e. stem length, spread across multiple columns representing different years.
 
 The `gather()` function from the `tidyr` package will let us convert this wide-format table to a tidy dataframe. We want to create a single column __Year__ that will have years currently in the columns (2007-2012) repeated for each individual. From this, you should be able to work out that the dataframe will be six times longer than the original. We also want a column __Length__ where all the growth data associated to each year and individual will go.
 
-_Note_: This function is slightly unusual as you are making up your own column names in the second (key) and third (value) arguments, rather than passing them pre-defined objects or values like most R functions. Here, year is our key and length is our value. 
+_Note_: This function is slightly unusual as you are making up your own column names in the second (key) and third (value) arguments, rather than passing them pre-defined objects or values like most R functions. Here, year is our key and length is our value.
 
 ``` r
 install.packages("tidyr")  # install the package
@@ -276,16 +276,16 @@ library(tidyr)             # load the package
 elongation_long <- gather(elongation, Year, Length,                           # in this order: data frame, key, value
                           c(X2007, X2008, X2009, X2010, X2011, X2012))        # we need to specify which columns to gather
 
-# Here we want the lengths (value) to be gathered by year (key) 
+# Here we want the lengths (value) to be gathered by year (key)
 
 # Let's reverse! spread() is the inverse function, allowing you to go from long to wide format
-elongation_wide <- spread(elongation_long, Year, Length) 
+elongation_wide <- spread(elongation_long, Year, Length)
 
 ```
 
 Notice how we used the column names to tell `gather()` which columns to reshape. This is handy if you only have a few, and if the columns change order eventually, the function will still work. However, if you have a dataset with columns for 100 genes, for instance, you might be better off specifying the column numbers:
 
-```r 
+```r
 elongation_long2 <- gather(elongation, Year, Length, c(3:8))
 ```
 
@@ -295,15 +295,15 @@ However, these functions have limitations and will not work on every data struct
 Once you have the data in the right format, it's much easier to analyse them and visualise the results. For example, if we want to find out if there is inter-annual variation in the growth of _Empetrum hermaphroditum_, we can quickly make a boxplot:
 
 ```r
-boxplot(Length ~ Year, data = elongation_long, 
-        xlab = "Year", ylab = "Elongation (cm)", 
+boxplot(Length ~ Year, data = elongation_long,
+        xlab = "Year", ylab = "Elongation (cm)",
 	main = "Annual growth of Empetrum hermaphroditum")
 ```
 
 {% capture link %}{{ site.baseurl }}/assets/img/tutorials/data-manip-intro/emni-annual.jpeg{% endcapture %}
 {% include figure.html url=link caption="Annual growth of _Empetrum hermaphroditum_." %}.
 
-From looking at the boxplot, there is a fairly big overlap between the annual growth in each year - nothing special to see. (Don't worry, we'll learn to make much prettier and interesting graphs in our [data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html) tutorials.) 
+From looking at the boxplot, there is a fairly big overlap between the annual growth in each year - nothing special to see. (Don't worry, we'll learn to make much prettier and interesting graphs in our [data visualisation]({{ site.baseurl }}/tutorials/datavis/index.html) tutorials.)
 
 
 
@@ -313,7 +313,7 @@ From looking at the boxplot, there is a fairly big overlap between the annual gr
 The package `dplyr` is a fantastic bundle of intuitive functions for data manipulation, named after the action they perform. A big advantage of these functions is that they take your __data frame__ as a first argument, so that you can refer to columns without explicitly having to refer to the full object (so you can drop those `$` signs!). Let's meet the most common and useful functions by working on the long format object we just created, `elongation_long`. First, install and load the package.
 
 
-```r 
+```r
 install.packages("dplyr")  # install the package
 library(dplyr)              # load the package
 ```
@@ -321,7 +321,7 @@ library(dplyr)              # load the package
 ## 3a. `rename()` variables
 {: #rename}
 
-This lets you change the name(s) of a column or columns. The first argument is the data frame, the second (and third, etc.) takes the form __New name = Old name__. 
+This lets you change the name(s) of a column or columns. The first argument is the data frame, the second (and third, etc.) takes the form __New name = Old name__.
 
 
 ```r
@@ -364,7 +364,7 @@ You may have noticed how we sometimes call values in quotes `""`, and sometimes 
 	- `new.object <- elongation_long` and <br>
 	- `new.object <- "elongation_long"` <br>
 
-The first creates a duplicate of our object, because R recognises the name as an object in our environment. In the second case, you're creating an object consisting of one character value. 
+The first creates a duplicate of our object, because R recognises the name as an object in our environment. In the second case, you're creating an object consisting of one character value.
 
 It takes time and practice to get used to these conventions, but just keep an eye out for [error messages]({{ site.baseurl }}/tutorials/troubleshooting/index.html) and you'll get there.
 {% endcapture %}
@@ -398,7 +398,7 @@ Something we have not yet touched on is how to create a new column. This is usef
 
 
 ```r
-# CREATE A NEW COLUMN 
+# CREATE A NEW COLUMN
 
 elong_total <- mutate(elongation, total.growth = X2007 + X2008 + X2009 + X2010 + X2011 + X2012)
 
@@ -419,7 +419,7 @@ The most important thing to understand about this function is that you don't see
 elong_grouped <- group_by(elongation_long, indiv)   # grouping our dataset by individual
 
 ```
- 
+
  Compare `elong_grouped` and `elongation_long` : they should look exactly the same. But now, let's use `summarise()` to calculate total growth of each individual over the years.
 
 
@@ -453,9 +453,9 @@ Less amazing is that we lose all the other columns not specified at the grouping
 
 Sometimes you have multiple data files concerning a same project: one for measurements taken at various sites, others with climate data at these sites, and perhaps some metadata about your experiment. Depending on your analytical needs, it may be very useful to have all the information in one table. This is where merging, or joining, datasets comes in handy.
 
-Let's imagine that the growth data we have been working with actually comes from an experiment where some plants where warmed with portable greenhouses (W), others were fertilised (F), some received both treatments (WF) and some were control plants (C). We will import this data from the file `EmpetrumTreatments.csv`, which contains the details of which individuals received which treatments, and join it with our main dataset `elongation_long`. We can do this because both datasets have a column representing the ID of each plant: this is what we will merge by. 
+Let's imagine that the growth data we have been working with actually comes from an experiment where some plants where warmed with portable greenhouses (W), others were fertilised (F), some received both treatments (WF) and some were control plants (C). We will import this data from the file `EmpetrumTreatments.csv`, which contains the details of which individuals received which treatments, and join it with our main dataset `elongation_long`. We can do this because both datasets have a column representing the ID of each plant: this is what we will merge by.
 
-There are [many types of joins](https://dplyr.tidyverse.org/reference/join.html) you can perform, which will make sense to you if you are familiar with the SQL language. They differ in how they handle data that is not shared by both tables, so always ask yourself which observations you need to keep and which you want to drop, and look up the help pages if necessary (in doubt, `full_join()` will keep everything). In the following example, we want to keep all the information in `elong_long` and have the treatment code repeated for the five occurrences of every individual, so we will use `left_join()`. 
+There are [many types of joins](https://dplyr.tidyverse.org/reference/join.html) you can perform, which will make sense to you if you are familiar with the SQL language. They differ in how they handle data that is not shared by both tables, so always ask yourself which observations you need to keep and which you want to drop, and look up the help pages if necessary (in doubt, `full_join()` will keep everything). In the following example, we want to keep all the information in `elong_long` and have the treatment code repeated for the five occurrences of every individual, so we will use `left_join()`.
 
 
 ```r
@@ -490,19 +490,19 @@ boxplot(length ~ Treatment, data = experiment)
 Are these differences statistically significant? We'll find out how to test this in our [modelling tutorial]({{ site.baseurl }}/tutorials/modelling/index.html)!
 
 
-But for now, don't you think it's enough for one tutorial? Congratulations for powering through and getting this far! If you want to test your knowledge, try your hand at the data manipulation challenge below. 
+But for now, don't you think it's enough for one tutorial? Congratulations for powering through and getting this far! If you want to test your knowledge, try your hand at the data manipulation challenge below.
 
 
 # Challenge yourself!
 {: #challenge}
 
-Let's see if you can apply some of the functions we have learned today in a different context. In the repository, you will find the file `dragons.csv`, which gives the length (in cm) of the fire plumes breathed by dragons of different species when fed different spices. 
+Let's see if you can apply some of the functions we have learned today in a different context. In the repository, you will find the file `dragons.csv`, which gives the length (in cm) of the fire plumes breathed by dragons of different species when fed different spices.
 
 Your challenge is to make the data tidy (long format) and to create a boxplot __for each species__ showing the effect of the spices on plume size, so you can answer the questions: __Which spice triggers the most fiery reaction? And the least?__
 
 
 {% capture callout %}
-__However__, you find out that your field assistant was a bit careless during data collection, and let slip many mistakes which you will need to correct. 
+__However__, you find out that your field assistant was a bit careless during data collection, and let slip many mistakes which you will need to correct.
 
 1. The fourth treatment wasn't paprika at all, it was turmeric.
 2. There was a calibration error with the measuring device for the tabasco trial, but only for the Hungarian Horntail species. All measurements are 30 cm higher than they should be.
@@ -517,7 +517,7 @@ __Now let's see what you can do!__
 1. Struggling to rename the paprika column? Think about the handy `rename()` function!
 2. There are many ways to correct a selection of values, but they will all involve accessing these specific data by combining conditional statements about the treatment/column (tabasco) and the species (horntail). You could store the correct values in a vector, and overwrite the old values by using appropriate subsetting. (Tip: arithmetic operations on a vector are applied to each element individually, so that `c(1, 2, 3) + 1` returns `2, 3, 4`.)
 3. The `mutate()` function lets you create a new column that can be based on existing columns. Ideal for things like converting units... It may be wise to have all the plume lengths in one column (long, or tidy format), before using this.
-4. Struggling to reshape the dataset? Remember that you are trying to `gather()` the _plume_ observations (value) by treatment, in this case _spice_ (key). 
+4. Struggling to reshape the dataset? Remember that you are trying to `gather()` the _plume_ observations (value) by treatment, in this case _spice_ (key).
 {% endcapture %}
 {% include reveal.html button="Stuck? Click for a few hints" content=reveal %}
 
@@ -590,11 +590,11 @@ par(mfrow=c(1, 3))      # you need not have used this, but it splits your plotti
    boxplot(plume.m ~ spice, data = shortsnout,
            xlab = 'Spice', ylab = 'Length of fire plume (m)',
            main = 'Swedish Shortsnout')
-  
+
 
 ```
 
-So there you are! Did your plots look something like this? 
+So there you are! Did your plots look something like this?
 
 ![Facetted Dragon boxplots]({{ site.baseurl }}/assets/img/tutorials/data-manip-intro/dragons-spice.jpeg)
 
