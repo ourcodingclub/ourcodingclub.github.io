@@ -45,7 +45,7 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
-	<h3>Guillemette</h3>
+	<h3>Guillemette Gandon</h3>
 	<p>Hello coding peers! I am a fourth-year Ecological and Environmental Sciences student at Edinburgh University. Studying plants and animals around the world is very close to my heart, with a particular interest in biodiversity conservation and the impact of environmental management on local communities. Since taking the Data Science course in 2020 I seem to have developed a strange addiction to coding, while developing the most useful skills ever for my ecological projects. I am now very looking forward helping newbies at the Coding club workshops! </p>
 	<img src="{{ site.baseurl }}/assets/img/team/guillemette.png" alt="Guillemette photo" border="0">
 </div>
@@ -54,6 +54,18 @@ We are working with great people with a strong motivation to teach and learn. He
 	<h3>Boyan Karabaliev</h3>
 	<p>Hi everyone! I'm a an Ecological and Environmental Sciences graduate from the University of Edinburgh! A long term attendee and fan of coding club, I finally joined the team in 2021, helping out with workshops, content, and maintaining the website. I first started using R in 2018, and it has been immensely helpful in all kinds of projects in (and sometimes out of!) uni. I am happy to share my experience with R and Data Science and to show everyone that coding is not difficult! Interested in all things ecology, conservation, and data analysis.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/boyan.png" alt="Boyan photo">
+</div>
+
+<div class="team-profile">
+	<h3>Alessandra Cianfanelli</h3>
+	<p>Hello everyone! I am Alessandra, I graduated this year with a BSc in Ecological and Environmental Sciences at the University of Edinburgh and I’ve just started an MSc in Remote Sensing and Environmental Mapping at UCL. When I first started uni I thought coding was really not my thing but then I came to coding club and took the Data Science course and fell in love with it!<br />My favourite thing about R is how much freedom it gives me to explore and work with my data and the creativity that it allows me to have through data visualization. I am so excited to be part of the CC team and to help other people discover the beauties of data science!</p>
+	<img src="{{ site.baseurl }}/assets/img/team/alessandra.png" alt="Alessandra photo">
+</div>
+
+<div class="team-profile">
+	<h3>Kai Westwell</h3>
+	<p>I am a recent Ecological and Environmental Sciences graduate from the University of Edinburgh. I love most aspects of ecology, but mostly focus on conservation and microbial ecology. I wrote my undergraduate dissertation on marine viral ecology, and couldn’t have made it through without Coding Club! I have found Coding Club to create a great atmosphere for encouraging learning in data science, and I am excited to continue tutoring with the club.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/kai.png" alt="Kai photo">
 </div>
 
 <div class="team-profile">
