@@ -39,6 +39,12 @@ We are working with great people with a strong motivation to teach and learn. He
 </div>
 
 <div class="team-profile">
+	<h3>Calum Hoad</h3>
+	<p>I’m a second year SENSE CDT PhD student at the University of Edinburgh, using satellite imagery to research the influence of snow and permafrost on vegetation change in the Arctic. I began my coding journey while working in industry as a GIS Technician, learning Python in an attempt to automate some very tedious and time consuming workflows. After some initial frustration and angst I discovered how satisfying and near-magical coding can be when all the pieces fall into place and the intended outcome pops up on screen! Since beginning my PhD I’ve delved into the world of R through Coding Club’s excellent tutorials and I now enjoy helping others overcome their coding anxieties as a Coding Club tutor.</p>
+	<img src="{{ site.baseurl }}/assets/img/team/calum.png" alt="Calum Hoad photo" border="0">
+</div>
+
+<div class="team-profile">
 	<h3>Erica Zaja</h3>
 	<p>My name is Erica and I am an undergraduate Ecology and Environmental Sciences with Management student at Edinburgh University. I am really excited to be a new Coding Club tutor this semester! I started studying coding with the online <a href="https://ourcodingclub.github.io/course.html" target="_blank">Data Science for Ecologists and Environmental scientists course</a>, which kept me company for a few months of isolation! Despite only recently discovering the wonders of R, I have been challenging my R-skills ever since. Applying an understanding of statistics and object-oriented programming to my courses has made my life so much easier! I love getting my hands dirty in the fields (my main interest being agro-ecology), but thanks to R I have discovered a real passion for Data Science. The skillset Coding Club has given me has made the creation of <a href="https://ourcodingclub.github.io/tutorials/anova/" target="_blank">my very own tutorial</a> possible! I am excited for future opportunities and I’d love to spread this excitement to my peers.</p>
 	<img src="{{ site.baseurl }}/assets/img/team/erica.png" alt="Erica photo">
