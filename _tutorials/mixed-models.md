@@ -106,7 +106,7 @@ summary(basic.lm)
 Let's plot the data with ggplot2.
 
 ```r
-library(ggplot2)  # load the package
+library(tidyverse)  # load the package containing both ggplot2 and dplyr
 
 (prelim_plot <- ggplot(dragons, aes(x = bodyLength, y = testScore)) +
   geom_point() +
