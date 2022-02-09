@@ -3,8 +3,8 @@ layout: tutorial
 title: Introduction to linear mixed models
 date: 2017-03-15 08:00:00
 author: Gabriela K Hajduk
-updated: 2019-09-10 00:00:00
-updater: Sandra
+updated: 2022-02-09 00:00:00
+updater: Elise Gallois
 survey_link: https://www.surveymonkey.co.uk/r/HJYGVSF
 redirect_from: 
   - /2017/03/15/mixed-models.html
