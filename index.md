@@ -54,13 +54,11 @@ banner: "../assets/img/banner/slider-bg-pale.jpg"
 <div class="content-new-streams">
     <img src="{{ site.baseurl }}/assets/img/index/about_us.png" style= "width:25%; height:auto; padding:20px;20px;20px;80px;" alt="About us"><h2>About us</h2>
 
-		<p><b><h4><a href="https://drive.google.com/file/d/1DjbDyUhfYcl6Y5ZRyLaAYlwJmZrUgjMJ/view?usp=sharing" target="_blank">Schedule for our workshops in Sept-Nov 2021, in-person in Edinburgh and simultaneously live over Zoom so anyone can tune in!</a></h4></b></p>
-
 <p>We are an enthusiastic group of ecology and environmental science students and researchers from the University of Edinburgh. We want to replace statistics anxiety and code fear with inspiration and motivation to learn. We believe that coding can be really fun and also understand the importance of quantitative skills for professional development.</p>
 
 <p>Over the last four years we have been writing <a href="https://ourcodingclub.github.io/tutorials/" target="_blank">tutorials</a> as well as organising in-person and online workshops. All of our materials are free for people to use and adapt - you can find more information on organising your own workshops or using Coding Club tutorials in your teaching <a href="https://ourcodingclub.github.io/involve.html" target="_blank">here</a>.</p>
 
-<p>In autumn 2021, we are organising weekly in-person workshops in Edinburgh (subject to change depending on COVID-19 regulations) and also live online workshops over Zoom.</p>
+<p>In autumn 2021, we are organising weekly in-person workshops in Edinburgh (subject to change depending on COVID-19 regulations) and also live online workshops over Zoom. Check out our <a href="https://twitter.com/our_codingclub">most recent tweets</a> for information on signing up for workshops!</p>
 
 <p>Coding Club is for everyone, regardless of their career stage or current level of knowledge. Coding Club is a place that brings people together, regardless of their gender or background. We all have the right to learn, and we believe learning is more fun and efficient when we help each other along the way.</p>
 </div>
@@ -218,24 +216,12 @@ https://twitter.com/our_codingclub
 <div class="content-new-streams">
 <a href="https://datascienceees.github.io" target="_blank"><img src="{{ site.baseurl }}/assets/img/index/ds-edi.png" style= "width:20%; height:auto; padding:20px;20px;20px;80px;" alt="Data Science in Edinburgh logo"></a>
 <h2>Data Science in Edinburgh (and now over Zoom anywhere!)</h2>
-<p><b><h4><a href="https://drive.google.com/file/d/1DjbDyUhfYcl6Y5ZRyLaAYlwJmZrUgjMJ/view?usp=sharing" target="_blank">Schedule for our workshops in Sept-Nov 2021, in-person in Edinburgh and simultaneously live over Zoom so anyone can tune in!</a></h4></b></p>
+<p><b><h4><p><b><h4><a href="https://twitter.com/our_codingclub" target="_blank">Schedule for our workshops in Jan-Apr 2022, in-person in Edinburgh and simultaneously live over Zoom so anyone can tune in!</a></h4></b></p>
+</h4></b></p>
 
 <p><big>Building on Coding Club, we have also started a new 4th year Data Science in Ecology and Environmental Science honours-level undergraduate course at the University of Edinburgh - you can find out course website and curriculum <a href="https://datascienceees.github.io" target="_blank">here</a>.</big></p>
 </div>
 </section>
-
-<section id="portfolio-work" style="padding-bottom:1px">
-<div class="content-new-info">
-<h2>News</h2>
-</div>
-</section>
-* 22nd February 2020 - [Coding Club is running a brand new free online data science course]({{ site.baseurl }}/course/)
-* 17th February 2020 - [A new advanced data viz and data synthesis tutorial from our workshop at the University of Glasgow]({{ site.baseurl }}/tutorials/dataviz-beautification-synthesis/)
-* 5th February 2020 - [A new tutorial - ultimate figure beautification from our workshop at the University of Boulder]({{ site.baseurl }}/tutorials/dataviz-beautification/)
-* 23rd January 2020 - [Google dataset search out of beta](https://blog.google/products/search/discovering-millions-datasets-web/)
-* 22nd January 2020 - [Preview of rconf 2020](https://web.cvent.com/event/36ebe042-0113-44f1-8e36-b9bc5d0733bf/summary?RefId=conference)
-* 19th January 2020 - [Rbloggers: Top 40 new R packages](https://www.r-bloggers.com/december-2019-top-40-new-r-packages/)
-* 17th October 2018 - [Quantitative skills and Coding Club - a blog post for the Software Sustainability Institute](https://software.ac.uk/blog/2018-10-17-coding-club-peer-learning-programming-statistics-and-data-science)
 
 <section id="portfolio-work">
 <div class="content-new-info">
