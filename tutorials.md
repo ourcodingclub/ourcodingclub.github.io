@@ -592,8 +592,6 @@ https://twitter.com/our_codingclub
 
 ## COMING SOON:
 
-* Animated graphs
-* Power analysis
-* Webscraping using Python
-* Structural equation modelling
-* Biodiversity metrics & similarity analysis
+* Intro to mapping (choropleth, hex, point, bubble maps)
+* Transforming and scaling data
+* Bootstrapping
