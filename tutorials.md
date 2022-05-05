@@ -193,6 +193,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/data-scaling.png" alt="Transforming and scaling hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/data-scaling">
+                	<h2>Transforming and scaling data</h2>
+                	<p>Understand the fundamental concepts of manipulating data distributions for modelling and visualization</p>
+            	</a>
+        	</div>
+    	</div>
 		<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/anova_icon.png" alt="ANOVA hex logo">
@@ -201,17 +212,6 @@ redirect_from:
             	<a href="{{ site.baseurl }}/tutorials/anova">
                 	<h2>ANOVA from A to (XY)Z</h2>
                 	<p>Tidying data, running a one-way ANOVA and making a beautiful data visualisation</p>
-            	</a>
-        	</div>
-    	</div>
-    	<div class="tutcont">
-        	<div class="tuthex">
-            	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="Model design hex logo">
-        	</div>
-        	<div class="tutdesc">
-            	<a href="{{ site.baseurl }}/tutorials/model-design">
-                	<h2>Introduction to model design</h2>
-                	<p>How to turn a research question into a model</p>
             	</a>
         	</div>
     	</div>
