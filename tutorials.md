@@ -226,6 +226,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/brms-hex.png" alt="brms hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/brms">
+                	<h2>Bayesian modelling using the brms package</h2>
+                	<p>From research question to final report, unleashing the full potential of brms</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/meta_icon.png" alt="MCMCglmm hex logo">
