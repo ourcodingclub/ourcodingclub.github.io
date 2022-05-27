@@ -38,7 +38,7 @@ tags: modelling
 
 Data come in a wide variety of shapes and sizes. We use data distributions to study and understand the data and many models are built around assumptions that the data follow a certain distribution, most typically linear models always assume **normal** distribution of the data. However, real world data rarely perfectly align with the normal distribution and therefore break this assumption. Alternatively, there might be a situation where our data follow a non-linear relationship an our standard plots cannot capture it very well. For dealing with these issues we can use **transformations** and **scaling**. They are therefore powerful tools for allowing us to utilize a wide variety of data that would not be available for modelling otherwise and display non-linear relationships between data in more clear and interpretable plots.
 
-This tutorial will teach you how to manipulate data using both common and more advanced transformations and scaling procedures in R. In addition, we will have a quick look at situations when adjusting scales on plot axes is a better decision than transforming or scaling data themselves. Throughout the tutorial we will work with datasets from ecological and environmental sciences in order to demonstrate that scaling data and using transformations are very useful tools when working with real world data.  
+This tutorial will teach you how to manipulate data using both common and more advanced transformations and scaling procedures in R. In addition, we will have a quick look at situations when adjusting scales on plot axes is a better decision than transforming or scaling data themselves. Throughout the tutorial we will work with datasets from ecological and environmental sciences in order to demonstrate that scaling data and using transformations are very useful tools when working with real world data.
 
 ## Prerequisites
 {: #Prerequisites}
@@ -53,7 +53,7 @@ While we will use programming language `R` throughout the tutorial, the concepts
 ## Data and Materials
 {: #DataMat}
 
-You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/matusseci/transformations_and_scaling_materials). We encourage you to download the data to your computer and work through the examples along the tutorial as this reinforces your understanding of the concepts taught in the tutorial.
+You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/ourcodingclub/CC-data-scaling). We encourage you to download the data to your computer and work through the examples along the tutorial as this reinforces your understanding of the concepts taught in the tutorial.
 
 
 
