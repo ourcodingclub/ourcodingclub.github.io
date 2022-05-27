@@ -215,6 +215,17 @@ redirect_from:
             	</a>
         	</div>
     	</div>
+      <div class="tutcont">
+        	<div class="tuthex">
+            	<img src="{{ site.baseurl }}/assets/img/hex/design_icon.png" alt="Model design hex logo">
+        	</div>
+        	<div class="tutdesc">
+            	<a href="{{ site.baseurl }}/tutorials/model-design">
+                	<h2>Introduction to model design</h2>
+                	<p>How to turn a research question into a model</p>
+            	</a>
+        	</div>
+    	</div>
     	<div class="tutcont">
         	<div class="tuthex">
             	<img src="{{ site.baseurl }}/assets/img/hex/mix_mod.png" alt="Mixed models hex logo">

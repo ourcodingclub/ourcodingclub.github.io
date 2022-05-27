@@ -22,9 +22,7 @@ The following tutorial is an introduction to Bayesian modelling but it assumes a
 
 This tutorial should teach you how to create, assess, present and troubleshoot a brm model.
 
-All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/EdDataScienceEES/tutorial-louise-litrico).
-
-Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
+All the files you need to complete this tutorial can be downloaded from [this repository](https://github.com/ourcodingclub/CC-brms). Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.
 
 ***
 
@@ -520,6 +518,6 @@ In this tutorial you learned:
 - How to build a more complex model using the brms package
 - Some solutions in case your model doesn't converge well
 
-For more information or any questions/feedback, please don't hesitate to contact me (Louise Litrico) at s1814797@ed.ac.uk
+For more information or any questions/feedback, please don't hesitate to contact us at ourcodingclub@gmail.com
 
 <center><img src="{{ site.baseurl }}/assets/img/tutorials/brms/Pictures/red_knot_flying.jpg" alt="Img" style="width: 800px;"/></center>
