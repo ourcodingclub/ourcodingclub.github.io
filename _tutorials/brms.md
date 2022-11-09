@@ -485,6 +485,9 @@ prior1 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='year'),
 # france5_mbrms <- brms::brm(pop ~ year + location, data = France,
 #                            family = poisson(), chains = 3, prior = prior1,
 #                            iter = 3000, warmup = 1000)
+
+# The intercept here will be very different than your previous models, but that is because we are using the "year" variable and not the adjusted year variable, but you will see that the fixed effects look the same. You could change this by making a new column where the year variable to starts at 1 and using that to specify the priors and in the model.
+
 ```
 
 As you can see in the comments part above, the prior would be included in the model with a `prior = prior1` argument.
@@ -495,17 +498,6 @@ As you can see in the comments part above, the prior would be included in the mo
 {: #iterations}
 
 Finally, increasing the number of iterations by a few thousands (and the warmup accordingly) might also help your model converge better by letting it run for longer.
-
-```
-prior1 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='year'), # global slope belongs to a normal distribution centered around 0
-            set_prior(prior = 'normal(0,6)', class='Intercept', coef=''))  # global intercept
-            # set_prior(prior = 'cauchy(0,2)', class='sd')	# We don't have a group-level intercept or slopw but if we did we could add this line
-
-# france5_mbrms <- brms::brm(pop ~ year + Location.of.population, data = France,
-#                            family = poisson(), chains = 3, prior = prior1,
-#                            iter = 3000, warmup = 1000)
-# The intercept here will be very different than your previous models, but that is because we are using the "year" variable and not the adjusted year variable, but you will see that the fixed effects look the same. You could change this by making a new column where the year variable to starts at 1 and using that to specify the priors and in the model.
-```
 
 ***
 
