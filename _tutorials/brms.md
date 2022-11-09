@@ -17,7 +17,7 @@ But do you still need to use statistics for your degree and are looking for more
 
 
 The following tutorial is an introduction to Bayesian modelling but it assumes a prior understanding of modelling and data distribution. If you are just getting started with R coding, you should check out [this introduction tutorial](https://ourcodingclub.github.io/tutorials/intro-to-r/) from the Coding Club. To make sure everything is clear in your mind, you can also check out these tutorials as well beforehand.
-- Meta-analysis for biologists using MCMCglmm (an introcution to the MCMCglmm package) available [here](https://ourcodingclub.github.io/tutorials/mcmcglmm/index.html)
+- Meta-analysis for biologists using MCMCglmm (an introduction to the MCMCglmm package) available [here](https://ourcodingclub.github.io/tutorials/mcmcglmm/index.html)
 - Generalised linear models in Stan (using the Rstanarm and brms packages to run Stan models) available [here](https://ourcodingclub.github.io/tutorials/stan-2/)
 
 This tutorial should teach you how to create, assess, present and troubleshoot a brm model.
@@ -144,7 +144,7 @@ Now looking at our variables,
 unique(France$year)
 ```
 
-We can see here that our data starts in 1976, and ends in 2010. This is something we will have to include in the model as well. If we just include `year`, the model will assume that your variable started at 0, but that you only have data from 1976. If this happens, the slope you will get at the end will be way off from the actual estimate you are trying to get. See the next part for the exact syntax to avoid this.
+We can see here that our data starts in 1976, and ends in 2010. This is something we will have to include in the model as well. If we just include `year`, the model will start at 1976, but really we want the model to read this as Year 1.  See the next part for the exact syntax to avoid this.
 
 ***
 
@@ -162,7 +162,10 @@ library(brms)
 We can now write our model. The `brms` package sometimes gets hidden by the `stats` package, so it's always better to include `brms::brm` to call the modelling function.
 The first argument in the brackets is the response variable (red knot abundance or `pop` for us) and the variables placed after the `~` sign are the fixed and random effects, our explanatory variables (time or `year` for us).
 
-As explained earlier, the year variable has to be written in a specific way: `I(year - 1976)` to be correctly assessed by the model. By writing it this way, we tell the model to treat `year` as a variable starting at 1976 (basically replacing the 0 with 1976).
+As explained earlier, we want to change the year variable to start at one. We can do that in the model by using: `I(year - 1975)` . "I" specifying integer, and "year-1975" to make the year variable start at 1.
+NB: Another way to do this is to make a new column with year the way you want it to be read in the model, instead of specifying it during the model.
+`France <- France %>%
+  mutate(year_2 = I(year - 1975))`
 
 The family argument corresponds to the distribution of our data, and as we saw earlier, that should be `poisson`. You can look at the `brmsfamily` R Documentation page to find the other family options and their characteristics.
 N.B: Setting the family argument to poisson log-transforms our data (just something to keep in mind for later).
@@ -175,9 +178,12 @@ The `chains` argument defines the number of independent times the model will run
 Additionally, you should note that we haven't added a prior distribution in this model. This doesn't mean that the model doesn't use any. The brm function has a default prior that is very uninformative (pretty much flat so it won't change you data a lot). This is useful if you don't have any prior information to give to the model, and this means that your posterior distribution will be very close to the distribution of your data. We will be using this default prior for now to understand how the model works.
 
 ```r
-france1_mbrms <- brms::brm(pop ~ I(year - 1976),
+france1_mbrms <- brms::brm(pop ~ I(year - 1975),
                          data = France, family = poisson(), chains = 3,
                          iter = 3000, warmup = 1000)
+
+# saveRDS(france1_mbrms, "france1_mbrms.RDS")
+# you can save the model as an RDS (Rdata) that way you don't need to run the model again if you come back to this code
 ```
 
 __BE AWARE__, a brms model always takes a while to run, and these two messages will often appear before it starts sampling, "Compiling Stan program...recompiling to avoid crashing R session", but everything is still okay!
@@ -260,11 +266,10 @@ Now that we know how to make a very basic model, we can start adding complexity 
 {: #random}
 
 We know that our red knot population grows over the years, but it could be that each year, the previous population level has an effect on the next year. This means that the population could be growing due to random variations every year, rather than throughout a whole time period.
-
-In the brms package, you can include random effects very easily by adding ` + (your random variable)`.
+In the brms package, you can include random effects very easily by adding ` + (1| random variable)`. Here we can just use the variable "year" because random effects will automatically become factors.
 
 ```r
-france2_mbrms <- brms::brm(pop ~ I(year - 1976) + (I(year - 1976)),
+france2_mbrms <- brms::brm(pop ~ I(year - 1975) + (1|year),
                          data = France, family = poisson(), chains = 3,
                          iter = 3000, warmup = 1000)
 
@@ -310,7 +315,7 @@ As a side note, we will be including location as a fixed effect because we only 
 The code for the model would look like this.
 
 ```r
-france3_mbrms <- brms::brm(pop ~ I(year - 1976) + Location.of.population,
+france3_mbrms <- brms::brm(pop ~ I(year - 1975) + Location.of.population,
                          data = France, family = poisson(), chains = 3,
                          iter = 3000, warmup = 1000)
 summary(france3_mbrms)
@@ -410,44 +415,29 @@ We can now say that there were on average 6247.896 new red knot birds in France 
 # Potential issues and how to solve them
 {: #part6}
 
-A lot of small thing can cause big problems in the models we are using here.
-I found that the main problem I got was this error message appearing after running the model:
-"There were 132 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup"
-
-But when I increased that `adapt-delta` value, my R session would completely crash before the model converged.
-
-So in case you get the same issues, here are some of the solutions I found to solve this.
-
-***
-
-### Solution 1: Switching to numerical variables
-{: #numerical}
-
-When running the third model for the first time, I had a lot of issues. The model wouldn't converge, I would get hundreds of divergent transitions after warmup, and the list goes on.
-
-A very simple but life-changing solution I found was to change the `Location.of.population` variable from a character categorical variable to a numerical variable.
-
-You can do this very quickly like so, and just change the model accordingly underneath.
+A lot of small thing can cause big problems in the models we are using here. A common warning message about divergent transitions, for example: “There were 132 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup”
+A few divergent transitions can be ignored, but the higher the number the more concerning. Going to the website R suggests will give you more information on what this error means.
+They suggest increasing `adapt-delta` about 0.9 and increasing `max_treedepth` beyond 12.
 
 ```r
-France <- France %>%
-  mutate(location = case_when(grepl("Atlantic", Location.of.population) ~ 1,
-                              grepl("Channel", Location.of.population) ~ 2))
-
-# france3_mbrms <- brms::brm(pop ~ I(year - 1976) + location,
-#                          data = France, family = poisson(), chains = 3,
-#                          iter = 3000, warmup = 1000)
+#france3_mbrms <- brms::brm(pop ~ I(year - 1975) + Location.of.population,
+#                        data = France, family = poisson(), chains = 3,
+#                        iter = 3000, warmup = 1000,
+#                        control = list(max_treedepth = 15, adapt_delta = 0.99)
 ```
+However, there are other ways to adjust your model to avoid these issues.
 
 ***
 
-### Solution 2: Scaling the variable
+***
+
+### Solution 1: Scaling the variable
 {: #scaling}
 
 Another way of transforming your data to help the model deal with it, is to scale your variables. Scaling changes your data by centering it on 0 (mean = 0) and changing the values to have a standard deviation of 1.
 
 ```r
-France$year.scaled <- scale(I(France$year - 1976), center = T)  # scaling time
+France$year.scaled <- scale(I(France$year - 1975), center = T)  # scaling time
 France$pop.scaled <- scale(France$pop, center = T)  # scaling abundance
 ```
 
@@ -462,9 +452,11 @@ hist(France$pop.scaled)  # you can see that the distribution changed
 #                            iter = 3000, warmup = 1000)
 ```
 
+If you are interested in learning more about scaling data, check out our [scaling tutorial](https://ourcodingclub.github.io/tutorials/data-scaling/).
+
 ***
 
-### Solution 3: Changing the units of the variable
+### Solution 2: Changing the units of the variable
 {: #units}
 
 A lot of abundance data can have very large numbers. Say if the smallest value of abundance in your data is 50,000. This can cause a problem when the model runs iterations because it will be looking at a whole range of values between 0 and 50,000 even though nothing is interesting there. The model might fail to converge properly or take a very long time to do so.
@@ -473,7 +465,7 @@ A way to solve this is to change the units from single counts to thousands of co
 
 ***
 
-### Solution 4: Using more informative priors
+### Solution 3: Using more informative priors
 {: #priors}
 
 As I explained earlier, we used non-informative, default priors in the previous models. However, increasing the information you give to your model will probably help it converge faster.
@@ -499,10 +491,21 @@ As you can see in the comments part above, the prior would be included in the mo
 
 ***
 
-### Solution 5: Increasing iterations
+### Solution 4: Increasing iterations
 {: #iterations}
 
 Finally, increasing the number of iterations by a few thousands (and the warmup accordingly) might also help your model converge better by letting it run for longer.
+
+```
+prior1 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='year'), # global slope belongs to a normal distribution centered around 0
+            set_prior(prior = 'normal(0,6)', class='Intercept', coef=''))  # global intercept
+            # set_prior(prior = 'cauchy(0,2)', class='sd')	# We don't have a group-level intercept or slopw but if we did we could add this line
+
+# france5_mbrms <- brms::brm(pop ~ year + Location.of.population, data = France,
+#                            family = poisson(), chains = 3, prior = prior1,
+#                            iter = 3000, warmup = 1000)
+# The intercept here will be very different than your previous models, but that is because we are using the "year" variable and not the adjusted year variable, but you will see that the fixed effects look the same. You could change this by making a new column where the year variable to starts at 1 and using that to specify the priors and in the model.
+```
 
 ***
 
