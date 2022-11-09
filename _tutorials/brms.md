@@ -206,6 +206,10 @@ summary(france1_mbrms)
 
 The Console should look something like this. Now this may seem a little confusing for now, but just wait, you should be able to understand all of it in a bit.
 
+__Important note:__ Because of the stochastic nature of Bayesian statistics, every time you (re)run a model, your output will be slightly different, so even if you use the same effects in your model, it would always be slightly different to whatever was printed here. TLDR; Do not worry if your results do not exactly match the below image!
+
+
+
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/brms/Figures/france1_summary.png" alt="Img" style="width: 800px;"/> </center>
 
 
