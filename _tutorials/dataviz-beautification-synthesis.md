@@ -83,7 +83,7 @@ library(ggthemes)  # for a mapping theme
 # if you have a more recent version of ggplot2, it seems to clash with the ggalt package
 # installing this version of the ggalt package from GitHub solves it
 # You might need to also restart your RStudio session
-devtools::install_github("eliocamp/ggalt@new-coord-proj") # for custom map projections
+install.packages(“ggalt”) # for custom map projections
 library(ggalt)
 library(ggrepel)  # for annotations
 library(viridis)  # for nice colours
