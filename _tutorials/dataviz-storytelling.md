@@ -5,7 +5,7 @@ subtitle: Data visualisation meets graphic design to tell scientific stories
 date: 2022-12-12 10:00:00
 author: Gergana
 redirect_from:
-  - /2022/12/12/dataviz-beautification-synthesis.html
+  - /2022/12/12/dataviz-storytelling.html
 tags: data-vis intermediate advanced
 ---
 
@@ -520,68 +520,7 @@ ggsave(distributions6, filename = "distributions6.png",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/distributions6.png" alt="Img" style="width: 500px;"/> </center>
 
-Final stop along this specific beautification journey, for now at least! But before we move onto histograms, a note about another useful `tidyverse` feature - being able to quickly create a new variable based on conditions from more than one of the existing variables.
-
-<div class="bs-callout-blue" markdown="1">
-
-__A data manipulation tip:__ Using `case_when()`, combined with `mutate`, is a great way to create new variables based on one or more conditions from other variables.
-</div>
-
-```r
-# Create new columns based on a combo of conditions using case_when()
-# A fictional example
-alpine_magic <- niwot_richness %>% mutate(fairy_dust = case_when(fert == "PP" & hits > 5 ~ "Blue fairy dust",
-                                                                 fert == "CC" & hits > 15 ~ "The ultimate fairy dust"))
-
-(distributions_magic <-
-    ggplot(data = alpine_magic,
-           aes(x = reorder(fairy_dust, desc(richness)), y = richness, fill = fairy_dust)) +
-    geom_flat_violin(position = position_nudge(x = 0.2, y = 0), alpha = 0.8) +
-    geom_point(aes(y = richness, color = fairy_dust),
-               position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
-    geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
-    labs(y = "\nSpecies richness", x = NULL) +
-    guides(fill = FALSE, color = FALSE) +
-    scale_y_continuous(limits = c(0, 30)) +
-    scale_fill_manual(values = c("turquoise4", "magenta4")) +
-    scale_colour_manual(values = c("turquoise4", "magenta4")) +
-    coord_flip() +
-    theme_niwot())
-```
-
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/distributions_magic1.png" alt="Img" style="width: 600px;"/> </center>
-
-<div class="bs-callout-blue" markdown="1">
-
-__A data manipulation tip:__ Often we have missing values, or not everything has a category, for example in the magic plot above,  many of the species are classified as `NA`. If we want to drop those records, we can use `drop_na()` and in the brackets specify which specific column(s) should be the evaluator.
-</div>
-
-```r
-alpine_magic_only <- alpine_magic %>% drop_na(fairy_dust)
-
-(distributions_magic2 <-
-    ggplot(data = alpine_magic_only,
-           aes(x = reorder(fairy_dust, desc(richness)), y = richness, fill = fairy_dust)) +
-    geom_flat_violin(position = position_nudge(x = 0.2, y = 0), alpha = 0.8) +
-    geom_point(aes(y = richness, color = fairy_dust),
-               position = position_jitter(width = 0.15), size = 1, alpha = 0.1) +
-    geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.8) +
-    labs(y = "\nSpecies richness", x = NULL) +
-    guides(fill = FALSE, color = FALSE) +
-    scale_y_continuous(limits = c(0, 30)) +
-    scale_fill_manual(values = c("turquoise4", "magenta4")) +
-    scale_colour_manual(values = c("turquoise4", "magenta4")) +
-    coord_flip() +
-    theme_niwot())
-
-ggsave(distributions_magic2, filename = "distributions_magic2.png",
-       height = 5, width = 5)
-```
-
-<center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/distributions_magic2.png" alt="Img" style="width: 600px;"/> </center>
-
-Raining or not, both versions of the raincloud plot look alright, so like many things in data viz, a matter of personal preferenece.
-
+Final stop along this specific beautification journey, for now at least! 
 <a name="distributions"></a>
 
 ## Make, customise and annotate histograms
