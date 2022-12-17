@@ -88,6 +88,8 @@ library(ggthemes)  # for a mapping theme
 # installing this version of the ggalt package from GitHub solves it
 # You might need to also restart your RStudio session
 install.packages(“ggalt”) # for custom map projections
+# You could also try this way (uncomment to run the code if you have to)
+# devtools::install_github("eliocamp/ggalt@new-coord-proj") # for custom map projections
 library(ggalt)
 library(ggrepel)  # for annotations
 library(viridis)  # for nice colours
