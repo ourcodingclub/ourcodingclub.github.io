@@ -1,11 +1,11 @@
 ---
 layout: tutorial
-title: Efficient and beautiful data synthesis
-subtitle: Taking your tidyverse skills to the next level
-date: 2020-02-12 10:00:00
+title: Storytelling with Data
+subtitle: Data visualisation meets graphic design to tell scientific stories
+date: 2022-12-12 10:00:00
 author: Gergana
 redirect_from:
-  - /2020/02/12/dataviz-beautification-synthesis.html
+  - /2022/12/12/dataviz-beautification-synthesis.html
 tags: data-vis intermediate advanced
 ---
 
@@ -21,9 +21,13 @@ tags: data-vis intermediate advanced
 
 <div class="bs-callout-blue" markdown="1">
 
-__The goal of this tutorial is to advance skills in data synthesis, particularly visualisation, manipulation, efficiently handling datasets and customising figures to make them both beautiful and informative. Here, we will focus on using packages from the `tidyverse` collection and a few extras, which together can streamline data visualisation and make your research pop out more!__
+__The goal of this tutorial is to advance skills in visualisation, manipulation, efficiently handling datasets and customising figures to make them both beautiful and informative. Here, we will focus on using packages from the `tidyverse` collection and a few extras, which together can streamline data visualisation and make your research pop out more!__
 
 </div>
+
+### Before we get to the code, here are some of the things that are important to consider when making graphs and telling a scientific story.
+
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/handout_final.png" alt="Img" style="width: 700px;"/></center>
 
 ## All the files you need to complete this tutorial can be downloaded from <a href="https://github.com/ourcodingclub/CC-dataviz-beautification-synthesis" target="_blank">this repository</a>. __Click on `Code/Download ZIP` and unzip the folder, or clone the repository to your own GitHub account.__
 
@@ -1133,7 +1137,172 @@ ggsave(trends_mass, filename = "trends_mass.png",
 
 <center> <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_mass1.png" alt="Img" style="width: 500px;"/>  <img src="{{ site.baseurl }}/assets/img/tutorials/dataviz-beautification-synthesis/trends_mass2.png" alt="Img" style="width: 500px;"/></center>
 
-### Congrats on taking three different types of figures on beautification journeys and all the best with the rest of your data syntheses!
+The world of coding and packages is pretty dynamic and things change - like how since I originally made the graphs above, the `theme_clean()` function changed and now makes a slightly different type of graph. Perhaps you notice horizontal lines going across the plot. Sometimes they can be useful, other times less so as they can distract people and make the graph look less clean (ironic given the theme name). So for our next step, we will make our own theme.
+
+```r
+# Make a new theme
+theme_coding <- function(){            # creating a new theme function
+  theme_bw()+                          # using a predefined theme as a base
+    theme(axis.text.x = element_text(size = 12, vjust = 1, hjust = 1),       # customising lots of things
+          axis.text.y = element_text(size = 12),
+          axis.title = element_text(size = 14),
+          panel.grid = element_blank(),
+          plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), units = , "cm"),
+          plot.title = element_text(size = 12, vjust = 1, hjust = 0.5),
+          legend.text = element_text(size = 12, face = "italic"),
+          legend.title = element_blank(),
+          legend.position = c(0.9, 0.9))
+}
+```
+
+### A data storytelling tip: Find something to highlight, is there a story amidst all the points?
+
+While having lots of data is often impressive, it can also make it hard to actually figure out what the key message of the graph is. In this tutorial we are exploring how bird populations are changing over time. Might be cool to highlight a particular species, like this mallee emu-wren, a small bird that hasn't experienced particularly dramatic population changes. But in a time of global change, telling apart relatively stable populations is also important!
+
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/wren.png" alt="Img" style="width: 500px;"/></center>
+<center>Illustration by <a href="https://www.malkolmboothroyd.com" target="_blank">Malkolm Boothroyd</a></center>
+
+We could make the mallee emu-wren point bigger and a different colour, for which we essentially need a column that says whether or not a given record is for the mallee emu-wren.
+
+### A data manipulation tip: Using case_when(), combined with mutate, is a great way to create new variables based on one or more conditions from other variables.
+
+```r
+# Create new columns based on a combo of conditions using case_when()
+bird_models_mass <- bird_models_mass %>% 
+  mutate(wren_or_not = case_when(common.name == "Mallee emu-wren" ~ "Yes",
+                                 common.name != "Mallee emu-wren" ~ "No"))
+```
+
+Now we are ready for an even snazzier graph! One thing you might notice is different is that before we added our data frame right at the start in the first line inside the `ggplot()`, whereas now we are adding the data inside each specific element - `geom_point`, `geom_smooth`, etc. This way `ggplot` gets less confused about what elements of the code apply to which parts of the graph - a useful thing to do when making more complex graphs.
+
+We can also add our mallee emu-wren illustration to the plot!
+
+```r
+# Load packages for adding images
+packs <- c("png","grid")
+lapply(packs, require, character.only = TRUE)
+
+# Load beluga icon
+icon <- readPNG("wren.png")
+icon <- rasterGrob(icon, interpolate=TRUE)
+```
+
+And onto the figure!
+
+```r
+(trends_mass_wren <- ggplot() +
+    geom_point(data = bird_models_mass, aes(x = log(mass), y = abs(estimate),
+                                     colour = wren_or_not,
+                                     size = wren_or_not),
+               alpha = 0.3) +
+    geom_smooth(data = bird_models_mass, aes(x = log(mass), y = abs(estimate)),
+                                             method = "lm", colour = "deepskyblue4", fill = "turquoise4") +
+    geom_label_repel(data = subset(bird_models_mass, common.name == "Mallee emu-wren"),
+                     aes(x = log(mass), y = abs(estimate),
+                         label = common.name),
+                     box.padding = 1, size = 5, nudge_x = 1, nudge_y = 0.1,
+                     # We are specifying the size of the labels and nudging the points so that they
+                     # don't hide data points, along the x axis we are nudging by one
+                     min.segment.length = 0, inherit.aes = FALSE) +
+    annotation_custom(icon, xmin = 2.3, xmax = 4.2, ymin = 0.16, ymax = 0.22) +  
+    # Adding the icon
+    scale_colour_manual(values = c("turquoise4", "#b7784d")) +
+    # Adding custom colours
+    scale_size_manual(values= c(3, 10)) +
+    # Adding a custom scale for the size of the points
+    theme_coding() +
+    # Adding our new theme
+    guides(size = F, colour = F) +
+    # An easy way to hide the legends which are not very useful here
+    ggtitle("Mallee emu-wren trends\nin the context of Australian-wide trends") +
+    # Adding a title
+    labs(x = "\nlog(Body mass)", y = "Absolute population change\n"))
+```
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/trends_mass_wren.png" alt="Img" style="width: 500px;"/></center>
+
+You can save it using `ggsave()` - you could use either `png` or `pdf` depending on your needs - `png` files are raster files and if you keep zooming, they will become blurry and are not great for publications or printed items. `pdf` files are vectorised so you can keep zooming to your delight and they look better in print but are larger files, not as easy to embed online or in presentations. So think of where your story is going and that can help you decide of the file format.
+
+```r
+ggsave(trends_mass_wren, filename = "trends_mass_wren.png",
+       height = 5, width = 6)
+```
+
+## 3. Put your story in perspective
+
+We have highlighted the mallee emu-wren - a great thing to do if we are say a scientist working on this species, or a conservation organisation focusing on its protection, or we just really like this cute little Australian bird. When trying to tell a story with data though, it's always nice to put things in perspective and maps are a very handy way of doing that. We could tell the story of bird monitoring around the world, highlight a region of interest (Australia) and then give the story an anchor - the mallee emu-wren!
+
+First, we will create the map - here is how to make an object with the world in it.
+
+```r
+world <- map_data("world")
+```
+
+Next up, we can extract the coordinates of the different bird populations monitored around the world.
+
+```r
+bird_coords <- bird_pops_long %>% 
+  dplyr::select(3:27) %>%
+  distinct()
+```
+
+And now we are ready for our map! One way to learn what each line does is to have a go at commenting it out using a `#` and then spotting what changes - or you can check out the comments below each line.
+
+```r
+(pop_map <- ggplot(bird_coords, aes(x = decimal.longitude, y = decimal.latitude)) + 
+    geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.4) +
+    # Adding the world
+    geom_bin2d(bins = 100) +
+    # Adding density squares - they will show how many data points there are in each square
+    theme_void() +
+    # Adding a clean theme
+    coord_proj("+proj=eck4") +
+    # A custom projection
+    ylim(-80, 80) +
+    # Setting some limits to the graphs coordinates
+    scale_fill_viridis(option = "magma",
+                       direction = -1, 
+                       end = 0.35, begin = 0.8,
+                       name = "Number of time series", 
+                       #breaks = c(50, 150, 250),
+                       guide = guide_legend(keyheight = unit(2.5, units = "mm"),
+                                            keywidth = unit(10, units = "mm"), 
+                                            label.position = "bottom", 
+                                            title.position = 'top', nrow = 1))  +
+    # Adding a nice colour theme plus a custom legend
+    ggtitle("Bird populations in the Living Planet Database") +
+    annotate("rect", xmin = 110, xmax = 160, ymin = -10, 
+             ymax = -50, alpha = 0.2, fill = "turquoise4") +
+    # Adding a semi-transparent polygon to highlight Australia
+    theme(legend.position = c(0.14, 0.07),
+          legend.title=element_text(color = "black", size = 10),
+          text = element_text(color = "#22211d"),
+          plot.title = element_text(size = 12, hjust = 0.5, 
+                                    color = "grey20", 
+                                    margin = margin(b = 0.2, 
+                                                    t = 0.4, l = 2, 
+                                                    unit = "cm"))))
+
+ggsave(pop_map, filename = "bird_map.png")
+```
+
+Here is our map!
+
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/bird_map.png" alt="Img" style="width: 700px;"/></center>
+
+Finally, lets put our story together by making a panel! The `widths` and `heights` arguments help get the proportions right.
+
+```r
+bird_panel <- grid.arrange(pop_map, trends_mass_wren, ncol = 2, 
+                           widths = c(0.6, 0.4),
+                           heights = c(1, 0.15))
+
+ggsave(bird_panel, filename = "bird_map_panel.png",
+       height = 5, width = 12)
+```
+
+<center> <img src="{{ site.baseurl }}/assets/img/tutorials/data-synthesis/bird_map_panel.png" alt="Img" style="width: 900px;"/></center>
+
+### Congrats on taking many different types of figures on beautification journeys and all the best with the rest of your data viz and storytelling!
 
 <b>If you'd like more inspiration and tips, check out the materials below!</b>
 
