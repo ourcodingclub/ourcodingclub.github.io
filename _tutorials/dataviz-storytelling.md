@@ -671,13 +671,7 @@ ggsave(histogram5, filename = "histogram5.png",
 
 We will be working with bird population data (abundance over time) from the <a href="http://www.livingplanetindex.org/home/index" target="_blank">Living Planet Database</a>, bird trait data from the <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/13-1917.1" target="_blank">Elton Database</a>, and emu occurrence data from the <a href="http://www.gbif.org/" target="_blank">Global Biodiversity Information Facility</a>, all of which are publicly available datasets.
 
-__First, we will format the bird population data, calculate a few summary variables and explore which countries have the most population time-series and what is their average duration.__
-
-Here are the packages we need. Note that not all `tidyverse` packages load automatically with `library(tidyverse)` -  only the core ones do, so you need to load `broom` separately. If you don't have some of the packages installed, you can install them using `ìnstall.packages("package-name")`. One of the packages is only available on `GitHub`, so you can use `install_github()` to install it. In general, if you ever have troubles installing packages from CRAN (that's where packages come from by default when using `install.packages()`), you can try googling the package name and "github" and installing it from its `GitHub` repo, sometimes that works!
-
 #### Load population trend data
-
-Now we're ready to load in the rest of the data needed for this tutorial!
 
 ```r
 bird_pops <- read.csv("bird_pops.csv")
