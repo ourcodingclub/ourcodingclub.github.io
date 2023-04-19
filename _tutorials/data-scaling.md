@@ -83,7 +83,7 @@ library(ggeffects)  # model predictions
 library(broom)  # extracting model summaries
 
 # Import Data
-LPI_species <- read.csv('data/LPI_species.csv', stringsAsFactors = FALSE)  # remember to change the filepath appropriately  
+LPI_species <- read.csv('LPI_species.csv', stringsAsFactors = FALSE)  # remember to change the filepath appropriately  
 ```
 
 Now we can look at the basic structure of the dataframe to get some idea of the different variables it contains.
