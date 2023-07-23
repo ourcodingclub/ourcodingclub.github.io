@@ -277,7 +277,7 @@ __All the files that were in the repository online are now on your computer as w
 
 ## GitHub in action
 
-__We will practice using GitHub as a lab by analysing data from the <a href="http://www.livingplanetindex.org/home/index">Living Planet Index.</a>__
+__We will practice using GitHub as a lab by analysing data from the [Living Planet Index](https://www.livingplanetindex.org).__
 
 __The data and instructions are available from [this repository](https://github.com/ourcodingclub/CC-12-git-for-labs). To get us all started, it would be easier if one person from the lab downloads the data and instructions and then uploads them to our new `github-practice` folder within the lab's GitHub repository. Once that's done, all the other lab members can pull and then everyone will have the files.__
 
