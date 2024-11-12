@@ -2,7 +2,7 @@
 layout: tutorial
 title: Bayesian modelling using the brms package
 subtitle: From research question to final report, unleashing the full potential of brms
-date: 2022-05-13 08:00:00
+date: 2023-05-13 08:00:00
 author: Louise Litrico
 tags: modelling
 ---
@@ -12,7 +12,7 @@ tags: modelling
 
 ***
 
-Have you ever thought frequentist statistics were confusing? Have you ever felt like your mind was getting lost between p-values, random 0.05 thresholds, and confidence intervals that had little to do with confidence?
+Have you ever thought frequentist statistics were confusing? Have you ever felt like your mind was getting lost between p-values, random 0.05 thresholds, and confidence intervals that had little to do with confidence? 
 But do you still need to use statistics for your degree and are looking for more straightforward methods? Then you are in the right place! These are questions and topics that I have also struggled with, and I found Bayesian models to be easier to deal with. Hopefully, you will too after completing this tutorial.
 
 
