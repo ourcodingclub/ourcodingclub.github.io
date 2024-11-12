@@ -13,7 +13,7 @@ redirect_from:
 tags: data-manip
 ---
 
-# Tutorial aims:
+# Tutorial aims: 
 
 1. Learn base R syntax for data manipulation
 	- [logical operators for finer control](#logic)
