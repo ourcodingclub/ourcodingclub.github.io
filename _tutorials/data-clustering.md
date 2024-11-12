@@ -20,7 +20,7 @@ tags: modelling
 
 
 {% capture callout %}
-To get all you need for this session, __go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
+To get all you need for this session, __please go to [the repository for this tutorial](https://github.com/ourcodingclub/CC-9-Data-clustering), fork it to your own Github account, clone the repository on your computer and start a version-controlled project in RStudio. For more details on how to do this, please check out our [Intro to Github for version control]({{ site.baseurl }}/tutorials/git/index.html) tutorial. Alternatively you can download the repo as a zip file.__
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
