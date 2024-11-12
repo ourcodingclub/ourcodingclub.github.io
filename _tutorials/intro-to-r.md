@@ -54,7 +54,7 @@ As we said before, R itself does not have a graphical interface, but most people
 
 You can download R from [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/). Select the link appropriate for your operating system. 
 
-Then, download RStudio from [the RStudio website](https://www.rstudio.com/products/RStudio/) (select the free open source desktop version).
+Then, download RStudio from [the RStudio website](https://posit.co/downloads/) (select the free open source desktop version).
 
 If you are using a Mac, in addition to R and RStudio, you need to download XQuartz ([available here](https://www.xquartz.org/)).
 
@@ -63,7 +63,7 @@ __Open RStudio. Click on _"File/New File/R script"_.__
 
 ![RStudio panel layout annotated]({{ site.baseurl }}/assets/img/tutorials/intro-to-r/rstudio_panels.png)
 
-You will now see a window like the one above. You _can_ type code directly into the __console__ on the lower left (doesn't mean that you _should_\*!). Pressing enter at the end of the line runs the code (try typing `2 + 2` and running it now). You can (should!) also write your code in the __script__ file in the top left window. To run a line of code from your script, press `Ctrl+R` on Windows or `Cmd+Enter` on a Mac. On newer Windows computers, the default shortcut is `Ctrl+Enter`. The __environment window__ gives you an overview of your current __workspace\*\*__. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded. 
+You will now see a window like the one above. You _can_ type code directly into the __console__ on the lower left (doesn't mean that you _should_\*!). Pressing enter at the end of the line runs the code (try typing `2 + 2` and running it now). You can (should!) also write your code in the __script__ file in the top left window. To run a line of code from your script, press `Ctrl+Enter` on Windows or `Cmd+Enter` on a Mac. The __environment window__ gives you an overview of your current __workspace\*\*__. You will see the data you have imported, objects you have created, functions you have defined, etc. Finally, the last panel has multiple tabs and will preview your plot and allow you to navigate around folders and look at the packages you currently have installed and loaded. 
 
 {% capture callout %}
 __\*A note about scripts (We love scripts!)__: Remember that if you enter code directly into the console, it will __not__ be saved by R: it runs and disappears (although you can access your last few operations by hitting the 'up' key on your keyboard). Instead, by typing your code into a script file, you are creating a reproducible record of your analysis. Writing your code in a script is similar to writing an essay in Word: it saves your progress and you can always pick up where you left off, or make some changes to it. (Remember to click _Save_ (`Ctrl+S`) often, so that you actually save your script!) 
