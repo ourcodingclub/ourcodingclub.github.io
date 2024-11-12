@@ -1,7 +1,7 @@
 ---
 layout: tutorial 
 title: Getting started with R and RStudio
-updated: 2024-10-10
+updated: 2022-10-10
 author: Gergana
 survey_link: https://www.surveymonkey.co.uk/r/6CQF3J7
 banner: "../assets/img/banner/slider-bg-pale.jpg"
