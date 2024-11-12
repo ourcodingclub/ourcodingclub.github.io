@@ -82,7 +82,7 @@ For now, start by recording who is writing, the date, and the main goal - in our
 ```r
 # Coding Club Workshop 1 - R Basics
 # Learning how to import and explore data, and make graphs about Edinburgh's biodiversity
-# Written by Gergana Daskalova 06/11/2016 University of Edinburgh
+# Written by Gergana Daskalova 06/11/2024 University of Goettingen
 ```
 
 The next few lines of code usually load the packages you will be needing for your analysis. A __package__ is a bundle of commands that can be loaded into R to provide extra functionality. For example, you might load a package for formatting data, or for making maps. (Or for making graphs with [cats on them](https://github.com/Gibbsdavidl/CatterPlots), or whatever floats your boat... As we said before, there's virtually nothing you cannot do!) 
@@ -106,6 +106,19 @@ setwd("C:/User/CC-1-RBasics-master")
 ```
 
 __Watch out!__ Note that on a Windows computer, a copied-and-pasted file path will have backslashes separating the folders (`"C:\folder\data"`), but the filepath you enter into R should use __forward slashes__ (`"C:/folder/data"`). 
+
+## Archive package versions
+Now that you have installed an R package, it's important to pause and think about reproducibility. Packages change and functions that work today might not necessarily work or even exist in the future. When we save scripts and make data open-access, we are making decent progress towards open and reproducible research, but that is not enough. Additionally we can archive the exact package versions we are using for a specific project and we can store them together with our code and data. You can do this using the `renv` package. A useful explanation on how `renv` works can be found [here](https://rstudio.github.io/renv/articles/renv.html#getting-started).
+
+```r
+install.packages("renv")
+library(renv)
+
+# Initialising renv tracking of packages
+renv::init()
+```
+
+As you continue with your coding, you will be installing more and more packages and you can update the packages that `renv` stores using the `renv::snapshot()` function. This function will take a snapshot of the packages you currently have loaded in a given `RStudio` session and will update the `renv` files in case you added more packages (or removed some) since you first ran `renv::init()`. We don't have to make a new snapshot now since we still only have the `dplyr` package installed.
 
 # 2. Import and check data
 {: #import}
