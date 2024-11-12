@@ -10,7 +10,7 @@ redirect_from:
 tags: basic-r
 ---
 
-# Tutorial aims:
+# Tutorial aims: 
 
 1. Understand what are R and R Studio 
 2. Develop the good habit of working with scripts
