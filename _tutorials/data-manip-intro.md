@@ -455,7 +455,7 @@ Sometimes you have multiple data files concerning a same project: one for measur
 
 Let's imagine that the growth data we have been working with actually comes from an experiment where some plants where warmed with portable greenhouses (W), others were fertilised (F), some received both treatments (WF) and some were control plants (C). We will import this data from the file `EmpetrumTreatments.csv`, which contains the details of which individuals received which treatments, and join it with our main dataset `elongation_long`. We can do this because both datasets have a column representing the ID of each plant: this is what we will merge by.
 
-There are [many types of joins](https://dplyr.tidyverse.org/reference/join.html) you can perform, which will make sense to you if you are familiar with the SQL language. They differ in how they handle data that is not shared by both tables, so always ask yourself which observations you need to keep and which you want to drop, and look up the help pages if necessary (in doubt, `full_join()` will keep everything). In the following example, we want to keep all the information in `elong_long` and have the treatment code repeated for the five occurrences of every individual, so we will use `left_join()`.
+There are [many types of joins]([https://dplyr.tidyverse.org/reference/join.html](https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html)) you can perform, which will make sense to you if you are familiar with the SQL language. They differ in how they handle data that is not shared by both tables, so always ask yourself which observations you need to keep and which you want to drop, and look up the help pages if necessary (in doubt, `full_join()` will keep everything). In the following example, we want to keep all the information in `elong_long` and have the treatment code repeated for the five occurrences of every individual, so we will use `left_join()`.
 
 
 ```r
@@ -558,7 +558,7 @@ But whatever works for you! Now let's finish cleaning the dataset and make those
 
 # Reshape the data from wide to long format
 
-dragons_long <- gather(dragons, key = 'spice', value = 'plume', c('tabasco', 'jalapeno', 'wasabi', 'turmeric'))
+dragons_long <- tidyr::gather(dragons, key = 'spice', value = 'plume', c('tabasco', 'jalapeno', 'wasabi', 'turmeric'))
 
 
 # Convert the data into meters
