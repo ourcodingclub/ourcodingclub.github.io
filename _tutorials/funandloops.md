@@ -308,7 +308,7 @@ diam.summ <- function(dbh, mean = TRUE, median = TRUE, ba = TRUE){
 		return(as.data.frame(na.omit(t(data.frame(mean_dbh, median_dbh, mean_ba)))))
 }
 
-diam.summ(dbh = bicuar_trees$diam, mean = TRUE, median = FALSE)
+diam.summ(dbh = trees_bicuar$diam, mean = TRUE, median = FALSE)
 ```
 
 Also note that in this function definition the extra arguments have default values, e.g. `mean = TRUE`. This means that even if the user doesn't specify what the value of `mean` should be, e.g. `diam.summ(dbh = trees_bicuar$diam, median = TRUE, mean_ba = FALSE)`, R will default to the value of `mean = TRUE`, thus calculating the mean trunk diameter. 
@@ -319,9 +319,11 @@ Also note that in this function definition the extra arguments have default valu
 
 This final section for the workshop provides another real world example using simple `for()` loops and functions to create multiple graphs of population trends from the [Living Planet Index](http://www.livingplanetindex.org/) for a number of vertebrate species from 1970 to 2014. Work through the example to make sure that all the code makes sense, remembering the lessons from earlier in the workshop. 
 
-First, import the data:
+First, load required packages and import the data:
 
 ```r
+library(dplyr)
+library (ggplot2)
 LPI <- read.csv("LPI_data_loops.csv")
 ```
 
