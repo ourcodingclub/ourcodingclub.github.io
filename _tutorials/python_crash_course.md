@@ -262,8 +262,9 @@ for i in range(8):
     # on each pass we add the next number to the total we have so far
     total = total + precip[i]
 
-# finally we will divide by the number of items to get the mean
+# finally we will divide by the number of items to get the mean and send this value to the console
 mean_precip = total / 8
+print (mean_precip)
 ```
 
 Loops can be hard when you are new to coding and so it might take you a bit longer to really get your head round them.
@@ -285,8 +286,8 @@ Functions in Python are great because they allow us to repeat things easily. Let
 
 ```python
 daily_precipitation_edinburgh = [2,7,1,9,0,2,4,5]
-daily_precipitation_glasgow = = [5,5,3,6,7,3,2,8]
-daily_precipitation_dundee = = [4,2,5,7,2,6,8,7]
+daily_precipitation_glasgow = [5,5,3,6,7,3,2,8]
+daily_precipitation_dundee = [4,2,5,7,2,6,8,7]
 ```
 
 We could do this the way we did in the example above, copying and pasting our code 3 times, (or we could even make a loop within a loop) but this is untidy and as budding Pythonistas we can do better. Instead we can make a function which will calculate the mean of whatever we put in.
@@ -314,12 +315,14 @@ def my_mean(x):
   # in this final line we return the answer
   # the rest of the variables here, like total, will be thrown away
   return mean_value
+
+
 ```
 
 Now that we have defined this function we can use it in the same way that we use the `print` function. We feed in an input and the function will do its job and return u the mean. To calculate the mean precipitation in Edinburgh we would use:
 
 ```python
-mean_precipitation_edinburgh = my_mean(daily_precipitation_edinburgh)
+my_mean(daily_precipitation_edinburgh)
 ```
 
 and we would get the answer 3.75
