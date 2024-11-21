@@ -103,7 +103,7 @@ Warnings are not necessarily the end of the world, but you should see them as ma
 # 4. Practice! 
 {: #practice}
 
-Practice truly is the best way to learn how to avoid errors in `R` - to get you started, we have written a purposefully wrong script - you can download the file from this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics). There you will find the data `edidiv.csv`, as well as the wrong (`CC_2_RBasics_Wrong_Script.R`) and right script. Can you fix all the mistakes?
+Practice truly is the best way to learn how to avoid errors in `R` - to get you started, we have written a purposefully wrong script - you can download the file from this [Github repository](https://github.com/ourcodingclub/CC-1-RBasics). There you will find the data `edidiv.csv`, as well as the wrong (`CC_2_RBasics_Wrong_Script.R`) and right script [- need to add to folder!]. Can you fix all the mistakes?
 
 
 # Tutorial outcomes:
