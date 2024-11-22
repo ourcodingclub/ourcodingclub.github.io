@@ -129,13 +129,13 @@ python myscript.py
 
 Any output will be printed to the screen in the terminal or console you are running from.
 
-This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Linux/Mac terminal users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/) and [Windows command line users](http://simplyadvanced.net/blog/cheat-sheet-for-windows-command-prompt/).
+This workshop doesn't cover the command line/terminal in depth, but handy 'cheat sheets' are available here for [Linux/Mac terminal users](https://learntocodewith.me/command-line/unix-command-cheat-sheet/) and [Windows command line users]([https://www.stationx.net/windows-command-line-cheat-sheet/]).
 
 ### Option B - Following the tutorial with Spyder or another IDE
 
 If you are not comfortable using the command line or terminal, or are on a Windows machine, we recommend using this method.
 
-Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as [Spyder](https://spyder-ide.github.io/) (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the [Spyder documentation](https://pythonhosted.org/spyder/) for more info on how to use Spyder.
+Instead of using a text editor and the command line, you can write and run your Python scripts using an IDE (Integrated Development Environment) such as [Spyder](https://www.spyder-ide.org/) (similar to RStudio). Spyder is bundled with the Anaconda installation, so it should be easily accessible. Ask the workshop helpers for guidance, or consult the [Spyder documentation](https://docs.spyder-ide.org/current/index.html) for more info on how to use Spyder.
 
 This diagram shows a basic Spyder session:
 
@@ -180,13 +180,13 @@ Alternatively, you can fork [the repository](https://github.com/ourcodingclub/CC
 {% endcapture %}
 {% include callout.html content=callout colour=alert %}
 
-You can have a look at all the data via the [link to the station webpage](https://www.ed.ac.uk/geosciences/weather-station/weather-station-data), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
+You can have a look at all the data via the [link to the station webpage](https://www.geos.ed.ac.uk/~hcp/metstat_arch/), but for ease of use, we've provided the data file [in the repository you just downloaded](https://github.com/ourcodingclub/CC-python-intro) (`StormEleanor_2_3_Jan.csv`). Specifically, the data comes from [Storm Eleanor](https://www.metoffice.gov.uk/barometer/uk-storm-centre/storm-eleanor), which passed over the UK and Edinburgh on the 2nd-3rd January 2018.
 
 
 # 2. Reading data from a file
 {: #reading}
 
-We are going to start off simple, using the basic 'core' Python language features to explore the data, then later in the tutorial we'll look at some of the ways we can use modules and libraries to make dealing with data easier. Create a new Python script in your editor or IDE, and type in the following lines:
+We are going to start off simple, using the basic 'core' Python language features to explore the data, then later in the tutorial we'll look at some of the ways we can use modules and libraries to make dealing with data easier. Create a new Python script in your editor or IDE, make sure the script is saved in the same folder as your data, and type in the following lines:
 
 ```python
 weatherfile = open("StormEleanor_2_3_Jan.csv", "r")
@@ -504,10 +504,11 @@ pressure_data = data['Pair_Avg']
 
 plt.plot(pressure_data)
 plt.savefig("pressure.png")
+plt.show()
 
 ```
 
-The `plot` function will plot a line chart by default, and the first argument is the dataseries you wish to plot. There are many other optional arguments that can be provided to the plot function, but for now we will just keep it simple. To write the plot out to an image file, the `savefig` function is used, with the filename specified. The image filetype is inferred from the filename (e.g. ".png") and a wide range of common image file types are supported in `matplotlib`, including vector and raster formats.
+The `plot` function will plot a line chart by default, and the first argument is the dataseries you wish to plot. There are many other optional arguments that can be provided to the plot function, but for now we will just keep it simple. To write the plot out to an image file, the `savefig` function is used, with the filename specified. The image filetype is inferred from the filename (e.g. ".png") and a wide range of common image file types are supported in `matplotlib`, including vector and raster formats. Alternatively, plt.show() or plot show, brings up the plot in the plot tab on the top right window. 
 
 Open the "pressure.png" file (it will be in the same folder) and you should see a simple line plot of the pressure data over the 2 days that Storm Eleanor passed over Edinburgh. It should look something like this:
 
@@ -526,6 +527,8 @@ pressure_data = data['Pair_Avg']
 plt.plot(pressure_data)
 plt.ylabel("Pressure (hPa)")
 plt.title("Average Pressure, JCMB Weather Station, 2-3rd Jan 2018")
+plt.savefig("pressure2.png")
+plt.show()
 
 # Hmmm, what about the time along the x axis?...
 ```
@@ -593,6 +596,7 @@ plt.title("Average Pressure, JCMB Weather Station, 2-3rd Jan 2018")
 plt.xticks(rotation=-60)
 plt.tight_layout()
 plt.savefig("pressure_final.png")
+plt.show()
 ```
 
 Make sure the script is saved, and then run it. Open up the "pressure_final.png" file to see your results.
