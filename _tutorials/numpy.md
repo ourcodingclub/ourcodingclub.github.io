@@ -29,7 +29,8 @@ The biggest advantage of NumPy is its ability to handle numerical arrays. For ex
 a = [1, 2, 3, 4, 5]
 b = []
 for i in a:
-    b.append(a**2)
+    b.append(i**2)
+print(b)    
 ```
 
 and you will get `[1, 4, 9, 16, 25]` for `b`. Now, if you want to do the same with a 2-dimensional array, the base Python to do this is:
@@ -40,6 +41,7 @@ b = [[],[]]
 for i in range(len(a)):
     for j in range(len(a[i])):
         b[i].append(a[i][j]**2)
+print(b)
 ```
 
 This would give you `b` equal to `[[1, 4], [9, 16]]`. To do the same with a 3D array you would need 3 nested loops and to do it in 4D would require 4 nested loops. However, with NumPy you can take the square of an array of any dimensions using the same line of code and no loops:
@@ -158,6 +160,9 @@ for i in [a, b]:
         i[:, :, 0] += 1.
     elif dimensions == 4:
         i[:, :, :, 0] += 1.
+
+print(a)
+print(b)
 ```
 While there is nothing wrong with this code, and it will do what we want, there is a better method:
 ```python
@@ -169,6 +174,9 @@ b = np.zeros((3, 3, 3, 3))
 # add 1 to the first columns
 for i in [a, b]:
     i[..., 0] += 1.
+
+print(a)
+print(b)
 ```
 `...` is called the ellipsis, and it is used to select all unspecified dimensions.
 
