@@ -12,6 +12,7 @@ tags: modelling
 
 ***
 
+test edit
 Have you ever thought frequentist statistics were confusing? Have you ever felt like your mind was getting lost between p-values, random 0.05 thresholds, and confidence intervals that had little to do with confidence? 
 But do you still need to use statistics for your degree and are looking for more straightforward methods? Then you are in the right place! These are questions and topics that I have also struggled with, and I found Bayesian models to be easier to deal with. Hopefully, you will too after completing this tutorial.
 
